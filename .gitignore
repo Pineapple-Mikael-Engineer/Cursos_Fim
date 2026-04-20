@@ -1,6 +1,7 @@
-# 1. Ignorar toda la carpeta de configuración de Obsidian␍
-.obsidian/*
- 
+
+# 1. Eliminar json en general
+.obsidian/*.json
+
 # 2. Permitir exclusivamente las carpetas de plugins y temas␍
 !.obsidian/plugins/*
 !.obsidian/themes/*
@@ -14,3 +15,4 @@
 .obsidian/workspace-mobile.json 
 .obsidian/cache/
 .obsidian/appearance.json
+~
