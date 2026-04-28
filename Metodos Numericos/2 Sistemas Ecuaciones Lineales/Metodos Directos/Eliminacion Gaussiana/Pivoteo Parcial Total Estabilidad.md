@@ -245,9 +245,9 @@ Las bibliotecas numéricas profesionales ofrecen rutinas optimizadas con pivoteo
 |:---|:---|
 | Matrices densas generales | Pivoteo parcial (estándar) |
 | Matrices mal condicionadas conocidas | Pivoteo total o rook pivoting |
-| Matrices simétricas definidas positivas | Sin pivoteo ([[Factorizacion Cholesky Matrices Definidas Positivas|Cholesky]]) |
+| Matrices simétricas definidas positivas | Sin pivoteo ([[Factorizacion Cholesky Matrices Definidas Positivas\|Cholesky]]) |
 | Matrices simétricas indefinidas | Pivoteo simétrico (Bunch-Kaufman) |
-| Matrices dispersas | Pivoteo parcial con estrategias de [[Relleno Matrices Dispersas|minimización de relleno]] |
+| Matrices dispersas | Pivoteo parcial con estrategias de [[Relleno Matrices Dispersas\|minimización de relleno]] |
 
 > [!corolario]
 > El pivoteo es la diferencia entre un algoritmo numéricamente inútil y una herramienta confiable. En eliminación Gaussiana, el pivoteo parcial proporciona un equilibrio óptimo entre estabilidad y costo computacional para la gran mayoría de aplicaciones en ingeniería y ciencias.
