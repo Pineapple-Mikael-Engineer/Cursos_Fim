@@ -239,3 +239,12 @@ La demostración de estos teoremas se encuentra en [[Teorema Diagonal Dominante 
 
 > [!corolario]
 > El método de Gauss-Seidel es una mejora práctica sobre Jacobi que utiliza inmediatamente los valores actualizados. Su convergencia es típicamente más rápida, y para matrices simétricas definidas positivas está siempre garantizada. La comparación cuantitativa con Jacobi, incluyendo el teorema de Stein-Rosenberg y ejemplos donde la diferencia es dramática, se desarrolla en [[Comparacion Asintotica Convergencia Jacobi]]. Las condiciones de convergencia se profundizan en [[Teorema Diagonal Dominante Estricta]].
+
+
+  
+  
+$$  
+\|(D-L)^{-1}U\|<1  
+\Rightarrow  
+\rho(T)<1  
+$$
