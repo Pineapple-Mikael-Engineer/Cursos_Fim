@@ -15,6 +15,7 @@ Aquí guardo mis anotaciones (a veces ordenadas, a veces no tanto) de cursos de 
 
 - [[Tensorial/index|Tensorial]]
 - [[Metodos Numericos/index|Métodos Numéricos]]
+- [[Control/index|Control]]
 
 
 ---
