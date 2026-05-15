@@ -55,19 +55,11 @@ Metodos Numericos Teoria/
 │            └── Convergencia y Desplazamientos.md
 │
 ├── 3 Ecuaciones No Lineales/
-│   ├── Localizacion Raices/
-│   │   ├── Teorema Bolzano y Existencia Intervalo.md
-│   │   ├── Metodo Grafico Analisis Cualitativo.md
-│   │   └── Separacion Raices Reales Multiplicidad.md
+│   ├── Teorema de Bolzano y Metodo Grafico.md
 │   │
 │   ├── Metodos Cerrados Una Variable/
-│   │   ├── Biseccion/
-│   │   │   ├── Algoritmo y Teorema Convergencia.md
-│   │   │   ├── Orden Convergencia Lineal Cota Error.md
-│   │   │   └── Ventaja Robustez vs Lentitud.md
-│   │   └── Regula Falsi/
-│   │       ├── Convergencia Unilateral y Estancamiento.md
-│   │       └── Modificaciones Illinois Pegasus.md
+│   │   ├── Biseccion.md
+│   │   └── Regula Falsi.md
 │   │
 │   ├── Metodos Abiertos Una Variable/
 │   │   ├── Punto Fijo Aproximaciones Sucesivas/
@@ -87,8 +79,7 @@ Metodos Numericos Teoria/
 │       │   ├── Matriz Jacobiana y Sistema Lineal Asociado.md
 │       │   ├── Convergencia Local Cuadratica.md
 │       │   └── Costo Computacional Evaluacion Jacobiano.md
-│       └── Aproximaciones Sucesivas Multivariable/
-│           └── Condicion Contraccion Norma Matricial.md
+│       └── Condicion Contraccion Norma Matricial.md
 │
 ├── 4 Aproximacion Funciones/
 │   ├── Interpolacion Polinomica/

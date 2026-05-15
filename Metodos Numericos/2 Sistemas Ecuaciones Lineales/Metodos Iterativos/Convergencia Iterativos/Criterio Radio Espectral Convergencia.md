@@ -141,9 +141,9 @@ aliases:
 
 ## Resumen de la demostración
 
-| Dirección | Argumento clave |
-|:---|:---|
-| $T^k \to 0 \implies \rho(T) < 1$ | Autovalores: $T^k v = \lambda^k v \to 0 \implies |\lambda| < 1$ |
+| Dirección                        | Argumento clave                                                  |
+| :------------------------------- | :--------------------------------------------------------------- |
+| $T^k \to 0 \implies \rho(T) < 1$ | Autovalores: $T^k v = \lambda^k v \to 0 \implies \|\lambda \| < 1$ |
 | $\rho(T) < 1 \implies T^k \to 0$ | Existe norma con $\|T\| < 1 \implies \|T^k\| \leq \|T\|^k \to 0$ |
 
 > [!info]
