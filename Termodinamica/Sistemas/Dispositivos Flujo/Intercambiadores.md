@@ -9,6 +9,7 @@ draft: false
 aliases:
   - heat exchanger
   - intercambiador
+  - Intercambiadores de Calor
   - HX
 ---
 
