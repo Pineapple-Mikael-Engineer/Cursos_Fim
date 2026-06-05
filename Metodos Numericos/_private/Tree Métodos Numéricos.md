@@ -4,166 +4,209 @@ draft: true
 ---
 # Tree 
 
+> **Estado de las notas** — ✅ creada · ⏳ falta · 🆕 creada pero no estaba en el árbol original
+>
+> Avance global: **84 notas creadas** de ~92 planeadas. **Capítulos 1, 2, 3 y 4 completos** (incluidos índices de carpeta y notas opcionales); capítulos 5 y 6 sin empezar.
+>
+> | Capítulo | Creadas | Faltan |
+> |:---|:---:|:---:|
+> | 1 Teoría de Errores | 6 | 0 |
+> | 2 Sistemas Lineales | 29 | 0 |
+> | 3 Ecuaciones No Lineales | 21 | 0 |
+> | 4 Aproximación de Funciones | 24 | 0 |
+> | 5 Diferenciación e Integración | 0 | 17 |
+> | 6 EDOs | 0 | 19 |
+
 ```tree 
 
 Metodos Numericos Teoria/
 ├── 1 Teoria Errores Analisis Estabilidad/
-│   ├── Representacion Punto Flotante IEEE 754.md
-│   ├── Epsilon Maquina y Precision Relativa.md
-│   ├── Perdida Significancia y Cancelacion Catastrofica.md
-│   ├── Condicionamiento Numerico Numero Condicion.md
-│   ├── Estabilidad Algoritmos Forward Backward.md
-│   └── Propagacion Errores Operaciones Matriciales.md
+│   ├── Representacion Punto Flotante IEEE 754.md ✅
+│   ├── Epsilon Maquina y Precision Relativa.md ✅
+│   ├── Perdida Significancia y Cancelacion Catastrofica.md ✅
+│   ├── Condicionamiento Numerico Numero Condicion.md ✅
+│   ├── Estabilidad Algoritmos Forward Backward.md ✅
+│   └── Propagacion Errores Operaciones Matriciales.md ✅
 │
 ├── 2 Sistemas Ecuaciones Lineales/
 │   ├── Metodos Directos/
 │   │   ├── Eliminacion Gaussiana/
-│   │   │   ├── Pivoteo Parcial Total Estabilidad.md
-│   │   │   ├── Conteo Operaciones Complejidad O n3.md
-│   │   │   └── Acumulacion Error Redondeo Gauss.md
+│   │   │   ├── index.md ✅
+│   │   │   ├── Pivoteo Parcial Total Estabilidad.md ✅
+│   │   │   ├── Conteo Operaciones Complejidad O n3.md ✅
+│   │   │   └── Acumulacion Error Redondeo Gauss.md ✅
 │   │   ├── Factorizacion LU/
-│   │   │   ├── Existencia Unicidad LU Matrices No Singulares.md
-│   │   │   ├── Variantes Doolittle Crout Cholesky.md
-│   │   │   ├── Factorizacion Cholesky Matrices Definidas Positivas.md
-│   │   │   └── Costo Computacional vs Eliminacion Gaussiana.md
+│   │   │   ├── index.md ✅
+│   │   │   ├── Existencia Unicidad LU Matrices No Singulares.md ✅
+│   │   │   ├── Variantes Doolittle Crout Cholesky.md ✅
+│   │   │   ├── Factorizacion Cholesky Matrices Definidas Positivas.md ✅
+│   │   │   └── Costo Computacional vs Eliminacion Gaussiana.md ✅
 │   │   └── Analisis Error Directos/
-│   │       ├── Residuo vs Error Relativo Solucion.md
-│   │       └── Sensibilidad Solucion Numero Condicion.md
+│   │       ├── index.md ✅
+│   │       ├── Residuo vs Error Relativo Solucion.md ✅
+│   │       └── Sensibilidad Solucion Numero Condicion.md ✅
 │   │
 │   ├── Metodos Iterativos/
-│   │   ├── Fundamentos Iteracion Punto Fijo Lineal.md
-│   │   ├── Jacobi.md
-│   │   ├── Gauss Seidel.md
+│   │   ├── index.md ✅
+│   │   ├── Fundamentos de Iteración de Punto Fijo Lineal.md ✅
+│   │   ├── Jacobi.md ✅
+│   │   ├── Gauss Seidel.md ✅
 │   │   └── Convergencia Iterativos/
-│   │       ├── Teorema Diagonal Dominante Estricta.md
-│   │       ├── Criterio Radio Espectral Convergencia.md
-│   │       └── Estimacion Error y Cotas A Priori.md
+│   │       ├── Teorema Diagonal Dominante Estricta.md ✅
+│   │       ├── Criterio Radio Espectral Convergencia.md ✅
+│   │       ├── Teorema Stein-Rosenberg.md 🆕
+│   │       └── Estimacion Error y Cotas A Priori.md ✅
 │   │
 │   └── Valores Vectores Propios/
+│       ├── index.md ✅
 │       ├── Metodo Potencia Directo/
-│       │   ├── Fundamentos Valor Propio Dominante.md
-│       │   ├── Velocidad Convergencia Razon Lambda2 Lambda1.md
-│       │   ├── Calculo Constante Normalizacion Rayleigh.md
-│       │   └── (opcional) Caso Simetrico Convergencia Acelerada.md
+│       │   ├── index.md ✅
+│       │   ├── Fundamentos Valor Propio Dominante.md ✅
+│       │   ├── Velocidad Convergencia Razon Lambda2 Lambda1.md ✅
+│       │   ├── Calculo Constante Normalizacion Rayleigh.md ✅
+│       │   └── Caso Simetrico Convergencia Acelerada.md ✅
 │       ├── Variantes Metodo Potencia/
-│       │    ├── Potencia Inversa Valor Propio Menor Modulo.md
-│       │    ├── Potencia Desplazada Aceleracion Convergencia.md
-│       │    └── (opcional) Potencia Subespacio Iteracion Simultanea.md
-│       └── (opcional) Metodo QR/ 
-│            ├── Fundamentos Transformaciones Householder.md
-│            ├── Iteracion QR Descomposicion.md
-│            └── Convergencia y Desplazamientos.md
+│       │    ├── index.md ✅
+│       │    ├── Potencia Inversa Valor Propio Menor Modulo.md ✅
+│       │    ├── Potencia Desplazada Aceleracion Convergencia.md ✅
+│       │    └── Iteracion Simultanea.md ✅
+│       └── Metodo QR/
+│            ├── index.md ✅
+│            ├── Fundamentos Transformaciones Householder.md ✅
+│            ├── Iteracion QR Descomposicion.md ✅
+│            └── Convergencia y Desplazamientos.md ✅
 │
 ├── 3 Ecuaciones No Lineales/
-│   ├── Teorema de Bolzano y Metodo Grafico.md
+│   ├── index.md ✅
+│   ├── Teorema de Bolzano y Metodo Grafico.md ✅
 │   │
 │   ├── Metodos Cerrados Una Variable/
-│   │   ├── Biseccion.md
-│   │   └── Regula Falsi.md
+│   │   ├── index.md ✅
+│   │   ├── Biseccion.md ✅
+│   │   └── Regula Falsi.md ✅
 │   │
 │   ├── Metodos Abiertos Una Variable/
 │   │   ├── Punto Fijo Aproximaciones Sucesivas/
-│   │   │   ├── Teorema Punto Fijo Banach Contraccion.md
-│   │   │   ├── Funcion Iteracion g x y Convergencia Local.md
-│   │   │   └── Orden Convergencia Lineal Constante Asintotica.md
+│   │   │   ├── index.md ✅
+│   │   │   ├── Teorema Punto Fijo Banach Contraccion.md ✅
+│   │   │   ├── Funcion Iteracion g x y Convergencia Local.md ✅
+│   │   │   └── Orden Convergencia Lineal Constante Asintotica.md ✅
 │   │   ├── Newton Raphson/
-│   │   │   ├── Derivacion Geometrica y Serie Taylor.md
-│   │   │   ├── Orden Convergencia Cuadratica Simple.md
-│   │   │   ├── Convergencia Lineal Raices Multiples.md
-│   │   │   ├── Criterios Fallo Divergencia Oscilacion.md
-│   │   │   └── Metodo Secante Orden Convergencia Fi.md
-│   │   └── Comparacion Analitica Orden Convergencia.md
+│   │   │   ├── index.md ✅
+│   │   │   ├── Derivacion Geometrica y Serie Taylor.md ✅
+│   │   │   ├── Orden Convergencia Cuadratica Simple.md ✅
+│   │   │   ├── Convergencia Lineal Raices Multiples.md ✅
+│   │   │   ├── Criterios Fallo Divergencia Oscilacion.md ✅
+│   │   │   └── Metodo Secante Orden Convergencia Fi.md ✅
+│   │   └── Comparacion Analitica Orden Convergencia.md ✅
 │   │
 │   └── Sistemas Ecuaciones No Lineales/
+│       ├── index.md ✅
 │       ├── Newton Raphson Multivariable/
-│       │   ├── Matriz Jacobiana y Sistema Lineal Asociado.md
-│       │   ├── Convergencia Local Cuadratica.md
-│       │   └── Costo Computacional Evaluacion Jacobiano.md
-│       └── Condicion Contraccion Norma Matricial.md
+│       │   ├── index.md ✅
+│       │   ├── Matriz Jacobiana y Sistema Lineal Asociado.md ✅
+│       │   ├── Convergencia Local Cuadratica.md ✅
+│       │   └── Costo Computacional Evaluacion Jacobiano.md ✅
+│       └── Condicion Contraccion Norma Matricial.md ✅
 │
 ├── 4 Aproximacion Funciones/
+│   ├── index.md ✅
 │   ├── Interpolacion Polinomica/
-│   │   ├── Existencia Unicidad Polinomio Interpolador.md
-│   │   ├── Matriz Vandermonde Mal Condicionamiento.md
+│   │   ├── index.md ✅
+│   │   ├── Existencia Unicidad Polinomio Interpolador.md ✅
+│   │   ├── Matriz Vandermonde Mal Condicionamiento.md ✅
 │   │   ├── Lagrange/
-│   │   │   ├── Formulacion Polinomios Cardinales L i x.md
-│   │   │   └── Costo Computacional Evaluacion Directa.md
+│   │   │   ├── index.md ✅
+│   │   │   ├── Formulacion Polinomios Cardinales L i x.md ✅
+│   │   │   └── Costo Computacional Evaluacion Directa.md ✅
 │   │   ├── Newton Diferencias Divididas/
-│   │   │   ├── Tabla Diferencias Divididas y Coeficientes.md
-│   │   │   ├── Forma Anidada y Eficiencia Algoritmo Horner.md
-│   │   │   ├── Relacion Diferencias Divididas Derivadas.md
-│   │   │   └── Error Interpolacion Formula Cauchy.md
-│   │   └── Fenomeno Runge y Nodos Chebyshev.md
+│   │   │   ├── index.md ✅
+│   │   │   ├── Tabla Diferencias Divididas y Coeficientes.md ✅
+│   │   │   ├── Forma Anidada y Eficiencia Algoritmo Horner.md ✅
+│   │   │   ├── Relacion Diferencias Divididas Derivadas.md ✅
+│   │   │   └── Error Interpolacion Formula Cauchy.md ✅
+│   │   └── Fenomeno Runge y Nodos Chebyshev.md ✅
 │   │
 │   ├── Interpolacion Tramos Splines/
-│   │   ├── Splines Lineales Continuidad C0.md
-│   │   ├── Splines Cubicos Naturales Sujetos.md
-│   │   ├── Condiciones Continuidad C2 y Sistema Tridiagonal.md
-│   │   ├── Propiedad Minima Curvatura.md
-│   │   └── Convergencia y Estabilidad vs Polinomios Grado Alto.md
+│   │   ├── index.md ✅
+│   │   ├── Splines Lineales Continuidad C0.md ✅
+│   │   ├── Splines Cubicos Naturales Sujetos.md ✅
+│   │   ├── Condiciones Continuidad C2 y Sistema Tridiagonal.md ✅
+│   │   ├── Propiedad Minima Curvatura.md ✅
+│   │   └── Convergencia y Estabilidad vs Polinomios Grado Alto.md ✅
 │   │
 │   └── Ajuste Minimos Cuadrados/
-│       ├── Formulacion Residuos y Norma Euclidea.md
-│       ├── Ecuaciones Normales y Matriz Gram.md
-│       ├── Condicionamiento Ecuaciones Normales.md
-│       └── Regresion Lineal Multiple y Polinomial.md
+│       ├── index.md ✅
+│       ├── Formulacion Residuos y Norma Euclidea.md ✅
+│       ├── Ecuaciones Normales y Matriz Gram.md ✅
+│       ├── Condicionamiento Ecuaciones Normales.md ✅
+│       └── Regresion Lineal Multiple y Polinomial.md ✅
 │
-├── 5 Diferenciacion Integracion Numerica/
+├── 5 Diferenciacion Integracion Numerica/ ⏳ (capítulo sin empezar)
 │   ├── Diferenciacion Numerica/
-│   │   ├── Aproximacion Diferencias Finitas Serie Taylor.md
-│   │   ├── Orden Error Progresiva Regresiva Centrada.md
-│   │   ├── Extrapolacion Richardson Aceleracion Convergencia.md
-│   │   └── Inestabilidad Error Redondeo Paso h.md
+│   │   ├── Aproximacion Diferencias Finitas Serie Taylor.md ⏳
+│   │   ├── Orden Error Progresiva Regresiva Centrada.md ⏳
+│   │   ├── Extrapolacion Richardson Aceleracion Convergencia.md ⏳
+│   │   └── Inestabilidad Error Redondeo Paso h.md ⏳
 │   │
 │   ├── Integracion Numerica Newton Cotes/
-│   │   ├── Formulacion General Pesos Newton Cotes.md
+│   │   ├── Formulacion General Pesos Newton Cotes.md ⏳
 │   │   ├── Reglas Cerradas/
-│   │   │   ├── Trapecio Error Truncamiento Segunda Derivada.md
-│   │   │   ├── Simpson 1 3 Orden Precision y Error Cuarta Derivada.md
-│   │   │   ├── Simpson 3 8 y Reglas Grado Superior.md
-│   │   │   └── Inestabilidad Pesos Negativos Grado Alto.md
+│   │   │   ├── Trapecio Error Truncamiento Segunda Derivada.md ⏳
+│   │   │   ├── Simpson 1 3 Orden Precision y Error Cuarta Derivada.md ⏳
+│   │   │   ├── Simpson 3 8 y Reglas Grado Superior.md ⏳
+│   │   │   └── Inestabilidad Pesos Negativos Grado Alto.md ⏳
 │   │   └── Metodos Compuestos/
-│   │       ├── Trapecio Compuesto Convergencia O h2.md
-│   │       └── Simpson Compuesto Convergencia O h4.md
+│   │       ├── Trapecio Compuesto Convergencia O h2.md ⏳
+│   │       └── Simpson Compuesto Convergencia O h4.md ⏳
 │   │
 │   └── Cuadratura Gaussiana/
-│       ├── Fundamentos Gauss Legendre Polinomios Ortogonales.md
-│       ├── Determinacion Nodos y Pesos Optimos.md
-│       ├── Grado Exactitud Polinomica 2n 1.md
-│       ├── Comparacion Eficiencia vs Newton Cotes.md
-│       └── Cambio Variable Intervalo General.md
+│       ├── Fundamentos Gauss Legendre Polinomios Ortogonales.md ⏳
+│       ├── Determinacion Nodos y Pesos Optimos.md ⏳
+│       ├── Grado Exactitud Polinomica 2n 1.md ⏳
+│       ├── Comparacion Eficiencia vs Newton Cotes.md ⏳
+│       └── Cambio Variable Intervalo General.md ⏳
 │
-└── 6 Ecuaciones Diferenciales Ordinarias/
+└── 6 Ecuaciones Diferenciales Ordinarias/ ⏳ (capítulo sin empezar)
     ├── Problema Valor Inicial PVI/
-    │   ├── Teoremas Existencia Unicidad Picard Lindelof.md
+    │   ├── Teoremas Existencia Unicidad Picard Lindelof.md ⏳
     │   ├── Metodos Taylor Euler/
-    │   │   ├── Euler Explicito Orden 1 Interpretacion Geometrica.md
-    │   │   ├── Error Local Truncamiento vs Error Global Acumulado.md
-    │   │   ├── Euler Implicito Estabilidad Incondicional.md
-    │   │   └── Metodos Serie Taylor Orden Superior.md
+    │   │   ├── Euler Explicito Orden 1 Interpretacion Geometrica.md ⏳
+    │   │   ├── Error Local Truncamiento vs Error Global Acumulado.md ⏳
+    │   │   ├── Euler Implicito Estabilidad Incondicional.md ⏳
+    │   │   └── Metodos Serie Taylor Orden Superior.md ⏳
     │   ├── Metodos Runge Kutta/
-    │   │   ├── Construccion General Etapas s y Orden p.md
-    │   │   ├── RK2 Heun Euler Modificado Punto Medio.md
-    │   │   ├── RK4 Clasico Tabla Butcher y Orden Cuatro.md
-    │   │   ├── Control Paso Adaptativo RK45 Dormand Prince.md
-    │   │   └── Regiones Estabilidad Absoluta A Estabilidad.md
+    │   │   ├── Construccion General Etapas s y Orden p.md ⏳
+    │   │   ├── RK2 Heun Euler Modificado Punto Medio.md ⏳
+    │   │   ├── RK4 Clasico Tabla Butcher y Orden Cuatro.md ⏳
+    │   │   ├── Control Paso Adaptativo RK45 Dormand Prince.md ⏳
+    │   │   └── Regiones Estabilidad Absoluta A Estabilidad.md ⏳
     │   └── Sistemas EDO y Orden Superior/
-    │       ├── Reduccion EDO Orden n a Sistema Primer Orden.md
-    │       ├── Acoplamiento Metodos Sistemas Runge Kutta.md
-    │       └── Rigidez Stiffness Problemas Ingenieria.md
+    │       ├── Reduccion EDO Orden n a Sistema Primer Orden.md ⏳
+    │       ├── Acoplamiento Metodos Sistemas Runge Kutta.md ⏳
+    │       └── Rigidez Stiffness Problemas Ingenieria.md ⏳
     │
     └── Problema Valor Frontera PVF/
         ├── Metodo Diferencias Finitas/
-        │   ├── Discretizacion Dominio y Aproximacion Centrada.md
-        │   ├── Construccion Sistema Tridiagonal Lineal.md
-        │   ├── Consistencia Estabilidad Convergencia Lax.md
-        │   └── Tratamiento Condiciones Frontera Dirichlet Neumann.md
+        │   ├── Discretizacion Dominio y Aproximacion Centrada.md ⏳
+        │   ├── Construccion Sistema Tridiagonal Lineal.md ⏳
+        │   ├── Consistencia Estabilidad Convergencia Lax.md ⏳
+        │   └── Tratamiento Condiciones Frontera Dirichlet Neumann.md ⏳
         └── Metodo Disparo Shooting/
-            ├── Transformacion PVF a PVI Valor Inicial Desconocido.md
-            ├── Metodo Newton para Condicion Frontera Residual.md
-            └── Comparacion Disparo vs Diferencias Finitas.md
-            
+            ├── Transformacion PVF a PVI Valor Inicial Desconocido.md ⏳
+            ├── Metodo Newton para Condicion Frontera Residual.md ⏳
+            └── Comparacion Disparo vs Diferencias Finitas.md ⏳
+
 ```
+
+> **Notas adicionales fuera del árbol teórico** (ya creadas):
+> - `index.md` (raíz de Metodos Numericos) ✅
+> - `Problemas/Plancha 01.md` ✅
+> - `Problemas/Problemas Examen Simulado 01.md` ✅
+>
+> **Discrepancias de nombre detectadas** (el archivo real difiere del árbol original):
+> - Árbol: `Fundamentos Iteracion Punto Fijo Lineal.md` → archivo real: `Fundamentos de Iteración de Punto Fijo Lineal.md`
+> - Árbol: `(opcional) Potencia Subespacio Iteracion Simultanea.md` → archivo real: `Iteracion Simultanea.md`
 
 
 **Chat:** [chat](https://chat.deepseek.com/a/chat/s/8876a460-8b8a-432d-b853-575bb01c118c)
@@ -183,8 +226,8 @@ Metodos Numericos Teoria/
 │   ├── Epsilon Maquina y Precision Relativa.md ✅
 │   ├── Perdida Significancia y Cancelacion Catastrofica.md ✅
 │   ├── Condicionamiento Numerico Numero Condicion.md ✅
-│   ├── Estabilidad Algoritmos Forward Backward.md ⏳
-│   └── Propagacion Errores Operaciones Matriciales.md ⏳
+│   ├── Estabilidad Algoritmos Forward Backward.md ✅
+│   └── Propagacion Errores Operaciones Matriciales.md ✅
 │
 ├── 2 Sistemas Ecuaciones Lineales/
 │   ├── Metodos Directos/
