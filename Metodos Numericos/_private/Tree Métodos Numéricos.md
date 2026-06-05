@@ -6,7 +6,7 @@ draft: true
 
 > **Estado de las notas** — ✅ creada · ⏳ falta · 🆕 creada pero no estaba en el árbol original
 >
-> Avance global: **84 notas creadas** de ~92 planeadas. **Capítulos 1, 2, 3 y 4 completos** (incluidos índices de carpeta y notas opcionales); capítulos 5 y 6 sin empezar.
+> Avance global: **106 notas creadas**. **Capítulos 1–5 completos** (incluidos índices de carpeta y notas opcionales); capítulo 6 (EDOs) sin empezar.
 >
 > | Capítulo | Creadas | Faltan |
 > |:---|:---:|:---:|
@@ -14,7 +14,7 @@ draft: true
 > | 2 Sistemas Lineales | 29 | 0 |
 > | 3 Ecuaciones No Lineales | 21 | 0 |
 > | 4 Aproximación de Funciones | 24 | 0 |
-> | 5 Diferenciación e Integración | 0 | 17 |
+> | 5 Diferenciación e Integración | 22 | 0 |
 > | 6 EDOs | 0 | 19 |
 
 ```tree 
@@ -142,30 +142,36 @@ Metodos Numericos Teoria/
 │       ├── Condicionamiento Ecuaciones Normales.md ✅
 │       └── Regresion Lineal Multiple y Polinomial.md ✅
 │
-├── 5 Diferenciacion Integracion Numerica/ ⏳ (capítulo sin empezar)
+├── 5 Diferenciacion Integracion Numerica/
+│   ├── index.md ✅
 │   ├── Diferenciacion Numerica/
-│   │   ├── Aproximacion Diferencias Finitas Serie Taylor.md ⏳
-│   │   ├── Orden Error Progresiva Regresiva Centrada.md ⏳
-│   │   ├── Extrapolacion Richardson Aceleracion Convergencia.md ⏳
-│   │   └── Inestabilidad Error Redondeo Paso h.md ⏳
+│   │   ├── index.md ✅
+│   │   ├── Aproximacion Diferencias Finitas Serie Taylor.md ✅
+│   │   ├── Orden Error Progresiva Regresiva Centrada.md ✅
+│   │   ├── Extrapolacion Richardson Aceleracion Convergencia.md ✅
+│   │   └── Inestabilidad Error Redondeo Paso h.md ✅
 │   │
 │   ├── Integracion Numerica Newton Cotes/
-│   │   ├── Formulacion General Pesos Newton Cotes.md ⏳
+│   │   ├── index.md ✅
+│   │   ├── Formulacion General Pesos Newton Cotes.md ✅
 │   │   ├── Reglas Cerradas/
-│   │   │   ├── Trapecio Error Truncamiento Segunda Derivada.md ⏳
-│   │   │   ├── Simpson 1 3 Orden Precision y Error Cuarta Derivada.md ⏳
-│   │   │   ├── Simpson 3 8 y Reglas Grado Superior.md ⏳
-│   │   │   └── Inestabilidad Pesos Negativos Grado Alto.md ⏳
+│   │   │   ├── index.md ✅
+│   │   │   ├── Trapecio Error Truncamiento Segunda Derivada.md ✅
+│   │   │   ├── Simpson 1 3 Orden Precision y Error Cuarta Derivada.md ✅
+│   │   │   ├── Simpson 3 8 y Reglas Grado Superior.md ✅
+│   │   │   └── Inestabilidad Pesos Negativos Grado Alto.md ✅
 │   │   └── Metodos Compuestos/
-│   │       ├── Trapecio Compuesto Convergencia O h2.md ⏳
-│   │       └── Simpson Compuesto Convergencia O h4.md ⏳
+│   │       ├── index.md ✅
+│   │       ├── Trapecio Compuesto Convergencia O h2.md ✅
+│   │       └── Simpson Compuesto Convergencia O h4.md ✅
 │   │
 │   └── Cuadratura Gaussiana/
-│       ├── Fundamentos Gauss Legendre Polinomios Ortogonales.md ⏳
-│       ├── Determinacion Nodos y Pesos Optimos.md ⏳
-│       ├── Grado Exactitud Polinomica 2n 1.md ⏳
-│       ├── Comparacion Eficiencia vs Newton Cotes.md ⏳
-│       └── Cambio Variable Intervalo General.md ⏳
+│       ├── index.md ✅
+│       ├── Fundamentos Gauss Legendre Polinomios Ortogonales.md ✅
+│       ├── Determinacion Nodos y Pesos Optimos.md ✅
+│       ├── Grado Exactitud Polinomica 2n 1.md ✅
+│       ├── Comparacion Eficiencia vs Newton Cotes.md ✅
+│       └── Cambio Variable Intervalo General.md ✅
 │
 └── 6 Ecuaciones Diferenciales Ordinarias/ ⏳ (capítulo sin empezar)
     ├── Problema Valor Inicial PVI/
