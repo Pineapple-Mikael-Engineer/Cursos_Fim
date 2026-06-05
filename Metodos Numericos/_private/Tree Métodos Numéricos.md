@@ -6,7 +6,7 @@ draft: true
 
 > **Estado de las notas** — ✅ creada · ⏳ falta · 🆕 creada pero no estaba en el árbol original
 >
-> Avance global: **106 notas creadas**. **Capítulos 1–5 completos** (incluidos índices de carpeta y notas opcionales); capítulo 6 (EDOs) sin empezar.
+> Avance global: **135 notas creadas — árbol completo (capítulos 1–6).**
 >
 > | Capítulo | Creadas | Faltan |
 > |:---|:---:|:---:|
@@ -15,7 +15,7 @@ draft: true
 > | 3 Ecuaciones No Lineales | 21 | 0 |
 > | 4 Aproximación de Funciones | 24 | 0 |
 > | 5 Diferenciación e Integración | 22 | 0 |
-> | 6 EDOs | 0 | 19 |
+> | 6 EDOs | 29 | 0 |
 
 ```tree 
 
@@ -173,35 +173,44 @@ Metodos Numericos Teoria/
 │       ├── Comparacion Eficiencia vs Newton Cotes.md ✅
 │       └── Cambio Variable Intervalo General.md ✅
 │
-└── 6 Ecuaciones Diferenciales Ordinarias/ ⏳ (capítulo sin empezar)
+└── 6 Ecuaciones Diferenciales Ordinarias/
+    ├── index.md ✅
     ├── Problema Valor Inicial PVI/
-    │   ├── Teoremas Existencia Unicidad Picard Lindelof.md ⏳
+    │   ├── index.md ✅
+    │   ├── Teoremas Existencia Unicidad Picard Lindelof.md ✅
     │   ├── Metodos Taylor Euler/
-    │   │   ├── Euler Explicito Orden 1 Interpretacion Geometrica.md ⏳
-    │   │   ├── Error Local Truncamiento vs Error Global Acumulado.md ⏳
-    │   │   ├── Euler Implicito Estabilidad Incondicional.md ⏳
-    │   │   └── Metodos Serie Taylor Orden Superior.md ⏳
+    │   │   ├── index.md ✅
+    │   │   ├── Euler Explicito Orden 1 Interpretacion Geometrica.md ✅
+    │   │   ├── Error Local Truncamiento vs Error Global Acumulado.md ✅
+    │   │   ├── Euler Implicito Estabilidad Incondicional.md ✅
+    │   │   └── Metodos Serie Taylor Orden Superior.md ✅
     │   ├── Metodos Runge Kutta/
-    │   │   ├── Construccion General Etapas s y Orden p.md ⏳
-    │   │   ├── RK2 Heun Euler Modificado Punto Medio.md ⏳
-    │   │   ├── RK4 Clasico Tabla Butcher y Orden Cuatro.md ⏳
-    │   │   ├── Control Paso Adaptativo RK45 Dormand Prince.md ⏳
-    │   │   └── Regiones Estabilidad Absoluta A Estabilidad.md ⏳
+    │   │   ├── index.md ✅
+    │   │   ├── Construccion General Etapas s y Orden p.md ✅
+    │   │   ├── RK2 Heun Euler Modificado Punto Medio.md ✅
+    │   │   ├── RK4 Clasico Tabla Butcher y Orden Cuatro.md ✅
+    │   │   ├── Control Paso Adaptativo RK45 Dormand Prince.md ✅
+    │   │   └── Regiones Estabilidad Absoluta A Estabilidad.md ✅
     │   └── Sistemas EDO y Orden Superior/
-    │       ├── Reduccion EDO Orden n a Sistema Primer Orden.md ⏳
-    │       ├── Acoplamiento Metodos Sistemas Runge Kutta.md ⏳
-    │       └── Rigidez Stiffness Problemas Ingenieria.md ⏳
+    │       ├── index.md ✅
+    │       ├── Reduccion EDO Orden n a Sistema Primer Orden.md ✅
+    │       ├── Acoplamiento Metodos Sistemas Runge Kutta.md ✅
+    │       ├── Rigidez Stiffness Problemas Ingenieria.md ✅
+    │       └── Integradores Simplecticos Conservacion.md 🆕 (añadida: Verlet/leapfrog, conservación)
     │
     └── Problema Valor Frontera PVF/
+        ├── index.md ✅
         ├── Metodo Diferencias Finitas/
-        │   ├── Discretizacion Dominio y Aproximacion Centrada.md ⏳
-        │   ├── Construccion Sistema Tridiagonal Lineal.md ⏳
-        │   ├── Consistencia Estabilidad Convergencia Lax.md ⏳
-        │   └── Tratamiento Condiciones Frontera Dirichlet Neumann.md ⏳
+        │   ├── index.md ✅
+        │   ├── Discretizacion Dominio y Aproximacion Centrada.md ✅
+        │   ├── Construccion Sistema Tridiagonal Lineal.md ✅
+        │   ├── Consistencia Estabilidad Convergencia Lax.md ✅
+        │   └── Tratamiento Condiciones Frontera Dirichlet Neumann.md ✅
         └── Metodo Disparo Shooting/
-            ├── Transformacion PVF a PVI Valor Inicial Desconocido.md ⏳
-            ├── Metodo Newton para Condicion Frontera Residual.md ⏳
-            └── Comparacion Disparo vs Diferencias Finitas.md ⏳
+            ├── index.md ✅
+            ├── Transformacion PVF a PVI Valor Inicial Desconocido.md ✅
+            ├── Metodo Newton para Condicion Frontera Residual.md ✅
+            └── Comparacion Disparo vs Diferencias Finitas.md ✅
 
 ```
 
