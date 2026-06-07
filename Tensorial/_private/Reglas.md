@@ -100,11 +100,11 @@ Un **solo `#`** por nota: `# <Concepto> $<notación si aplica>$`. Ejemplos:
 
 **Coordenadas curvilíneas (¡ojo a las letras del libro!)**
 
-| Sistema | Coordenadas | Factores de escala |
-|:---|:---|:---|
-| Cilíndrico | $(\rho,\phi,z)$ | $h_\rho=1,\ h_\phi=\rho,\ h_z=1$ |
-| Esférico | $(r,\theta,\phi)$ | $h_r=1,\ h_\theta=r,\ h_\phi=r\operatorname{sen}\theta$ |
-| General | $(q_1,q_2,q_3)$ | $h_i=\left|\partial\vec{r}/\partial q_i\right|$ |
+| Sistema    | Coordenadas       | Factores de escala                                      |
+| :--------- | :---------------- | :------------------------------------------------------ | 
+| Cilíndrico | $(\rho,\phi,z)$   | $h_\rho=1,\ h_\phi=\rho,\ h_z=1$                        |
+| Esférico   | $(r,\theta,\phi)$ | $h_r=1,\ h_\theta=r,\ h_\phi=r\operatorname{sen}\theta$ |
+| General    | $(q_1,q_2,q_3)$   | $h_i=\left \| \partial\vec{r}/\partial q_i\right \|$ 
 
 **Covariante / contravariante (cap. 5)**
 

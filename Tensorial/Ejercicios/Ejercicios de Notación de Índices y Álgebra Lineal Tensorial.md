@@ -435,9 +435,9 @@ Dados los tensores $A^{ij}$ y $B_{jk}$, encuentra la expresión contraída $C^i 
 
 ## Notas Relacionadas
 
-- [[Notación de Índices en Sumatorias]]
-- [[Álgebra Lineal Básica para Tensores]]
-- [[Delta de Kronecker]]
-- [[Símbolo de Levi-Civita]]
+- [[Notacion Indices Sumatorias]]
+- [[Algebra Lineal para Tensores]]
+- [[Delta Kronecker]]
+- [[Simbolo Levi-Civita]]
 - [[Derivada de una Forma Cuadrática en Notación de Índices]]
 - [[Producto Interno y Métrica]]

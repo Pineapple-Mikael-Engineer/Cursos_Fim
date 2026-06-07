@@ -14,7 +14,7 @@ draft: false
 # Derivada de un Monomio Cuártico con Índices Repetidos
 
 > [!abstract] Resumen
-> Este ejercicio resuelto muestra cómo calcular la derivada parcial de un monomio de cuarto orden $M = x_i x_j x_i x_j$ con respecto a una variable $x_k$ usando la [[notación de índices]] y el [[convenio de sumación de Einstein]]. Se presentan dos enfoques: uno directo usando la regla del producto, y otro riguroso introduciendo [[Delta de Kronecker|deltas de Kronecker]] desde el inicio para explicitar la estructura de la suma.
+> Este ejercicio resuelto muestra cómo calcular la derivada parcial de un monomio de cuarto orden $M = x_i x_j x_i x_j$ con respecto a una variable $x_k$ usando la [[notación de índices]] y el [[convenio de sumación de Einstein]]. Se presentan dos enfoques: uno directo usando la regla del producto, y otro riguroso introduciendo [[Delta Kronecker|deltas de Kronecker]] desde el inicio para explicitar la estructura de la suma.
 
 ## Planteamiento
 
@@ -49,7 +49,7 @@ donde:
 >    \frac{\partial}{\partial x_k} (abcd) = \frac{\partial a}{\partial x_k} bcd + a \frac{\partial b}{\partial x_k} cd + ab \frac{\partial c}{\partial x_k} d + abc \frac{\partial d}{\partial x_k}
 >    $$
 >
-> 3. **Propiedad de sustitución** de la [[Delta de Kronecker]]:
+> 3. **Propiedad de sustitución** de la [[Delta Kronecker]]:
 >    $$
 >    \delta_{ij} a_j = a_i, \quad \delta_{ij} a_i = a_j
 >    $$
@@ -370,7 +370,7 @@ Esto coincide con la derivada directa de $(x_i^2 x_j^2)$.
 ## Notas Relacionadas
 
 - [[Derivada de un Monomio Cuártico con Índices Repetidos]]
-- [[Delta de Kronecker]]
+- [[Delta Kronecker]]
 - [[Derivada de una Forma Cuadrática en Notación de Índices]]
 - [[Convenio de sumación de Einstein]]
 - [[Regla del producto]]

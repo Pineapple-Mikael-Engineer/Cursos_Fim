@@ -296,7 +296,7 @@ donde $T$ es un escalar.
 
 ## Notas Relacionadas
 
-- [[Notación de Índices en Sumatorias]]
+- [[Notacion Indices Sumatorias]]
 - [[Convenio de sumación de Einstein]]
 - [[Índices libres y mudos]]
 - [[Derivada de una Forma Cuadrática en Notación de Índices]]
