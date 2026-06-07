@@ -16,3 +16,6 @@
 .obsidian/cache/
 .obsidian/appearance.json
 ~
+
+# 5. Libros / PDFs con copyright (no versionar; descargables aparte)
+*.pdf
