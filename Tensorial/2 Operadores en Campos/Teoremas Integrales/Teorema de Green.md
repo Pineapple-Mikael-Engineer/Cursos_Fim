@@ -67,7 +67,7 @@ aliases:
 > [!info] Casos particulares
 > | Elección | 2ª forma se reduce a |
 > |---|---|
-> | $v=u$ | $\oint_S d\vec\sigma\cdot(u\vec\nabla u)=\int_V d\tau\,(|\vec\nabla u|^2+u\nabla^2 u)$ |
+> | $v=u$ | $\oint_S d\vec\sigma\cdot(u\vec\nabla u)=\int_V d\tau\,(\|\vec\nabla u\|^2+u\nabla^2 u)$ |
 > | $u=1$ | $\oint_S d\vec\sigma\cdot\vec\nabla v=\int_V d\tau\,\nabla^2 v$ (Gauss para $\vec\nabla v$) |
 > | $v$ armónico ($\nabla^2 v=0$) | $\oint_S d\vec\sigma\cdot(u\vec\nabla v)=\int_V d\tau\,\vec\nabla u\cdot\vec\nabla v$ |
 

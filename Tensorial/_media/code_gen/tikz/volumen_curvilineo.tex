@@ -24,10 +24,12 @@
   \node[below left] at (A){$(q_1,q_2,q_3)$};
   \node[above left] at (D){$(q_1,q_2,q_3+dq_3)$};
   \node[below] at ($(A)!0.5!(B)$){$h_1\,dq_1$};
-  \node[above right] at ($(A)!0.5!(C)$){$h_2\,dq_2$};
+  \node[below right] at ($(B)!0.5!(BC)$){$h_2\,dq_2$};
   \node[left] at ($(A)!0.5!(D)$){$h_3\,dq_3$};
-  % base curvilínea
-  \draw[->, line width=1pt] (BCD)++(0.2,0.1)--($(BCD)+(0.95,0.1)$) node[right]{$\hat q_2$};
-  \draw[->, line width=1pt] (BCD)++(0.2,0.1)--($(BCD)+(0.2,0.85)$) node[above]{$\hat q_3$};
+  % base curvilínea (triada en una zona despejada, arriba a la derecha)
+  \coordinate (T) at ($(BCD)+(0.35,0.15)$);
+  \draw[->, line width=1pt] (T)--($(T)+(0.2,0.8)$) node[above]{$\hat q_3$};
+  \draw[->, line width=1pt] (T)--($(T)+(0.9,0.1)$) node[right]{$\hat q_2$};
+  \draw[->, line width=1pt] (T)--($(T)+(0.6,-0.55)$) node[below right]{$\hat q_1$};
 \end{tikzpicture}
 \end{document}

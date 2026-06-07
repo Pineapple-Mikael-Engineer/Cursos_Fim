@@ -50,7 +50,7 @@ aliases:
 > [!resumen]
 > | Aspecto | Resultado |
 > |---|---|
-> | Definición | $\vec r$ del origen a $P$; $|\vec r|=$ distancia |
+> | Definición | $\vec r$ del origen a $P$; $\|\vec r\|=$ distancia |
 > | Cartesianas | $\vec r=x_i\hat e_i$; $r_i=x_i$ |
 > | Componente | $r_i=\hat e_i\cdot\vec r$ (proyección) |
 > | Curvilíneas | dibujar $\vec r$ y base desde $P$ |

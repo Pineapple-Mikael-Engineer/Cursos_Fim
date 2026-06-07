@@ -73,9 +73,9 @@ aliases:
 > [!resumen]
 > | Aspecto | Resultado |
 > |---|---|
-> | Definición | $h_i=\left|\partial\vec r/\partial q_i\right|$ |
+> | Definición | $h_i=\left\|\partial\vec r/\partial q_i\right\|$ |
 > | Fórmula | $\sqrt{(\partial x_1/\partial q_i)^2+(\partial x_2/\partial q_i)^2+(\partial x_3/\partial q_i)^2}$ |
-> | Interpretación | $\vec r$ se desplaza $|h_i\,dq_i|$ al variar $q_i$ |
+> | Interpretación | $\vec r$ se desplaza $\|h_i\,dq_i\|$ al variar $q_i$ |
 > | Desplazamiento | $d\vec r=h_i\,dq_i\,\hat q_i$ (suma sobre $i$) |
 > | Cilíndricas | $(1,\rho,1)$ |
 > | Esféricas | $(1,r,r\operatorname{sen}\theta)$ |

@@ -95,7 +95,7 @@ aliases:
 > | Aspecto | Contenido |
 > |---|---|
 > | Unicidad | $\vec v$ fijado por $\vec\nabla\cdot\vec v$, $\vec\nabla\times\vec v$ y $\hat n\cdot\vec v$ en $S$ |
-> | Prueba | $\vec w=\vec v_1-\vec v_2$, Green 2ª forma $\Rightarrow\int_V|\vec w|^2=0\Rightarrow\vec w=0$ |
+> | Prueba | $\vec w=\vec v_1-\vec v_2$, Green 2ª forma $\Rightarrow\int_V\|\vec w\|^2=0\Rightarrow\vec w=0$ |
 > | Descomposición | $\vec v=\vec\nabla\times\vec A-\vec\nabla\Phi$ |
 > | Parte solenoidal | $\vec\nabla\times\vec A$, $\vec\nabla\cdot(\vec\nabla\times\vec A)=0$; potencial vector $\vec A$ |
 > | Parte irrotacional | $-\vec\nabla\Phi$, $\vec\nabla\times\vec\nabla\Phi=0$; potencial escalar $\Phi$ |

@@ -89,7 +89,7 @@ aliases:
 > [!resumen]
 > | Aspecto | Resultado |
 > |---|---|
-> | Receta | $h_i=\left|\partial\vec r/\partial q_i\right|$ |
+> | Receta | $h_i=\left\|\partial\vec r/\partial q_i\right\|$ |
 > | $\vec r$ en cartesianas | $r\operatorname{sen}\theta\cos\phi\,\hat e_x+r\operatorname{sen}\theta\operatorname{sen}\phi\,\hat e_y+r\cos\theta\,\hat e_z$ |
 > | Factores | $h_r=1,\ h_\theta=r,\ h_\phi=r\operatorname{sen}\theta$ |
 > | Desplazamiento | $d\vec r=dr\,\hat e_r+r\,d\theta\,\hat e_\theta+r\operatorname{sen}\theta\,d\phi\,\hat e_\phi$ |

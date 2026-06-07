@@ -59,7 +59,7 @@ aliases:
 > | Subnota | Aporta |
 > |---|---|
 > | [[Coordenadas y Vectores Base]] | $\hat q_i=(\partial\vec r/\partial q_i)/h_i$ |
-> | [[Factores de Escala]] | $h_i=|\partial\vec r/\partial q_i|$, $d\vec r$ |
+> | [[Factores de Escala]] | $h_i=\|\partial\vec r/\partial q_i\|$, $d\vec r$ |
 > | [[Geometria Diferencial Local]] | $d\tau=h_1h_2h_3\,dq_1dq_2dq_3$, caras |
 > | [[Elementos Linea Superficie Volumen]] | integrales en curvilíneas |
 

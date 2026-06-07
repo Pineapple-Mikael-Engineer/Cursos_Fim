@@ -81,7 +81,7 @@ aliases:
 > [!resumen]
 > | Aspecto | Resultado |
 > |---|---|
-> | Receta | $h_i=\left|\partial\vec r/\partial q_i\right|$ |
+> | Receta | $h_i=\left\|\partial\vec r/\partial q_i\right\|$ |
 > | $\vec r$ en cartesianas | $\rho\cos\phi\,\hat e_x+\rho\operatorname{sen}\phi\,\hat e_y+z\,\hat e_z$ |
 > | Factores | $h_\rho=1,\ h_\phi=\rho,\ h_z=1$ |
 > | Desplazamiento | $d\vec r=d\rho\,\hat e_\rho+\rho\,d\phi\,\hat e_\phi+dz\,\hat e_z$ |
