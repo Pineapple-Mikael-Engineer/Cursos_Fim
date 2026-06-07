@@ -45,6 +45,22 @@ aliases:
 > $$-\vec\nabla\Phi=y\,\hat{e}_x+x\,\hat{e}_y.$$
 > Sus líneas de campo salen de $\dfrac{dy}{dx}=\dfrac{x}{y}\Rightarrow y\,dy=x\,dx\Rightarrow y^2-x^2=c$: hipérbolas **perpendiculares** a las equipotenciales. La densidad de líneas crece al acercarse al origen, indicando un campo más intenso allí.
 
+> [!ejemplo] Línea de campo por un punto dado
+> **Hallar la línea de $\vec v=(y,\,x)$ que pasa por $P=(2,1)$.** Usamos la ecuación de las líneas de campo paso a paso.
+>
+> **Paso 1 — plantear la ecuación.** Con $v_x=y$, $v_y=x$,
+> $$\frac{dy}{dx}=\frac{v_y}{v_x}=\frac{x}{y}.$$
+>
+> **Paso 2 — separar variables e integrar.**
+> $$y\,dy=x\,dx\ \Rightarrow\ \int y\,dy=\int x\,dx\ \Rightarrow\ \frac{y^2}{2}=\frac{x^2}{2}+C\ \Rightarrow\ y^2-x^2=c,\quad c=2C.$$
+>
+> **Paso 3 — fijar la constante con el punto.** Imponiendo que la línea pase por $P=(2,1)$:
+> $$c=y_P^2-x_P^2=1^2-2^2=1-4=-3.$$
+>
+> **Paso 4 — escribir la línea.** La línea de campo buscada es la hipérbola
+> $$y^2-x^2=-3\quad\Longleftrightarrow\quad x^2-y^2=3,$$
+> que efectivamente pasa por $(2,1)$ ($4-1=3$ ✓). Su tangente en $P$ tiene pendiente $\dfrac{dy}{dx}=\dfrac{x}{y}=\dfrac{2}{1}=2$, igual a la dirección de $\vec v(P)=(1,2)$.
+
 ---
 
 ## En qué consiste
@@ -56,8 +72,30 @@ aliases:
 > $$\frac{dy}{dx}=\frac{v_y}{v_x}.$$
 > Integrando esa ecuación diferencial se obtiene la familia de líneas de campo (una por cada constante de integración). La **densidad** de líneas codifica la magnitud: más líneas por unidad de área ⇒ campo más intenso.
 
-> [!proposicion] Relación escalar–vectorial
-> Si $\vec v=-\vec\nabla\Phi$, entonces las líneas de $\vec v$ son **perpendiculares** a las equipotenciales de $\Phi$. Es consecuencia de que el [[Operadores Diferenciales/Gradiente | gradiente]] apunta en la dirección de máximo crecimiento, normal a las superficies de nivel.
+> [!demostracion] Ecuación de las líneas de campo $dy/dx=v_y/v_x$
+> **Paso 1 — condición de tangencia.** Una línea de campo es, por definición, tangente al vector $\vec v$ en cada punto. Si un desplazamiento infinitesimal $d\vec r=(dx,dy,dz)$ avanza a lo largo de la línea, debe ser **paralelo** a $\vec v=(v_x,v_y,v_z)$.
+>
+> **Paso 2 — paralelismo en componentes.** Dos vectores paralelos tienen componentes proporcionales (el cruce $d\vec r\times\vec v=0$):
+> $$\frac{dx}{v_x}=\frac{dy}{v_y}=\frac{dz}{v_z}.$$
+>
+> **Paso 3 — despejar la pendiente en el plano.** Tomando el par $x$–$y$ y reordenando,
+> $$\frac{dy}{dx}=\frac{v_y}{v_x}.\qquad\blacksquare$$
+> Integrar esta ecuación diferencial da la familia de líneas de campo; cada constante de integración selecciona la línea que pasa por un punto dado.
+
+> [!teorema] El gradiente es perpendicular a las equipotenciales
+> $$\vec v=-\vec\nabla\Phi\ \Rightarrow\ \vec\nabla\Phi\perp(\text{superficie }\Phi=\text{cte}),$$
+> es decir, las líneas de $\vec v$ cruzan ortogonalmente a las equipotenciales de $\Phi$.
+
+> [!demostracion]
+> **Paso 1 — desplazamiento tangente a la equipotencial.** Sea $d\vec r$ un desplazamiento infinitesimal **contenido** en la superficie $\Phi=$ cte. Como $\Phi$ no cambia al movernos sobre ella, su variación es nula:
+> $$d\Phi=0.$$
+>
+> **Paso 2 — diferencial total como producto punto.** Por la regla de la cadena, la variación de $\Phi$ ante un desplazamiento cualquiera es
+> $$d\Phi=\frac{\partial\Phi}{\partial x_i}\,dx_i=\vec\nabla\Phi\cdot d\vec r.$$
+>
+> **Paso 3 — concluir ortogonalidad.** Combinando los dos pasos, para todo $d\vec r$ tangente a la equipotencial,
+> $$\vec\nabla\Phi\cdot d\vec r=0\ \Rightarrow\ \vec\nabla\Phi\perp d\vec r.$$
+> Como esto vale para **cualquier** tangente, $\vec\nabla\Phi$ es normal a la superficie $\Phi=$ cte. Y como $\vec v=-\vec\nabla\Phi$ es (anti)paralelo a $\vec\nabla\Phi$, las líneas de campo son perpendiculares a las equipotenciales. $\blacksquare$
 
 ## Resumen
 

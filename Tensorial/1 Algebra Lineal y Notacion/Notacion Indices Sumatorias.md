@@ -79,6 +79,36 @@ aliases:
 > $$\vec{v}\rightarrow[v]=\begin{bmatrix}v_1\\v_2\\v_3\end{bmatrix}.$$
 > Se usa $\rightarrow$ y **no** $=$ porque el arreglo $[v]$ **no contiene la información de la base** $\hat{e}_i$. Dos vectores con las mismas componentes en bases distintas tienen el mismo $[v]$ pero son vectores diferentes. La igualdad $\vec{v}=v_i\hat{e}_i$ sí es completa (incluye la base).
 
+## Producto de matrices y asociatividad
+
+> [!ejemplo]
+> **Producto $M_{ij}N_{jk}$ elemento a elemento.** Sean, con $n=2$,
+> $$[M]=\begin{bmatrix}1&2\\0&1\end{bmatrix},\qquad [N]=\begin{bmatrix}3&1\\2&4\end{bmatrix}.$$
+> El producto $P_{ik}=M_{ij}N_{jk}$ suma sobre el índice mudo $j=1,2$ (segunda posición de $M$, primera de $N$):
+> - $P_{11}=M_{11}N_{11}+M_{12}N_{21}=1\cdot3+2\cdot2=7$
+> - $P_{12}=M_{11}N_{12}+M_{12}N_{22}=1\cdot1+2\cdot4=9$
+> - $P_{21}=M_{21}N_{11}+M_{22}N_{21}=0\cdot3+1\cdot2=2$
+> - $P_{22}=M_{21}N_{12}+M_{22}N_{22}=0\cdot1+1\cdot4=4$
+>
+> $$[P]=\begin{bmatrix}7&9\\2&4\end{bmatrix}.$$
+> Solo los índices libres $i$ (fila) y $k$ (columna) sobreviven; $j$ se contrae.
+
+> [!teorema] Asociatividad del producto matricial
+> El producto de matrices escrito en índices es **asociativo**:
+> $$(AB)C=A(BC),$$
+> es decir, ambas agrupaciones dan la misma matriz de componentes $A_{ij}B_{jk}C_{kl}$.
+
+> [!demostracion]
+> **Paso 1 — Agrupar como $(AB)C$.** Primero $A_{ij}B_{jk}=(AB)_{ik}$ (suma sobre $j$); luego se multiplica por $C$ contrayendo $k$:
+> $$[(AB)C]_{il}=(AB)_{ik}\,C_{kl}=\big(A_{ij}B_{jk}\big)\,C_{kl}=A_{ij}B_{jk}C_{kl}.$$
+>
+> **Paso 2 — Agrupar como $A(BC)$.** Primero $B_{jk}C_{kl}=(BC)_{jl}$ (suma sobre $k$); luego se multiplica por $A$ contrayendo $j$:
+> $$[A(BC)]_{il}=A_{ij}\,(BC)_{jl}=A_{ij}\,\big(B_{jk}C_{kl}\big)=A_{ij}B_{jk}C_{kl}.$$
+>
+> **Paso 3 — Comparar.** Ambas rutas terminan en la **misma** expresión $A_{ij}B_{jk}C_{kl}$ con sumas sobre $j$ y $k$. Por el convenio de Einstein esas sumas son ordinarias de números, y la suma es conmutativa y asociativa: el orden en que se agrupen $\sum_j$ y $\sum_k$ no altera el resultado. Por tanto
+> $$[(AB)C]_{il}=A_{ij}B_{jk}C_{kl}=[A(BC)]_{il}\;\Longrightarrow\;(AB)C=A(BC).\qquad\blacksquare$$
+> La asociatividad matricial, laboriosa de probar con matrices explícitas, es inmediata en índices: el paréntesis solo decide qué suma se hace primero, y eso es irrelevante.
+
 ## Resumen
 
 > [!resumen]
@@ -89,6 +119,7 @@ aliases:
 > | Convenio Einstein | omite el $\sum$ del índice repetido | $v_i\hat{e}_i$ |
 > | Regla de oro | un índice $\le 2$ veces por término | renombrar mudo si colisiona |
 > | Producto matricial | $M_{ij}N_{jk}=P_{ik}$ | suma sobre $j$ |
+> | Asociatividad | $(AB)C=A(BC)=A_{ij}B_{jk}C_{kl}$ | el paréntesis solo elige qué suma va antes |
 > | Vector como arreglo | $\vec{v}\rightarrow[v]$ (flecha, no $=$) | la base no está en $[v]$ |
 
 > [!corolario]

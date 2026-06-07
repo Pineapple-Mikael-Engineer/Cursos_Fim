@@ -37,6 +37,28 @@ aliases:
 > $$\int_S d\vec\sigma\cdot\vec v=\int_0^1\!\!\int_0^1 (1)\,dx\,dy=\int_0^1 dy\int_0^1 dx=(1)(1)=1.$$
 > El flujo a través de esa cara es $1$. Si sumamos las seis caras del cubo unidad $[0,1]^3$, las tres caras en $x{=}1$, $y{=}1$, $z{=}1$ aportan $1$ cada una, y las tres caras en $x{=}0$, $y{=}0$, $z{=}0$ aportan $0$ (allí la componente normal $v_i=0$). El flujo total es $3$, en acuerdo con el [[Teoremas Integrales/Teorema de Gauss | teorema de Gauss]]: $\int_V\vec\nabla\cdot\vec v\,d\tau=\int_V 3\,d\tau=3$, pues $\vec\nabla\cdot\vec v=3$ y el volumen es $1$.
 
+## Ejemplo
+
+> [!ejemplo]
+> **Flujo de $\vec v=(0,0,z)$ a través de un hemisferio, con parametrización completa.** Calculamos $\int_S d\vec\sigma\cdot\vec v$ sobre el hemisferio superior $S$ de radio $R$, $x^2+y^2+z^2=R^2$ con $z\ge0$, normal hacia afuera.
+>
+> **Paso 1 — parametrizar la superficie.** En esféricas sobre la esfera de radio $R$,
+> $$\vec r(\theta,\phi)=R\,(\operatorname{sen}\theta\cos\phi,\ \operatorname{sen}\theta\operatorname{sen}\phi,\ \cos\theta),\qquad \theta:0\to\tfrac\pi2,\ \ \phi:0\to2\pi.$$
+>
+> **Paso 2 — vector de área $d\vec\sigma$.** La normal exterior a la esfera es radial, $\hat n=\hat r$, y el elemento de área esférico es $d\sigma=R^2\operatorname{sen}\theta\,d\theta\,d\phi$. Entonces
+> $$d\vec\sigma=\hat r\,R^2\operatorname{sen}\theta\,d\theta\,d\phi,\qquad \hat r=(\operatorname{sen}\theta\cos\phi,\ \operatorname{sen}\theta\operatorname{sen}\phi,\ \cos\theta).$$
+>
+> **Paso 3 — evaluar el campo y el producto punto.** Sobre $S$, $\vec v=(0,0,z)=(0,0,R\cos\theta)$, luego
+> $$d\vec\sigma\cdot\vec v=d\sigma_i\,v_i=\big(R^2\operatorname{sen}\theta\,d\theta\,d\phi\big)\,(\hat r)_z\,(R\cos\theta)=R^3\cos^2\theta\operatorname{sen}\theta\,d\theta\,d\phi,$$
+> usando $(\hat r)_z=\cos\theta$.
+>
+> **Paso 4 — integrar.**
+> $$\int_S d\vec\sigma\cdot\vec v=R^3\int_0^{2\pi}\!\!d\phi\int_0^{\pi/2}\cos^2\theta\operatorname{sen}\theta\,d\theta=R^3\,(2\pi)\Big[-\tfrac{\cos^3\theta}{3}\Big]_0^{\pi/2}=2\pi R^3\cdot\frac13=\frac{2\pi R^3}{3}.$$
+>
+> **Comprobación con el [[Teoremas Integrales/Teorema de Gauss | teorema de Gauss]].** Cerramos $S$ con el disco basal $D$ ($z=0$, normal $-\hat{e}_z$); allí $\vec v=(0,0,0)$ y su flujo es nulo. Como $\vec\nabla\cdot\vec v=\partial z/\partial z=1$, el teorema da
+> $$\oint_{S\cup D}d\vec\sigma\cdot\vec v=\int_V 1\,d\tau=\frac12\cdot\frac{4}{3}\pi R^3=\frac{2\pi R^3}{3},$$
+> es decir el flujo por el volumen de media bola coincide con el flujo por el hemisferio, ya que el disco no aporta. Mismo resultado: $2\pi R^3/3$.
+
 ---
 
 ## En qué consiste
@@ -45,6 +67,24 @@ aliases:
 > La integral de superficie se representa por su operador $\int_S d\vec\sigma$, con $d\vec\sigma$ un vector de magnitud igual a un área diferencial de $S$ y dirección perpendicular a la superficie. Escribiendo $d\vec\sigma=\hat n\,d\sigma$ y, en cartesianas, $d\vec\sigma=d\sigma_i\hat{e}_i$, el flujo se desarrolla con $\hat{e}_i\cdot\hat{e}_j=\delta_{ij}$:
 > $$\int_S d\vec\sigma\cdot\vec v=\int_S d\sigma_i\hat{e}_i\cdot v_j\hat{e}_j=\int_S d\sigma_i\,v_j\,\delta_{ij}=\int_S d\sigma_i\,v_i,$$
 > donde $d\sigma_i$ es **positivo o negativo** según el signo de $\hat n\cdot\hat{e}_i$. El resultado es un escalar.
+
+> [!teorema] Paso a índices
+> $$\int_S d\vec\sigma\cdot\vec v=\int_S d\sigma_i\,v_i.$$
+
+> [!demostracion]
+> **Paso 1 — descomponer el vector de área.** El vector de área lleva la normal y la magnitud del área diferencial; en la base cartesiana,
+> $$d\vec\sigma=\hat n\,d\sigma=d\sigma_i\,\hat{e}_i,\qquad d\sigma_i=(\hat n\cdot\hat{e}_i)\,d\sigma,$$
+> de modo que cada componente $d\sigma_i$ es la proyección del área sobre el plano normal a $\hat{e}_i$ (con signo).
+>
+> **Paso 2 — escribir el campo y formar el producto punto.** Con $\vec v=v_j\,\hat{e}_j$ y por linealidad,
+> $$d\vec\sigma\cdot\vec v=(d\sigma_i\,\hat{e}_i)\cdot(v_j\,\hat{e}_j)=d\sigma_i\,v_j\,(\hat{e}_i\cdot\hat{e}_j).$$
+>
+> **Paso 3 — ortonormalidad $\hat{e}_i\cdot\hat{e}_j=\delta_{ij}$.** La delta colapsa $j\to i$:
+> $$d\vec\sigma\cdot\vec v=d\sigma_i\,v_j\,\delta_{ij}=d\sigma_i\,v_i.$$
+>
+> **Paso 4 — integrar.** Por linealidad del operador de superficie,
+> $$\int_S d\vec\sigma\cdot\vec v=\int_S d\sigma_i\,v_i=\int_S\big(v_1\,d\sigma_1+v_2\,d\sigma_2+v_3\,d\sigma_3\big),$$
+> con $i$ repetido y sumado: un escalar (el flujo). $\blacksquare$
 
 > [!regla] Convención de la normal $\hat{n}$
 > Como toda superficie tiene dos lados, hay que fijar el sentido de $\hat n$:

@@ -49,6 +49,31 @@ aliases:
 > [!teoria]
 > Las definiciones diferenciales ($\vec\nabla\Phi=\hat{e}_i\partial\Phi/\partial x_i$, etc.) sólo valen en cartesianas y se escriben con derivadas espaciales. Las **definiciones integrales** son geométricas e independientes del sistema de coordenadas: capturan al operador como "flujo del campo a través de una superficie que se cierra sobre un punto, por unidad de volumen". Sus deducciones son análogas a la del [[Rotor | rotor]] (ec. 2.63) y se encuentran en los textos de cálculo.
 
+> [!teorema] La definición integral de la divergencia reproduce $\partial A_i/\partial x_i$
+> Para todo campo $\vec A$ con derivadas continuas,
+> $$\vec\nabla\cdot\vec A=\lim_{V\to0}\frac{\oint_S d\vec\sigma\cdot\vec A}{\int_V d\tau}=\frac{\partial A_i}{\partial x_i}.$$
+
+> [!demostracion]
+> Evaluamos el flujo $\oint_S d\vec\sigma\cdot\vec A$ por las **seis caras** de un cubo diferencial centrado en $(x_0,y_0,z_0)$, de aristas $dx$, $dy$, $dz$, con $\vec A=(A_x,A_y,A_z)$ general. Cada cara contribuye con el valor del campo en su centro por su área, y la normal saliente fija el signo.
+>
+> **Paso 1 — par de caras perpendiculares a $x$.** La cara en $x_0+\tfrac{dx}{2}$ tiene normal $+\hat{e}_x$ y la cara en $x_0-\tfrac{dx}{2}$ normal $-\hat{e}_x$; ambas de área $dy\,dz$. Sólo la componente $A_x$ sobrevive al producto punto:
+> $$\Big[A_x\big(x_0+\tfrac{dx}{2}\big)-A_x\big(x_0-\tfrac{dx}{2}\big)\Big]\,dy\,dz.$$
+>
+> **Paso 2 — Taylor en $x$.** Desarrollando cada término a primer orden alrededor de $x_0$,
+> $$A_x\big(x_0\pm\tfrac{dx}{2}\big)=A_x(x_0)\pm\frac{\partial A_x}{\partial x}\,\frac{dx}{2}+\cdots,$$
+> la diferencia cancela el término constante y deja
+> $$\Big[A_x\big(x_0+\tfrac{dx}{2}\big)-A_x\big(x_0-\tfrac{dx}{2}\big)\Big]\,dy\,dz=\frac{\partial A_x}{\partial x}\,dx\,dy\,dz.$$
+>
+> **Paso 3 — los otros dos pares de caras.** Por simetría, las caras perpendiculares a $y$ aportan $\dfrac{\partial A_y}{\partial y}\,dx\,dy\,dz$ y las perpendiculares a $z$ aportan $\dfrac{\partial A_z}{\partial z}\,dx\,dy\,dz$.
+>
+> **Paso 4 — sumar el flujo total.** Reuniendo los tres pares,
+> $$\oint_S d\vec\sigma\cdot\vec A=\left(\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}\right)dx\,dy\,dz=\frac{\partial A_i}{\partial x_i}\,d\tau,$$
+> donde $d\tau=dx\,dy\,dz=\int_V d\tau$ es el volumen de la celda.
+>
+> **Paso 5 — cociente y límite.** Dividiendo por $\int_V d\tau=d\tau$, el factor de volumen se cancela exactamente y los términos de orden superior del Taylor se anulan al hacer $V\to0$:
+> $$\lim_{V\to0}\frac{\oint_S d\vec\sigma\cdot\vec A}{\int_V d\tau}=\frac{\partial A_i}{\partial x_i}=\vec\nabla\cdot\vec A.\qquad\blacksquare$$
+> Es el mismo conteo de flujo por las seis caras que la ecuación de continuidad en [[Divergencia]], aquí para un $\vec A$ arbitrario y con los signos dados por la normal saliente.
+
 > [!proposicion] Puente con los teoremas integrales
 > Escrita como $\vec\nabla\cdot\vec A\,d\tau=\oint_S d\vec\sigma\cdot\vec A$ en el límite, la definición integral se aplica a dos volúmenes adyacentes: las contribuciones de su **superficie común se cancelan** (normales opuestas). Sumando volúmenes diferenciales contiguos hasta formar un volumen $V$ encerrado por $S$ se obtiene el **teorema de Gauss**,
 > $$\int_V d\tau\,\vec\nabla\cdot\vec A=\oint_S d\vec\sigma\cdot\vec A.$$

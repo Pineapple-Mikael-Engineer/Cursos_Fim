@@ -79,6 +79,46 @@ aliases:
 > [!info] Para qué fila vs columna
 > La distinción importa al multiplicar: un producto punto se escribe $\vec{A}\cdot\vec{B}\rightarrow[A]^\dagger[B]$ (fila por columna $\to$ escalar), y una rotación admite tanto $[a']=[R][a]$ (columnas) como $[a']^\dagger=[a]^\dagger[R]^\dagger$ (filas). En notación de índices esa contabilidad de fila/columna queda absorbida por la posición de los subíndices, y deja de ser un cuidado aparte.
 
+## Traspuesta de un producto y traza
+
+> [!teorema] Traspuesta de un producto
+> La traspuesta de un producto invierte el orden de los factores:
+> $$(AB)^\dagger=B^\dagger A^\dagger.$$
+
+> [!demostracion]
+> **Paso 1 — Definir la traspuesta en índices.** Trasponer intercambia fila y columna: $(M^\dagger)_{ij}=M_{ji}$. Aplicado al producto,
+> $$\big((AB)^\dagger\big)_{ij}=(AB)_{ji}.$$
+>
+> **Paso 2 — Expandir el producto.** Por $M_{ij}N_{jk}=P_{ik}$, el elemento $(AB)_{ji}$ suma sobre el índice mudo $k$:
+> $$(AB)_{ji}=A_{jk}B_{ki}.$$
+>
+> **Paso 3 — Reescribir cada factor como traspuesta.** Usando $A_{jk}=(A^\dagger)_{kj}$ y $B_{ki}=(B^\dagger)_{ik}$, y reordenando los números:
+> $$\big((AB)^\dagger\big)_{ij}=A_{jk}B_{ki}=(A^\dagger)_{kj}(B^\dagger)_{ik}=(B^\dagger)_{ik}(A^\dagger)_{kj}=(B^\dagger A^\dagger)_{ij}.$$
+> El último paso reconoce un producto matricial $B^\dagger A^\dagger$ con índice mudo $k$ en segunda-primera posición. Como vale para todo $i,j$, se concluye $(AB)^\dagger=B^\dagger A^\dagger$. $\blacksquare$
+
+> [!teorema] Propiedad cíclica de la traza
+> La traza $\operatorname{tr}(M)=M_{ii}$ (suma de la diagonal) es invariante ante intercambio cíclico de factores:
+> $$\operatorname{tr}(AB)=\operatorname{tr}(BA).$$
+
+> [!demostracion]
+> **Paso 1 — Traza del producto.** La traza contrae el índice libre del producto consigo mismo:
+> $$\operatorname{tr}(AB)=(AB)_{ii}=A_{ij}B_{ji},$$
+> con suma sobre $i$ **y** $j$ (ambos quedan mudos).
+>
+> **Paso 2 — Conmutar los números.** $A_{ij}$ y $B_{ji}$ son escalares; su orden en el producto no importa:
+> $$A_{ij}B_{ji}=B_{ji}A_{ij}.$$
+>
+> **Paso 3 — Reconocer la traza inversa.** Reagrupando $B_{ji}A_{ij}=(BA)_{jj}=\operatorname{tr}(BA)$ (índice mudo $i$ en segunda-primera posición, $j$ contraído):
+> $$\operatorname{tr}(AB)=A_{ij}B_{ji}=B_{ji}A_{ij}=\operatorname{tr}(BA).\qquad\blacksquare$$
+> Solo se usó que las componentes son números; de aquí sale también la invariancia cíclica general $\operatorname{tr}(ABC)=\operatorname{tr}(BCA)=\operatorname{tr}(CAB)$.
+
+> [!ejemplo]
+> **Verificación numérica de $\operatorname{tr}(AB)=\operatorname{tr}(BA)$.** Con
+> $$[A]=\begin{bmatrix}1&2\\3&4\end{bmatrix},\qquad [B]=\begin{bmatrix}0&1\\5&2\end{bmatrix}.$$
+> $$[AB]=\begin{bmatrix}1\cdot0+2\cdot5 & 1\cdot1+2\cdot2\\ 3\cdot0+4\cdot5 & 3\cdot1+4\cdot2\end{bmatrix}=\begin{bmatrix}10&5\\20&11\end{bmatrix}\Rightarrow\operatorname{tr}(AB)=10+11=21.$$
+> $$[BA]=\begin{bmatrix}0\cdot1+1\cdot3 & 0\cdot2+1\cdot4\\ 5\cdot1+2\cdot3 & 5\cdot2+2\cdot4\end{bmatrix}=\begin{bmatrix}3&4\\11&18\end{bmatrix}\Rightarrow\operatorname{tr}(BA)=3+18=21.$$
+> Coinciden ($21=21$) aunque $AB\neq BA$: la traza solo ve la suma diagonal, $A_{ij}B_{ji}$, que es simétrica en el orden.
+
 ## Resumen
 
 > [!resumen]
@@ -89,6 +129,8 @@ aliases:
 > | Matriz | $[M]$, elemento $M_{ij}$ | fila $i$, columna $j$ |
 > | Producto matriz-matriz | $M_{ij}N_{jk}=P_{ik}$ | suma sobre $j$ |
 > | Producto matriz-vector | $b_i=A_{ij}x_j$ | $A\vec{x}$ |
+> | Traspuesta de un producto | $(AB)^\dagger=B^\dagger A^\dagger$ | invierte el orden |
+> | Traza cíclica | $\operatorname{tr}(AB)=A_{ij}B_{ji}=\operatorname{tr}(BA)$ | suma diagonal, simétrica en el orden |
 > | Traspuesta (fila) | $[v]^\dagger$ | columna $\to$ fila |
 
 > [!corolario]

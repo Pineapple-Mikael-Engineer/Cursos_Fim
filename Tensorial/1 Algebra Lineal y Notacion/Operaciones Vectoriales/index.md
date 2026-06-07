@@ -21,7 +21,7 @@ aliases:
 > [!info]
 > Es la sección 1.2 del [[index | capítulo 1]] (libro, cap. 1.2). Apoya sobre la [[Notacion Indices Sumatorias | notación de índices]] y el [[Algebra Lineal para Tensores | álgebra de matrices]]. Se desglosa en:
 > - [[Rotacion de Vectores]] — rotación 2D, matriz $[R(\phi)]$ y forma $a_i'=R_{ij}a_j$ (cap. 1.2.1).
-> - [[Productos Vectoriales]] — punto $A_iB_i$ y cruz $\varepsilon_{ijk}A_iB_j\hat{e}_k$ (cap. 1.2.2).
+> - [[Productos Vectoriales]] — hub que compara punto $A_iB_i$ y cruz $\varepsilon_{ijk}A_iB_j\hat{e}_k$ (cap. 1.2.2); desarrollo en [[Producto Punto]] y [[Producto Cruz]].
 > - [[Calculos con Notacion Einstein]] — dos derivaciones guía: invariancia de la magnitud e identidad BAC-CAB (cap. 1.2.3).
 >
 > Las herramientas $\delta_{ij}$ y $\varepsilon_{ijk}$ que aparecen al multiplicar bases viven en [[Simbolos Especiales/index | Símbolos Especiales]].
