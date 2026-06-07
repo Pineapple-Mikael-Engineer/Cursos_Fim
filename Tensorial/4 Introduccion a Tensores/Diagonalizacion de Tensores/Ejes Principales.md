@@ -57,6 +57,7 @@ aliases:
 
 > [!info] El elipsoide del tensor
 > A un tensor simétrico se le asocia una superficie cuádrica, el **elipsoide del tensor**, definido por $\sigma_{ij}x_ix_j=\text{cte}$. Sus propiedades:
+> 
 > | Elemento del elipsoide | Significado tensorial |
 > |---|---|
 > | direcciones de los semiejes | ejes principales (autovectores $\hat e'_i$) |
