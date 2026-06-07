@@ -46,6 +46,11 @@ aliases:
 
 ## Demostración
 
+> [!info] Superficies adyacentes
+> ![[stokes_superficies.svg|380]]
+>
+> Al sumar dos parches con borde común, las integrales de línea del borde interno se cancelan; queda solo el contorno exterior.
+
 > [!teorema]
 > $$\int_S d\vec\sigma\cdot(\vec\nabla\times\vec A)=\oint_C d\vec r\cdot\vec A.$$
 

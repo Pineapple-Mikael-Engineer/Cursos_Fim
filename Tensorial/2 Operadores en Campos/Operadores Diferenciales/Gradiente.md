@@ -22,6 +22,11 @@ aliases:
 > [!info]
 > Sección **2.3.1** del libro, dentro de [[index | operadores diferenciales]]. Es el operador que liga un campo escalar con uno vectorial: convierte las equipotenciales de los [[Campos Escalares y Vectoriales | campos]] en líneas de campo perpendiculares. Su inverso en escala finita es la integral de línea (ver [[Operadores Integrales/index | operadores integrales]]).
 
+> [!info] El gradiente es normal
+> ![[gradiente_normal.svg|380]]
+>
+> $\vec\nabla\Phi$ apunta perpendicular a las superficies $\Phi=$ cte, en el sentido de mayor crecimiento.
+
 ---
 
 ## Ejemplo

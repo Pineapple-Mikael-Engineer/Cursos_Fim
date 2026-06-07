@@ -24,6 +24,11 @@ aliases:
 > [!info]
 > Sección **2.2.2** del libro; primera hija de [[index | Operadores Integrales]] (cap. 2.2). El integrando es un [[Campos Escalares y Vectoriales | campo]] vectorial o escalar. Cuando $\vec F=-\vec\nabla\Phi$ deriva de un potencial, la integral se relaciona con el [[Operadores Diferenciales/Gradiente | gradiente]] vía $\Delta\Phi=\int_C d\vec r\cdot\vec\nabla\Phi$, y con el [[Teoremas Integrales/Teorema de Stokes | teorema de Stokes]] cuando el camino es cerrado.
 
+> [!info] Integral de línea
+> ![[integral_linea.svg|330]]
+>
+> $d\vec r$ es tangente al camino $C$ en cada punto; la integral $\int_C d\vec r\cdot\vec F$ acumula a lo largo de $C$.
+
 ---
 
 ## Ejemplo

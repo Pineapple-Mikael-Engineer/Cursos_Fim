@@ -24,6 +24,11 @@ aliases:
 > [!info]
 > Sección **2.2.3** del libro; segunda hija de [[index | Operadores Integrales]] (cap. 2.2). El integrando es un [[Campos Escalares y Vectoriales | campo]]. El flujo es la cantidad que el [[Teoremas Integrales/Teorema de Gauss | teorema de Gauss]] iguala a la integral de volumen de la [[Operadores Diferenciales/Divergencia | divergencia]]; la convención de $\hat{n}$ con el borde $C$ es la que usa el [[Teoremas Integrales/Teorema de Stokes | teorema de Stokes]].
 
+> [!info] Vector de área
+> ![[integral_superficie.svg|330]]
+>
+> $d\vec\sigma=\hat n\,d\sigma$: magnitud igual al área diferencial, dirección normal a la superficie.
+
 ---
 
 ## Ejemplo

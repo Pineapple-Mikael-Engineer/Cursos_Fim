@@ -52,6 +52,11 @@ aliases:
 > Si las partículas no se crean ni se destruyen, el cambio de densidad en un punto se debe únicamente al flujo neto de corriente:
 > $$\boxed{\frac{\partial\rho}{\partial t}=-\vec\nabla\cdot\vec J.}$$
 
+> [!ejemplo] Flujo por las caras del cubo
+> ![[divergencia_flujo.svg|360]]
+>
+> Para la ecuación de continuidad se mide el flujo $v_z$ que entra por la cara inferior y sale por la superior del volumen $d\tau$.
+
 > [!demostracion]
 > Tomamos un volumen diferencial $d\tau=dx\,dy\,dz$ con vértice en $(x_0,y_0,z_0)$ y medimos el flujo por sus **seis caras**. Sea $N\equiv\rho\,d\tau$ el número de partículas dentro:
 > $$\frac{\partial N}{\partial t}=\frac{\partial\rho(x_0,y_0,z_0,t)}{\partial t}\,dx\,dy\,dz.$$

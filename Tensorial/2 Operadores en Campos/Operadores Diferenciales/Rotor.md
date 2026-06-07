@@ -29,6 +29,11 @@ aliases:
 
 ## Ejemplo
 
+> [!ejemplo] Rotor: sólido rígido vs vórtice
+> ![[rotor_vortice_vs_rigido.svg|540]]
+>
+> Ambos campos parecen circulares, pero el sólido rígido $(-y,x)$ tiene rotor $2\hat e_z$ y el vórtice $(-y,x)/r^2$ tiene rotor cero (salvo el origen).
+
 > [!ejemplo]
 > **Rotación rígida frente a vórtice $1/r^2$.**
 >
@@ -50,6 +55,11 @@ aliases:
 > [!teorema] El rotor como circulación por unidad de área
 > La componente del rotor normal a una superficie es la integral de línea del campo alrededor de su borde, por unidad de área, en el límite infinitesimal:
 > $$\hat{e}_z\cdot(\vec\nabla\times\vec v)=\lim_{C,S\to0}\frac{\oint_C d\vec r\cdot\vec v}{\int_S d\sigma_z}.$$
+
+> [!ejemplo] Camino para la circulación
+> ![[rotor_circulacion.svg|340]]
+>
+> La integral de línea $\oint_C d\vec r\cdot\vec v$ se calcula sobre el camino rectangular $C_1\!\to\!C_4$ de lados $\Delta x,\Delta y$.
 
 > [!demostracion]
 > Tomamos el rectángulo de la figura 2.9, de lados $\Delta x\times\Delta y$ con vértice en $(x_0,y_0)$, recorrido en sentido antihorario por cuatro tramos $C_1$ (abajo), $C_2$ (derecha), $C_3$ (arriba) y $C_4$ (izquierda). La circulación es $\oint_C d\vec r\cdot\vec v$.

@@ -23,6 +23,11 @@ aliases:
 > [!info]
 > Es el núcleo notacional del [[index | capítulo 1]] (libro, cap. 1.1). Trabajamos en cartesianas con base $\hat{e}_i$ ortonormal y fija. Esta notación sostiene los [[Operaciones Vectoriales/Productos Vectoriales | productos vectoriales]] y todo el [[Introduccion a Tensores/index | álgebra tensorial]]; las herramientas $\delta_{ij}$ y $\varepsilon_{ijk}$ viven en [[Simbolos Especiales/index | Símbolos Especiales]].
 
+> [!info] Sistema cartesiano
+> ![[cartesiano_base.svg|300]]
+>
+> Los vectores base $\hat e_1,\hat e_2,\hat e_3$ son ortonormales y de posición fija; todo vector se escribe $\vec v=v_i\hat e_i$.
+
 ---
 
 ## Ejemplo

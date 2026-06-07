@@ -28,6 +28,11 @@ aliases:
 
 ## Ejemplo
 
+> [!ejemplo] Rotación de un vector
+> ![[rotacion_vector.svg|330]]
+>
+> El vector $\vec a$ (ángulo $\theta$) gira un ángulo $\phi$ hasta $\vec a\,'$; la magnitud se conserva.
+
 > [!ejemplo]
 > **Rotar un vector 90° antihorario.** Sea $\vec{a}=3\hat{e}_1+1\hat{e}_2$, es decir $[a]=\begin{bmatrix}3\\1\end{bmatrix}$. Con $\phi=90^\circ$: $\cos90^\circ=0$, $\operatorname{sen}90^\circ=1$, luego
 > $$[R(90^\circ)]=\begin{bmatrix}0&-1\\1&0\end{bmatrix}.$$

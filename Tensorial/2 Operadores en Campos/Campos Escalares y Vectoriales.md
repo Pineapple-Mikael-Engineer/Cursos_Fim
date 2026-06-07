@@ -40,10 +40,20 @@ aliases:
 > $$x^2+(y-c)^2=1+c^2,$$
 > circunferencias centradas en $y=c$ de radio $\sqrt{1+c^2}$. Cruzan perpendicularmente a las equipotenciales y van de la carga $+$ a la $-$.
 
+> [!ejemplo] Campo de dos líneas de carga
+> ![[campo_dos_cargas.svg|480]]
+>
+> Equipotenciales (dorado) y líneas de campo (verde) del potencial de dos cargas $\pm\lambda_0$; las líneas cruzan perpendicularmente a las equipotenciales y van de $+$ a $-$.
+
 > [!ejemplo]
 > **Una silla de montar: $\Phi=-xy$.** Sus equipotenciales $-xy=$ cte son hipérbolas en el plano $x$–$y$. El campo asociado es
 > $$-\vec\nabla\Phi=y\,\hat{e}_x+x\,\hat{e}_y.$$
 > Sus líneas de campo salen de $\dfrac{dy}{dx}=\dfrac{x}{y}\Rightarrow y\,dy=x\,dx\Rightarrow y^2-x^2=c$: hipérbolas **perpendiculares** a las equipotenciales. La densidad de líneas crece al acercarse al origen, indicando un campo más intenso allí.
+
+> [!ejemplo] Silla $\Phi=-xy$
+> ![[campo_silla.svg|430]]
+>
+> Equipotenciales hiperbólicas y líneas de campo de $\Phi=-xy$, perpendiculares entre sí.
 
 > [!ejemplo] Línea de campo por un punto dado
 > **Hallar la línea de $\vec v=(y,\,x)$ que pasa por $P=(2,1)$.** Usamos la ecuación de las líneas de campo paso a paso.

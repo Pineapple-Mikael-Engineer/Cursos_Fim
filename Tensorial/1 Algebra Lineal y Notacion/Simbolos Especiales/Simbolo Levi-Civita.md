@@ -24,6 +24,11 @@ aliases:
 > [!info]
 > Vive en [[index | Símbolos Especiales]] del [[../index | capítulo 1]] (libro, cap. 1.2.2). Usa la [[Notacion Indices Sumatorias | notación de Einstein]]. Su pareja en el producto punto es [[Delta Kronecker]]; el producto $\varepsilon_{ijk}\varepsilon_{mnk}$ se reduce a deltas en [[Identidad Epsilon-Delta]].
 
+> [!info] Arreglo $3\times3\times3$
+> ![[levi_civita_3d.svg|330]]
+>
+> $\varepsilon_{ijk}$ visto como un arreglo $3\times3\times3$; cada celda es $+1$, $-1$ o $0$ según la permutación de $(i,j,k)$.
+
 ---
 
 ## Ejemplo

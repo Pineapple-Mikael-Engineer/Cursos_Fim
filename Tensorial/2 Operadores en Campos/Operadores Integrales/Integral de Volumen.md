@@ -24,6 +24,11 @@ aliases:
 > [!info]
 > Sección **2.2.4** del libro; tercera hija de [[index | Operadores Integrales]] (cap. 2.2). El integrando es un [[Campos Escalares y Vectoriales | campo]] escalar (densidad, energía) o vectorial. Es el lado de volumen del [[Teoremas Integrales/Teorema de Gauss | teorema de Gauss]], que lo iguala al flujo de la [[Operadores Diferenciales/Divergencia | divergencia]] a través del borde.
 
+> [!info] Volumen diferencial
+> ![[volumen_diferencial.svg|300]]
+>
+> $d\tau=dx\,dy\,dz$ es el elemento de volumen en cartesianas.
+
 ---
 
 ## Ejemplo

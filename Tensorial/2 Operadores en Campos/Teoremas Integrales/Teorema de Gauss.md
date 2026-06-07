@@ -43,6 +43,11 @@ aliases:
 
 ## Demostración
 
+> [!info] Volúmenes adyacentes
+> ![[gauss_volumenes.svg|380]]
+>
+> Al sumar dos volúmenes contiguos, las contribuciones de la cara común se cancelan ($\vec A\cdot d\vec\sigma_1+\vec A\cdot d\vec\sigma_2=0$); solo sobrevive la superficie exterior.
+
 > [!teorema]
 > $$\int_V d\tau\,\vec\nabla\cdot\vec A=\oint_S d\vec\sigma\cdot\vec A.$$
 
