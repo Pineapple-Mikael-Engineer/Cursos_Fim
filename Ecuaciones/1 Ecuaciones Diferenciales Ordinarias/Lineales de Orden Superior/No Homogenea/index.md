@@ -27,11 +27,11 @@ aliases:
 > trabajo nuevo se reduce a encontrar **esa única** $y_p$.
 
 > [!info]
-> Cuarto bloque de [[Lineales de Orden Superior/index | lineales de orden superior]], dentro del
-> [[1 Ecuaciones Diferenciales Ordinarias/index | capítulo de EDO]]. Aquí se cierra el plan: la
-> homogénea $y_h$ la dan la [[Coeficientes Constantes Homogenea | ecuación característica]] y el
-> [[Operador Diferencial Lineal | operador lineal]]; este bloque añade lo que falta, la particular
-> $y_p$. Es el motor matemático de las [[Oscilaciones/index | oscilaciones forzadas]]: un sistema
+> Cuarto bloque de [[Lineales de Orden Superior/index| lineales de orden superior]], dentro del
+> [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]]. Aquí se cierra el plan: la
+> homogénea $y_h$ la dan la [[Coeficientes Constantes Homogenea| ecuación característica]] y el
+> [[Operador Diferencial Lineal| operador lineal]]; este bloque añade lo que falta, la particular
+> $y_p$. Es el motor matemático de las [[Oscilaciones/index| oscilaciones forzadas]]: un sistema
 > $m\ddot x+c\dot x+kx=F(t)$ es exactamente $L[y]=f$ con fuente.
 
 ---
@@ -58,12 +58,12 @@ aliases:
 ## En qué consiste
 
 > [!teoria] El problema entero se reduce a UNA $y_p$
-> La teoría lineal ([[Operador Diferencial Lineal | operador $L$]]) garantiza que el conjunto de
+> La teoría lineal ([[Operador Diferencial Lineal| operador $L$]]) garantiza que el conjunto de
 > soluciones de $L[y]=f$ es un **espacio afín**: fijada cualquier particular $y_p$, **toda** solución
 > es $y_p$ más algo del núcleo de $L$ (la homogénea). En símbolos, si $L[y_p]=f$, entonces
 > $$L[y]=f \iff L[y-y_p]=0 \iff y-y_p=y_h.$$
 > Como $y_h$ **ya está resuelta** —es $c_1y_1+\dots+c_ny_n$ con el conjunto fundamental de la
-> [[Coeficientes Constantes Homogenea | homogénea]]—, el único problema **nuevo** es producir **una**
+> [[Coeficientes Constantes Homogenea| homogénea]]—, el único problema **nuevo** es producir **una**
 > $y_p$ cualquiera. No importa cuál: dos particulares distintas difieren en una homogénea, que las
 > constantes de $y_h$ ya cubren.
 >
@@ -75,12 +75,12 @@ aliases:
 >    múltiplo de sí misma, la de $\operatorname{sen}\beta x$ es coseno, etc.): vive todo en un espacio
 >    finito cerrado bajo derivación, así que se **adivina** una $y_p$ del mismo tipo con coeficientes
 >    incógnita y se resuelve un sistema lineal. Detalles en
->    [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]].
+>    [[Coeficientes Indeterminados| coeficientes indeterminados]].
 > 2. **Variación de parámetros** — **universal**: funciona para **cualquier** $f$ continua, e incluso
 >    con **coeficientes variables** (con tal de conocer el conjunto fundamental $y_1,\dots,y_n$). El
 >    precio es **integrar**. Se construye $y_p=u_1(x)y_1+u_2(x)y_2$ dejando que los "parámetros" $c_i$
 >    se vuelvan funciones $u_i(x)$. Detalles en
->    [[No Homogenea/Variacion de Parametros | variación de parámetros]].
+>    [[Variacion de Parametros| variación de parámetros]].
 
 > [!teoria] Principio de superposición de fuentes
 > La linealidad de $L$ también **divide la fuente**. Si $f=f_1+f_2$ y resolvemos por separado
@@ -94,8 +94,8 @@ aliases:
 > [!info] Las dos hijas: cuándo usar cada una
 > | Método | Cuándo usarlo | Coste |
 > |---|---|---|
-> | [[No Homogenea/Coeficientes Indeterminados\|Coeficientes Indeterminados]] | $f$ de "buena forma" (polinomio·$e^{\alpha x}$·$\operatorname{sen}/\cos$) **y** coeficientes constantes | Rápido: resolver un sistema lineal pequeño |
-> | [[No Homogenea/Variacion de Parametros\|Variación de Parámetros]] | $f$ arbitraria ($\sec x$, $\ln x$, $\operatorname{sen}(e^{-x})$…) **o** coeficientes variables | Integrales (a veces difíciles) |
+> | [[Coeficientes Indeterminados\|Coeficientes Indeterminados]] | $f$ de "buena forma" (polinomio·$e^{\alpha x}$·$\operatorname{sen}/\cos$) **y** coeficientes constantes | Rápido: resolver un sistema lineal pequeño |
+> | [[Variacion de Parametros\|Variación de Parámetros]] | $f$ arbitraria ($\sec x$, $\ln x$, $\operatorname{sen}(e^{-x})$…) **o** coeficientes variables | Integrales (a veces difíciles) |
 >
 > Regla práctica: si la fuente cabe en la tabla de coeficientes indeterminados, úsalos; en cuanto
 > aparezca un $\tan x$, un $\ln x$ o coeficientes que dependen de $x$, pasa a variación de parámetros.
@@ -109,8 +109,8 @@ aliases:
 > | Solución general | $y=y_h+y_p$ |
 > | $y_h$ | combinación de las $n$ soluciones homogéneas (ya conocida) |
 > | $y_p$ | **una** particular cualquiera; dos difieren en una homogénea |
-> | Método rápido | [[No Homogenea/Coeficientes Indeterminados\|coef. indeterminados]] (si $f$ de "buena forma") |
-> | Método universal | [[No Homogenea/Variacion de Parametros\|variación de parámetros]] |
+> | Método rápido | [[Coeficientes Indeterminados\|coef. indeterminados]] (si $f$ de "buena forma") |
+> | Método universal | [[Variacion de Parametros\|variación de parámetros]] |
 > | Superposición | $f=f_1+f_2\Rightarrow y_p=y_{p,1}+y_{p,2}$ |
 
 > [!corolario]
@@ -123,6 +123,6 @@ aliases:
 > [!referencia]
 > - La homogénea que se suma: [[Coeficientes Constantes Homogenea]].
 > - El cimiento lineal ($y=y_h+y_p$ como espacio afín): [[Operador Diferencial Lineal]].
-> - Método rápido: [[No Homogenea/Coeficientes Indeterminados]].
-> - Método universal: [[No Homogenea/Variacion de Parametros]].
+> - Método rápido: [[Coeficientes Indeterminados]].
+> - Método universal: [[Variacion de Parametros]].
 > - La aplicación física (oscilaciones forzadas): [[Oscilaciones/index]].

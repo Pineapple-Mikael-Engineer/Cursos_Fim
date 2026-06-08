@@ -26,11 +26,11 @@ aliases:
 > integrar.
 
 > [!info]
-> Una de las dos hijas de [[No Homogenea/index | no homogénea]]: la **rápida**. Solo aplica con
-> [[Coeficientes Constantes Homogenea | coeficientes constantes]] y $f$ de "buena forma". Si $f$ no
+> Una de las dos hijas de [[No Homogenea/index| no homogénea]]: la **rápida**. Solo aplica con
+> [[Coeficientes Constantes Homogenea| coeficientes constantes]] y $f$ de "buena forma". Si $f$ no
 > encaja (por ejemplo $\sec x$, $\ln x$, $\operatorname{sen}(e^{-x})$) o los coeficientes son variables,
-> hay que usar [[No Homogenea/Variacion de Parametros | variación de parámetros]]. Capítulo:
-> [[1 Ecuaciones Diferenciales Ordinarias/index | EDO]].
+> hay que usar [[Variacion de Parametros| variación de parámetros]]. Capítulo:
+> [[1 Ecuaciones Diferenciales Ordinarias/index| EDO]].
 
 ---
 
@@ -68,7 +68,7 @@ aliases:
 > de modo que
 > $$\boxed{\,y_p=-\tfrac{x}{2}\cos x\,}.$$
 > La $y_p$ contiene un factor $x$ que **crece sin cota**: la amplitud de la oscilación aumenta con el
-> tiempo. Es el anticipo matemático de la [[Oscilaciones/Oscilaciones Forzadas y Resonancia | resonancia]]
+> tiempo. Es el anticipo matemático de la [[Oscilaciones Forzadas y Resonancia| resonancia]]
 > física: forzar un sistema a su frecuencia natural lo hace oscilar cada vez más fuerte.
 
 ---
@@ -135,7 +135,7 @@ aliases:
 > Olvidar el **chequeo de resonancia** es el error típico: si la propuesta básica es solución de la
 > homogénea, sustituirla da $0=f$ y "no salen" los coeficientes. La señal es esa contradicción: vuelve
 > al paso 3 y multiplica por $x^{s}$. También: si $f$ tiene **varios** trozos ($f=f_1+f_2$), usa el
-> [[No Homogenea/index | principio de superposición]] y resuelve cada uno por separado.
+> [[No Homogenea/index| principio de superposición]] y resuelve cada uno por separado.
 
 ## Resumen
 
@@ -152,10 +152,10 @@ aliases:
 > El método cambia **cálculo por álgebra**: en vez de integrar, se adivina la forma de $y_p$ (la dicta el
 > que las funciones de "buena forma" se reproducen al derivar) y se resuelve un sistema lineal de
 > coeficientes. Su único límite es ese: la fuente debe ser de "buena forma" y los coeficientes
-> constantes. Fuera de ahí, [[No Homogenea/Variacion de Parametros | variación de parámetros]].
+> constantes. Fuera de ahí, [[Variacion de Parametros| variación de parámetros]].
 
 > [!referencia]
-> - El método universal alternativo: [[No Homogenea/Variacion de Parametros]].
+> - El método universal alternativo: [[Variacion de Parametros]].
 > - La homogénea y sus raíces: [[Coeficientes Constantes Homogenea]].
 > - Por qué $L(V)\subseteq V$: [[Operador Diferencial Lineal]].
 > - Vuelta al mapa del bloque: [[No Homogenea/index]].

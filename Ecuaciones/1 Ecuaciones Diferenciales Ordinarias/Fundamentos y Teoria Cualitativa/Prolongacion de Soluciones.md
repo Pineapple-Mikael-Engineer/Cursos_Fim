@@ -35,7 +35,7 @@ aliases:
 > [!info]
 > Cierra el bloque de [[Fundamentos y Teoria Cualitativa/index| fundamentos cualitativos]] respondiendo la pregunta "¿hasta dónde vive
 > la solución?" (libro, teoría de prolongación y existencia global). Continúa el carácter **local** de
-> [[Existencia y Unicidad Picard| Picard]] y usa la [[Desigualdad de Gronwall | desigualdad de Gronwall]] para descartar la explosión en el caso lineal. El ejemplo clave se resuelve por
+> [[Existencia y Unicidad Picard| Picard]] y usa la [[Desigualdad de Gronwall| desigualdad de Gronwall]] para descartar la explosión en el caso lineal. El ejemplo clave se resuelve por
 > [[Variables Separables| variables separables]]. Acompaña a
 > [[Dependencia de Condiciones y Parametros| la dependencia respecto a los datos]] en la lista de
 > propiedades "globales" de las soluciones.

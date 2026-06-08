@@ -30,9 +30,9 @@ aliases:
 
 > [!info]
 > Es la lectura **física** de los tres casos de raíces de la
-> [[Coeficientes Constantes Homogenea | ecuación característica]] dentro del bloque
-> [[Oscilaciones/index | oscilaciones]]. Aquí $F=0$: solo actúan la inercia, el resorte y la disipación. El
-> caso con fuerza se trata en [[Oscilaciones/Oscilaciones Forzadas y Resonancia | oscilaciones forzadas]].
+> [[Coeficientes Constantes Homogenea| ecuación característica]] dentro del bloque
+> [[Oscilaciones/index| oscilaciones]]. Aquí $F=0$: solo actúan la inercia, el resorte y la disipación. El
+> caso con fuerza se trata en [[Oscilaciones Forzadas y Resonancia| oscilaciones forzadas]].
 
 ---
 
@@ -88,7 +88,7 @@ aliases:
 
 > [!proposicion] Por qué el crítico aparece con factor $t$
 > En el caso crítico la característica tiene la raíz **doble** $r=-\omega_0$. Como en cualquier raíz
-> repetida de la [[Coeficientes Constantes Homogenea | ecuación característica]], la segunda solución gana
+> repetida de la [[Coeficientes Constantes Homogenea| ecuación característica]], la segunda solución gana
 > un factor $t$: $\{e^{-\omega_0 t},\,t\,e^{-\omega_0 t}\}$, de donde $x=(A+Bt)e^{-\omega_0 t}$. Es la
 > frontera exacta entre oscilar y no oscilar.
 
@@ -115,5 +115,5 @@ aliases:
 
 > [!referencia]
 > - La maquinaria de raíces: [[Coeficientes Constantes Homogenea]].
-> - Qué pasa al añadir una fuerza externa: [[Oscilaciones/Oscilaciones Forzadas y Resonancia]].
+> - Qué pasa al añadir una fuerza externa: [[Oscilaciones Forzadas y Resonancia]].
 > - El panorama físico completo: [[Oscilaciones/index]].

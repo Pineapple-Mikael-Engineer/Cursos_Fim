@@ -29,8 +29,8 @@ aliases:
 > Casi cualquier sistema físico cerca de un equilibrio estable se comporta así.
 
 > [!info]
-> Este es el corazón **físico** del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Toda la maquinaria de la [[Coeficientes Constantes Homogenea | ecuación característica]]
-> (raíces reales, complejas, repetidas) y de la [[No Homogenea/index | parte no homogénea]] (particular +
+> Este es el corazón **físico** del bloque [[Lineales de Orden Superior/index| lineales de orden superior]]. Toda la maquinaria de la [[Coeficientes Constantes Homogenea| ecuación característica]]
+> (raíces reales, complejas, repetidas) y de la [[No Homogenea/index| parte no homogénea]] (particular +
 > homogénea) se traduce aquí en fenómenos que se ven y se miden: vibraciones, amortiguamiento y resonancia.
 
 ---
@@ -63,7 +63,7 @@ aliases:
 >   sistema **oscila**.
 >
 > El signo de $\zeta^2-1$ separa tres regímenes (subamortiguado, crítico, sobreamortiguado): es la
-> traducción directa del discriminante de la [[Coeficientes Constantes Homogenea | ecuación característica]].
+> traducción directa del discriminante de la [[Coeficientes Constantes Homogenea| ecuación característica]].
 >
 > Cuando hay **forzamiento** ($F\neq0$), la solución se parte en dos:
 > $$x(t)=\underbrace{x_h(t)}_{\text{transitorio}}+\underbrace{x_p(t)}_{\text{estacionario}}.$$
@@ -73,11 +73,11 @@ aliases:
 > amplitud estacionaria se dispara. Eso es la **resonancia**.
 
 > [!info] Mapa de las hijas
-> - [[Oscilaciones/Oscilador Libre y Amortiguado | Oscilador libre y amortiguado]] — desarrolla el caso
+> - [[Oscilador Libre y Amortiguado| Oscilador libre y amortiguado]] — desarrolla el caso
 >   $F=0$ y sus **tres regímenes** según $\zeta$: subamortiguado (oscila y decae), crítico (retorno más
 >   rápido sin oscilar) y sobreamortiguado (decae lento). Es leer el discriminante de la característica como
 >   movimiento.
-> - [[Oscilaciones/Oscilaciones Forzadas y Resonancia | Oscilaciones forzadas y resonancia]] — desarrolla el
+> - [[Oscilaciones Forzadas y Resonancia| Oscilaciones forzadas y resonancia]] — desarrolla el
 >   caso $F\neq0$: la separación transitorio/estacionario, la curva de amplitud $A(\omega)$ y el fenómeno de
 >   la **resonancia**, incluyendo el crecimiento sin cota cuando no hay amortiguamiento.
 
@@ -112,7 +112,7 @@ aliases:
 > que vibra el mundo.
 
 > [!referencia]
-> - El caso libre y sus tres regímenes: [[Oscilaciones/Oscilador Libre y Amortiguado]].
-> - El caso forzado y la resonancia: [[Oscilaciones/Oscilaciones Forzadas y Resonancia]].
+> - El caso libre y sus tres regímenes: [[Oscilador Libre y Amortiguado]].
+> - El caso forzado y la resonancia: [[Oscilaciones Forzadas y Resonancia]].
 > - La maquinaria algebraica de fondo: [[Coeficientes Constantes Homogenea]].
 > - El bloque completo: [[Lineales de Orden Superior/index]].

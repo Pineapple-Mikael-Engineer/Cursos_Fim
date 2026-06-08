@@ -28,11 +28,11 @@ aliases:
 > fórmula da el wronskiano **explícitamente, sin necesidad de conocer las soluciones**.
 
 > [!info]
-> Resultado clave del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Es lo
-> que justifica que el [[Wronskiano e Independencia Lineal | wronskiano]] sea un test válido de
+> Resultado clave del bloque [[Lineales de Orden Superior/index| lineales de orden superior]]. Es lo
+> que justifica que el [[Wronskiano e Independencia Lineal| wronskiano]] sea un test válido de
 > independencia: como la exponencial nunca se anula, $W$ es **siempre $0$ o nunca $0$**. Además permite
 > (a) calcular $W$ sin resolver la EDO y (b) obtener la **segunda solución** a partir de una conocida,
-> idea base de la [[Reduccion de Orden | reducción de orden]]. Pertenece al **Capítulo 1 — Ecuaciones
+> idea base de la [[Reduccion de Orden| reducción de orden]]. Pertenece al **Capítulo 1 — Ecuaciones
 > Diferenciales Ordinarias**.
 
 ---
@@ -99,7 +99,7 @@ aliases:
 > \;\Rightarrow\;\frac{y_2}{y_1}=\int\frac{W_0\,e^{-\int p}}{y_1^2}\,dx,$$
 > de donde
 > $$y_2=y_1\int\frac{e^{-\int p\,dx}}{y_1^{2}}\,dx.$$
-> Esta fórmula explícita es exactamente el resultado de la [[Reduccion de Orden | reducción de orden]].
+> Esta fórmula explícita es exactamente el resultado de la [[Reduccion de Orden| reducción de orden]].
 
 ## Resumen
 

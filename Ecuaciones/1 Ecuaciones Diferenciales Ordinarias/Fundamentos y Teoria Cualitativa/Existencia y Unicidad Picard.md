@@ -31,7 +31,7 @@ aliases:
 > Es la nota **central** de los [[Fundamentos y Teoria Cualitativa/index| fundamentos cualitativos]]: la pregunta "¿la EDO tiene
 > solución y es la única?" se responde aquí (libro, teoría de existencia y unicidad). Geométricamente
 > continúa el [[Campo de Direcciones e Isoclinas| campo de direcciones]] (por qué las curvas
-> integrales **no se cruzan**); analíticamente apoya todo el [[Concepto General de ODE | concepto de EDO]]. Su versión más débil, con sola continuidad, es el [[Teorema de Peano| teorema de Peano]]; su
+> integrales **no se cruzan**); analíticamente apoya todo el [[Concepto General de ODE| concepto de EDO]]. Su versión más débil, con sola continuidad, es el [[Teorema de Peano| teorema de Peano]]; su
 > versión **constructiva** es la [[Iteracion de Picard| iteración de Picard]].
 
 ---

@@ -28,9 +28,9 @@ aliases:
 
 > [!info]
 > Caso especial de coeficientes **variables** del bloque
-> [[Lineales de Orden Superior/index | lineales de orden superior]] que aun así se resuelve en forma
-> cerrada. Comparte los **tres casos de raíces** con [[Coeficientes Constantes Homogenea | coeficientes constantes]] (el cambio $x=e^t$ explica por qué), y su caso de raíz repetida —el $\ln x$— se justifica
-> con [[Reduccion de Orden | reducción de orden]].
+> [[Lineales de Orden Superior/index| lineales de orden superior]] que aun así se resuelve en forma
+> cerrada. Comparte los **tres casos de raíces** con [[Coeficientes Constantes Homogenea| coeficientes constantes]] (el cambio $x=e^t$ explica por qué), y su caso de raíz repetida —el $\ln x$— se justifica
+> con [[Reduccion de Orden| reducción de orden]].
 
 ---
 
@@ -56,7 +56,7 @@ aliases:
 > Una solución es $x^1$; la segunda gana un factor $\ln x$ (el análogo del factor $x$ de coeficientes
 > constantes):
 > $$\boxed{\,y=(c_1+c_2\ln x)\,x\,}\qquad(x>0).$$
-> Que la segunda solución sea $x\ln x$ se comprueba con [[Reduccion de Orden | reducción de orden]].
+> Que la segunda solución sea $x\ln x$ se comprueba con [[Reduccion de Orden| reducción de orden]].
 
 ---
 
@@ -100,6 +100,7 @@ aliases:
 
 > [!proposicion] Los tres casos de raíces de Cauchy-Euler
 > Según las raíces $m$ de la ecuación auxiliar:
+> 
 > | Raíces $m$ | Solución general ($x>0$) |
 > |:--|:--|
 > | reales distintas $m_1\neq m_2$ | $c_1x^{m_1}+c_2x^{m_2}$ |

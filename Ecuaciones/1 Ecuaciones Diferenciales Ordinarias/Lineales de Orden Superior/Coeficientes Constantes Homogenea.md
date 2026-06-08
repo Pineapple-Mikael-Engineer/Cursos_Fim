@@ -25,7 +25,7 @@ aliases:
 > polinomio y leer las soluciones según sean reales, complejas o repetidas.
 
 > [!info]
-> El caso **resoluble por álgebra** del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Da el $y_h$ que luego se completa con una particular ([[No Homogenea/index | no homogénea]]). Es el motor de las [[Oscilaciones/index | oscilaciones]]: el oscilador
+> El caso **resoluble por álgebra** del bloque [[Lineales de Orden Superior/index| lineales de orden superior]]. Da el $y_h$ que luego se completa con una particular ([[No Homogenea/index| no homogénea]]). Es el motor de las [[Oscilaciones/index| oscilaciones]]: el oscilador
 > $m\ddot x+c\dot x+kx=0$ es exactamente este caso de segundo orden.
 
 ---
@@ -89,7 +89,7 @@ aliases:
 
 > [!demostracion] Caso repetido: de dónde sale el factor $x$
 > Si $r$ es raíz **doble**, $e^{rx}$ es una solución pero falta una segunda independiente. Por
-> [[Reduccion de Orden | reducción de orden]] se prueba $y_2=v(x)e^{rx}$; al sustituir, los términos en
+> [[Reduccion de Orden| reducción de orden]] se prueba $y_2=v(x)e^{rx}$; al sustituir, los términos en
 > $v$ y $v'$ se cancelan (porque $r$ anula $P$ **y** $P'$) y queda $v''=0$, de donde $v=x$. Así
 > $y_2=x\,e^{rx}$, y la solución general es $(c_1+c_2x)e^{rx}$. Para una raíz de multiplicidad $m$ se
 > obtienen $e^{rx},xe^{rx},\dots,x^{m-1}e^{rx}$. $\blacksquare$

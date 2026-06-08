@@ -29,12 +29,12 @@ aliases:
 > anularse equivale a que sean linealmente independientes.
 
 > [!info]
-> Pieza central del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]: el
-> [[Operador Diferencial Lineal | operador $L$]] garantiza que el espacio de soluciones de la homogénea
+> Pieza central del bloque [[Lineales de Orden Superior/index| lineales de orden superior]]: el
+> [[Operador Diferencial Lineal| operador $L$]] garantiza que el espacio de soluciones de la homogénea
 > tiene dimensión $n$, y el wronskiano es el **test práctico** para saber si $n$ soluciones concretas
 > forman una base —el **conjunto fundamental**—. Su buen comportamiento (la dicotomía "siempre $0$ o
-> nunca $0$") proviene de la [[Formula de Abel | fórmula de Abel]]. Aparece también al construir la
-> solución particular por [[No Homogenea/Variacion de Parametros | variación de parámetros]]. Pertenece
+> nunca $0$") proviene de la [[Formula de Abel| fórmula de Abel]]. Aparece también al construir la
+> solución particular por [[Variacion de Parametros| variación de parámetros]]. Pertenece
 > al **Capítulo 1 — Ecuaciones Diferenciales Ordinarias**.
 
 ---
@@ -101,7 +101,7 @@ aliases:
 > cuya matriz tiene determinante $W(x_0)\neq0$. Por ser invertible, la única solución es
 > $c_1=\dots=c_n=0$: las soluciones son linealmente independientes.
 >
-> **Paso 3 — "algún punto = todo punto".** Por la [[Formula de Abel | fórmula de Abel]] el wronskiano
+> **Paso 3 — "algún punto = todo punto".** Por la [[Formula de Abel| fórmula de Abel]] el wronskiano
 > de soluciones cumple $W(x)=W(x_0)\exp\!\big(-\int_{x_0}^{x}p_{n-1}\big)$, y como la exponencial nunca
 > se anula, $W$ es **idénticamente cero** o **nunca cero** en $I$. Por eso basta verificar $W$ en un
 > único punto, y la equivalencia de los Pasos 1–2 se extiende a todo $I$. $\blacksquare$
@@ -118,7 +118,7 @@ aliases:
 > Si $y_1,\dots,y_n$ son soluciones independientes de la homogénea de orden $n$ ($W\neq0$), entonces
 > forman un **conjunto fundamental**: toda solución se escribe de manera única como
 > $y=c_1y_1+\dots+c_ny_n$. Esto realiza la base del espacio de soluciones de dimensión $n$ garantizada
-> por el [[Operador Diferencial Lineal | operador lineal]].
+> por el [[Operador Diferencial Lineal| operador lineal]].
 
 ## Resumen
 
@@ -141,4 +141,4 @@ aliases:
 > - Por qué $W$ es siempre $0$ o nunca $0$, y cómo calcularlo sin resolver la EDO: [[Formula de Abel]].
 > - El espacio de soluciones de dimensión $n$ y la superposición: [[Operador Diferencial Lineal]].
 > - Construir un conjunto fundamental con coeficientes constantes: [[Coeficientes Constantes Homogenea]].
-> - Donde el wronskiano se vuelve operativo para hallar $y_p$: [[No Homogenea/Variacion de Parametros]].
+> - Donde el wronskiano se vuelve operativo para hallar $y_p$: [[Variacion de Parametros]].

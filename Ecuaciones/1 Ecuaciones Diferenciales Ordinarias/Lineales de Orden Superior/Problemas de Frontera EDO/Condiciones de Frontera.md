@@ -31,18 +31,18 @@ aliases:
 > condiciones homogéneas son las que dan lugar a los problemas de autovalores.
 
 > [!info]
-> Primera nota de [[Problemas de Frontera EDO/index | problemas de frontera]]. Aquí se ve **cómo** las
+> Primera nota de [[Problemas de Frontera EDO/index| problemas de frontera]]. Aquí se ve **cómo** las
 > condiciones determinan la existencia y unicidad, y cómo las condiciones **homogéneas con un
 > parámetro** producen los autovalores. La técnica para resolver el caso **no homogéneo** está en
-> [[Problemas de Frontera EDO/Funcion de Green para EDO]], y la teoría general que generaliza todo
-> esto es [[Sturm-Liouville/index | Sturm-Liouville]].
+> [[Funcion de Green para EDO]], y la teoría general que generaliza todo
+> esto es [[Sturm-Liouville/index| Sturm-Liouville]].
 
 ---
 
 ## Ejemplo
 
 > [!ejemplo] El mismo operador, tres resultados según la frontera
-> Sea $y''+y=0$ en $[0,\pi]$. Su [[Coeficientes Constantes Homogenea | solución general]] es
+> Sea $y''+y=0$ en $[0,\pi]$. Su [[Coeficientes Constantes Homogenea| solución general]] es
 > $$y=c_1\cos x+c_2\operatorname{sen}x.$$
 > Vamos a imponer tres pares de condiciones de Dirichlet distintos.
 >
@@ -131,11 +131,11 @@ aliases:
 
 > [!info] Esto es el germen de Sturm-Liouville y de la separación de variables
 > El problema $y''+\lambda y=0$ con condiciones homogéneas es el **caso más simple** de un
-> [[Sturm-Liouville/index | problema de Sturm-Liouville]] $-(p\,y')'+q\,y=\lambda\,w\,y$. Y aparece
+> [[Sturm-Liouville/index| problema de Sturm-Liouville]] $-(p\,y')'+q\,y=\lambda\,w\,y$. Y aparece
 > de manera natural al separar variables en EDP: al resolver la ecuación del calor o de ondas en
 > $[0,L]$ con extremos fijos, la parte espacial es **exactamente** este problema, y los $\lambda_n$
 > son las frecuencias/modos propios del sistema. Por eso los PVF de autovalores son la bisagra entre
-> las EDO y las [[2 Ecuaciones en Derivadas Parciales/index | EDP]].
+> las EDO y las [[2 Ecuaciones en Derivadas Parciales/index| EDP]].
 
 ---
 
@@ -162,7 +162,7 @@ aliases:
 > generalizado, sostiene toda la física matemática lineal.
 
 > [!referencia]
-> - Resolver el PVF **no homogéneo**: [[Problemas de Frontera EDO/Funcion de Green para EDO]].
+> - Resolver el PVF **no homogéneo**: [[Funcion de Green para EDO]].
 > - La solución general que se impone: [[Coeficientes Constantes Homogenea]].
 > - La teoría general de autovalores de EDO: [[Sturm-Liouville/index]].
 > - Vista de conjunto de la sección: [[Problemas de Frontera EDO/index]].

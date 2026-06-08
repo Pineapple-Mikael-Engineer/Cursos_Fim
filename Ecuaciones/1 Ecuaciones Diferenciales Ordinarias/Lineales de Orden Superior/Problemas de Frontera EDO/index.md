@@ -27,13 +27,13 @@ aliases:
 > $a$ al punto $b$ parece un cambio menor, pero altera por completo la naturaleza del problema.
 
 > [!info]
-> Última sección del bloque [[Lineales de Orden Superior/index | lineales de orden superior]], dentro
-> del [[1 Ecuaciones Diferenciales Ordinarias/index | capítulo de EDO]]. Aquí la EDO ya no se resuelve
+> Última sección del bloque [[Lineales de Orden Superior/index| lineales de orden superior]], dentro
+> del [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]]. Aquí la EDO ya no se resuelve
 > "hacia adelante" desde un punto, sino que debe **ajustarse simultáneamente en ambos extremos**. De
-> esta tensión nacen los **autovalores**, que son el puente hacia [[Sturm-Liouville/index | Sturm-Liouville]] y la separación de variables en [[2 Ecuaciones en Derivadas Parciales/index | EDP]]. Esta sección se organiza en dos notas:
-> - [[Problemas de Frontera EDO/Condiciones de Frontera]] — los tipos (Dirichlet, Neumann, Robin,
+> esta tensión nacen los **autovalores**, que son el puente hacia [[Sturm-Liouville/index| Sturm-Liouville]] y la separación de variables en [[2 Ecuaciones en Derivadas Parciales/index| EDP]]. Esta sección se organiza en dos notas:
+> - [[Condiciones de Frontera]] — los tipos (Dirichlet, Neumann, Robin,
 >   periódicas) y el fenómeno de los **problemas de autovalores**.
-> - [[Problemas de Frontera EDO/Funcion de Green para EDO]] — cómo resolver el PVF no homogéneo
+> - [[Funcion de Green para EDO]] — cómo resolver el PVF no homogéneo
 >   $L[y]=f$ mediante la **inversa integral** del operador.
 
 ---
@@ -63,7 +63,7 @@ aliases:
 ## En qué consiste
 
 > [!teoria] Por qué el PVF rompe el determinismo del PVI
-> En el PVI, el [[Existencia y Unicidad Picard | teorema de Picard]] garantiza una **única** solución:
+> En el PVI, el [[Existencia y Unicidad Picard| teorema de Picard]] garantiza una **única** solución:
 > dado el estado completo en un punto ($y$ y $y'$ en $x=a$), la EDO determina el futuro sin
 > ambigüedad. Es el **determinismo** de la física clásica: presente $\Rightarrow$ trayectoria.
 >
@@ -90,11 +90,11 @@ aliases:
 > $y_n$ —las **autofunciones**—. Esos $\lambda_n$ son exactamente los $\lambda$ que anulan el
 > determinante del sistema de frontera.
 >
-> Esto es la versión continua del problema de autovalores del [[Determinantes y Matrices/index | álgebra lineal]] $A\vec v=\lambda\vec v$: el operador diferencial $-\tfrac{d^2}{dx^2}$ con esas
+> Esto es la versión continua del problema de autovalores del [[Determinantes y Matrices/index| álgebra lineal]] $A\vec v=\lambda\vec v$: el operador diferencial $-\tfrac{d^2}{dx^2}$ con esas
 > condiciones de frontera juega el papel de la matriz $A$. Las autofunciones $y_n$ son las que, al
 > aplicarles el operador, se reproducen multiplicadas por $\lambda_n$. Y resultan ser una **base
 > ortogonal** del espacio de funciones —el germen de las series de Fourier y de la separación de
-> variables en EDP—. La nota [[Problemas de Frontera EDO/Condiciones de Frontera]] resuelve este
+> variables en EDP—. La nota [[Condiciones de Frontera]] resuelve este
 > problema modelo en detalle.
 
 > [!teoria] La herramienta del PVF no homogéneo: la función de Green
@@ -105,7 +105,7 @@ aliases:
 > $$y(x)=\int_a^b G(x,\xi)\,f(\xi)\,d\xi.$$
 > $G$ es, literalmente, la **inversa integral** del operador $L$ (igual que $A^{-1}$ resuelve
 > $A\vec x=\vec b$). Su construcción y su interpretación como "respuesta a una fuente puntual"
-> $\delta(x-\xi)$ están en [[Problemas de Frontera EDO/Funcion de Green para EDO]].
+> $\delta(x-\xi)$ están en [[Funcion de Green para EDO]].
 
 > [!warning] PVF y PVI no son intercambiables
 > No traslade la intuición del PVI al PVF. Que una EDO tenga solución general con dos constantes
@@ -120,8 +120,8 @@ aliases:
 > [!info]
 > | Nota | Rol |
 > |---|---|
-> | [[Problemas de Frontera EDO/Condiciones de Frontera\|Condiciones de Frontera]] | tipos (Dirichlet/Neumann/Robin/periódicas); existencia y unicidad; problema de autovalores |
-> | [[Problemas de Frontera EDO/Funcion de Green para EDO\|Función de Green para EDO]] | resolver $L[y]=f$ con la inversa integral de $L$; fuente puntual $\delta$ |
+> | [[Condiciones de Frontera\|Condiciones de Frontera]] | tipos (Dirichlet/Neumann/Robin/periódicas); existencia y unicidad; problema de autovalores |
+> | [[Funcion de Green para EDO\|Función de Green para EDO]] | resolver $L[y]=f$ con la inversa integral de $L$; fuente puntual $\delta$ |
 
 ## Resumen
 
@@ -137,12 +137,12 @@ aliases:
 > [!corolario]
 > El PVF no es "un PVI con las condiciones movidas": es una clase de problemas cualitativamente
 > distinta. Su rasgo definitorio —que la solubilidad dependa de un sistema lineal en las constantes—
-> hace emerger los **problemas de autovalores**, columna vertebral de [[Sturm-Liouville/index | Sturm-Liouville]] y de la física matemática de las EDP. La **función de Green** es la contraparte
+> hace emerger los **problemas de autovalores**, columna vertebral de [[Sturm-Liouville/index| Sturm-Liouville]] y de la física matemática de las EDP. La **función de Green** es la contraparte
 > constructiva: la inversa del operador que resuelve el caso no homogéneo.
 
 > [!referencia]
 > - El contraste fundamental, la unicidad del PVI: [[Existencia y Unicidad Picard]].
-> - Tipos de condiciones y el problema de autovalores: [[Problemas de Frontera EDO/Condiciones de Frontera]].
-> - Resolver el no homogéneo: [[Problemas de Frontera EDO/Funcion de Green para EDO]].
+> - Tipos de condiciones y el problema de autovalores: [[Condiciones de Frontera]].
+> - Resolver el no homogéneo: [[Funcion de Green para EDO]].
 > - Hacia dónde lleva esto: [[Sturm-Liouville/index]].
 > - El bloque que la contiene: [[Lineales de Orden Superior/index]].

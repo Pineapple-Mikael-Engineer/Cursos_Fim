@@ -27,11 +27,11 @@ aliases:
 > es lo que **justifica el factor $x$** de las raíces repetidas en [[Coeficientes Constantes Homogenea]].
 
 > [!info]
-> Pieza del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Resuelve el
+> Pieza del bloque [[Lineales de Orden Superior/index| lineales de orden superior]]. Resuelve el
 > problema "tengo $y_1$, ¿de dónde saco $y_2$?". El resultado coincide con el que entrega la
-> [[Formula de Abel | fórmula de Abel]] para el wronskiano, y es la base teórica del segundo término en
-> el caso repetido de [[Coeficientes Constantes Homogenea | coeficientes constantes]] y de
-> [[Cauchy-Euler | Cauchy-Euler]].
+> [[Formula de Abel| fórmula de Abel]] para el wronskiano, y es la base teórica del segundo término en
+> el caso repetido de [[Coeficientes Constantes Homogenea| coeficientes constantes]] y de
+> [[Cauchy-Euler| Cauchy-Euler]].
 
 ---
 
@@ -52,7 +52,7 @@ aliases:
 > solución es $x$ veces la primera. La solución general es $y=(c_1+c_2x)e^{2x}$.
 
 > [!ejemplo] Coeficientes variables: aparece un $\ln x$
-> **La EDO $x^2y''-3xy'+4y=0$ tiene la solución $y_1=x^2$** (una [[Cauchy-Euler | Cauchy-Euler]] con
+> **La EDO $x^2y''-3xy'+4y=0$ tiene la solución $y_1=x^2$** (una [[Cauchy-Euler| Cauchy-Euler]] con
 > raíz doble $m=2$). Para usar la fórmula la escribimos en forma estándar dividiendo entre $x^2$:
 > $$y''-\frac{3}{x}y'+\frac{4}{x^2}y=0\;\Rightarrow\; p(x)=-\frac{3}{x}.$$
 > Entonces $\displaystyle \int p\,dx=-3\ln x$, luego $e^{-\int p\,dx}=e^{3\ln x}=x^3$, y $y_1^2=x^4$:
@@ -96,7 +96,7 @@ aliases:
 > **Paso 4 — integrar para recuperar $v$ y $y_2$.** Como $w=v'$, integramos una vez más y tomamos
 > $C=1$ (cualquier constante sirve, las generales las dan $c_1,c_2$):
 > $$v=\int\frac{e^{-\int p\,dx}}{y_1^2}\,dx,\qquad y_2=v\,y_1=y_1\int\frac{e^{-\int p\,dx}}{y_1^2}\,dx.$$
-> Esto **coincide** con lo que predice la [[Formula de Abel | fórmula de Abel]] $W=W_0e^{-\int p}$ para
+> Esto **coincide** con lo que predice la [[Formula de Abel| fórmula de Abel]] $W=W_0e^{-\int p}$ para
 > el wronskiano del par $\{y_1,y_2\}$. $\blacksquare$
 
 > [!proposicion] Por qué $y_2$ es independiente de $y_1$
@@ -127,7 +127,7 @@ aliases:
 > una de primer orden", aprovechando la solución que ya se tiene. Es a la vez una **herramienta
 > práctica** (coeficientes variables con una solución conocida) y la **justificación teórica** del factor
 > $x$ en raíces repetidas de [[Coeficientes Constantes Homogenea]] y del $\ln x$ en
-> [[Cauchy-Euler | Cauchy-Euler]].
+> [[Cauchy-Euler| Cauchy-Euler]].
 
 > [!referencia]
 > - El wronskiano que esta fórmula reproduce: [[Formula de Abel]].

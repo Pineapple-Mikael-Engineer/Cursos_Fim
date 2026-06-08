@@ -25,10 +25,10 @@ aliases:
 > solución **particular** $y_p$.
 
 > [!info]
-> Tercer bloque del [[1 Ecuaciones Diferenciales Ordinarias/index | capítulo de EDO]]. A diferencia de
-> los [[Metodos de Primer Orden/index | métodos de primer orden]] —un catálogo de trucos para tipos
+> Tercer bloque del [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]]. A diferencia de
+> los [[Metodos de Primer Orden/index| métodos de primer orden]] —un catálogo de trucos para tipos
 > no lineales— aquí hay **una teoría unificada**: la linealidad. Es la base de los
-> [[Sistemas y Dinamica/index | sistemas]], de la [[Transformada de Laplace/index | transformada de Laplace]] y de toda la física de **oscilaciones**.
+> [[Sistemas y Dinamica/index| sistemas]], de la [[Transformada de Laplace/index| transformada de Laplace]] y de toda la física de **oscilaciones**.
 
 ---
 
@@ -43,7 +43,7 @@ aliases:
 > - **Dimensión $n$.** Ese espacio tiene dimensión exactamente $n$: existen $n$ soluciones
 >   **linealmente independientes** $y_1,\dots,y_n$ (un *conjunto fundamental*) y toda solución
 >   homogénea es $y_h=c_1y_1+\dots+c_ny_n$. La independencia se detecta con el
->   [[Wronskiano e Independencia Lineal | wronskiano]].
+>   [[Wronskiano e Independencia Lineal| wronskiano]].
 > - **No homogénea = homogénea + una particular.** Si $L[y_p]=f$, entonces $L[y]=f$ ⟺ $y-y_p$
 >   resuelve la homogénea. Por eso $y=y_h+y_p$: la homogénea aporta los **$n$ grados de libertad**
 >   (las constantes que fijan las condiciones), $y_p$ ajusta la **fuente** $f$.
@@ -51,11 +51,11 @@ aliases:
 > [!teoria] El plan de ataque (y dónde vive cada pieza)
 > Resolver $L[y]=f$ se descompone siempre en dos tareas:
 > 1. **Hallar $y_h$** (resolver la homogénea). Con **coeficientes constantes** esto es álgebra: la
->    [[Coeficientes Constantes Homogenea | ecuación característica]]. Con coeficientes variables se
->    necesita [[Reduccion de Orden | reducción de orden]] (si se conoce una solución) o casos
->    especiales como [[Cauchy-Euler | Cauchy-Euler]].
-> 2. **Hallar una $y_p$** (vencer la fuente $f$): [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]] cuando $f$ tiene forma "buena" (polinomio·exponencial·seno), o el
->    método universal de [[No Homogenea/Variacion de Parametros | variación de parámetros]].
+>    [[Coeficientes Constantes Homogenea| ecuación característica]]. Con coeficientes variables se
+>    necesita [[Reduccion de Orden| reducción de orden]] (si se conoce una solución) o casos
+>    especiales como [[Cauchy-Euler| Cauchy-Euler]].
+> 2. **Hallar una $y_p$** (vencer la fuente $f$): [[Coeficientes Indeterminados| coeficientes indeterminados]] cuando $f$ tiene forma "buena" (polinomio·exponencial·seno), o el
+>    método universal de [[Variacion de Parametros| variación de parámetros]].
 
 ---
 
@@ -85,7 +85,7 @@ aliases:
 > | Homogénea | espacio vectorial de **dimensión $n$**; $y_h=\sum c_iy_i$ |
 > | Independencia | [[Wronskiano e Independencia Lineal\|wronskiano]] $W\neq0$ |
 > | $y_h$ (coef. ctes.) | [[Coeficientes Constantes Homogenea\|ecuación característica]] |
-> | $y_p$ | [[No Homogenea/Coeficientes Indeterminados\|coef. indeterminados]] / [[No Homogenea/Variacion de Parametros\|variación de parámetros]] |
+> | $y_p$ | [[Coeficientes Indeterminados\|coef. indeterminados]] / [[Variacion de Parametros\|variación de parámetros]] |
 
 > [!corolario]
 > La linealidad convierte un problema de cálculo en uno de **álgebra lineal**: el conjunto de

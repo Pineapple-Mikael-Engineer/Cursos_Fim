@@ -31,10 +31,10 @@ aliases:
 > acerca a la frecuencia natural $\omega_0=\sqrt{k/m}$.
 
 > [!info]
-> Es el caso $F\neq0$ del bloque [[Oscilaciones/index | oscilaciones]]: el transitorio $x_h$ es el
-> [[Oscilaciones/Oscilador Libre y Amortiguado | oscilador libre]] (decae), y la particular $x_p$ se obtiene
-> con los métodos de la [[No Homogenea/index | parte no homogénea]]. La maquinaria de raíces de fondo es la
-> de [[Coeficientes Constantes Homogenea | la ecuación característica]].
+> Es el caso $F\neq0$ del bloque [[Oscilaciones/index| oscilaciones]]: el transitorio $x_h$ es el
+> [[Oscilador Libre y Amortiguado| oscilador libre]] (decae), y la particular $x_p$ se obtiene
+> con los métodos de la [[No Homogenea/index| parte no homogénea]]. La maquinaria de raíces de fondo es la
+> de [[Coeficientes Constantes Homogenea| la ecuación característica]].
 
 ---
 
@@ -90,7 +90,7 @@ aliases:
 >   que sin embargo se dispara cuando $\omega\to\omega_0$.
 > - **En sintonía exacta ($\omega=\omega_0$):** ahora $\cos\omega_0 t$ es **solución de la homogénea**, así
 >   que por la **regla de modificación** de los
->   [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]] hay que multiplicar por $t$.
+>   [[Coeficientes Indeterminados| coeficientes indeterminados]] hay que multiplicar por $t$.
 >   El resultado es la **resonancia pura**
 >   $$x_p=\frac{F_0}{2m\omega_0}\,t\,\operatorname{sen}\omega_0 t,$$
 >   una oscilación cuya amplitud **crece linealmente** con el tiempo y no tiene cota.
@@ -139,7 +139,7 @@ aliases:
 > nunca lo elimina del todo.
 
 > [!referencia]
-> - El transitorio es el oscilador libre: [[Oscilaciones/Oscilador Libre y Amortiguado]].
-> - La regla de modificación de la particular: [[No Homogenea/Coeficientes Indeterminados]].
+> - El transitorio es el oscilador libre: [[Oscilador Libre y Amortiguado]].
+> - La regla de modificación de la particular: [[Coeficientes Indeterminados]].
 > - La maquinaria de raíces: [[Coeficientes Constantes Homogenea]].
 > - El panorama físico completo: [[Oscilaciones/index]].

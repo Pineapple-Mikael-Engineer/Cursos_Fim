@@ -24,17 +24,17 @@ aliases:
 > $$y_p=u_1(x)\,y_1+u_2(x)\,y_2.$$
 > Para la ecuación normalizada $y''+p(x)y'+q(x)y=f(x)$ resulta
 > $$u_1'=-\frac{y_2\,f}{W},\qquad u_2'=\frac{y_1\,f}{W},$$
-> con $W=y_1y_2'-y_2y_1'$ el [[Wronskiano e Independencia Lineal | wronskiano]] de $y_1,y_2$. Integrando,
+> con $W=y_1y_2'-y_2y_1'$ el [[Wronskiano e Independencia Lineal| wronskiano]] de $y_1,y_2$. Integrando,
 > $$y_p=-y_1\!\int\!\frac{y_2 f}{W}\,dx+y_2\!\int\!\frac{y_1 f}{W}\,dx.$$
 > Funciona para **cualquier** $f$ continua e incluso con **coeficientes variables**, a cambio de tener
 > que integrar.
 
 > [!info]
-> La hija **universal** de [[No Homogenea/index | no homogénea]]. A diferencia de
-> [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]] —limitado a $f$ de "buena
+> La hija **universal** de [[No Homogenea/index| no homogénea]]. A diferencia de
+> [[Coeficientes Indeterminados| coeficientes indeterminados]] —limitado a $f$ de "buena
 > forma" y coeficientes constantes—, aquí $f$ es arbitraria y los coeficientes pueden depender de $x$
-> (siempre que se conozcan $y_1,y_2$). Requiere el [[Wronskiano e Independencia Lineal | wronskiano]].
-> Capítulo: [[1 Ecuaciones Diferenciales Ordinarias/index | EDO]].
+> (siempre que se conozcan $y_1,y_2$). Requiere el [[Wronskiano e Independencia Lineal| wronskiano]].
+> Capítulo: [[1 Ecuaciones Diferenciales Ordinarias/index| EDO]].
 
 ---
 
@@ -96,13 +96,13 @@ aliases:
 > Integrando se obtienen $u_1,u_2$ y con ellos $y_p=u_1y_1+u_2y_2$. $\blacksquare$
 
 > [!info] Cuándo preferir variación de parámetros
-> Úsalo cuando **falla** [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]],
+> Úsalo cuando **falla** [[Coeficientes Indeterminados| coeficientes indeterminados]],
 > es decir:
 > - la fuente $f$ **no** es de "buena forma": $\operatorname{sen}(e^{-x})$, $\sec x$, $\tan x$,
 >   $\ln x$, $\dfrac{1}{x}$, etc. (no se reproducen al derivar, no hay propuesta finita que adivinar);
 > - los **coeficientes son variables** ($p,q$ dependen de $x$), con tal de **conocer** un conjunto
->   fundamental $y_1,y_2$ (a menudo obtenido por [[Reduccion de Orden | reducción de orden]] o
->   [[Cauchy-Euler | Cauchy-Euler]]).
+>   fundamental $y_1,y_2$ (a menudo obtenido por [[Reduccion de Orden| reducción de orden]] o
+>   [[Cauchy-Euler| Cauchy-Euler]]).
 >
 > Precio a pagar: hay que **integrar** $\int \tfrac{y_2 f}{W}dx$ y $\int \tfrac{y_1 f}{W}dx$, que pueden
 > ser difíciles. Si $f$ encaja en la tabla de coeficientes indeterminados, aquel método es más rápido.
@@ -135,10 +135,10 @@ aliases:
 > [!corolario]
 > Variación de parámetros es el método **general** para la no homogénea: solo necesita un conjunto
 > fundamental de la homogénea y una integral. Su universalidad (cualquier $f$ continua, coeficientes
-> variables) lo hace el complemento natural de [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]]: este es rápido pero restringido; aquel es lento pero siempre funciona.
+> variables) lo hace el complemento natural de [[Coeficientes Indeterminados| coeficientes indeterminados]]: este es rápido pero restringido; aquel es lento pero siempre funciona.
 
 > [!referencia]
-> - El método rápido para $f$ de "buena forma": [[No Homogenea/Coeficientes Indeterminados]].
+> - El método rápido para $f$ de "buena forma": [[Coeficientes Indeterminados]].
 > - El wronskiano que aparece en las fórmulas: [[Wronskiano e Independencia Lineal]].
 > - De dónde sale el conjunto fundamental: [[Coeficientes Constantes Homogenea]].
 > - Vuelta al mapa del bloque: [[No Homogenea/index]].

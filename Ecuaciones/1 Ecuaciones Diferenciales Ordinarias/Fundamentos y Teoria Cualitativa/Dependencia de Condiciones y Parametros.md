@@ -34,7 +34,7 @@ aliases:
 > [!info]
 > Completa la tríada de [[Fundamentos y Teoria Cualitativa/index| preguntas fundamentales]] —existencia, unicidad y **dependencia
 > continua**— que constituye el **buen planteamiento** de un problema (libro, teoría de estabilidad
-> respecto a los datos). Se apoya por completo en la [[Desigualdad de Gronwall | desigualdad de Gronwall]] y prolonga el marco de [[Existencia y Unicidad Picard| Picard]]. Junto con la
+> respecto a los datos). Se apoya por completo en la [[Desigualdad de Gronwall| desigualdad de Gronwall]] y prolonga el marco de [[Existencia y Unicidad Picard| Picard]]. Junto con la
 > [[Prolongacion de Soluciones| prolongación]], describe el comportamiento **global** de las
 > soluciones. La sensibilidad exponencial que aquí aparece es la antesala del estudio de la estabilidad
 > en [[Sistemas y Dinamica/index| sistemas y dinámica]].
@@ -113,7 +113,7 @@ aliases:
 > [!proposicion] Dependencia respecto a parámetros
 > Si la ecuación depende de un parámetro, $y'=f(x,y,\lambda)$, y $f$ es Lipschitz en $(y,\lambda)$
 > conjuntamente, entonces la solución depende **continuamente** de $\lambda$ con la misma estructura de
-> cota: una variación $|\lambda_1-\lambda_2|$ se propaga, también vía [[Desigualdad de Gronwall | Gronwall]], como $|y(x;\lambda_1)-y(x;\lambda_2)|\le C\,|\lambda_1-\lambda_2|\,e^{L|x-x_0|}$. Datos
+> cota: una variación $|\lambda_1-\lambda_2|$ se propaga, también vía [[Desigualdad de Gronwall| Gronwall]], como $|y(x;\lambda_1)-y(x;\lambda_2)|\le C\,|\lambda_1-\lambda_2|\,e^{L|x-x_0|}$. Datos
 > iniciales y parámetros se tratan, pues, con la **misma maquinaria**.
 
 > [!warning]

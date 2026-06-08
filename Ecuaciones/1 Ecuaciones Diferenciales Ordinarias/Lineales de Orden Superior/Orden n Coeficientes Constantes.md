@@ -28,8 +28,8 @@ aliases:
 > multiplicidad. La solución general es la combinación de las $n$ soluciones independientes.
 
 > [!info]
-> Generalización directa de la [[Coeficientes Constantes Homogenea | ecuación característica]] de
-> segundo orden al bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. El
+> Generalización directa de la [[Coeficientes Constantes Homogenea| ecuación característica]] de
+> segundo orden al bloque [[Lineales de Orden Superior/index| lineales de orden superior]]. El
 > esquema "raíz → solución" no cambia; solo hay que aplicarlo a un polinomio de grado mayor. La
 > aparición del factor $x$ en raíces repetidas se justifica en [[Reduccion de Orden]], y la lectura en
 > términos de operadores en [[Operador Diferencial Lineal]].
@@ -74,10 +74,10 @@ aliases:
 ## En qué consiste
 
 > [!teoria] Todo se hereda del segundo orden
-> El [[Coeficientes Constantes Homogenea | caso de segundo orden]] ya estableció el mecanismo: $y=e^{rx}$
+> El [[Coeficientes Constantes Homogenea| caso de segundo orden]] ya estableció el mecanismo: $y=e^{rx}$
 > convierte $L[y]=0$ en $P(r)e^{rx}=0$, y como $e^{rx}\neq0$, resolver la EDO equivale a **hallar las
 > raíces de $P$**. Esa equivalencia no usa para nada que el grado sea $2$: vale para cualquier $n$. El
-> [[Operador Diferencial Lineal | operador]] factoriza igual que el polinomio,
+> [[Operador Diferencial Lineal| operador]] factoriza igual que el polinomio,
 > $$L=a_n\,(D-r_1)(D-r_2)\cdots(D-r_n),$$
 > y el núcleo de cada factor $(D-r_k)$ es generado por $e^{r_kx}$. Por eso **la tabla de reglas es la
 > misma**; lo único nuevo es que un polinomio de grado $n$ puede tener raíces de multiplicidad mayor.

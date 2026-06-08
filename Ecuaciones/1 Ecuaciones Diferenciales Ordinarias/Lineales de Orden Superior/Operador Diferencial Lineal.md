@@ -25,11 +25,11 @@ aliases:
 > la estructura del bloque: superposición, espacio de soluciones de dimensión $n$ y $y=y_h+y_p$.
 
 > [!info]
-> Cimiento del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Pensar la
+> Cimiento del bloque [[Lineales de Orden Superior/index| lineales de orden superior]]. Pensar la
 > EDO como "$L$ actuando sobre $y$" la vuelve un problema tipo **entrada–salida** (la fuente $f$ es la
-> entrada), idea que reaparece en la [[Transformada de Laplace/index | transformada de Laplace]] y en
+> entrada), idea que reaparece en la [[Transformada de Laplace/index| transformada de Laplace]] y en
 > la función de transferencia. La independencia de soluciones se mide con el
-> [[Wronskiano e Independencia Lineal | wronskiano]].
+> [[Wronskiano e Independencia Lineal| wronskiano]].
 
 ---
 
@@ -45,7 +45,7 @@ aliases:
 > [!ejemplo] Superposición con fuentes (descomponer $f$)
 > Si $L[y_1]=f_1$ y $L[y_2]=f_2$, entonces $L[y_1+y_2]=f_1+f_2$. Útil para fuentes compuestas: para
 > resolver $y''+y=3x+2\sin x$ se resuelve por separado $y''+y=3x$ y $y''+y=2\sin x$ y se **suman** las
-> particulares. Es el [[No Homogenea/Coeficientes Indeterminados | método de superposición]] de fuentes.
+> particulares. Es el [[Coeficientes Indeterminados| método de superposición]] de fuentes.
 
 ---
 
@@ -85,7 +85,7 @@ aliases:
 > independientes (un **conjunto fundamental**) y toda solución es combinación de ellas.
 
 > [!info] Por qué la dimensión es $n$
-> Por el [[Existencia y Unicidad Picard | teorema de existencia y unicidad]] (la lineal de orden $n$
+> Por el [[Existencia y Unicidad Picard| teorema de existencia y unicidad]] (la lineal de orden $n$
 > equivale a un sistema de primer orden con $f$ Lipschitz), fijar
 > los $n$ datos $y(x_0),y'(x_0),\dots,y^{(n-1)}(x_0)$ determina una **única** solución. La aplicación
 > "solución $\mapsto$ vector de datos iniciales $\in\mathbb{R}^n$" es lineal y biyectiva, así que el
@@ -95,7 +95,7 @@ aliases:
 > Escribiendo $D=\dfrac{d}{dx}$, el operador es un **polinomio en $D$**:
 > $L=D^n+p_{n-1}D^{n-1}+\dots+p_0$. Con coeficientes constantes ese polinomio **factoriza** como los
 > números, y cada factor $(D-r)$ aporta una solución $e^{rx}$ — la idea detrás de la
-> [[Coeficientes Constantes Homogenea | ecuación característica]].
+> [[Coeficientes Constantes Homogenea| ecuación característica]].
 
 ## Resumen
 

@@ -28,11 +28,11 @@ aliases:
 > hace por una matriz, $y=L^{-1}f$.
 
 > [!info]
-> Segunda nota de [[Problemas de Frontera EDO/index | problemas de frontera]]. Resuelve el PVF **no
+> Segunda nota de [[Problemas de Frontera EDO/index| problemas de frontera]]. Resuelve el PVF **no
 > homogéneo** de forma cerrada cuando es regular (sin autovalor de por medio). Se apoya en el
-> [[Operador Diferencial Lineal | operador lineal]] $L$ y sus soluciones homogéneas, y conecta las EDO
-> con las [[3 Ecuaciones Integrales/index | ecuaciones integrales]]. La versión abstracta y general
-> vive en [[Funcion de Green/index | función de Green]] (Herramientas).
+> [[Operador Diferencial Lineal| operador lineal]] $L$ y sus soluciones homogéneas, y conecta las EDO
+> con las [[3 Ecuaciones Integrales/index| ecuaciones integrales]]. La versión abstracta y general
+> vive en [[Funcion de Green/index| función de Green]] (Herramientas).
 
 ---
 
@@ -82,8 +82,8 @@ aliases:
 >    - **(i) continuidad** de $G$: $G(\xi^+,\xi)=G(\xi^-,\xi)$;
 >    - **(ii) salto** de la derivada: $\partial_xG\big|_{\xi^-}^{\xi^+}=\dfrac{1}{p(\xi)}$.
 > La continuidad sale automática de la forma simétrica; el salto **fija la constante** $A$. En
-> términos del [[Wronskiano e Independencia Lineal | wronskiano]] de $y_1,y_2$ resulta
-> $A=\dfrac{1}{p(\xi)\,W(\xi)}$ (que es constante por la [[Formula de Abel | fórmula de Abel]]
+> términos del [[Wronskiano e Independencia Lineal| wronskiano]] de $y_1,y_2$ resulta
+> $A=\dfrac{1}{p(\xi)\,W(\xi)}$ (que es constante por la [[Formula de Abel| fórmula de Abel]]
 > aplicada a la forma autoadjunta).
 
 > [!demostracion] De dónde sale el salto $\partial_xG\big|_{\xi^-}^{\xi^+}=\tfrac1{p(\xi)}$
@@ -120,7 +120,7 @@ aliases:
 > [!warning] La función de Green existe solo si el PVF homogéneo es regular
 > La construcción exige que $y_1$ y $y_2$ sean **independientes** ($W\neq0$); si fueran proporcionales,
 > el problema homogéneo tendría solución no trivial, es decir estaríamos **en un autovalor** (ver
-> [[Problemas de Frontera EDO/Condiciones de Frontera | condiciones de frontera]]). En ese caso $G$ no
+> [[Condiciones de Frontera| condiciones de frontera]]). En ese caso $G$ no
 > existe en el sentido ordinario y el PVF no homogéneo o no tiene solución o tiene infinitas
 > (alternativa de Fredholm). La función de Green es la herramienta del caso **regular**.
 
@@ -145,7 +145,7 @@ aliases:
 > fuente $f$. Esa es su potencia: separa "el problema" (en $G$) de "el dato" (en $f$).
 
 > [!referencia]
-> - Cuándo NO existe $G$ (autovalores): [[Problemas de Frontera EDO/Condiciones de Frontera]].
+> - Cuándo NO existe $G$ (autovalores): [[Condiciones de Frontera]].
 > - El operador que se invierte: [[Operador Diferencial Lineal]].
 > - La conexión con núcleos integrales: [[3 Ecuaciones Integrales/index]].
 > - La versión general (EDP y dimensiones superiores): [[Funcion de Green/index]].
