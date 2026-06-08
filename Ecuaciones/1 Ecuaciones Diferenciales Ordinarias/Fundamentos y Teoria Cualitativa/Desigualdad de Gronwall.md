@@ -31,9 +31,7 @@ aliases:
 > teorema sobre una EDO concreta, sino un lema que se usa por todas partes para **comparar** una
 > cantidad desconocida con una exponencial conocida. Con ella se cierran tres huecos centrales de la
 > teoría: la **unicidad** global de [[Existencia y Unicidad Picard| Picard]], la **dependencia
-> continua** respecto de los datos (ver [[Dependencia de Condiciones y Parametros | dependencia de
-> condiciones y parámetros]]) y las **cotas a priori** que permiten [[Prolongacion de Soluciones |
-> prolongar soluciones]]. Complementa, del lado cuantitativo, a la construcción de la
+> continua** respecto de los datos (ver [[Dependencia de Condiciones y Parametros | dependencia de condiciones y parámetros]]) y las **cotas a priori** que permiten [[Prolongacion de Soluciones | prolongar soluciones]]. Complementa, del lado cuantitativo, a la construcción de la
 > [[Iteracion de Picard| iteración de Picard]].
 
 ---
@@ -97,8 +95,7 @@ aliases:
 > ahora con $\alpha=|a-b|$. Gronwall da entonces
 > $$|y(x;a)-y(x;b)|\ \le\ |a-b|\,e^{L|x-x_0|}.$$
 > Si $a\to b$, las soluciones se acercan uniformemente en intervalos acotados: la solución **depende
-> con continuidad** del dato inicial. Es la base del [[Dependencia de Condiciones y Parametros | estudio
-> de la dependencia respecto de condiciones y parámetros]] y la garantía de que pequeñas perturbaciones
+> con continuidad** del dato inicial. Es la base del [[Dependencia de Condiciones y Parametros | estudio de la dependencia respecto de condiciones y parámetros]] y la garantía de que pequeñas perturbaciones
 > del estado inicial no provocan saltos en la evolución (aunque el factor $e^{L|x-x_0|}$ avisa de que el
 > error puede **amplificarse** exponencialmente a largo plazo).
 

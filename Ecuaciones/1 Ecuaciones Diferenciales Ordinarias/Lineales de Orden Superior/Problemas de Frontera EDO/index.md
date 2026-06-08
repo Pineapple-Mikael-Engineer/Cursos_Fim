@@ -30,9 +30,7 @@ aliases:
 > Última sección del bloque [[Lineales de Orden Superior/index | lineales de orden superior]], dentro
 > del [[1 Ecuaciones Diferenciales Ordinarias/index | capítulo de EDO]]. Aquí la EDO ya no se resuelve
 > "hacia adelante" desde un punto, sino que debe **ajustarse simultáneamente en ambos extremos**. De
-> esta tensión nacen los **autovalores**, que son el puente hacia [[Sturm-Liouville/index |
-> Sturm-Liouville]] y la separación de variables en [[2 Ecuaciones en Derivadas Parciales/index |
-> EDP]]. Esta sección se organiza en dos notas:
+> esta tensión nacen los **autovalores**, que son el puente hacia [[Sturm-Liouville/index | Sturm-Liouville]] y la separación de variables en [[2 Ecuaciones en Derivadas Parciales/index | EDP]]. Esta sección se organiza en dos notas:
 > - [[Problemas de Frontera EDO/Condiciones de Frontera]] — los tipos (Dirichlet, Neumann, Robin,
 >   periódicas) y el fenómeno de los **problemas de autovalores**.
 > - [[Problemas de Frontera EDO/Funcion de Green para EDO]] — cómo resolver el PVF no homogéneo
@@ -92,8 +90,7 @@ aliases:
 > $y_n$ —las **autofunciones**—. Esos $\lambda_n$ son exactamente los $\lambda$ que anulan el
 > determinante del sistema de frontera.
 >
-> Esto es la versión continua del problema de autovalores del [[Determinantes y Matrices/index |
-> álgebra lineal]] $A\vec v=\lambda\vec v$: el operador diferencial $-\tfrac{d^2}{dx^2}$ con esas
+> Esto es la versión continua del problema de autovalores del [[Determinantes y Matrices/index | álgebra lineal]] $A\vec v=\lambda\vec v$: el operador diferencial $-\tfrac{d^2}{dx^2}$ con esas
 > condiciones de frontera juega el papel de la matriz $A$. Las autofunciones $y_n$ son las que, al
 > aplicarles el operador, se reproducen multiplicadas por $\lambda_n$. Y resultan ser una **base
 > ortogonal** del espacio de funciones —el germen de las series de Fourier y de la separación de
@@ -140,8 +137,7 @@ aliases:
 > [!corolario]
 > El PVF no es "un PVI con las condiciones movidas": es una clase de problemas cualitativamente
 > distinta. Su rasgo definitorio —que la solubilidad dependa de un sistema lineal en las constantes—
-> hace emerger los **problemas de autovalores**, columna vertebral de [[Sturm-Liouville/index |
-> Sturm-Liouville]] y de la física matemática de las EDP. La **función de Green** es la contraparte
+> hace emerger los **problemas de autovalores**, columna vertebral de [[Sturm-Liouville/index | Sturm-Liouville]] y de la física matemática de las EDP. La **función de Green** es la contraparte
 > constructiva: la inversa del operador que resuelve el caso no homogéneo.
 
 > [!referencia]

@@ -29,8 +29,7 @@ aliases:
 > [!info]
 > Caso especial de coeficientes **variables** del bloque
 > [[Lineales de Orden Superior/index | lineales de orden superior]] que aun así se resuelve en forma
-> cerrada. Comparte los **tres casos de raíces** con [[Coeficientes Constantes Homogenea | coeficientes
-> constantes]] (el cambio $x=e^t$ explica por qué), y su caso de raíz repetida —el $\ln x$— se justifica
+> cerrada. Comparte los **tres casos de raíces** con [[Coeficientes Constantes Homogenea | coeficientes constantes]] (el cambio $x=e^t$ explica por qué), y su caso de raíz repetida —el $\ln x$— se justifica
 > con [[Reduccion de Orden | reducción de orden]].
 
 ---

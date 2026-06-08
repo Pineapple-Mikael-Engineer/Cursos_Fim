@@ -28,8 +28,7 @@ aliases:
 > Tercer bloque del [[1 Ecuaciones Diferenciales Ordinarias/index | capítulo de EDO]]. A diferencia de
 > los [[Metodos de Primer Orden/index | métodos de primer orden]] —un catálogo de trucos para tipos
 > no lineales— aquí hay **una teoría unificada**: la linealidad. Es la base de los
-> [[Sistemas y Dinamica/index | sistemas]], de la [[Transformada de Laplace/index | transformada de
-> Laplace]] y de toda la física de **oscilaciones**.
+> [[Sistemas y Dinamica/index | sistemas]], de la [[Transformada de Laplace/index | transformada de Laplace]] y de toda la física de **oscilaciones**.
 
 ---
 
@@ -55,8 +54,7 @@ aliases:
 >    [[Coeficientes Constantes Homogenea | ecuación característica]]. Con coeficientes variables se
 >    necesita [[Reduccion de Orden | reducción de orden]] (si se conoce una solución) o casos
 >    especiales como [[Cauchy-Euler | Cauchy-Euler]].
-> 2. **Hallar una $y_p$** (vencer la fuente $f$): [[No Homogenea/Coeficientes Indeterminados |
->    coeficientes indeterminados]] cuando $f$ tiene forma "buena" (polinomio·exponencial·seno), o el
+> 2. **Hallar una $y_p$** (vencer la fuente $f$): [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]] cuando $f$ tiene forma "buena" (polinomio·exponencial·seno), o el
 >    método universal de [[No Homogenea/Variacion de Parametros | variación de parámetros]].
 
 ---

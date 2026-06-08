@@ -29,8 +29,7 @@ aliases:
 > Casi cualquier sistema físico cerca de un equilibrio estable se comporta así.
 
 > [!info]
-> Este es el corazón **físico** del bloque [[Lineales de Orden Superior/index | lineales de orden
-> superior]]. Toda la maquinaria de la [[Coeficientes Constantes Homogenea | ecuación característica]]
+> Este es el corazón **físico** del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Toda la maquinaria de la [[Coeficientes Constantes Homogenea | ecuación característica]]
 > (raíces reales, complejas, repetidas) y de la [[No Homogenea/index | parte no homogénea]] (particular +
 > homogénea) se traduce aquí en fenómenos que se ven y se miden: vibraciones, amortiguamiento y resonancia.
 
@@ -64,8 +63,7 @@ aliases:
 >   sistema **oscila**.
 >
 > El signo de $\zeta^2-1$ separa tres regímenes (subamortiguado, crítico, sobreamortiguado): es la
-> traducción directa del discriminante de la [[Coeficientes Constantes Homogenea | ecuación
-> característica]].
+> traducción directa del discriminante de la [[Coeficientes Constantes Homogenea | ecuación característica]].
 >
 > Cuando hay **forzamiento** ($F\neq0$), la solución se parte en dos:
 > $$x(t)=\underbrace{x_h(t)}_{\text{transitorio}}+\underbrace{x_p(t)}_{\text{estacionario}}.$$

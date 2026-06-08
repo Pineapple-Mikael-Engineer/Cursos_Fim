@@ -33,8 +33,7 @@ aliases:
 > [[Existencia y Unicidad Picard| teorema de Picard-Lindelöf]]. La idea de fondo es la misma que
 > allí: escribir el PVI como la **ecuación integral** $y=y_0+\int_{x_0}^{x} f(t,y)\,dt$ y aplicar el
 > operador de Picard $T[y]=y_0+\int_{x_0}^{x} f(t,y)\,dt$ una y otra vez, $y_{n+1}=T[y_n]$, partiendo
-> de la función constante. La convergencia se cuantifica con la [[Desigualdad de Gronwall | desigualdad
-> de Gronwall]]; la versión que pide solo continuidad (y construye la solución de otro modo) es el
+> de la función constante. La convergencia se cuantifica con la [[Desigualdad de Gronwall | desigualdad de Gronwall]]; la versión que pide solo continuidad (y construye la solución de otro modo) es el
 > [[Teorema de Peano| teorema de Peano]].
 
 ---

@@ -28,8 +28,7 @@ aliases:
 > continuidad de $f$, mucho menos que [[Existencia y Unicidad Picard| Picard]]. El precio de pedir
 > tan poco es perder la unicidad. Sirve para entender **qué** garantiza cada hipótesis y por qué la
 > unicidad —no la mera existencia— es la propiedad físicamente relevante. Complementa al
-> [[Campo de Direcciones e Isoclinas| campo de direcciones]] y al [[Concepto General de ODE | concepto
-> general de EDO]].
+> [[Campo de Direcciones e Isoclinas| campo de direcciones]] y al [[Concepto General de ODE | concepto general de EDO]].
 
 ---
 

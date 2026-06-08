@@ -25,9 +25,7 @@ aliases:
 > polinomio y leer las soluciones según sean reales, complejas o repetidas.
 
 > [!info]
-> El caso **resoluble por álgebra** del bloque [[Lineales de Orden Superior/index | lineales de orden
-> superior]]. Da el $y_h$ que luego se completa con una particular ([[No Homogenea/index | no
-> homogénea]]). Es el motor de las [[Oscilaciones/index | oscilaciones]]: el oscilador
+> El caso **resoluble por álgebra** del bloque [[Lineales de Orden Superior/index | lineales de orden superior]]. Da el $y_h$ que luego se completa con una particular ([[No Homogenea/index | no homogénea]]). Es el motor de las [[Oscilaciones/index | oscilaciones]]: el oscilador
 > $m\ddot x+c\dot x+kx=0$ es exactamente este caso de segundo orden.
 
 ---

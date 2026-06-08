@@ -135,8 +135,7 @@ aliases:
 > [!corolario]
 > Variación de parámetros es el método **general** para la no homogénea: solo necesita un conjunto
 > fundamental de la homogénea y una integral. Su universalidad (cualquier $f$ continua, coeficientes
-> variables) lo hace el complemento natural de [[No Homogenea/Coeficientes Indeterminados |
-> coeficientes indeterminados]]: este es rápido pero restringido; aquel es lento pero siempre funciona.
+> variables) lo hace el complemento natural de [[No Homogenea/Coeficientes Indeterminados | coeficientes indeterminados]]: este es rápido pero restringido; aquel es lento pero siempre funciona.
 
 > [!referencia]
 > - El método rápido para $f$ de "buena forma": [[No Homogenea/Coeficientes Indeterminados]].
