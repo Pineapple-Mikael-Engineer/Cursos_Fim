@@ -4,166 +4,281 @@ draft: true
 ---
 # Tree
 
-> Árbol del curso **Ecuaciones Diferenciales, Integrales y Difero-integrales**. Tres partes:
-> **Diferenciales** (EDO + EDP), **Integrales** y **Difero-integrales**.
+> Árbol del curso **Ecuaciones Diferenciales, Integrales y Difero-integrales**, a **profundidad de
+> campo real** (no limitado al contenido de una sola fuente).
 >
-> **Fuentes:** la parte diferencial sigue *Apuntes de Ecuaciones Diferenciales* de **Mariano
-> Echeverría** (`apuntesma1005.pdf`) — es el **modelo de estilo** (pedagógico, ejemplos resueltos,
-> campos de direcciones); la parte integral/difero-integral sigue **Krasnov, Kiseliov, Makarenko**,
-> *Ecuaciones Integrales* (Mir) para la clasificación Volterra/Fredholm/métodos.
+> **Estilo (no alcance):** *Apuntes de Ecuaciones Diferenciales* de **Mariano Echeverría**
+> (`apuntesma1005.pdf`) es el **modelo de cómo explicar** — intuición, ejemplos resueltos paso a
+> paso, interpretación geométrica/cualitativa. El **alcance** va mucho más allá de él.
 >
-> Profundidad **irregular a propósito**: un tema se subdivide solo cuando tiene varios resultados
-> independientes. `# fig:` marca figuras planeadas (`_media/img_gen/`). `(opcional)` = posponible.
+> **Fuentes de contenido:** Echeverría (intro EDO/EDP); Krasnov–Kiseliov–Makarenko, *Ecuaciones
+> Integrales* (Mir); y la teoría estándar del campo (Coddington–Levinson, Evans/Strauss para EDP,
+> Tricomi para integrales, Oldham–Spanier / Podlubny para cálculo fraccionario).
+>
+> Profundidad **irregular a propósito**. `# fig:` marca figuras planeadas (`_media/img_gen/`).
+> `(opcional)` = posponible; `(panorama)` = nota de visión general, no exhaustiva.
 
 ```tree
 Ecuaciones/
 │
-├── index.md                                      # portada: las 3 familias de ecuaciones
+├── index.md                                      # portada: las 3 familias y cómo se conectan
 │
-├── 1 Ecuaciones Diferenciales Ordinarias/        # EDO — apuntes caps. 1-5
+├── 1 Ecuaciones Diferenciales Ordinarias/        # EDO
 │   ├── index.md
 │   │
-│   ├── Teoria Elemental/                          # cap. 1
+│   ├── Fundamentos y Teoria Cualitativa/
 │   │   ├── index.md
-│   │   ├── Metodos Analitico Geometrico Cualitativo.md   # campo de direcciones, curvas integrales  # fig: campo de direcciones
-│   │   ├── Concepto General de ODE.md            # orden, grado, PVI, solución general/particular
-│   │   ├── Existencia y Unicidad.md              # teorema de Picard-Lindelöf; determinismo
+│   │   ├── Concepto General de ODE.md            # orden, grado, lineal/no lineal, PVI vs PVF
+│   │   ├── Campo de Direcciones e Isoclinas.md   # método geométrico  # fig: campo de direcciones
+│   │   ├── Curvas Integrales y Soluciones.md     # general, particular, singular
+│   │   ├── Existencia y Unicidad Picard.md       # Lipschitz; Picard-Lindelöf
+│   │   ├── Teorema de Peano.md                   # solo continuidad; sin unicidad
+│   │   ├── Iteracion de Picard.md                # aproximaciones sucesivas (constructivo)
+│   │   ├── Desigualdad de Gronwall.md            # acotación, dependencia continua
+│   │   ├── Prolongacion de Soluciones.md         # intervalo maximal, escape
+│   │   └── Dependencia de Condiciones y Parametros.md
+│   │
+│   ├── Metodos de Primer Orden/
+│   │   ├── index.md
 │   │   ├── Variables Separables.md               # dy/dx=f(x)/g(y)
-│   │   ├── Trayectorias Ortogonales.md           # y'=-1/y'_c  # fig: familia + ortogonales
-│   │   ├── Ecuaciones Homogeneas.md              # y'=F(y/x), sustitución v=y/x
+│   │   ├── Ecuaciones Homogeneas.md              # y'=F(y/x), v=y/x
 │   │   ├── Coeficientes Lineales.md              # (ax+by+c)/(dx+ey+f)
 │   │   ├── Ecuaciones Exactas.md                 # M dx+N dy=0, ∂M/∂y=∂N/∂x
-│   │   └── Factor Integrante.md                  # μ(x), μ(y) para volver exacta
+│   │   ├── Factor Integrante.md                  # μ(x), μ(y)
+│   │   ├── Lineal Primer Orden.md                # y'+p y=q; factor integrante e^∫p
+│   │   ├── Bernoulli.md                          # y'+p y=q y^n → v=y^{1-n}
+│   │   ├── Riccati.md                            # y'=p+qy+ry²; solución particular conocida
+│   │   ├── Trayectorias Ortogonales e Isogonales.md   # y'=-1/y'_c  # fig: familia + ortogonales
+│   │   └── No Resueltas en y prima/
+│   │       ├── index.md
+│   │       ├── Lagrange.md                       # y=x f(y')+g(y')
+│   │       ├── Clairaut.md                       # y=x y'+g(y')
+│   │       └── Solucion Singular y Envolvente.md  # p-discriminante, envolvente de la familia
 │   │
-│   ├── Lineales/                                  # cap. 2
+│   ├── Lineales de Orden Superior/
 │   │   ├── index.md
-│   │   ├── Lineal Primer Orden.md                # y'+p(x)y=q(x); factor integrante e^∫p
-│   │   ├── Segundo Orden/
-│   │   │   ├── index.md
-│   │   │   ├── Operador Diferencial Lineal.md    # L[y]; linealidad, superposición
-│   │   │   ├── Wronskiano e Independencia Lineal.md  # W≠0
-│   │   │   ├── Coeficientes Constantes Homogenea.md  # ecuación característica; casos de raíces
-│   │   │   └── Reduccion de Orden.md             # segunda solución y_2=y_1∫...
-│   │   ├── Orden n Coeficientes Constantes.md    # característica de grado n
+│   │   ├── Operador Diferencial Lineal.md        # L[y], núcleo, superposición
+│   │   ├── Wronskiano e Independencia Lineal.md  # W≠0
+│   │   ├── Formula de Abel.md                    # W'=-(p)W; W=W_0 e^{-∫p}
+│   │   ├── Coeficientes Constantes Homogenea.md  # ecuación característica; raíces reales/complejas/repetidas
+│   │   ├── Orden n Coeficientes Constantes.md
+│   │   ├── Reduccion de Orden.md                 # segunda solución conocida una
+│   │   ├── Cauchy-Euler.md                       # x²y''+axy'+by=0 → x=e^t
 │   │   ├── No Homogenea/
 │   │   │   ├── index.md
-│   │   │   ├── Coeficientes Indeterminados.md    # forma del término fuente; superposición
-│   │   │   ├── Variacion de Parametros.md        # y_p=−y_1∫(y_2 g/W)+y_2∫(y_1 g/W)
-│   │   │   └── Oscilaciones Forzadas.md          # resonancia, batido  # fig: resonancia
-│   │   ├── Cauchy-Euler.md                       # x²y''+axy'+by=0 → x=e^t
-│   │   └── Otras ODEs/
+│   │   │   ├── Coeficientes Indeterminados.md    # forma del fuente; aniquiladores; superposición
+│   │   │   └── Variacion de Parametros.md        # y_p vía Wronskiano
+│   │   ├── Oscilaciones/                         # aplicación física central
+│   │   │   ├── index.md
+│   │   │   ├── Oscilador Libre y Amortiguado.md  # sub/crítico/sobreamortiguado  # fig: regímenes
+│   │   │   └── Oscilaciones Forzadas y Resonancia.md   # resonancia, batido  # fig: curva de resonancia
+│   │   └── Problemas de Frontera EDO/
 │   │       ├── index.md
-│   │       ├── Bernoulli.md                      # y'+p y=q y^n → v=y^{1-n}
-│   │       ├── Riccati.md                        # y'=p+qy+ry²
-│   │       ├── Lagrange.md                       # y=x f(y')+g(y')
-│   │       └── Clairaut.md                       # y=x y'+g(y'); solución singular
+│   │       ├── Condiciones de Frontera.md        # Dirichlet/Neumann/Robin/periódicas
+│   │       └── Funcion de Green para EDO.md       # resolver PVF; → ver Herramientas
 │   │
-│   ├── Sistemas/                                  # cap. 3
+│   ├── Sistemas y Dinamica/
 │   │   ├── index.md
-│   │   ├── Operadores y Eliminacion.md           # reducir sistema a una ODE
-│   │   ├── Forma Matricial.md                    # x'=Ax
-│   │   ├── Sistemas Homogeneos.md                # autovalores/autovectores de A
-│   │   ├── Exponencial de una Matriz.md          # e^{At}, solución x=e^{At}x_0
+│   │   ├── Forma Matricial y Eliminacion.md      # x'=Ax; reducir a una ODE
+│   │   ├── Matriz Fundamental.md                 # Wronskiano matricial
+│   │   ├── Sistemas Lineales Autovalores.md      # reales distintos, complejos, repetidos
+│   │   ├── Exponencial de una Matriz.md          # e^{At}; forma de Jordan
 │   │   ├── Variacion de Parametros Sistemas.md
-│   │   └── (opcional) Plano de Fase.md           # nodos, focos, sillas  # fig: retratos de fase
+│   │   ├── Puntos de Equilibrio y Plano de Fase.md   # nodo, foco, centro, silla  # fig: retratos de fase
+│   │   ├── Estabilidad de Lyapunov.md            # linealización; función de Lyapunov
+│   │   ├── Linealizacion y Hartman-Grobman.md    # (panorama) cerca de equilibrios
+│   │   └── Ciclos Limite y Poincare-Bendixson.md  # (opcional) dinámica no lineal 2D
 │   │
-│   ├── Series/                                    # cap. 4
-│   │   ├── index.md
-│   │   ├── Puntos Ordinarios.md                  # serie de potencias, recurrencia
-│   │   └── Frobenius/                            # puntos singulares regulares
-│   │       ├── index.md
-│   │       ├── Ecuacion Indicial.md             # exponentes de la singularidad
-│   │       ├── Raices Diferencia No Entera.md
-│   │       ├── Raices Diferencia Entera.md
-│   │       └── Raices Repetidas.md
-│   │
-│   └── Transformada de Laplace/                   # cap. 5
+│   └── Soluciones por Series/
 │       ├── index.md
-│       ├── Funciones Generalizadas.md            # delta de Dirac, escalón
-│       ├── Definicion Transformada Laplace.md    # F(s)=∫₀^∞ e^{-st}f(t)dt
-│       ├── Propiedades Transformada Laplace.md   # tabla: linealidad, derivada, desplazamiento
-│       ├── Convolucion.md                        # L{f*g}=F·G; función de transferencia
-│       ├── Transformada Inversa.md               # fracciones parciales
-│       └── Solucion de ODEs con Laplace.md       # PVI → algebraico → inversa
+│       ├── Puntos Ordinarios.md                  # serie de potencias, recurrencia
+│       └── Frobenius/                            # puntos singulares regulares
+│           ├── index.md
+│           ├── Puntos Singulares Regulares.md
+│           ├── Ecuacion Indicial.md             # exponentes
+│           ├── Raices Diferencia No Entera.md
+│           ├── Raices Diferencia Entera.md
+│           └── Raices Repetidas.md
 │
-├── 2 Ecuaciones en Derivadas Parciales/          # EDP — apuntes cap. 6
+├── 2 Ecuaciones en Derivadas Parciales/          # EDP — teoría propia profunda
 │   ├── index.md
-│   ├── Clasificacion EDP.md                      # elíptica/parabólica/hiperbólica
-│   ├── Fourier/
+│   │
+│   ├── Fundamentos/
 │   │   ├── index.md
-│   │   ├── Funciones Ortogonales.md              # producto interno, base
-│   │   ├── Series de Fourier.md                  # senos y cosenos  # fig: aproximación por armónicos
-│   │   └── Convergencia.md                       # Dirichlet, fenómeno de Gibbs
-│   ├── Separacion de Variables.md                # técnica general u=X(x)T(t)
-│   ├── Ecuacion del Calor/
+│   │   ├── Concepto y Notacion EDP.md            # orden, lineal/cuasilineal/no lineal
+│   │   ├── Clasificacion Segundo Orden.md        # elíptica/parabólica/hiperbólica; discriminante
+│   │   ├── Formas Canonicas.md                   # cambio de variable a forma estándar
+│   │   ├── Problemas Bien Planteados.md          # Hadamard: existencia, unicidad, estabilidad
+│   │   └── Tipos de Condiciones.md               # Cauchy, Dirichlet, Neumann, Robin
+│   │
+│   ├── Primer Orden y Caracteristicas/
 │   │   ├── index.md
-│   │   ├── Derivacion.md                         # difusión, ley de Fourier  # fig: evolución temporal
-│   │   ├── Separacion de Variables Calor.md
-│   │   ├── Condiciones de Dirichlet.md           # extremos fijos
-│   │   └── Condiciones de Neumann.md             # extremos aislados
-│   ├── Ecuacion de Laplace/
+│   │   ├── Metodo de las Caracteristicas.md      # EDP lineal/cuasilineal  # fig: curvas características
+│   │   ├── Cuasilineal y No Lineal.md            # Charpit, Lagrange-Charpit
+│   │   ├── Leyes de Conservacion.md              # forma integral/diferencial
+│   │   └── Ondas de Choque y Burgers.md          # (opcional) Rankine-Hugoniot, rarefacción
+│   │
+│   ├── Separacion de Variables y Fourier/
 │   │   ├── index.md
-│   │   ├── Derivacion.md                         # estado estacionario, armónicas
-│   │   ├── Separacion de Variables Laplace.md
-│   │   ├── Problema de Dirichlet.md
-│   │   └── Problema de Neumann.md
-│   └── Ecuacion de Onda/
+│   │   ├── Tecnica de Separacion.md              # u=X(x)T(t); problema de autovalores asociado
+│   │   ├── Funciones Ortogonales.md              # producto interno, base; → Sturm-Liouville
+│   │   ├── Series de Fourier.md                  # senos/cosenos/completa  # fig: armónicos
+│   │   ├── Convergencia y Gibbs.md               # Dirichlet, fenómeno de Gibbs
+│   │   ├── Identidad de Parseval.md              # energía, completitud
+│   │   └── Desarrollo en Autofunciones.md        # generaliza Fourier (Bessel, Legendre)
+│   │
+│   ├── Ecuacion del Calor/                        # parabólica
+│   │   ├── index.md
+│   │   ├── Derivacion del Calor.md               # difusión, ley de Fourier  # fig: evolución temporal
+│   │   ├── Separacion Calor Dirichlet.md         # extremos fijos
+│   │   ├── Separacion Calor Neumann.md           # extremos aislados
+│   │   ├── Calor en Dominio Infinito.md          # transformada de Fourier; solución fundamental (núcleo de calor)
+│   │   ├── Principio del Maximo Parabolico.md
+│   │   └── Metodo de Energia Unicidad.md
+│   │
+│   ├── Ecuacion de Onda/                          # hiperbólica
+│   │   ├── index.md
+│   │   ├── Derivacion de Onda.md                 # cuerda/membrana vibrante  # fig: modos normales
+│   │   ├── Separacion Onda y Modos Normales.md
+│   │   ├── Solucion de dAlembert.md              # u=F(x-ct)+G(x+ct); dominio de dependencia  # fig: cono de dependencia
+│   │   ├── Ondas en 2D y 3D.md                   # Huygens; Kirchhoff/Poisson
+│   │   └── Energia de la Onda.md                 # conservación, unicidad
+│   │
+│   ├── Ecuacion de Laplace y Poisson/             # elíptica
+│   │   ├── index.md
+│   │   ├── Funciones Armonicas.md                # propiedades, valor medio
+│   │   ├── Laplace en Rectangulo.md              # separación cartesiana, Dirichlet/Neumann
+│   │   ├── Laplace en Disco.md                   # polares; fórmula integral de Poisson  # fig: núcleo de Poisson
+│   │   ├── Laplace en Cilindro.md                # → funciones de Bessel
+│   │   ├── Laplace en Esfera.md                  # → Legendre, armónicos esféricos
+│   │   ├── Principio del Maximo Eliptico.md
+│   │   └── Teorema del Valor Medio.md
+│   │
+│   ├── Funciones de Green para EDP/
+│   │   ├── index.md
+│   │   ├── Solucion Fundamental.md               # del Laplaciano, calor, onda
+│   │   ├── Funcion de Green y Condiciones.md
+│   │   └── Metodo de las Imagenes.md             # fig: cargas imagen
+│   │
+│   └── Teoria Avanzada/                           # (panorama) hacia el análisis moderno
 │       ├── index.md
-│       ├── Derivacion.md                         # cuerda vibrante  # fig: modos normales
-│       ├── Separacion de Variables Onda.md
-│       ├── Condiciones de Dirichlet.md
-│       ├── Condiciones de Neumann.md
-│       └── (opcional) Solucion de d'Alembert.md  # u=F(x-ct)+G(x+ct)
+│       ├── Distribuciones y Soluciones Debiles.md  # (panorama) funciones generalizadas en EDP
+│       ├── Espacios de Sobolev.md               # (panorama) formulación variacional
+│       └── EDP No Lineales.md                    # (panorama) ejemplos: KdV, reacción-difusión
 │
-├── 3 Ecuaciones Integrales/                       # Krasnov
+├── 3 Ecuaciones Integrales/                       # Krasnov + teoría estándar
 │   ├── index.md                                   # clasificación: Volterra/Fredholm, 1ª/2ª especie, núcleo K(x,t)
-│   ├── Conceptos Fundamentales.md                # incógnita bajo la integral; núcleo, especie
+│   ├── Conceptos Fundamentales.md                # incógnita bajo la integral; especie; homogénea
+│   ├── Nexo EDO e Integrales.md                  # PVI/PVF ⇄ ecuación integral
+│   │
 │   ├── Volterra/                                  # límite superior variable
 │   │   ├── index.md
-│   │   ├── Volterra Segunda Especie.md           # φ(x)=f(x)+λ∫₀^x K(x,t)φ(t)dt
-│   │   ├── Nexo con ODEs Lineales.md             # PVI ⇄ ecuación integral
-│   │   ├── Resolvente.md                         # núcleos iterados, serie de Neumann
+│   │   ├── Volterra Segunda Especie.md           # φ=f+λ∫₀^x K φ
+│   │   ├── Resolvente y Nucleos Iterados.md      # serie de Neumann
 │   │   ├── Aproximaciones Sucesivas.md           # iteración de Picard
-│   │   ├── Ecuaciones de Convolucion.md          # núcleo K(x-t); resolver con Laplace
+│   │   ├── Ecuaciones de Convolucion.md          # K(x-t); resolver con Laplace
 │   │   ├── Volterra Primera Especie.md
 │   │   ├── Problema de Abel.md                   # núcleo singular 1/√(x-t)
-│   │   └── (opcional) Integrales de Euler.md     # función beta/gamma
+│   │   └── (opcional) Integrales de Euler.md     # beta/gamma como herramienta
+│   │
 │   ├── Fredholm/                                  # límites fijos
 │   │   ├── index.md
-│   │   ├── Fredholm Segunda Especie.md           # φ(x)=f(x)+λ∫_a^b K(x,t)φ(t)dt
-│   │   ├── Determinantes de Fredholm.md
+│   │   ├── Fredholm Segunda Especie.md           # φ=f+λ∫_a^b K φ
+│   │   ├── Nucleo Degenerado.md                  # K=Σa_i(x)b_i(t) → sistema lineal; Hammerstein
+│   │   ├── Determinantes de Fredholm.md          # D(λ), menores
 │   │   ├── Nucleos Iterados y Resolvente.md
-│   │   ├── Nucleo Degenerado.md                  # K=Σa_i(x)b_i(t); Hammerstein
 │   │   ├── Raices Caracteristicas y Funciones Propias.md   # autovalores del núcleo
-│   │   ├── Ecuaciones Simetricas.md              # Hilbert-Schmidt
-│   │   ├── Alternativa de Fredholm.md            # existencia/unicidad
-│   │   ├── Funcion de Green/
-│   │   │   ├── index.md
-│   │   │   ├── Construccion para ODEs.md
-│   │   │   └── Aplicacion a Problemas de Frontera.md
-│   │   ├── Problemas de Frontera con Parametro.md   # Sturm-Liouville
-│   │   └── (opcional) Ecuaciones Integrales Singulares.md
+│   │   ├── Alternativa de Fredholm.md            # existencia/unicidad; homogénea adjunta
+│   │   └── Nucleos Simetricos/                   # teoría espectral
+│   │       ├── index.md
+│   │       ├── Teoria de Hilbert-Schmidt.md      # autovalores reales, autofunciones ortogonales
+│   │       └── Teorema de Mercer.md              # desarrollo del núcleo en autofunciones
+│   │
+│   ├── Singulares/                                # núcleos no integrables / dominio infinito
+│   │   ├── index.md
+│   │   ├── Ecuacion de Abel Generalizada.md
+│   │   ├── Nucleo de Cauchy y Riemann-Hilbert.md  # (panorama)
+│   │   └── Metodo de Wiener-Hopf.md              # (panorama) factorización
+│   │
 │   ├── Metodos Aproximados/
 │   │   ├── index.md
 │   │   ├── Sustitucion Nucleo Degenerado.md
 │   │   ├── Aproximaciones Sucesivas Numericas.md
 │   │   ├── Metodo de Bubnov-Galiorkin.md
+│   │   ├── Cuadratura y Nystrom.md               # discretizar la integral
 │   │   └── Raices Caracteristicas Aproximadas.md   # Ritz, trazas, Kellog
-│   └── (opcional) Multivariable.md               # ecuaciones integrales en dominios n-dimensionales (Fredholm multidim)
+│   │
+│   └── (opcional) Multivariable y Fisica.md      # Fredholm en dominios n-dim; teoría de potencial, dispersión
 │
-├── 4 Ecuaciones Difero-integrales/                # mezclan derivadas e integrales (Krasnov §6)
-│   ├── index.md                                   # qué son; dónde aparecen (viscoelasticidad, control, poblaciones con memoria)
-│   ├── Concepto y Clasificacion.md               # φ'(x)=f(x)+∫K(x,t)φ(t)dt
-│   ├── Resolucion por Transformada de Laplace.md  # convierte la integro-diferencial en algebraica
-│   └── (opcional) Aplicaciones.md                # ecuación de renovación, memoria
+├── 4 Ecuaciones Difero-integrales/                # DOS campos: integro-diferenciales + cálculo fraccionario
+│   ├── index.md                                   # qué une derivar e integrar; las dos ramas y su relación
+│   │
+│   ├── Integro-Diferenciales/                     # derivada E integral de la incógnita (Krasnov §6)
+│   │   ├── index.md
+│   │   ├── Concepto y Clasificacion.md           # φ'(x)=f+∫K φ; Volterra vs Fredholm integro-dif.
+│   │   ├── Resolucion por Transformada de Laplace.md   # convierte en algebraica
+│   │   ├── Reduccion a Sistemas.md               # a EDO/ecuación integral equivalente
+│   │   ├── Ecuaciones con Memoria.md             # ecuación de renovación, núcleo de memoria
+│   │   └── Aplicaciones Integro-Diferenciales.md  # viscoelasticidad, poblaciones con retardo, transporte (panorama)
+│   │
+│   └── Calculo Fraccionario/                      # el *differintegral* D^q de orden arbitrario
+│       ├── index.md                               # idea: derivar/integrar como un continuo de órdenes
+│       ├── Operador Differintegral.md            # D^q unifica d^n/dx^n e integrales repetidas  # fig: orden continuo
+│       ├── Integral de Riemann-Liouville.md      # integral fraccionaria; fórmula de Cauchy iterada
+│       ├── Derivada de Riemann-Liouville.md
+│       ├── Derivada de Caputo.md                 # condiciones iniciales "físicas"
+│       ├── Derivada de Grunwald-Letnikov.md      # límite de diferencias; base numérica
+│       ├── Funcion de Mittag-Leffler.md          # la "exponencial" fraccionaria  # fig: E_α(x) vs exp
+│       ├── Laplace de Derivadas Fraccionarias.md
+│       ├── Ecuaciones Diferenciales Fraccionarias.md   # EDF lineales; solución por Laplace/Mittag-Leffler
+│       └── Aplicaciones Fraccionarias.md         # viscoelasticidad, difusión anómala, memoria (panorama)
 │
-├── 5 Ejercicios/                                  # problemas resueltos
+├── 5 Herramientas Transversales/                  # usadas por EDO, EDP e integrales — no duplicar
+│   ├── index.md
+│   │
+│   ├── Transformada de Laplace/
+│   │   ├── index.md
+│   │   ├── Funciones Generalizadas.md            # delta de Dirac, escalón de Heaviside
+│   │   ├── Definicion y Existencia.md            # F(s)=∫₀^∞ e^{-st}f dt; orden exponencial
+│   │   ├── Propiedades Laplace.md                # tabla: linealidad, derivada, desplazamiento, escalado
+│   │   ├── Convolucion Laplace.md                # L{f*g}=F·G; función de transferencia
+│   │   ├── Transformada Inversa.md               # fracciones parciales; (panorama) Bromwich
+│   │   └── Solucion de EDO con Laplace.md        # PVI/sistemas → algebraico → inversa
+│   │
+│   ├── Analisis de Fourier/
+│   │   ├── index.md
+│   │   ├── Transformada de Fourier.md            # dominios infinitos; pares de transformadas
+│   │   └── (panorama) Hankel y Mellin.md         # simetría cilíndrica / escala
+│   │
+│   ├── Sturm-Liouville/                           # corazón de la separación de variables
+│   │   ├── index.md
+│   │   ├── Problema Regular de Sturm-Liouville.md  # forma autoadjunta (p y')'+(q+λw)y=0
+│   │   ├── Autovalores y Autofunciones.md        # reales, ortogonalidad respecto al peso w
+│   │   ├── Completitud y Desarrollo.md           # base para series de autofunciones
+│   │   └── (opcional) Sturm-Liouville Singular.md  # Bessel/Legendre como casos
+│   │
+│   ├── Funciones Especiales/                      # nacen de series (EDO) y separación (EDP)
+│   │   ├── index.md
+│   │   ├── Gamma y Beta.md                        # base de lo fraccionario y de Euler
+│   │   ├── Funciones de Bessel.md                # cilíndricas  # fig: J_n(x)
+│   │   ├── Polinomios de Legendre.md             # esféricas  # fig: P_n(x)
+│   │   ├── Armonicos Esfericos.md                # Y_l^m; Laplace en la esfera
+│   │   └── (opcional) Hermite Laguerre Chebyshev.md  # ortogonales clásicos (panorama)
+│   │
+│   └── Funcion de Green/                          # inversa de un operador diferencial
+│       ├── index.md
+│       ├── Green para Operadores Lineales.md     # idea general; L G=δ
+│       └── Construccion y Propiedades.md         # continuidad y salto de la derivada
+│
+├── 6 Ejercicios/                                  # problemas resueltos al estilo Echeverría
 │   └── (cualquier ejercicio resuelto que quieras guardar)
 │
-└── 6 Apuntes Clase/                               # opcional: cajón de notas sueltas
+└── 7 Apuntes Clase/                               # opcional: cajón de notas sueltas
     └── (cualquier nota suelta que aún no clasificas)
 ```
 
 **Fuentes:**
-- *Apuntes de Ecuaciones Diferenciales*, **Mariano Echeverría** — modelo de estilo; parte EDO+EDP (`_private/apuntesma1005.pdf`).
-- *Ecuaciones Integrales*, **M. Krasnov, A. Kiseliov, G. Makarenko** (Editorial Mir, 1982) — parte integral y difero-integral (`_private/`).
+- *Apuntes de Ecuaciones Diferenciales*, **Mariano Echeverría** — **modelo de estilo** (`_private/apuntesma1005.pdf`).
+- *Ecuaciones Integrales*, **M. Krasnov, A. Kiseliov, G. Makarenko** (Mir, 1982) — parte integral y difero-integral (`_private/`).
+- Teoría estándar del campo para la profundidad: Coddington–Levinson (EDO), Strauss/Evans (EDP),
+  Tricomi (integrales), Oldham–Spanier / Podlubny (cálculo fraccionario).
