@@ -29,11 +29,11 @@ aliases:
 
 > [!info]
 > Es la nota de entrada al curso: fija vocabulario y notación (libro, cap. 1.2). De aquí salen la
-> lectura geométrica del [[Campo de Direcciones e Isoclinas | campo de direcciones]], las
-> [[Curvas Integrales y Soluciones | curvas integrales]] y el teorema de
-> [[Existencia y Unicidad Picard | existencia y unicidad]]. El primer método concreto para resolver
-> es [[../Metodos de Primer Orden/Variables Separables | variables separables]]. Índice del bloque:
-> [[index]].
+> lectura geométrica del [[Campo de Direcciones e Isoclinas| campo de direcciones]], las
+> [[Curvas Integrales y Soluciones| curvas integrales]] y el teorema de
+> [[Existencia y Unicidad Picard| existencia y unicidad]]. El primer método concreto para resolver
+> es [[Variables Separables| variables separables]]. Índice del bloque:
+> [[Fundamentos y Teoria Cualitativa/index]].
 
 ---
 
@@ -54,7 +54,7 @@ aliases:
 
 > [!ejemplo]
 > **Solución implícita de una separable: $y'=\dfrac{xy}{y^2+1}$.** La ecuación es
-> [[../Metodos de Primer Orden/Variables Separables | separable]]; pasamos $y$ a la izquierda,
+> [[Variables Separables| separable]]; pasamos $y$ a la izquierda,
 > $$\left(y+\frac{1}{y}\right)dy=x\,dx,$$
 > e integramos cada lado:
 > $$\frac{y^2}{2}+\ln y=\frac{x^2}{2}+C.$$
@@ -74,7 +74,7 @@ aliases:
 > 1. **Implícita vs. normal**: $F(\dots)=0$ es la forma cruda; despejar $y^{(n)}=f(\dots)$ (forma
 >    normal) es lo que permite aplicar teoremas y métodos numéricos.
 > 2. **Orden y grado** clasifican la dificultad: el orden cuenta cuántas constantes tendrá la
->    [[Curvas Integrales y Soluciones | solución general]].
+>    [[Curvas Integrales y Soluciones| solución general]].
 > 3. **Solución implícita**: muchas veces lo mejor que se obtiene es $g(x,y)=0$, válida si define
 >    $y(x)$ localmente.
 > 4. **PVI**: añadir condiciones iniciales selecciona **una** solución entre la familia.
@@ -179,5 +179,5 @@ aliases:
 > - Lectura geométrica de $y'=f(x,y)$: [[Campo de Direcciones e Isoclinas]].
 > - Qué dibujan las soluciones: [[Curvas Integrales y Soluciones]].
 > - Demostración del teorema: [[Existencia y Unicidad Picard]].
-> - Primer método de resolución: [[../Metodos de Primer Orden/Variables Separables]].
-> - Índice del bloque: [[index]].
+> - Primer método de resolución: [[Variables Separables]].
+> - Índice del bloque: [[Fundamentos y Teoria Cualitativa/index]].

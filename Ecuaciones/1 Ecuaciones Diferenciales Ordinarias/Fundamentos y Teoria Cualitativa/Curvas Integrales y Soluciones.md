@@ -19,7 +19,7 @@ aliases:
 
 > [!definicion]
 > Una **curva integral** es la **gráfica** de una solución $y(x)$ de la EDO $y'=f(x,y)$; en cada
-> punto es **tangente** al [[Campo de Direcciones e Isoclinas | campo de direcciones]]. Según cuántas
+> punto es **tangente** al [[Campo de Direcciones e Isoclinas| campo de direcciones]]. Según cuántas
 > constantes lleve, distinguimos:
 > - **General**: familia con tantas constantes como el **orden** ($n$ constantes para orden $n$).
 > - **Particular**: una concreta, fijando las constantes con condiciones.
@@ -27,10 +27,10 @@ aliases:
 
 > [!info]
 > Cierra el bloque cualitativo (libro, cap. 1.2): traduce la noción de
-> [[Concepto General de ODE | solución]] al lenguaje de curvas en el plano. Se apoya en el
-> [[Campo de Direcciones e Isoclinas | campo de direcciones]] (que ellas siguen) y en
-> [[Existencia y Unicidad Picard | unicidad]] (por la que no se cruzan). Las soluciones singulares se
-> estudian aparte en [[../Metodos de Primer Orden/No Resueltas en y prima/Solucion Singular y Envolvente | envolventes]].
+> [[Concepto General de ODE| solución]] al lenguaje de curvas en el plano. Se apoya en el
+> [[Campo de Direcciones e Isoclinas| campo de direcciones]] (que ellas siguen) y en
+> [[Existencia y Unicidad Picard| unicidad]] (por la que no se cruzan). Las soluciones singulares se
+> estudian aparte en [[Solucion Singular y Envolvente| envolventes]].
 
 ---
 
@@ -78,7 +78,7 @@ aliases:
 > $$y'=f(x,y),\qquad y(x_0)=y_0.$$
 >
 > **Paso 2 — aplica unicidad.** Como $f$ y $\partial f/\partial y$ son continuas cerca de $(x_0,y_0)$,
-> el teorema de [[Existencia y Unicidad Picard | existencia y unicidad]] garantiza una **única**
+> el teorema de [[Existencia y Unicidad Picard| existencia y unicidad]] garantiza una **única**
 > solución del PVI en un entorno de $x_0$. Por tanto $y_1\equiv y_2$ cerca de $x_0$, lo que
 > **contradice** que fueran distintas. Luego no existe tal cruce. $\blacksquare$
 
@@ -87,7 +87,7 @@ aliases:
 > el mismo futuro y el mismo pasado**: conocido el estado en $(x_0,y_0)$, la trayectoria queda fijada
 > hacia ambos lados. Donde falla la suavidad de $f$ (p. ej. $\partial f/\partial y$ no existe), pueden
 > coexistir varias soluciones por un punto y el determinismo se rompe — ver el caso $y'=xy^{1/2}$ en
-> [[Concepto General de ODE | el PVI sin unicidad]].
+> [[Concepto General de ODE| el PVI sin unicidad]].
 
 > [!info] General, particular, singular
 > | Tipo | Constantes | Cómo se obtiene | Ejemplo en $y'=2x$ |
@@ -122,5 +122,5 @@ aliases:
 > - El campo que estas curvas siguen: [[Campo de Direcciones e Isoclinas]].
 > - Por qué no se cruzan (teorema): [[Existencia y Unicidad Picard]].
 > - Vocabulario y PVI: [[Concepto General de ODE]].
-> - Soluciones singulares y envolventes: [[../Metodos de Primer Orden/No Resueltas en y prima/Solucion Singular y Envolvente]].
-> - Índice del bloque: [[index]].
+> - Soluciones singulares y envolventes: [[Solucion Singular y Envolvente]].
+> - Índice del bloque: [[Fundamentos y Teoria Cualitativa/index]].

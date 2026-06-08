@@ -25,10 +25,10 @@ aliases:
 
 > [!info]
 > Es la versión "mínima" de la teoría de existencia (libro, fundamentos cualitativos): exige solo
-> continuidad de $f$, mucho menos que [[Existencia y Unicidad Picard | Picard]]. El precio de pedir
+> continuidad de $f$, mucho menos que [[Existencia y Unicidad Picard| Picard]]. El precio de pedir
 > tan poco es perder la unicidad. Sirve para entender **qué** garantiza cada hipótesis y por qué la
 > unicidad —no la mera existencia— es la propiedad físicamente relevante. Complementa al
-> [[Campo de Direcciones e Isoclinas | campo de direcciones]] y al [[Concepto General de ODE | concepto
+> [[Campo de Direcciones e Isoclinas| campo de direcciones]] y al [[Concepto General de ODE | concepto
 > general de EDO]].
 
 ---
@@ -55,7 +55,7 @@ aliases:
 > Variando $a\in[0,\infty)$ se obtiene un **abanico** (un continuo) de soluciones distintas, todas
 > pasando por $(0,0)$: los casos extremos son $a=0$ (la curva $y=x^{4}/16$) y $a\to\infty$ (la solución
 > nula $y\equiv 0$). El motivo de fondo es que $\partial f/\partial y=\dfrac{x}{2\sqrt y}$ explota
-> cerca de $y=0$, de modo que $f$ **no es Lipschitz** allí y [[Existencia y Unicidad Picard | Picard]]
+> cerca de $y=0$, de modo que $f$ **no es Lipschitz** allí y [[Existencia y Unicidad Picard| Picard]]
 > no aplica.
 
 ---
@@ -98,7 +98,7 @@ aliases:
 > predictivos de los que no lo son. Un PVI con varias soluciones (como el del abanico) describe un
 > sistema cuyo mismo presente admite varios futuros: matemáticamente impecable, pero inservible como
 > ley causal. Por eso en aplicaciones se busca siempre la hipótesis de Lipschitz de
-> [[Existencia y Unicidad Picard | Picard]].
+> [[Existencia y Unicidad Picard| Picard]].
 
 ## Resumen
 
@@ -118,5 +118,5 @@ aliases:
 
 > [!referencia]
 > - La versión con unicidad: [[Existencia y Unicidad Picard]].
-> - El tipo de ecuación del ejemplo, resuelto por separación: [[../Metodos de Primer Orden/Variables Separables]].
-> - Marco general: [[Concepto General de ODE]] · [[index]].
+> - El tipo de ecuación del ejemplo, resuelto por separación: [[Variables Separables]].
+> - Marco general: [[Concepto General de ODE]] · [[Fundamentos y Teoria Cualitativa/index]].

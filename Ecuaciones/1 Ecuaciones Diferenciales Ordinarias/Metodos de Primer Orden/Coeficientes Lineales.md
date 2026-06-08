@@ -20,16 +20,16 @@ aliases:
 > Una EDO tiene **coeficientes lineales** si se escribe en forma diferencial con dos expresiones
 > lineales en $x,y$:
 > $$(a_1x+b_1y+c_1)\,dx+(a_2x+b_2y+c_2)\,dy=0.$$
-> Si $c_1=c_2=0$ ya es directamente [[Ecuaciones Homogeneas | homogénea]]. Cuando hay términos
+> Si $c_1=c_2=0$ ya es directamente [[Ecuaciones Homogeneas| homogénea]]. Cuando hay términos
 > independientes $c_i\neq0$, el método se decide observando las **dos rectas**
 > $$L_1:\ a_1x+b_1y+c_1=0,\qquad L_2:\ a_2x+b_2y+c_2=0,$$
 > según se corten o sean paralelas.
 
 > [!info]
-> Tercer tipo del [[index | catálogo de primer orden]] (libro, cap. 1.3.2). Es una **extensión** de
-> las [[Ecuaciones Homogeneas | homogéneas]]: los términos $c_1,c_2$ rompen la homogeneidad, y la
+> Tercer tipo del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 1.3.2). Es una **extensión** de
+> las [[Ecuaciones Homogeneas| homogéneas]]: los términos $c_1,c_2$ rompen la homogeneidad, y la
 > idea es **recuperarla** trasladando el origen. Ambos caminos terminan en métodos ya conocidos:
-> homogénea (rectas que se cortan) o [[Variables Separables | separable]] (rectas paralelas).
+> homogénea (rectas que se cortan) o [[Variables Separables| separable]] (rectas paralelas).
 
 ---
 
@@ -106,7 +106,22 @@ aliases:
 > - **Rectas paralelas:** no hay corte, así que no existe traslación que anule ambos $c_i$. Pero el
 >   paralelismo $a_1/a_2=b_1/b_2$ obliga a que $a_2x+b_2y$ sea **múltiplo** de $a_1x+b_1y$; todo
 >   depende de un **único bloque lineal**. El cambio $u=a_1x+b_1y$ colapsa $x,y$ en una sola variable
->   y la ecuación se vuelve [[Variables Separables | separable]].
+>   y la ecuación se vuelve [[Variables Separables| separable]].
+
+> [!demostracion] Por qué la traslación al corte vuelve homogénea la ecuación
+> **Paso 1 — existe el corte.** Si las rectas no son paralelas ($a_1b_2-a_2b_1\neq0$), el sistema
+> $a_1h+b_1k+c_1=0,\ a_2h+b_2k+c_2=0$ tiene solución **única** $(h,k)$ (regla de Cramer).
+>
+> **Paso 2 — trasladar el origen al corte.** Con $\bar x=x-h,\ \bar y=y-k$ (y $dx=d\bar x,\ dy=d\bar y$),
+> cada forma lineal se simplifica:
+> $$a_ix+b_iy+c_i=a_i(\bar x+h)+b_i(\bar y+k)+c_i=a_i\bar x+b_i\bar y+\underbrace{(a_ih+b_ik+c_i)}_{=\,0}=a_i\bar x+b_i\bar y,$$
+> donde el paréntesis se anula **por el Paso 1**.
+>
+> **Paso 3 — la ecuación queda homogénea.** La EDO se vuelve
+> $$(a_1\bar x+b_1\bar y)\,d\bar x+(a_2\bar x+b_2\bar y)\,d\bar y=0\ \Longrightarrow\ \frac{d\bar y}{d\bar x}=-\frac{a_1\bar x+b_1\bar y}{a_2\bar x+b_2\bar y},$$
+> cuyo lado derecho es **homogéneo de grado 0** (cociente de formas lineales: numerador y denominador
+> escalan igual al sustituir $\bar x\to\lambda\bar x,\ \bar y\to\lambda\bar y$). Por el teorema de las
+> [[Ecuaciones Homogeneas| homogéneas]], el cambio $\bar y=u\bar x$ la vuelve separable. $\blacksquare$
 
 > [!algoritmo] Resolver coeficientes lineales
 > 1. **¿Paralelas?** Compara $\dfrac{a_1}{a_2}$ con $\dfrac{b_1}{b_2}$.
@@ -127,8 +142,8 @@ aliases:
 > [!resumen]
 > | Caso | Cómo se detecta | Cambio | Reduce a |
 > |---|---|---|---|
-> | No paralelas | $a_1b_2-a_2b_1\neq0$ | trasladar a $(h,k)$ | [[Ecuaciones Homogeneas \| homogénea]] |
-> | Paralelas | $a_1b_2-a_2b_1=0$ | $u=a_1x+b_1y$ | [[Variables Separables \| separable]] |
+> | No paralelas | $a_1b_2-a_2b_1\neq0$ | trasladar a $(h,k)$ | [[Ecuaciones Homogeneas\| homogénea]] |
+> | Paralelas | $a_1b_2-a_2b_1=0$ | $u=a_1x+b_1y$ | [[Variables Separables\| separable]] |
 > | $c_1=c_2=0$ | sin términos indep. | — | ya es homogénea |
 
 > [!corolario]
@@ -139,4 +154,4 @@ aliases:
 > [!referencia]
 > - Caso al que reduce (no paralelas): [[Ecuaciones Homogeneas]].
 > - Caso al que reduce (paralelas): [[Variables Separables]].
-> - Vuelta al catálogo: [[index]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

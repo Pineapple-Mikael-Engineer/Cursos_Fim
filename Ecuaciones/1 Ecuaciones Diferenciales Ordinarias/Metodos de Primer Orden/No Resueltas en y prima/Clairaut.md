@@ -17,7 +17,7 @@ aliases:
 # Ecuación de Clairaut
 
 > [!definicion]
-> La **ecuación de Clairaut** es el caso particular de [[Lagrange | Lagrange]] en que $\varphi(y')=y'$:
+> La **ecuación de Clairaut** es el caso particular de [[Lagrange| Lagrange]] en que $\varphi(y')=y'$:
 > $$y=x\,y'+\psi(y').$$
 > Al derivar respecto a $x$ y poner $u=y'$ se obtiene
 > $$u=u+\big(x+\psi'(u)\big)\frac{du}{dx}\ \Longrightarrow\ 0=\big(x+\psi'(u)\big)\frac{du}{dx}.$$
@@ -28,7 +28,7 @@ aliases:
 >   $\,x=-\psi'(u),\ \ y=x\,u+\psi(u)$.
 
 > [!info]
-> Caso emblemático del bloque [[index | no resueltas en $y'$]] (libro, cap. 2.3.4). Es el ejemplo más
+> Caso emblemático del bloque [[No Resueltas en y prima/index| no resueltas en $y'$]] (libro, cap. 2.3.4). Es el ejemplo más
 > visual de **solución singular como envolvente**: su solución general es un **haz de rectas** y la
 > singular es la curva tangente a todas ellas. Para el concepto de envolvente y su cálculo general, ver
 > [[Solucion Singular y Envolvente]]; para el método del que es caso particular, [[Lagrange]].
@@ -105,4 +105,4 @@ aliases:
 > [!referencia]
 > - Método general del que es caso particular: [[Lagrange]].
 > - Qué es y cómo se calcula la envolvente: [[Solucion Singular y Envolvente]].
-> - Vuelta al bloque: [[index]].
+> - Vuelta al bloque: [[No Resueltas en y prima/index]].

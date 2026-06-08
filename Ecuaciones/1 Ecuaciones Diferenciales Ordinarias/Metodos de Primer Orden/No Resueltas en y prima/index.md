@@ -26,7 +26,7 @@ aliases:
 > $$y=x\,y'+\psi(y').$$
 
 > [!info]
-> Última familia del [[../index | catálogo de primer orden]] (libro, caps. 2.1 y 2.3). A diferencia de
+> Última familia del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, caps. 2.1 y 2.3). A diferencia de
 > los métodos anteriores, aquí **no** se empieza despejando $y'=f(x,y)$: la ecuación lo impide. La idea
 > es transformar el problema **derivando** e introduciendo $p=y'$ como variable auxiliar. Aparece aquí
 > un fenómeno nuevo y propio de este capítulo: las **soluciones singulares** (envolventes), que no
@@ -98,4 +98,4 @@ aliases:
 > - Caso general: [[Lagrange]].
 > - Caso particular y más visual: [[Clairaut]].
 > - Concepto de envolvente y su cálculo: [[Solucion Singular y Envolvente]].
-> - Vuelta al catálogo: [[../index]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

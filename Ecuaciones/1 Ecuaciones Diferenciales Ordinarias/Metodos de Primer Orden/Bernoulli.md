@@ -18,7 +18,7 @@ aliases:
 > [!definicion]
 > La **ecuación de Bernoulli** es la EDO no lineal
 > $$y'+p(x)\,y=q(x)\,y^{n},\qquad n\in\mathbb{R}.$$
-> Es "casi lineal": coincide con una [[Lineal Primer Orden | lineal]] salvo por el factor $y^{n}$ del
+> Es "casi lineal": coincide con una [[Lineal Primer Orden| lineal]] salvo por el factor $y^{n}$ del
 > lado derecho. Si $n=0$ o $n=1$ **ya es lineal** (no hay nada que hacer). Para $n\neq0,1$ el cambio
 > de variable
 > $$u=y^{1-n}$$
@@ -26,11 +26,11 @@ aliases:
 > integrante.
 
 > [!info]
-> Séptimo tipo del [[index | catálogo de primer orden]] (libro, cap. 2.3.1). Es la primera de las
+> Séptimo tipo del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 2.3.1). Es la primera de las
 > **no lineales reducibles**: no se ataca de frente, sino que un cambio la lleva a
-> [[Lineal Primer Orden | lineal]]. Comparte familia con la [[Riccati | ecuación de Riccati]] (que es
+> [[Lineal Primer Orden| lineal]]. Comparte familia con la [[Riccati| ecuación de Riccati]] (que es
 > Bernoulli cuando su término independiente $r=0$). Una vez en forma lineal, todo el peso recae en el
-> [[Lineal Primer Orden | factor integrante]].
+> [[Lineal Primer Orden| factor integrante]].
 
 ---
 
@@ -88,10 +88,10 @@ aliases:
 
 > [!algoritmo] Resolver una Bernoulli
 > 1. **Identifica $n$** (exponente de $y$ en el lado derecho). Si $n=0$ o $1$, trátala como
->    [[Lineal Primer Orden | lineal]] directamente.
+>    [[Lineal Primer Orden| lineal]] directamente.
 > 2. **Cambia** $u=y^{1-n}$.
 > 3. **Reescribe** como la lineal $u'+(1-n)\,p\,u=(1-n)\,q$.
-> 4. **Resuelve** con [[Lineal Primer Orden | factor integrante]] $\mu=e^{\int(1-n)p\,dx}$.
+> 4. **Resuelve** con [[Lineal Primer Orden| factor integrante]] $\mu=e^{\int(1-n)p\,dx}$.
 > 5. **Deshaz** el cambio: vuelve a $y$ mediante $y^{1-n}=u$.
 
 > [!warning] La solución $y\equiv0$
@@ -120,4 +120,4 @@ aliases:
 > - Método al que reduce: [[Lineal Primer Orden]].
 > - Generalización cuadrática: [[Riccati]] (Bernoulli con $r\neq0$).
 > - Soluciones perdidas al dividir: [[Variables Separables]].
-> - Vuelta al catálogo: [[index]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

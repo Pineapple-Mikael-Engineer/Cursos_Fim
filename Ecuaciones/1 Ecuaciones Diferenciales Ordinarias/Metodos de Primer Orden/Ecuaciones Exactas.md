@@ -28,11 +28,11 @@ aliases:
 > $$\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}.$$
 
 > [!info]
-> Cuarto tipo del [[index | catálogo de primer orden]] (libro, cap. 1.3.3). Va de la mano con
+> Cuarto tipo del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 1.3.3). Va de la mano con
 > [[Factor Integrante]]: cuando **no** se cumple $\partial_yM=\partial_xN$, se multiplica por un
 > $\mu$ que vuelve exacta la ecuación. El método cierra en una integración, así que en el fondo
-> emparenta con [[Variables Separables | separar variables]]. Punto de retorno: el
-> [[index | índice de métodos]].
+> emparenta con [[Variables Separables| separar variables]]. Punto de retorno: el
+> [[Metodos de Primer Orden/index| índice de métodos]].
 
 ---
 
@@ -152,4 +152,4 @@ aliases:
 > [!referencia]
 > - Cuando el test falla: [[Factor Integrante]] (fabricar la exactitud con $\mu$).
 > - El método cierra en una integral, como [[Variables Separables]].
-> - Lugar en el catálogo: [[index]].
+> - Lugar en el catálogo: [[Metodos de Primer Orden/index]].

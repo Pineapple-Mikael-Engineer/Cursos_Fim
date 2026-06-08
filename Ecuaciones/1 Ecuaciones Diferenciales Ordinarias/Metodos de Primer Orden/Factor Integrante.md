@@ -16,20 +16,20 @@ aliases:
 # Factor Integrante
 
 > [!definicion]
-> Si la ecuación $M\,dx+N\,dy=0$ **no** es [[Ecuaciones Exactas | exacta]]
+> Si la ecuación $M\,dx+N\,dy=0$ **no** es [[Ecuaciones Exactas| exacta]]
 > ($\partial_yM\neq\partial_xN$), se busca una función $\mu(x,y)\neq0$ —el **factor integrante**—
 > tal que al multiplicar
 > $$\mu M\,dx+\mu N\,dy=0$$
 > **sí** sea exacta. La condición que debe cumplir $\mu$ es la de exactitud de la nueva ecuación:
 > $$\frac{\partial}{\partial y}\big(\mu M\big)=\frac{\partial}{\partial x}\big(\mu N\big).$$
-> Hallado $\mu$, se resuelve como una [[Ecuaciones Exactas | exacta]] cualquiera.
+> Hallado $\mu$, se resuelve como una [[Ecuaciones Exactas| exacta]] cualquiera.
 
 > [!info]
-> Compañera de [[Ecuaciones Exactas]] en el [[index | catálogo de primer orden]] (libro, cap. 1.3.3
-> y siguientes). Es el mecanismo que está **detrás de la [[Lineal Primer Orden | lineal]]**: su
+> Compañera de [[Ecuaciones Exactas]] en el [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 1.3.3
+> y siguientes). Es el mecanismo que está **detrás de la [[Lineal Primer Orden| lineal]]**: su
 > célebre $e^{\int p\,dx}$ es exactamente un factor integrante. El caso general es duro, pero hay
 > **dos casos resolubles** ($\mu$ solo de $x$, o solo de $y$) que cubren la mayoría de los
-> ejercicios. Regreso al [[index | índice de métodos]].
+> ejercicios. Regreso al [[Metodos de Primer Orden/index| índice de métodos]].
 
 ---
 
@@ -108,17 +108,17 @@ aliases:
 > $\partial_xN-\partial_yM$ y se divide por $M$).
 
 > [!algoritmo] Hallar el factor integrante
-> 1. ¿La ecuación es [[Ecuaciones Exactas | exacta]]? Si **sí**, no hace falta $\mu$. Si **no**,
+> 1. ¿La ecuación es [[Ecuaciones Exactas| exacta]]? Si **sí**, no hace falta $\mu$. Si **no**,
 >    sigue.
 > 2. Calcula $\dfrac{\partial_yM-\partial_xN}{N}$. Si depende **solo de $x$** $\to$
 >    $\mu(x)=e^{\int(\cdots)\,dx}$.
 > 3. Si no, calcula $\dfrac{\partial_xN-\partial_yM}{M}$. Si depende **solo de $y$** $\to$
 >    $\mu(y)=e^{\int(\cdots)\,dy}$.
 > 4. Si ninguno funciona, ensaya formas $\mu(xy)$, $\mu(x+y)$, $\mu(x^2+y^2)$… según la estructura.
-> 5. Multiplica la ecuación por $\mu$ y resuélvela como [[Ecuaciones Exactas | exacta]].
+> 5. Multiplica la ecuación por $\mu$ y resuélvela como [[Ecuaciones Exactas| exacta]].
 
 > [!proposicion] La lineal es un caso particular
-> La [[Lineal Primer Orden | EDO lineal]] $y'+p(x)\,y=q(x)$ se escribe
+> La [[Lineal Primer Orden| EDO lineal]] $y'+p(x)\,y=q(x)$ se escribe
 > $\big(p(x)\,y-q(x)\big)dx+dy=0$, con $M=py-q$, $N=1$. Entonces
 > $$\frac{\partial_yM-\partial_xN}{N}=\frac{p-0}{1}=p(x),$$
 > que depende solo de $x$, así que $\mu(x)=e^{\int p\,dx}$. **Ese** es el famoso factor integrante de
@@ -157,4 +157,4 @@ aliases:
 > [!referencia]
 > - Método al que se reduce tras multiplicar por $\mu$: [[Ecuaciones Exactas]].
 > - Aplicación garantizada del factor: [[Lineal Primer Orden]] ($e^{\int p}$).
-> - Lugar en el catálogo: [[index]].
+> - Lugar en el catálogo: [[Metodos de Primer Orden/index]].

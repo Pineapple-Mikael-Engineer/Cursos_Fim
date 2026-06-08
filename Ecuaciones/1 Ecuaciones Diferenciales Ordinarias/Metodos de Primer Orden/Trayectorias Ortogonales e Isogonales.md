@@ -28,12 +28,12 @@ aliases:
 > $$y'=-\frac{1}{y_c'}=-\frac{1}{g(x,y)}.$$
 
 > [!info]
-> Aplicación geométrica del [[index | catálogo de primer orden]] (libro, cap. 1.1.2.1.1). No es un
+> Aplicación geométrica del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 1.1.2.1.1). No es un
 > "tipo" nuevo de ecuación, sino una **receta de modelado**: traduce una condición geométrica
 > (perpendicularidad) en una EDO que luego se resuelve con los métodos ya conocidos
-> ([[Variables Separables | separables]], [[Ecuaciones Homogeneas | homogéneas]]). Para visualizar la
+> ([[Variables Separables| separables]], [[Ecuaciones Homogeneas| homogéneas]]). Para visualizar la
 > familia y sus cortes apóyate en el
-> [[../Fundamentos y Teoria Cualitativa/Campo de Direcciones e Isoclinas | campo de direcciones]]: la
+> [[Campo de Direcciones e Isoclinas| campo de direcciones]]: la
 > trayectoria ortogonal es, en cada punto, perpendicular al segmento del campo de la familia.
 
 ---
@@ -58,7 +58,7 @@ aliases:
 > **Paso 2 — imponer la perpendicularidad** $y'\to -1/y_c'$. La trayectoria ortogonal tiene pendiente
 > $$y'=-\frac{1}{2y/x}=-\frac{x}{2y}.$$
 >
-> **Paso 3 — resolver la EDO de las ortogonales.** Es [[Variables Separables | separable]]:
+> **Paso 3 — resolver la EDO de las ortogonales.** Es [[Variables Separables| separable]]:
 > $$2y\,dy=-x\,dx\ \Longrightarrow\ \int 2y\,dy=-\int x\,dx\ \Longrightarrow\ y^{2}=-\frac{x^{2}}{2}+C.$$
 > Multiplicando por $2$ y renombrando la constante $k=2C$,
 > $$\boxed{\ x^{2}+2y^{2}=k\ }$$
@@ -79,6 +79,18 @@ aliases:
 > $F(x,y,c)=0$ y se elimina $c$ usando la propia ecuación de la familia. El resultado $y_c'=g(x,y)$ es
 > la **EDO de la familia**: la ecuación cuya solución general es justamente esa familia. Una vez se
 > tiene $g$, las ortogonales resuelven $y'=-1/g(x,y)$ y las isogonales una variante con $\tan\alpha$.
+
+> [!demostracion] La condición $m_1m_2=-1$ y de ahí $y'=-1/y_c'$
+> **Paso 1 — pendiente como tangente del ángulo.** Una recta de pendiente $m$ forma con el eje $x$ un
+> ángulo $\theta$ con $m=\tan\theta$. Tomamos dos rectas, $m_1=\tan\theta_1$ y $m_2=\tan\theta_2$.
+>
+> **Paso 2 — perpendicularidad.** Son perpendiculares cuando sus ángulos difieren en $90°$, es decir
+> $\theta_2=\theta_1+90°$. Entonces
+> $$m_2=\tan(\theta_1+90°)=-\cot\theta_1=-\frac{1}{\tan\theta_1}=-\frac{1}{m_1}\ \Longrightarrow\ m_1m_2=-1.$$
+>
+> **Paso 3 — aplicar a las curvas.** En el punto de corte, la trayectoria ortogonal y el miembro de la
+> familia son perpendiculares, luego sus pendientes —$y'$ y $y_c'$— cumplen $y'\,y_c'=-1$, de donde
+> $$y'=-\frac{1}{y_c'}.\qquad\blacksquare$$
 
 > [!algoritmo] Hallar las trayectorias ortogonales
 > 1. **Parte de la familia** $F(x,y,c)=0$.
@@ -102,6 +114,23 @@ aliases:
 > $$y'=\frac{y_c'\mp\tan\alpha}{1\pm y_c'\tan\alpha}.$$
 > El caso $\alpha=90°$ ($\tan\alpha\to\infty$) recupera $y'=-1/y_c'$, las ortogonales. Los dos signos
 > corresponden a cortar "por un lado o por el otro" de la curva.
+
+> [!demostracion] La fórmula isogonal desde el ángulo entre rectas
+> **Paso 1 — tangente del ángulo entre dos rectas.** Si dos rectas tienen pendientes $m$ y $m_c$, el
+> ángulo $\alpha$ medido de una a la otra cumple la identidad
+> $$\tan\alpha=\frac{m-m_c}{1+m\,m_c}.$$
+>
+> **Paso 2 — imponer el ángulo fijo.** Para la trayectoria isogonal $m=y'$ y para el miembro de la
+> familia $m_c=y_c'$; pedimos que se corten bajo el ángulo $\alpha$:
+> $$\tan\alpha=\frac{y'-y_c'}{1+y'\,y_c'}.$$
+>
+> **Paso 3 — despejar $y'$.** Multiplicando en cruz, $y'-y_c'=\tan\alpha\,(1+y'y_c')$, y agrupando $y'$:
+> $$y'\big(1-y_c'\tan\alpha\big)=y_c'+\tan\alpha\ \Longrightarrow\ y'=\frac{y_c'+\tan\alpha}{1-y_c'\tan\alpha}.$$
+> El signo opuesto sale de medir el ángulo en sentido contrario ($\alpha\to-\alpha$), dando
+> $y'=\dfrac{y_c'-\tan\alpha}{1+y_c'\tan\alpha}$; ambos son la fórmula isogonal.
+>
+> **Paso 4 — límite ortogonal.** Cuando $\alpha\to90°$, $\tan\alpha\to\infty$; dividiendo numerador y
+> denominador por $\tan\alpha$ y tomando el límite queda $y'=-1/y_c'$, las ortogonales. $\blacksquare$
 
 > [!info] Significado físico
 > Las trayectorias ortogonales abundan en la física de campos:
@@ -131,5 +160,5 @@ aliases:
 
 > [!referencia]
 > - Métodos para cerrar la EDO: [[Variables Separables]], [[Ecuaciones Homogeneas]].
-> - Geometría del campo de direcciones de una familia: [[../Fundamentos y Teoria Cualitativa/Campo de Direcciones e Isoclinas]].
-> - Vuelta al catálogo: [[index]].
+> - Geometría del campo de direcciones de una familia: [[Campo de Direcciones e Isoclinas]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

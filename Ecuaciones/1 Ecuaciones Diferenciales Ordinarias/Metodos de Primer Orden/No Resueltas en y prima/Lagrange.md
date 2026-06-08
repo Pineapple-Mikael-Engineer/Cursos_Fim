@@ -21,15 +21,15 @@ aliases:
 > $$y=x\,\varphi(y')+\psi(y'),$$
 > donde $\varphi$ y $\psi$ son funciones dadas de $y'$. Es **lineal en $x$ e $y$**, pero **no** en
 > $y'$: la derivada entra a través de $\varphi$ y $\psi$, de modo que es una ecuación
-> [[index | no resuelta respecto a $y'$]]. Se resuelve **derivando respecto a $x$** y poniendo
+> [[No Resueltas en y prima/index| no resuelta respecto a $y'$]]. Se resuelve **derivando respecto a $x$** y poniendo
 > $u=y'$, lo que produce una EDO **lineal en $x(u)$**; la solución queda en forma **paramétrica**
 > $$x=x(u),\qquad y=y(u).$$
 
 > [!info]
-> Caso general del bloque [[index | no resueltas en $y'$]] (libro, cap. 2.3.3). Su caso particular
-> $\varphi(y')=y'$ es la [[Clairaut | ecuación de Clairaut]]. El método ilustra el truco central del
+> Caso general del bloque [[No Resueltas en y prima/index| no resueltas en $y'$]] (libro, cap. 2.3.3). Su caso particular
+> $\varphi(y')=y'$ es la [[Clairaut| ecuación de Clairaut]]. El método ilustra el truco central del
 > capítulo: derivar para **bajar** el problema a una EDO lineal en la que $u=y'$ hace de variable
-> independiente. Al derivar puede generarse además una [[Solucion Singular y Envolvente | solución singular]].
+> independiente. Al derivar puede generarse además una [[Solucion Singular y Envolvente| solución singular]].
 
 ---
 
@@ -50,7 +50,7 @@ aliases:
 > como independiente y $x=x(u)$. Dividiendo por $\dfrac{du}{dx}$ y usando
 > $\dfrac{dx}{du}=1/\dfrac{du}{dx}$,
 > $$\frac{dx}{du}+x=-3u^{2}.$$
-> Es una [[../Lineal Primer Orden | EDO lineal]] de primer orden en $x(u)$.
+> Es una [[Lineal Primer Orden| EDO lineal]] de primer orden en $x(u)$.
 >
 > **Paso 4 — factor integrante.** Como el coeficiente de $x$ es $1$, el factor integrante es
 > $e^{\int 1\,du}=e^{u}$:
@@ -85,7 +85,7 @@ aliases:
 > no linealidad en $y'$ se disuelve. La forma paramétrica es la consecuencia natural: tenemos $x$ e $y$
 > ambos como funciones del parámetro $u$. Los valores $u$ que cumplen $u=\varphi(u)$ (donde el método
 > falla al dividir) dan **rectas solución** aparte y pueden contener la
-> [[Solucion Singular y Envolvente | solución singular]].
+> [[Solucion Singular y Envolvente| solución singular]].
 
 > [!algoritmo] Resolver una ecuación de Lagrange
 > 1. Identifica $\varphi$ y $\psi$ en $y=x\,\varphi(y')+\psi(y')$.
@@ -97,7 +97,7 @@ aliases:
 > [!proposicion]
 > Cuando $\varphi(y')=y'$ (es decir, $\varphi$ es la identidad), el coeficiente $u-\varphi(u)$ se anula
 > idénticamente y el método anterior **no produce** una lineal: el problema degenera en el caso
-> [[Clairaut | Clairaut]], cuya solución general es directamente una **familia de rectas**.
+> [[Clairaut| Clairaut]], cuya solución general es directamente una **familia de rectas**.
 
 ## Resumen
 
@@ -118,5 +118,5 @@ aliases:
 > [!referencia]
 > - Caso particular (identidad $\varphi=y'$): [[Clairaut]].
 > - Soluciones extra que puede generar: [[Solucion Singular y Envolvente]].
-> - Lineal que se resuelve en el método: [[../Lineal Primer Orden]].
-> - Vuelta al bloque: [[index]].
+> - Lineal que se resuelve en el método: [[Lineal Primer Orden]].
+> - Vuelta al bloque: [[No Resueltas en y prima/index]].

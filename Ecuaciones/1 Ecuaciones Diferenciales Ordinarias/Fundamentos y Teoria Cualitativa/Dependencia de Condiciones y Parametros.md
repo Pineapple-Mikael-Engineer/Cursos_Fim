@@ -22,23 +22,23 @@ aliases:
 
 > [!definicion]
 > Una vez que sabemos que el PVI $y'=f(x,y),\ y(x_0)=y_0$ tiene solución única (por
-> [[Existencia y Unicidad Picard | Picard]]), surge la tercera pregunta: ¿cómo cambia la solución si
+> [[Existencia y Unicidad Picard| Picard]]), surge la tercera pregunta: ¿cómo cambia la solución si
 > **perturbamos los datos**? Si $f$ es **Lipschitz** en $y$ con constante $L$, la solución
 > $y(x;y_0,\lambda)$ depende de manera **continua** del dato inicial $y_0$ y de cualquier parámetro
 > $\lambda$ que aparezca en la ecuación: cambios pequeños en los datos producen cambios pequeños en la
 > solución (en cada intervalo finito). De hecho la dependencia es **cuantitativa**: dos soluciones que
 > arrancan en $a$ y $b$ se separan a lo más exponencialmente,
 > $$|y(x;a)-y(x;b)|\ \le\ |a-b|\,e^{L|x-x_0|},$$
-> cota que es consecuencia directa de la [[Desigualdad de Gronwall | desigualdad de Gronwall]].
+> cota que es consecuencia directa de la [[Desigualdad de Gronwall| desigualdad de Gronwall]].
 
 > [!info]
-> Completa la tríada de [[index | preguntas fundamentales]] —existencia, unicidad y **dependencia
+> Completa la tríada de [[Fundamentos y Teoria Cualitativa/index| preguntas fundamentales]] —existencia, unicidad y **dependencia
 > continua**— que constituye el **buen planteamiento** de un problema (libro, teoría de estabilidad
 > respecto a los datos). Se apoya por completo en la [[Desigualdad de Gronwall | desigualdad de
-> Gronwall]] y prolonga el marco de [[Existencia y Unicidad Picard | Picard]]. Junto con la
-> [[Prolongacion de Soluciones | prolongación]], describe el comportamiento **global** de las
+> Gronwall]] y prolonga el marco de [[Existencia y Unicidad Picard| Picard]]. Junto con la
+> [[Prolongacion de Soluciones| prolongación]], describe el comportamiento **global** de las
 > soluciones. La sensibilidad exponencial que aquí aparece es la antesala del estudio de la estabilidad
-> en [[../Sistemas y Dinamica/index | sistemas y dinámica]].
+> en [[Sistemas y Dinamica/index| sistemas y dinámica]].
 
 ---
 
@@ -70,7 +70,7 @@ aliases:
 
 > [!demostracion]
 > Trabajamos con la **diferencia** de las dos soluciones, $w(x):=y(x;a)-y(x;b)$, y la acotamos vía
-> [[Desigualdad de Gronwall | Gronwall]].
+> [[Desigualdad de Gronwall| Gronwall]].
 >
 > **Paso 1 — forma integral de la diferencia.** Cada solución satisface la ecuación integral de
 > Picard, $y(x;a)=a+\int_{x_0}^x f(t,y(t;a))\,dt$ e igual para $b$. Restando:
@@ -81,7 +81,7 @@ aliases:
 > $$|w(x)|\ \le\ |a-b|+\int_{x_0}^{x} L\,|w(t)|\,dt.$$
 > Esta es exactamente la hipótesis de la desigualdad de Gronwall, con constante $|a-b|$ y factor $L$.
 >
-> **Paso 3 — aplicar Gronwall.** La [[Desigualdad de Gronwall | desigualdad de Gronwall]] convierte
+> **Paso 3 — aplicar Gronwall.** La [[Desigualdad de Gronwall| desigualdad de Gronwall]] convierte
 > esa desigualdad integral implícita en la cota explícita
 > $$|w(x)|\ \le\ |a-b|\,e^{L|x-x_0|}.$$
 > Como el lado derecho $\to 0$ cuando $a\to b$, la dependencia es continua. $\blacksquare$
@@ -89,8 +89,8 @@ aliases:
 > [!info] Buen planteamiento (Hadamard)
 > Las tres preguntas de los fundamentos se agrupan en un único concepto debido a **Hadamard**: un
 > problema está **bien planteado** (*well-posed*) si cumple las tres condiciones a la vez:
-> 1. **Existencia** — tiene al menos una solución ([[Teorema de Peano | Peano]]).
-> 2. **Unicidad** — tiene a lo más una ([[Existencia y Unicidad Picard | Picard]]).
+> 1. **Existencia** — tiene al menos una solución ([[Teorema de Peano| Peano]]).
+> 2. **Unicidad** — tiene a lo más una ([[Existencia y Unicidad Picard| Picard]]).
 > 3. **Dependencia continua** — la solución varía con continuidad respecto a los datos (esta nota).
 >
 > La tercera es la que rara vez se enuncia pero más importa en la práctica: es la que garantiza que las
@@ -109,7 +109,7 @@ aliases:
 > amplifica** una perturbación infinitesimal del dato. Para parámetros $\lambda$ el esquema es análogo:
 > $\partial y/\partial\lambda$ satisface la misma EDO lineal con un término fuente $\partial_\lambda f$.
 > Esta es la herramienta básica del **análisis de sensibilidad** y la puerta de entrada a la teoría de
-> estabilidad de [[../Sistemas y Dinamica/index | sistemas y dinámica]].
+> estabilidad de [[Sistemas y Dinamica/index| sistemas y dinámica]].
 
 > [!proposicion] Dependencia respecto a parámetros
 > Si la ecuación depende de un parámetro, $y'=f(x,y,\lambda)$, y $f$ es Lipschitz en $(y,\lambda)$
@@ -161,5 +161,5 @@ aliases:
 > - La herramienta que da la cota: [[Desigualdad de Gronwall]].
 > - El teorema de existencia y unicidad de partida: [[Existencia y Unicidad Picard]].
 > - El otro comportamiento global de las soluciones: [[Prolongacion de Soluciones]].
-> - Hacia la estabilidad y el caos: [[../Sistemas y Dinamica/index]].
-> - Marco general: [[index]].
+> - Hacia la estabilidad y el caos: [[Sistemas y Dinamica/index]].
+> - Marco general: [[Fundamentos y Teoria Cualitativa/index]].

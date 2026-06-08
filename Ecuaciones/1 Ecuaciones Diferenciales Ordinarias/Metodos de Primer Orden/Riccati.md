@@ -19,16 +19,16 @@ aliases:
 > La **ecuación de Riccati** es la EDO cuadrática en $y$
 > $$y'+p(x)\,y^{2}+q(x)\,y=r(x).$$
 > Es la "siguiente" tras la lineal: añade un término $y^{2}$. Si $p\equiv0$ es
-> [[Lineal Primer Orden | lineal]]; si $r\equiv0$ es de [[Bernoulli | Bernoulli]] (con $n=2$). En el
+> [[Lineal Primer Orden| lineal]]; si $r\equiv0$ es de [[Bernoulli| Bernoulli]] (con $n=2$). En el
 > caso general **no se resuelve por cuadraturas**: hay que **conocer una solución particular** $y_p$,
 > y entonces el cambio
 > $$y=y_p+\frac{1}{u}$$
 > la convierte en una **lineal de primer orden en $u$**.
 
 > [!info]
-> Octavo y último tipo "estándar" del [[index | catálogo de primer orden]] (libro, cap. 2.3.2). Cierra
-> la familia de **no lineales reducibles**: la [[Bernoulli | Bernoulli]] sale gratis ($r=0$) y la
-> [[Lineal Primer Orden | lineal]] también ($p=0$). Su rasgo distintivo es que **necesita un dato
+> Octavo y último tipo "estándar" del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 2.3.2). Cierra
+> la familia de **no lineales reducibles**: la [[Bernoulli| Bernoulli]] sale gratis ($r=0$) y la
+> [[Lineal Primer Orden| lineal]] también ($p=0$). Su rasgo distintivo es que **necesita un dato
 > extra** —una solución particular— porque, a diferencia de Bernoulli, ningún cambio universal la
 > resuelve a ciegas.
 
@@ -95,7 +95,7 @@ aliases:
 > convierte en una ecuación lineal homogénea en $u$. Por eso la Riccati aparece de forma natural en
 > óptica, teoría de control (ecuación algebraica de Riccati del regulador óptimo) y en la reducción de
 > la ecuación de Schrödinger. Esta conexión con el
-> [[../Lineales de Orden Superior/index | segundo orden]] explica por qué, sin un dato extra, no cabe
+> [[Lineales de Orden Superior/index| segundo orden]] explica por qué, sin un dato extra, no cabe
 > esperar una fórmula por cuadraturas.
 
 > [!algoritmo] Resolver una Riccati
@@ -103,7 +103,7 @@ aliases:
 > 2. **Consigue $y_p$**: dato del problema, o adivínala probando formas simples ($y_p=ax+b$,
 >    $y_p=a/x$, $y_p=ae^{x}$, $\sec x$…).
 > 3. **Cambia** $y=y_p+\dfrac1u$.
-> 4. **Resuelve** la [[Lineal Primer Orden | lineal]] $u'-(2p\,y_p+q)\,u=p$ con factor integrante.
+> 4. **Resuelve** la [[Lineal Primer Orden| lineal]] $u'-(2p\,y_p+q)\,u=p$ con factor integrante.
 > 5. **Recompón** $y=y_p+\dfrac1u$.
 
 > [!warning] Sin $y_p$ no hay método elemental
@@ -117,8 +117,8 @@ aliases:
 > [!resumen]
 > | Caso | Condición | Reduce a |
 > |---|---|---|
-> | Lineal | $p\equiv0$ | [[Lineal Primer Orden \| lineal]] directa |
-> | Bernoulli | $r\equiv0$ | [[Bernoulli \| Bernoulli]] con $n=2$ |
+> | Lineal | $p\equiv0$ | [[Lineal Primer Orden\| lineal]] directa |
+> | Bernoulli | $r\equiv0$ | [[Bernoulli\| Bernoulli]] con $n=2$ |
 > | General | se conoce $y_p$ | lineal vía $y=y_p+1/u$ |
 > | General | sin $y_p$ | segundo orden / numérico |
 
@@ -130,5 +130,5 @@ aliases:
 > [!referencia]
 > - Método al que reduce: [[Lineal Primer Orden]].
 > - Caso particular $r=0$: [[Bernoulli]].
-> - Linealización a segundo orden: [[../Lineales de Orden Superior/index]].
-> - Vuelta al catálogo: [[index]].
+> - Linealización a segundo orden: [[Lineales de Orden Superior/index]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

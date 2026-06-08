@@ -20,7 +20,7 @@ aliases:
 # Prolongación de Soluciones e Intervalo Maximal
 
 > [!definicion]
-> El [[Existencia y Unicidad Picard | teorema de Picard]] solo da una solución **local**: vive en un
+> El [[Existencia y Unicidad Picard| teorema de Picard]] solo da una solución **local**: vive en un
 > intervalo pequeño $|x-x_0|\le h$ alrededor del dato inicial. Pero esa solución se puede **extender**:
 > al llegar a un extremo del intervalo, ese extremo es un nuevo "dato inicial" desde el que volver a
 > aplicar Picard y avanzar un poco más. Pegando todas las extensiones posibles se obtiene un único
@@ -33,12 +33,12 @@ aliases:
 > estando acotada: si pudiera, se prolongaría.
 
 > [!info]
-> Cierra el bloque de [[index | fundamentos cualitativos]] respondiendo la pregunta "¿hasta dónde vive
+> Cierra el bloque de [[Fundamentos y Teoria Cualitativa/index| fundamentos cualitativos]] respondiendo la pregunta "¿hasta dónde vive
 > la solución?" (libro, teoría de prolongación y existencia global). Continúa el carácter **local** de
-> [[Existencia y Unicidad Picard | Picard]] y usa la [[Desigualdad de Gronwall | desigualdad de
+> [[Existencia y Unicidad Picard| Picard]] y usa la [[Desigualdad de Gronwall | desigualdad de
 > Gronwall]] para descartar la explosión en el caso lineal. El ejemplo clave se resuelve por
-> [[../Metodos de Primer Orden/Variables Separables | variables separables]]. Acompaña a
-> [[Dependencia de Condiciones y Parametros | la dependencia respecto a los datos]] en la lista de
+> [[Variables Separables| variables separables]]. Acompaña a
+> [[Dependencia de Condiciones y Parametros| la dependencia respecto a los datos]] en la lista de
 > propiedades "globales" de las soluciones.
 
 ---
@@ -49,8 +49,7 @@ aliases:
 > Este es el ejemplo que conviene **memorizar**, porque desmiente la intuición ingenua de que "si la
 > ecuación es bonita, la solución existe siempre". El campo $f(x,y)=y^2$ es un polinomio: continuo,
 > derivable, **suave en todo el plano**, Lipschitz local en cualquier región acotada. Picard garantiza
-> una única solución local. Resolvámosla por [[../Metodos de Primer Orden/Variables Separables |
-> separables]]:
+> una única solución local. Resolvámosla por [[Variables Separables|separables]]:
 > $$\frac{dy}{y^2}=dx\ \Longrightarrow\ -\frac{1}{y}=x+C.$$
 > Imponiendo $y(0)=1$: $-1/1=0+C\Rightarrow C=-1$, de modo que $-1/y=x-1$ y
 > $$\boxed{\,y(x)=\frac{1}{1-x}\,}.$$
@@ -69,7 +68,7 @@ aliases:
 ## En qué consiste
 
 > [!teoria] Construcción del intervalo maximal
-> Partimos de la solución local que da [[Existencia y Unicidad Picard | Picard]] en $|x-x_0|\le h$.
+> Partimos de la solución local que da [[Existencia y Unicidad Picard| Picard]] en $|x-x_0|\le h$.
 > En el extremo derecho $x_1=x_0+h$ tenemos un nuevo punto $(x_1,y(x_1))$; si sigue dentro del dominio
 > de $f$ y se cumplen las hipótesis de Picard, volvemos a aplicarlo y **continuamos** la solución un
 > tramo más a la derecha. Repitiendo, generamos una cadena de extensiones. La **unión** de todas las
@@ -102,7 +101,7 @@ aliases:
 > (compacto, luego cerrado), es decir, **sigue dentro del dominio** de $f$.
 >
 > **Paso 2 — se prolonga, contradiciendo la maximalidad.** Como $(\omega_+,y^\*)\in\Omega$ y allí
-> $f$ es continua y Lipschitz local, aplicamos [[Existencia y Unicidad Picard | Picard]] al PVI
+> $f$ es continua y Lipschitz local, aplicamos [[Existencia y Unicidad Picard| Picard]] al PVI
 > $y'=f(x,y),\ y(\omega_+)=y^\*$: existe solución en un entorno $[\omega_+,\omega_++\delta]$. Pegándola
 > con la anterior (coinciden en $\omega_+$ por continuidad, y la unicidad las hace una sola) obtenemos
 > una solución definida **más allá** de $\omega_+$. Pero eso contradice que $(\omega_-,\omega_+)$ fuera
@@ -122,7 +121,7 @@ aliases:
 > $$y'+p(x)\,y=q(x),\qquad p,q\ \text{continuas en un intervalo } I,$$
 > toda solución existe en **todo** $I$: el intervalo maximal es el propio $I$, sin explosión interna.
 > La razón es que el crecimiento de $y$ está controlado linealmente por la propia $y$, y eso —vía
-> [[Desigualdad de Gronwall | Gronwall]]— **impide** el blow-up. En forma de cota: escribiendo
+> [[Desigualdad de Gronwall| Gronwall]]— **impide** el blow-up. En forma de cota: escribiendo
 > $y(x)=y_0+\int_{x_0}^x[q(t)-p(t)y(t)]\,dt$, sobre cualquier subintervalo compacto $[a,b]\subset I$
 > donde $|p|\le P$ y $|q|\le Q$ se tiene $|y(x)|\le \bigl(|y_0|+Q(b-a)\bigr)e^{P|x-x_0|}$, que es
 > **finita** en todo $[a,b]$. La solución no puede escaparse a infinito en tiempo finito; se queda
@@ -171,6 +170,6 @@ aliases:
 > [!referencia]
 > - El teorema local que se prolonga: [[Existencia y Unicidad Picard]].
 > - La herramienta que descarta la explosión: [[Desigualdad de Gronwall]].
-> - El método que resuelve el ejemplo estrella: [[../Metodos de Primer Orden/Variables Separables]].
+> - El método que resuelve el ejemplo estrella: [[Variables Separables]].
 > - La otra propiedad global de las soluciones: [[Dependencia de Condiciones y Parametros]].
-> - Marco general: [[index]].
+> - Marco general: [[Fundamentos y Teoria Cualitativa/index]].

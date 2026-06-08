@@ -23,11 +23,11 @@ aliases:
 > **problema de valor inicial (PVI)** fija.
 
 > [!info]
-> Primera parte del curso (la familia **diferencial**, junto con las [[2 Ecuaciones en Derivadas Parciales/index | EDP]]).
+> Primera parte del curso (la familia **diferencial**, junto con las [[2 Ecuaciones en Derivadas Parciales/index| EDP]]).
 > El recorrido va de lo **operativo** (métodos para resolver tipos concretos) a lo **estructural**
-> (cuándo hay solución y si es única). Las técnicas transversales —[[5 Herramientas Transversales/Transformada de Laplace/index | Laplace]],
-> [[5 Herramientas Transversales/Sturm-Liouville/index | Sturm-Liouville]], [[5 Herramientas Transversales/Funciones Especiales/index | funciones especiales]]—
-> viven en [[5 Herramientas Transversales/index | Herramientas]] y se enlazan desde aquí.
+> (cuándo hay solución y si es única). Las técnicas transversales —[[Transformada de Laplace/index| Laplace]],
+> [[Sturm-Liouville/index| Sturm-Liouville]], [[Funciones Especiales/index| funciones especiales]]—
+> viven en [[5 Herramientas Transversales/index| Herramientas]] y se enlazan desde aquí.
 
 ---
 
@@ -48,7 +48,7 @@ aliases:
 > | Lente | En qué consiste | Cuándo se usa |
 > |---|---|---|
 > | **Analítica** | hallar una fórmula cerrada $y(x)$ | solo para **tipos especiales** (separable, lineal, exacta…) |
-> | **Cualitativa** | leer la geometría del [[Fundamentos y Teoria Cualitativa/Campo de Direcciones e Isoclinas\|campo de direcciones]] sin resolver | **siempre** disponible; da forma, equilibrios, estabilidad |
+> | **Cualitativa** | leer la geometría del [[Campo de Direcciones e Isoclinas\|campo de direcciones]] sin resolver | **siempre** disponible; da forma, equilibrios, estabilidad |
 > | **Numérica / series** | aproximar (Euler, RK) o desarrollar en serie | cuando no hay fórmula pero se necesitan valores |
 
 > [!teoria] La gran divisoria: lineal vs. no lineal
@@ -58,9 +58,9 @@ aliases:
 > - Las **lineales** obedecen el **principio de superposición** (la solución general es
 >   $y=y_h+y_p$, homogénea + particular) y son tratables con álgebra lineal —su solución vive
 >   en un espacio vectorial de dimensión $n$. Son las de
->   [[Lineales de Orden Superior/index | orden superior]] y los [[Sistemas y Dinamica/index | sistemas]].
-> - Las **no lineales** no superponen: pueden tener [[Fundamentos y Teoria Cualitativa/Prolongacion de Soluciones\|explosión en tiempo finito]],
->   [[Metodos de Primer Orden/No Resueltas en y prima/Solucion Singular y Envolvente\|soluciones singulares]]
+>   [[Lineales de Orden Superior/index| orden superior]] y los [[Sistemas y Dinamica/index| sistemas]].
+> - Las **no lineales** no superponen: pueden tener [[Prolongacion de Soluciones\|explosión en tiempo finito]],
+>   [[Solucion Singular y Envolvente\|soluciones singulares]]
 >   o caos. Casi todo lo resoluble a mano son **casos especiales** que un cambio de variable
 >   convierte en lineales o separables.
 
@@ -92,7 +92,7 @@ aliases:
 > [!regla] Estrategia para atacar una EDO de primer orden
 > 1. Escríbela en forma normal $y'=f(x,y)$ o en forma diferencial $M\,dx+N\,dy=0$.
 > 2. **Clasifícala** por su forma: ¿separable? ¿homogénea? ¿exacta? ¿lineal? ¿Bernoulli/Riccati?
-> 3. Aplica el método del tipo (ver [[Metodos de Primer Orden/index | Métodos de Primer Orden]]).
+> 3. Aplica el método del tipo (ver [[Metodos de Primer Orden/index| Métodos de Primer Orden]]).
 > 4. Si nada encaja, recurre a lo **cualitativo** (campo de direcciones) o a series/numérico.
 
 ## Resumen
@@ -101,8 +101,8 @@ aliases:
 > | Aspecto | Contenido |
 > |---|---|
 > | Objeto | $F(x,y,y',\dots,y^{(n)})=0$; forma normal $y^{(n)}=f(\dots)$ |
-> | Solución | familia con $n$ constantes; un [[Fundamentos y Teoria Cualitativa/Concepto General de ODE\|PVI]] la fija |
-> | Existencia/unicidad | [[Fundamentos y Teoria Cualitativa/Existencia y Unicidad Picard\|Picard]] ($f$ y $\partial f/\partial y$ continuas) |
+> | Solución | familia con $n$ constantes; un [[Concepto General de ODE\|PVI]] la fija |
+> | Existencia/unicidad | [[Existencia y Unicidad Picard\|Picard]] ($f$ y $\partial f/\partial y$ continuas) |
 > | Primer orden | clasificar y aplicar el método ([[Metodos de Primer Orden/index\|tabla de tipos]]) |
 > | Orden superior / sistemas / series | superposición, fase, recurrencias |
 

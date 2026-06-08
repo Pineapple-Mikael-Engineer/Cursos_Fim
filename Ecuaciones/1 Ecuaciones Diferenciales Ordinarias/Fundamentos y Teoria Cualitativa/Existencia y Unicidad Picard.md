@@ -28,12 +28,12 @@ aliases:
 > ya implica la condición de Lipschitz por el teorema del valor medio.
 
 > [!info]
-> Es la nota **central** de los [[index | fundamentos cualitativos]]: la pregunta "¿la EDO tiene
+> Es la nota **central** de los [[Fundamentos y Teoria Cualitativa/index| fundamentos cualitativos]]: la pregunta "¿la EDO tiene
 > solución y es la única?" se responde aquí (libro, teoría de existencia y unicidad). Geométricamente
-> continúa el [[Campo de Direcciones e Isoclinas | campo de direcciones]] (por qué las curvas
+> continúa el [[Campo de Direcciones e Isoclinas| campo de direcciones]] (por qué las curvas
 > integrales **no se cruzan**); analíticamente apoya todo el [[Concepto General de ODE | concepto de
-> EDO]]. Su versión más débil, con sola continuidad, es el [[Teorema de Peano | teorema de Peano]]; su
-> versión **constructiva** es la [[Iteracion de Picard | iteración de Picard]].
+> EDO]]. Su versión más débil, con sola continuidad, es el [[Teorema de Peano| teorema de Peano]]; su
+> versión **constructiva** es la [[Iteracion de Picard| iteración de Picard]].
 
 ---
 
@@ -56,7 +56,7 @@ aliases:
 > Compruébese la segunda: $y'=\tfrac{4x^{3}}{16}=\tfrac{x^{3}}{4}$ y $x\,y^{1/2}=x\cdot\tfrac{x^{2}}{4}=\tfrac{x^{3}}{4}$.
 > Moraleja: la continuidad de $f$ da existencia (Peano), pero la **unicidad** exige el control extra
 > que aporta Lipschitz. El abanico completo de soluciones de este PVI se estudia en el
-> [[Teorema de Peano | teorema de Peano]].
+> [[Teorema de Peano| teorema de Peano]].
 
 ---
 
@@ -106,31 +106,31 @@ aliases:
 >
 > **Paso 3 — punto fijo de Banach.** Un operador que contrae un espacio métrico completo tiene **un
 > único punto fijo** $y^\*=T[y^\*]$, alcanzado como límite de las iteradas $y_{n+1}=T[y_n]$ desde
-> cualquier $y_0\in X$ (esa sucesión es justo la [[Iteracion de Picard | iteración de Picard]]). Ese
+> cualquier $y_0\in X$ (esa sucesión es justo la [[Iteracion de Picard| iteración de Picard]]). Ese
 > punto fijo es, por la equivalencia integral, la solución del PVI; y al ser único como punto fijo, la
 > solución es **única** en $|x-x_0|\le h$.
 >
 > **Unicidad global.** La condición $Lh<1$ era solo para que la **contracción** funcionara en un paso;
 > la unicidad en todo el intervalo donde la solución viva (no solo en el trozo pequeño) se obtiene sin
-> esa restricción mediante la [[Desigualdad de Gronwall | desigualdad de Gronwall]]: si $y,z$ son dos
+> esa restricción mediante la [[Desigualdad de Gronwall| desigualdad de Gronwall]]: si $y,z$ son dos
 > soluciones, $u=|y-z|$ satisface $u(x)\le L\int_{x_0}^{x}u$, y Gronwall fuerza $u\equiv 0$.
 > $\blacksquare$
 
 > [!info] Por qué la construcción es constructiva
 > La demostración **no** es solo existencial: la sucesión $y_{n+1}=T[y_n]$ converge de verdad a la
 > solución, con error que decae geométricamente, $\|y_n-y^\*\|\le \dfrac{q^{\,n}}{1-q}\,\|y_1-y_0\|$.
-> Ese algoritmo es la [[Iteracion de Picard | iteración de Picard]], el primer "método" para producir
+> Ese algoritmo es la [[Iteracion de Picard| iteración de Picard]], el primer "método" para producir
 > la solución cuando no hay fórmula cerrada.
 
 > [!proposicion] Lectura geométrica: las curvas integrales no se cruzan
 > En la región donde $f$ es continua y Lipschitz, por **cada punto** pasa exactamente una curva
-> integral. Por eso, en el [[Campo de Direcciones e Isoclinas | campo de direcciones]], las soluciones
+> integral. Por eso, en el [[Campo de Direcciones e Isoclinas| campo de direcciones]], las soluciones
 > **nunca se cortan**: dos curvas que se cruzaran en un punto darían allí dos PVI idénticos con dos
 > soluciones distintas, contradiciendo la unicidad.
 
 > [!warning]
 > La **continuidad sola NO basta** para la unicidad. Garantiza existencia (eso es el
-> [[Teorema de Peano | teorema de Peano]]), pero no que la solución sea una. Hace falta el ingrediente
+> [[Teorema de Peano| teorema de Peano]]), pero no que la solución sea una. Hace falta el ingrediente
 > de **Lipschitz**. El contraejemplo canónico es $y'=x\,y^{1/2}$ desde el origen, donde $f$ es continua
 > pero no Lipschitz y aparecen infinitas soluciones. No confundir Lipschitz con derivabilidad: $|y|$ es
 > Lipschitz sin ser derivable; lo que importa es la **cota uniforme** del cociente de incrementos.
@@ -168,4 +168,4 @@ aliases:
 > - El algoritmo que construye la solución: [[Iteracion de Picard]].
 > - La herramienta de la unicidad global: [[Desigualdad de Gronwall]].
 > - Lectura geométrica previa: [[Campo de Direcciones e Isoclinas]].
-> - Marco general: [[Concepto General de ODE]] · [[index]].
+> - Marco general: [[Concepto General de ODE]] · [[Fundamentos y Teoria Cualitativa/index]].

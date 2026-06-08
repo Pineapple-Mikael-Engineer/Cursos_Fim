@@ -27,9 +27,9 @@ aliases:
 > misma ecuación diferencial, pese a no pertenecer a ella.
 
 > [!info]
-> Concepto transversal del bloque [[index | no resueltas en $y'$]]. Es la pieza que explica la "solución
+> Concepto transversal del bloque [[No Resueltas en y prima/index| no resueltas en $y'$]]. Es la pieza que explica la "solución
 > extra" que aparece en [[Clairaut]] y [[Lagrange]] al derivar la ecuación. Conecta con la teoría
-> general de [[../../Fundamentos y Teoria Cualitativa/Curvas Integrales y Soluciones | curvas integrales]]:
+> general de [[Curvas Integrales y Soluciones| curvas integrales]]:
 > la solución general es una **familia** de curvas integrales, y la envolvente es una curva integral
 > adicional que las "borda".
 
@@ -82,6 +82,41 @@ aliases:
 > tangente (luego pendiente $p=y'$) con un miembro de la familia, que sí la satisface; al tener el mismo
 > $(x,y,y')$ que una solución, la envolvente resuelve la misma ecuación.
 
+> [!demostracion] Por qué en la envolvente $\partial F/\partial c=0$
+> **Paso 1 — parametrizar la envolvente por $c$.** Como la envolvente toca a un miembro distinto de la
+> familia en cada punto, a cada valor del parámetro $c$ le corresponde su **punto de tangencia**
+> $\big(x(c),\,y(c)\big)$. Ese punto está sobre la curva número $c$, de modo que
+> $$F\big(x(c),\,y(c),\,c\big)=0\qquad\text{para todo }c.$$
+>
+> **Paso 2 — derivar respecto a $c$** (regla de la cadena, porque $x,y$ dependen de $c$):
+> $$F_x\,x'(c)+F_y\,y'(c)+F_c=0.$$
+>
+> **Paso 3 — usar la tangencia.** El vector $\big(x'(c),y'(c)\big)$ es tangente a la **envolvente**;
+> pero por definición la envolvente es tangente al miembro $c$ en ese punto, así que ese mismo vector
+> es también tangente a la curva $F(x,y,c)=0$ (con $c$ fijo). La tangente de esa curva cumple
+> $F_x\,dx+F_y\,dy=0$, es decir $F_x\,x'+F_y\,y'=0$.
+>
+> **Paso 4 — concluir.** Sustituyendo en el Paso 2, los dos primeros sumandos se cancelan y queda
+> $$F_c\big(x(c),y(c),c\big)=0.$$
+> Luego sobre la envolvente se cumplen **simultáneamente** $F=0$ y $\partial F/\partial c=0$:
+> eliminar $c$ entre ambas (el **c-discriminante**) la produce. $\blacksquare$
+
+> [!ejemplo] La vía del p-discriminante: $(y')^2=4y$
+> Hallemos la solución singular **sin** pasar por la solución general, usando solo la ecuación.
+>
+> **Paso 1 — escribir $\Phi(x,y,p)=0$** con $p=y'$:  $\Phi=p^{2}-4y=0$.
+>
+> **Paso 2 — derivar respecto a $p$:**  $\dfrac{\partial\Phi}{\partial p}=2p=0\ \Rightarrow\ p=0$.
+>
+> **Paso 3 — eliminar $p$:** con $p=0$ en $\Phi=0$ queda $-4y=0$, es decir $\boxed{y=0}$.
+>
+> **Paso 4 — verificar:** $y=0\Rightarrow y'=0$ y $0^2=4\cdot 0$ ✓.
+>
+> Geométricamente: la solución **general** de $(y')^2=4y$ es la familia de parábolas $y=(x+c)^2$
+> (en efecto $y'=2(x+c)$ y $(y')^2=4(x+c)^2=4y$), y la recta $y=0$ es su **envolvente** —tangente a
+> todas en el vértice—. El p-discriminante la obtuvo **directamente de la EDO**, sin conocer la
+> familia. Compáralo con el c-discriminante del ejemplo de las rectas: dos caminos, la misma curva.
+
 > [!algoritmo] Calcular la envolvente (solución singular) por c-discriminante
 > 1. Escribe la familia de soluciones $F(x,y,c)=0$.
 > 2. **Deriva** respecto al parámetro: $\dfrac{\partial F}{\partial c}=0$.
@@ -89,7 +124,7 @@ aliases:
 > 4. **Verifica** que la curva resultante satisface la EDO (no toda eliminación es solución).
 
 > [!proposicion]
-> En la [[Clairaut | ecuación de Clairaut]] $y=cx+\psi(c)$, el c-discriminante reproduce exactamente la
+> En la [[Clairaut| ecuación de Clairaut]] $y=cx+\psi(c)$, el c-discriminante reproduce exactamente la
 > solución singular hallada al derivar la EDO: la envolvente del haz de rectas es la solución singular
 > de la Clairaut. Ambos métodos —derivar la EDO (p-discriminante) o derivar la familia respecto al
 > parámetro (c-discriminante)— conducen a la misma curva.
@@ -121,10 +156,10 @@ aliases:
 > La solución singular es un objeto **geométrico**: la envolvente de la familia de curvas integrales.
 > Se calcula derivando respecto al parámetro (c-discriminante) o respecto a $p=y'$ en la EDO
 > (p-discriminante), y siempre debe **verificarse**. Es lo que distingue a las ecuaciones
-> [[index | no resueltas en $y'$]] de los tipos lineales, donde no hay envolventes.
+> [[No Resueltas en y prima/index| no resueltas en $y'$]] de los tipos lineales, donde no hay envolventes.
 
 > [!referencia]
 > - Donde aparece de forma natural: [[Clairaut]] (envolvente del haz de rectas).
 > - Método general que puede generarla: [[Lagrange]].
-> - Teoría de fondo: [[../../Fundamentos y Teoria Cualitativa/Curvas Integrales y Soluciones]].
-> - Vuelta al bloque: [[index]].
+> - Teoría de fondo: [[Curvas Integrales y Soluciones]].
+> - Vuelta al bloque: [[No Resueltas en y prima/index]].

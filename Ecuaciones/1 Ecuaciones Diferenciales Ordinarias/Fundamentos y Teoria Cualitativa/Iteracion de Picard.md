@@ -25,17 +25,17 @@ aliases:
 > $$y_{n+1}(x)\ =\ y_0+\int_{x_0}^{x} f\bigl(t,\,y_n(t)\bigr)\,dt.$$
 > Cuando $f$ es continua y **Lipschitz en $y$**, esta sucesión converge **uniformemente** a la
 > solución del PVI. Es, por tanto, la versión **constructiva** del teorema de
-> [[Existencia y Unicidad Picard | Picard]]: no solo afirma que la solución existe, sino que la
+> [[Existencia y Unicidad Picard| Picard]]: no solo afirma que la solución existe, sino que la
 > **fabrica** como límite de aproximaciones sucesivas.
 
 > [!info]
-> Vive en los [[index | fundamentos cualitativos]] del libro, como contraparte algorítmica del
-> [[Existencia y Unicidad Picard | teorema de Picard-Lindelöf]]. La idea de fondo es la misma que
+> Vive en los [[Fundamentos y Teoria Cualitativa/index| fundamentos cualitativos]] del libro, como contraparte algorítmica del
+> [[Existencia y Unicidad Picard| teorema de Picard-Lindelöf]]. La idea de fondo es la misma que
 > allí: escribir el PVI como la **ecuación integral** $y=y_0+\int_{x_0}^{x} f(t,y)\,dt$ y aplicar el
 > operador de Picard $T[y]=y_0+\int_{x_0}^{x} f(t,y)\,dt$ una y otra vez, $y_{n+1}=T[y_n]$, partiendo
 > de la función constante. La convergencia se cuantifica con la [[Desigualdad de Gronwall | desigualdad
 > de Gronwall]]; la versión que pide solo continuidad (y construye la solución de otro modo) es el
-> [[Teorema de Peano | teorema de Peano]].
+> [[Teorema de Peano| teorema de Peano]].
 
 ---
 
@@ -79,7 +79,7 @@ aliases:
 ## En qué consiste
 
 > [!teoria] Por qué iterar el operador integral
-> La idea nace de la reformulación integral del PVI (la misma de [[Existencia y Unicidad Picard | Picard]]):
+> La idea nace de la reformulación integral del PVI (la misma de [[Existencia y Unicidad Picard| Picard]]):
 > una función continua $y$ resuelve $y'=f(x,y),\ y(x_0)=y_0$ **si y solo si** es **punto fijo** del
 > operador
 > $$T[y](x)=y_0+\int_{x_0}^{x} f\bigl(t,y(t)\bigr)\,dt,\qquad\text{es decir }y=T[y].$$
@@ -172,10 +172,10 @@ aliases:
 > es un objeto que "está ahí", sino el límite de una sucesión que se puede arrancar a mano. Su cota de
 > error, dominada por una exponencial dividida entre factoriales, garantiza convergencia rápida; su
 > límite es único porque el operador es una contracción. Es la cara algorítmica del determinismo que
-> consagra [[Existencia y Unicidad Picard | Picard]].
+> consagra [[Existencia y Unicidad Picard| Picard]].
 
 > [!referencia]
 > - El teorema que esta iteración demuestra de forma constructiva: [[Existencia y Unicidad Picard]].
 > - La herramienta que cuantifica la convergencia y la unicidad: [[Desigualdad de Gronwall]].
 > - La versión que pide solo continuidad: [[Teorema de Peano]].
-> - Marco general: [[index]].
+> - Marco general: [[Fundamentos y Teoria Cualitativa/index]].

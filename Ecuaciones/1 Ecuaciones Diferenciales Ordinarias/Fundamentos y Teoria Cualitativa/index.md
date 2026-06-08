@@ -22,8 +22,8 @@ aliases:
 > existencia y unicidad de Picard**. La unicidad es la cara matemática del **determinismo**.
 
 > [!info]
-> Base del [[../index | capítulo de EDO]]. Aquí no se resuelve por tipos (eso es
-> [[../Metodos de Primer Orden/index | Métodos de Primer Orden]]); se establece el marco: qué se
+> Base del [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]]. Aquí no se resuelve por tipos (eso es
+> [[Metodos de Primer Orden/index| Métodos de Primer Orden]]); se establece el marco: qué se
 > busca, por qué a veces hay infinitas soluciones o ninguna, y qué condiciones garantizan una sola.
 
 ---
@@ -102,4 +102,4 @@ aliases:
 > [!referencia]
 > - Geometría de partida: [[Campo de Direcciones e Isoclinas]].
 > - Teorema central: [[Existencia y Unicidad Picard]].
-> - Después de los fundamentos, los métodos: [[../Metodos de Primer Orden/index]].
+> - Después de los fundamentos, los métodos: [[Metodos de Primer Orden/index]].

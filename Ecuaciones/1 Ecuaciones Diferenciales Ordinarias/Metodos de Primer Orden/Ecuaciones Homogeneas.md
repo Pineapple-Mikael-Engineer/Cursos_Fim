@@ -24,14 +24,14 @@ aliases:
 > $f$ dependa **solo del cociente** $y/x$:
 > $$f(x,y)=g\!\left(\frac{y}{x}\right).$$
 > Se resuelve con la sustitución $y=ux$ (con $u=y/x$), que la convierte en una ecuación de
-> [[Variables Separables | variables separables]].
+> [[Variables Separables| variables separables]].
 
 > [!info]
-> Segundo tipo del [[index | catálogo de primer orden]] (libro, cap. 1.3.1). Es el primer ejemplo de
+> Segundo tipo del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 1.3.1). Es el primer ejemplo de
 > **reducción por cambio de variable**: no se integra directamente, sino que un sustituto la lleva a
-> [[Variables Separables | separable]]. Los [[Coeficientes Lineales | coeficientes lineales]] no
+> [[Variables Separables| separable]]. Los [[Coeficientes Lineales| coeficientes lineales]] no
 > paralelos se reducen, a su vez, a una homogénea. Para visualizar las curvas solución apóyate en el
-> [[../Fundamentos y Teoria Cualitativa/Campo de Direcciones e Isoclinas | campo de direcciones]]
+> [[Campo de Direcciones e Isoclinas| campo de direcciones]]
 > (de hecho, en una homogénea las isoclinas son **rectas por el origen** $y/x=\text{cte}$).
 
 ---
@@ -105,6 +105,25 @@ aliases:
 > **grado 0** en las variables extensivas $(N,V)$ (al duplicar gas y volumen, $P$ no cambia); la
 > distancia $\sqrt{x^{2}+y^{2}}$ es de **grado 1** ($\lambda^{1}$); el área $xy$ es de **grado 2**.
 
+> [!teorema] El cambio $y=ux$ vuelve separable toda homogénea de grado 0
+> Si $f$ es homogénea de grado cero, la sustitución $y=ux$ transforma $y'=f(x,y)$ en una ecuación de
+> **variables separables** en $u$ y $x$.
+
+> [!demostracion]
+> **Paso 1 — reducir $f$ a una función de $u$.** Por homogeneidad de grado $0$, con $\lambda=1/x$
+> ($x>0$), $f(x,y)=f\!\left(1,\tfrac{y}{x}\right)=g(u)$ donde $u=\dfrac{y}{x}$.
+>
+> **Paso 2 — derivar el cambio.** De $y=ux$, con $u=u(x)$, la regla del producto da $y'=u'x+u$.
+>
+> **Paso 3 — sustituir en la EDO.** $y'=f(x,y)=g(u)$ se convierte en
+> $$u'x+u=g(u)\ \Longrightarrow\ u'x=g(u)-u.$$
+>
+> **Paso 4 — separar.** Donde $g(u)\neq u$,
+> $$\frac{du}{g(u)-u}=\frac{dx}{x},$$
+> con $u$ a la izquierda y $x$ a la derecha: es **separable**. Integrando se obtiene $u(x)$ y, al
+> deshacer $u=y/x$, la solución. Las raíces de $g(u)=u$ dan **rectas solución** $y=u_0x$ (las
+> soluciones de equilibrio del cambio). $\blacksquare$
+
 > [!algoritmo] Resolver una homogénea
 > 1. **Verifica** que $f$ es homogénea de grado 0: comprueba $f(\lambda x,\lambda y)=f(x,y)$, o
 >    reescribe $f$ en función de $y/x$.
@@ -131,11 +150,11 @@ aliases:
 > [!corolario]
 > Una homogénea no se resuelve "de frente": se **reconoce la simetría de escala** ($f$ solo ve la
 > dirección $y/x$) y un único cambio $y=ux$ la deposita en el caso ya resuelto de
-> [[Variables Separables | variables separables]]. Es el patrón que se repite en casi todo el
+> [[Variables Separables| variables separables]]. Es el patrón que se repite en casi todo el
 > capítulo: *cambio de variable* $\to$ *separable* $\to$ *dos integrales*.
 
 > [!referencia]
 > - Destino del método: [[Variables Separables]].
 > - Generalización que se reduce a esta: [[Coeficientes Lineales]] (caso de rectas no paralelas).
-> - Geometría (isoclinas rectas por el origen): [[../Fundamentos y Teoria Cualitativa/Campo de Direcciones e Isoclinas]].
-> - Vuelta al catálogo: [[index]].
+> - Geometría (isoclinas rectas por el origen): [[Campo de Direcciones e Isoclinas]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

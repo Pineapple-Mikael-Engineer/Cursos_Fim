@@ -28,11 +28,11 @@ aliases:
 > que convierte el lado izquierdo en la derivada de un producto y permite **integrar directamente**.
 
 > [!info]
-> Método **estrella** del [[index | catálogo de primer orden]] (libro, cap. 2.1.1) y el más
+> Método **estrella** del [[Metodos de Primer Orden/index| catálogo de primer orden]] (libro, cap. 2.1.1) y el más
 > reutilizado de toda la teoría. Su factor integrante reaparece al resolver [[Bernoulli]] y
 > [[Riccati]] (que se reducen a esta forma) y en las
-> [[../Lineales de Orden Superior/index | lineales de orden superior]]. Cuando $q\equiv0$ la ecuación
-> es además [[Variables Separables | separable]], lo que sirve de puente conceptual. La técnica
+> [[Lineales de Orden Superior/index| lineales de orden superior]]. Cuando $q\equiv0$ la ecuación
+> es además [[Variables Separables| separable]], lo que sirve de puente conceptual. La técnica
 > general de "multiplicar por $\mu$ para fabricar un diferencial total" es la misma del
 > [[Factor Integrante]] para ecuaciones inexactas.
 
@@ -136,7 +136,7 @@ aliases:
 > Esto ya es **integrable de golpe**: $x\,\mu=\int\mu\,q\,dt+c$, de donde
 > $$x=e^{-\int p\,dt}\left(\int e^{\int p\,dt}\,q\,dt+c\right).$$
 > En el caso **homogéneo** $q=0$ queda $x=C\,e^{-\int p\,dt}$, que también sale de
-> [[Variables Separables | separar]] $\dfrac{dx}{x}=-p\,dt$.
+> [[Variables Separables| separar]] $\dfrac{dx}{x}=-p\,dt$.
 
 > [!info] Principio de superposición
 > Como el operador $L[x]=\dot x+p\,x$ es **lineal** ($L[c_1x_1+c_2x_2]=c_1L[x_1]+c_2L[x_2]$), las
@@ -145,7 +145,7 @@ aliases:
 > $$x=x_h+x_p,$$
 > una solución particular $x_p$ de la completa más la solución general $x_h=C\,e^{-\int p\,dt}$ de la
 > homogénea. Esta estructura es la que se generaliza a las
-> [[../Lineales de Orden Superior/index | lineales de orden superior]].
+> [[Lineales de Orden Superior/index| lineales de orden superior]].
 
 > [!algoritmo] Resolver una lineal de primer orden
 > 1. **Forma estándar.** Reescribe como $\dot x+p(t)\,x=q(t)$ (coeficiente de $\dot x$ igual a $1$).
@@ -202,5 +202,5 @@ aliases:
 > - Generaliza la técnica de $\mu$: [[Factor Integrante]] (para ecuaciones inexactas).
 > - No lineales que reducen a esta: [[Bernoulli]], [[Riccati]].
 > - Caso homogéneo como separable: [[Variables Separables]].
-> - Estructura $x_h+x_p$ en dimensión mayor: [[../Lineales de Orden Superior/index]].
-> - Vuelta al catálogo: [[index]].
+> - Estructura $x_h+x_p$ en dimensión mayor: [[Lineales de Orden Superior/index]].
+> - Vuelta al catálogo: [[Metodos de Primer Orden/index]].

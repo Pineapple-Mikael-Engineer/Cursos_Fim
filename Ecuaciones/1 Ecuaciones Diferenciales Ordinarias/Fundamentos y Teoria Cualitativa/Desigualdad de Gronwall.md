@@ -27,14 +27,14 @@ aliases:
 > crecer más rápido que la solución de la EDO lineal asociada.
 
 > [!info]
-> Es la **herramienta de acotación** de los [[index | fundamentos cualitativos]] (libro): no es un
+> Es la **herramienta de acotación** de los [[Fundamentos y Teoria Cualitativa/index| fundamentos cualitativos]] (libro): no es un
 > teorema sobre una EDO concreta, sino un lema que se usa por todas partes para **comparar** una
 > cantidad desconocida con una exponencial conocida. Con ella se cierran tres huecos centrales de la
-> teoría: la **unicidad** global de [[Existencia y Unicidad Picard | Picard]], la **dependencia
+> teoría: la **unicidad** global de [[Existencia y Unicidad Picard| Picard]], la **dependencia
 > continua** respecto de los datos (ver [[Dependencia de Condiciones y Parametros | dependencia de
 > condiciones y parámetros]]) y las **cotas a priori** que permiten [[Prolongacion de Soluciones |
 > prolongar soluciones]]. Complementa, del lado cuantitativo, a la construcción de la
-> [[Iteracion de Picard | iteración de Picard]].
+> [[Iteracion de Picard| iteración de Picard]].
 
 ---
 
@@ -50,7 +50,7 @@ aliases:
 > Es la hipótesis de Gronwall con $\alpha=0$ y $\beta\equiv L$. La conclusión es
 > $$u(x)\ \le\ 0\cdot e^{L(x-x_0)}=0\ \Longrightarrow\ u\equiv 0\ \Longrightarrow\ y_1\equiv y_2.$$
 > Las dos soluciones coinciden en **todo** el intervalo. Así, sin pedir que $Lh<1$ (la restricción
-> técnica que solo servía para que la contracción de [[Existencia y Unicidad Picard | Picard]] funcionara
+> técnica que solo servía para que la contracción de [[Existencia y Unicidad Picard| Picard]] funcionara
 > en un trozo pequeño), Gronwall entrega la **unicidad global** de un plumazo.
 
 ---
@@ -107,7 +107,7 @@ aliases:
 > $R=u$. Es la que se usa para obtener **cotas a priori**: si una solución desconocida $y$ satisface
 > una desigualdad del tipo $\frac{d}{dx}|y|^2\le \beta|y|^2$ (por ejemplo, por una estimación de energía),
 > Gronwall acota $|y|$ por una exponencial **antes** de conocer la solución, lo que impide que escape a
-> infinito en tiempo finito y permite [[Prolongacion de Soluciones | prolongarla]].
+> infinito en tiempo finito y permite [[Prolongacion de Soluciones| prolongarla]].
 
 ## Resumen
 
@@ -125,12 +125,12 @@ aliases:
 > $\alpha=|a-b|$ da **dependencia continua**, y en forma diferencial da **cotas a priori** para
 > prolongar soluciones. Su único mecanismo —pasar de una desigualdad integral implícita a una
 > diferencial vía factor integrante— se reutiliza una y otra vez. Es, junto con la
-> [[Iteracion de Picard | iteración de Picard]], el motor analítico que sostiene a
-> [[Existencia y Unicidad Picard | Picard-Lindelöf]].
+> [[Iteracion de Picard| iteración de Picard]], el motor analítico que sostiene a
+> [[Existencia y Unicidad Picard| Picard-Lindelöf]].
 
 > [!referencia]
 > - El teorema cuya unicidad global cierra: [[Existencia y Unicidad Picard]].
 > - La construcción cuya convergencia cuantifica: [[Iteracion de Picard]].
 > - La propiedad que justifica con $\alpha=|a-b|$: [[Dependencia de Condiciones y Parametros]].
 > - El uso para cotas a priori: [[Prolongacion de Soluciones]].
-> - Marco general: [[index]].
+> - Marco general: [[Fundamentos y Teoria Cualitativa/index]].

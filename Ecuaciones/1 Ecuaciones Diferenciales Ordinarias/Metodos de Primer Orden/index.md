@@ -21,10 +21,10 @@ aliases:
 > tipo ya resuelto (separable o lineal).
 
 > [!info]
-> Núcleo operativo del [[../index | capítulo de EDO]] (libro, caps. 1.1–1.3 y 2.1, 2.3). Apóyate
-> antes en los [[../Fundamentos y Teoria Cualitativa/index | fundamentos]] (qué es una solución,
-> cuándo es única). La estrella transversal es el [[Lineal Primer Orden | factor integrante]], que
-> reaparece en [[Bernoulli]], [[Riccati]] y [[../Lineales de Orden Superior/index | orden superior]].
+> Núcleo operativo del [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]] (libro, caps. 1.1–1.3 y 2.1, 2.3). Apóyate
+> antes en los [[Fundamentos y Teoria Cualitativa/index| fundamentos]] (qué es una solución,
+> cuándo es única). La estrella transversal es el [[Lineal Primer Orden| factor integrante]], que
+> reaparece en [[Bernoulli]], [[Riccati]] y [[Lineales de Orden Superior/index| orden superior]].
 
 ---
 
@@ -105,4 +105,4 @@ aliases:
 > [!referencia]
 > - Punto de partida: [[Variables Separables]] (a él reducen los demás).
 > - El método más reutilizado: [[Lineal Primer Orden]] (factor integrante).
-> - Geometría previa: [[../Fundamentos y Teoria Cualitativa/Campo de Direcciones e Isoclinas]].
+> - Geometría previa: [[Campo de Direcciones e Isoclinas]].
