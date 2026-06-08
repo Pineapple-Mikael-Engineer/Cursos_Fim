@@ -184,15 +184,23 @@ Ecuaciones/
 │   ├── Fredholm/                                  # límites fijos
 │   │   ├── index.md
 │   │   ├── Fredholm Segunda Especie.md           # φ=f+λ∫_a^b K φ
-│   │   ├── Nucleo Degenerado.md                  # K=Σa_i(x)b_i(t) → sistema lineal; Hammerstein
+│   │   ├── Fredholm Primera Especie y Problemas Mal Planteados.md  # mal planteado; regularización de Tikhonov
+│   │   ├── Nucleo Degenerado.md                  # K=Σa_i(x)b_i(t) → sistema lineal
 │   │   ├── Determinantes de Fredholm.md          # D(λ), menores
 │   │   ├── Nucleos Iterados y Resolvente.md
 │   │   ├── Raices Caracteristicas y Funciones Propias.md   # autovalores del núcleo
 │   │   ├── Alternativa de Fredholm.md            # existencia/unicidad; homogénea adjunta
-│   │   └── Nucleos Simetricos/                   # teoría espectral
-│   │       ├── index.md
-│   │       ├── Teoria de Hilbert-Schmidt.md      # autovalores reales, autofunciones ortogonales
-│   │       └── Teorema de Mercer.md              # desarrollo del núcleo en autofunciones
+│   │   ├── Nucleos Simetricos/                   # teoría espectral
+│   │   │   ├── index.md
+│   │   │   ├── Teoria de Hilbert-Schmidt.md      # autovalores reales, autofunciones ortogonales
+│   │   │   ├── Teorema de Mercer.md              # desarrollo del núcleo en autofunciones
+│   │   │   └── Ecuaciones Simetricas No Homogeneas.md   # solución por desarrollo en autofunciones
+│   │   └── Reduccion de Problemas de Frontera.md  # PVF (Sturm-Liouville) → ecuación integral vía función de Green
+│   │
+│   ├── No Lineales/                               # la incógnita entra de forma no lineal
+│   │   ├── index.md
+│   │   ├── Ecuacion de Hammerstein.md            # f(x)+λ∫K(x,t)g(t,φ(t))dt
+│   │   └── Ecuacion de Urysohn.md                # núcleo no lineal general K(x,t,φ)
 │   │
 │   ├── Singulares/                                # núcleos no integrables / dominio infinito
 │   │   ├── index.md
@@ -205,6 +213,7 @@ Ecuaciones/
 │   │   ├── Sustitucion Nucleo Degenerado.md
 │   │   ├── Aproximaciones Sucesivas Numericas.md
 │   │   ├── Metodo de Bubnov-Galiorkin.md
+│   │   ├── Metodo de Colocacion.md               # imponer la ecuación en puntos discretos
 │   │   ├── Cuadratura y Nystrom.md               # discretizar la integral
 │   │   └── Raices Caracteristicas Aproximadas.md   # Ritz, trazas, Kellog
 │   │
