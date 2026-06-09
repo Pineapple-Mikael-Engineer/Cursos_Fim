@@ -30,38 +30,43 @@ def fig_convergencia_metodos():
 # ---------------------------------------------------------- 2. teoria de potencial (capas)
 def fig_potencial_capas():
     of.setup()
-    fig, ax = plt.subplots(figsize=(5.6, 5.0), facecolor=of.FIG_BG)
+    fig, ax = plt.subplots(figsize=(6.0, 5.4), facecolor=of.FIG_BG)
     ax.set_facecolor(of.PANEL)
-    th = np.linspace(0, 2*np.pi, 240)
-    a, b = 1.35, 0.85
+    a, b = 1.55, 1.05
+    th = np.linspace(0, 2*np.pi, 360)
     bx, by = a*np.cos(th), b*np.sin(th)
     # potencial de capa simple (cargas en la frontera, 2D: -ln r)
-    cth = np.linspace(0, 2*np.pi, 80, endpoint=False)
+    cth = np.linspace(0, 2*np.pi, 160, endpoint=False)
     cx, cy = a*np.cos(cth), b*np.sin(cth)
-    g = np.linspace(-3, 3, 300)
+    L = 2.35
+    g = np.linspace(-L, L, 480)
     X, Y = np.meshgrid(g, g)
     V = np.zeros_like(X)
     for xc, yc in zip(cx, cy):
-        V += -np.log(np.hypot(X-xc, Y-yc) + 1e-9)
+        V += -np.log(np.hypot(X - xc, Y - yc) + 0.05)
     V /= len(cx)
-    ax.contour(X, Y, V, levels=np.linspace(V.min()*0.2, V.max()*0.9, 11),
-               colors=[of.ACCENT], linewidths=0.9, alpha=0.8)
-    ax.fill(bx, by, color=of.CURVE, alpha=0.15)
-    ax.plot(bx, by, color=of.BROWN, lw=2.6)
-    # normales exteriores en algunos puntos
-    for t in np.linspace(0, 2*np.pi, 12, endpoint=False):
+    # campo relleno (llena el cuadro) + equipotenciales encima
+    levels = np.linspace(np.percentile(V, 3), np.percentile(V, 99), 22)
+    cf = ax.contourf(X, Y, V, levels=levels, cmap=CMAP, extend='both')
+    ax.contour(X, Y, V, levels=levels[1::3], colors=[of.BROWN], linewidths=0.7, alpha=0.5)
+    # frontera y normales
+    ax.plot(bx, by, color=of.BROWN, lw=3.2)
+    for t in np.linspace(0, 2*np.pi, 16, endpoint=False):
         px, py = a*np.cos(t), b*np.sin(t)
         nx, ny = np.cos(t)/a, np.sin(t)/b
         nrm = np.hypot(nx, ny); nx, ny = nx/nrm, ny/nrm
-        ax.annotate('', xy=(px+0.32*nx, py+0.32*ny), xytext=(px, py),
-                    arrowprops=dict(arrowstyle='->', color=of.BROWN, lw=1.3))
-    ax.text(0, 0, r'$\Omega$', color=of.TEXT, fontsize=15, ha='center', va='center')
-    ax.text(0.0, -1.02, r'$\partial\Omega,\ \sigma$', color=of.TEXT, fontsize=11, ha='center')
-    ax.set_xlim(-3, 3); ax.set_ylim(-3, 3); ax.set_aspect('equal')
+        ax.annotate('', xy=(px + 0.36*nx, py + 0.36*ny), xytext=(px, py),
+                    arrowprops=dict(arrowstyle='-|>', color=of.TICK, lw=1.5))
+    ax.text(0, 0, r'$\Omega$', color=of.TEXT, fontsize=18, ha='center', va='center')
+    ax.text(0, -1.28, r'$\partial\Omega,\ \sigma$', color=of.TEXT, fontsize=12, ha='center',
+            bbox=dict(boxstyle='round,pad=0.15', fc=of.PANEL, ec='none', alpha=0.7))
+    ax.set_xlim(-L, L); ax.set_ylim(-L, L); ax.set_aspect('equal')
     ax.set_xticks([]); ax.set_yticks([])
     for sp in ax.spines.values():
         sp.set_color(of.BROWN)
-    of.title(ax, r'Potencial de capa: densidad $\sigma$ sobre la frontera')
+    cb = fig.colorbar(cf, ax=ax, fraction=0.046, pad=0.03)
+    cb.set_label('potencial', color=of.TEXT); cb.ax.tick_params(colors=of.TICK)
+    of.title(ax, r'Potencial de capa simple: densidad $\sigma$ sobre la frontera')
     of.save(fig, 'potencial_capas')
 
 
