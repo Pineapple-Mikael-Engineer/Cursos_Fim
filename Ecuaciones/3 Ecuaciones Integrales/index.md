@@ -68,6 +68,7 @@ aliases:
 > | [[No Lineales/index\|No Lineales]] | Hammerstein, Urysohn |
 > | [[Singulares/index\|Singulares]] | Abel generalizada, Cauchy, Wiener-Hopf |
 > | [[Metodos Aproximados/index\|Métodos Aproximados]] | degenerar el núcleo, Galerkin, colocación, Nyström |
+> | [[Multivariable/index\|Multivariable y Física]] | Fredholm $n$-dim, teoría de potencial (BEM), dispersión, transporte |
 
 ## Resumen
 

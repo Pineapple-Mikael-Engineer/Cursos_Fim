@@ -217,7 +217,12 @@ Ecuaciones/
 │   │   ├── Cuadratura y Nystrom.md               # discretizar la integral
 │   │   └── Raices Caracteristicas Aproximadas.md   # Ritz, trazas, Kellog
 │   │
-│   └── (opcional) Multivariable y Fisica.md      # Fredholm en dominios n-dim; teoría de potencial, dispersión
+│   └── Multivariable/                            # ecuaciones integrales en R^n y física (profundizado)
+│       ├── index.md
+│       ├── Fredholm Multidimensional.md          # Fredholm en Ω⊂R^n; misma teoría (compacidad)
+│       ├── Teoria de Potencial.md                # capas simple/doble; EDP→frontera (BEM)  # fig: capas
+│       ├── Ecuacion de Lippmann-Schwinger.md     # dispersión; incidente+dispersada  # fig: scattering
+│       └── Transferencia Radiativa.md            # transporte de radiación; Schwarzschild-Milne
 │
 ├── 4 Ecuaciones Difero-integrales/                # DOS campos: integro-diferenciales + cálculo fraccionario
 │   ├── index.md                                   # qué une derivar e integrar; las dos ramas y su relación
