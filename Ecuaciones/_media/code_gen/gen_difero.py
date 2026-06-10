@@ -56,8 +56,61 @@ def fig_memoria_viscoelasticidad():
     of.save(fig, 'memoria_viscoelasticidad')
 
 
+from scipy.special import gammaln
+
+
+def _mlf_neg(alpha, x, K=160):
+    """E_alpha(-x) para x>=0 (array), por serie en log-magnitud."""
+    x = np.asarray(x, float); s = np.zeros_like(x)
+    pos = x > 0; lx = np.zeros_like(x); lx[pos] = np.log(x[pos])
+    for k in range(K):
+        mag = np.exp(k*lx - gammaln(alpha*k + 1.0))
+        term = ((-1.0)**k)*mag
+        term = np.where(pos, term, 1.0 if k == 0 else 0.0)
+        s = s + term
+    return s
+
+
+# ---------------------------------------------------------- 3. Mittag-Leffler vs exponencial
+def fig_mittag_leffler():
+    fig, ax = of.new_fig(figsize=(6.6, 4.4)); of.style_axes(ax)
+    t = np.linspace(0, 6, 400)
+    for a, c in [(0.5, of.CURVE), (0.75, of.ACCENT), (1.0, of.BROWN)]:
+        y = _mlf_neg(a, t**a)
+        lbl = (r'$\alpha=1$:  $e^{-t}$ (exponencial)' if a == 1
+               else fr'$\alpha={a}$:  cola $\sim t^{{-\alpha}}$')
+        ax.plot(t, y, color=c, lw=2.6, ls='-' if a == 1 else '--', label=lbl)
+    ax.axhline(0, color=of.BROWN, lw=0.7, alpha=0.4)
+    ax.annotate('memoria larga:\ndecae como ley de potencias',
+                xy=(4.6, _mlf_neg(0.5, np.array([4.6**0.5]))[0]),
+                xytext=(2.7, 0.62), color=of.TEXT, fontsize=9,
+                arrowprops=dict(arrowstyle='->', color=of.BROWN))
+    ax.set_xlim(0, 6); ax.set_ylim(0, 1.03)
+    of.labels(ax, r'$t$', r'$E_{\alpha}(-t^{\alpha})$')
+    of.title(ax, r'Mittag-Leffler: la "exponencial fraccionaria" $E_{\alpha}(-t^{\alpha})$')
+    of.legend(ax, loc='upper right')
+    of.save(fig, 'mittag_leffler')
+
+
+# ---------------------------------------------------------- 4. difusion anomala (MSD ~ t^alpha)
+def fig_difusion_anomala():
+    fig, ax = of.new_fig(figsize=(6.4, 4.4)); of.style_axes(ax)
+    t = np.logspace(-1, 2, 200)
+    for a, c, lbl in [(0.5, of.CURVE, r'subdifusión $\alpha=0.5$ (atrapamiento)'),
+                      (1.0, of.ACCENT, r'difusión normal $\alpha=1$ (browniana)'),
+                      (1.5, of.BROWN, r'superdifusión $\alpha=1.5$ (Lévy)')]:
+        ax.loglog(t, t**a, color=c, lw=2.6, label=lbl)
+    ax.set_xlim(0.1, 100)
+    of.labels(ax, r'tiempo $t$', r'$\langle x^{2}\rangle \sim t^{\alpha}$')
+    of.title(ax, r'Difusión anómala: la pendiente log-log es $\alpha$')
+    of.legend(ax, loc='upper left')
+    of.save(fig, 'difusion_anomala')
+
+
 if __name__ == '__main__':
     print('Generando figuras Difero-integrales:')
     fig_differintegral()
     fig_memoria_viscoelasticidad()
+    fig_mittag_leffler()
+    fig_difusion_anomala()
     print('Listo.')
