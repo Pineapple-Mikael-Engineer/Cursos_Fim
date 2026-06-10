@@ -1,0 +1,40 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\ctikzset{bipoles/length=1.3cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % ===== circuito =====
+  \coordinate (A) at (2.2,3.8);
+  \coordinate (B) at (0,0);
+  \coordinate (C) at (4.4,0);
+  \coordinate (O) at (2.2,1.5);
+  \draw (A) to[V=$u_1$] (B);
+  \draw (A) to[R=$R_2$] (C);
+  \draw (B) to[R=$R_3$] (C);
+  \draw (O) to[R=$R_4$] (A);
+  \draw (O) to[R=$R_5$] (B);
+  \draw (O) to[R=$R_6$] (C);
+  \foreach \P in {A,B,C,O} \fill (\P) circle (2.6pt);
+  \node[above=1pt] at (A){$A$}; \node[left=1pt] at (B){$B$};
+  \node[right=1pt] at (C){$C$}; \node[above right=0pt] at (O){$O$};
+  \node at (2.2,-1.2){\textbf{circuito}};
+  % ===== grafo =====
+  \begin{scope}[xshift=8.4cm]
+    \coordinate (A2) at (2.2,3.8);
+    \coordinate (B2) at (0,0);
+    \coordinate (C2) at (4.4,0);
+    \coordinate (O2) at (2.2,1.5);
+    \draw (A2)--(B2) node[midway,left]{$1$};
+    \draw (A2)--(C2) node[midway,right]{$2$};
+    \draw (B2)--(C2) node[midway,below]{$3$};
+    \draw (O2)--(A2) node[midway,right=1pt]{$4$};
+    \draw (O2)--(B2) node[midway,below left=-2pt]{$5$};
+    \draw (O2)--(C2) node[midway,below right=-2pt]{$6$};
+    \foreach \P in {A2,B2,C2,O2} \fill (\P) circle (3pt);
+    \node[above=1pt] at (A2){$A$}; \node[left=1pt] at (B2){$B$};
+    \node[right=1pt] at (C2){$C$}; \node[above right=0pt] at (O2){$O$};
+    \node at (2.2,-1.2){\textbf{grafo}};
+  \end{scope}
+\end{circuitikz}
+\end{document}
