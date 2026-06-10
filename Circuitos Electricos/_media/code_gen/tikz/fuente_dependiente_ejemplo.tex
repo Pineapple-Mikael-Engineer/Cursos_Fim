@@ -1,0 +1,16 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.4cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \draw (0,0) to[V=$V_s$] (0,3.6);
+  \draw (0,3.6) to[R=$R_1$, i>^=$i_x$] (3,3.6) coordinate(A);
+  \draw (A) to[R=$R_2$] (3,0) coordinate(B);
+  \draw (A) to[R=$R_3$] (6,3.6);
+  \draw (6,3.6) to[cV=$4\,i_x$] (6,0);
+  \draw (0,0) -- (B) -- (6,0);
+  \draw[-{Latex[length=2.4mm]}] (1.5,1.7) ++(125:0.6) arc(125:-165:0.6); \node at (1.5,1.7){$i_1$};
+  \draw[-{Latex[length=2.4mm]}] (4.5,1.7) ++(125:0.6) arc(125:-165:0.6); \node at (4.5,1.7){$i_2$};
+  \node[above=1pt] at (A){$A$};
+\end{circuitikz}
+\end{document}

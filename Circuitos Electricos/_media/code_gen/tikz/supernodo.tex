@@ -1,0 +1,18 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.4cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \draw (0,0) to[I=$I_{s1}$] (0,3) -- (2,3) coordinate(n1);
+  \draw (n1) to[V=$V_s$] (5,3) coordinate(n2);
+  \draw (n1) to[R=$R_1$] (2,0);
+  \draw (n2) to[R=$R_2$] (5,0);
+  \draw (7,0) to[I=$I_{s2}$] (7,3) -- (n2);
+  \draw (0,0) -- (7,0);
+  \fill (n1) circle(2.6pt); \fill (n2) circle(2.6pt);
+  \node[below left=1pt] at (n1){$V_1$}; \node[below right=1pt] at (n2){$V_2$};
+  \draw (3.5,0) node[ground]{};
+  \draw[dashed, rounded corners=7pt] (1.2,2.1) rectangle (5.8,3.9);
+  \node[above=1pt] at (3.5,3.9){\small supernodo};
+\end{circuitikz}
+\end{document}
