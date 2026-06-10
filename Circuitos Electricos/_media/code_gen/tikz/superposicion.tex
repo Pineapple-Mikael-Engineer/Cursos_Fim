@@ -1,0 +1,32 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.2cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.85pt]
+  % (a) original
+  \draw (0,0) to[V=$V_s$] (0,2.6) to[R=$R_1$] (2,2.6) coordinate(N);
+  \draw (N) to[R=$R_2$] (2,0);
+  \draw (0,0)--(2,0);
+  \draw (N) -- (3.4,2.6); \draw (3.4,2.6) to[I=$I_s$] (3.4,0); \draw (3.4,0)--(2,0);
+  \fill (N) circle(2pt); \node[above=1pt] at (N){$N$};
+  \node at (1.7,-1.1){\small (a) original};
+  % (b) solo Vs (Is abierta)
+  \begin{scope}[xshift=6.2cm]
+    \draw (0,0) to[V=$V_s$] (0,2.6) to[R=$R_1$] (2,2.6) coordinate(N);
+    \draw (N) to[R=$R_2$] (2,0);
+    \draw (0,0)--(2,0);
+    \draw (N) -- (3,2.6) node[ocirc]{}; \node[ocirc] at (3,1.55){}; \draw (3,1.55)--(3,0)--(2,0);
+    \fill (N) circle(2pt);
+    \node at (1.7,-1.1){\small (b) solo $V_s$ ($I_s$ abierta)};
+  \end{scope}
+  % (c) solo Is (Vs en corto)
+  \begin{scope}[xshift=12.4cm]
+    \draw (0,0) -- (0,2.6) to[R=$R_1$] (2,2.6) coordinate(N);
+    \draw (N) to[R=$R_2$] (2,0);
+    \draw (0,0)--(2,0);
+    \draw (N) -- (3.4,2.6); \draw (3.4,2.6) to[I=$I_s$] (3.4,0); \draw (3.4,0)--(2,0);
+    \fill (N) circle(2pt);
+    \node at (1.7,-1.1){\small (c) solo $I_s$ ($V_s$ en corto)};
+  \end{scope}
+\end{circuitikz}
+\end{document}
