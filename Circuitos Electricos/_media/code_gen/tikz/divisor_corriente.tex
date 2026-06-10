@@ -1,0 +1,10 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  \draw (0,-2) to[I=$i$] (0,2);
+  \draw (0,2) -- (2,2); \draw (0,-2) -- (2,-2);
+  \draw (2,2) to[R=$R_1$, i>^=$i_1$] (2,-2);
+  \draw (2,2) -- (4,2) to[R=$R_2$, i>^=$i_2$] (4,-2) -- (2,-2);
+\end{circuitikz}
+\end{document}

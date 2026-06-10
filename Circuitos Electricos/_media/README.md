@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # _media — figuras y código del curso Circuitos Eléctricos
 
 - `img_gen/` — SVG finales que se embeben (`![[nombre.svg|ancho]]`).

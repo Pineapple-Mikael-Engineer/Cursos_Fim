@@ -1,0 +1,18 @@
+\documentclass[border=14pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.4cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \draw (0,0) to[V=$U_{s1}$] (0,4);
+  \draw (0,4) to[R=$R_1$, i>^=$i_1$] (4,4) coordinate(A);
+  \draw (A) to[R=$R_2$, i>^=$i_2$] (4,0) coordinate(B);
+  \draw (A) to[R=$R_3$, i>^=$i_3$] (8,4);
+  \draw (8,4) to[V=$U_{s2}$] (8,0);
+  \draw (0,0) -- (B) -- (8,0);
+  \draw[-{Latex[length=2.6mm]}] (2,1.9) ++(125:0.78) arc (125:-165:0.78);
+  \node at (2,1.9){$i_a$};
+  \draw[-{Latex[length=2.6mm]}] (6,1.9) ++(125:0.78) arc (125:-165:0.78);
+  \node at (6,1.9){$i_b$};
+  \node[above left=2pt] at (A){$A$}; \node[below=2pt] at (B){$B$};
+\end{circuitikz}
+\end{document}
