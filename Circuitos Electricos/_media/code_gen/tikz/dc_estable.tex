@@ -1,0 +1,23 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.3cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % (a) circuito
+  \draw (0,0) to[V=$V_s$] (0,3) to[R=$R_1$] (2,3) to[L=$L$] (4,3) coordinate(A);
+  \draw (A) to[C=$C$] (4,0);
+  \draw (A) -- (5.6,3) to[R=$R_2$] (5.6,0);
+  \draw (0,0) -- (5.6,0);
+  \node at (2.8,-1.1){\small (a) circuito con $L$ y $C$};
+  % (b) DC permanente
+  \begin{scope}[xshift=8.5cm]
+    \draw (0,0) to[V=$V_s$] (0,3) to[R=$R_1$] (2,3) -- (4,3) coordinate(A);
+    \node[above=1pt] at (3,3){\small $L\to$ corto};
+    \draw (A) -- (4,2.1) node[ocirc]{}; \node[ocirc] at (4,1.5){}; \draw (4,1.5)--(4,0);
+    \node[right=2pt] at (4,1.8){\small $C\to$ abierto};
+    \draw (A) -- (5.6,3) to[R=$R_2$] (5.6,0);
+    \draw (0,0) -- (5.6,0);
+    \node at (2.8,-1.1){\small (b) en DC permanente};
+  \end{scope}
+\end{circuitikz}
+\end{document}
