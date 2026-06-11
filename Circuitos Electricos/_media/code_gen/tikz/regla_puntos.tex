@@ -4,15 +4,29 @@
 \ctikzset{bipoles/length=1.4cm}
 \begin{document}
 \begin{circuitikz}[american, line width=0.9pt]
-  % CASO + : puntos del mismo lado
-  \draw (0,0) to[L, l_=$L_1$] (0,2.8); \fill (0,2.5) ++(0.2,0) circle(2.2pt);
-  \draw (2,0) to[L, l=$L_2$] (2,2.8); \fill (2,2.5) ++(-0.2,0) circle(2.2pt);
-  \node[align=center] at (1,-0.9){\small puntos enfrentados\\[-2pt]$v_2=+M\dfrac{di_1}{dt}$};
-  % CASO - : puntos en lados opuestos
-  \begin{scope}[xshift=6cm]
-    \draw (0,0) to[L, l_=$L_1$] (0,2.8); \fill (0,2.5) ++(0.2,0) circle(2.2pt);
-    \draw (2,0) to[L, l=$L_2$] (2,2.8); \fill (2,0.3) ++(-0.2,0) circle(2.2pt);
-    \node[align=center] at (1,-0.9){\small puntos opuestos\\[-2pt]$v_2=-M\dfrac{di_1}{dt}$};
+  %==== CASO +M : puntos enfrentados (ambos arriba) ====
+  % primario: i1 entra por el terminal con punto (arriba)
+  \draw (0,3.7) node[ocirc]{} -- (0,3.0);
+  \draw[-{Latex[length=2.6mm]}] (0,3.55) -- (0,3.05); \node[left=1pt] at (0,3.35){$i_1$};
+  \draw (0,3.0) to[L, l_=$L_1$] (0,0.5) -- (0,-0.1) node[ocirc]{};
+  \fill (0.22,2.65) circle(2.3pt);
+  % secundario abierto: v2 con + arriba
+  \draw (2,3.7) node[ocirc]{} -- (2,3.0); \node[right=2pt] at (2.0,3.45){$+$};
+  \draw (2,3.0) to[L, l=$L_2$] (2,0.5) -- (2,-0.1) node[ocirc]{}; \node[right=2pt] at (2.0,0.05){$-$};
+  \fill (1.78,2.65) circle(2.3pt);
+  \draw[-{Latex[length=2.4mm]}] (2.75,3.3) -- (2.75,0.3); \node[right=1pt] at (2.75,1.8){$v_2$};
+  \node[align=center] at (1.4,-1.05){\small puntos enfrentados\\[1pt]$v_2=+M\,\dfrac{di_1}{dt}$};
+  %==== CASO -M : puntos opuestos ====
+  \begin{scope}[xshift=7cm]
+    \draw (0,3.7) node[ocirc]{} -- (0,3.0);
+    \draw[-{Latex[length=2.6mm]}] (0,3.55) -- (0,3.05); \node[left=1pt] at (0,3.35){$i_1$};
+    \draw (0,3.0) to[L, l_=$L_1$] (0,0.5) -- (0,-0.1) node[ocirc]{};
+    \fill (0.22,2.65) circle(2.3pt);
+    \draw (2,3.7) node[ocirc]{} -- (2,3.0); \node[right=2pt] at (2.0,3.45){$+$};
+    \draw (2,3.0) to[L, l=$L_2$] (2,0.5) -- (2,-0.1) node[ocirc]{}; \node[right=2pt] at (2.0,0.05){$-$};
+    \fill (1.78,0.85) circle(2.3pt);
+    \draw[-{Latex[length=2.4mm]}] (2.75,3.3) -- (2.75,0.3); \node[right=1pt] at (2.75,1.8){$v_2$};
+    \node[align=center] at (1.4,-1.05){\small puntos opuestos\\[1pt]$v_2=-M\,\dfrac{di_1}{dt}$};
   \end{scope}
 \end{circuitikz}
 \end{document}
