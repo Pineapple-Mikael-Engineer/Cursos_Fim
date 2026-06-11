@@ -30,3 +30,35 @@ def fig_tres_fases():
 if __name__ == '__main__':
     fig_tres_fases()
     print('listo')
+
+
+def _phasor(ax, ang_deg, color, lab, r=1.0):
+    import numpy as _np
+    a = _np.deg2rad(ang_deg)
+    ax.annotate('', xy=(r*_np.cos(a), r*_np.sin(a)), xytext=(0, 0),
+                arrowprops=dict(arrowstyle='-|>', color=color, lw=2.5))
+    ax.text(1.18*r*_np.cos(a), 1.18*r*_np.sin(a), lab, color=color, fontsize=11,
+            ha='center', va='center')
+
+
+def fig_componentes_simetricas():
+    import numpy as _np
+    fig, axs = of.plt.subplots(1, 3, figsize=(9.6, 3.5))
+    fig.patch.set_facecolor(of.PANEL)
+    cols = [of.CURVE, of.ACCENT, of.BROWN]
+    titles = ['secuencia positiva\n($abc$)', 'secuencia negativa\n($acb$)', 'homopolar (en fase)']
+    seqs = [[0, -120, 120], [0, 120, -120], [4, 0, -4]]
+    labs = [['$a_1$', '$b_1$', '$c_1$'], ['$a_2$', '$b_2$', '$c_2$'], ['$a_0$', '$b_0$', '$c_0$']]
+    for ax, ttl, seq, lb in zip(axs, titles, seqs, labs):
+        of.style_axes(ax)
+        ax.axhline(0, color=of.GRID, lw=0.7); ax.axvline(0, color=of.GRID, lw=0.7)
+        for ang, c, l in zip(seq, cols, lb):
+            _phasor(ax, ang, c, l)
+        ax.set_xlim(-1.45, 1.45); ax.set_ylim(-1.45, 1.45); ax.set_aspect('equal')
+        ax.set_title(ttl, color=of.TEXT, fontsize=10.5)
+    fig.tight_layout(); of.save(fig, 'componentes_simetricas')
+
+
+if __name__ == '__main__':
+    fig_componentes_simetricas()
+    print('comp listo')
