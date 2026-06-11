@@ -9,7 +9,11 @@ Dinamica/
 │
 ├── 1 Particula/                                     # toda la mecánica de la partícula, agrupada
 │   ├── index.md
-│   ├── Cinematica de la Particula.md                # cartesianas + intrínsecas (n-t) + polares/cilíndricas; v, a; a_n=v^2/rho; término 2 r' theta'   # fig: triedro t-n, polares
+│   ├── Cinematica/                                  # los sistemas de coordenadas SÍ ramifican
+│   │   ├── index.md                                 # r,v,a; cartesianas (versores fijos); panorama de sistemas
+│   │   ├── Componentes Intrinsecas.md               # Frenet-Serret 3D: t,n,b; curvatura y TORSIÓN; a=v' t+(v^2/rho) n (sin componente binormal)   # fig: triedro t-n
+│   │   ├── Coordenadas Cilindricas.md               # (r,theta,z)=polares+z; v, a; término de Coriolis 2 r' theta'   # fig: polares
+│   │   └── Coordenadas Esfericas.md                 # (r,theta,phi); v=r' e_r+r theta' e_theta+r sin(theta) phi' e_phi; a deducida vía base móvil   # fig
 │   ├── Cinetica de la Particula.md                  # leyes de Newton; ecuaciones de movimiento proyectadas en t-n y polares; fuerzas comunes   # fig: DCL
 │   ├── Trabajo y Energia.md                         # U=int F.dr; teorema T-E; conservativas F=-grad V; conservación
 │   ├── Impulso y Momento.md                         # impulso-lineal; momento angular H_O=r x mv; conservación; choques + coef. restitución (INTEGRAR "Coeficiente de Restitucion")   # fig

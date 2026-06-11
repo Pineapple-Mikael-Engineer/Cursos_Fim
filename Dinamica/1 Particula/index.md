@@ -33,8 +33,8 @@ aliases:
 > Toda la dinámica de la partícula se organiza en cuatro piezas, cada una deducida de la anterior:
 >
 > 1. **Cinemática** — describir el movimiento sin sus causas: $\vec{r}$, $\vec{v}=\dot{\vec{r}}$,
->    $\vec{a}=\dot{\vec{v}}$, en los sistemas de coordenadas que convengan (cartesianas, intrínsecas,
->    polares). → [[Cinematica de la Particula]].
+>    $\vec{a}=\dot{\vec{v}}$, en los sistemas de coordenadas que convengan (cartesianas, intrínsecas 3D
+>    de Frenet, cilíndricas, esféricas). → [[Cinematica/index | cinemática de la partícula]].
 > 2. **Cinética** — la causa del movimiento: las leyes de Newton, $\sum\vec{F}=m\vec{a}$, proyectadas
 >    según la geometría del problema. → [[Cinetica de la Particula]].
 > 3. **Trabajo y energía** — primera integral de Newton **en el espacio**: integrando
@@ -58,7 +58,7 @@ aliases:
 > [!info] Las notas de este capítulo
 > | Nota | Contenido |
 > |:---|:---|
-> | [[Cinematica de la Particula]] | $\vec{r},\vec{v},\vec{a}$ en cartesianas, intrínsecas ($a_n=v^2/\rho$) y polares |
+> | [[Cinematica/index | cinemática de la partícula]] | $\vec{r},\vec{v},\vec{a}$ en cartesianas, intrínsecas 3D (Frenet), cilíndricas y esféricas |
 > | [[Cinetica de la Particula]] | leyes de Newton; ecuaciones de movimiento proyectadas |
 > | [[Trabajo y Energia]] | teorema trabajo-energía; fuerzas conservativas; conservación |
 > | [[Impulso y Momento]] | impulso-cantidad de movimiento; momento angular; choques |

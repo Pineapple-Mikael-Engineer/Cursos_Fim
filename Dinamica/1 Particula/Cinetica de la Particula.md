@@ -32,7 +32,7 @@ aliases:
 > [!info]
 > Segunda sección de la [[1 Particula/index | partícula]] ([[Dinamica/index | Dinámica]]): es el puente
 > entre la descripción y sus causas. Toma la aceleración $\vec a$ deducida en
-> [[Cinematica de la Particula]] y la inserta en $\sum\vec F=m\vec a$, proyectándola según la geometría
+> [[Cinematica/index | cinemática de la partícula]] y la inserta en $\sum\vec F=m\vec a$, proyectándola según la geometría
 > (intrínsecas o polares). Integrada **en el espacio** da [[Trabajo y Energia]]; integrada **en el
 > tiempo**, [[Impulso y Momento]]. En marcos **no inerciales** la segunda ley exige añadir
 > **pseudofuerzas** → [[Operador Derivada en Base Movil]]. Referencia: Taylor, caps. 1-2.
@@ -92,7 +92,7 @@ aliases:
 > donde $v$ es la rapidez, $\rho$ el radio de curvatura, $(r,\theta)$ las coordenadas polares planas.
 
 > [!demostracion]
-> **Paso 1 — La aceleración ya está deducida.** En [[Cinematica de la Particula]] se demostró que, en
+> **Paso 1 — La aceleración ya está deducida.** En [[Cinematica/index | cinemática de la partícula]] se demostró que, en
 > las bases móviles,
 > $$\vec a=\dot v\,\hat t+\frac{v^2}{\rho}\,\hat n\qquad\text{(intrínsecas)},$$
 > $$\vec a=(\ddot r-r\dot\theta^2)\,\hat e_r+(r\ddot\theta+2\dot r\dot\theta)\,\hat e_\theta\qquad\text{(polares)}.$$
@@ -144,6 +144,6 @@ aliases:
 
 > [!referencia]
 > Taylor, *Classical Mechanics*, caps. 1-2. Aceleración proyectada:
-> [[Cinematica de la Particula]]. Marcos no inerciales y pseudofuerzas:
+> [[Cinematica/index | cinemática de la partícula]]. Marcos no inerciales y pseudofuerzas:
 > [[Operador Derivada en Base Movil]]. Primeras integrales: [[Trabajo y Energia]],
 > [[Impulso y Momento]]. Capítulo: [[1 Particula/index]].
