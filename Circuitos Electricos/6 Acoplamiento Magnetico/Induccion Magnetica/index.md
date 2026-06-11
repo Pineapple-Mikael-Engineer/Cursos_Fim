@@ -20,8 +20,8 @@ aliases:
 > acoplamiento** $k$, y el **signo** del efecto mutuo lo fija la **regla de los puntos**.
 
 > [!info]
-> Primera sección del [[6 Acoplamiento Magnetico/index | capítulo 6]]. Generaliza el [[Inductor]] del
-> capítulo 3 a pares de bobinas; es la física que después usa el [[Transformador Ideal | transformador]].
+> Primera sección del [[6 Acoplamiento Magnetico/index| capítulo 6]]. Generaliza el [[Inductor]] del
+> capítulo 3 a pares de bobinas; es la física que después usa el [[Transformador Ideal| transformador]].
 > Fraile Mora, cap. 1, §1.19.
 
 ---
@@ -48,8 +48,7 @@ aliases:
 >   (lo que la 1 induce en la 2 por unidad de $di/dt$ es lo mismo que la 2 induce en la 1).
 > - **Cota**, $M\le\sqrt{L_1L_2}$: no puede compartirse más flujo del que cada bobina enlaza consigo
 >   misma. El cociente $k=\dfrac{M}{\sqrt{L_1L_2}}\in[0,1]$ —el **coeficiente de acoplamiento**— mide
->   qué fracción se comparte: $k\to0$ casi independientes, $k\to1$ acoplo perfecto. → [[Coeficiente de
->   Acoplamiento]].
+>   qué fracción se comparte: $k\to0$ casi independientes, $k\to1$ acoplo perfecto. → [[Coeficiente de Acoplamiento]].
 >
 > Ambas se demuestran exigiendo que la energía $W=\tfrac12 L_1 i_1^2+\tfrac12 L_2 i_2^2\pm M i_1 i_2$
 > sea siempre $\ge0$.

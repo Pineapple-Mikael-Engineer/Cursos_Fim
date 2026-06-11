@@ -51,7 +51,7 @@ aliases:
 > [!info] Las secciones y notas
 > | Nota | Contenido |
 > |:---|:---|
-> | [[Induccion Magnetica/index| Inducción magnética]] | autoinducción, mutua, $k$, regla de los puntos |
+> | [[Induccion Magnetica/index\| Inducción magnética]] | autoinducción, mutua, $k$, regla de los puntos |
 > | [[Acoplamiento Magnetico Fasorial]] | bobinas acopladas en régimen sinusoidal ($j\omega M$) |
 > | [[Transformador con Nucleo de Aire]] | el transformador real acoplado |
 > | [[Circuito Equivalente con Acoplo Conductivo]] | el equivalente en T (sin acoplo) |

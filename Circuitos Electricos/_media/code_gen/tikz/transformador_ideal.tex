@@ -1,0 +1,25 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.5cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % primario
+  \draw (-1.4,3.2) node[ocirc]{} to[short,-{Latex[length=2.4mm]}] (-0.4,3.2);
+  \draw (-0.4,3.2) -- (0,3.2) to[L] (0,0) -- (-0.4,0);
+  \draw (-0.4,0) -- (-1.4,0) node[ocirc]{};
+  \draw (-1.4,3.2) to[open, v^=$V_1$] (-1.4,0);
+  \node[above] at (-0.9,3.28){$I_1$};
+  \fill (0.22,2.85) circle(2.3pt);
+  \node[left] at (-0.15,1.6){$N_1$};
+  % nucleo
+  \draw (0.85,-0.3) -- (0.85,3.5); \draw (1.05,-0.3) -- (1.05,3.5);
+  % secundario
+  \draw (1.9,3.2) to[L, mirror] (1.9,0);
+  \draw (1.9,3.2) -- (2.3,3.2) to[short,-{Latex[length=2.4mm]}] (3.3,3.2) node[midway,above]{$I_2$};
+  \draw (3.3,3.2) node[ocirc]{}; \draw (1.9,0) -- (3.3,0) node[ocirc]{};
+  \draw (3.3,3.2) to[open, v=$V_2$] (3.3,0);
+  \fill (1.68,2.85) circle(2.3pt);
+  \node[right] at (2.05,1.6){$N_2$};
+  \node at (0.95,-1.0){\small relación $N_1:N_2$};
+\end{circuitikz}
+\end{document}
