@@ -1,0 +1,23 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.5cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % primario
+  \draw (0,0) to[L, l_=$L_1$, i>^=$i_1$] (0,3.2);
+  \draw (0,3.2) -- (-1.2,3.2) node[ocirc]{};
+  \draw (0,0) -- (-1.2,0) node[ocirc]{};
+  \draw (-1.2,3.2) to[open, v^=$v_1$] (-1.2,0);
+  \fill (0.0,2.85) ++(0.22,0) circle(2.4pt);
+  % secundario
+  \draw (3.4,0) to[L, l=$L_2$, i<^=$i_2$] (3.4,3.2);
+  \draw (3.4,3.2) -- (4.6,3.2) node[ocirc]{};
+  \draw (3.4,0) -- (4.6,0) node[ocirc]{};
+  \draw (4.6,3.2) to[open, v=$v_2$] (4.6,0);
+  \fill (3.4,2.85) ++(-0.22,0) circle(2.4pt);
+  % acoplamiento M
+  \draw[{Latex}-{Latex}, dashed, line width=0.7pt] (0.55,2.4) to[bend left=20] (2.85,2.4);
+  \node at (1.7,3.0){$M$};
+  \node at (1.7,1.55){\small flujo mutuo};
+\end{circuitikz}
+\end{document}

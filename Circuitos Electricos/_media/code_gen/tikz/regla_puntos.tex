@@ -1,0 +1,18 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{amsmath}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.4cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % CASO + : puntos del mismo lado
+  \draw (0,0) to[L, l_=$L_1$] (0,2.8); \fill (0,2.5) ++(0.2,0) circle(2.2pt);
+  \draw (2,0) to[L, l=$L_2$] (2,2.8); \fill (2,2.5) ++(-0.2,0) circle(2.2pt);
+  \node[align=center] at (1,-0.9){\small puntos enfrentados\\[-2pt]$v_2=+M\dfrac{di_1}{dt}$};
+  % CASO - : puntos en lados opuestos
+  \begin{scope}[xshift=6cm]
+    \draw (0,0) to[L, l_=$L_1$] (0,2.8); \fill (0,2.5) ++(0.2,0) circle(2.2pt);
+    \draw (2,0) to[L, l=$L_2$] (2,2.8); \fill (2,0.3) ++(-0.2,0) circle(2.2pt);
+    \node[align=center] at (1,-0.9){\small puntos opuestos\\[-2pt]$v_2=-M\dfrac{di_1}{dt}$};
+  \end{scope}
+\end{circuitikz}
+\end{document}
