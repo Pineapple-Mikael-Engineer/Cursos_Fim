@@ -25,7 +25,7 @@ aliases:
 > Caso particular de la [[Potencia Instantanea| potencia instantánea]] en
 > [[Potencia en AC/index| Potencia en AC]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]);
 > explica el **origen físico** de la potencia activa (en $R$) y de la reactiva (en $L$ y $C$). Conecta
-> directamente con el desfase introducido por [[Fasores Electricos]] y se formaliza con las expresiones
+> directamente con el desfase introducido por [[Fasores]] y se formaliza con las expresiones
 > de [[Potencia en Sinuidal y Fasorial]]. Fraile Mora, cap. 2, §2.9.
 
 ---
@@ -115,5 +115,5 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.9. Origen general: [[Potencia Instantanea]] y
-> [[Potencia en Sinuidal y Fasorial]]. Desfase: [[Fasores Electricos]]. Síntesis $P$–$Q$–$S$:
+> [[Potencia en Sinuidal y Fasorial]]. Desfase: [[Fasores]]. Síntesis $P$–$Q$–$S$:
 > [[Potencia Compleja]].

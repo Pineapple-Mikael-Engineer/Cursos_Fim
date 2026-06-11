@@ -36,7 +36,7 @@ aliases:
 > En un circuito lineal excitado con una senoide, en régimen permanente **todas** las respuestas son
 > senoides de la **misma frecuencia** $\omega$: solo cambian amplitud y fase ([[Onda Sinusoidal| derivar e integrar conserva la senoide]]). Por eso no hace falta arrastrar $\operatorname{sen}\omega
 > t$ en cada paso: se "congela" la senoide en su **fasor** $\overline{V}=V\angle\varphi$ —un vector
-> giratorio detenido en $t=0$— y se opera con él como con un número complejo. → [[Fasores/index| Fasores]].
+> giratorio detenido en $t=0$— y se opera con él como con un número complejo. → [[Fasores| Fasores]].
 
 > [!teoria] Impedancia: la "resistencia" compleja
 > El premio es enorme: la ley de cada elemento se vuelve **algebraica**. La derivada $L\,di/dt$ pasa a
@@ -58,7 +58,7 @@ aliases:
 > [!info] Las cuatro secciones
 > | Sección | Qué aporta |
 > |:---|:---|
-> | [[Fasores/index| Fasores]] | representar la senoide por un complejo $\overline{V}=V\angle\varphi$ |
+> | [[Fasores| Fasores]] | representar la senoide por un complejo $\overline{V}=V\angle\varphi$ |
 > | [[Impedancia y Admitancia/index| Impedancia y admitancia]] | $Z=R+jX$, $Y=1/Z$; respuesta de R, L, C |
 > | [[Analisis Fasorial/index| Análisis fasorial]] | mallas, nodos y teoremas en complejo; diagramas |
 > | [[Potencia en AC/index| Potencia en AC]] | activa, reactiva, aparente; factor de potencia |

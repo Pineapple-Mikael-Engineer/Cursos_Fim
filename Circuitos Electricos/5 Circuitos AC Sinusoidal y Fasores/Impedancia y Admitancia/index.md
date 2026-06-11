@@ -22,7 +22,7 @@ aliases:
 
 > [!info]
 > Segunda sección del [[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]. Convierte los
-> desfases de [[Fasores Electricos]] en un único número complejo, y es la base del
+> desfases de [[Fasores]] en un único número complejo, y es la base del
 > [[Analisis Fasorial/index| análisis fasorial]]. Es el equivalente, en régimen sinusoidal, de la
 > impedancia $Z(s)$ de [[Circuitos en el Dominio de s| Laplace]] con $s=j\omega$. Fraile Mora, cap. 2,
 > §2.7.
@@ -62,5 +62,5 @@ aliases:
 > resistivo se trasladan intactos a la CA.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.7. Anterior: [[Fasores/index| Fasores]]. Siguiente:
+> Fraile Mora, cap. 2, §2.7. Anterior: [[Fasores| Fasores]]. Siguiente:
 > [[Analisis Fasorial/index| Análisis fasorial]].

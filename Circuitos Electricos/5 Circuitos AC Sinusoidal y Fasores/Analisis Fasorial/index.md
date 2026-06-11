@@ -22,7 +22,7 @@ aliases:
 
 > [!info]
 > Tercera sección del [[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]. Reúne los
-> [[Fasores/index| fasores]] y la [[Impedancia y Admitancia/index| impedancia]] para resolver
+> [[Fasores| fasores]] y la [[Impedancia y Admitancia/index| impedancia]] para resolver
 > circuitos completos. Es la traducción a CA de los [[2 Metodos de Analisis y Teoremas/index| métodos y teoremas]] del capítulo 2. Fraile Mora, cap. 2, §2.8.
 
 ---

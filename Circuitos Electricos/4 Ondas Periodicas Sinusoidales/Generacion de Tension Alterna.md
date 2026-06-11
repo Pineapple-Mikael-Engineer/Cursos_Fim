@@ -27,7 +27,7 @@ aliases:
 > Es el **origen físico** de la [[Onda Sinusoidal]] dentro de las
 > [[4 Ondas Periodicas Sinusoidales/index| ondas periódicas sinusoidales]]: explica de dónde nace la
 > forma $\operatorname{sen}(\omega t)$ en los circuitos de CA. La idea del **vector que gira** es,
-> además, la semilla de la [[Representacion de Fasores| representación fasorial]]; el valor de pico
+> además, la semilla de la [[Fasores| representación fasorial]]; el valor de pico
 > $E_m$ se relaciona con su [[Valor Eficaz RMS]] por $E_m/\sqrt2$. Fraile Mora, cap. 2, §2.2.
 
 ---
@@ -88,7 +88,7 @@ aliases:
 > La forma $e=E_m\operatorname{sen}(\omega t)$ no es casual: es la **proyección sobre un eje** de un
 > vector de módulo $E_m$ que gira con velocidad angular $\omega$ constante. A cada instante, el ángulo
 > recorrido es $\omega t$ y su proyección vertical vale $E_m\operatorname{sen}(\omega t)$. Esta imagen
-> conecta de forma directa con los [[Representacion de Fasores| fasores]]: el fasor es ese mismo vector
+> conecta de forma directa con los [[Fasores| fasores]]: el fasor es ese mismo vector
 > giratorio "congelado" en un instante, conservando módulo $E_m$ y ángulo de fase. La **frecuencia de
 > la red** ($50\ \text{Hz}$ en Europa, $60\ \text{Hz}$ en América) la fija la **velocidad de giro** del
 > alternador, ya que $\omega=2\pi f$.
@@ -113,9 +113,9 @@ aliases:
 > [!corolario]
 > Hacer girar una espira en un campo magnético produce, por Faraday, una fem **exactamente sinusoidal**:
 > la senoide de los circuitos de CA es la huella de un giro uniforme. Ese mismo giro, visto como vector,
-> es lo que justifica representar las tensiones alternas mediante [[Representacion de Fasores| fasores]].
+> es lo que justifica representar las tensiones alternas mediante [[Fasores| fasores]].
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.2. Forma de onda: [[Onda Sinusoidal]]. Valor de pico vs. eficaz:
-> [[Valor Eficaz RMS]]. Representación compacta: [[Representacion de Fasores]]. Contexto:
+> [[Valor Eficaz RMS]]. Representación compacta: [[Fasores]]. Contexto:
 > [[4 Ondas Periodicas Sinusoidales/index]].

@@ -24,7 +24,7 @@ aliases:
 
 > [!info]
 > El concepto central de [[Impedancia y Admitancia/index| Impedancia y admitancia]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]). Resume en un complejo los desfases de
-> [[Fasores Electricos]]; su inversa es la [[Admitancia]]. Fraile Mora, cap. 2, §2.7.
+> [[Fasores]]; su inversa es la [[Admitancia]]. Fraile Mora, cap. 2, §2.7.
 
 ---
 

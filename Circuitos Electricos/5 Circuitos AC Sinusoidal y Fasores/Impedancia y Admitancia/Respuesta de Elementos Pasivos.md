@@ -22,7 +22,7 @@ aliases:
 
 > [!info]
 > El origen físico de la [[Impedancia Compleja| impedancia]] en
-> [[Impedancia y Admitancia/index| Impedancia y admitancia]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]). Es la versión temporal de lo que [[Fasores Electricos]] muestra con
+> [[Impedancia y Admitancia/index| Impedancia y admitancia]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]). Es la versión temporal de lo que [[Fasores]] muestra con
 > fasores. Fraile Mora, cap. 2, §2.6.
 
 ---
@@ -99,4 +99,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.6. Se resume en la [[Impedancia Compleja]]. Versión fasorial:
-> [[Fasores Electricos]].
+> [[Fasores]].

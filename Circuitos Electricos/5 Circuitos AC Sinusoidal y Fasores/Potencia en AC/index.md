@@ -24,7 +24,7 @@ aliases:
 
 > [!info]
 > Cuarta y última sección del [[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]] y culminación
-> del análisis de CA. Usa los [[Fasores/index| fasores]], la [[Impedancia Compleja| impedancia]] y
+> del análisis de CA. Usa los [[Fasores| fasores]], la [[Impedancia Compleja| impedancia]] y
 > el [[Valor Eficaz RMS| valor eficaz]]. Es la base de toda la ingeniería de potencia. Fraile Mora,
 > cap. 2, §2.9-2.14.
 

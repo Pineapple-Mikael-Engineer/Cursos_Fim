@@ -25,7 +25,7 @@ aliases:
 > La onda central de las [[4 Ondas Periodicas Sinusoidales/index| ondas periódicas sinusoidales]]. Sus
 > magnitudes temporales ($T$, $f$, $\omega$) se detallan en [[Caracteristicas de Ondas Periodicas]], y
 > de ella salen el [[Valor Medio]] y el [[Valor Eficaz RMS]]. Es lo que el capítulo siguiente
-> representará con un [[Representacion de Fasores| fasor]]. Fraile Mora, cap. 2, §2.2.
+> representará con un [[Fasores| fasor]]. Fraile Mora, cap. 2, §2.2.
 
 ---
 
@@ -70,7 +70,7 @@ aliases:
 > Que se escriba con $\operatorname{sen}$ o con $\cos$ es solo cuestión de fase, pues
 > $\cos\theta=\operatorname{sen}(\theta+90^\circ)$. Lo esencial es la terna $(V_m,\omega,\varphi)$.
 > Esta descripción compacta es la que, en régimen permanente, permite sustituir la senoide por un
-> número complejo —un [[Representacion de Fasores| fasor]] $\overline{V}=V\angle\varphi$— y convertir
+> número complejo —un [[Fasores| fasor]] $\overline{V}=V\angle\varphi$— y convertir
 > el cálculo en álgebra.
 
 > [!proposicion] Derivar e integrar conserva la senoide
@@ -102,4 +102,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.2. Magnitudes temporales: [[Caracteristicas de Ondas Periodicas]]. Valores
-> asociados: [[Valor Medio]], [[Valor Eficaz RMS]]. Representación: [[Representacion de Fasores]].
+> asociados: [[Valor Medio]], [[Valor Eficaz RMS]]. Representación: [[Fasores]].

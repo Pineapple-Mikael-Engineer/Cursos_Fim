@@ -18,7 +18,7 @@ aliases:
 > Un **diagrama fasorial** representa las tensiones y corrientes de un circuito como **vectores** en el plano complejo. Como los fasores son vectores, las leyes de Kirchhoff se vuelven **sumas vectoriales**: la **LKV** es la suma vectorial de las tensiones de una malla y la **LKC**, la de las corrientes de un nodo. El diagrama muestra de un vistazo **módulos** y **desfases**, revelando quién adelanta y quién atrasa.
 
 > [!info] Ubicación
-> Esta nota es el apoyo gráfico del [[Analisis Fasorial/index| análisis fasorial]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]). Complementa los [[Metodos en Regimen Fasorial| métodos en régimen fasorial]] y se apoya en la [[Representacion de Fasores]]. Da soporte visual al cálculo de la [[Impedancia Compleja]].
+> Esta nota es el apoyo gráfico del [[Analisis Fasorial/index| análisis fasorial]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]). Complementa los [[Metodos en Regimen Fasorial| métodos en régimen fasorial]] y se apoya en la [[Fasores]]. Da soporte visual al cálculo de la [[Impedancia Compleja]].
 >
 > Referencia: Fraile Mora, *Circuitos Eléctricos*, cap. 2 §2.8.
 
@@ -102,4 +102,4 @@ aliases:
 
 > [!referencia]
 > - Fraile Mora, J. *Circuitos Eléctricos*, cap. 2 §2.8 (diagramas fasoriales).
-> - Notas relacionadas: [[Metodos en Regimen Fasorial]], [[Representacion de Fasores]], [[Impedancia Compleja]], [[Analisis Fasorial/index]].
+> - Notas relacionadas: [[Metodos en Regimen Fasorial]], [[Fasores]], [[Impedancia Compleja]], [[Analisis Fasorial/index]].

@@ -25,7 +25,7 @@ aliases:
 
 > [!info]
 > El valor más importante de las [[4 Ondas Periodicas Sinusoidales/index| ondas sinusoidales]]: el que
-> fija la **potencia**. Se compara con el [[Valor Medio]] (vía el [[Factor de Forma y Cresta| factor de forma]]) y es la magnitud que llevan los [[Representacion de Fasores| fasores]] del capítulo
+> fija la **potencia**. Se compara con el [[Valor Medio]] (vía el [[Factor de Forma y Cresta| factor de forma]]) y es la magnitud que llevan los [[Fasores| fasores]] del capítulo
 > siguiente. Fraile Mora, cap. 2, §2.2.
 
 ---
@@ -101,4 +101,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.2. Se compara con [[Valor Medio]] vía [[Factor de Forma y Cresta]]. Lo usan
-> los [[Representacion de Fasores| fasores]] y toda la [[Potencia en Sinuidal y Fasorial| potencia en CA]].
+> los [[Fasores| fasores]] y toda la [[Potencia en Sinuidal y Fasorial| potencia en CA]].
