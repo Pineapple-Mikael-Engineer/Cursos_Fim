@@ -1,0 +1,21 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.4cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \coordinate (a) at (0,2.3);
+  \coordinate (b) at (-2.3,-1.5);
+  \coordinate (c) at (2.3,-1.5);
+  \draw (a) to[generic=$Z$, i>^=$\overline{I}_F$] (c);
+  \draw (c) to[generic=$Z$] (b);
+  \draw (b) to[generic=$Z$] (a);
+  % line terminals con corriente de linea
+  \draw[-{Latex[length=2.2mm]}] (0,3.3) -- (0,2.6); \node[above] at (0,3.3){$a$}; \node[right] at (0.1,2.95){$\overline{I}_L$};
+  \draw (a) -- (0,3.3);
+  \draw[-{Latex[length=2.2mm]}] (-3.1,-2.0) -- (-2.5,-1.65); \node[below left] at (-3.1,-2.0){$b$};
+  \draw (b) -- (-3.1,-2.0);
+  \draw[-{Latex[length=2.2mm]}] (3.1,-2.0) -- (2.5,-1.65); \node[below right] at (3.1,-2.0){$c$};
+  \draw (c) -- (3.1,-2.0);
+  \node at (0,-2.9){\small tri\'angulo ($\Delta$):\ \ $I_L=\sqrt{3}\,I_F$,\ \ $V_L=V_F$};
+\end{circuitikz}
+\end{document}

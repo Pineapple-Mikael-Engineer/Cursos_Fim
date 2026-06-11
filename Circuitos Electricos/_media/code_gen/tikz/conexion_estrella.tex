@@ -1,0 +1,26 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.3cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \coordinate (N) at (0,0);
+  % arm a (arriba)
+  \draw (N) to[generic=$Z$] (0,2.4) coordinate(ea);
+  \draw[-{Latex[length=2.2mm]}] (0,3.2) -- (0,2.7); \node[above] at (0,3.2){$a$};
+  \draw (ea) -- (0,3.2);
+  \node[left] at (-0.15,2.9){$\overline{I}_L$};
+  % arm b (abajo izq)
+  \draw (N) to[generic=$Z$] (-2.0,-1.45) coordinate(eb);
+  \draw (eb) -- (-2.7,-1.95) node[left]{$b$};
+  % arm c (abajo der)
+  \draw (N) to[generic=$Z$] (2.0,-1.45) coordinate(ec);
+  \draw (ec) -- (2.7,-1.95) node[right]{$c$};
+  \fill (N) circle(2.6pt); \node[below] at (0,-0.15){$N$ (neutro)};
+  % V_F (fase, entre a y N)
+  \draw[-{Latex[length=2.2mm]}] (0.65,2.2) -- (0.65,0.15); \node[right] at (0.65,1.2){$\overline{V}_F$};
+  % V_L (linea, entre a y b)
+  \draw[dashed, {Latex[length=2.2mm]}-{Latex[length=2.2mm]}] (-0.55,2.6) -- (-2.55,-1.55);
+  \node[left] at (-1.7,0.9){$\overline{V}_L$};
+  \node at (0,-2.7){\small estrella (Y):\ \ $V_L=\sqrt{3}\,V_F$,\ \ $I_L=I_F$};
+\end{circuitikz}
+\end{document}
