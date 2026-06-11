@@ -85,5 +85,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 1, §1.7. Profundizan: [[Definiciones Topologicas]] y
-> [[Ramas y Mallas Independientes]]. Siguiente sección: [[Metodos de Analisis/index | Métodos de
-> análisis]].
+> [[Ramas y Mallas Independientes]]. Siguiente sección: [[Metodos de Analisis/index | Métodos de análisis]].

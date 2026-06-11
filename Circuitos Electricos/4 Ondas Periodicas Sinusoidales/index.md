@@ -41,8 +41,7 @@ aliases:
 
 > [!teoria] Qué se mide de una onda periódica
 > Una onda periódica se describe con unos pocos números, en dos grupos:
-> - su **forma temporal** —amplitud, [[Caracteristicas de Ondas Periodicas | período, frecuencia y
->   fase]]— que para la CA es la senoide $v=V_m\operatorname{sen}(\omega t+\varphi)$ ([[Onda Sinusoidal]]);
+> - su **forma temporal** —amplitud, [[Caracteristicas de Ondas Periodicas | período, frecuencia y fase]]— que para la CA es la senoide $v=V_m\operatorname{sen}(\omega t+\varphi)$ ([[Onda Sinusoidal]]);
 > - sus **valores característicos** —pico, **medio** (componente continua), **eficaz (RMS)** y los
 >   **factores de forma y cresta**— reunidos en [[Valores Caracteristicos]].
 >
@@ -65,6 +64,4 @@ aliases:
 > análisis fasorial del próximo capítulo.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.2. Viene de [[3 Almacenamiento y Transitorios/index | Almacenamiento y
-> transitorios]]; continúa en [[5 Circuitos AC Sinusoidal y Fasores/index | Circuitos AC sinusoidal y
-> fasores]].
+> Fraile Mora, cap. 2, §2.2. Viene de [[3 Almacenamiento y Transitorios/index | Almacenamiento y transitorios]]; continúa en [[5 Circuitos AC Sinusoidal y Fasores/index | Circuitos AC sinusoidal y fasores]].
