@@ -28,7 +28,7 @@ aliases:
 > [[4 Ondas Periodicas Sinusoidales/index| ondas periódicas sinusoidales]]: explica de dónde nace la
 > forma $\operatorname{sen}(\omega t)$ en los circuitos de CA. La idea del **vector que gira** es,
 > además, la semilla de la [[Fasores| representación fasorial]]; el valor de pico
-> $E_m$ se relaciona con su [[Valor Eficaz RMS]] por $E_m/\sqrt2$. Fraile Mora, cap. 2, §2.2.
+> $E_m$ se relaciona con su [[Valores Caracteristicos]] por $E_m/\sqrt2$. Fraile Mora, cap. 2, §2.2.
 
 ---
 
@@ -53,7 +53,7 @@ aliases:
 > perpendicular a $B$ (flujo máximo, fem nula), la fem queda
 > $$e(t)=314\operatorname{sen}(314\,t)\ \text{V}.$$
 >
-> **Paso 3 — Valor eficaz.** La red trabaja con el [[Valor Eficaz RMS]]:
+> **Paso 3 — Valor eficaz.** La red trabaja con el [[Valores Caracteristicos]]:
 > $E=E_m/\sqrt2\approx 314/\sqrt2\approx 222\ \text{V}$.
 >
 > > [!solucion]
@@ -117,5 +117,5 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.2. Forma de onda: [[Onda Sinusoidal]]. Valor de pico vs. eficaz:
-> [[Valor Eficaz RMS]]. Representación compacta: [[Fasores]]. Contexto:
+> [[Valores Caracteristicos]]. Representación compacta: [[Fasores]]. Contexto:
 > [[4 Ondas Periodicas Sinusoidales/index]].

@@ -26,7 +26,7 @@ aliases:
 > [!info]
 > Magnitudes temporales de las [[4 Ondas Periodicas Sinusoidales/index| ondas periódicas]]: son
 > comunes a la [[Onda Sinusoidal]] y a cualquier onda repetitiva (triangular, cuadrada, diente de
-> sierra...). De estas magnitudes parten luego el [[Valor Medio]] y el [[Valor Eficaz RMS]]. Fraile
+> sierra...). De estas magnitudes parten luego el [[Valores Caracteristicos]] y el [[Valores Caracteristicos]]. Fraile
 > Mora, cap. 2, §2.2.
 
 ---
@@ -108,8 +108,8 @@ aliases:
 > [!corolario]
 > Conocida **una** de las tres magnitudes temporales ($T$, $f$ o $\omega$) quedan determinadas las
 > otras dos, pues $f=1/T$ y $\omega=2\pi f$. Estas magnitudes son el punto de partida para definir el
-> [[Valor Medio]] y el [[Valor Eficaz RMS]] de la onda.
+> [[Valores Caracteristicos]] y el [[Valores Caracteristicos]] de la onda.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.2. Onda central: [[Onda Sinusoidal]]. Valores asociados: [[Valor Medio]],
-> [[Valor Eficaz RMS]]. Contexto: [[4 Ondas Periodicas Sinusoidales/index]].
+> Fraile Mora, cap. 2, §2.2. Onda central: [[Onda Sinusoidal]]. Valores asociados: [[Valores Caracteristicos]],
+> [[Valores Caracteristicos]]. Contexto: [[4 Ondas Periodicas Sinusoidales/index]].

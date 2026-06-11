@@ -29,7 +29,7 @@ aliases:
 
 > [!info]
 > El núcleo de la [[Potencia en AC/index | potencia en CA]] ([[5 Circuitos AC Sinusoidal y Fasores/index | capítulo 5]]). Nace de la media temporal de la potencia instantánea $p=vi$, usa los
-> [[Valor Eficaz RMS | valores eficaces]] y el desfase de los [[Fasores]]; su cociente $P/S$ es el
+> [[Valores Caracteristicos| valores eficaces]] y el desfase de los [[Fasores]]; su cociente $P/S$ es el
 > [[Factor de Potencia]]. Fraile Mora, cap. 2, §2.9-2.10.
 
 ---
@@ -166,6 +166,6 @@ aliases:
 > la eficiencia eléctrica.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.9-2.10. Valores eficaces: [[Valor Eficaz RMS]]. Desfase: [[Fasores]].
+> Fraile Mora, cap. 2, §2.9-2.10. Valores eficaces: [[Valores Caracteristicos]]. Desfase: [[Fasores]].
 > Eficiencia: [[Factor de Potencia]] y [[Correccion del Factor de Potencia]]. Adaptación de carga:
 > [[Maxima Transferencia AC]].

@@ -24,7 +24,7 @@ aliases:
 > [!info]
 > La onda central de las [[4 Ondas Periodicas Sinusoidales/index| ondas periódicas sinusoidales]]. Sus
 > magnitudes temporales ($T$, $f$, $\omega$) se detallan en [[Caracteristicas de Ondas Periodicas]], y
-> de ella salen el [[Valor Medio]] y el [[Valor Eficaz RMS]]. Es lo que el capítulo siguiente
+> de ella salen el [[Valores Caracteristicos]] y el [[Valores Caracteristicos]]. Es lo que el capítulo siguiente
 > representará con un [[Fasores| fasor]]. Fraile Mora, cap. 2, §2.2.
 
 ---
@@ -102,4 +102,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.2. Magnitudes temporales: [[Caracteristicas de Ondas Periodicas]]. Valores
-> asociados: [[Valor Medio]], [[Valor Eficaz RMS]]. Representación: [[Fasores]].
+> asociados: [[Valores Caracteristicos]], [[Valores Caracteristicos]]. Representación: [[Fasores]].

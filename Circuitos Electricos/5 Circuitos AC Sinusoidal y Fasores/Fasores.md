@@ -143,7 +143,7 @@ aliases:
 
 > [!info] Qué módulo lleva el fasor, y por qué
 > Por convenio de ingeniería (norma de este curso), el módulo del fasor es el **valor eficaz**
-> $V=V_m/\sqrt2$, no la amplitud de pico. El [[Valor Eficaz RMS | valor eficaz]] de una onda cualquiera
+> $V=V_m/\sqrt2$, no la amplitud de pico. El [[Valores Caracteristicos| valor eficaz]] de una onda cualquiera
 > es la raíz de la media de su cuadrado, $V_{ef}=\sqrt{\frac1T\int_0^T v^2\,dt}$ (para la senoide,
 > $V_m/\sqrt2$); es el valor de la continua que **disiparía la misma potencia**. Tomarlo como módulo
 > tiene una ventaja concreta: las fórmulas de potencia salen **directas**, sin factores $\tfrac12$
@@ -269,6 +269,6 @@ aliases:
 > $\overline{V}/\overline{I}$ que define la [[Impedancia Compleja | impedancia]], el siguiente paso.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.3-2.6. Base: [[Onda Sinusoidal]] y [[Valor Eficaz RMS]]. Generaliza a
+> Fraile Mora, cap. 2, §2.3-2.6. Base: [[Onda Sinusoidal]] y [[Valores Caracteristicos]]. Generaliza a
 > transitorios: [[Laplace en Circuitos/index]]. Continúa en: [[Impedancia Compleja]] y
 > [[Analisis Fasorial/index]].
