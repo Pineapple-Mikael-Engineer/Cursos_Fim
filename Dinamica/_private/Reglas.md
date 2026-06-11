@@ -18,10 +18,20 @@ aliases:
 
 Notas técnicas de **referencia para relectura**, no textbook ni apuntes corridos ni explicación
 pedagógica de IA. Rigurosas, modulares, densas pero navegables, autocontenidas en su núcleo y
-expansibles por wikilinks. Este curso es **teórico-deductivo** (mecánica clásica tipo física): se
-privilegia **deducir desde primeros principios** sobre el recetario. Lo más consultado va arriba.
+expansibles por wikilinks. Este curso es **teórico-deductivo** (mecánica clásica tipo física). Lo
+más consultado va arriba.
 
 > Lo que se consulta cien veces va antes que lo que se lee una sola vez.
+
+## Regla rectora: DEMOSTRAR TODO
+
+Heredada de las notas antiguas del usuario: **toda fórmula no trivial se deduce, no se postula**.
+Cada resultado central lleva su `> [!demostracion]` con los pasos (**Paso 1 — …**, identidades
+vectoriales/indiciales explícitas, cancelaciones justificadas) y cierre `$\blacksquare$`. Si una nota
+solo enuncia fórmulas sin derivarlas, está incompleta. Preferir la deducción desde
+$d\vec{F}=\vec{a}\,dm$ / $d\vec{\tau}=\vec{r}\times\vec{a}\,dm$ y el **operador derivada en base móvil**
+$\left.\tfrac{d}{dt}\right|_F=\left.\tfrac{d}{dt}\right|_M+\vec\omega\times$ como herramientas
+unificadoras (de él salen Poisson, Coriolis y el término giroscópico de Euler).
 
 ---
 
@@ -88,6 +98,8 @@ Regla: si quitar el callout no cambia nada, estaba mal usado. Dado el carácter 
 | Energía cinética | $T$; potencial $V$ |
 | Notación indicial | $\delta_{ij}$ (Kronecker), $\epsilon_{ijk}$ (Levi-Civita), convenio de suma |
 | Segundo momento | $Q_{ij}=\int r_i r_j\,dm$ |
+| Marcos de referencia | $F$ fijo (inercial), $M$ móvil; $\vec V_M,\vec a_M$ del origen de $M$; $'$ = magnitud relativa a $M$ |
+| Operador base móvil | $\left.\dfrac{d}{dt}\right|_F=\left.\dfrac{d}{dt}\right|_M+\vec\omega\times$ |
 
 **Convenio del tensor de inercia (FIJO, no mezclar):** se usan las **componentes del tensor**
 $$\mathbf{I}=\mathrm{Tr}(Q)\,\mathbb{1}-Q,\qquad I_{ij}=\int(r^2\delta_{ij}-r_i r_j)\,dm,$$
