@@ -24,7 +24,7 @@ aliases:
 > $\vec\tau=\mathbf I\vec\alpha+\vec\omega\times(\mathbf I\vec\omega)$.
 
 > [!info]
-> Tercer bloque del curso de [[Dinamica/index | Dinámica]], **antes** del [[Cuerpo Rigido/index | cuerpo rígido]] porque es su prerrequisito. Se construye sobre la velocidad de un punto del sólido
+> Tercer bloque del curso de [[Dinamica/index | Dinámica]], **antes** del [[4 Cuerpo Rigido/index| cuerpo rígido]] porque es su prerrequisito. Se construye sobre la velocidad de un punto del sólido
 > $\vec v_p=\vec v_c+\vec\omega\times\vec r$, que viene del
 > [[Operador Derivada en Base Movil | operador en base móvil]]. Referencia: Goldstein, cap. 5.
 
@@ -80,4 +80,4 @@ aliases:
 
 > [!referencia]
 > Goldstein, cap. 5; Taylor, cap. 10. Viene de [[2 Movimiento Relativo/index | Movimiento relativo]];
-> se aplica en [[Cuerpo Rigido/index | Cuerpo rígido]].
+> se aplica en [[4 Cuerpo Rigido/index| Cuerpo rígido]].

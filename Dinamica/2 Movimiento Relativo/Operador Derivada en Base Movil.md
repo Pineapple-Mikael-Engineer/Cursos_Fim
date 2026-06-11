@@ -26,7 +26,7 @@ aliases:
 
 > [!info]
 > El resultado central del [[2 Movimiento Relativo/index | movimiento relativo]] ([[Dinamica/index | Dinámica]]). Generaliza las derivadas de las bases polar/esférica de la
-> [[Cinematica/index | cinemática]]; lo aplica el [[Cuerpo Rigido/index | cuerpo rígido]] y, sobre el
+> [[Cinematica/index | cinemática]]; lo aplica el [[4 Cuerpo Rigido/index| cuerpo rígido]] y, sobre el
 > momento angular, produce las [[Ecuaciones de Euler 3D | ecuaciones de Euler]]. Referencia: PDF
 > *Física I* (GETI), §2.2; Taylor §9.
 
@@ -140,7 +140,7 @@ aliases:
 > | Resultado | Expresión |
 > |:---|:---|
 > | Poisson | $\dot{\hat e}'=\vec\omega\times\hat e'$ |
-> | Operador | $\left.\frac{d\vec A}{dt}\right|_F=\left.\frac{d\vec A}{dt}\right|_M+\vec\omega\times\vec A$ |
+> | Operador | $\left.\frac{d\vec A}{dt}\right\|_F=\left.\frac{d\vec A}{dt}\right\|_M+\vec\omega\times\vec A$ |
 > | Velocidad | $\vec v=\vec v\,'+\vec V_M+\vec\omega\times\vec r\,'$ |
 > | Aceleración | $\vec a=\vec a\,'+\vec A_M+2\vec\omega\times\vec v\,'+\vec\omega\times(\vec\omega\times\vec r\,')+\vec\alpha\times\vec r\,'$ |
 > | Coriolis / centrífuga | $-2m\vec\omega\times\vec v\,'$ / $-m\vec\omega\times(\vec\omega\times\vec r\,')$ |
@@ -152,4 +152,4 @@ aliases:
 
 > [!referencia]
 > PDF *Física I* (GETI), §2.2; Taylor §9. Origen plano: [[Cinematica/index | cinemática]]. Aplicación:
-> [[Cuerpo Rigido/index | cuerpo rígido]] y [[Ecuaciones de Euler 3D]].
+> [[4 Cuerpo Rigido/index| cuerpo rígido]] y [[Ecuaciones de Euler 3D]].

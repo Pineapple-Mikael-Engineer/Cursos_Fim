@@ -24,7 +24,7 @@ aliases:
 > [!info]
 > Segundo bloque del curso de [[Dinamica/index | Dinámica]]. Cierra la cinemática de la
 > [[1 Particula/index | partícula]] y entrega la herramienta —el operador en base móvil— con la que se
-> deducen después la cinemática del [[Cuerpo Rigido/index | cuerpo rígido]] y las
+> deducen después la cinemática del [[4 Cuerpo Rigido/index| cuerpo rígido]] y las
 > [[Ecuaciones de Euler 3D | ecuaciones de Euler]]. Referencia: PDF *Física I* (GETI), Lección 2;
 > Taylor §9.
 

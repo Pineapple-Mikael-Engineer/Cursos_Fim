@@ -30,7 +30,7 @@ aliases:
 
 > [!info]
 > Quinta sección de la [[1 Particula/index | partícula]] ([[Dinamica/index | Dinámica]]): es el **puente
-> al [[Cuerpo Rigido/index | cuerpo rígido]]**, pues un sólido es un sistema de partículas **rígidamente
+> al [[4 Cuerpo Rigido/index| cuerpo rígido]]**, pues un sólido es un sistema de partículas **rígidamente
 > unidas** (las distancias $|\vec r_i-\vec r_j|$ son fijas). Generaliza [[Impulso y Momento]] de una
 > partícula a $N$ partículas: el momento total y su momento angular obedecen leyes idénticas a las de un
 > punto material situado en el CM. Toma la cinética de [[Cinetica de la Particula]] partícula a partícula
@@ -80,7 +80,7 @@ aliases:
 >   (si las fuerzas internas son **centrales**), pero **no para la energía**: el trabajo de las fuerzas
 >   internas **no** se anula en general (una explosión interna inyecta energía cinética).
 > - Por eso un sólido se analiza en dos pasos: la **traslación** de su CM (este capítulo) y su
->   **rotación** alrededor de él → [[Cuerpo Rigido/index | cuerpo rígido]].
+>   **rotación** alrededor de él → [[4 Cuerpo Rigido/index| cuerpo rígido]].
 
 > [!teorema] Movimiento del centro de masa
 > La fuerza externa neta determina la aceleración del CM como si toda la masa estuviera en él:
@@ -154,7 +154,7 @@ aliases:
 > concentradas en él: obedece $\sum\vec F_{ext}=m\vec a_G$, idéntica a la segunda ley de una sola
 > partícula. Por eso un cuerpo extenso se analiza **primero por su CM** (traslación, como punto material)
 > y **luego por su rotación** alrededor de él (momento angular). Esta separación traslación + rotación es
-> la estrategia que estructura todo el estudio del [[Cuerpo Rigido/index | cuerpo rígido]].
+> la estrategia que estructura todo el estudio del [[4 Cuerpo Rigido/index| cuerpo rígido]].
 
 > [!warning]
 > - Las fuerzas internas se cancelan para el **movimiento del CM** y para el **momento** (lineal y
@@ -186,9 +186,9 @@ aliases:
 > [[Trabajo y Energia]] en **traslación + rotación interna**. Si $\sum\vec F_{ext}=\vec0$, el momento
 > total $\vec P$ **se conserva** y el CM va en línea recta a velocidad constante; si $\sum\vec M_{O,ext}=\vec0$,
 > se conserva $\vec H_O$. Estos tres resultados son la base directa de la dinámica del
-> [[Cuerpo Rigido/index | cuerpo rígido]].
+> [[4 Cuerpo Rigido/index| cuerpo rígido]].
 
 > [!referencia]
 > Taylor, *Classical Mechanics*, cap. 3 (momento, CM, sistemas de partículas). Generaliza
 > [[Impulso y Momento]] y la cinética de [[Cinetica de la Particula]]; la energía remite a
-> [[Trabajo y Energia]]. Continúa en [[Cuerpo Rigido/index]]. Capítulo: [[1 Particula/index]].
+> [[Trabajo y Energia]]. Continúa en [[4 Cuerpo Rigido/index]]. Capítulo: [[1 Particula/index]].

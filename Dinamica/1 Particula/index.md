@@ -21,7 +21,7 @@ aliases:
 
 > [!info]
 > Primer bloque del curso de [[Dinamica/index | Dinámica]]. Es la base de todo lo demás: el
-> [[Cuerpo Rigido/index | cuerpo rígido]] se trata como un **sistema de partículas** rígidamente
+> [[4 Cuerpo Rigido/index| cuerpo rígido]] se trata como un **sistema de partículas** rígidamente
 > unidas, y sus teoremas (momento, energía) se **deducen** de los de la partícula. Modelo: Taylor /
 > Marion-Thornton.
 
@@ -71,4 +71,4 @@ aliases:
 
 > [!referencia]
 > Taylor, *Classical Mechanics*, caps. 1-4; Marion-Thornton, cap. 2. Continúa en
-> [[Movimiento Relativo/index | Movimiento relativo]] y [[Cuerpo Rigido/index | Cuerpo rígido]].
+> [[2 Movimiento Relativo/index| Movimiento relativo]] y [[4 Cuerpo Rigido/index| Cuerpo rígido]].
