@@ -233,7 +233,7 @@ aliases:
 > Que en R no haya desfase y en L, C sí, tiene un significado físico: la resistencia **disipa** (tensión
 > y corriente "tiran a la vez"), mientras que $L$ y $C$ solo **almacenan y devuelven** energía —el
 > desfase de $90^\circ$ hace que su potencia media sea cero—. Es la semilla de la
-> [[Potencia en Elementos Puros | potencia en elementos puros]].
+> [[Potencia en Regimen Sinusoidal| potencia en elementos puros]].
 
 > [!warning]
 > Cuidados al usar fasores: (1) el módulo es el **valor eficaz** $V_m/\sqrt2$, no el pico; (2) solo se

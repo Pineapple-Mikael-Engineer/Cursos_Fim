@@ -21,7 +21,7 @@ aliases:
 > triángulo**.
 
 > [!info]
-> El cálculo central de la [[Potencia Trifasica/index| potencia trifásica]] ([[7 Circuitos Trifasicos/index| capítulo 7]]); aplica el triángulo de potencias de la [[Potencia Compleja| potencia compleja]] (cap. 5) a las tres fases. Fraile Mora, cap. 3, §3.7.
+> El cálculo central de la [[Potencia Trifasica/index| potencia trifásica]] ([[7 Circuitos Trifasicos/index| capítulo 7]]); aplica el triángulo de potencias de la [[Potencia en Regimen Sinusoidal| potencia compleja]] (cap. 5) a las tres fases. Fraile Mora, cap. 3, §3.7.
 
 ---
 
@@ -88,4 +88,4 @@ aliases:
 > ventaja sobre el monofásico.
 
 > [!referencia]
-> Fraile Mora, cap. 3, §3.7. Base monofásica: [[Potencia Compleja]]. Medición: [[Medicion con Dos Vatimetros]]. Mejora del FP: [[Correccion FP Trifasico]].
+> Fraile Mora, cap. 3, §3.7. Base monofásica: [[Potencia en Regimen Sinusoidal]]. Medición: [[Medicion con Dos Vatimetros]]. Mejora del FP: [[Correccion FP Trifasico]].

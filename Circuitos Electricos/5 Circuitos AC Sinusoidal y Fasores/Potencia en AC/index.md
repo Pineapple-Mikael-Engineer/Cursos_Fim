@@ -9,67 +9,62 @@ draft: false
 aliases:
   - potencia en AC
   - potencia en corriente alterna
-  - potencia activa reactiva aparente
+  - potencia en régimen sinusoidal
 ---
 
 # Potencia en AC
 
 > [!definicion]
-> En corriente alterna, como la tensión y la corriente están **desfasadas**, la potencia se desdobla
-> en tres: la **activa** $P$ (W), la que realmente **trabaja** (se disipa o se convierte); la
-> **reactiva** $Q$ (VAr), la que **va y viene** entre la fuente y los campos de $L$ y $C$ sin trabajo
-> neto; y la **aparente** $S$ (VA), el producto de los valores eficaces. Forman el **triángulo de
-> potencias** $S=P+jQ$, y su cociente, el **factor de potencia** $\cos\varphi=P/S$, mide cuánta es
-> útil.
+> En corriente alterna la potencia ya no es un solo número: el desfase $\varphi$ entre tensión y
+> corriente la parte en **tres**. La **activa** $P=VI\cos\varphi$ (W) es la que trabaja; la **reactiva**
+> $Q=VI\operatorname{sen}\varphi$ (VAr), la que oscila en bobinas y condensadores sin consumirse; y la
+> **aparente** $S=VI$ (VA), la que dimensiona los equipos. Se unifican en la potencia compleja
+> $S=\overline{V}\,\overline{I}^{*}=P+jQ$.
 
 > [!info]
-> Cuarta y última sección del [[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]] y culminación
-> del análisis de CA. Usa los [[Fasores| fasores]], la [[Impedancia Compleja| impedancia]] y
-> el [[Valor Eficaz RMS| valor eficaz]]. Es la base de toda la ingeniería de potencia. Fraile Mora,
-> cap. 2, §2.9-2.14.
+> Cuarta sección del [[5 Circuitos AC Sinusoidal y Fasores/index | capítulo 5]]. Aplica los
+> [[Fasores]] y la [[Impedancia Compleja | impedancia]] al **balance de energía**; es la base de la
+> [[Potencia Trifasica/index | potencia trifásica]] del capítulo 7. Fraile Mora, cap. 2, §2.9-2.11.
 
 ---
 
-## Tres potencias, un triángulo
+## De la energía que va y viene a la factura
 
-> [!teoria] De la potencia instantánea a las tres potencias
-> La potencia instantánea $p(t)=v(t)\,i(t)$ **oscila** al doble de la frecuencia ($2\omega$); su valor
-> **medio** es la potencia **activa** $P=V_{ef}I_{ef}\cos\varphi$ (→ [[Potencia Instantanea]]). Esa
-> media depende del desfase $\varphi$:
-> - en la **resistencia** ($\varphi=0$) la potencia es siempre positiva: **se disipa** toda;
-> - en el **inductor** y el **condensador** ($\varphi=\pm90^\circ$) la media es **cero**: la energía
->   solo se almacena y se devuelve. → [[Potencia en Elementos Puros]].
+> [!teoria] Por qué tres potencias y no una
+> En continua, potencia es $VI$ y basta. En alterna, $v$ e $i$ están **desfasados**, y su producto
+> $p(t)=vi$ —la [[Potencia en Regimen Sinusoidal | potencia instantánea]]— oscila al doble de la
+> frecuencia y **se vuelve negativa** en parte del ciclo: hay energía que la carga **devuelve** a la
+> fuente. De ahí salen las tres potencias:
+> - su **media** es la **activa** $P$ (lo que de verdad se consume),
+> - su **fluctuación** mide la **reactiva** $Q$ (lo que va y vuelve, en $L$ y $C$),
+> - y el producto bruto de eficaces es la **aparente** $S=\sqrt{P^2+Q^2}$.
 >
-> La parte que va y viene es la potencia **reactiva** $Q=V_{ef}I_{ef}\operatorname{sen}\varphi$, y el
-> producto de eficaces es la **aparente** $S=V_{ef}I_{ef}$. → [[Potencia en Sinuidal y Fasorial]] y
-> [[Potencia Compleja]].
+> Todo ello se empaqueta en un número complejo, $S=P+jQ$, y se visualiza en el **triángulo de
+> potencias**. → [[Potencia en Regimen Sinusoidal]].
 
-> [!teoria] El factor de potencia y por qué corregirlo
-> El **factor de potencia** $\cos\varphi=P/S$ dice qué fracción de la potencia aparente es útil. Un
-> FP bajo (carga muy inductiva) obliga a transportar **más corriente** para entregar el mismo $P$,
-> aumentando pérdidas y costes. Conectar un **condensador** que aporte la $Q$ que falta **corrige** el
-> factor de potencia sin tocar el $P$. → [[Factor de Potencia]] y [[Correccion del Factor de Potencia]].
-> Y la condición de **máxima transferencia** se generaliza a $Z_L=Z_{Th}^{*}$ →
-> [[Maxima Transferencia AC]].
+> [!teoria] El factor de potencia: por qué importa $Q$
+> La reactiva no se paga en el contador, pero **ocupa la red**: para entregar la misma $P$ con un
+> $\cos\varphi$ bajo hace falta **más corriente**, más sección de cable y más pérdidas. El cociente
+> $\cos\varphi=P/S$ —el **factor de potencia**— mide esa eficiencia → [[Factor de Potencia]], y se
+> **corrige** con condensadores que aportan $Q<0$ → [[Correccion del Factor de Potencia]]. Cuando lo
+> que se busca es **extraer la máxima potencia** de una fuente, la condición es adaptar la impedancia
+> → [[Maxima Transferencia AC]].
 
 ## Mapa de la sección
 
 > [!info] Las notas de esta sección
 > | Nota | Contenido |
 > |:---|:---|
-> | [[Potencia Instantanea]] | $p(t)=vi$; oscila a $2\omega$; media $=P$ |
-> | [[Potencia en Elementos Puros]] | R disipa; L y C de media nula |
-> | [[Potencia en Sinuidal y Fasorial]] | activa $P$, reactiva $Q$, aparente $S$ |
-> | [[Potencia Compleja]] | $S=\overline{V}\,\overline{I}^{*}=P+jQ$; triángulo |
-> | [[Factor de Potencia]] | $\cos\varphi=P/S$; inductivo vs capacitivo |
-> | [[Correccion del Factor de Potencia]] | el condensador que reduce $Q$ |
+> | [[Potencia en Regimen Sinusoidal]] | $p(t)$, $P/Q/S$, potencia compleja, triángulo, Boucherot |
+> | [[Factor de Potencia]] | $\cos\varphi=P/S$; el coste de un FP bajo |
+> | [[Correccion del Factor de Potencia]] | condensadores para subir $\cos\varphi$ |
 > | [[Maxima Transferencia AC]] | $Z_L=Z_{Th}^{*}$ |
 
 > [!corolario]
-> En CA la potencia tiene tres caras —activa, reactiva, aparente— ligadas por el triángulo $S=P+jQ$. El
-> factor de potencia mide la eficiencia de la transferencia, y corregirlo es una de las tareas más
-> rentables de la ingeniería eléctrica.
+> En CA, dominar la potencia es dominar el **triángulo** $P$–$Q$–$S$: separar lo que se consume de lo
+> que solo se intercambia, y gestionarlo (factor de potencia) para no malgastar red. Es el puente entre
+> el análisis fasorial y la ingeniería eléctrica real.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.9-2.14. Anterior: [[Analisis Fasorial/index| Análisis fasorial]]. Cierra el
-> [[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]].
+> Fraile Mora, cap. 2, §2.9-2.11. Anterior: [[Analisis Fasorial/index | Análisis fasorial]]. Se
+> extiende a [[Potencia Trifasica/index | potencia trifásica]] en el capítulo 7.

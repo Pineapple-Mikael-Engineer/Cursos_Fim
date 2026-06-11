@@ -24,7 +24,7 @@ aliases:
 > [!info]
 > La solución práctica a un [[Factor de Potencia| factor de potencia]] bajo, dentro de la
 > [[Potencia en AC/index| potencia en CA]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]).
-> Se apoya en la [[Potencia Compleja| potencia compleja]] (triángulo de potencias) y en el
+> Se apoya en la [[Potencia en Regimen Sinusoidal| potencia compleja]] (triángulo de potencias) y en el
 > [[Capacitor| condensador]] como fuente de reactiva negativa. Fraile Mora, cap. 2, §2.12.
 
 ---
@@ -112,4 +112,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.12. Problema que resuelve: [[Factor de Potencia]]. Marco:
-> [[Potencia Compleja]] y [[Potencia en AC/index]]. Elemento usado: [[Capacitor]].
+> [[Potencia en Regimen Sinusoidal]] y [[Potencia en AC/index]]. Elemento usado: [[Capacitor]].

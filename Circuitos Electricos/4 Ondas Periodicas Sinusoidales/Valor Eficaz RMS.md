@@ -101,4 +101,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 2, §2.2. Se compara con [[Valor Medio]] vía [[Factor de Forma y Cresta]]. Lo usan
-> los [[Fasores| fasores]] y toda la [[Potencia en Sinuidal y Fasorial| potencia en CA]].
+> los [[Fasores| fasores]] y toda la [[Potencia en Regimen Sinusoidal| potencia en CA]].

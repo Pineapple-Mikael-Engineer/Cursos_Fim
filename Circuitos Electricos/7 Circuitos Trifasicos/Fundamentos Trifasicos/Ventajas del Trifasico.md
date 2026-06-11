@@ -25,7 +25,7 @@ aliases:
 > ([[7 Circuitos Trifasicos/index| capítulo 7]]) explicando el **porqué** del sistema, una vez vistos
 > el [[Sistema Polifasico]] y la generación de las tensiones. La primera ventaja se **cuantifica** en
 > la [[Potencia en Sistemas Balanceados| potencia trifásica]], que retoma la pulsación monofásica de
-> la [[Potencia Instantanea]]. Fraile Mora, cap. 3, §3.9.
+> la [[Potencia en Regimen Sinusoidal]]. Fraile Mora, cap. 3, §3.9.
 
 ---
 
@@ -37,7 +37,7 @@ aliases:
 > En monofásico, con tensión y corriente eficaces $V_{ef}$, $I_{ef}$ y desfase $\varphi$, la potencia
 > instantánea vale
 > $$p(t)=V_{ef}I_{ef}\cos\varphi-V_{ef}I_{ef}\cos(2\omega t-\varphi),$$
-> con un término **constante** y otro que **pulsa** a frecuencia $2\omega$ ([[Potencia Instantanea]]).
+> con un término **constante** y otro que **pulsa** a frecuencia $2\omega$ ([[Potencia en Regimen Sinusoidal]]).
 > ¿Qué ocurre al sumar las tres fases de un trifásico equilibrado?
 >
 > **Paso 1 — Las tres potencias.** Cada fase aporta su propia $p_k(t)$, idéntica en forma pero con la
@@ -113,6 +113,6 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 3, §3.9. Cuantificación de la potencia constante:
-> [[Potencia en Sistemas Balanceados]]. Pulsación monofásica de partida: [[Potencia Instantanea]].
+> [[Potencia en Sistemas Balanceados]]. Pulsación monofásica de partida: [[Potencia en Regimen Sinusoidal]].
 > Familia general: [[Sistema Polifasico]]. Marco: [[Fundamentos Trifasicos/index]],
 > [[7 Circuitos Trifasicos/index]].

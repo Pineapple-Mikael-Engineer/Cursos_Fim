@@ -22,7 +22,7 @@ aliases:
 > sin trabajar. Se especifica como **inductivo** (en atraso) o **capacitivo** (en adelanto).
 
 > [!info]
-> La medida de eficiencia de la [[Potencia en AC/index| potencia en CA]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]); es el coseno del ángulo del triángulo de [[Potencia Compleja]].
+> La medida de eficiencia de la [[Potencia en AC/index| potencia en CA]] ([[5 Circuitos AC Sinusoidal y Fasores/index| capítulo 5]]); es el coseno del ángulo del triángulo de [[Potencia en Regimen Sinusoidal]].
 > Cuando es bajo, se [[Correccion del Factor de Potencia| corrige]]. Fraile Mora, cap. 2, §2.11.
 
 ---
@@ -97,5 +97,5 @@ aliases:
 > útil, un FP bajo cuesta corriente, pérdidas e instalación. Subirlo —[[Correccion del Factor de Potencia| corregirlo]]— es directo y rentable.
 
 > [!referencia]
-> Fraile Mora, cap. 2, §2.11. Base: [[Potencia Compleja]]. Solución al FP bajo:
+> Fraile Mora, cap. 2, §2.11. Base: [[Potencia en Regimen Sinusoidal]]. Solución al FP bajo:
 > [[Correccion del Factor de Potencia]].
