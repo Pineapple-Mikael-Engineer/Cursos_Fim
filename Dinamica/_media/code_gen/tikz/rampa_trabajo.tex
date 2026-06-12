@@ -1,17 +1,20 @@
 \documentclass[border=10pt]{standalone}
-\usepackage{tikz}\usepackage{amsmath}\usetikzlibrary{arrows.meta}
+\usepackage{tikz}\usepackage{amsmath}\usetikzlibrary{calc,arrows.meta}
 \begin{document}
-\begin{tikzpicture}[line width=0.9pt,>={Latex[length=2.4mm]}]
-  \draw[thick] (0,2.4)--(4.2,0)--(0,0)--cycle;
-  \fill[black!8] (0,2.4)--(4.2,0)--(0,0)--cycle;
-  % bloque arriba
-  \draw[thick,fill=black!12] (0.5,2.15) rectangle ++(0.7,0.45);
-  \node at (0.85,2.95){$m$};
+\begin{tikzpicture}[line width=0.9pt,>={Latex[length=2.6mm]}]
+  \coordinate (A) at (0,0); \coordinate (B) at (5,0); \coordinate (C) at (0,3);
+  \draw[thick,fill=black!7] (A)--(B)--(C)--cycle;
+  % bloque SOBRE la pendiente, inclinado
+  \begin{scope}[shift={($(C)!0.18!(B)$)},rotate=-30.96]
+    \draw[thick,fill=black!15] (-0.5,0) rectangle (0.5,0.5);
+    \node at (0,0.78){$m$};
+    \draw[->,red!60!black] (0.7,0.25)--(1.7,0.25);   % desliza cuesta abajo
+  \end{scope}
   % altura h
-  \draw[densely dashed] (0,2.4)--(-0.5,2.4); \draw[densely dashed] (0,0)--(-0.5,0);
-  \draw[<->] (-0.4,0)--(-0.4,2.4) node[midway,left]{$h$};
-  % angulo
-  \draw (3.4,0) arc (180:151:0.8); \node at (2.95,0.22){$\theta$};
-  \node at (2.3,-0.5){\small liso: $\;mgh=\tfrac12 mv^2\Rightarrow v=\sqrt{2gh}$};
+  \draw[densely dashed] (A)--($(A)+(-0.55,0)$); \draw[densely dashed] (C)--($(C)+(-0.55,0)$);
+  \draw[<->] (-0.45,0)--(-0.45,3) node[midway,left]{$h$};
+  % angulo theta en B
+  \draw ($(B)+(180:0.95)$) arc (180:149:0.95); \node at ($(B)+(164:1.2)$){$\theta$};
+  \node at (2.5,-0.6){\small liso: $\;mgh=\tfrac12 mv^2\Rightarrow v=\sqrt{2gh}$};
 \end{tikzpicture}
 \end{document}
