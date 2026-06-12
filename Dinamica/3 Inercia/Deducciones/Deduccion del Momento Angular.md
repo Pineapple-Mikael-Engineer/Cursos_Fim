@@ -7,102 +7,96 @@ tags:
 draft: false
 aliases:
   - deducción del momento angular
-  - H=Iω
+  - H=Iω deducción
   - angular momentum derivation
 ---
 
-# Deducción del Momento Angular $\;\vec H^o=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c$
+# Deducción del Momento Angular $\;\vec H=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c$
 
 > [!definicion]
 > Integrando el momento angular elemental $d\vec H^o=\vec r_{p/o}\times\vec v_p\,dm$ sobre el cuerpo
-> rígido se obtiene, **sin postular nada**,
+> rígido, con **el desarrollo tensorial completo**, se obtiene
 > $$\boxed{\;\vec H^o=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c\;}$$
-> y, tomando el origen en el centro de masa ($O=C$, $\vec r_{c/o}=\vec0$), el resultado limpio
-> $\vec H^c=\mathbf I_c\vec\omega$.
+> y, con origen en el centro de masa ($O=C$), $\vec H^c=\mathbf I_c\vec\omega$. El tensor de inercia
+> **no se postula**: aparece al contraer $\int r_i r_j\,dm=Q_{ij}$.
 
 > [!info]
-> Una de las [[Deducciones/index | deducciones]] de la [[3 Inercia/index | inercia]]. Hermana de
+> Una de las [[Deducciones/index | deducciones]] de la [[3 Inercia/index | inercia]]; hermana de
 > [[Deduccion del Torque]] y [[Deduccion de la Energia Cinetica]]; usa el [[Tensor de Inercia]].
-> Referencia: Goldstein §5.
+> Goldstein §5.
 
 ---
 
 ## Ejemplo
 
 > [!ejemplo]
-> **Rotación pura en torno al CM.**
+> **El momento angular no es paralelo a la velocidad angular.**
 >
-> Un cuerpo **rota en torno a su centro de masa** ($O=C$, $\vec r_{c/o}=\vec0$). Entonces el momento
-> angular se reduce a
-> $$\vec H^c=\mathbf I_c\vec\omega.$$
-> Si además $\vec\omega$ va sobre un **eje principal** con momento $I$ (de modo que $\mathbf I_c\vec\omega=I\vec\omega$),
-> $$\vec H=I\vec\omega\quad(\parallel\vec\omega).$$
+> Un cuerpo gira en torno a su CM ($O=C$), de modo que $\vec H^c=\mathbf I_c\vec\omega$. Si $\vec\omega$
+> va sobre un eje **principal** ($\mathbf I_c\vec\omega=I\vec\omega$), entonces $\vec H=I\vec\omega$,
+> paralelo a $\vec\omega$.
 >
 > > [!solucion]
-> > En general $\vec H$ **no** es paralelo a $\vec\omega$: el tensor $\mathbf I_c$ los "tuerce". Solo
-> > sobre los **ejes principales** (autovectores de $\mathbf I_c$) se cumple $\vec H\parallel\vec\omega$,
-> > con $\vec H=I\vec\omega$ y $I$ el momento principal correspondiente.
+> > En general $\vec H\nparallel\vec\omega$: el tensor "tuerce" la dirección. Solo coinciden en los
+> > **ejes principales**. Por eso una rueda mal balanceada bambolea: su $\vec H$ no apunta como su
+> > $\vec\omega$.
 
 ---
 
 ## En qué consiste
 
+> [!definicion] Convenios y herramientas
+> Notación indicial con suma sobre repetidos; $\vec r\equiv\vec r_{p/c}$; segundo momento
+> $Q_{ij}=\int r_i r_j\,dm$ y tensor $\mathbf I=\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q$
+> ($I_{ij}=Q_{kk}\delta_{ij}-Q_{ij}$). Propiedad del CM: $\int\vec r\,dm=\vec0$. Doble producto:
+> $\vec r\times(\vec\omega\times\vec r)=\vec\omega\,r^2-\vec r\,(\vec r\cdot\vec\omega)$.
+
 > [!teorema] Punto de partida
-> Con $d\vec H^o=\vec r_{p/o}\times\vec v_p\,dm$, el momento angular total es
-> $$\vec H^o=\int_N\vec r_{p/o}\times\vec v_p\,dm.$$
-> Sustituyendo la descomposición de posición y la cinemática rígida de velocidad
-> $$\vec r_{p/o}=\vec r_{p/c}+\vec r_{c/o},\qquad \vec v_p=\vec v_c+\vec\omega\times\vec r_{p/c},$$
-> y expandiendo, se separa en $I_1$ (los términos con brazo $\vec r_{p/c}$) e $I_2$ (los términos con
-> brazo $\vec r_{c/o}$).
+> Con $\vec v_p=\vec v_c+\vec\omega\times\vec r$ (velocidad de un punto del sólido) y
+> $\vec r_{p/o}=\vec r+\vec r_{c/o}$,
+> $$\vec H^o=\int_N\vec r_{p/o}\times\vec v_p\,dm=\underbrace{\int_N\vec r\times\vec v_p\,dm}_{I_1}+\underbrace{\int_N\vec r_{c/o}\times\vec v_p\,dm}_{I_2}.$$
 
-> [!demostracion] Término $I_1$ (lo que da el tensor)
-> $$I_1=\int_N\vec r_{p/c}\times\big[\vec v_c+\vec\omega\times\vec r_{p/c}\big]\,dm.$$
-> **Paso 1 — El término de $\vec v_c$ se anula:** como $\vec v_c$ es común a todo el cuerpo,
-> $$\int_N\vec r_{p/c}\times\vec v_c\,dm=\Big(\int_N\vec r_{p/c}\,dm\Big)\times\vec v_c=\vec0,$$
-> por la definición de CM ($\int\vec r_{p/c}\,dm=\vec0$). Sobrevive el término con $\vec\omega$:
-> $$I_1=\int_N\vec r_{p/c}\times(\vec\omega\times\vec r_{p/c})\,dm.$$
-> **Paso 2 — Identidad del doble producto:** con $\vec r\times(\vec\omega\times\vec r)=\vec\omega\,r^2-\vec r(\vec r\cdot\vec\omega)$,
-> $$I_1=\int_N\big[\vec\omega\,r^2-\vec r(\vec r\cdot\vec\omega)\big]\,dm=\mathrm{Tr}(\mathbf Q)\,\mathbb 1\cdot\vec\omega-\mathbf Q\cdot\vec\omega=\big[\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q\big]\vec\omega=\mathbf I_c\vec\omega,$$
-> usando $Q_{ij}=\int r_ir_j\,dm$ y $\mathbf I_c=\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q$. $\blacksquare$
+> [!demostracion] Término $I_1$ — produce $\mathbf I_c\vec\omega$
+> $$I_1=\int_N\vec r\times(\vec v_c+\vec\omega\times\vec r)\,dm=\int_N\vec r\times\vec v_c\,dm+\int_N\vec r\times(\vec\omega\times\vec r)\,dm.$$
+> **Primer término (muere por el CM):** $\displaystyle\int_N\vec r\times\vec v_c\,dm=\Big(\int_N\vec r\,dm\Big)\times\vec v_c=\vec0$.
+> **Segundo término:** por el doble producto,
+> $\vec r\times(\vec\omega\times\vec r)=\vec\omega\,r^2-\vec r\,(\vec r\cdot\vec\omega)$. En componentes,
+> $$\vec r\,(\vec r\cdot\vec\omega)=r_i\hat e_i\,(r_j\omega_j)=r_i r_j\,\omega_j\,\hat e_i\ \Rightarrow\ \int_N r_i r_j\,\omega_j\,\hat e_i\,dm=Q_{ij}\,\omega_j\,\hat e_i=\mathbf Q\vec\omega,$$
+> y $\displaystyle\int_N\vec\omega\,r^2\,dm=\Big(\int_N r_kr_k\,dm\Big)\vec\omega=Q_{kk}\vec\omega=\mathrm{Tr}(\mathbf Q)\,\mathbb 1\,\vec\omega$.
+> Restando,
+> $$I_1=\big[\mathrm{Tr}(\mathbf Q)\,\mathbb 1-\mathbf Q\big]\vec\omega=\mathbf I_c\vec\omega.\qquad\blacksquare$$
 
-> [!demostracion] Término $I_2$ (el del brazo del CM)
-> $$I_2=\int_N\vec r_{c/o}\times\big[\vec v_c+\vec\omega\times\vec r_{p/c}\big]\,dm.$$
-> **Paso 1 — El término con $\vec\omega\times\vec r_{p/c}$ se anula:** como $\vec r_{c/o}$ es
-> **constante**,
-> $$\int_N\vec r_{c/o}\times(\vec\omega\times\vec r_{p/c})\,dm=\vec r_{c/o}\times\Big(\vec\omega\times\int_N\vec r_{p/c}\,dm\Big)=\vec0,$$
-> de nuevo por $\int\vec r_{p/c}\,dm=\vec0$.
-> **Paso 2 — El término de $\vec v_c$ sobrevive:** con $\vec r_{c/o}$ y $\vec v_c$ constantes,
-> $$\int_N\vec r_{c/o}\times\vec v_c\,dm=\vec r_{c/o}\times\vec v_c\int_N dm=m\,\vec r_{c/o}\times\vec v_c.$$
-> Por tanto $I_2=m\,\vec r_{c/o}\times\vec v_c$. $\blacksquare$
+> [!demostracion] Término $I_2$ — el momento orbital del CM
+> $$I_2=\int_N\vec r_{c/o}\times(\vec v_c+\vec\omega\times\vec r)\,dm.$$
+> $\vec r_{c/o}$ y $\vec v_c$ son **constantes** respecto a la integral. El sumando con $\vec\omega\times\vec r$ muere:
+> $$\int_N\vec r_{c/o}\times(\vec\omega\times\vec r)\,dm=\vec r_{c/o}\times\Big(\vec\omega\times\underbrace{\int_N\vec r\,dm}_{\vec0}\Big)=\vec0.$$
+> Y el de $\vec v_c$ da $\displaystyle\int_N\vec r_{c/o}\times\vec v_c\,dm=\vec r_{c/o}\times\vec v_c\int_N dm=m\,\vec r_{c/o}\times\vec v_c$. $\blacksquare$
 
-> [!proposicion] Descomposición espín + orbital
-> Sumando, $\vec H^o=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c$. Con origen en el CM ($O=C$),
-> $$\vec H^c=\mathbf I_c\vec\omega.$$
-> En $O=C$ el momento angular es puramente **de espín** $\mathbf I_c\vec\omega$ (giro propio del cuerpo).
-> El término $m\,\vec r_{c/o}\times\vec v_c$ es el momento **orbital** del CM: el que tendría una
-> partícula que concentrase toda la masa $m$ en $C$. Así, $\vec H^o=\underbrace{\mathbf I_c\vec\omega}_{\text{espín}}+\underbrace{m\,\vec r_{c/o}\times\vec v_c}_{\text{orbital}}$.
+> [!proposicion] Forma final: espín + orbital
+> $\vec H^o=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c$. El primer término es el momento angular
+> de **espín** (rotación propia); el segundo, el **orbital** del CM (como una partícula con toda la masa
+> en $C$). En $O=C$ queda solo el espín, $\vec H^c=\mathbf I_c\vec\omega$.
 
 > [!warning]
-> $\vec H$ en general **no** es paralelo a $\vec\omega$: solo lo es sobre los **ejes principales** de
-> $\mathbf I_c$. Además, el resultado limpio $\vec H=\mathbf I_c\vec\omega$ exige tomar momentos respecto
-> al **centro de masa** (o a un punto fijo); para un $O$ arbitrario sobrevive el término orbital
-> $m\,\vec r_{c/o}\times\vec v_c$.
+> $\vec H$ **no** es paralelo a $\vec\omega$ salvo en ejes principales (el tensor cambia su dirección).
+> El resultado limpio $\mathbf I_c\vec\omega$ exige tomar momentos respecto al **CM** o a un punto fijo.
+> Derivando esta expresión respecto al tiempo se obtiene el [[Deduccion del Torque | torque]] (y de ahí
+> Euler).
 
 ## Resumen
 
 > [!resumen]
-> | Paso | Resultado |
-> |:---|:---|
-> | $I_1$ (brazo $\vec r_{p/c}$) | $\mathbf I_c\vec\omega$ (espín) |
-> | $I_2$ (brazo $\vec r_{c/o}$) | $m\,\vec r_{c/o}\times\vec v_c$ (orbital) |
-> | Momento angular (punto $O$) | $\vec H^o=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c$ |
-> | En el CM ($O=C$) | $\vec H^c=\mathbf I_c\vec\omega$ |
+> | Término | Contracción | Resultado |
+> |:---|:---|:---|
+> | $I_1$ | $\vec r(\vec r\cdot\vec\omega)\to Q_{ij}\omega_j$; $\,r^2\to Q_{kk}$ | $\mathbf I_c\vec\omega$ (espín) |
+> | $I_2$ | $\int\vec r\,dm=\vec0$ | $m\,\vec r_{c/o}\times\vec v_c$ (orbital) |
+> | Total | — | $\vec H^o=\mathbf I_c\vec\omega+m\,\vec r_{c/o}\times\vec v_c$ |
 
 > [!corolario]
-> La fórmula no es un postulado: se **integra** desde $d\vec H=\vec r\times\vec v\,dm$, y el tensor de
-> inercia aparece solo al separar el término de espín. La descomposición **espín + orbital** es el
-> análogo angular de "todo cuerpo se mueve como su CM más un giro propio".
+> El momento angular del sólido se **integra**, no se postula: la combinación $r^2\mathbb 1-\vec r\vec r$
+> que sobrevive es exactamente el tensor de inercia. Esa es la gracia de hacerlo con tensores: ver de
+> dónde sale $\mathbf I_c\vec\omega$.
 
 > [!referencia]
-> Goldstein §5. Construido sobre el [[Tensor de Inercia]]. Hermanas: [[Deduccion del Torque]],
-> [[Deduccion de la Energia Cinetica]]. Índice: [[Deducciones/index]].
+> Goldstein §5. Hermanas: [[Deduccion del Torque]], [[Deduccion de la Energia Cinetica]]. Tensor:
+> [[Tensor de Inercia]].
