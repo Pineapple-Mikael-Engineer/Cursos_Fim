@@ -29,6 +29,10 @@ aliases:
 
 ## El programa de la mecánica de la partícula
 
+![[particula_trayectoria.svg|470]]
+
+*La cinemática describe el movimiento ($\vec r,\vec v,\vec a$); la cinética lo explica con $\sum\vec F=m\vec a$.*
+
 > [!teoria] Cuatro preguntas, cuatro herramientas
 > Toda la dinámica de la partícula se organiza en cuatro piezas, cada una deducida de la anterior:
 >

@@ -29,6 +29,10 @@ aliases:
 
 ## El recorrido
 
+![[particula_trayectoria.svg|460]]
+
+*Toda la dinámica: describir el movimiento (cinemática) y explicarlo con las leyes de Newton (cinética).*
+
 > [!teoria] De la partícula al sólido
 > El curso avanza generalizando un mismo método —describir (cinemática), plantear Newton, integrar—:
 > 1. **Partícula.** Cinemática (cartesianas, intrínsecas 3D, cilíndricas, esféricas), cinética,

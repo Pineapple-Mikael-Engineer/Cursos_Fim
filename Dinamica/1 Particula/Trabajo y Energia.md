@@ -50,7 +50,7 @@ aliases:
 > Un bloque de masa $m$ parte del **reposo** y desliza, sin rozamiento, descendiendo una altura $h$ por
 > una rampa de inclinación cualquiera. Hallar su **rapidez** al pie de la rampa usando el teorema
 > trabajo-energía.
-
+>
 > ![[rampa_trabajo.svg|380]]
 >
 > *En la rampa lisa solo trabaja el peso (la normal es perpendicular al desplazamiento): el trabajo neto es $mgh$, con $h$ el desnivel.*

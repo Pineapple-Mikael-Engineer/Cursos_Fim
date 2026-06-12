@@ -37,6 +37,10 @@ aliases:
 > Un pasajero lanza una pelota **verticalmente** dentro de un tren que avanza a velocidad constante
 > $\vec V_M=V\hat\imath$. ¿Qué trayectoria ve un observador en el andén?
 >
+> ![[galileo_tren.svg|520]]
+>
+> *En el tren ($M$) la pelota sube y baja vertical; desde el andén ($F$) describe una parábola. La aceleración —la gravedad— es la misma en ambos.*
+>
 > **En el tren ($M$).** Solo actúa la gravedad: $\vec a\,'=-g\hat\jmath$, y como lanza vertical,
 > $\vec v\,'_0=v_0\hat\jmath$: sube y baja en **línea recta** vertical.
 >

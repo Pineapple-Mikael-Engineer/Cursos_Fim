@@ -36,6 +36,10 @@ aliases:
 > Un sólido axisimétrico ($I_1=I_2=I_t$, $I_3=I_a$) gira **libre de torque** ($\sum\vec M=\vec0$).
 > ¿Cómo evoluciona $\vec\omega$?
 >
+> ![[precesion_cono.svg|360]]
+>
+> *Sin torque, $\vec\omega$ recorre un cono alrededor del eje de simetría (precesión libre), mientras $\vec H$ se mantiene fijo.*
+>
 > **Eje de simetría:** la 3.ª ecuación de Euler da $I_a\dot\omega_3=(I_1-I_2)\omega_1\omega_2=0$, luego
 > $\omega_3=$ cte.
 > **Plano transversal:** las otras dos quedan $I_t\dot\omega_1=(I_t-I_a)\omega_2\omega_3$ y

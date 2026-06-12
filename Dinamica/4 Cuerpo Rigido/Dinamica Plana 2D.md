@@ -40,7 +40,7 @@ aliases:
 >
 > Un cilindro macizo de masa $m$ y radio $R$ ($I_G=\tfrac12 mR^2$) **rueda sin deslizar** por un plano de
 > inclinación $\theta$. Hallar la aceleración del centro $a_G$.
-
+>
 > ![[dcl_rodadura.svg|470]]
 >
 > *DCL: peso $m\vec g$, normal $\vec N$ y rozamiento $\vec f$ (cuesta arriba, el que permite rodar). Newton-Euler + rodadura dan $a_G$.*

@@ -48,6 +48,10 @@ aliases:
 > $\mathbf I=\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q$. Propiedad del CM $\int\vec r\,dm=\vec0$, y la
 > identidad de Levi-Civita $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$.
 
+![[cuerpo_inercia.svg|420]]
+
+*Se integra sobre el cuerpo: cada elemento $dm$ a posición $\vec r$ aporta su energía $\tfrac12 v^2\,dm$.*
+
 > [!teorema] Punto de partida
 > Con $\vec v_p=\vec v_c+\vec\omega\times\vec r$,
 > $$v_p^2=\vec v_p\cdot\vec v_p=v_c^2+2\,\vec v_c\cdot(\vec\omega\times\vec r)+(\vec\omega\times\vec r)\cdot(\vec\omega\times\vec r),$$

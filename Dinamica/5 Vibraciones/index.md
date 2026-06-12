@@ -36,7 +36,7 @@ aliases:
 > $V(x)\approx V(x_0)+\tfrac12 V''(x_0)(x-x_0)^2$, la fuerza recuperadora es $-V''(x_0)(x-x_0)$, es decir
 > un **resorte efectivo** $k=V''(x_0)$. Por eso el péndulo, una molécula o un circuito $LC$ oscilan
 > todos como un masa-resorte: dominarlo es dominar las pequeñas oscilaciones de **todo** equilibrio.
-
+>
 > ![[masa_resorte.svg|470]]
 >
 > *El sistema masa-resorte-amortiguador: el resorte $k$ recupera, el amortiguador $c$ disipa, y $m\ddot x+c\dot x+kx=F(t)$.*

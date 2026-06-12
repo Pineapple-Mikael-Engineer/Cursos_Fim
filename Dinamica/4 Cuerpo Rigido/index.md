@@ -30,6 +30,10 @@ aliases:
 
 ## El programa del cuerpo rígido
 
+![[velocidad_solido.svg|460]]
+
+*La velocidad de un punto del sólido: traslación del CM más rotación, $\vec v_P=\vec v_G+\vec\omega\times\vec r_{P/G}$.*
+
 > [!teoria] Cinemática y luego cinética
 > Igual que en la partícula, primero se **describe** y luego se **explica**:
 > - **Cinemática** — cómo se mueven los puntos del sólido. En el **plano**: rotación de eje fijo,

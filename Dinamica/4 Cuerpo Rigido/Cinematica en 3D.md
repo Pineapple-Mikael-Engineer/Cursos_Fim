@@ -37,7 +37,7 @@ aliases:
 > Un eje vertical gira con velocidad angular $\vec\omega_1$ (vertical). Sobre él va montado un disco que,
 > además, gira con $\vec\omega_2$ **respecto al eje**. ¿Cuál es la velocidad angular total del disco y la
 > velocidad de un punto $P$ de su borde?
-
+>
 > ![[velocidad_solido.svg|470]]
 >
 > *La velocidad de un punto del sólido es la del CM más la rotación: $\vec v_P=\vec v_C+\vec\omega\times\vec r_{P/C}$.*

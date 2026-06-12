@@ -54,6 +54,10 @@ aliases:
 > $\vec A\times(\vec B\times\vec C)=\vec B(\vec A\cdot\vec C)-\vec C(\vec A\cdot\vec B)$ y la del
 > símbolo de Levi-Civita $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$.
 
+![[cuerpo_inercia.svg|420]]
+
+*Se integra sobre el cuerpo: cada elemento $dm$ a posición $\vec r$ aporta su torque $d\vec\tau=\vec r\times\vec a\,dm$.*
+
 > [!teorema] Punto de partida
 > Con $d\vec F_p=\vec a_p\,dm$, la cinemática rígida
 > $\vec a_p=\vec a_c+\vec\alpha\times\vec r+\vec\omega\times(\vec\omega\times\vec r)$ (escribo

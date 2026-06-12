@@ -51,6 +51,10 @@ aliases:
 > ($I_{ij}=Q_{kk}\delta_{ij}-Q_{ij}$). Propiedad del CM: $\int\vec r\,dm=\vec0$. Doble producto:
 > $\vec r\times(\vec\omega\times\vec r)=\vec\omega\,r^2-\vec r\,(\vec r\cdot\vec\omega)$.
 
+![[cuerpo_inercia.svg|420]]
+
+*Se integra sobre el cuerpo: cada elemento $dm$ a posición $\vec r$ aporta su momento angular.*
+
 > [!teorema] Punto de partida
 > Con $\vec v_p=\vec v_c+\vec\omega\times\vec r$ (velocidad de un punto del sólido) y
 > $\vec r_{p/o}=\vec r+\vec r_{c/o}$,
