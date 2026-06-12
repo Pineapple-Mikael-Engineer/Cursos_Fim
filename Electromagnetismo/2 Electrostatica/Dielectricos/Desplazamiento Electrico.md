@@ -24,7 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota de la subsección [[2 Electrostatica/Dielectricos/index | Dieléctricos]]**, dentro del capítulo [[2 Electrostatica/index | Electrostática]] (curso Electromagnetismo). Es **hermana** de [[Polarizacion]] —de donde tomamos la carga ligada $\rho_b=-\nabla\cdot\vec P$, ingrediente clave de la deducción— y prolonga la [[Ley de Gauss]] del vacío a la materia, reemplazando $\vec E$ por $\vec D$ y $\rho$ por $\rho_{\text{libre}}$.
+> **Nota de la subsección [[2 Electrostatica/Dielectricos/index | Dieléctricos]]**, dentro del capítulo [[2 Electrostatica/index | Electrostática]] (curso Electromagnetismo). Es **hermana** de [[2 Electrostatica/Dielectricos/Polarizacion | Polarización]] —de donde tomamos la carga ligada $\rho_b=-\nabla\cdot\vec P$, ingrediente clave de la deducción— y prolonga la [[Ley de Gauss]] del vacío a la materia, reemplazando $\vec E$ por $\vec D$ y $\rho$ por $\rho_{\text{libre}}$.
 > **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4. Unidades SI; $\varepsilon_0=8{,}854\times10^{-12}\ \text{C}^2/(\text{N}\cdot\text{m}^2)$.
 
 ---
@@ -40,7 +40,7 @@ aliases:
 >
 > **Paso 2 — Descomponer la carga total.** Toda la carga del medio es la suma de la libre y la ligada:
 > $$\rho=\rho_{\text{libre}}+\rho_b,\qquad \rho_b=-\,\nabla\cdot\vec P,$$
-> donde la expresión de $\rho_b$ se deduce en [[Polarizacion]] (la divergencia de la polarización es, salvo signo, la densidad de carga ligada). Sustituyendo:
+> donde la expresión de $\rho_b$ se deduce en [[2 Electrostatica/Dielectricos/Polarizacion | Polarización]] (la divergencia de la polarización es, salvo signo, la densidad de carga ligada). Sustituyendo:
 > $$\varepsilon_0\,\nabla\cdot\vec E=\rho_{\text{libre}}-\nabla\cdot\vec P.$$
 >
 > **Paso 3 — Reunir las divergencias.** Pasamos el término $-\nabla\cdot\vec P$ a la izquierda y usamos la linealidad del operador divergencia, $\nabla\cdot\vec a+\nabla\cdot\vec b=\nabla\cdot(\vec a+\vec b)$:

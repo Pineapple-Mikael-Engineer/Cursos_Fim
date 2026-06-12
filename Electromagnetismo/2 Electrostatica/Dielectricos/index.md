@@ -46,7 +46,7 @@ aliases:
 ## Mapa de la subsección
 
 > [!algoritmo] Notas
-> 1. **[[Polarizacion]]** — el vector $\vec P$; deducción de las cargas ligadas $\rho_b=-\nabla\cdot\vec P$ y $\sigma_b=\vec P\cdot\hat n$; el campo que crea un dieléctrico polarizado.
+> 1. **[[2 Electrostatica/Dielectricos/Polarizacion | Polarización]]** — el vector $\vec P$; deducción de las cargas ligadas $\rho_b=-\nabla\cdot\vec P$ y $\sigma_b=\vec P\cdot\hat n$; el campo que crea un dieléctrico polarizado.
 > 2. **[[Desplazamiento Electrico]]** — $\vec D=\varepsilon_0\vec E+\vec P$; ley de Gauss para $\vec D$ ($\nabla\cdot\vec D=\rho_{\text{libre}}$); medios lineales, $\varepsilon_r$ y condiciones de frontera.
 
 > [!corolario] Por qué cierra la electrostática
