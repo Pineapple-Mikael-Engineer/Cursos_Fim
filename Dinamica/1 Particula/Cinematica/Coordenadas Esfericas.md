@@ -46,6 +46,10 @@ aliases:
 > Una partícula está obligada a moverse sobre una esfera de radio $R$ (por ejemplo, una cuenta en un
 > casquete liso). Con $r=R$, $\dot r=\ddot r=0$, hallar su velocidad y la componente radial de su
 > aceleración.
+
+> ![[coordenadas_esfericas.svg|350]]
+>
+> *Coordenadas esféricas $(r,\theta,\varphi)$: $r$ al origen, $\theta$ polar desde $z$, $\varphi$ azimut; base móvil $(\hat e_r,\hat e_\theta,\hat e_\varphi)$.*
 >
 > **Paso 1 — Velocidad.** Anulando $\dot r$ en la fórmula general,
 > $$\vec v=R\dot\theta\,\hat e_\theta+R\operatorname{sen}\theta\,\dot\varphi\,\hat e_\varphi.$$

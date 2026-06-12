@@ -46,6 +46,10 @@ aliases:
 > Un proyectil de masa $m$ se lanza describiendo una **parábola** bajo la gravedad. En cierto instante
 > **explota** en el aire fragmentándose en varios pedazos que salen en todas direcciones. ¿Qué
 > trayectoria sigue el **centro de masa** del conjunto tras la explosión?
+
+> ![[centro_masa_proyectil.svg|560]]
+>
+> *Las fuerzas internas no alteran el movimiento del CM: sigue la misma parábola aunque los fragmentos se dispersen.*
 >
 > La clave es distinguir fuerzas internas de externas: la explosión es un fenómeno **interno** (las
 > fuerzas que separan los fragmentos son pares acción-reacción entre ellos). La única fuerza **externa**

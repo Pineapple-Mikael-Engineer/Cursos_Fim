@@ -45,6 +45,10 @@ aliases:
 > Una partícula sube por una **hélice** de radio $R$: el radio es constante, $r=R$; gira con velocidad
 > angular constante, $\theta=\omega t$ (luego $\dot\theta=\omega$, $\ddot\theta=0$); y asciende
 > uniformemente, $z=ct$ (luego $\dot z=c$, $\ddot z=0$). Hallar $\vec v$ y $\vec a$.
+
+> ![[coordenadas_cilindricas.svg|330]]
+>
+> *Coordenadas cilíndricas $(r,\theta,z)$: base $(\hat e_r,\hat e_\theta,\hat e_z)$ con $\hat e_z$ fijo y $\hat e_r,\hat e_\theta$ girando con $\theta$.*
 >
 > **Paso 1 — Derivadas de las coordenadas.** De $r=R$ const: $\dot r=0$, $\ddot r=0$. De $\theta=\omega t$:
 > $\dot\theta=\omega$, $\ddot\theta=0$. De $z=ct$: $\dot z=c$, $\ddot z=0$.

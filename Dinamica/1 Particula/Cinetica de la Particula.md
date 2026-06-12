@@ -51,6 +51,10 @@ aliases:
 > Es un movimiento circular uniforme: conviene proyectar $\sum\vec F=m\vec a$ en **coordenadas
 > intrínsecas**. La única fuerza horizontal es el **rozamiento** $\vec f$, que debe aportar toda la
 > aceleración normal (centrípeta) que curva la trayectoria hacia el centro.
+
+> ![[dcl_curva.svg|460]]
+>
+> *Vista superior: el rozamiento $\vec f$ apunta al centro $O$ y aporta la aceleración centrípeta $v^2/R$; su valor máximo $\mu mg$ fija $v_{max}$.*
 >
 > > [!solucion]
 > > **Vertical (eje vertical fijo).** No hay aceleración vertical, así que la normal del suelo

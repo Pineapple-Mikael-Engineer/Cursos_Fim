@@ -48,6 +48,10 @@ aliases:
 > Dos partículas chocan de frente sobre una recta. La primera tiene masa $m_1=2\ \text{kg}$ y velocidad
 > $v_1=3\ \text{m/s}$; la segunda, $m_2=1\ \text{kg}$ y $v_2=0$. El coeficiente de restitución del choque
 > es $e=0{,}5$. Hallar las velocidades finales $v_1'$ y $v_2'$.
+
+> ![[choque_1d.svg|560]]
+>
+> *Choque frontal: se conserva la cantidad de movimiento del par y la restitución $e$ relaciona las velocidades de separación y aproximación.*
 >
 > Durante el choque las fuerzas son **internas** al par e **impulsivas**, de modo que la cantidad de
 > movimiento del sistema se conserva. Esto da una ecuación; la definición de restitución da la otra:
