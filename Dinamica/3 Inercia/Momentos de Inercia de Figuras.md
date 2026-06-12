@@ -38,6 +38,10 @@ aliases:
 
 Deducimos de cero el valor más usado: el de la **varilla**.
 
+![[cuerpos_inercia.svg|560]]
+
+*Tres cuerpos comunes y su momento de inercia por el CM: varilla $\tfrac{1}{12}mL^2$, disco $\tfrac12 mR^2$, esfera maciza $\tfrac25 mR^2$.*
+
 Varilla uniforme de masa $m$ y longitud $L$, eje que pasa por su **centro** y es perpendicular a la
 varilla. La masa se reparte por igual a lo largo de la longitud, así que la **densidad lineal** es
 constante, $\lambda=m/L$, y un trozo de longitud $dx$ situado a distancia $x$ del centro tiene

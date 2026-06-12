@@ -41,6 +41,10 @@ aliases:
 > Del [[Tensor de Inercia]] de dos masas puntuales sale, respecto al origen,
 > $$\mathbf I=ma^2\begin{pmatrix} 2 & -2 & 0\\ -2 & 2 & 0\\ 0 & 0 & 4\end{pmatrix}.$$
 > Hallar sus momentos principales y ejes principales.
+
+> ![[ejes_principales.svg|420]]
+>
+> *En los ejes principales el tensor es diagonal: $\vec\omega$ a lo largo de un eje principal da $\vec H\parallel\vec\omega$ (sin productos de inercia).*
 >
 > El eje $z$ ya está desacoplado ($\lambda=4ma^2$). El bloque $2\times2$
 > $\begin{pmatrix} 2 & -2\\ -2 & 2\end{pmatrix}$ tiene autovalores

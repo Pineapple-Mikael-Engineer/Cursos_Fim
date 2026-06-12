@@ -24,6 +24,10 @@ aliases:
 > Restringido a un **único eje**, recupera la forma escalar clásica:
 > $$I_O=I_G+m\,d^2.$$
 
+![[eje_paralelo.svg|440]]
+
+*Dos ejes paralelos: el del CM ($G$) y otro por $O$, separados $\vec d$. El término $m[d^2\mathbb 1-\vec d\vec d^{\,T}]$ traslada el tensor.*
+
 > [!info]
 > El teorema **traslada** el [[Tensor de Inercia]] entre dos puntos del cuerpo, una operación central en la [[3 Inercia/index | inercia]]. Es **imprescindible** para reutilizar la [[Momentos de Inercia de Figuras | tabla de figuras]] —cuyos valores están tabulados **en el centro de masa**— sobre cualquier otro eje de rotación. La masa $m$ aparece como factor de un término puramente **geométrico** que solo depende de la separación $\vec d$. Cf. Goldstein §5.3.
 

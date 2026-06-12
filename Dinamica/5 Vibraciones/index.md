@@ -37,6 +37,10 @@ aliases:
 > un **resorte efectivo** $k=V''(x_0)$. Por eso el péndulo, una molécula o un circuito $LC$ oscilan
 > todos como un masa-resorte: dominarlo es dominar las pequeñas oscilaciones de **todo** equilibrio.
 
+> ![[masa_resorte.svg|470]]
+>
+> *El sistema masa-resorte-amortiguador: el resorte $k$ recupera, el amortiguador $c$ disipa, y $m\ddot x+c\dot x+kx=F(t)$.*
+
 > [!teoria] Libre, amortiguada y forzada
 > - **Vibración libre.** Sin excitación: el sistema oscila a su frecuencia natural $\omega_n$, y el
 >   amortiguamiento $\zeta$ decide si oscila (subamortiguado), vuelve sin oscilar (crítico) o repta

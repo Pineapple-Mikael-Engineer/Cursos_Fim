@@ -28,6 +28,11 @@ aliases:
 
 ## El método común
 
+> [!info]
+> ![[velocidad_solido.svg|460]]
+>
+> *El punto de partida común: la velocidad de un punto del sólido, $\vec v_p=\vec v_c+\vec\omega\times\vec r_{p/c}$, que al integrar hace nacer el tensor de inercia.*
+
 > [!teoria] Tres pasos que se repiten
 > Las tres deducciones siguen el **mismo patrón**:
 > 1. Escribir la magnitud como **integral sobre $dm$** del aporte de cada elemento.
