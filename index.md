@@ -13,9 +13,20 @@ Aquí guardo mis anotaciones (a veces ordenadas, a veces no tanto) de cursos de 
 
 ## Navegación
 
+**Matemáticas y herramientas**
+- [[Ecuaciones/1 Ecuaciones Diferenciales Ordinarias/index|Ecuaciones (EDO/EDP/Integrales)]]
 - [[Tensorial/index|Tensorial]]
 - [[Metodos Numericos/index|Métodos Numéricos]]
-- [[Control/index|Control]]
+
+**Física**
+- [[Dinamica/index|Dinámica]]
+- [[Electromagnetismo/1 Calculo Vectorial/index|Electromagnetismo]]
+- [[Mecanica de Fluidos/1 Cinematica del Flujo/index|Mecánica de Fluidos]]
+- [[Termodinamica/Problemas/index|Termodinámica]]
+
+**Ingeniería**
+- [[Circuitos Electricos/1 Conceptos Fundamentales y Resistivos/index|Circuitos Eléctricos]]
+- [[Control/Control Clasico/2 Modelado/Espacio Estados/index|Control]]
 
 
 ---
