@@ -1,0 +1,14 @@
+% Circuito RC serie — salida en el capacitor (pasa bajos)
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  \draw (0,2) node[ocirc](a){} to[R=$R$] (3,2) coordinate(b);
+  \draw (b) to[C, l_=$C$] (3,0) coordinate(d);
+  \draw (0,0) node[ocirc](c){} -- (d);
+  \draw (a) to[open, v=$V_i$] (c);
+  \draw (b) -- (4,2) node[ocirc]{};
+  \draw (d) -- (4,0) node[ocirc]{};
+  \draw (4,2) to[open, v^=$V_o$] (4,0);
+\end{circuitikz}
+\end{document}

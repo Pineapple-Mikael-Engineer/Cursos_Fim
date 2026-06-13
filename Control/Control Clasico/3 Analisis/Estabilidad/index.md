@@ -15,140 +15,95 @@ aliases:
 
 # Estabilidad de Sistemas
 
-# Definiciones fundamentales
+> [!definicion]
+> Un sistema LTI es **estable** si todos los polos de su función de transferencia $G(s)$ están en el **semiplano izquierdo** ($\Re(p_i)<0$). Equivalen tres lecturas: *BIBO* (toda entrada acotada da salida acotada), *asintótica* (con entrada nula el estado tiende a cero) y *de polos* (todos con parte real negativa). Polos sobre el eje imaginario simples → marginal; alguno en el derecho → inestable.
 
-> [!definicion] Estabilidad BIBO (Bounded Input Bounded Output)
-> Un sistema es **BIBO estable** si toda entrada acotada produce una salida acotada.
-> 
-> $$|u(t)| \le M_u < \infty \quad \forall t \implies |y(t)| \le M_y < \infty \quad \forall t$$
+> [!info]
+> Carpeta `3 Analisis/Estabilidad`. Reúne el criterio algebraico de [[Routh Hurwitz/index | Routh-Hurwitz]] y su [[Condicion Necesaria | condición necesaria]]. Los polos se calculan desde la [[Funcion Transferencia/index | función de transferencia]]; el análisis gráfico vive en [[Lugar Raices/index | lugar de las raíces]] y [[Respuesta Frecuencial/Nyquist/index | Nyquist]].
 
-> [!definicion] Estabilidad asintótica (entrada nula)
-> Un sistema es **asintóticamente estable** si, con condiciones iniciales arbitrarias y entrada nula, el estado tiende a cero:
-> $$\lim_{t \to \infty} \|x(t)\| = 0$$
-> 
-> Para sistemas LTI, esto equivale a que todos los polos (autovalores) tengan parte real negativa.
+---
 
-> [!definicion] Estabilidad marginal
-> Un sistema es **marginalmente estable** si, con entrada nula, la respuesta permanece acotada pero **no tiende a cero**:
-> - Oscilaciones sostenidas (ej. polos en $\pm j\omega$)
-> - Respuesta constante (polo en $s=0$ simple)
+## Ejemplo
 
-> [!definicion] Inestabilidad
-> Un sistema es **inestable** si existe alguna condición inicial que produce una respuesta **no acotada**.
-> 
-> Causas típicas:
-> - Polos con parte real positiva
-> - Polos en el eje imaginario con multiplicidad $\ge 2$
+> [!ejemplo] Clasificar tres sistemas por sus polos
+> Decidir la estabilidad de cada $G(s)$ ubicando sus polos.
+>
+> **Sistema A — $G(s)=\dfrac{1}{s^2+3s+2}$.**
+> Denominador $s^2+3s+2=(s+1)(s+2)$ → polos $s=-1,-2$. Ambos con $\Re<0$ → **asintóticamente estable** (y por tanto BIBO).
+>
+> **Sistema B — $G(s)=\dfrac{1}{s^2+4}$.**
+> Polos $s=\pm j2$, simples sobre el eje imaginario → **marginalmente estable**. Una entrada acotada ($\sin t$) produce salida acotada, pero la respuesta libre **oscila sin decaer**, no tiende a cero.
+>
+> **Sistema C — $G(s)=\dfrac{1}{s^2-s-2}$.**
+> $s^2-s-2=(s-2)(s+1)$ → polos $s=2,-1$. Hay un polo en $\Re>0$ → **inestable**: un coeficiente negativo ($-s$) ya lo delata.
+>
+> | Sistema | Polos | $\Re(p_i)$ | Veredicto |
+> |---|---|---|---|
+> | A | $-1,\,-2$ | $<0$ | estable |
+> | B | $\pm j2$ | $=0$ simples | marginal |
+> | C | $2,\,-1$ | uno $>0$ | inestable |
 
-# Clasificación según polos (sistemas LTI)
+> [!ejemplo] BIBO no es lo mismo que asintótica
+> $G(s)=\dfrac{1}{s(s+1)}$ tiene polos $0,-1$. El polo en $s=0$ es simple, así que la respuesta libre queda acotada, pero ante un **escalón** la salida contiene un término $\propto t$ que crece sin cota → **no es BIBO estable**. El polo en el origen, marginal en respuesta libre, se vuelve no acotado al integrar la entrada.
 
-> [!info] Resumen
-> 
-> | Ubicación de polos | Estabilidad | Respuesta característica |
-> |--------------------|-------------|--------------------------|
-> | Todos $\Re(p_i) < 0$ | **Asintóticamente estable** | $e^{\sigma t}$ con $\sigma < 0$ |
-> | Polos en $s=0$ simples, resto $\Re < 0$ | **Marginalmente estable** | constante o rampa |
-> | Polos en $s=\pm j\omega$ simples, resto $\Re < 0$ | **Marginalmente estable** | $\sin(\omega t)$ |
-> | Algún $\Re(p_i) > 0$ | **Inestable** | $e^{\sigma t}$ con $\sigma > 0$ |
-> | Polos en eje imaginario con multiplicidad $\ge 2$ | **Inestable** | $t\sin(\omega t)$ o $t$ |
-> 
-> Ver [[Polos Ceros]] para análisis de modos naturales.
+---
 
-# Relación entre estabilidad BIBO y estabilidad asintótica
+## En qué consiste
 
-> [!teorema] Para sistemas LTI sin cancelaciones polo-cero
-> - **Estabilidad asintótica** (todos los polos con $\Re < 0$) $\implies$ **BIBO estable**
-> - **BIBO estable** $\implies$ todos los polos con $\Re \le 0$, y los de $\Re = 0$ deben ser simples
-> 
-> La diferencia es el tratamiento de los polos en el eje imaginario.
+> [!teoria]
+> Para un sistema LTI con polos $p_i$, la respuesta libre es combinación de modos $e^{p_i t}$ (y $t^k e^{p_i t}$ si hay repetición). El signo de $\Re(p_i)$ fija el destino de cada modo:
+>
+> | Ubicación de polos | Estabilidad | Modo característico |
+> |---|---|---|
+> | Todos $\Re(p_i)<0$ | asintóticamente estable | $e^{\sigma t},\ \sigma<0$ (decae) |
+> | Polo $s=0$ simple, resto $\Re<0$ | marginal | constante |
+> | Par $\pm j\omega$ simple, resto $\Re<0$ | marginal | $\sin(\omega t)$ sostenido |
+> | Algún $\Re(p_i)>0$ | inestable | $e^{\sigma t},\ \sigma>0$ (crece) |
+> | Eje imaginario con multiplicidad $\ge2$ | inestable | $t\sin(\omega t)$, $t$ |
 
-> [!ejemplo] Diferencia práctica
-> $G(s) = \frac{1}{s^2 + 1}$ (polos $\pm j$):
-> - **BIBO estable?** Sí (entrada acotada → salida acotada, ej. $\sin(t)$)
-> - **Asintóticamente estable?** No (no tiende a cero, oscila)
-> 
-> $G(s) = \frac{1}{s(s+1)}$ (polos $0, -1$):
-> - **BIBO estable?** No (escalón produce $t$, no acotado)
+> [!teorema] BIBO vs. asintótica (sin cancelaciones polo-cero)
+> - Asintóticamente estable (todos $\Re<0$) $\implies$ BIBO estable.
+> - BIBO estable $\implies$ todos $\Re\le0$, y los de $\Re=0$ deben ser simples.
+>
+> La diferencia es el trato de los polos sobre el eje imaginario.
 
-# Estabilidad interna vs externa
+> [!warning] Cancelaciones ocultan inestabilidad interna
+> $G(s)=\dfrac{s-1}{(s-1)(s+2)}$ se simplifica a $\dfrac{1}{s+2}$: la FT parece estable (polo en $-2$). Pero el modo interno asociado a $s=1$ sigue ahí y puede crecer sin cota. La estabilidad **interna** depende de **todos** los polos antes de cancelar; la **externa** (BIBO), solo de la FT simplificada. Ver [[Espacio Estados/index | espacio de estados]] para los autovalores de $\mathbf{A}$.
 
-> [!definicion] Estabilidad externa (BIBO)
-> Se refiere únicamente a la relación **entrada–salida** del sistema.
-> Un sistema es BIBO estable si toda entrada acotada produce una salida acotada.
-> 
-> Ver [[Funcion Transferencia/index | función transferencia]].
+---
 
-> [!definicion] Estabilidad interna (asintótica)
-> Se refiere al comportamiento de **todos los modos del sistema**, incluidos aquellos que pueden no aparecer en la función de transferencia.
+## Criterios disponibles
 
-> [!warning] Cancelaciones pueden ocultar inestabilidad interna
-> Considere un sistema cuya función de transferencia es:
-> 
-> $$
-> G(s) = \frac{s-1}{(s-1)(s+2)}
-> $$
-> 
-> Se observa una cancelación del factor $(s-1)$, lo que deja:
-> 
-> $$
-> G(s) = \frac{1}{s+2}
-> $$
-> 
-> Desde la función de transferencia, el sistema parece BIBO estable (polo en $s=-2$).
-> 
-> Sin embargo, la cancelación indica que existe un modo interno asociado al polo $s=1$ que no es visible en la relación entrada–salida.
-> 
-> Ese modo puede crecer sin acotarse internamente, aunque la salida permanezca estable.
-> 
-> **Conclusión:** la estabilidad BIBO depende de la función de transferencia simplificada, mientras que la estabilidad interna depende de todos los polos del sistema antes de cancelaciones.
-
-# Criterios para determinar estabilidad
-
-> [!info] Herramientas principales
-> 
+> [!info]
 > | Método | Aplica a | Ventaja | Ver |
-> |--------|----------|---------|-----|
-> | Cálculo directo de polos | Sistemas de orden bajo | Exacto | [[Polos Ceros]] |
-> | Routh-Hurwitz | Sistemas de cualquier orden | No requiere factorizar | [[Routh Hurwitz/index]] |
-> | Lugar de las raíces | Sistemas con un parámetro variable | Muestra tendencia | [[Lugar Raices/index]] |
-> | Diagrama de Nyquist | Sistemas con realimentación | Da márgenes | [[Nyquist]] |
-> | Autovalores de A | Espacio de estados | Da estabilidad interna | [[Espacio Estados/index]] |
+> |---|---|---|---|
+> | Cálculo directo de polos | orden bajo | exacto | [[Polos Ceros \| polos y ceros]] |
+> | Condición necesaria | cualquier orden | descarte rápido | [[Condicion Necesaria \| condición necesaria]] |
+> | Routh-Hurwitz | cualquier orden | no factoriza | [[Routh Hurwitz/index \| Routh-Hurwitz]] |
+> | Lugar de las raíces | un parámetro variable | muestra tendencia | [[Lugar Raices/index \| lugar de raíces]] |
+> | Nyquist | realimentación | da márgenes | [[Respuesta Frecuencial/Nyquist/index \| Nyquist]] |
+> | Autovalores de $\mathbf{A}$ | espacio de estados | estabilidad interna | [[Espacio Estados/index \| espacio de estados]] |
 
-# Condición necesaria de estabilidad
+---
 
-> [!teorema] Condición necesaria (pero no suficiente)
-> Para que un sistema sea estable, **todos los coeficientes** del polinomio característico deben tener el **mismo signo** y **ninguno puede ser cero**.
-> 
-> Ver [[Condicion Necesaria]] para:
-> - Demostración
-> - Contraejemplos (coeficientes positivos pero inestable)
-> - Sistemas de orden 1, 2 y 3
+## Resumen
 
-# Estabilidad y especificaciones de diseño
+> [!resumen]
+> | Concepto | Criterio |
+> |---|---|
+> | BIBO | toda entrada acotada → salida acotada |
+> | Asintótica | $\lim_{t\to\infty}\lVert x(t)\rVert=0$ con entrada nula |
+> | Polos | todos $\Re(p_i)<0$ |
+> | Marginal | $\pm j\omega$ o $s=0$ **simples**, resto $\Re<0$ |
+> | Inestable | algún $\Re(p_i)>0$, o eje imaginario con mult. $\ge2$ |
+> | Conteo de inestables | cambios de signo en 1.ª columna de Routh |
 
-> [!info] Diseño de controladores
-> 1. **Estabilización:** Llevar polos inestables al semiplano izquierdo
-> 2. **Margen de estabilidad:** Asegurar que los polos no estén demasiado cerca del eje imaginario (ver [[Diseno/Lead | lead]], [[Diseno/Lag | lag]])
-> 3. **Robustez:** Mantener estabilidad ante variaciones paramétricas (ver [[Lugar Raices/index | lugar de las raíces]])
+> [!corolario]
+> La estabilidad LTI se reduce a la geografía de los polos en el plano $s$: todos a la izquierda → estable; alguno a la derecha → inestable; sobre el eje (simples) → marginal. Cuando factorizar es costoso, [[Routh Hurwitz/index | Routh-Hurwitz]] da el veredicto y cuenta los polos inestables sin resolver el polinomio; la [[Condicion Necesaria | condición necesaria]] sirve de filtro previo.
 
-# Ejemplos prácticos
-
-> [!ejemplo] Sistema inestable clásico
-> Péndulo invertido:
-> $$G(s) = \frac{1}{s^2 - \frac{g}{l}}$$
-> 
-> Polos: $s = \pm \sqrt{g/l}$. Un polo positivo → inestable.
-
-> [!ejemplo] Sistema marginalmente estable
-> Oscilador armónico sin amortiguamiento:
-> $$G(s) = \frac{1}{s^2 + \omega_0^2}$$
-> 
-> Polos: $s = \pm j\omega_0$ → oscilación sostenida.
-
-# Limitaciones
-
-> [!warning]
-> 1. El análisis por polos **no aplica** a sistemas no lineales o variantes en el tiempo
-> 2. La condición necesaria (coeficientes positivos) es débil: muchos sistemas la cumplen y son inestables
-> 3. Routh-Hurwitz no maneja retardos de tiempo ($e^{-sT}$) directamente
-> 4. La estabilidad BIBO puede ser engañosa si hay cancelaciones
+> [!referencia]
+> - Filtro previo: [[Condicion Necesaria]].
+> - Criterio algebraico completo: [[Routh Hurwitz/index]].
+> - Análisis gráfico con un parámetro: [[Lugar Raices/index]].
+> - Estabilidad por frecuencia y márgenes: [[Respuesta Frecuencial/Nyquist/index | Nyquist]].
+> - Modos naturales y polos: [[Polos Ceros]].

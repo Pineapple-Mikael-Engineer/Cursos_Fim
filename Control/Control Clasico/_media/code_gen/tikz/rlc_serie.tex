@@ -1,0 +1,14 @@
+% Circuito RLC serie — salida en el capacitor (pasa bajos de 2.º orden)
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  \draw (0,2) node[ocirc](a){} to[R=$R$] (2,2) to[L=$L$] (4,2) coordinate(b);
+  \draw (b) to[C, l_=$C$] (4,0) coordinate(d);
+  \draw (0,0) node[ocirc](c){} -- (d);
+  \draw (a) to[open, v=$V_i$] (c);
+  \draw (b) -- (5,2) node[ocirc]{};
+  \draw (d) -- (5,0) node[ocirc]{};
+  \draw (5,2) to[open, v^=$V_o$] (5,0);
+\end{circuitikz}
+\end{document}

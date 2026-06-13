@@ -13,165 +13,120 @@ aliases:
 
 # Función Transferencia
 
-> [!definicion] Definición
-> $$G(s) = \frac{Y(s)}{U(s)} \bigg|_{\text{CI}=0}$$
-> 
-> - $Y(s) = \mathcal{L}\{y(t)\}$, $U(s) = \mathcal{L}\{u(t)\}$
-> - **Condiciones iniciales nulas**: $y^{(k)}(0^-)=0$, $u^{(k)}(0^-)=0$ ∀k
-> - Existe solo para sistemas **LTI** (lineales e invariantes en el tiempo)
-> 
-> Forma racional (para LTI):
-> $$G(s) = \frac{b_m s^m + b_{m-1}s^{m-1} + \dots + b_0}{a_n s^n + a_{n-1}s^{n-1} + \dots + a_0}, \quad n \ge m$$
+> [!definicion]
+> La función de transferencia de un sistema **LTI** es el cociente entre la transformada de Laplace de la salida y la de la entrada, con **condiciones iniciales nulas**:
+> $$G(s) = \frac{Y(s)}{U(s)}\bigg|_{\text{CI}=0}=\frac{b_m s^m + \dots + b_0}{a_n s^n + \dots + a_0},\qquad n\ge m.$$
+> De una EDO $a_n y^{(n)}+\dots+a_0 y = b_m u^{(m)}+\dots+b_0 u$, los coeficientes pasan **directamente** a numerador y denominador.
 
-> [!info] Caso EDO
-> Dada $a_n y^{(n)} + \dots + a_0 y = b_m u^{(m)} + \dots + b_0 u$:
-> $$G(s) = \frac{b_m s^m + \dots + b_0}{a_n s^n + \dots + a_0}$$
-> Los coeficientes pasan directamente.
-
-> [!ejemplo] Masa-resorte-amortiguador
-> $$m\ddot{y} + b\dot{y} + ky = u$$
-> Aplicando Laplace: $(ms^2 + bs + k)Y(s) = U(s)$
-> $$G(s) = \frac{1}{ms^2 + bs + k}$$
-> - **Orden**: 2
-> - **Polos**: $\frac{-b \pm \sqrt{b^2-4mk}}{2m}$
-> - **Ganancia estática**: $G(0) = 1/k$
-
-> [!ejemplo] Circuito RC
-> $$RC\dot{v}_o + v_o = v_i$$
-> $$G(s) = \frac{1}{RCs + 1}$$
-> - **Orden**: 1
-> - **Polo**: $s = -1/(RC)$
-> - **Ganancia estática**: $G(0) = 1$
-> - **Constante de tiempo**: $\tau = RC$
-
-> [!ejemplo] Motor DC (velocidad)
-> $$J\dot{\omega} + b\omega = K_t i_a$$
-> Con $i_a$ entrada, $\omega$ salida:
-> $$G(s) = \frac{K_t}{Js + b}$$
-> - **Orden**: 1
-> - **Polo**: $s = -b/J$
-> - **Ganancia estática**: $K_t/b$
+> [!info]
+> Es la representación central del [[Funcion Transferencia/index | modelado]] clásico. Sus parámetros se delegan a notas hijas: [[Polos Ceros | polos y ceros]] (modos y estabilidad), [[Orden | orden]] (grado y reducción), [[Ganancia Estatica | ganancia estática]] $G(0)$, [[Teorema Valor Inicial Final | valor inicial/final]] y [[Algebra Diagramas | álgebra de diagramas]] (interconexión). Es alternativa a [[Espacio Estados/index | espacio de estados]].
 
 ---
 
-## Conexiones
+## Ejemplo
+
+> [!ejemplo] De EDO a FT: masa-resorte-amortiguador
+> Sistema $m\ddot{y}+b\dot{y}+ky=u$ con $m=1$, $b=3$, $k=2$. Hallar $G(s)$ y sus rasgos.
+>
+> **Paso 1 — Laplace con CI nulas** ($\mathcal{L}\{\ddot y\}=s^2Y$, $\mathcal{L}\{\dot y\}=sY$):
+> $$(ms^2+bs+k)\,Y(s)=U(s).$$
+>
+> **Paso 2 — Despejar el cociente:**
+> $$G(s)=\frac{Y(s)}{U(s)}=\frac{1}{ms^2+bs+k}=\frac{1}{s^2+3s+2}.$$
+>
+> **Paso 3 — Lectura inmediata de la FT:**
+>
+> | Rasgo | Cálculo | Resultado |
+> |---|---|---|
+> | Orden | grado de $D(s)$ | $2$ |
+> | Polos | $s^2+3s+2=(s+1)(s+2)$ | $s=-1,\,-2$ (estable) |
+> | Ceros | $N(s)=1$ | ninguno |
+> | Ganancia estática | $b_0/a_0=1/2$ | $G(0)=0.5$ |
+>
+> Como ambos polos son reales y negativos, la respuesta es estable y sin oscilación; ante un escalón unitario, $y(\infty)=G(0)=0.5$.
+
+> [!ejemplo] Circuito RC (primer orden)
+> $RC\,\dot{v}_o+v_o=v_i$, con $R=10\ \text{k}\Omega$, $C=100\ \mu\text{F}$ ⟹ $\tau=RC=1\ \text{s}$.
+> $$G(s)=\frac{1}{RCs+1}=\frac{1}{s+1}.$$
+> Orden $1$, polo en $s=-1/\tau=-1$, $G(0)=1$ (en DC el capacitor es circuito abierto y $v_o=v_i$). Constante de tiempo $\tau=1\ \text{s}$. Ver [[Respuesta Temporal/Primer Orden | primer orden]].
+
+> [!ejemplo] Motor DC (velocidad)
+> $J\dot{\omega}+b\omega=K_t i_a$, entrada $i_a$, salida $\omega$:
+> $$G(s)=\frac{K_t}{Js+b}.$$
+> Orden $1$, polo en $s=-b/J$, ganancia estática $G(0)=K_t/b$: una corriente constante produce velocidad constante $K_t/b$.
+
+---
+
+## En qué consiste
+
+> [!teoria]
+> La FT existe **solo** para sistemas lineales e invariantes en el tiempo, porque se obtiene factorizando $Y(s)=G(s)U(s)$ a partir de Laplace, lo que exige CI nulas y operadores lineales de coeficientes constantes. Es una función racional propia ($n\ge m$): el denominador $D(s)$ codifica la dinámica propia (polos, modos naturales) y el numerador $N(s)$ codifica cómo la entrada excita esos modos (ceros).
+
+> [!teorema] Forma racional desde la EDO
+> Para $a_n y^{(n)}+\dots+a_0 y = b_m u^{(m)}+\dots+b_0 u$ con CI nulas:
+> $$G(s)=\frac{b_m s^m+\dots+b_0}{a_n s^n+\dots+a_0}.$$
+
+> [!demostracion]
+> **Paso 1.** Por linealidad de Laplace y CI nulas, $\mathcal{L}\{f^{(k)}\}=s^k F(s)$ para cada derivada.
+> **Paso 2.** Transformando ambos lados de la EDO:
+> $$(a_n s^n+\dots+a_0)Y(s)=(b_m s^m+\dots+b_0)U(s).$$
+> **Paso 3.** Como los paréntesis son escalares en $s$, se despeja el cociente y se obtiene $G(s)=Y(s)/U(s)$. $\blacksquare$
+
+---
+
+## Interconexión
 
 > [!info] Álgebra de diagramas
 > | Conexión | $G_{eq}(s)$ |
-> |----------|--------------|
-> | Serie | $G_1 G_2$ |
+> |---|---|
+> | Serie (cascada) | $G_1 G_2$ |
 > | Paralelo | $G_1 + G_2$ |
-> | Realimentación unitaria negativa | $\frac{G}{1+G}$ |
-> | Realimentación general | $\frac{G}{1+GH}$ |
-> 
-> Ver [[Algebra Diagramas]] para reducción sistemática.
-
----
-
-## Parámetros fundamentales
-
-> [!definicion] Polos
-> Raíces del denominador: $a_n s^n + \dots + a_0 = 0$
-> - Determinan [[Polos Ceros|modos naturales]]: $y_{\text{natural}}(t) \propto e^{p_i t}$
-> - **Estabilidad BIBO**: todos los polos con $\Re(p_i) < 0$
-> - Margina: $\Re(p_i)=0$ simple
-> - Inestable: $\Re(p_i) > 0$ o múltiples en eje imaginario
-> 
-> Ver [[Polos Ceros]] para cancelaciones, respuesta modal y lugar geométrico.
-
-> [!definicion] Ceros
-> Raíces del numerador: $b_m s^m + \dots + b_0 = 0$
-> - Bloquean modos: si cero = polo, ese modo no aparece en salida
-> - **Cancelación polo-cero**: peligroso si polo inestable (el estado interno diverge)
-> 
-> Ver [[Polos Ceros#Cancelación polo-cero]] para ejemplos.
-
-> [!definicion] Orden
-> Grado del denominador **tras cancelar** factores comunes con numerador.
-> $$G(s) = \frac{s+1}{(s+1)(s+2)} = \frac{1}{s+2} \implies \text{orden } 1$$
-> 
-> Ver [[Orden]] para reducción de orden y sistemas de orden superior.
-
-> [!definicion] Ganancia estática
-> $$G(0) = \frac{b_0}{a_0} \quad (\text{si } a_0 \neq 0)$$
-> - Interpretación: amplificación en DC (régimen permanente)
-> - Para escalón unitario: $\lim_{t\to\infty} y(t) = G(0)$ (ver [[Teorema Valor Inicial Final]])
-> - Bajo realimentación unitaria, [[Error Estacionario]] de posición: $e_{ss} = 1/(1+G(0))$ (sistemas tipo 0)
-> 
-> Ver [[Ganancia Estatica]] para tabla por tipo de sistema.
-
-> [!teorema] Teoremas del valor final e inicial
-> **TVF** (si polos de $sG(s)U(s)$ en $\Re(s)<0$, excepto posible $s=0$ simple):
-> $$\lim_{t\to\infty} y(t) = \lim_{s\to 0} s G(s) U(s)$$
-> 
-> **TVI**:
-> $$y(0^+) = \lim_{s\to\infty} s G(s) U(s)$$
-> 
-> Ver [[Teorema Valor Inicial Final]] para demostraciones y contraejemplos.
+> | Realimentación negativa | $\dfrac{G}{1+GH}$ |
+> | Realimentación unitaria | $\dfrac{G}{1+G}$ |
+>
+> Reducción sistemática en [[Algebra Diagramas | álgebra de diagramas]].
 
 ---
 
 ## Relaciones con otras representaciones
 
 > [!info] Respuesta impulsional
-> $g(t) = \mathcal{L}^{-1}\{G(s)\}$ es respuesta a $u(t)=\delta(t)$, CI=0.
-> Por [[Convolucion]]:
-> $$y(t) = (g * u)(t) = \int_0^t g(t-\tau) u(\tau) d\tau$$
-> En Laplace: $Y(s) = G(s)U(s)$.
+> $g(t)=\mathcal{L}^{-1}\{G(s)\}$ es la respuesta a $u(t)=\delta(t)$ con CI nulas. Por [[Convolucion | convolución]], $y(t)=(g*u)(t)$, es decir $Y(s)=G(s)U(s)$.
 
 > [!info] Espacio de estados
-> Dado $\dot{x}=Ax+Bu$, $y=Cx+Du$, con $x(0)=0$:
-> $$G(s) = C(sI-A)^{-1}B + D$$
-> 
-> Ver [[Pasar a FT]] para ejemplos numéricos y [[Espacio Estados]] para ventajas (CI no nulas, controlabilidad, observabilidad).
-
----
-
-## Casos prácticos frecuentes
-
-> [!ejemplo] Primer orden
-> $$G(s) = \frac{K}{\tau s + 1}$$
-> - Polo: $s = -1/\tau$
-> - $t_s = 4\tau$ (2%), $t_r = 2.2\tau$
-> - Ver [[Respuesta Temporal/Primer Orden]]
-
-> [!ejemplo] Segundo orden subamortiguado
-> $$G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$$
-> - Polos: $-\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2}$
-> - $M_p = e^{-\pi\zeta/\sqrt{1-\zeta^2}}$
-> - $T_s = 4/(\zeta\omega_n)$ (2%)
-> - Ver [[Respuesta Temporal/Segundo Orden]]
-
-> [!ejemplo] Integrador
-> $$G(s) = \frac{K}{s}$$
-> - Polo en $s=0$
-> - Respuesta a escalón: $y(t)=Kt \cdot u(t)$ (rampa)
-> - Error estacionario nulo a escalón bajo realimentación
-
-> [!ejemplo] Derivador (no realizable puro)
-> $$G(s) = Ks$$
-> - Cero en $s=0$
-> - Respuesta a escalón: impulso
-> - En práctica: $G(s) = \frac{Ks}{\tau s + 1}$ (derivador filtrado)
+> Dado $\dot{x}=Ax+Bu$, $y=Cx+Du$ con $x(0)=0$:
+> $$G(s)=C(sI-A)^{-1}B+D.$$
+> Ver [[Pasar a FT | de espacio de estados a FT]] y [[Espacio Estados/index | espacio de estados]] (admite CI no nulas, controlabilidad/observabilidad).
 
 ---
 
 ## Limitaciones
 
-> [!warning] Lo que $G(s)$ NO puede hacer
-> 1. **CI no nulas**: $G(s)$ supone $x(0)=0$. Para CI arbitrarias, usar [[Espacio Estados]].
-> 2. **Estabilidad interna**: Cancelar polo inestable da $G(s)$ estable pero el sistema internamente diverge.
->    $$G(s) = \frac{s-1}{s-1} \cdot \frac{1}{s+1} = \frac{1}{s+1}$$
->    Canceló polo $s=1$ (inestable). Salida estable, estado interno $x(t)=e^t$ diverge.
-> 3. **No linealidad / variación temporal**: $G(s)$ no existe. Usar [[Linealizacion]] local o representaciones alternativas.
-> 
-> Ver [[Espacio Estados]] para análisis completo.
+> [!warning]
+> 1. **CI no nulas.** $G(s)$ supone $x(0)=0$; para CI arbitrarias usar [[Espacio Estados/index | espacio de estados]].
+> 2. **Estabilidad interna.** Cancelar un polo inestable con un cero deja $G(s)$ estable pero el estado interno diverge. Ej.: $\frac{s-1}{s-1}\cdot\frac{1}{s+1}$ oculta el polo $s=1$. Ver [[Polos Ceros | polos y ceros]].
+> 3. **No linealidad / variación temporal.** No existe $G(s)$; usar [[Linealizacion/index | linealización]] local.
 
 ---
 
-## Para diseño y análisis
+## Resumen
 
-> [!info] Uso típico
-> - **Análisis**: estabilidad (polos), respuesta temporal (polos dominantes), error estacionario (tipo, ganancia estática)
-> - **Diseño**: [[Lugar Raices]] (modificar polos), [[Respuesta Frecuencia]] (márgenes), [[PID]] (compensadores)
-> - **Realimentación**: $T(s) = \frac{G}{1+GH}$ define dinámica de lazo cerrado
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Definición | $G(s)=Y(s)/U(s)$ con CI$=0$ |
+> | Existe para | sistemas LTI |
+> | Forma | racional propia $N(s)/D(s)$, $n\ge m$ |
+> | Polos | raíces de $D(s)$ → modos y estabilidad |
+> | Ceros | raíces de $N(s)$ → bloqueo de modos |
+> | $G(0)$ | $b_0/a_0$ → valor final a escalón |
+> | Interconexión | serie $G_1G_2$, lazo $G/(1+GH)$ |
+
+> [!corolario]
+> La FT convierte una EDO lineal en un cociente de polinomios cuyos coeficientes se leen directamente: el denominador fija la dinámica (polos, estabilidad) y el numerador filtra cómo la entrada la excita (ceros). Toda la maquinaria de análisis clásico —respuesta temporal, error estacionario, lugar de raíces, frecuencia— se construye sobre esta representación.
+
+> [!referencia]
+> - Parámetros: [[Polos Ceros]], [[Orden]], [[Ganancia Estatica]].
+> - Valor inicial/final: [[Teorema Valor Inicial Final]].
+> - Interconexión: [[Algebra Diagramas]].
+> - Representación alternativa: [[Espacio Estados/index]], [[Pasar a FT]].

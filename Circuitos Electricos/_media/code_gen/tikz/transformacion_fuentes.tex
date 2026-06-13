@@ -1,0 +1,19 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  % izquierda: V_s en serie con R
+  \draw (0,0) to[V=$V_s$] (0,3) to[R=$R$] (2.5,3) -- (3,3) node[right]{$a$};
+  \draw (0,0) -- (3,0) node[right]{$b$};
+  \node at (1.5,-1){tensión real};
+  % flecha equivalencia
+  \node at (4.6,1.5){\Large $\equiv$};
+  % derecha: I_s en paralelo con R
+  \draw (6,0) to[I=$I_s$] (6,3) -- (7.5,3);
+  \draw (7.5,3) to[R=$R$] (7.5,0);
+  \draw (6,0) -- (7.5,0);
+  \draw (7.5,3) -- (9,3) node[right]{$a$};
+  \draw (7.5,0) -- (9,0) node[right]{$b$};
+  \node at (7.5,-1){corriente real};
+\end{circuitikz}
+\end{document}

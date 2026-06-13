@@ -1,0 +1,12 @@
+% Seguidor de voltaje (buffer):  v_o = v_i
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\begin{document}
+\begin{circuitikz}
+  \node[op amp] (A) {};
+  \draw (A.+) to[short,-o] ++(-1.8,0) node[left]{$v_i$};
+  \draw (A.-) -- ++(0,1.6) coordinate(t) -| (A.out);
+  \draw (A.out) to[short,-o] ++(1.4,0) node[right]{$v_o$};
+\end{circuitikz}
+\end{document}

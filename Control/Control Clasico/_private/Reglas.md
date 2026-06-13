@@ -214,7 +214,13 @@ Usar EXACTAMENTE:
 [!teoria]
 [!info]
 [!warning]
+[!regla]
+[!solucion]
+[!referencia]
 ```
+
+> [!warning] Soporte de tema
+> `[!regla]`, `[!solucion]` y `[!referencia]` requieren definir su estilo en el CSS del tema (Ocean Forest) para renderizar con color/ícono propio. Mientras no se definan, Obsidian los muestra con el estilo de callout por defecto.
 
 No usar:
 

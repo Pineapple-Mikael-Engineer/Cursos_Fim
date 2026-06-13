@@ -13,156 +13,122 @@ aliases:
 
 # De Espacio de Estados a Función Transferencia
 
-# Fórmula general
+> [!definicion]
+> Dado un sistema $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}+\mathbf{B}u$, $y=\mathbf{C}\mathbf{x}+\mathbf{D}u$, su función transferencia se obtiene por
+> $$G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}.$$
+> En MIMO el resultado es la matriz $\mathbf{G}(s)\in\mathbb{C}^{p\times m}$. El denominador es $\det(s\mathbf{I}-\mathbf{A})$, cuyas raíces (autovalores de $\mathbf{A}$) son los polos.
 
-> [!teorema] Fórmula de transformación (SISO)
-> Dado el sistema:
-> $$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u$$
-> $$y = \mathbf{C}\mathbf{x} + \mathbf{D}u$$
-> 
-> La función transferencia es:
-> $$G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D}$$
+> [!info]
+> Puente del [[index | espacio de estados]] hacia la [[Funcion Transferencia/index | función transferencia]]. La operación inversa (de una FT a una realización $A,B,C,D$) está en [[Pasar desde FT]].
 
-> [!teorema] Caso MIMO
-> Para múltiples entradas y salidas:
-> $$\mathbf{G}(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D}$$
-> 
-> donde $\mathbf{G}(s) \in \mathbb{C}^{p \times m}$ es la **matriz de transferencia**.
+---
 
-# Demostración operativa
+## Ejemplo
 
-> [!demostracion] Procedimiento paso a paso (SISO)
-> **Paso 1:** Aplicar Laplace con CI nulas ($\mathbf{x}(0^-)=\mathbf{0}$):
-> $$s\mathbf{X}(s) = \mathbf{A}\mathbf{X}(s) + \mathbf{B}U(s)$$
-> 
-> **Paso 2:** Reagrupar términos con $\mathbf{X}(s)$:
-> $$(s\mathbf{I} - \mathbf{A})\mathbf{X}(s) = \mathbf{B}U(s)$$
-> 
-> **Paso 3:** Despejar $\mathbf{X}(s)$:
-> $$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}U(s)$$
-> 
-> **Paso 4:** Ecuación de salida en Laplace:
-> $$Y(s) = \mathbf{C}\mathbf{X}(s) + \mathbf{D}U(s)$$
-> 
-> **Paso 5:** Sustituir $\mathbf{X}(s)$:
-> $$Y(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}U(s) + \mathbf{D}U(s)$$
-> 
-> **Paso 6:** Factorizar $U(s)$:
-> $$Y(s) = \left[ \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D} \right] U(s)$$
-> 
-> **Paso 7:** Por definición $G(s) = Y(s)/U(s)$:
-> $$G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D}$$
+> [!ejemplo] Calcular la FT desde $A,B,C,D$ numéricos
+> Sea
+> $$\mathbf{A}=\begin{bmatrix}0&1\\-2&-3\end{bmatrix},\quad \mathbf{B}=\begin{bmatrix}0\\1\end{bmatrix},\quad \mathbf{C}=\begin{bmatrix}1&0\end{bmatrix},\quad \mathbf{D}=0.$$
+>
+> **Paso 1 — Construir $s\mathbf{I}-\mathbf{A}$:**
+> $$s\mathbf{I}-\mathbf{A}=\begin{bmatrix}s&-1\\2&s+3\end{bmatrix}.$$
+>
+> **Paso 2 — Determinante:** $\Delta(s)=\det(s\mathbf{I}-\mathbf{A})=s(s+3)+2=s^2+3s+2$.
+>
+> **Paso 3 — Inversa** (adjunta sobre determinante):
+> $$(s\mathbf{I}-\mathbf{A})^{-1}=\frac{1}{\Delta(s)}\begin{bmatrix}s+3&1\\-2&s\end{bmatrix}.$$
+>
+> **Paso 4 — Multiplicar $\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}$:**
+> $$\begin{bmatrix}1&0\end{bmatrix}\frac{1}{\Delta(s)}\begin{bmatrix}s+3&1\\-2&s\end{bmatrix}=\frac{1}{\Delta(s)}\begin{bmatrix}s+3&1\end{bmatrix}.$$
+>
+> **Paso 5 — Multiplicar por $\mathbf{B}$ y sumar $\mathbf{D}=0$:**
+> $$G(s)=\frac{1}{\Delta(s)}\begin{bmatrix}s+3&1\end{bmatrix}\begin{bmatrix}0\\1\end{bmatrix}=\frac{1}{s^2+3s+2}.$$
+>
+> Los polos $-1,-2$ coinciden con los autovalores de $\mathbf{A}$.
 
-# Procedimiento de cálculo
+> [!ejemplo] De estados a función de transferencia
+> ![[ee_pasar_a_ft.svg|640]]
+>
+> Tomando Laplace con $x(0)=0$ se despeja $X=(sI-A)^{-1}BU$ y se sustituye en $Y=CX+DU$ para obtener $G(s)=C(sI-A)^{-1}B+D$.
 
-> [!info] Algoritmo práctico
-> 1. Construir la matriz $s\mathbf{I} - \mathbf{A}$
-> 2. Calcular su inversa: $(s\mathbf{I} - \mathbf{A})^{-1} = \frac{\text{adj}(s\mathbf{I} - \mathbf{A})}{\det(s\mathbf{I} - \mathbf{A})}$
-> 3. Multiplicar: $\mathbf{C} \cdot (s\mathbf{I} - \mathbf{A})^{-1} \cdot \mathbf{B}$
-> 4. Sumar $\mathbf{D}$ (si es distinta de cero)
-> 5. Simplificar la expresión racional
+> [!ejemplo] Con alimentación directa $D\neq0$
+> $\dot{x}=-2x+3u$, $y=4x+5u$ → $A=-2,B=3,C=4,D=5$.
+> $$G(s)=4\cdot\frac{1}{s+2}\cdot3+5=\frac{12}{s+2}+5=\frac{5s+22}{s+2}.$$
+> Como $D\neq0$, el grado del numerador iguala al del denominador (bipropio).
 
-# Ejemplo 1: Sistema de segundo orden
+---
 
-> [!ejemplo] Masa-resorte-amortiguador
-> $$\dot{\mathbf{x}} = \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{b}{m} \end{bmatrix} \mathbf{x} + \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} u$$
-> $$y = \begin{bmatrix} 1 & 0 \end{bmatrix} \mathbf{x}, \quad \mathbf{D}=0$$
-> 
-> **Paso 1:** $s\mathbf{I} - \mathbf{A} = \begin{bmatrix} s & -1 \\ \frac{k}{m} & s + \frac{b}{m} \end{bmatrix}$
-> 
-> **Paso 2:** Determinante:
-> $$\Delta(s) = \det(s\mathbf{I} - \mathbf{A}) = s\left(s + \frac{b}{m}\right) + \frac{k}{m} = s^2 + \frac{b}{m}s + \frac{k}{m}$$
-> 
-> **Paso 3:** Inversa:
-> $$(s\mathbf{I} - \mathbf{A})^{-1} = \frac{1}{\Delta(s)} \begin{bmatrix} s + \frac{b}{m} & 1 \\ -\frac{k}{m} & s \end{bmatrix}$$
-> 
-> **Paso 4:** Multiplicar $\mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}$:
-> $$\begin{bmatrix} 1 & 0 \end{bmatrix} \begin{bmatrix} s + \frac{b}{m} & 1 \\ -\frac{k}{m} & s \end{bmatrix} \frac{1}{\Delta(s)} = \frac{1}{\Delta(s)} \begin{bmatrix} s + \frac{b}{m} & 1 \end{bmatrix}$$
-> 
-> **Paso 5:** Multiplicar por $\mathbf{B}$:
-> $$\frac{1}{\Delta(s)} \begin{bmatrix} s + \frac{b}{m} & 1 \end{bmatrix} \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} = \frac{1}{\Delta(s)} \cdot \frac{1}{m}$$
-> 
-> **Paso 6:** Resultado:
-> $$G(s) = \frac{1/m}{s^2 + \frac{b}{m}s + \frac{k}{m}} = \frac{1}{ms^2 + bs + k}$$
+## En qué consiste
 
-# Ejemplo 2: Sistema de primer orden
+> [!teorema] Fórmula de transformación
+> Para SISO, $G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}$ es escalar; para MIMO, $\mathbf{G}(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}$ es la matriz de transferencia $p\times m$.
 
-> [!ejemplo] Circuito RC
-> $$A = -\frac{1}{RC}, \quad B = \frac{1}{RC}, \quad C = 1, \quad D = 0$$
-> 
-> **Paso 1:** $sI - A = s + \frac{1}{RC}$
-> 
-> **Paso 2:** Inversa: $\frac{1}{s + \frac{1}{RC}}$
-> 
-> **Paso 3:** $G(s) = 1 \cdot \frac{1}{s + \frac{1}{RC}} \cdot \frac{1}{RC} = \frac{1/RC}{s + 1/RC} = \frac{1}{RCs + 1}$
-
-# Ejemplo 3: Sistema con alimentación directa
-
-> [!ejemplo] Sistema con $D \neq 0$
-> $$\dot{x} = -2x + 3u$$
-> $$y = 4x + 5u$$
-> 
-> **Paso 1:** $sI - A = s + 2$
-> 
-> **Paso 2:** $(sI - A)^{-1} = \frac{1}{s+2}$
-> 
-> **Paso 3:** $C(sI - A)^{-1}B = 4 \cdot \frac{1}{s+2} \cdot 3 = \frac{12}{s+2}$
-> 
-> **Paso 4:** Sumar $D$:
-> $$G(s) = \frac{12}{s+2} + 5 = \frac{12 + 5(s+2)}{s+2} = \frac{5s + 22}{s+2}$$
-
-# Ejemplo 4: Sistema MIMO 2x2
-
-> [!ejemplo] Dos entradas, dos salidas
-> $$\dot{\mathbf{x}} = \begin{bmatrix} -1 & 0 \\ 0 & -2 \end{bmatrix} \mathbf{x} + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \mathbf{u}$$
-> $$\mathbf{y} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \mathbf{x}, \quad \mathbf{D} = \mathbf{0}$$
-> 
-> **Paso 1:** $s\mathbf{I} - \mathbf{A} = \begin{bmatrix} s+1 & 0 \\ 0 & s+2 \end{bmatrix}$
-> 
-> **Paso 2:** $(s\mathbf{I} - \mathbf{A})^{-1} = \begin{bmatrix} \frac{1}{s+1} & 0 \\ 0 & \frac{1}{s+2} \end{bmatrix}$
-> 
-> **Paso 3:** $\mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1} = \begin{bmatrix} \frac{1}{s+1} & \frac{1}{s+2} \\ 0 & \frac{1}{s+2} \end{bmatrix}$
-> 
-> **Paso 4:** Multiplicar por $\mathbf{B}$ (identidad):
-> $$\mathbf{G}(s) = \begin{bmatrix} \frac{1}{s+1} & \frac{1}{s+2} \\ 0 & \frac{1}{s+2} \end{bmatrix}$$
-> 
-> Interpretación: $G_{11}(s) = \frac{1}{s+1}$, $G_{12}(s) = \frac{1}{s+2}$, $G_{21}(s) = 0$, $G_{22}(s) = \frac{1}{s+2}$.
-
-# Relación con los polos del sistema
+> [!demostracion] Paso a paso (SISO)
+> **Paso 1 — Laplace con CI nulas** ($\mathbf{x}(0^-)=\mathbf{0}$): $s\mathbf{X}(s)=\mathbf{A}\mathbf{X}(s)+\mathbf{B}U(s)$.
+>
+> **Paso 2 — Reagrupar:** $(s\mathbf{I}-\mathbf{A})\mathbf{X}(s)=\mathbf{B}U(s)$.
+>
+> **Paso 3 — Despejar:** $\mathbf{X}(s)=(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}U(s)$.
+>
+> **Paso 4 — Salida en Laplace:** $Y(s)=\mathbf{C}\mathbf{X}(s)+\mathbf{D}U(s)$.
+>
+> **Paso 5 — Sustituir y factorizar $U(s)$:**
+> $$Y(s)=\big[\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}\big]U(s).$$
+>
+> **Paso 6 — Por definición** $G(s)=Y(s)/U(s)$:
+> $$G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}.\qquad\blacksquare$$
 
 > [!teorema] Polos = autovalores de $\mathbf{A}$
-> Los polos de $G(s)$ son los **autovalores** de $\mathbf{A}$, excepto posibles cancelaciones polo-cero.
-> 
-> $$\text{polos} \subseteq \{\lambda_1, \lambda_2, \dots, \lambda_n\}$$
-> 
-> donde $\lambda_i$ son los autovalores de $\mathbf{A}$.
+> Como $(s\mathbf{I}-\mathbf{A})^{-1}=\dfrac{\operatorname{adj}(s\mathbf{I}-\mathbf{A})}{\det(s\mathbf{I}-\mathbf{A})}$, el denominador de $G(s)$ es el polinomio característico $\det(s\mathbf{I}-\mathbf{A})$. Por tanto:
+> $$\text{polos}\subseteq\{\lambda_1,\dots,\lambda_n\}\ \text{(autovalores de }\mathbf{A}),$$
+> con posibles **cancelaciones** polo-cero que reducen el orden aparente.
 
-> [!demostracion]
-> El polinomio característico es:
-> $$\det(s\mathbf{I} - \mathbf{A}) = s^n + \alpha_{n-1}s^{n-1} + \dots + \alpha_0$$
-> 
-> Este polinomio aparece en el denominador de $G(s)$, pero factores comunes con el numerador pueden cancelarse.
+> [!warning] Cancelaciones polo-cero
+> Si $\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}$ presenta cancelaciones, el orden de $G(s)$ es menor que $n$: el sistema **no es controlable y/o no observable**, y $G(s)$ puede ocultar dinámica interna inestable.
 
-# Verificación de cancelaciones
+---
 
-> [!info] Cancelación polo-cero
-> Si $\mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}$ tiene cancelaciones, el orden aparente de $G(s)$ es menor que $n$.
-> 
-> Esto indica que el sistema no es **controlable** y/o **observable**.
-> 
-> Ver [[Controlabilidad]] y [[Observabilidad]].
+## Algoritmo
 
-# Resumen del procedimiento
+> [!algoritmo]
+> 1. Construir $s\mathbf{I}-\mathbf{A}$.
+> 2. Calcular $\Delta(s)=\det(s\mathbf{I}-\mathbf{A})$ y $\operatorname{adj}(s\mathbf{I}-\mathbf{A})$.
+> 3. Formar $(s\mathbf{I}-\mathbf{A})^{-1}=\operatorname{adj}/\Delta$.
+> 4. Multiplicar $\mathbf{C}\,(s\mathbf{I}-\mathbf{A})^{-1}\,\mathbf{B}$ y sumar $\mathbf{D}$.
+> 5. Simplificar factores comunes (vigilar cancelaciones).
 
-> [!info] Pasos rápidos
-> 1. Calcular $\Delta(s) = \det(s\mathbf{I} - \mathbf{A})$
-> 2. Calcular $\mathbf{N}(s) = \text{adj}(s\mathbf{I} - \mathbf{A})$
-> 3. $G(s) = \frac{\mathbf{C} \cdot \mathbf{N}(s) \cdot \mathbf{B}}{\Delta(s)} + \mathbf{D}$
-> 4. Simplificar factores comunes
+> [!info] En MATLAB
+> ```matlab
+> A=[0 1; -2 -3]; B=[0;1]; C=[1 0]; D=0;
+> sys = ss(A,B,C,D);
+> G   = tf(sys);     % 1/(s^2+3s+2)
+> eig(A)             % polos = autovalores de A
+> ```
 
-# Limitaciones
+---
+
+## Limitaciones
 
 > [!warning]
-> 1. La inversión de matrices para sistemas de orden alto ($n > 4$) es tediosa manualmente
-> 2. Para sistemas grandes, usar herramientas computacionales (MATLAB, Python)
-> 3. La cancelación polo-cero puede ocultar dinámicas internas inestables
+> 1. Invertir $s\mathbf{I}-\mathbf{A}$ a mano es tedioso para $n>4$.
+> 2. Para sistemas grandes conviene usar herramientas (MATLAB, Python).
+> 3. Las cancelaciones polo-cero pueden ocultar modos internos inestables.
+
+## Resumen
+
+> [!resumen]
+> | Paso | Operación |
+> |---|---|
+> | Fórmula | $G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}$ |
+> | Denominador | $\Delta(s)=\det(s\mathbf{I}-\mathbf{A})$ |
+> | Numerador | $\mathbf{C}\,\operatorname{adj}(s\mathbf{I}-\mathbf{A})\,\mathbf{B}+\mathbf{D}\,\Delta(s)$ |
+> | Polos | autovalores de $\mathbf{A}$ (salvo cancelaciones) |
+> | $\mathbf{D}=0$ | estrictamente propio |
+
+> [!corolario]
+> La FT se obtiene siempre con $G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}$: el determinante de $s\mathbf{I}-\mathbf{A}$ fija el denominador y sus raíces son los polos. Una cancelación polo-cero delata pérdida de controlabilidad u observabilidad. La construcción inversa está en [[Pasar desde FT]].
+
+> [!referencia]
+> - Módulo padre: [[index]].
+> - Operación inversa: [[Pasar desde FT]].
+> - Forma general y cambio de base: [[Forma General]].
+> - Representación destino: [[Funcion Transferencia/index]].

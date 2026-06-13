@@ -14,308 +14,171 @@ aliases:
 
 # Electrónica-Amplificadores Operacionales
 
-# Fundamentos de electricidad en amplificadores
+> [!definicion]
+> Un amplificador operacional (op-amp) con realimentación negativa se modela como un **bloque** cuya FT depende solo de las impedancias de entrada $Z_1(s)$ y realimentación $Z_f(s)$. En configuración inversora:
+> $$G(s)=\frac{V_{out}(s)}{V_{in}(s)}=-\frac{Z_f(s)}{Z_1(s)}.$$
+> Las dos reglas del op-amp ideal ($I_+=I_-=0$ y $V_+=V_-$) bastan para deducir cualquier configuración.
 
-> [!definicion] Corriente y voltaje en un amplificador
-> Un amplificador operacional (op-amp) es un dispositivo activo que **toma energía de una fuente externa** (alimentación) y la usa para amplificar la diferencia de voltaje entre sus dos entradas.
-> 
-> **Principio físico:**
-> - Los electrones fluyen desde la fuente de alimentación hacia el circuito de salida
-> - El transistor internamente **controla** esta corriente según el voltaje de entrada
-> - No se "crea" energía: la salida tiene más potencia que la entrada, pero proviene de la alimentación
+> [!info]
+> Es uno de los [[Funcion Transferencia/index | dominios físicos]] del modelado; añade **elementos activos** a los circuitos pasivos de [[Electrico | sistemas eléctricos]]. Eligiendo $Z_1$, $Z_f$ se construyen ganancias, integradores y derivadores → bloques directos de un [[PID/index | controlador PID]].
 
-> [!info] Ley de conservación de energía
-> $$P_{\text{entrada}} + P_{\text{alimentación}} = P_{\text{salida}} + P_{\text{disipada}}$$
-> 
-> - La potencia de entrada es muy pequeña (alta impedancia)
-> - La potencia de salida proviene principalmente de la fuente de alimentación
-> - La diferencia se disipa como calor
+---
 
-# El amplificador operacional ideal
+## Ejemplo
 
-> [!definicion] Op-amp ideal
-> 
-> ![[opamp_ideal.svg]]
-> 
-> **Símbolo y terminales:**
-> - `+` : Entrada no inversora
-> - `-` : Entrada inversora
-> - `V+` : Alimentación positiva (ej. +15V)
-> - `V-` : Alimentación negativa (ej. -15V)
-> - `V_out` : Salida
-> 
-> **Características ideales:**
-> 1. **Ganancia diferencial infinita:** $A_{ol} \to \infty$
-> 2. **Impedancia de entrada infinita:** $Z_{in} \to \infty$ (no entra corriente)
-> 3. **Impedancia de salida cero:** $Z_{out} = 0$
-> 4. **Ancho de banda infinito:** funciona a cualquier frecuencia
-> 5. **Offset nulo:** $V_{out} = 0$ cuando $V_+ = V_-$
-
-# Reglas del amplificador operacional-ideal
-
-> [!info] Reglas para análisis (con realimentación negativa)
-> 
-> **Regla 1:** La corriente en las entradas es cero.
-> $$I_+ = I_- = 0$$
-> 
-> **Regla 2:** El voltaje en las entradas es igual (por realimentación, el op-amp fuerza esta condición).
-> $$V_+ = V_-$$
-> 
-> **Regla 3:** La salida intenta hacer lo necesario para mantener $V_+ = V_-$ (mientras no se sature).
-
-# Configuraciones básicas
-
-## Configuración 1: Amplificador inversor
-
-> [!ejemplo] Amplificador inversor
-> 
+> [!ejemplo]
+> **Amplificador inversor con valores numéricos.** Sea $R_1=10\ \text{k}\Omega$, $R_f=100\ \text{k}\Omega$. Hallar la FT.
+>
 > ![[inversor.svg]]
-> 
-> **Componentes:** $R_1$ (entrada), $R_f$ (realimentación)
-> 
-> **Análisis:**
-> 
-> Entrada no inversora: $V_+ = 0$ (masa virtual)
-> 
-> Por regla 2: $V- = V_+ = 0$ (masa virtual)
-> 
-> Por regla 1: $I_1 = \frac{V_{in} - V_-}{R_1} = \frac{V_{in}}{R_1}$
-> 
-> La corriente no entra al op-amp, entonces $I_f = I_1$
-> 
-> $I_f = \frac{V_- - V_{out}}{R_f} = \frac{-V_{out}}{R_f}$
-> 
-> **Igualando:** $\frac{V_{in}}{R_1} = -\frac{V_{out}}{R_f}$
-> 
-> **Función transferencia:**
-> $$G(s) = \frac{V_{out}(s)}{V_{in}(s)} = -\frac{R_f}{R_1}$$
-> 
-> **Observaciones:**
-> - Ganancia constante (independiente de frecuencia, op-amp ideal)
-> - Inversión de fase: signo negativo
-> - Impedancia de entrada: $Z_{in} = R_1$
-> - La masa virtual hace que $V_- \approx 0$ sin conexión directa a tierra
+>
+> **Paso 1 — Masa virtual:** la entrada $+$ está a tierra, $V_+=0$. Por la regla 2, $V_-=V_+=0$ (la realimentación fuerza esta condición).
+>
+> **Paso 2 — Corriente de entrada** (regla 1, no entra corriente al op-amp):
+> $$I_1=\frac{V_{in}-V_-}{R_1}=\frac{V_{in}}{R_1}.$$
+>
+> **Paso 3 — Toda $I_1$ pasa por $R_f$:** $I_f=I_1$, y $I_f=\dfrac{V_--V_{out}}{R_f}=\dfrac{-V_{out}}{R_f}$.
+>
+> **Paso 4 — Igualar y despejar:**
+> $$\frac{V_{in}}{R_1}=-\frac{V_{out}}{R_f}\;\Longrightarrow\;G(s)=\frac{V_{out}}{V_{in}}=-\frac{R_f}{R_1}=-\frac{100}{10}=-10.$$
+> Ganancia $-10$: amplifica $10\times$ e invierte la fase. Impedancia de entrada $Z_{in}=R_1=10\ \text{k}\Omega$.
 
-## Configuración 2: Amplificador no inversor
-
-> [!ejemplo] Amplificador no inversor
-> 
-> ![[no_inversor.svg]]
-> 
-> **Componentes:** $R_1$, $R_f$ (realimentación)
-> 
-> **Análisis:**
-> 
-> $V_+ = V_{in}$
-> 
-> Por regla 2: $V_- = V_+ = V_{in}$
-> 
-> Por regla 1: corriente en $R_1$: $I_1 = \frac{V_- - 0}{R_1} = \frac{V_{in}}{R_1}$
-> 
-> No entra corriente, entonces $I_f = I_1 = \frac{V_{out} - V_-}{R_f} = \frac{V_{out} - V_{in}}{R_f}$
-> 
-> **Igualando:** $\frac{V_{in}}{R_1} = \frac{V_{out} - V_{in}}{R_f}$
-> 
-> **Función transferencia:**
-> $$G(s) = \frac{V_{out}(s)}{V_{in}(s)} = 1 + \frac{R_f}{R_1}$$
-> 
-> **Observaciones:**
-> - Ganancia constante mayor o igual a 1
-> - No inversor (signo positivo)
-> - Impedancia de entrada muy alta (idealmente infinita: $V_{in}$ ve al op-amp directamente)
-
-## Configuración 3: Seguidor de voltaje (buffer)
-
-> [!ejemplo] Seguidor de voltaje
-> 
-> ![[seguidor.svg]]
-> 
-> **Conexión:** $V_{out}$ conectado directamente a $V_-$ ($R_f=0$, $R_1=\infty$)
-> 
-> **Análisis:** $V_{out} = V_- = V_+ = V_{in}$
-> 
-> **Función transferencia:**
-> $$G(s) = 1$$
-> 
-> **Observaciones:**
-> - Ganancia unitaria
-> - Impedancia de entrada muy alta, impedancia de salida muy baja
-> - Útil para aislar etapas (buffer, separador de impedancias)
-
-# Circuitos dinámicos con op-amps
-
-## Integrador (compensación en frecuencia)
-
-> [!ejemplo] Integrador (Miller)
-> 
+> [!ejemplo]
+> **Integrador (Miller).** Mismo esquema inversor pero con $Z_f=1/(C_f s)$ en lugar de $R_f$. Sea $R_1=10\ \text{k}\Omega$, $C_f=1\ \mu\text{F}$.
+>
 > ![[integrador.svg]]
-> 
-> **Componentes:** $R_1$, $C_f$ (en lugar de $R_f$)
-> 
-> **Análisis:**
-> 
-> Mismo principio que inversor, pero ahora $Z_f = \frac{1}{C_f s}$
-> 
-> Por reglas: $V_- = 0$, $I_1 = \frac{V_{in}}{R_1}$
-> 
-> Corriente por $C_f$: $I_f = \frac{V_- - V_{out}}{1/(C_f s)} = -C_f s V_{out}$
-> 
-> $I_1 = I_f$: $\frac{V_{in}}{R_1} = -C_f s V_{out}$
-> 
-> **Función transferencia:**
-> $$G(s) = \frac{V_{out}(s)}{V_{in}(s)} = -\frac{1}{R_1 C_f s}$$
-> 
-> **Observaciones:**
-> - Un polo en $s=0$ (integrador puro)
-> - Ganancia infinita en DC (teóricamente)
-> - En la práctica, se añade una resistencia en paralelo con $C_f$ para limitar ganancia DC
+>
+> **Paso 1 — Reglas:** $V_-=0$, $I_1=V_{in}/R_1$.
+>
+> **Paso 2 — Corriente por $C_f$:** $I_f=\dfrac{V_--V_{out}}{1/(C_f s)}=-C_f s\,V_{out}$.
+>
+> **Paso 3 — Igualar $I_1=I_f$:**
+> $$\frac{V_{in}}{R_1}=-C_f s\,V_{out}\;\Longrightarrow\;G(s)=-\frac{1}{R_1 C_f s}=-\frac{1}{(10^4)(10^{-6})\,s}=-\frac{100}{s}.$$
+> Un **polo en el origen** → integrador puro (ganancia infinita en DC). Atajo: $G=-Z_f/Z_1=-\dfrac{1/(C_f s)}{R_1}$, mismo resultado.
 
-## Derivador (compensación en frecuencia)
+---
+
+## Reglas del op-amp ideal
+
+> [!teoria]
+> ![[opamp_ideal.svg]]
+>
+> Un op-amp ideal cumple: ganancia diferencial $A_{ol}\to\infty$, impedancia de entrada $Z_{in}\to\infty$, impedancia de salida $Z_{out}=0$, ancho de banda infinito y offset nulo. Con **realimentación negativa** estas idealizaciones se condensan en dos reglas de análisis:
+>
+> | Regla | Enunciado | Por qué |
+> |---|---|---|
+> | 1 | $I_+=I_-=0$ | impedancia de entrada infinita: no entra corriente |
+> | 2 | $V_+=V_-$ | ganancia infinita: la salida ajusta hasta igualar las entradas |
+>
+> La regla 3 (auxiliar): la salida hace lo necesario para mantener $V_+=V_-$ mientras no se sature. Cuando $V_+$ está a tierra, la regla 2 crea una **masa virtual** ($V_-\approx0$) sin conexión física a tierra.
+
+> [!info] Conservación de energía
+> $$P_{\text{entrada}}+P_{\text{alimentación}}=P_{\text{salida}}+P_{\text{disipada}}.$$
+> El op-amp no "crea" energía: la potencia de salida proviene de la fuente de alimentación ($\pm15\,$V típica); la entrada aporta muy poca (alta impedancia). Por eso la salida nunca supera los rieles de alimentación (saturación).
+
+---
+
+## Más configuraciones resueltas
+
+> [!ejemplo] No inversor
+> ![[no_inversor.svg]]
+> $V_+=V_{in}\Rightarrow V_-=V_{in}$. Corriente en $R_1$ (de $V_-$ a tierra): $I_1=V_{in}/R_1$. Como $I_f=I_1=\dfrac{V_{out}-V_{in}}{R_f}$:
+> $$G(s)=1+\frac{R_f}{R_1}\;\;(\ge1,\ \text{sin inversión}).$$
+> Impedancia de entrada idealmente infinita.
+
+> [!ejemplo] Seguidor (buffer)
+> ![[seguidor.svg]]
+> Salida conectada a $V_-$ ($R_f=0$, $R_1=\infty$): $V_{out}=V_-=V_+=V_{in}$, luego $G(s)=1$. Aísla etapas (separador de impedancias).
 
 > [!ejemplo] Derivador
-> 
 > ![[derivador.svg]]
-> 
-> **Componentes:** $C_1$, $R_f$
-> 
-> **Análisis:**
-> 
-> $V_- = 0$, $I_1 = \frac{V_{in} - 0}{1/(C_1 s)} = C_1 s V_{in}$
-> 
-> $I_f = \frac{0 - V_{out}}{R_f} = -\frac{V_{out}}{R_f}$
-> 
-> $I_1 = I_f$: $C_1 s V_{in} = -\frac{V_{out}}{R_f}$
-> 
-> **Función transferencia:**
-> $$G(s) = \frac{V_{out}(s)}{V_{in}(s)} = -R_f C_1 s$$
-> 
-> **Observaciones:**
-> - Un cero en $s=0$ (derivador puro)
-> - Muy ruidoso en la práctica (amplifica ruido de alta frecuencia)
-> - Se suele añadir una resistencia en serie con $C_1$ para limitar ganancia en altas frecuencias
+> Con $Z_1=1/(C_1 s)$, $Z_f=R_f$: $I_1=C_1 s\,V_{in}$, $I_f=-V_{out}/R_f$, luego
+> $$G(s)=-R_f C_1 s\;\;(\text{cero en el origen}).$$
+> Muy ruidoso: amplifica alta frecuencia; en la práctica se añade $R_1$ en serie con $C_1$.
 
-## Integrador y derivador prácticos
-
-> [!info] Versiones prácticas (limitadas)
-> 
-> **Integrador práctico:** $R_f$ en paralelo con $C_f$ (para evitar saturación DC)
-> $$G(s) = -\frac{R_f/R_1}{R_f C_f s + 1}$$
-> 
-> **Derivador práctico:** $R_1$ en serie con $C_1$ (para limitar ganancia en alta frecuencia)
-> $$G(s) = -\frac{R_f C_1 s}{R_1 C_1 s + 1} = -\frac{R_f/R_1}{s + 1/(R_1 C_1)} \cdot s$$
-
-## Filtro activo pasa bajos (primer orden)
-
-> [!ejemplo] Filtro activo pasa bajos
-> 
+> [!ejemplo] Filtro activo pasa bajos (inversor)
 > ![[filtro_pasa_bajos.svg]]
-> 
-> **Componentes:** $R_1$, $R_f$, $C_f$ en paralelo con $R_f$
-> 
-> **Impedancia de realimentación:** $Z_f(s) = \frac{R_f}{R_f C_f s + 1}$
-> 
-> **Función transferencia (configuración inversora):**
-> $$G(s) = -\frac{Z_f(s)}{R_1} = -\frac{R_f/R_1}{R_f C_f s + 1}$$
-> 
-> **Observaciones:**
-> - Un polo en $s = -1/(R_f C_f)$
-> - Pasa bajos de primer orden
-> - Ganancia DC: $G(0) = -R_f/R_1$
+> $R_f$ en paralelo con $C_f$ da $Z_f=\dfrac{R_f}{R_f C_f s+1}$, luego
+> $$G(s)=-\frac{Z_f}{R_1}=-\frac{R_f/R_1}{R_f C_f s+1}.$$
+> Polo en $s=-1/(R_f C_f)$; ganancia DC $-R_f/R_1$. (También es el integrador práctico, con $R_f$ que evita la saturación DC del integrador puro.)
 
-## Filtro activo pasa altos (primer orden)
-
-> [!ejemplo] Filtro activo pasa altos
-> 
+> [!ejemplo] Filtro activo pasa altos (inversor)
 > ![[filtro_pasa_altos.svg]]
-> 
-> **Componentes:** $C_1$, $R_f$
-> 
-> **Impedancia de entrada:** $Z_1(s) = \frac{1}{C_1 s}$
-> 
-> **Función transferencia (configuración inversora):**
-> $$G(s) = -\frac{R_f}{Z_1(s)} = -R_f C_1 s$$
-> 
-> Con resistencia en serie para limitar:
-> $$G(s) = -\frac{R_f C_1 s}{R_1 C_1 s + 1}$$
-> 
-> **Observaciones:**
-> - Un cero en $s=0$ y un polo en $s = -1/(R_1 C_1)$
-> - Pasa altos de primer orden
+> Con $Z_1=1/(C_1 s)$ y $R_1$ en serie para limitar la ganancia: $G(s)=-\dfrac{R_f C_1 s}{R_1 C_1 s+1}$. Un cero en el origen y un polo en $s=-1/(R_1C_1)$ → pasa altos de 1er orden (derivador filtrado).
 
-## Filtro activo pasa bajos (segundo orden, Sallen-Key)
-
-> [!ejemplo] Filtro Sallen-Key (bajos)
-> 
+> [!ejemplo] Filtro Sallen-Key (pasa bajos 2.º orden)
 > ![[sallen_key.svg]]
-> 
-> **Configuración:** No inversor, seguidor de voltaje ($G=1$)
-> 
-> **Componentes:** $R_1$, $R_2$, $C_1$, $C_2$
-> 
-> **Función transferencia:**
-> $$G(s) = \frac{1}{R_1 R_2 C_1 C_2 s^2 + (R_1 C_2 + R_2 C_2)s + 1}$$
-> 
-> **Parámetros:**
-> - $\omega_n = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}$
-> - $\zeta = \frac{R_1 C_2 + R_2 C_2}{2\sqrt{R_1 R_2 C_1 C_2}}$
-> 
-> **Observaciones:**
-> - Segundo orden sin usar inductores
-> - Se puede ajustar $\zeta$ (amortiguamiento) para obtener Butterworth, Chebyshev, etc.
+> Configuración no inversora con seguidor ($G=1$) y dos $RC$:
+> $$G(s)=\frac{1}{R_1R_2C_1C_2\,s^2+(R_1C_2+R_2C_2)\,s+1},$$
+> $$\omega_n=\frac{1}{\sqrt{R_1R_2C_1C_2}},\qquad \zeta=\frac{R_1C_2+R_2C_2}{2\sqrt{R_1R_2C_1C_2}}.$$
+> Segundo orden **sin inductores**; ajustando $\zeta$ se obtiene Butterworth, Chebyshev, etc.
 
-# Limitaciones del modelo ideal
+---
 
-> [!warning] Limitaciones reales
-> 1. **Ganancia finita:** $A_{ol} \sim 10^5$ a $10^6$, no infinita. Para ganancias altas, afecta la precisión.
-> 2. **Corriente de polarización:** Pequeñas corrientes entran a las entradas (del orden de nA), causan offset.
-> 3. **Voltaje de offset:** Pequeña diferencia de voltaje entre entradas necesaria para que la salida sea cero ($\sim$mV).
-> 4. **Ancho de banda limitado:** Producto ganancia-ancho de banda constante (ej. 1 MHz). A mayor ganancia, menor ancho de banda.
-> 5. **Saturación:** La salida no puede superar los voltajes de alimentación $V+$ y $V-$.
-> 6. **Slew rate:** Velocidad máxima de cambio de la salida (V/µs). Para señales rápidas, la salida se distorsiona.
+## Receta de modelado
 
-# Electricidad en el amplificador (física básica)
+> [!algoritmo]
+> Para la FT de un circuito con op-amp ideal (configuración inversora):
+> 1. **Impedancias.** Identificar $Z_1(s)$ (rama de entrada hacia $V_-$) y $Z_f(s)$ (realimentación de $V_{out}$ a $V_-$).
+> 2. **Masa virtual.** Si $V_+$ está a tierra, $V_-=0$.
+> 3. **Igualar corrientes.** $I_1=I_f$ porque no entra corriente al op-amp (regla 1).
+> 4. **Aplicar la fórmula:** $G(s)=-Z_f/Z_1$. (No inversor: $G=1+Z_f/Z_1$.)
+> 5. **Identificar polos/ceros** según las impedancias elegidas.
 
-> [!info] Funcionamiento interno simplificado
-> 
-> **Etapa de entrada (diferencial):**
-> - Dos transistores (bipolares o FET) que comparan $V_+$ y $V_-$
-> - La diferencia de voltaje genera una **diferencia de corriente**
-> - Alta impedancia de entrada para no cargar la fuente
-> 
-> **Etapa de ganancia (intermedia):**
-> - Amplifica la diferencia de corriente
-> - Genera un voltaje que controla la etapa de salida
-> 
-> **Etapa de salida (push-pull):**
-> - Transistores complementarios (NPN y PNP)
-> - Entregan corriente a la carga
-> - Baja impedancia de salida
-> 
-> **Fuente de alimentación (ej. $\pm 15V$):**
-> - Proporciona la energía para amplificar
-> - La salida nunca puede exceder estos voltajes (saturación)
-
-# Resumen de configuraciones
-
-> [!info] Tabla de funciones transferencia (op-amp ideal)
-> 
+> [!info] Tabla de configuraciones (op-amp ideal)
 > | Configuración | $G(s)$ | Tipo |
-> |---------------|--------|------|
-> | Inversor | $-\frac{R_f}{R_1}$ | Ganancia constante |
-> | No inversor | $1 + \frac{R_f}{R_1}$ | Ganancia constante |
-> | Seguidor | $1$ | Buffer |
-> | Integrador | $-\frac{1}{R_1 C_f s}$ | Un polo en 0 |
-> | Derivador | $-R_f C_1 s$ | Un cero en 0 |
-> | Pasa bajos (inversor) | $-\frac{R_f/R_1}{R_f C_f s + 1}$ | Polo real |
-> | Pasa altos (inversor) | $-\frac{R_f C_1 s}{R_1 C_1 s + 1}$ | Cero + polo |
-> | Sallen-Key (bajos) | $\frac{1}{R_1 R_2 C_1 C_2 s^2 + (R_1 C_2 + R_2 C_2)s + 1}$ | Segundo orden |
-
-# Analogía con sistemas de control
+> |---|---|---|
+> | Inversor | $-\dfrac{R_f}{R_1}$ | ganancia constante |
+> | No inversor | $1+\dfrac{R_f}{R_1}$ | ganancia constante |
+> | Seguidor | $1$ | buffer |
+> | Integrador | $-\dfrac{1}{R_1C_f s}$ | polo en 0 |
+> | Derivador | $-R_f C_1 s$ | cero en 0 |
+> | Pasa bajos (inv.) | $-\dfrac{R_f/R_1}{R_f C_f s+1}$ | polo real |
+> | Pasa altos (inv.) | $-\dfrac{R_f C_1 s}{R_1 C_1 s+1}$ | cero + polo |
+> | Sallen-Key (bajos) | $\dfrac{1}{R_1R_2C_1C_2 s^2+(R_1C_2+R_2C_2)s+1}$ | 2.º orden |
 
 > [!info] Op-amp como controlador
-> - **Inversor con ganancia $K$** → Controlador proporcional ($P$)
-> - **Integrador** → Controlador integral ($I$)
-> - **Derivador** → Controlador derivativo ($D$) (ruidoso)
-> - **Combinaciones** → Controladores PID
-> 
-> Ver [[Controladores/PID]].
+> - Inversor con ganancia $K$ → acción **proporcional** ($P$).
+> - Integrador → acción **integral** ($I$).
+> - Derivador → acción **derivativa** ($D$, ruidosa).
+> - Combinaciones → **PID** analógico. Ver [[PID/index | PID]].
+
+> [!info] En MATLAB
+> ```matlab
+> R1=1e4; Rf=1e5; Cf=1e-6;
+> G_inv  = tf(-Rf/R1, 1);            % inversor: ganancia -10
+> G_int  = tf(-1, [R1*Cf 0]);        % integrador: -1/(R1 Cf s)
+> G_lp   = tf(-Rf/R1, [Rf*Cf 1]);    % pasa bajos activo
+> bode(G_lp)
+> ```
+
+---
+
+## Limitaciones del op-amp real
+
+> [!warning]
+> 1. **Ganancia finita:** $A_{ol}\sim10^5$–$10^6$, no infinita; afecta a ganancias altas.
+> 2. **Corriente de polarización:** entran corrientes de bias (nA) → offset.
+> 3. **Voltaje de offset:** diferencia residual entre entradas (mV) para salida nula.
+> 4. **Ancho de banda limitado:** producto ganancia-ancho de banda constante (p.ej. 1 MHz); más ganancia, menos ancho de banda.
+> 5. **Saturación:** la salida no supera los rieles $V_+$, $V_-$.
+> 6. **Slew rate:** velocidad máxima de cambio (V/µs); distorsiona señales rápidas.
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Reglas ideales | $I_+=I_-=0$, $V_+=V_-$ |
+> | FT inversora | $G(s)=-Z_f/Z_1$ |
+> | FT no inversora | $G(s)=1+Z_f/Z_1$ |
+> | Integrador | $-1/(R_1C_f s)$ |
+> | Derivador | $-R_f C_1 s$ |
+> | Uso en control | bloques $P$, $I$, $D$ del PID |
+
+> [!corolario]
+> Modelar un op-amp ideal con realimentación negativa se reduce a dos reglas y a la fórmula $G=-Z_f/Z_1$: cambiando $R$ por $C$ en $Z_1$ o $Z_f$ se pasa de ganancia constante a integrador, derivador o filtro. Es la base física del [[PID/index | controlador PID]] analógico y extiende los circuitos pasivos de [[Electrico | sistemas eléctricos]] al dominio activo.
+
+> [!referencia]
+> - Circuitos pasivos base: [[Electrico]].
+> - Controlador que implementa: [[PID/index]].
+> - Función de transferencia: [[Funcion Transferencia/index]].

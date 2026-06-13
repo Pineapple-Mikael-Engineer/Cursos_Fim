@@ -1,0 +1,17 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  % serie
+  \draw (0,0) to[R=$R_1$] (2,0) to[R=$R_2$] (4,0) to[R=$R_3$] (6,0);
+  \node at (3,-1){\textbf{serie}};
+  % paralelo
+  \draw (8.5,1) -- (8.5,-2);
+  \draw (11.5,1) -- (11.5,-2);
+  \draw (8.5,1) to[R=$R_1$] (11.5,1);
+  \draw (8.5,-0.5) to[R=$R_2$] (11.5,-0.5);
+  \draw (8.5,-2) to[R=$R_3$] (11.5,-2);
+  \draw (8.5,-0.5) -- (7.8,-0.5); \draw (11.5,-0.5) -- (12.2,-0.5);
+  \node at (10,-3){\textbf{paralelo}};
+\end{circuitikz}
+\end{document}

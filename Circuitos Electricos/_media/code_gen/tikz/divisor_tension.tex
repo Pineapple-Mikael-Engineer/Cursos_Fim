@@ -1,0 +1,12 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  \draw (0,0) to[V=$v$] (0,4) to[R=$R_1$] (3,4) coordinate(t);
+  \draw (t) to[R, l_=$R_2$] (3,0) coordinate(bt);
+  \draw (0,0) -- (bt);
+  \node at (3.7,3.7){$+$}; \node at (3.7,0.3){$-$};
+  \draw[-{Latex[length=2.5mm]}] (4.05,3.5) -- (4.05,0.5); \node[right] at (4.05,2){$v_2$};
+  \draw[-{Latex[length=2mm]}] (0.5,3.3) arc (200:-20:0.4); \node at (0.95,3.0){$i$};
+\end{circuitikz}
+\end{document}

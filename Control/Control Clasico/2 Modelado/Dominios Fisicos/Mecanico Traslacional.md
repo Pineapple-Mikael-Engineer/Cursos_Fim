@@ -13,121 +13,125 @@ aliases:
 
 # Sistemas Mecánicos Traslacionales
 
-# Elementos fundamentales
+> [!definicion]
+> Un sistema mecánico traslacional se modela combinando tres elementos —masa $m$, resorte $k$ y amortiguador $b$— mediante la segunda ley de Newton. Para el conjunto masa-resorte-amortiguador con fuerza de entrada $F$ y posición de salida $x$:
+> $$m\ddot{x}+b\dot{x}+kx=F(t)\qquad\Longrightarrow\qquad G(s)=\frac{X(s)}{F(s)}=\frac{1}{ms^2+bs+k}.$$
 
-> [!definicion] Masa ($m$)
-> Unidad: kg
-> 
-> Relación fuerza-velocidad: $F = m \frac{dv}{dt} = m \ddot{x}$
-> 
-> Relación fuerza-posición: $F = m \ddot{x}$
+> [!info]
+> Es uno de los [[Funcion Transferencia/index | dominios físicos]] básicos del modelado. Es **análogo** al [[Mecanico Rotacional | rotacional]] (cambiando fuerza↔par, $x$↔$\theta$, $m$↔$J$) y al [[Electrico | eléctrico]] (fuerza↔voltaje, $v$↔corriente). Casi siempre produce dinámica de [[Respuesta Temporal/Segundo Orden/index | segundo orden]].
 
-> [!definicion] Resorte ($k$)
-> Unidad: N/m
-> 
-> Relación fuerza-posición: $F = k x$ (lineal)
-> 
-> Relación fuerza-velocidad: $F = k \int v \, dt$
+---
 
-> [!definicion] Amortiguador ($b$)
-> Unidad: N·s/m
-> 
-> Relación fuerza-velocidad: $F = b v = b \dot{x}$
-> 
-> (También se denota como $c$ o $B$)
+## Ejemplo
 
-# Leyes fundamentales
+> [!ejemplo]
+> **Masa-resorte-amortiguador con valores numéricos.** Sea $m=1\ \text{kg}$, $b=4\ \text{N·s/m}$, $k=3\ \text{N/m}$. Hallar la FT, los polos y el tipo de respuesta.
+>
+> ![[mra_simple.svg|500]]
+>
+> **Paso 1 — Ecuación de movimiento** (suma de fuerzas sobre la masa):
+> $$F(t)-\underbrace{kx}_{F_k}-\underbrace{b\dot{x}}_{F_b}=m\ddot{x}\;\Longrightarrow\;m\ddot{x}+b\dot{x}+kx=F.$$
+>
+> **Paso 2 — Función de transferencia** (condiciones iniciales nulas, $\mathcal{L}\{\ddot{x}\}=s^2X$):
+> $$G(s)=\frac{1}{ms^2+bs+k}=\frac{1}{s^2+4s+3}.$$
+>
+> **Paso 3 — Polos:** $s^2+4s+3=(s+1)(s+3)=0\Rightarrow s=-1,\,-3$. Reales y negativos → **sobreamortiguado** y estable.
+>
+> **Paso 4 — Parámetros de 2.º orden:**
+> $$\omega_n=\sqrt{k/m}=\sqrt{3}\approx1.73\ \text{rad/s},\qquad \zeta=\frac{b}{2\sqrt{km}}=\frac{4}{2\sqrt{3}}\approx1.15>1.$$
+> Como $\zeta>1$ se confirma la respuesta sobreamortiguada (sin oscilación). Si en cambio fuera $b=2$, saldría $\zeta\approx0.58$ y la respuesta sería subamortiguada con [[Sobrepico Mp | sobrepico]].
 
-> [!info] Segunda ley de Newton
-> $$\sum F = m \ddot{x}$$
-> 
-> La suma de todas las fuerzas actuantes sobre una masa es igual a masa × aceleración.
+> [!ejemplo]
+> **Dos masas acopladas (sistema MIMO).** Masas $m_1,m_2$ unidas por resorte $k_1$ y amortiguador $b$; $m_1$ atada a la pared por $k_2$.
+>
+> ![[mra_doble.svg|600]]
+>
+> **DCL de $m_1$** (entrada $F_1$): la atan el resorte de pared $-k_2x_1$, el resorte central $-k_1(x_1-x_2)$ y el amortiguador $-b(\dot{x}_1-\dot{x}_2)$:
+> $$m_1\ddot{x}_1+b\dot{x}_1-b\dot{x}_2+(k_1+k_2)x_1-k_1x_2=F_1.$$
+>
+> **DCL de $m_2$** (entrada $F_2$): solo lo unen el resorte central y el amortiguador a $m_1$:
+> $$m_2\ddot{x}_2-b\dot{x}_1+b\dot{x}_2-k_1x_1+k_1x_2=F_2.$$
+>
+> Cada masa aporta una coordenada y una ecuación de 2.º orden → el sistema completo es de **orden 4**. Los términos cruzados ($-k_1x_2$, $-b\dot{x}_2$) representan el acoplamiento; en forma matricial $M\ddot{\mathbf{x}}+B\dot{\mathbf{x}}+K\mathbf{x}=\mathbf{F}$, ideal para pasar a [[Espacio Estados/index | espacio de estados]].
+
+---
+
+## Elementos y leyes constitutivas
+
+> [!teoria]
+> El modelado traslacional usa tres elementos pasivos. Cada uno relaciona la fuerza que soporta con el movimiento de sus extremos:
+>
+> | Elemento | Parámetro (unidad) | Relación constitutiva | Almacena / disipa |
+> |---|---|---|---|
+> | Masa | $m$ (kg) | $F=m\ddot{x}$ | energía cinética |
+> | Resorte | $k$ (N/m) | $F=k\,x$ (o $k\,\Delta x$) | energía potencial |
+> | Amortiguador | $b$ (N·s/m) | $F=b\dot{x}$ | disipa (calor) |
+>
+> La ley que las une es la **segunda ley de Newton**: para cada masa, $\sum F=m\ddot{x}$, sumando con signo todas las fuerzas según la coordenada positiva elegida. El amortiguador también se denota $c$ o $B$; el resorte central entre dos masas ejerce $k(x_i-x_j)$ sobre cada una, con signos opuestos (tercera ley).
 
 > [!info] Convención de signos
 > ![[mecanico_traslacional_convencion.svg|400]]
-> 
-> Se define una coordenada $x$ para cada masa, con dirección positiva arbitraria. Las fuerzas se escriben consistentes con esa dirección.
+>
+> Se asigna una coordenada $x_i$ a cada masa con sentido positivo arbitrario pero **fijo**. Resortes y amortiguadores se oponen al movimiento relativo: si $x_i$ crece, sus fuerzas apuntan en $-x_i$. Mantener la convención evita errores de signo en el DCL.
 
-# Modelado paso a paso
+---
 
-> [!ejemplo] Masa-resorte-amortiguador (simple)
-> 
-> ![[mra_simple.svg|500]]
-> 
-> **Sistema:** Masa $m$ conectada a pared fija por resorte $k$ y amortiguador $b$.
-> 
-> **Entrada:** fuerza externa $F(t)$ aplicada a la masa.
-> 
-> **Salida:** posición $x(t)$ de la masa.
-> 
-> **Paso 1:** Diagrama de cuerpo libre.
-> 
-> **Paso 2:** Suma de fuerzas:
-> $$\sum F = F(t) - F_k - F_b = m\ddot{x}$$
-> 
-> **Paso 3:** Relaciones constitutivas:
-> $$F_k = k x, \quad F_b = b \dot{x}$$
-> 
-> **Paso 4:** Ecuación diferencial:
-> $$m\ddot{x} + b\dot{x} + kx = F(t)$$
-> 
-> **Paso 5:** Función transferencia (CI nulas):
-> $$G(s) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + bs + k}$$
+## Receta de modelado
 
-> [!ejemplo] Dos masas acopladas
-> 
-> ![[mra_doble.svg|600]]
-> 
-> **Sistema:** Masas $m_1$ y $m_2$ conectadas por resorte $k_1$ y amortiguador $b$. $m_1$ conectada a pared por $k_2$.
-> 
-> **Entrada:** $F_1(t)$ sobre $m_1$, $F_2(t)$ sobre $m_2$.
-> 
-> **Salidas:** $x_1(t)$, $x_2(t)$.
-> 
-> **Paso 1:** DCL para $m_1$:
-> 
-> Fuerzas: $F_1(t)$ (entrada), $-k_2 x_1$ (resorte izquierdo), $-k_1(x_1 - x_2)$ (resorte central), $-b(\dot{x}_1 - \dot{x}_2)$ (amortiguador).
-> 
-> $$\sum F_{m_1} = F_1 - k_2 x_1 - k_1(x_1 - x_2) - b(\dot{x}_1 - \dot{x}_2) = m_1 \ddot{x}_1$$
-> 
-> **Paso 2:** DCL para $m_2$:
-> 
-> Fuerzas: $F_2(t)$ (entrada), $-k_1(x_2 - x_1)$ (resorte central), $-b(\dot{x}_2 - \dot{x}_1)$ (amortiguador).
-> 
-> $$\sum F_{m_2} = F_2 - k_1(x_2 - x_1) - b(\dot{x}_2 - \dot{x}_1) = m_2 \ddot{x}_2$$
-> 
-> **Paso 3:** Ecuaciones diferenciales:
-> $$m_1 \ddot{x}_1 + b\dot{x}_1 - b\dot{x}_2 + (k_1 + k_2)x_1 - k_1 x_2 = F_1$$
-> $$m_2 \ddot{x}_2 - b\dot{x}_1 + b\dot{x}_2 - k_1 x_1 + k_1 x_2 = F_2$$
+> [!algoritmo]
+> Para obtener la FT de cualquier sistema traslacional:
+> 1. **Coordenadas.** Asignar una posición $x_i$ a cada masa (un grado de libertad por masa), con sentido positivo fijo.
+> 2. **Diagrama de cuerpo libre.** Para cada masa, dibujar todas las fuerzas: entradas externas y reacciones de resortes/amortiguadores conectados.
+> 3. **Suma de fuerzas.** Escribir $\sum F=m_i\ddot{x}_i$ para cada masa, con los signos de la convención.
+> 4. **Relaciones constitutivas.** Sustituir $F_k=k\,\Delta x$ y $F_b=b\,\Delta\dot{x}$ (usar diferencias de posición/velocidad entre extremos).
+> 5. **Laplace con CI nulas.** $\dot{x}\to sX$, $\ddot{x}\to s^2X$; despejar la FT $X_i(s)/F_j(s)$ buscada.
 
-# Analogía con circuitos eléctricos
-
-> [!info] Tabla de analogías (fuerza-voltaje)
+> [!info] Analogía fuerza-voltaje
 > | Mecánico | Eléctrico |
-> |----------|-----------|
+> |---|---|
 > | Fuerza $F$ | Voltaje $V$ |
 > | Velocidad $v$ | Corriente $i$ |
 > | Masa $m$ | Inductancia $L$ |
-> | Resorte $1/k$ (cumplianza) | Capacitancia $C$ |
+> | Resorte $1/k$ (compliancia) | Capacitancia $C$ |
 > | Amortiguador $b$ | Resistencia $R$ |
-> 
-> Ver [[Electrico]] para profundizar.
+>
+> Permite reutilizar la intuición de circuitos: una masa "se opone a cambios de velocidad" igual que una inductancia a cambios de corriente. Ver [[Electrico | sistemas eléctricos]].
 
-# Función transferencia y parámetros
+> [!info] En MATLAB
+> ```matlab
+> m=1; b=4; k=3;
+> G = tf(1, [m b k]);   % 1/(s^2+4s+3)
+> damp(G)               % polos, wn y zeta
+> step(G)               % respuesta al escalon de fuerza
+> ```
 
-> [!info] Parámetros característicos
-> Para el sistema masa-resorte-amortiguador:
-> $$G(s) = \frac{1/m}{s^2 + \frac{b}{m}s + \frac{k}{m}}$$
-> 
-> - $\omega_n = \sqrt{\frac{k}{m}}$ (frecuencia natural)
-> - $\zeta = \frac{b}{2\sqrt{km}}$ (razón de amortiguamiento)
-> 
-> Ver [[Respuesta Temporal/Segundo Orden]].
+---
 
-# Limitaciones del modelo lineal
+## Limitaciones del modelo lineal
 
 > [!warning]
-> 1. **Resorte lineal:** $F = kx$ solo válido para pequeñas deformaciones
-> 2. **Amortiguador lineal:** $F = bv$ solo válido para velocidades bajas (flujo laminar)
-> 3. **Rozamiento seco (Coulomb):** no lineal, no incluido en este modelo
-> 4. **Masas rígidas:** se asume que la masa es un cuerpo rígido (sin deformación interna)
+> 1. **Resorte lineal:** $F=kx$ solo vale para pequeñas deformaciones (ley de Hooke); resortes reales se endurecen o saturan.
+> 2. **Amortiguador lineal:** $F=b\dot{x}$ supone fricción viscosa (flujo laminar); a alta velocidad el arrastre es $\propto\dot{x}^2$.
+> 3. **Rozamiento seco (Coulomb):** fuerza constante opuesta al movimiento, **no lineal**, no incluida; requiere [[Linealizacion/index | linealización]] o modelo conmutado.
+> 4. **Cuerpos rígidos:** se desprecia la deformación interna y la masa de resortes/amortiguadores.
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Elementos | masa $m$, resorte $k$, amortiguador $b$ |
+> | Ley | $\sum F=m\ddot{x}$ (Newton) |
+> | EDO típica | $m\ddot{x}+b\dot{x}+kx=F$ |
+> | FT | $G(s)=\dfrac{1}{ms^2+bs+k}$ |
+> | Parámetros | $\omega_n=\sqrt{k/m}$, $\zeta=\dfrac{b}{2\sqrt{km}}$ |
+> | Orden | 2 por masa (grado de libertad) |
+
+> [!corolario]
+> Modelar un sistema traslacional es aplicar Newton masa por masa y sustituir las relaciones constitutivas: el resultado es siempre una EDO lineal de 2.º orden por grado de libertad, cuya FT $1/(ms^2+bs+k)$ fija $\omega_n$ y $\zeta$. La misma plantilla sirve, por analogía, para los dominios [[Mecanico Rotacional | rotacional]] y [[Electrico | eléctrico]]; el acoplamiento entre masas se trata cómodamente en [[Espacio Estados/index | espacio de estados]].
+
+> [!referencia]
+> - Dominio análogo rotacional: [[Mecanico Rotacional]].
+> - Analogía eléctrica: [[Electrico]].
+> - Respuesta del sistema resultante: [[Respuesta Temporal/Segundo Orden/index]].
+> - Representación matricial: [[Espacio Estados/index]].

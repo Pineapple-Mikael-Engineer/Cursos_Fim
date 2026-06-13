@@ -39,7 +39,7 @@ Antes de resolver, recordemos dos herramientas clave:
 >    \frac{\partial}{\partial x_k} (x_i x_j) = x_i \frac{\partial x_j}{\partial x_k} + x_j \frac{\partial x_i}{\partial x_k}
 >    $$
 >
-> 2. **Relación fundamental** con la [[Delta de Kronecker]]:
+> 2. **Relación fundamental** con la [[Delta Kronecker]]:
 >    $$
 >    \frac{\partial x_p}{\partial x_q} = \delta_{pq}
 >    $$
@@ -175,7 +175,7 @@ $$
 
 ## Método 2: Manipulación Algebraica con Delta de Kronecker (Enfoque Elegante)
 
-Este método utiliza directamente la [[Delta de Kronecker]] y la regla del producto, resultando en un cálculo más conciso y elegante.
+Este método utiliza directamente la [[Delta Kronecker]] y la regla del producto, resultando en un cálculo más conciso y elegante.
 
 ### Paso 1: Aplicar la Regla del Producto
 
@@ -220,7 +220,7 @@ $$
 
 ### Paso 4: Aplicar la Propiedad de Sustitución de la Delta
 
-Recordemos que la [[Delta de Kronecker]] tiene la **propiedad de sustitución**:
+Recordemos que la [[Delta Kronecker]] tiene la **propiedad de sustitución**:
 
 - $\delta_{jk}$ "activa" el término cuando $j = k$: $a_{ij} x_i \delta_{jk} = a_{ik} x_i$
 - $\delta_{ik}$ "activa" el término cuando $i = k$: $a_{ij} x_j \delta_{ik} = a_{kj} x_j$
@@ -382,12 +382,12 @@ Esta derivada aparece frecuentemente en:
 
 ## Notas Relacionadas
 
-- [[Notación de Índices en Sumatorias]]
-- [[Delta de Kronecker]]
+- [[Notacion Indices Sumatorias]]
+- [[Delta Kronecker]]
 - [[Forma cuadrática]]
 - [[Gradiente de una función]]
 - [[Matriz Hessiana]]
 - [[Convenio de sumación de Einstein]]
-- [[Símbolo de Levi-Civita]]
+- [[Simbolo Levi-Civita]]
 - [[Regla del producto]]
 - [[Derivación en notación de índices]]

@@ -7,6 +7,7 @@ tags:
   - examen
 draft: false
 aliases:
+  - Dispositivos de Flujo
   - cheat sheet dispositivos
   - resumen dispositivos
   - hoja de formulas flujo

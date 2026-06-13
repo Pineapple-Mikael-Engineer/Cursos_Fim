@@ -1,0 +1,25 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{amsmath}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.3cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % R
+  \draw (0,4) to[R=$R$] (2,4);
+  \node at (3,4){\Large $\to$};
+  \draw (4,4) to[generic, l=$R$] (6,4);
+  \node[right] at (6.3,4){$Z_R=R$};
+  % L
+  \draw (0,2) to[L=$L$] (2,2);
+  \node at (3,2){\Large $\to$};
+  \draw (4,2) to[generic, l=$sL$] (6,2);
+  \node[right] at (6.3,2){$Z_L=sL$};
+  % C
+  \draw (0,0) to[C=$C$] (2,0);
+  \node at (3,0){\Large $\to$};
+  \draw (4,0) to[generic, l=$\frac{1}{sC}$] (6,0);
+  \node[right] at (6.3,0){$Z_C=\dfrac{1}{sC}$};
+  \node at (1,5.1){\textbf{dominio del tiempo}};
+  \node at (5,5.1){\textbf{dominio de $s$}};
+\end{circuitikz}
+\end{document}

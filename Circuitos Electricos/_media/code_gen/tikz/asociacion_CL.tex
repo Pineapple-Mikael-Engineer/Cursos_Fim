@@ -1,0 +1,28 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{amsmath}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.2cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % C serie
+  \draw (0,5.6) to[C=$C_1$] (2,5.6) to[C=$C_2$] (4,5.6);
+  \node[align=center] at (2,4.6){\small condensadores en serie\\[2pt]$\dfrac{1}{C_{eq}}=\dfrac{1}{C_1}+\dfrac{1}{C_2}$};
+  % C paralelo
+  \draw (7.3,6.2) -- (7.3,5);
+  \draw (10.3,6.2) -- (10.3,5);
+  \draw (7.3,6.2) to[C=$C_1$] (10.3,6.2);
+  \draw (7.3,5) to[C=$C_2$] (10.3,5);
+  \draw (7.3,5.6)--(6.6,5.6); \draw (10.3,5.6)--(11,5.6);
+  \node[align=center] at (8.8,4.0){\small condensadores en paralelo\\[2pt]$C_{eq}=C_1+C_2$};
+  % L serie
+  \draw (0,1.6) to[L=$L_1$] (2,1.6) to[L=$L_2$] (4,1.6);
+  \node[align=center] at (2,0.6){\small inductores en serie\\[2pt]$L_{eq}=L_1+L_2$};
+  % L paralelo
+  \draw (7.3,2.2) -- (7.3,1);
+  \draw (10.3,2.2) -- (10.3,1);
+  \draw (7.3,2.2) to[L=$L_1$] (10.3,2.2);
+  \draw (7.3,1) to[L=$L_2$] (10.3,1);
+  \draw (7.3,1.6)--(6.6,1.6); \draw (10.3,1.6)--(11,1.6);
+  \node[align=center] at (8.8,0.0){\small inductores en paralelo\\[2pt]$\dfrac{1}{L_{eq}}=\dfrac{1}{L_1}+\dfrac{1}{L_2}$};
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  % estrella (Y)
+  \coordinate (o) at (0,0);
+  \draw (o) to[R=$R_a$] (0,2) node[above]{$a$};
+  \draw (o) to[R=$R_b$] (-1.8,-1.4) node[left]{$b$};
+  \draw (o) to[R=$R_c$] (1.8,-1.4) node[right]{$c$};
+  \node at (0,-2.6){\textbf{estrella (Y)}};
+  % equivalencia
+  \node at (4,0){\Large $\equiv$};
+  % triangulo (Delta)
+  \coordinate (a) at (8,2);
+  \coordinate (b) at (6.2,-1.4);
+  \coordinate (c) at (9.8,-1.4);
+  \draw (a) node[above]{$a$} to[R=$R_{ab}$] (b) node[left]{$b$};
+  \draw (b) to[R=$R_{bc}$] (c) node[right]{$c$};
+  \draw (c) to[R=$R_{ca}$] (a);
+  \node at (8,-2.6){\textbf{triángulo ($\Delta$)}};
+\end{circuitikz}
+\end{document}

@@ -14,162 +14,125 @@ aliases:
 
 # Impulso Unitario
 
-# Definición
+> [!definicion]
+> El **impulso unitario** $\delta(t)$ (delta de Dirac) no es una función ordinaria sino una **distribución**: vale cero salvo en $t=0$, donde concentra un área unitaria. Su transformada es la unidad:
+> $$\delta(t)=0\ (t\neq0),\quad \int_{-\infty}^{\infty}\delta(t)\,dt=1\qquad\Longrightarrow\qquad \mathcal{L}\{\delta(t)\}=1\ \text{(todo }s).$$
+> Propiedad de muestreo (sifting): $\displaystyle\int_{-\infty}^{\infty}f(t)\,\delta(t-a)\,dt=f(a)$.
 
-> [!definicion] Impulso unitario $\delta(t)$ (Delta de Dirac)
-> No es una función en sentido clásico, sino una **distribución** definida por:
-> 
-> $$\delta(t) = 0 \quad \text{para } t \neq 0$$
-> $$\int_{-\infty}^{\infty} \delta(t) dt = 1$$
-> 
-> Y la propiedad de muestreo:
-> $$\int_{-\infty}^{\infty} f(t) \delta(t - a) dt = f(a)$$
+> [!info]
+> Es la [[Escalon | señal de prueba]] más básica del análisis de la [[Primer Orden | respuesta temporal]]: su salida es la **respuesta impulsional** $h(t)$, que caracteriza por completo al sistema LTI. Es la **derivada** del [[Escalon | escalón]] $u(t)$; integrando $\delta$ se recupera $u$, luego la [[Rampa | rampa]] y la [[Parabola | parábola]].
 
-> [!definicion] Propiedad de muestreo (sifting property)
-> $$\int_{-\infty}^{\infty} f(t) \delta(t - a) dt = f(a)$$
-> 
-> En particular, para $a=0$: $\int_{-\infty}^{\infty} f(t) \delta(t) dt = f(0)$
+---
 
-# Relación con el escalón
+## Ejemplo
 
-> [!info] El impulso es la derivada generalizada del escalón
-> $$\delta(t) = \frac{d}{dt} u(t)$$
-> $$u(t) = \int_{-\infty}^{t} \delta(\tau) d\tau$$
+> [!ejemplo] Impulso unitario
+> ![[senal_impulso.svg|460]]
+>
+> Idealización con área unitaria concentrada en $t=0$; su transformada es $\mathcal{L}\{\delta(t)\}=1$.
 
-> [!demostracion]
-> Para cualquier función de prueba $f(t)$:
-> 
-> $$\int_{-\infty}^{\infty} f(t) \delta(t) dt = f(0)$$
-> 
-> Por otro lado:
-> $$\int_{-\infty}^{\infty} f(t) \frac{d}{dt} u(t) dt = -\int_{-\infty}^{\infty} f'(t) u(t) dt = -\int_{0}^{\infty} f'(t) dt = f(0) - f(\infty)$$
-> 
-> Para funciones que decaen en infinito ($f(\infty)=0$), se cumple la igualdad.
+> [!ejemplo] Respuesta impulsional de un sistema de primer orden
+> Sea $G(s)=\dfrac{K}{\tau s+1}$ con $K=6$ y $\tau=3\ \text{s}$. Hallar $h(t)$.
+>
+> **Paso 1 — Salida en Laplace.** Con $U(s)=\mathcal{L}\{\delta(t)\}=1$:
+> $$H(s)=G(s)\cdot1=\frac{6}{3s+1}.$$
+>
+> **Paso 2 — Forma estándar.** Factorizando para que el polo quede explícito:
+> $$H(s)=\frac{6}{3\,(s+1/3)}=\frac{2}{s+1/3}.$$
+>
+> **Paso 3 — Antitransformada.** Como $\mathcal{L}^{-1}\{1/(s+a)\}=e^{-at}$:
+> $$h(t)=2\,e^{-t/3},\qquad t\ge0.$$
+> Equivale a $\dfrac{K}{\tau}e^{-t/\tau}=\dfrac{6}{3}e^{-t/3}=2e^{-t/3}$.
+>
+> **Paso 4 — Verificación con el escalón.** La respuesta al escalón es $y_{\text{esc}}(t)=K(1-e^{-t/\tau})=6(1-e^{-t/3})$. Derivando: $\dfrac{d}{dt}y_{\text{esc}}=6\cdot\dfrac{1}{3}e^{-t/3}=2e^{-t/3}=h(t)$. Confirma que **$h(t)$ es la derivada de la respuesta al escalón**.
+>
+> **Paso 5 — Estabilidad BIBO.** $\displaystyle\int_0^{\infty}|h(t)|\,dt=\int_0^{\infty}2e^{-t/3}\,dt=2\cdot3=6<\infty$ → sistema estable.
 
-# Transformada de Laplace
+---
 
-> [!teorema] Transformada del impulso unitario
-> $$\mathcal{L}\{\delta(t)\} = 1, \quad \text{para todo } s$$
+## Transformada de Laplace
 
-> [!demostracion]
-> Por definición de la transformada unilateral:
-> $$\mathcal{L}\{\delta(t)\} = \int_{0^-}^{\infty} \delta(t) e^{-st} dt$$
-> 
-> Por la propiedad de muestreo con $a=0$ y $f(t) = e^{-st}$:
-> $$\int_{0^-}^{\infty} \delta(t) e^{-st} dt = e^{-s \cdot 0} = 1$$
-
-> [!teorema] Transformada del impulso desplazado
-> $$\mathcal{L}\{\delta(t - a)\} = e^{-as}, \quad a \ge 0$$
+> [!teorema]
+> $$\mathcal{L}\{\delta(t)\}=1\ \text{(todo }s);\qquad\qquad \mathcal{L}\{\delta(t-a)\}=e^{-as},\quad a\ge0.$$
 
 > [!demostracion]
-> Por [[Propiedades | propiedad de desplazamiento temporal]]:
-> $$\mathcal{L}\{\delta(t - a)\} = e^{-as} \cdot 1 = e^{-as}$$
+> Por la definición unilateral y la propiedad de muestreo con $a=0$, $f(t)=e^{-st}$:
+> $$\mathcal{L}\{\delta(t)\}=\int_{0^-}^{\infty}\delta(t)\,e^{-st}\,dt=e^{-s\cdot0}=1.$$
+> El caso desplazado sale de la [[Propiedades | propiedad de desplazamiento temporal]]: $\mathcal{L}\{\delta(t-a)\}=e^{-as}\cdot1=e^{-as}$.
 
-# Relación con otras señales
+---
 
-> [!info] Derivadas e integrales
-> 
-> **Derivada:** $\frac{d}{dt} \delta(t)$ no es una función común (doblete)
-> 
-> **Integral:** $\int_{-\infty}^{t} \delta(\tau) d\tau = u(t)$ ([[Escalon]])
+## En qué consiste
 
-> [!info] Otras relaciones
-> - [[Escalon]]: $u(t) = \int_{-\infty}^{t} \delta(\tau) d\tau$
-> - [[Rampa]]: $r(t) = \int_{-\infty}^{t} \int_{-\infty}^{\tau} \delta(\sigma) d\sigma d\tau$
-> - [[Parabola]]: $p(t) = \int_{-\infty}^{t} \int_{-\infty}^{\tau} \int_{-\infty}^{\sigma} \delta(\lambda) d\lambda d\sigma d\tau$
-> - **Pulso rectangular estrecho:** $\delta(t) = \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left[ u(t) - u(t - \epsilon) \right]$
+> [!teoria]
+> Como $\mathcal{L}\{\delta(t)\}=1$, alimentar un sistema con un impulso devuelve directamente su función transferencia en el tiempo:
+> $$Y(s)=G(s)\,U(s)\ \xrightarrow{\,u=\delta\,}\ Y(s)=G(s)\quad\Longrightarrow\quad h(t)=\mathcal{L}^{-1}\{G(s)\}.$$
+> Por eso $h(t)$ —la **respuesta impulsional**— contiene toda la información del sistema LTI. Respuestas típicas:
+>
+> **Primer orden** — $h(t)=\dfrac{K}{\tau}e^{-t/\tau}$.
+>
+> **Segundo orden subamortiguado** — $h(t)=\dfrac{\omega_n}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_n t}\sin(\omega_d t)$, $\omega_d=\omega_n\sqrt{1-\zeta^2}$.
+>
+> Ver [[Primer Orden | primer orden]] y [[Segundo Orden/index | segundo orden]].
 
-# Respuesta de sistemas al impulso
+> [!teorema] El impulso es la derivada del escalón
+> $$\delta(t)=\frac{d}{dt}u(t),\qquad u(t)=\int_{-\infty}^{t}\delta(\tau)\,d\tau.$$
 
-> [!info] Respuesta impulsional $h(t)$
-> Para un sistema con función transferencia $G(s)$, la respuesta al impulso es:
-> $$h(t) = \mathcal{L}^{-1}\{G(s)\}$$
+> [!demostracion]
+> Para una función de prueba $f$ que decae en infinito ($f(\infty)=0$), integrando por partes:
+> $$\int_{-\infty}^{\infty}f(t)\,\frac{d}{dt}u(t)\,dt=-\int_{-\infty}^{\infty}f'(t)\,u(t)\,dt=-\int_{0}^{\infty}f'(t)\,dt=f(0)-f(\infty)=f(0),$$
+> que coincide con $\int f(t)\,\delta(t)\,dt=f(0)$. Luego $\delta=du/dt$ en sentido distribucional.
 
-> [!teorema] Relación fundamental
-> $$Y(s) = G(s) U(s) \quad \xrightarrow{u(t)=\delta(t)} \quad Y(s) = G(s) \cdot 1 = G(s)$$
-> 
-> Por lo tanto:
-> $$h(t) = \mathcal{L}^{-1}\{G(s)\} = \text{respuesta al impulso}$$
+> [!info] Propiedades de $h(t)$
+> | Propiedad | Expresión |
+> |---|---|
+> | Causalidad | $h(t)=0$ para $t<0$ |
+> | Estabilidad BIBO | $\displaystyle\int_0^{\infty}|h(t)|\,dt<\infty$ |
+> | Convolución | $y(t)=\displaystyle\int_0^t h(\tau)\,u(t-\tau)\,d\tau$ |
+> | Relación con escalón | $h(t)=\dfrac{d}{dt}y_{\text{escalón}}(t)$ |
 
-> [!ejemplo] Sistema de primer orden
-> $$G(s) = \frac{K}{\tau s + 1}$$
-> 
-> $$h(t) = \frac{K}{\tau} e^{-t/\tau}, \quad t \ge 0$$
-> 
-> Ver [[Primer Orden]].
+> [!info] Relación con otras señales
+> | Operación | Resultado | Lleva a |
+> |---|---|---|
+> | Integral | $\displaystyle\int_{-\infty}^{t}\delta(\tau)\,d\tau=u(t)$ | [[Escalon \| escalón]] |
+> | Doble integral | $r(t)=t\,u(t)$ | [[Rampa \| rampa]] |
+> | Triple integral | $\tfrac{t^2}{2}u(t)$ | [[Parabola \| parábola]] |
+> | Límite de pulso | $\delta(t)=\lim_{\epsilon\to0}\tfrac{1}{\epsilon}[u(t)-u(t-\epsilon)]$ | pulso estrecho |
 
-> [!ejemplo] Sistema de segundo orden (subamortiguado)
-> $$G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}, \quad 0 < \zeta < 1$$
-> 
-> $$h(t) = \frac{\omega_n}{\sqrt{1-\zeta^2}} e^{-\zeta\omega_n t} \sin(\omega_d t), \quad t \ge 0$$
-> 
-> donde $\omega_d = \omega_n\sqrt{1-\zeta^2}$
-> 
-> Ver [[Segundo Orden/index]].
+---
 
-# Propiedades de la respuesta impulsional
+## Convolución y función transferencia
 
-> [!info] Propiedades importantes
-> 1. **Causalidad:** $h(t) = 0$ para $t < 0$ (sistema causal)
-> 2. **Estabilidad BIBO:** $\int_0^{\infty} |h(t)| dt < \infty$
-> 3. **Convolución:** $y(t) = (h * u)(t) = \int_0^t h(\tau) u(t - \tau) d\tau$
-> 4. **Relación con escalón:** $h(t) = \frac{d}{dt} y_{\text{escalón}}(t)$
-
-> [!demostracion] Relación con escalón
-> La respuesta al escalón $y_{\text{escalón}}(t) = \int_0^t h(\tau) d\tau$
-> 
-> Derivando ambos lados: $\frac{d}{dt} y_{\text{escalón}}(t) = h(t)$
-
-# Identificación de sistemas mediante impulso
-
-> [!info] En teoría...
-> Si se aplica un impulso ideal a un sistema, la salida es directamente $h(t)$.
-> 
-> **Problema:** El impulso ideal no es físicamente realizable (amplitud infinita, duración cero).
+> [!teorema]
+> La respuesta a cualquier entrada $u(t)$ es la convolución con $h(t)$:
+> $$y(t)=(h*u)(t)=\int_0^t h(\tau)\,u(t-\tau)\,d\tau,\qquad\text{en Laplace}\quad Y(s)=G(s)\,U(s).$$
+> Ver [[Convolucion | convolución]].
 
 > [!ejemplo] Aproximación práctica del impulso
-> En la práctica, se usa un **pulso corto** de área 1:
-> $$p(t) = \frac{1}{\epsilon} \left[ u(t) - u(t - \epsilon) \right]$$
-> 
-> Para $\epsilon$ suficientemente pequeño (comparado con la dinámica del sistema), $p(t) \approx \delta(t)$.
+> El impulso ideal no es realizable (amplitud infinita, duración cero). En la práctica se usa un **pulso corto de área 1**:
+> $$p(t)=\frac{1}{\epsilon}\bigl[u(t)-u(t-\epsilon)\bigr].$$
+> Si $\epsilon$ es mucho menor que la constante de tiempo del sistema, $p(t)\approx\delta(t)$ y la salida medida aproxima $h(t)$.
 
-# Convolución y función transferencia
+---
 
-> [!teorema] Teorema de convolución
-> Para cualquier entrada $u(t)$:
-> $$y(t) = (h * u)(t) = \int_0^t h(\tau) u(t - \tau) d\tau$$
-> 
-> En Laplace: $Y(s) = H(s) U(s) = G(s) U(s)$
-> 
-> Ver [[Convolucion]].
+## Resumen
 
-# Uso en control
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Definición | distribución, área $1$ en $t=0$ |
+> | Muestreo | $\int f(t)\delta(t-a)\,dt=f(a)$ |
+> | Transformada | $\mathcal{L}\{\delta(t)\}=1$ |
+> | Desplazado | $\mathcal{L}\{\delta(t-a)\}=e^{-as}$ |
+> | Salida del sistema | $h(t)=\mathcal{L}^{-1}\{G(s)\}$ |
+> | Relación con escalón | $\delta=\dfrac{d}{dt}u$, $h=\dfrac{d}{dt}y_{\text{esc}}$ |
+> | Error estacionario | no definido |
 
-> [!info] ¿Por qué el impulso?
-> 1. **Caracterización completa del sistema:** $h(t)$ contiene toda la información del sistema LTI
-> 2. **Relación con función transferencia:** $G(s) = \mathcal{L}\{h(t)\}$
-> 3. **Base de la convolución:** Cualquier entrada se puede representar como superposición de impulsos
-> 4. **Análisis de sistemas:** La estabilidad BIBO se verifica con $\int |h(t)| dt < \infty$
-> 5. **Relación con escalón:** $h(t)$ es la derivada de la respuesta al escalón
+> [!corolario]
+> El impulso es la señal de prueba que extrae directamente la dinámica del sistema: como $\mathcal{L}\{\delta\}=1$, la salida es $h(t)=\mathcal{L}^{-1}\{G(s)\}$, base de la convolución y criterio de estabilidad BIBO ($\int|h|<\infty$). Integrando $h$ se obtiene la respuesta al [[Escalon | escalón]] y, sucesivamente, a la [[Rampa | rampa]] y la [[Parabola | parábola]].
 
-# Comparación con otras señales
-
-> [!info] Señales de prueba y su propósito
-> 
-> | Señal | Transformada | Uso principal |
-> |--------|--------------|---------------|
-> | [[Impulso]] $\delta(t)$ | $1$ | Obtener $h(t)$, caracterización completa |
-> | [[Escalon]] $u(t)$ | $1/s$ | Evaluar respuesta transitoria y $e_{ss}$ |
-> | [[Rampa]] $t \cdot u(t)$ | $1/s^2$ | Evaluar $K_v$ (error de velocidad) |
-> | [[Parabola]] $\frac{t^2}{2} u(t)$ | $1/s^3$ | Evaluar $K_a$ (error de aceleración) |
-
-> [!info] Relación entre respuestas
-> $$h(t) \xrightarrow{\text{integral}} y_{\text{escalón}}(t) \xrightarrow{\text{integral}} y_{\text{rampa}}(t) \xrightarrow{\text{integral}} y_{\text{parábola}}(t)$$
-
-# Limitaciones
-
-> [!warning]
-> 1. **No es físicamente realizable:** Impulso ideal requiere amplitud infinita
-> 2. **Aproximación práctica:** Se usa un pulso corto, pero nunca es exacto
-> 3. **Sensibilidad al ruido:** La derivación numérica de la respuesta al escalón amplifica ruido
-> 4. **Sistemas con integradores:** $h(t)$ no tiende a cero (ej. $h(t) = 1$ para sistema $\dot{y}=u$)
+> [!referencia]
+> - Integral: [[Escalon]]. Doble/triple integral: [[Rampa]], [[Parabola]].
+> - Respuestas: [[Primer Orden]], [[Segundo Orden/index]].
+> - Convolución: [[Convolucion]].
+> - Desplazamiento temporal: [[Propiedades]].

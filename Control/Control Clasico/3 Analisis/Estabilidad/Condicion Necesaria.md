@@ -14,147 +14,120 @@ aliases:
 
 # Condición Necesaria de Estabilidad
 
-# Enunciado
+> [!definicion]
+> Para que un sistema LTI con polinomio característico $P(s)=a_n s^n+\dots+a_1 s+a_0$ sea **estable**, todos sus coeficientes deben tener el **mismo signo** y **ninguno** puede ser cero. Es **necesaria pero no suficiente**: sirve para descartar de un vistazo, no para confirmar. En orden 1 y 2 es además suficiente.
 
-> [!teorema] Condición necesaria (pero no suficiente)
-> Sea el polinomio característico de un sistema LTI:
-> $$P(s) = a_n s^n + a_{n-1} s^{n-1} + \dots + a_1 s + a_0$$
-> 
-> Si el sistema es **estable**, entonces:
-> 1. **Todos los coeficientes** $a_i$ deben tener el **mismo signo** (todos positivos o todos negativos)
-> 2. **Ningún coeficiente** puede ser cero (todos $a_i \neq 0$)
+> [!info]
+> Filtro previo de [[index | estabilidad]] antes de aplicar el criterio completo de [[Routh Hurwitz/index | Routh-Hurwitz]]. El polinomio característico sale del denominador de la [[Funcion Transferencia/index | función de transferencia]].
 
-> [!warning] Esta condición es necesaria pero NO suficiente
-> Que todos los coeficientes sean positivos **no garantiza** que el sistema sea estable.
-> 
-> Ejemplo: $s^3 + s^2 + 2s + 8 = 0$ tiene todos coeficientes positivos pero es inestable (dos polos complejos con parte real positiva).
+---
 
-# Demostración (caso general)
+## Ejemplo
 
-> [!demostracion] Prueba de la condición necesaria
-> 
-> **Paso 1:** Polinomio factorizado por polos
-> 
-> Sea $P(s) = a_n (s - p_1)(s - p_2)\dots(s - p_n)$, donde $p_i$ son los polos del sistema.
-> 
-> Si el sistema es estable, todos los polos tienen parte real negativa: $\Re(p_i) < 0$.
-> 
-> **Paso 2:** Factores de polos reales
-> 
-> Para un polo real negativo: $p_i = -\alpha_i$ con $\alpha_i > 0$.
-> 
-> El factor es $(s + \alpha_i)$. Todos los coeficientes de este factor son positivos.
-> 
-> **Paso 3:** Factores de polos complejos conjugados
-> 
-> Para un par complejo conjugado con parte real negativa: $p = -\sigma \pm j\omega$, $\sigma > 0$.
-> 
-> El factor es $(s + \sigma - j\omega)(s + \sigma + j\omega) = s^2 + 2\sigma s + (\sigma^2 + \omega^2)$.
-> 
-> Todos los coeficientes ($1$, $2\sigma$, $\sigma^2+\omega^2$) son positivos.
-> 
-> **Paso 4:** Producto de factores
-> 
-> El polinomio $P(s) = a_n \cdot \prod (\text{factores con coeficientes positivos})$.
-> 
-> El producto de polinomios con coeficientes positivos **no puede** producir coeficientes negativos o cero.
-> 
-> Por lo tanto, todos los $a_i$ deben tener el mismo signo que $a_n$.
+> [!ejemplo] Descartar inestables por inspección
+> Aplicar el filtro a cuatro polinomios **sin calcular polos**.
+>
+> | $P(s)$ | Coeficientes | ¿Pasa el filtro? | Veredicto |
+> |---|---|---|---|
+> | $s^2+5s+6$ | $1,5,6$ | sí (todos $>0$) | candidato a estable |
+> | $s^3+2s^2-s+4$ | $1,2,-1,4$ | **no** (signo mezclado) | **inestable seguro** |
+> | $s^3+2s^2+3$ | $1,2,0,3$ | **no** (falta $s^1$) | **inestable/marginal** |
+> | $s^3+s^2+2s+8$ | $1,1,2,8$ | sí (todos $>0$) | **indeciso** → usar Routh |
+>
+> Las dos filas centrales se descartan **sin más cuentas**. La última pasa el filtro pero no garantiza nada: hay que ir a Routh-Hurwitz (resulta inestable, ver abajo).
 
-# Demostración para casos particulares
+> [!ejemplo] Pasa el filtro y aun así es inestable (orden 3)
+> $$P(s)=s^3+s^2+2s+8,\qquad \text{coef. }1,1,2,8>0\ ✓$$
+> La condición necesaria se cumple, pero la **condición adicional** de orden 3 es $a_2a_1>a_3a_0$:
+> $$a_2a_1=1\cdot2=2,\qquad a_3a_0=1\cdot8=8,\qquad 2>8\ \text{❌}.$$
+> Falla → **inestable**. Confirma que coeficientes positivos no bastan a partir de orden 3.
 
-> [!demostracion] Orden 1
-> $$P(s) = a_1 s + a_0$$
-> 
-> Polo: $s = -a_0/a_1$
-> 
-| Condición | Conclusión |
-|-----------|------------|
-| $a_0/a_1 > 0$ | Polo negativo → **estable** |
-| $a_0/a_1 < 0$ | Polo positivo → **inestable** |
-| $a_0 = 0$ | Polo en $s=0$ → marginal |
-> 
-> Para primer orden, la condición es **necesaria y suficiente**.
+> [!ejemplo] Semiplanos de estabilidad
+> ![[estabilidad_semiplanos.svg|560]]
+>
+> Todos los polos en el semiplano izquierdo ($\Re(p)<0$) → estable; sobre el eje imaginario → marginal; alguno en el derecho → inestable. La condición de coeficientes es la huella algebraica de "todos los polos a la izquierda".
 
-> [!demostracion] Orden 2
-> $$P(s) = a_2 s^2 + a_1 s + a_0$$
-> 
-> Polos: $s = \frac{-a_1 \pm \sqrt{a_1^2 - 4a_2a_0}}{2a_2}$
-> 
-> Para que ambos polos tengan parte real negativa:
-> - $a_2, a_1, a_0$ deben tener el **mismo signo** (todos positivos o todos negativos)
-> - **No hay condición adicional**
-> 
-> Para segundo orden, la condición es **necesaria y suficiente**.
+---
 
-> [!demostracion] Orden 3
-> $$P(s) = a_3 s^3 + a_2 s^2 + a_1 s + a_0$$
-> 
-> Condiciones para estabilidad (Routh-Hurwitz):
-> - Todos los coeficientes positivos ($a_3, a_2, a_1, a_0 > 0$)
-> - **Condición adicional:** $a_2 a_1 > a_3 a_0$
-> 
-> Ejemplo donde se cumple condición necesaria pero falla la adicional:
-> $$s^3 + s^2 + 2s + 8 = 0$$
-> - Coeficientes: $1, 1, 2, 8 > 0$ ✓ (condición necesaria cumplida)
-> - $a_2 a_1 = 1 \cdot 2 = 2$
-> - $a_3 a_0 = 1 \cdot 8 = 8$
-> - $2 > 8$? **No** → inestable
-> 
-> Ver [[Routh Hurwitz/index]] para el criterio completo.
+## Por qué es necesaria
 
-# Contraejemplos famosos
+> [!teorema] Condición necesaria
+> Si $P(s)=a_n s^n+\dots+a_0$ es estable, entonces todos los $a_i$ tienen el mismo signo y ninguno es nulo.
 
-> [!ejemplo] Coeficientes positivos pero inestable (orden 3)
-> $$P(s) = s^3 + 2s^2 + s + 2$$
-> $$
->\begin{array}{c|cc}
->s^3 & 1 & 1 \\
->s^2 & 2 & 2 \\
->s^1 & \frac{2\cdot1 - 1\cdot2}{2} = 0 & 0 \\
->s^0 & 2 & 
->\end{array}
->$$
-> 
-> Fila de $s^1$ es cero → caso especial de Routh.
-> 
-> Polos: $s = \pm j$ (inestable? marginal?) y $s = -2$. Hay un cambio de signo en primera columna tras resolver el caso especial → inestable.
-> 
-> **Conclusión:** Los coeficientes positivos no garantizan estabilidad.
+> [!demostracion] Producto de factores estables
+> **Paso 1 — Factorizar por polos.** $P(s)=a_n\prod_i(s-p_i)$. Si es estable, todo polo cumple $\Re(p_i)<0$.
+>
+> **Paso 2 — Polos reales.** Un polo real estable es $p_i=-\alpha_i$ con $\alpha_i>0$; aporta el factor $(s+\alpha_i)$, de coeficientes **positivos**.
+>
+> **Paso 3 — Pares complejos.** Un par $p=-\sigma\pm j\omega$ con $\sigma>0$ aporta
+> $$(s+\sigma-j\omega)(s+\sigma+j\omega)=s^2+2\sigma s+(\sigma^2+\omega^2),$$
+> de coeficientes $1,\,2\sigma,\,\sigma^2+\omega^2$, todos **positivos**.
+>
+> **Paso 4 — Producto.** $P(s)=a_n\cdot\prod(\text{factores de coef. positivos})$. Multiplicar polinomios de coeficientes positivos nunca produce un coeficiente negativo ni nulo. Luego todos los $a_i$ comparten el signo de $a_n$. $\blacksquare$
 
-> [!ejemplo] Coeficiente cero (falta el término $s$)
-> $$P(s) = s^3 + 2s^2 + 3$$
-> 
-> Falta $s^1$ → coeficiente cero → viola condición necesaria.
-> 
-> Efectivamente, el sistema es inestable o marginal.
-> 
-> Ver [[Routh Hurwitz/Casos Especiales]] para manejo.
+> [!corolario] Por qué no es suficiente
+> La demostración va en un solo sentido: que el producto tenga coeficientes positivos **no obliga** a que cada factor sea estable. A partir de orden 3, términos cruzados pueden recomponer coeficientes positivos a partir de factores con $\Re>0$ (ejemplo $s^3+s^2+2s+8$).
 
-# Condición necesaria para sistemas con parámetros
+---
 
-> [!info] Aplicación en diseño
-> Dado un sistema con ganancia $K$ variable, la condición necesaria da un **primer filtro**:
-> 
-> $$P(s) = s^3 + 3s^2 + 2s + K = 0$$
-> 
-> Todos los coeficientes deben ser positivos:
-> - $1 > 0$ ✓
-> - $3 > 0$ ✓
-> - $2 > 0$ ✓
-> - $K > 0$ (condición necesaria)
-> 
-> Luego se aplica Routh-Hurwitz para encontrar rango exacto de $K$:
-> $$3 \cdot 2 > 1 \cdot K \implies K < 6$$
-> 
-> Rango de estabilidad: $0 < K < 6$.
-> 
-> Ver [[Routh Hurwitz/Ajuste Parametros]].
+## Casos particulares
 
-# Limitaciones
+> [!demostracion] Orden 1 — necesaria y suficiente
+> $P(s)=a_1 s+a_0$, polo $s=-a_0/a_1$.
+>
+> | Condición | Conclusión |
+> |---|---|
+> | $a_0,a_1$ mismo signo | polo $<0$ → **estable** |
+> | $a_0,a_1$ signo distinto | polo $>0$ → **inestable** |
+> | $a_0=0$ | polo en $0$ → marginal |
+
+> [!demostracion] Orden 2 — necesaria y suficiente
+> $P(s)=a_2 s^2+a_1 s+a_0$, polos $s=\dfrac{-a_1\pm\sqrt{a_1^2-4a_2a_0}}{2a_2}$.
+>
+> Ambos polos tienen $\Re<0$ **si y solo si** $a_2,a_1,a_0$ comparten signo. No hay condición extra: el filtro decide.
+
+> [!demostracion] Orden 3 — hace falta una condición extra
+> $P(s)=a_3 s^3+a_2 s^2+a_1 s+a_0$. Es estable si y solo si:
+> 1. todos los coeficientes con el mismo signo, **y**
+> 2. $a_2 a_1>a_3 a_0$.
+>
+> El término (1) es la condición necesaria; (2) es lo que añade [[Routh Hurwitz/index | Routh-Hurwitz]].
+
+---
+
+## Uso en diseño
+
+> [!info] Primer filtro con parámetro
+> Con un parámetro $K$, la condición necesaria acota su rango antes de Routh. Para
+> $$P(s)=s^3+3s^2+2s+K,$$
+> todos los coeficientes $>0$ exige $K>0$. Routh estrecha luego el rango: la fila $s^1$ da $\frac{3\cdot2-K}{3}>0\Rightarrow K<6$. Rango final $0<K<6$. Ver [[Routh Hurwitz/Ajuste Parametros | ajuste de parámetros]].
+
+---
+
+## Limitaciones
 
 > [!warning]
-> 1. **No suficiente:** Muchos sistemas con coeficientes positivos son inestables (especialmente orden $\ge 3$)
-> 2. **No detecta** estabilidad marginal (coeficientes pueden ser positivos pero sistema oscila)
-> 3. **No aplica** a sistemas con retardos ($e^{-sT}$ introduce términos no polinomiales)
-> 4. **No da información** sobre el grado de estabilidad
+> 1. **No suficiente** desde orden 3: muchos polinomios de coeficientes positivos son inestables.
+> 2. **No detecta** estabilidad marginal por sí sola (coeficientes positivos y aun así oscilación).
+> 3. **No aplica** a sistemas con retardo $e^{-sT}$ (introduce términos no polinomiales).
+> 4. **No mide** el grado de estabilidad ni la ubicación de los polos.
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Enunciado | $a_i$ mismo signo y todos $\ne0$ |
+> | Carácter | necesaria, no suficiente ($n\ge3$) |
+> | Orden 1 y 2 | también suficiente |
+> | Orden 3 extra | $a_2a_1>a_3a_0$ |
+> | Uso | descarte rápido y primer filtro de $K$ |
+
+> [!corolario]
+> La condición necesaria es el cribado barato de la estabilidad: mira los coeficientes y descarta de inmediato los signos mezclados o términos faltantes. Lo que pasa el filtro queda **indeciso** y debe ir a [[Routh Hurwitz/index | Routh-Hurwitz]], que sí es necesario y suficiente.
+
+> [!referencia]
+> - Marco general: [[index]].
+> - Criterio completo: [[Routh Hurwitz/index]].
+> - Construcción de la tabla: [[Construccion Tabla]].
+> - Rango de un parámetro: [[Routh Hurwitz/Ajuste Parametros]].

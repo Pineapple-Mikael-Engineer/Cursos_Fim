@@ -14,155 +14,110 @@ aliases:
 
 # Jacobiano
 
-# Definición para sistemas de control
+> [!definicion]
+> La **matriz jacobiana** de $\mathbf{f}(\mathbf{x},\mathbf{u})$ recoge todas las derivadas parciales de primer orden. Para $n$ estados y $m$ entradas, $\partial_{\mathbf{x}}\mathbf{f}$ es $n\times n$ y $\partial_{\mathbf{u}}\mathbf{f}$ es $n\times m$:
+> $$\frac{\partial\mathbf{f}}{\partial\mathbf{x}}=\begin{bmatrix}\frac{\partial f_1}{\partial x_1}&\cdots&\frac{\partial f_1}{\partial x_n}\\\vdots&\ddots&\vdots\\\frac{\partial f_n}{\partial x_1}&\cdots&\frac{\partial f_n}{\partial x_n}\end{bmatrix},\qquad (i,j)=\frac{\partial f_i}{\partial x_j}.$$
+> En [[Linealizacion/index | linealización]] es la herramienta para obtener $\mathbf{A}$ y $\mathbf{B}$: se calcula la jacobiana y se **evalúa en el equilibrio** $(\mathbf{x}_0,\mathbf{u}_0)$.
 
-> [!definicion] Matriz Jacobiana (para un sistema de estados)
-> Dado un sistema con $n$ ecuaciones de estado y $n$ variables de estado:
-> 
-> $$\dot{x}_1 = f_1(x_1, x_2, \dots, x_n, u_1, \dots, u_m)$$
-> $$\dot{x}_2 = f_2(x_1, x_2, \dots, x_n, u_1, \dots, u_m)$$
-> $$\vdots$$
-> $$\dot{x}_n = f_n(x_1, x_2, \dots, x_n, u_1, \dots, u_m)$$
-> 
-> La matriz Jacobiana respecto a los estados es:
-> 
-> $$\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = \begin{bmatrix}
-> \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n} \\[4pt]
-> \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n} \\[4pt]
-> \vdots & \vdots & \ddots & \vdots \\[4pt]
-> \frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
-> \end{bmatrix}$$
+> [!info]
+> Nota de la carpeta [[Linealizacion/index | Linealización]]. Es la versión multivariable de la derivada que aparece en la [[Serie Taylor | serie de Taylor]]; el modelo $\delta\dot{\mathbf{x}}=\mathbf{A}\delta\mathbf{x}+\mathbf{B}\delta\mathbf{u}$ que produce se interpreta en [[Variables Desviacion | variables de desviación]].
 
-> [!definicion] Jacobiana respecto a entradas
-> $$\frac{\partial \mathbf{f}}{\partial \mathbf{u}} = \begin{bmatrix}
-> \frac{\partial f_1}{\partial u_1} & \cdots & \frac{\partial f_1}{\partial u_m} \\
-> \vdots & \ddots & \vdots \\
-> \frac{\partial f_n}{\partial u_1} & \cdots & \frac{\partial f_n}{\partial u_m}
-> \end{bmatrix}$$
+---
 
-# Interpretación
+## Ejemplo
 
-> [!info] Significado físico
-> La entrada $(i,j)$ de $\frac{\partial \mathbf{f}}{\partial \mathbf{x}}$ es la **sensibilidad** de la $i$-ésima ecuación de estado respecto a la $j$-ésima variable de estado.
-> 
-> Es decir: cuánto cambia $\dot{x}_i$ cuando $x_j$ varía ligeramente, manteniendo todas las demás variables constantes.
+> [!ejemplo]
+> **Jacobiano de un sistema 2×2 evaluado en el equilibrio.** Sistema no lineal con acoplamiento:
+> $$\dot{x}_1=x_1x_2+u=f_1,\qquad \dot{x}_2=-x_1^2+3x_2=f_2.$$
+>
+> **Paso 1 — Equilibrio** con $u_0=0$: de $f_1=0$, $x_1x_2=0$; de $f_2=0$, $x_1^2=3x_2$. La solución trivial es $x_{10}=0$, $x_{20}=0$ (verificación: $f_1=0$, $f_2=0$ ✓).
+>
+> **Paso 2 — Parciales (forma general):**
+> $$\frac{\partial f_1}{\partial x_1}=x_2,\quad \frac{\partial f_1}{\partial x_2}=x_1,\quad \frac{\partial f_1}{\partial u}=1,$$
+> $$\frac{\partial f_2}{\partial x_1}=-2x_1,\quad \frac{\partial f_2}{\partial x_2}=3,\quad \frac{\partial f_2}{\partial u}=0.$$
+>
+> **Paso 3 — Evaluar en $(0,0,0)$:**
+> $$\mathbf{A}=\begin{bmatrix}x_2&x_1\\-2x_1&3\end{bmatrix}_{0}=\begin{bmatrix}0&0\\0&3\end{bmatrix},\qquad \mathbf{B}=\begin{bmatrix}1\\0\end{bmatrix}.$$
+>
+> **Paso 4 — Lectura.** El autovalor $3>0$ de $\mathbf{A}$ revela que el equilibrio es **inestable**; el acoplamiento $x_1x_2$ y el término $-x_1^2$, ambos cuadráticos, desaparecen al linealizar en el origen. Evaluar en otro equilibrio daría una $\mathbf{A}$ distinta — el jacobiano **depende del punto**.
 
-# Cálculo paso a paso
+---
 
-> [!info] Reglas básicas
-> 1. **Derivada de una constante:** $\frac{\partial c}{\partial x} = 0$
-> 2. **Derivada de $x_i$ respecto a $x_j$:** $\frac{\partial x_i}{\partial x_j} = \begin{cases} 1 & \text{si } i=j \\ 0 & \text{si } i \neq j \end{cases}$
-> 3. **Linealidad:** $\frac{\partial}{\partial x}(a f + b g) = a \frac{\partial f}{\partial x} + b \frac{\partial g}{\partial x}$
-> 4. **Regla del producto:** $\frac{\partial}{\partial x}(f \cdot g) = \frac{\partial f}{\partial x} \cdot g + f \cdot \frac{\partial g}{\partial x}$
-> 5. **Regla de la cadena:** $\frac{\partial}{\partial x} f(g(x)) = \frac{\partial f}{\partial g} \cdot \frac{\partial g}{\partial x}$
+## En qué consiste
 
-# Ejemplo 1: Sistema de segundo orden (lineal)
+> [!info] Significado de cada entrada
+> $(i,j)=\dfrac{\partial f_i}{\partial x_j}$ es la **sensibilidad** de $\dot{x}_i$ ante una variación pequeña de $x_j$ con las demás fijas: cuánto se acelera el estado $i$ si movemos un poco el estado $j$.
 
-> [!ejemplo] Sistema masa-resorte-amortiguador lineal
-> $$f_1 = x_2$$
-> $$f_2 = -\frac{k}{m}x_1 - \frac{b}{m}x_2 + \frac{1}{m}u$$
-> 
-> **Derivadas parciales:**
-> 
-> $\frac{\partial f_1}{\partial x_1} = 0$, $\frac{\partial f_1}{\partial x_2} = 1$
-> 
-> $\frac{\partial f_2}{\partial x_1} = -\frac{k}{m}$, $\frac{\partial f_2}{\partial x_2} = -\frac{b}{m}$
-> 
-> $\frac{\partial f_2}{\partial u} = \frac{1}{m}$
-> 
-> **Jacobianas:**
-> $$\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{b}{m} \end{bmatrix}, \quad
->    \mathbf{B} = \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix}$$
+> [!info] Reglas de cálculo
+> 1. Constante: $\partial c/\partial x=0$.
+> 2. Variable: $\partial x_i/\partial x_j=1$ si $i=j$, $0$ si $i\neq j$.
+> 3. Linealidad: $\partial_x(af+bg)=a\,\partial_x f+b\,\partial_x g$.
+> 4. Producto: $\partial_x(fg)=(\partial_x f)g+f(\partial_x g)$.
+> 5. Cadena: $\partial_x f(g(x))=f'(g)\,\partial_x g$. Útil en $\partial_{x_1}\sin x_1=\cos x_1$.
 
-# Ejemplo 2: Sistema no lineal (péndulo)
+> [!ejemplo] Masa-resorte-amortiguador (lineal)
+> $f_1=x_2$, $f_2=-\frac{k}{m}x_1-\frac{b}{m}x_2+\frac{1}{m}u$:
+> $$\mathbf{A}=\begin{bmatrix}0&1\\-\frac{k}{m}&-\frac{b}{m}\end{bmatrix},\qquad \mathbf{B}=\begin{bmatrix}0\\\frac{1}{m}\end{bmatrix}.$$
+> Al ser ya lineal, la jacobiana **no depende** del punto de operación.
 
-> [!ejemplo] Péndulo
-> $$f_1 = x_2$$
-> $$f_2 = -\frac{g}{l}\sin x_1 - \frac{b}{ml^2}x_2 + \frac{1}{ml^2}u$$
-> 
-> **Derivadas parciales:**
-> 
-> $\frac{\partial f_1}{\partial x_1} = 0$, $\frac{\partial f_1}{\partial x_2} = 1$
-> 
-> $\frac{\partial f_2}{\partial x_1} = -\frac{g}{l}\cos x_1$
-> 
-> $\frac{\partial f_2}{\partial x_2} = -\frac{b}{ml^2}$
-> 
-> $\frac{\partial f_2}{\partial u} = \frac{1}{ml^2}$
-> 
-> **Jacobianas (evaluadas en $x_{10}=0$, $x_{20}=0$):**
-> $$\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -\frac{g}{l} & -\frac{b}{ml^2} \end{bmatrix}, \quad
->    \mathbf{B} = \begin{bmatrix} 0 \\ \frac{1}{ml^2} \end{bmatrix}$$
+> [!ejemplo] Péndulo (no lineal)
+> $f_1=x_2$, $f_2=-\frac{g}{l}\sin x_1-\frac{b}{ml^2}x_2+\frac{1}{ml^2}u$. La única parcial no trivial es $\partial_{x_1}f_2=-\frac{g}{l}\cos x_1$. Evaluada en $x_{10}=0$ ($\cos 0=1$):
+> $$\mathbf{A}=\begin{bmatrix}0&1\\-\frac{g}{l}&-\frac{b}{ml^2}\end{bmatrix},\qquad \mathbf{B}=\begin{bmatrix}0\\\frac{1}{ml^2}\end{bmatrix}.$$
 
-# Ejemplo 3: Sistema con producto de estados
+> [!ejemplo] Jacobiana de salida
+> Para $y=h(x_1,x_2)=x_1^2+x_2$: $\partial_{\mathbf{x}}h=[\,2x_1\ \ 1\,]$. En $x_1=0$: $\mathbf{C}=[\,0\ \ 1\,]$. Análogamente $\mathbf{D}=\partial_{\mathbf{u}}h|_0$.
 
-> [!ejemplo] Términos de acoplamiento no lineal
-> $$\dot{x}_1 = x_1 x_2 + u$$
-> $$\dot{x}_2 = -x_1^2 + 3x_2$$
-> 
-> **Derivadas parciales:**
-> 
-> $\frac{\partial f_1}{\partial x_1} = x_2$, $\frac{\partial f_1}{\partial x_2} = x_1$, $\frac{\partial f_1}{\partial u} = 1$
-> 
-> $\frac{\partial f_2}{\partial x_1} = -2x_1$, $\frac{\partial f_2}{\partial x_2} = 3$, $\frac{\partial f_2}{\partial u} = 0$
-> 
-> **Jacobianas en $x_1=0, x_2=0, u=0$:**
-> $$\mathbf{A} = \begin{bmatrix} 0 & 0 \\ 0 & 3 \end{bmatrix}, \quad
->    \mathbf{B} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+---
 
-# Caso SISO vs MIMO
+## Dimensiones y casos
 
-> [!info] Comparación
-> | | SISO (una entrada, una salida) | MIMO (múltiples entradas, salidas) |
-> |---|-------------------------------|-------------------------------------|
-> | $\frac{\partial \mathbf{f}}{\partial \mathbf{x}}$ | $n \times n$ | $n \times n$ |
-> | $\frac{\partial \mathbf{f}}{\partial \mathbf{u}}$ | $n \times 1$ | $n \times m$ |
-> | $\frac{\partial \mathbf{h}}{\partial \mathbf{x}}$ | $1 \times n$ | $p \times n$ |
-> | $\frac{\partial \mathbf{h}}{\partial \mathbf{u}}$ | $1 \times 1$ | $p \times m$ |
+> [!info] SISO vs MIMO
+> | Matriz | SISO | MIMO |
+> |---|---|---|
+> | $\partial_{\mathbf{x}}\mathbf{f}=\mathbf{A}$ | $n\times n$ | $n\times n$ |
+> | $\partial_{\mathbf{u}}\mathbf{f}=\mathbf{B}$ | $n\times 1$ | $n\times m$ |
+> | $\partial_{\mathbf{x}}\mathbf{h}=\mathbf{C}$ | $1\times n$ | $p\times n$ |
+> | $\partial_{\mathbf{u}}\mathbf{h}=\mathbf{D}$ | $1\times 1$ | $p\times m$ |
 
-# Cálculo rápido para sistemas LTI
+> [!info] Atajo para sistemas lineales
+> Si el sistema ya es $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}+\mathbf{B}\mathbf{u}$, entonces $\partial_{\mathbf{x}}\mathbf{f}=\mathbf{A}$ y $\partial_{\mathbf{u}}\mathbf{f}=\mathbf{B}$ tal cual, sin depender del punto.
 
-> [!info] Sistemas lineales
-> Si el sistema ya es lineal:
-> $$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u}$$
-> 
-> Entonces:
-> $$\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = \mathbf{A}, \quad \frac{\partial \mathbf{f}}{\partial \mathbf{u}} = \mathbf{B}$$
-> 
-> (Las derivadas son las matrices originales, no dependen del punto de operación)
-
-# Relación con la linealización
-
-> [!teorema] Linealización = Jacobiana en el punto de equilibrio
-> Para un sistema no lineal $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, \mathbf{u})$ con punto de equilibrio $(\mathbf{x}_0, \mathbf{u}_0)$:
-> 
-> $$\mathbf{A} = \left. \frac{\partial \mathbf{f}}{\partial \mathbf{x}} \right|_{(\mathbf{x}_0, \mathbf{u}_0)}, \quad
->    \mathbf{B} = \left. \frac{\partial \mathbf{f}}{\partial \mathbf{u}} \right|_{(\mathbf{x}_0, \mathbf{u}_0)}$$
-> 
-> Ver [[Linealizacion/index | linealización]].
-
-# Propiedades del Jacobiano
+> [!teorema] Linealización = jacobiana en el equilibrio
+> Para $\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x},\mathbf{u})$ con equilibrio $(\mathbf{x}_0,\mathbf{u}_0)$:
+> $$\mathbf{A}=\left.\frac{\partial\mathbf{f}}{\partial\mathbf{x}}\right|_0,\qquad \mathbf{B}=\left.\frac{\partial\mathbf{f}}{\partial\mathbf{u}}\right|_0.$$
+> Es la aproximación de [[Serie Taylor | Taylor]] de primer orden; ver [[Linealizacion/index]].
 
 > [!info] Propiedades útiles
-> 1. **Determinante:** $\det\left(\frac{\partial \mathbf{f}}{\partial \mathbf{x}}\right)$ indica cambio de volumen local (criterio de invertibilidad)
-> 2. **Autovalores:** Los autovalores de $\mathbf{A}$ determinan la estabilidad local (para sistemas autónomos)
-> 3. **Rango:** Si $\text{rango}\left(\frac{\partial \mathbf{f}}{\partial \mathbf{x}}\right) = n$, el sistema es localmente invertible
+> 1. **Autovalores de $\mathbf{A}$:** determinan la estabilidad **local** del equilibrio.
+> 2. **Determinante:** $\det(\partial_{\mathbf{x}}\mathbf{f})$ mide el cambio de volumen local (invertibilidad).
+> 3. **Rango:** si es $n$, el sistema es localmente invertible alrededor del punto.
 
-# Ejemplo con salida
+---
 
-> [!ejemplo] Ecuación de salida
-> $$y = h(x_1, x_2) = x_1^2 + x_2$$
-> 
-> **Jacobiana de salida:**
-> $$\frac{\partial h}{\partial \mathbf{x}} = \begin{bmatrix} \frac{\partial h}{\partial x_1} & \frac{\partial h}{\partial x_2} \end{bmatrix} = \begin{bmatrix} 2x_1 & 1 \end{bmatrix}$$
-> 
-> Evaluada en $x_1=0$, $x_2=0$:
-> $$\mathbf{C} = \begin{bmatrix} 0 & 1 \end{bmatrix}$$
-
-# Limitaciones
+## Limitaciones
 
 > [!warning]
-> 1. **No linealidades fuertes:** Si las derivadas parciales no existen (función no diferenciable), el Jacobiano no está definido
-> 2. **Puntos de bifurcación:** En puntos donde $\frac{\partial \mathbf{f}}{\partial \mathbf{x}}$ tiene autovalores nulos, la aproximación lineal puede ser insuficiente
-> 3. **Dependencia del punto de operación:** El Jacobiano cambia si el punto de operación cambia
-> 4. **Sistemas a tiempo discreto:** Se usa el mismo concepto pero con ecuaciones en diferencias
+> 1. **No diferenciable:** si las parciales no existen (p. ej. fricción de Coulomb $\operatorname{sgn}(\dot{x})$), el jacobiano no está definido.
+> 2. **Bifurcaciones:** con autovalores nulos en $\mathbf{A}$, la aproximación lineal es insuficiente para decidir la dinámica.
+> 3. **Depende del punto:** cambiar el equilibrio cambia $\mathbf{A},\mathbf{B}$; hay que reevaluar.
+> 4. **Tiempo discreto:** mismo concepto, pero sobre ecuaciones en diferencias $\mathbf{x}_{k+1}=\mathbf{f}(\mathbf{x}_k,\mathbf{u}_k)$.
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Definición | $(i,j)=\partial f_i/\partial x_j$ |
+> | Dimensión $\mathbf{A}$ | $n\times n$ |
+> | Dimensión $\mathbf{B}$ | $n\times m$ |
+> | Uso en control | $\mathbf{A}=\partial_{\mathbf{x}}\mathbf{f}|_0$, $\mathbf{B}=\partial_{\mathbf{u}}\mathbf{f}|_0$ |
+> | Estabilidad local | autovalores de $\mathbf{A}$ |
+> | Salida | $\mathbf{C}=\partial_{\mathbf{x}}\mathbf{h}|_0$, $\mathbf{D}=\partial_{\mathbf{u}}\mathbf{h}|_0$ |
+
+> [!corolario]
+> El jacobiano es el motor de cálculo de la linealización multivariable: derivar parcialmente cada $f_i$ respecto a cada $x_j,u_k$ y **evaluar en el equilibrio** produce directamente $\mathbf{A},\mathbf{B},\mathbf{C},\mathbf{D}$. Como depende del punto de operación, debe recalcularse en cada equilibrio; sus autovalores deciden la estabilidad local del sistema [[Linealizacion/index | linealizado]].
+
+> [!referencia]
+> - Justificación teórica (Taylor 1.er orden): [[Serie Taylor]].
+> - Interpretación del modelo resultante: [[Variables Desviacion]].
+> - Marco general: [[Linealizacion/index]].

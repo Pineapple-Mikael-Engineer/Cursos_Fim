@@ -1,0 +1,19 @@
+% Amplificador no inversor:  v_o = (1 + R_f/R_1) v_i
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\begin{document}
+\begin{circuitikz}
+  \node[op amp] (A) {};
+  % entrada al + (corta, despejada)
+  \draw (A.+) to[short,-o] ++(-1.0,0) node[left]{$v_i$};
+  % nodo - extendido a la izquierda (R_1 baja sin cruzar la entrada)
+  \draw (A.-) -- ++(-2.4,0) coordinate(m);
+  \draw (m) to[R=$R_1$] ++(0,-1.8) node[ground]{};
+  % realimentacion R_f (arriba)
+  \draw (m) -- ++(0,1.6) coordinate(ft);
+  \draw (ft) to[R=$R_f$] (ft -| A.out) coordinate(fr);
+  \draw (fr) -- (A.out);
+  \draw (A.out) to[short,-o] ++(1.4,0) node[right]{$v_o$};
+\end{circuitikz}
+\end{document}

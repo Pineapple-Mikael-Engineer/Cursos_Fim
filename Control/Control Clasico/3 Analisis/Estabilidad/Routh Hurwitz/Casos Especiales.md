@@ -15,156 +15,83 @@ aliases:
 
 # Casos Especiales en la Tabla de Routh
 
-# Introducción
+> [!definicion]
+> Dos anomalías detienen la construcción de la tabla de Routh. **Caso 1:** el primer elemento de una fila es $0$ con otros no nulos → se reemplaza por un infinitesimal $\varepsilon$ y se analiza el límite. **Caso 2:** una fila entera es nula → se forma el **polinomio auxiliar** $Q(s)$ de la fila superior y se sigue con $dQ/ds$; señala raíces simétricas respecto al origen.
 
-> [!info] Dos problemas típicos
-> Durante la construcción de la tabla de Routh pueden ocurrir dos situaciones anómalas:
-> 
-> | Caso | Descripción | Solución |
-> |------|-------------|----------|
-> | **Caso 1** | El primer elemento de una fila es **cero** | Reemplazar por $\varepsilon$ (épsilon) |
-> | **Caso 2** | Una fila completa es **cero** | Usar polinomio auxiliar |
-
-Ver [[Construccion Tabla]] para el procedimiento base.
+> [!info]
+> Extiende la [[Construccion Tabla | construcción de la tabla]] del criterio de [[index | Routh-Hurwitz]]. La fila de ceros remite a [[Polos Ceros | polos y ceros]] para interpretar los modos simétricos.
 
 ---
 
-# Caso 1: Primer elemento de una fila es cero
+## Ejemplo
 
-> [!definicion] Síntoma
-> En alguna fila, el primer coeficiente es $0$, pero hay al menos otro coeficiente no nulo en la misma fila.
-
-> [!ejemplo] Polinomio $P(s) = s^5 + 2s^4 + 3s^3 + 6s^2 + 5s + 3$
-> 
-> **Paso 1:** Construir las dos primeras filas:
-> 
+> [!ejemplo] Caso 1 — primer elemento cero (método $\varepsilon$)
+> $$P(s)=s^5+2s^4+3s^3+6s^2+5s+3.$$
+>
+> **Paso 1 — Filas semilla.**
 > $$
-> \begin{array}{c|cccc}
+> \begin{array}{c|ccc}
 > s^5 & 1 & 3 & 5 \\
 > s^4 & 2 & 6 & 3
 > \end{array}
 > $$
-> 
-> **Paso 2:** Calcular $s^3$:
-> 
-> $b_1 = \frac{2 \cdot 3 - 1 \cdot 6}{2} = \frac{6 - 6}{2} = 0$
-> 
-> $b_2 = \frac{2 \cdot 5 - 1 \cdot 3}{2} = \frac{10 - 3}{2} = \frac{7}{2} = 3.5$
-> 
-> $b_3 = 0$
-> 
+>
+> **Paso 2 — Fila $s^3$.**
+> $$b_1=\frac{2\cdot3-1\cdot6}{2}=0,\qquad b_2=\frac{2\cdot5-1\cdot3}{2}=\frac{7}{2}=3.5.$$
+> El primer elemento sale **cero** con un vecino no nulo → Caso 1.
+>
+> **Paso 3 — Sustituir $0\to\varepsilon$** ($\varepsilon\to0^+$):
 > $$
-> \begin{array}{c|cccc}
-> s^5 & 1 & 3 & 5 \\
-> s^4 & 2 & 6 & 3 \\
-> s^3 & 0 & 3.5 & 0
-> \end{array}
-> $$
-> 
-> El primer elemento de la fila $s^3$ es **cero** (Caso 1).
-
-> [!solucion] Solución: Método del épsilon ($\varepsilon$)
-> 
-> **Paso 1:** Reemplazar el $0$ por $\varepsilon$:
-> 
-> $$
-> \begin{array}{c|cccc}
+> \begin{array}{c|ccc}
 > s^5 & 1 & 3 & 5 \\
 > s^4 & 2 & 6 & 3 \\
 > s^3 & \varepsilon & 3.5 & 0
 > \end{array}
 > $$
-> 
-> **Paso 2:** Calcular $s^2$:
-> 
-> $c_1 = \frac{\varepsilon \cdot 6 - 2 \cdot 3.5}{\varepsilon} = \frac{6\varepsilon - 7}{\varepsilon} = 6 - \frac{7}{\varepsilon}$
-> 
-> $c_2 = \frac{\varepsilon \cdot 3 - 2 \cdot 0}{\varepsilon} = 3$
-> 
+>
+> **Paso 4 — Fila $s^2$.**
+> $$c_1=\frac{\varepsilon\cdot6-2\cdot3.5}{\varepsilon}=6-\frac{7}{\varepsilon},\qquad c_2=\frac{\varepsilon\cdot3-2\cdot0}{\varepsilon}=3.$$
+> Con $\varepsilon\to0^+$: $c_1\to-\infty$.
+>
+> **Paso 5 — Fila $s^1$** (usando $f=(c_1,3)$, $g=(\varepsilon,3.5)$):
+> $$d_1=\frac{c_1\cdot3.5-\varepsilon\cdot3}{c_1}\xrightarrow{\varepsilon\to0^+}3.5.$$
+> **Fila $s^0$:** $e_1=3$.
+>
+> **Paso 6 — Signos en la primera columna** ($\varepsilon\to0^+$):
+> $$1,\ 2,\ \varepsilon(>0),\ \underbrace{6-\tfrac{7}{\varepsilon}}_{<0},\ 3.5,\ 3 \;\Rightarrow\; +,+,+,-,+,+.$$
+> **Dos cambios** ($+\to-$ y $-\to+$) → **2 polos con $\Re>0$** → **inestable**. (Con $\varepsilon\to0^-$ se obtiene el mismo conteo, confirmando que no son raíces sobre el eje.)
+
+> [!ejemplo] Caso 2 — fila completa de ceros (polinomio auxiliar)
+> $$P(s)=s^5+2s^4+2s^3+4s^2+s+2.$$
+>
+> **Paso 1 — Hasta la fila nula.**
 > $$
-> \begin{array}{c|cccc}
-> s^5 & 1 & 3 & 5 \\
-> s^4 & 2 & 6 & 3 \\
-> s^3 & \varepsilon & 3.5 & 0 \\
-> s^2 & 6 - \frac{7}{\varepsilon} & 3 & 0
-> \end{array}
-> $$
-> 
-> **Paso 3:** Calcular $s^1$ y $s^0$ (omitido por brevedad).
-> 
-> **Paso 4:** Analizar signos cuando $\varepsilon \to 0^+$ y $\varepsilon \to 0^-$:
-> 
-> | Fila | $\varepsilon \to 0^+$ | $\varepsilon \to 0^-$ |
-> |------|----------------------|----------------------|
-> | $s^5$ | $1 > 0$ | $1 > 0$ |
-> | $s^4$ | $2 > 0$ | $2 > 0$ |
-> | $s^3$ | $\varepsilon > 0$ | $\varepsilon < 0$ |
-> | $s^2$ | $6 - \frac{7}{\varepsilon} \to -\infty$ | $6 - \frac{7}{\varepsilon} \to +\infty$ |
-> 
-> **Conclusión:** 
-> - $\varepsilon > 0$: dos cambios de signo ($2 \to \varepsilon$? en realidad $s^3$ positivo, $s^2$ negativo → un cambio; luego negativo a positivo → otro cambio) → **inestable**
-> - $\varepsilon < 0$: también hay cambios → **inestable**
-> 
-> El sistema es **inestable**.
-
----
-
-# Caso 2: Fila completa de ceros
-
-> [!definicion] Síntoma
-> Toda una fila de la tabla de Routh está compuesta por ceros.
-
-> [!ejemplo] Polinomio $P(s) = s^5 + 2s^4 + 2s^3 + 4s^2 + s + 2$ (ejemplo clásico)
-> 
-> **Paso 1:** Construir tabla:
-> 
-> $$
-> \begin{array}{c|cccc}
+> \begin{array}{c|ccc}
 > s^5 & 1 & 2 & 1 \\
 > s^4 & 2 & 4 & 2 \\
 > s^3 & 0 & 0 & 0
 > \end{array}
 > $$
-> 
-> Fila $s^3$ es **completa de ceros** (Caso 2).
-
-> [!solucion] Solución: Polinomio auxiliar
-> 
-> **Paso 1:** Tomar la fila **inmediatamente superior** a la fila de ceros (fila $s^4$).
-> 
-> **Paso 2:** Construir el **polinomio auxiliar** $Q(s)$:
-> 
-> Coeficientes de $s^4$: $2, 4, 2$ corresponden a $s^4, s^2, s^0$:
-> 
-> $$Q(s) = 2s^4 + 4s^2 + 2 = 2(s^4 + 2s^2 + 1) = 2(s^2 + 1)^2$$
-> 
-> **Paso 3:** Derivar $Q(s)$:
-> 
-> $$\frac{dQ(s)}{ds} = 8s^3 + 8s$$
-> 
-> **Paso 4:** Reemplazar la fila de ceros con los coeficientes de $dQ/ds$ ($8, 8, 0$):
-> 
+> La fila $s^3$ es toda ceros → Caso 2.
+>
+> **Paso 2 — Polinomio auxiliar** desde la fila superior $s^4$ ($2,4,2$ en $s^4,s^2,s^0$):
+> $$Q(s)=2s^4+4s^2+2=2(s^2+1)^2.$$
+>
+> **Paso 3 — Derivar** y usar sus coeficientes ($8,8,0$) en la fila nula:
+> $$\frac{dQ}{ds}=8s^3+8s.$$
 > $$
-> \begin{array}{c|cccc}
+> \begin{array}{c|ccc}
 > s^5 & 1 & 2 & 1 \\
 > s^4 & 2 & 4 & 2 \\
 > s^3 & 8 & 8 & 0 \\
-> s^2 & \frac{8\cdot4 - 2\cdot8}{8} = 2 & \frac{8\cdot2 - 2\cdot0}{8} = 2 & 0 \\
-> s^1 & \frac{2\cdot8 - 8\cdot2}{2} = 0 & 0 & \\
-> s^0 & \text{(nueva fila de ceros)} & &
+> s^2 & \frac{8\cdot4-2\cdot8}{8}=2 & \frac{8\cdot2-2\cdot0}{8}=2 & 0 \\
+> s^1 & \frac{2\cdot8-8\cdot2}{2}=0 & 0 &
 > \end{array}
 > $$
-> 
-> **Paso 5:** Aplicar nuevamente el método (fila $s^1$ es cero):
-> 
-> Polinomio auxiliar desde fila $s^2$: $Q_2(s) = 2s^2 + 2$
-> 
-> $$\frac{dQ_2(s)}{ds} = 4s$$
-> 
-> Reemplazar fila $s^1$ con $4, 0$:
-> 
+>
+> **Paso 4 — Nueva fila nula en $s^1$.** Auxiliar desde $s^2$: $Q_2(s)=2s^2+2$, $\dfrac{dQ_2}{ds}=4s$ → coeficientes $4,0$:
 > $$
-> \begin{array}{c|cccc}
+> \begin{array}{c|ccc}
 > s^5 & 1 & 2 & 1 \\
 > s^4 & 2 & 4 & 2 \\
 > s^3 & 8 & 8 & 0 \\
@@ -173,84 +100,66 @@ Ver [[Construccion Tabla]] para el procedimiento base.
 > s^0 & 2 & &
 > \end{array}
 > $$
-> 
-> **Primera columna:** $1, 2, 8, 2, 4, 2$ (todos positivos)
-> 
-> **Conclusión:** Sin cambios de signo, pero hay raíces en el eje imaginario (de $Q(s)$: $\pm j$ dobles). Como son **múltiples** → **inestable**.
-
-> [!info] Significado de la fila de ceros
-> Una fila de ceros indica la presencia de **raíces simétricas** respecto al origen:
-> - Pares reales opuestos: $s = \pm a$
-> - Pares imaginarios conjugados: $s = \pm j\omega$
-> - Cuartetos complejos: $s = \pm a \pm jb$
-> 
-> Ver [[Polos Ceros]] para más detalles sobre modos naturales.
+>
+> **Paso 5 — Leer.** Primera columna $1,2,8,2,4,2$: **sin cambios de signo** → ningún polo en $\Re>0$. Pero la fila de ceros delató raíces simétricas: $Q(s)=2(s^2+1)^2$ tiene $s=\pm j$ con **multiplicidad 2** → eje imaginario **repetido** → **inestable** (la respuesta crece como $t\sin t$).
 
 ---
 
-# Demostración
+## En qué consiste
 
-> [!teorema] Demostración del método del épsilon (Caso 1)
+> [!info] Síntomas y soluciones
+> | Caso | Síntoma | Solución |
+> |---|---|---|
+> | 1 | primer elemento $0$, resto de la fila no nulo | reemplazar por $\varepsilon$ y analizar límites $\varepsilon\to0^\pm$ |
+> | 2 | fila entera de ceros | $Q(s)$ de la fila superior, seguir con $dQ/ds$ |
+>
+> Una fila de ceros aparece cuando $P(s)$ tiene **raíces simétricas** respecto al origen: pares reales $\pm a$, imaginarios $\pm j\omega$ o cuartetos $\pm a\pm jb$. Esas raíces son justamente las de $Q(s)$.
 
-> [!demostracion]
-> Sea $P(s)$ un polinomio con un coeficiente nulo en la posición que causa el cero en la tabla.
-> 
-> Considérese la familia perturbada:
-> $$P_\varepsilon(s) = P(s) + \varepsilon \cdot R(s)$$
-> 
-> donde $R(s)$ se elige para que el primer elemento de la fila problemática sea $\varepsilon$.
-> 
-> Cuando $\varepsilon \to 0$, $P_\varepsilon(s) \to P(s)$.
-> 
-> El signo de los elementos de la primera columna depende del signo de $\varepsilon$ cuando $\varepsilon$ es pequeño.
-> 
-> Si los signos de la primera columna son **consistentes** para $\varepsilon > 0$ y $\varepsilon < 0$, el sistema es marginalmente estable.
-> 
-> Si los signos **cambian** para un signo de $\varepsilon$, entonces $P(s)$ tiene raíces en el eje imaginario que al perturbarse se vuelven inestables.
-
-> [!teorema] Demostración del polinomio auxiliar (Caso 2)
+> [!teorema] Caso 1 — justificación del épsilon
+> Sustituir el cero por $\varepsilon$ equivale a perturbar $P(s)\to P_\varepsilon(s)=P(s)+\varepsilon R(s)$, con $P_\varepsilon\to P$ cuando $\varepsilon\to0$.
 
 > [!demostracion]
-> **Paso 1:** Sea $P(s) = Q(s) \cdot R(s)$, donde $Q(s)$ contiene todos los **factores pares** (simétricos):
-> $$Q(s) = (s^2 + \omega_1^2)^{k_1} (s^2 + \omega_2^2)^{k_2} \cdots (s^2 - a_1^2)^{m_1} \cdots$$
-> 
-> **Paso 2:** En la tabla de Routh, los coeficientes de $Q(s)$ aparecen en la fila superior a la fila de ceros, porque $Q(s)$ es **par** (solo potencias pares).
-> 
-> **Paso 3:** Derivando $Q(s)$:
-> $$\frac{dQ(s)}{ds} = \sum \text{términos donde cada factor $(s^2 + \omega^2)$ se convierte en $2s$}$$
-> 
-> **Paso 4:** El polinomio $dQ/ds$ es **impar** y no tiene raíces en el eje imaginario (excepto posiblemente $s=0$). Por lo tanto, estabiliza la tabla.
-> 
-> **Paso 5:** Las raíces de $Q(s)$ determinan la estabilidad:
-> - Si todas las raíces de $Q(s)$ son **simples** y están en $\pm j\omega$ o $s=0$ → **marginalmente estable**
-> - Si alguna raíz tiene **multiplicidad $\ge 2$** o hay raíces **reales opuestas** → **inestable**
+> El signo de los elementos de la primera columna depende del de $\varepsilon$ cuando es pequeño. Si los signos coinciden para $\varepsilon\to0^+$ y $\varepsilon\to0^-$, los cambios contados son reales (polos en $\Re>0$). Si difieren, $P(s)$ tiene raíces sobre el eje imaginario que la perturbación desdobla: el sistema es a lo sumo marginal. El conteo se hace con el límite, no con $\varepsilon$ fijo. $\blacksquare$
 
-> [!ejemplo] Aplicación de la demostración al ejemplo
-> 
-> $Q(s) = 2(s^2 + 1)^2$ tiene raíces $\pm j$ con multiplicidad $2$ → **inestable**.
+> [!teorema] Caso 2 — justificación del polinomio auxiliar
+> La fila superior a los ceros es el polinomio par $Q(s)$ que reúne los factores simétricos; sus raíces fijan el tipo de estabilidad.
+
+> [!demostracion]
+> **Paso 1.** Escribir $P(s)=Q(s)R(s)$ con $Q(s)=(s^2+\omega_1^2)^{k_1}\cdots(s^2-a_1^2)^{m_1}\cdots$, el factor de las raíces simétricas.
+>
+> **Paso 2.** Por ser par (solo potencias pares), $Q(s)$ ocupa la fila inmediatamente superior a la de ceros.
+>
+> **Paso 3.** $dQ/ds$ es **impar**; sus coeficientes rellenan la fila nula y permiten continuar.
+>
+> **Paso 4.** Las raíces de $Q(s)$ deciden:
+> - todas **simples** en $\pm j\omega$ o $s=0$ → **marginalmente estable**;
+> - alguna con **multiplicidad $\ge2$** o un par **real opuesto** $\pm a$ → **inestable**.
+>
+> En el ejemplo, $Q(s)=2(s^2+1)^2$ tiene $\pm j$ dobles → inestable. $\blacksquare$
 
 ---
 
-# Resumen
-
-> [!info] Caso 1: Primer elemento cero
-> 1. Reemplazar $0$ por $\varepsilon$
-> 2. Completar tabla
-> 3. Analizar signos para $\varepsilon \to 0^+$ y $\varepsilon \to 0^-$
-> 4. Si hay cambio de signo → inestable; si no hay cambio → marginal
-
-> [!info] Caso 2: Fila de ceros
-> 1. Identificar fila superior
-> 2. Construir $Q(s)$
-> 3. Derivar $dQ/ds$
-> 4. Reemplazar fila de ceros con coeficientes de $dQ/ds$
-> 5. Continuar tabla
-> 6. Analizar raíces de $Q(s)$ para determinar tipo de estabilidad
-
-# Limitaciones
+## Limitaciones
 
 > [!warning]
-> 1. Ver [[Construccion Tabla]] para el procedimiento base
-> 2. Ver [[Ajuste Parametros]] para rangos de estabilidad con parámetros
-> 3. Ver [[Polos Ceros]] para interpretación de raíces simétricas
-> 4. Ver [[Estabilidad/index | estabilidad]] para definiciones de estabilidad marginal
+> 1. El método $\varepsilon$ exige cuidado al tomar límites por ambos lados; un signo mal evaluado falsea el conteo.
+> 2. El polinomio auxiliar localiza las raíces simétricas pero no las demás; combinarlo con el resto de la primera columna.
+> 3. No distingue marginal de inestable sin examinar la **multiplicidad** de las raíces de $Q(s)$.
+> 4. Para sistemas con retardo el método no aplica.
+
+## Resumen
+
+> [!resumen]
+> | Caso | Receta | Lectura final |
+> |---|---|---|
+> | 1: primer cero | $0\to\varepsilon$, completar, límites $\varepsilon\to0^\pm$ | cambios de signo = polos $\Re>0$ |
+> | 2: fila nula | $Q(s)$ arriba, seguir con $dQ/ds$ | raíces de $Q$: simples→marginal, repetidas/reales→inestable |
+
+> [!corolario]
+> Los casos especiales no rompen el criterio: lo extienden. El $\varepsilon$ rescata una división por cero accidental; el polinomio auxiliar revela las raíces simétricas que producen la fila nula y, según su multiplicidad, separan lo marginal de lo inestable.
+
+> [!referencia]
+> - Procedimiento base: [[Construccion Tabla]].
+> - Criterio general: [[index]].
+> - Rango de parámetros: [[Ajuste Parametros]].
+> - Raíces simétricas y modos: [[Polos Ceros]].

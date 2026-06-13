@@ -13,168 +13,106 @@ aliases:
 
 # Espacio de Estados
 
-# Definición
+> [!definicion]
+> La representación en **espacio de estados** describe un sistema dinámico de orden $n$ mediante un vector de estados $\mathbf{x}\in\mathbb{R}^n$, $m$ entradas $\mathbf{u}$ y $p$ salidas $\mathbf{y}$:
+> $$\dot{\mathbf{x}}(t)=\mathbf{A}\mathbf{x}(t)+\mathbf{B}\mathbf{u}(t),\qquad \mathbf{y}(t)=\mathbf{C}\mathbf{x}(t)+\mathbf{D}\mathbf{u}(t).$$
+> $\mathbf{A}_{n\times n}$ (dinámica), $\mathbf{B}_{n\times m}$ (entrada), $\mathbf{C}_{p\times n}$ (salida), $\mathbf{D}_{p\times m}$ (transmisión directa). Convierte una EDO de orden $n$ en $n$ EDOs de primer orden acopladas.
 
-> [!definicion] Representación en espacio de estados
-> Para un sistema dinámico de orden $n$, con $m$ entradas y $p$ salidas:
-> 
-> **Ecuación de estado:**
-> $$\dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t)$$
-> 
-> **Ecuación de salida:**
-> $$\mathbf{y}(t) = \mathbf{C} \mathbf{x}(t) + \mathbf{D} \mathbf{u}(t)$$
-> 
-> donde:
-> - $\mathbf{x}(t) \in \mathbb{R}^n$: vector de **estados**
-> - $\mathbf{u}(t) \in \mathbb{R}^m$: vector de **entradas**
-> - $\mathbf{y}(t) \in \mathbb{R}^p$: vector de **salidas**
-> - $\mathbf{A} \in \mathbb{R}^{n \times n}$: matriz de **dinámica**
-> - $\mathbf{B} \in \mathbb{R}^{n \times m}$: matriz de **entrada**
-> - $\mathbf{C} \in \mathbb{R}^{p \times n}$: matriz de **salida**
-> - $\mathbf{D} \in \mathbb{R}^{p \times m}$: matriz de **transmisión directa**
+> [!info]
+> Es la representación matricial del modelado, alternativa a la [[Funcion Transferencia/index | función transferencia]]. Sus subnotas detallan la [[Forma General | forma general]] (significado de $A,B,C,D$), cómo [[Pasar a FT | pasar a FT]] vía $G(s)=C(sI-A)^{-1}B+D$ y cómo [[Pasar desde FT | pasar desde una FT]] mediante formas canónicas. Maneja sistemas MIMO, condiciones iniciales y es la base de la [[Linealizacion/index | linealización]].
 
-> [!info] Caso SISO
-> Para sistemas SISO (una entrada, una salida):
-> - $u(t)$ es escalar, $\mathbf{B}$ es vector columna $n \times 1$
-> - $y(t)$ es escalar, $\mathbf{C}$ es vector fila $1 \times n$
-> - $\mathbf{D}$ es escalar
+---
 
-# Por qué espacio de estados
+## Ejemplo
 
-> [!info] Ventajas sobre función transferencia
-> 1. **Condiciones iniciales:** se incorporan naturalmente
-> 2. **Sistemas MIMO:** maneja múltiples entradas y salidas
-> 3. **Sistemas no lineales:** base para linealización
-> 4. **Sistemas variantes en el tiempo:** permite $\mathbf{A}(t), \mathbf{B}(t), \mathbf{C}(t), \mathbf{D}(t)$
-> 5. **Análisis interno:** controlabilidad, observabilidad, estabilidad interna
-
-> [!warning] Limitaciones de función transferencia
-> La función transferencia $G(s)$:
-> - Solo describe relación entrada-salida con CI nulas
-> - No revela estabilidad interna si hay cancelaciones
-> - No permite analizar controlabilidad/observabilidad
-> 
-> Ver [[Funcion Transferencia/index | función transferencia]].
-
-# Ejemplo: masa-resorte-amortiguador
-
-> [!ejemplo] Modelado en espacio de estados
-> $$m\ddot{y} + b\dot{y} + ky = u$$
-> 
-> **Paso 1:** Elegir variables de estado:
-> $$x_1 = y \quad \text{(posición)}$$
-> $$x_2 = \dot{y} \quad \text{(velocidad)}$$
-> 
-> **Paso 2:** Escribir ecuaciones:
-> $$\dot{x}_1 = x_2$$
-> $$\dot{x}_2 = \frac{1}{m}(-b x_2 - k x_1 + u)$$
-> 
-> **Paso 3:** Forma matricial:
-> $$\dot{\mathbf{x}} = \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{b}{m} \end{bmatrix} \mathbf{x} + \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} u$$
-> 
-> $$y = \begin{bmatrix} 1 & 0 \end{bmatrix} \mathbf{x} + \begin{bmatrix} 0 \end{bmatrix} u$$
-
-# Relación con función transferencia
-
-> [!teorema] De espacio de estados a FT (caso SISO)
-> Para sistemas SISO, la función transferencia es:
-> $$G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D}$$
-> 
-> donde $G(s)$ es un **escalar**.
-
-> [!teorema] Caso MIMO
-> Para sistemas MIMO, la matriz de transferencia es:
-> $$\mathbf{G}(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D}$$
-> 
-> donde $\mathbf{G}(s) \in \mathbb{C}^{p \times m}$.
-
-> [!demostracion] Demostración (caso SISO)
-> Aplicando Laplace a las ecuaciones con CI nulas ($\mathbf{x}(0^-)=\mathbf{0}$):
-> 
-> $$s\mathbf{X}(s) = \mathbf{A}\mathbf{X}(s) + \mathbf{B}U(s)$$
-> 
-> Reagrupando:
-> $$(s\mathbf{I} - \mathbf{A})\mathbf{X}(s) = \mathbf{B}U(s)$$
-> 
-> Despejando $\mathbf{X}(s)$:
-> $$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} U(s)$$
-> 
-> La ecuación de salida en Laplace:
-> $$Y(s) = \mathbf{C}\mathbf{X}(s) + \mathbf{D} U(s)$$
-> 
-> Sustituyendo $\mathbf{X}(s)$:
-> $$Y(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} U(s) + \mathbf{D} U(s)$$
-> 
-> Factorizando $U(s)$:
-> $$Y(s) = \left[ \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} + \mathbf{D} \right] U(s)$$
-> 
-> Por definición de función transferencia $G(s) = Y(s)/U(s)$:
-> $$G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} + \mathbf{D}$$
-
-> [!ejemplo] Del ejemplo anterior
-> $$\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -k/m & -b/m \end{bmatrix}, \quad 
->    \mathbf{B} = \begin{bmatrix} 0 \\ 1/m \end{bmatrix}, \quad 
->    \mathbf{C} = \begin{bmatrix} 1 & 0 \end{bmatrix}, \quad 
->    \mathbf{D} = 0$$
-> 
-> $$s\mathbf{I} - \mathbf{A} = \begin{bmatrix} s & -1 \\ k/m & s + b/m \end{bmatrix}$$
-> 
-> $$(s\mathbf{I} - \mathbf{A})^{-1} = \frac{1}{s^2 + (b/m)s + k/m} \begin{bmatrix} s + b/m & 1 \\ -k/m & s \end{bmatrix}$$
-> 
-> $$G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} = 
->    \frac{1}{ms^2 + bs + k}$$
-> 
-> Ver [[Pasar a FT]] para más ejemplos.
-
-# Diagrama de bloques
-
-> [!info] Representación en diagrama de bloques
-> 
+> [!ejemplo]
+> **Plantear un sistema masa-resorte-amortiguador en espacio de estados.** Sea $m\ddot{y}+b\dot{y}+ky=u$, con $m=1$, $b=3$, $k=2$. Obtener $A,B,C,D$ midiendo la posición.
+>
+> **Paso 1 — Elegir variables de estado** (una por cada orden de la EDO):
+> $$x_1=y\ \text{(posición)},\qquad x_2=\dot{y}\ \text{(velocidad)}.$$
+>
+> **Paso 2 — Escribir las derivadas.** La primera es inmediata; la segunda se despeja de la EDO $\ddot{y}=\tfrac{1}{m}(-b\dot{y}-ky+u)$:
+> $$\dot{x}_1=x_2,\qquad \dot{x}_2=-\frac{k}{m}x_1-\frac{b}{m}x_2+\frac{1}{m}u.$$
+>
+> **Paso 3 — Forma matricial** (sustituyendo $m=1,b=3,k=2$):
+> $$\dot{\mathbf{x}}=\begin{bmatrix}0&1\\-2&-3\end{bmatrix}\mathbf{x}+\begin{bmatrix}0\\1\end{bmatrix}u,\qquad y=\begin{bmatrix}1&0\end{bmatrix}\mathbf{x}+0\cdot u.$$
+>
+> **Paso 4 — Verificar la dinámica.** Los autovalores de $\mathbf{A}$ son las raíces de $\det(s\mathbf{I}-\mathbf{A})=s^2+3s+2=(s+1)(s+2)$, es decir $\lambda=-1,-2$: sistema estable y sobreamortiguado. Coinciden con los polos de su FT $G(s)=\dfrac{1}{s^2+3s+2}$.
+>
 > ![[espacio_estados_diagrama.svg|600]]
-> 
-> donde:
-> - $u(t)$ se bifurca en la entrada
-> - $\mathbf{B}$ escala la entrada
-> - El sumador combina $\mathbf{B}u$ con $\mathbf{A}\mathbf{x}$
-> - El integrador $\frac{1}{s}$ convierte $\dot{\mathbf{x}}$ en $\mathbf{x}$
-> - $\mathbf{x}(t)$ se bifurca: va a $\mathbf{C}$ y a $\mathbf{A}$
-> - $\mathbf{C}$ produce $\mathbf{C}\mathbf{x}$
-> - $\mathbf{D}$ produce $\mathbf{D}u$ (alimentación directa)
-> - El sumador final combina $\mathbf{C}\mathbf{x} + \mathbf{D}u$ para formar $y(t)$
+>
+> El diagrama muestra la estructura interna: el integrador genera $\mathbf{x}$, $\mathbf{A}$ la realimenta y $\mathbf{C}$ extrae la salida.
 
-# Formas canónicas
+> [!ejemplo]
+> **Sistema MIMO desacoplado.** Dos subsistemas de primer orden independientes con dos entradas y dos salidas:
+> $$\dot{\mathbf{x}}=\begin{bmatrix}-1&0\\0&-2\end{bmatrix}\mathbf{x}+\begin{bmatrix}1&0\\0&1\end{bmatrix}\mathbf{u},\qquad \mathbf{y}=\begin{bmatrix}1&0\\0&1\end{bmatrix}\mathbf{x}.$$
+> Aquí $n=2$, $m=2$, $p=2$: $\mathbf{B}$ y $\mathbf{C}$ son $2\times2$. La diagonal de $\mathbf{A}$ muestra dos modos desacoplados $e^{-t}$ y $e^{-2t}$. La FT es ahora una **matriz** $\mathbf{G}(s)=\operatorname{diag}\!\big(\tfrac{1}{s+1},\tfrac{1}{s+2}\big)$.
 
-> [!info] Realizaciones comunes
+---
+
+## En qué consiste
+
+> [!teoria]
+> El estado $\mathbf{x}(t)$ es la mínima información que, junto con la entrada futura $\mathbf{u}(t)$, determina por completo la evolución del sistema. La **ecuación de estado** $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}+\mathbf{B}\mathbf{u}$ describe la dinámica interna; la **ecuación de salida** $\mathbf{y}=\mathbf{C}\mathbf{x}+\mathbf{D}\mathbf{u}$ extrae lo que se mide. Una EDO de orden $n$ se reescribe como $n$ ecuaciones de primer orden tomando como estados la variable y sus $n-1$ derivadas.
+
+> [!info] SISO vs MIMO
+> | Caso | $\mathbf{u}$ | $\mathbf{B}$ | $\mathbf{y}$ | $\mathbf{C}$ | $\mathbf{D}$ |
+> |---|---|---|---|---|---|
+> | SISO | escalar | $n\times1$ | escalar | $1\times n$ | escalar |
+> | MIMO | $m\times1$ | $n\times m$ | $p\times1$ | $p\times n$ | $p\times m$ |
+
+> [!info] Ventajas sobre la función transferencia
+> 1. **Condiciones iniciales:** se incorporan de forma natural ($\mathbf{x}(0)=\mathbf{x}_0$).
+> 2. **MIMO:** maneja múltiples entradas/salidas con la misma notación.
+> 3. **No lineales y variantes:** base para [[Linealizacion/index | linealizar]] y admite $\mathbf{A}(t),\mathbf{B}(t),\dots$
+> 4. **Análisis interno:** permite estudiar controlabilidad, observabilidad y estabilidad interna, invisibles para $G(s)$.
+
+> [!teorema] Relación con la función transferencia
+> Para un sistema SISO, tomando Laplace con CI nulas:
+> $$G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}.$$
+> En MIMO el resultado es la matriz de transferencia $\mathbf{G}(s)\in\mathbb{C}^{p\times m}$. Detalle y demostración en [[Pasar a FT]].
+
+> [!teorema] Estabilidad interna
+> $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}$ es asintóticamente estable si y solo si todos los autovalores de $\mathbf{A}$ tienen parte real negativa:
+> $$\Re\big(\lambda_i(\mathbf{A})\big)<0\quad\forall i.$$
+> Equivale a que todos los polos de $\mathbf{G}(s)$ cumplan $\Re(p_i)<0$ **si no hay cancelaciones polo-cero**.
+
+> [!info] Formas canónicas (realizaciones)
 > | Forma | Característica | Uso |
-> |-------|----------------|-----|
-> | [[Forma Canónica Controlable]] | Controlabilidad explícita | Diseño por ubicación de polos |
-> | [[Forma Canónica Observable]] | Observabilidad explícita | Diseño de observadores |
-> | [[Forma Diagonal]] | Polos en diagonal (sistema desacoplado) | Análisis modal |
-> | [[Forma de Jordan]] | Polos repetidos | Sistemas con valores propios múltiples |
+> |---|---|---|
+> | Controlable | controlabilidad explícita | ubicación de polos |
+> | Observable | observabilidad explícita | diseño de observadores |
+> | Diagonal | polos en la diagonal (desacoplado) | análisis modal |
+> | Jordan | polos repetidos | autovalores múltiples |
+>
+> Construcción de cada una desde una FT en [[Pasar desde FT]].
 
-# Estabilidad en espacio de estados
+---
 
-> [!definicion] Estabilidad interna
-> El sistema $\dot{\mathbf{x}} = \mathbf{A}\mathbf{x}$ es **asintóticamente estable** si y solo si todos los **valores propios** de $\mathbf{A}$ tienen parte real negativa:
-> $$\Re(\lambda_i(\mathbf{A})) < 0 \quad \forall i$$
-> 
-> Esto es equivalente a que todos los polos de $\mathbf{G}(s)$ tengan $\Re(p_i) < 0$, **si no hay cancelaciones polo-cero**.
-
-# Conceptos avanzados
-
-> [!info] Controlabilidad
-> Un sistema es controlable si existe una entrada $\mathbf{u}(t)$ que lleva el estado de $\mathbf{x}(0)$ a cualquier $\mathbf{x}(t_f)$ en tiempo finito.
-> 
-> Criterio de controlabilidad: $\text{rango}[\mathbf{B} \ \mathbf{AB} \ \mathbf{A}^2\mathbf{B} \ \dots \ \mathbf{A}^{n-1}\mathbf{B}] = n$.
-
-> [!info] Observabilidad
-> Un sistema es observable si se puede determinar $\mathbf{x}(0)$ a partir de $\mathbf{u}(t)$ e $\mathbf{y}(t)$ en un intervalo finito.
-> 
-> Criterio de observabilidad: $\text{rango}[\mathbf{C} \ \mathbf{CA} \ \mathbf{CA}^2 \ \dots \ \mathbf{CA}^{n-1}]^T = n$.
-
-# Limitaciones
+## Limitaciones
 
 > [!warning]
-> 1. Para sistemas de orden alto, las matrices $\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}$ pueden ser grandes
-> 2. Elegir buenas variables de estado es clave para simplificar el modelo
-> 3. La transformación a formas canónicas puede ser numéricamente sensible
+> 1. Para orden alto, las matrices $\mathbf{A},\mathbf{B},\mathbf{C},\mathbf{D}$ crecen y el cálculo manual se vuelve inviable.
+> 2. La elección de variables de estado **no es única**; una mala elección complica el modelo.
+> 3. La transformación a formas canónicas puede ser numéricamente sensible.
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Ecuación de estado | $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}+\mathbf{B}\mathbf{u}$ |
+> | Ecuación de salida | $\mathbf{y}=\mathbf{C}\mathbf{x}+\mathbf{D}\mathbf{u}$ |
+> | Dimensiones | $\mathbf{A}_{n\times n},\ \mathbf{B}_{n\times m},\ \mathbf{C}_{p\times n},\ \mathbf{D}_{p\times m}$ |
+> | Estados | variable y sus $n-1$ derivadas |
+> | A FT | $G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}$ |
+> | Estabilidad | $\Re(\lambda_i(\mathbf{A}))<0$ |
+
+> [!corolario]
+> Espacio de estados reescribe una EDO de orden $n$ como $n$ ecuaciones de primer orden $\dot{\mathbf{x}}=\mathbf{A}\mathbf{x}+\mathbf{B}\mathbf{u}$, $\mathbf{y}=\mathbf{C}\mathbf{x}+\mathbf{D}\mathbf{u}$. Frente a la FT gana en sistemas MIMO, condiciones iniciales y análisis interno; los autovalores de $\mathbf{A}$ son los polos del sistema. Ver la [[Forma General | forma general]] y los puentes [[Pasar a FT]] / [[Pasar desde FT]].
+
+> [!referencia]
+> - Significado de $A,B,C,D$: [[Forma General]].
+> - De estados a FT: [[Pasar a FT]].
+> - De FT a estados: [[Pasar desde FT]].
+> - Representación alternativa: [[Funcion Transferencia/index]].

@@ -1,0 +1,30 @@
+\documentclass[border=14pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\ctikzset{bipoles/length=1.5cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \coordinate (n) at (0,0);
+  % i1: 166 (O), fuente, ENTRA
+  \draw (n) -- ($(n)+(166:1.15)$);
+  \draw ($(n)+(166:1.15)$) to[V=$ $] ($(n)+(166:3.0)$) node[ocirc]{};
+  \draw[-{Latex[length=2.6mm]}] ($(n)+(166:0.95)$) -- ($(n)+(166:0.3)$);
+  \node at ($(n)+(166:0.72)$)[above=1pt]{$i_1$};
+  % i2: 62 (NE), bobina, ENTRA
+  \draw (n) -- ($(n)+(62:1.15)$);
+  \draw ($(n)+(62:1.15)$) to[L] ($(n)+(62:3.0)$) node[ocirc]{};
+  \draw[-{Latex[length=2.6mm]}] ($(n)+(62:0.95)$) -- ($(n)+(62:0.3)$);
+  \node at ($(n)+(62:0.78)$)[right=1pt]{$i_2$};
+  % i3: -20 (E), resistencia, SALE
+  \draw (n) -- ($(n)+(-20:1.15)$);
+  \draw ($(n)+(-20:1.15)$) to[R] ($(n)+(-20:3.0)$) node[ocirc]{};
+  \draw[-{Latex[length=2.6mm]}] ($(n)+(-20:0.3)$) -- ($(n)+(-20:0.95)$);
+  \node at ($(n)+(-20:0.72)$)[above=1pt]{$i_3$};
+  % i4: -110 (S), condensador, SALE
+  \draw (n) -- ($(n)+(-110:1.15)$);
+  \draw ($(n)+(-110:1.15)$) to[C] ($(n)+(-110:3.0)$) node[ocirc]{};
+  \draw[-{Latex[length=2.6mm]}] ($(n)+(-110:0.3)$) -- ($(n)+(-110:0.95)$);
+  \node at ($(n)+(-110:0.78)$)[left=1pt]{$i_4$};
+  \fill (n) circle (3.6pt); \node[above right=3pt] at (n){$A$};
+\end{circuitikz}
+\end{document}

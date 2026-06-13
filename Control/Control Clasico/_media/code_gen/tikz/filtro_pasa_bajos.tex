@@ -1,0 +1,22 @@
+% Filtro pasa bajos activo (inversor con R_f || C_f en realimentación)
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\begin{document}
+\begin{circuitikz}
+  \node[op amp] (A) {};
+  \coordinate (m) at ($(A.-)+(-1.3,0)$);
+  \draw (A.-) -- (m);
+  \draw (m) to[R=$R_1$] ++(-2.6,0) to[short,-o] ++(-0.3,0) node[left]{$v_i$};
+  % realimentacion: R_f
+  \draw (m) -- ++(0,1.5) coordinate(ft);
+  \draw (ft) to[R=$R_f$] (ft -| A.out) coordinate(fr);
+  \draw (fr) -- (A.out);
+  % C_f en paralelo (encima)
+  \draw (ft) -- ++(0,1.0) coordinate(ct);
+  \draw (ct) to[C=$C_f$] (ct -| A.out) coordinate(cr);
+  \draw (cr) -- (fr);
+  \draw (A.+) -- ++(-0.7,0) node[ground]{};
+  \draw (A.out) to[short,-o] ++(1.4,0) node[right]{$v_o$};
+\end{circuitikz}
+\end{document}

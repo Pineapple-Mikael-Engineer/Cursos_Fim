@@ -13,162 +13,134 @@ aliases:
 
 # Sistemas de Primer Orden
 
-# Definición
+> [!definicion]
+> Un sistema de primer orden tiene un único polo real y función de transferencia $G(s)=\dfrac{K}{\tau s+1}$, con **ganancia estática** $K=G(0)$ y **constante de tiempo** $\tau$ [s]. Su polo es $s=-1/\tau$ (estable si $\tau>0$). La respuesta al escalón unitario es monótona, sin sobrepico:
+> $$y(t)=K\left(1-e^{-t/\tau}\right),\qquad t\ge 0.$$
 
-> [!definicion] Función transferencia de primer orden
-> $$G(s) = \frac{K}{\tau s + 1}$$
-> 
-> donde:
-> - $K$: [[Ganancia Estatica | ganancia estática]] ($G(0) = K$)
-> - $\tau$: **constante de tiempo** [segundos]
-> 
-> **Polo:** $s = -\frac{1}{\tau}$ (siempre real y negativo para sistemas estables)
+> [!info]
+> Es el caso más simple de [[Respuesta Temporal/index | respuesta temporal]], hermano de [[Segundo Orden/index | segundo orden]] y base para [[Reduccion Orden | reducir]] sistemas de [[Orden Superior | orden superior]] con un [[Polos Ceros#Polos dominantes | polo dominante]]. Parámetros clave: $K$ ([[Ganancia Estatica | ganancia estática]]) y $\tau$ (constante de tiempo).
 
-# Respuesta a escalón
+---
 
-> [!teorema] [[Escalon | Escalón unitario]] ($u(t)=1$, $U(s)=1/s$)
-> $$Y(s) = \frac{K}{\tau s + 1} \cdot \frac{1}{s} = \frac{K}{s} - \frac{K}{s + 1/\tau}$$
-> 
-> **Transformada inversa:**
-> $$y(t) = K(1 - e^{-t/\tau}), \quad t \ge 0$$
+## Ejemplo
 
-> [!ejemplo] Gráfico característico
-> 
+> [!ejemplo] Horno térmico de primer orden
+> Un horno se modela con $G(s)=\dfrac{50}{10s+1}$, entrada $u(t)$ = voltaje [V], salida $y(t)$ = temperatura [°C]. Se aplica un escalón $u(t)=2\,\mathbf{1}(t)$.
+>
 > ![[primer_orden_escalon.svg]]
-> 
-> **Puntos clave:**
-> 
+>
+> **Paso 1 — Identificar parámetros.** Comparando con $\dfrac{K}{\tau s+1}$:
+> $$K=50,\qquad \tau=10\ \text{s},\qquad \text{polo en } s=-\tfrac{1}{\tau}=-0.1.$$
+>
+> **Paso 2 — Valor final** (por linealidad o [[Teorema Valor Inicial Final | TVF]]):
+> $$y(\infty)=K\,u_{ss}=50\cdot 2=100\ \text{°C}.\qquad
+> \lim_{s\to0}s\cdot\frac{50}{10s+1}\cdot\frac{2}{s}=\frac{100}{1}=100\ \text{°C}.$$
+>
+> **Paso 3 — Respuesta temporal** ($U(s)=2/s$):
+> $$Y(s)=\frac{50}{10s+1}\cdot\frac{2}{s}=\frac{100}{s}-\frac{100}{s+0.1}
+> \;\Longrightarrow\; y(t)=100\left(1-e^{-t/10}\right).$$
+>
+> **Paso 4 — Tiempo al 95 % (criterio del 5 %).** $95\%$ de $100$ es $95$:
+> $$1-e^{-t/10}=0.95\Rightarrow e^{-t/10}=0.05\Rightarrow t=-10\ln(0.05)=10(2.996)\approx 29.96\ \text{s}\approx 3\tau.$$
+>
+> **Paso 5 — Tiempo al 63 % y 98 %** (puntos característicos):
+> $$t=\tau=10\ \text{s}\to y=63.2\ \text{°C};\qquad t=4\tau=40\ \text{s}\to y=98.2\ \text{°C}.$$
+>
+> **Paso 6 — Tiempo de subida (10 %→90 %).**
+> $$t_r\approx 2.2\,\tau=22\ \text{s}.$$
+>
+> **Paso 7 — Error ante rampa $u(t)=3t$.** Sistema [[Error Estacionario/index | tipo 0]] ($K_v=\lim_{s\to0}sG(s)=0$):
+> $$e_{ss}=\lim_{s\to0}sE(s)=\lim_{s\to0}\frac{10s+1}{10s+51}\cdot\frac{3}{s}\to\infty.$$
+> No puede seguir una rampa (le falta un integrador).
+
+---
+
+## En qué consiste
+
+> [!teoria] Respuesta al escalón unitario
+> Con $U(s)=1/s$, por fracciones parciales:
+> $$Y(s)=\frac{K}{\tau s+1}\cdot\frac{1}{s}=\frac{K}{s}-\frac{K}{s+1/\tau}
+> \;\Longrightarrow\; y(t)=K\left(1-e^{-t/\tau}\right).$$
+> El término $-Ke^{-t/\tau}$ es el **transitorio** (decae con $\tau$) y $K$ es el **régimen permanente**. La tabla muestra la fracción del valor final alcanzada en múltiplos de $\tau$:
+>
 > | $t$ | $y(t)/K$ |
 > |-----|----------|
 > | $0$ | $0$ |
-> | $\tau$ | $1 - e^{-1} \approx 0.632$ |
-> | $2\tau$ | $1 - e^{-2} \approx 0.865$ |
-> | $3\tau$ | $1 - e^{-3} \approx 0.950$ |
-> | $4\tau$ | $1 - e^{-4} \approx 0.982$ |
-> | $5\tau$ | $1 - e^{-5} \approx 0.993$ |
+> | $\tau$ | $1-e^{-1}\approx 0.632$ |
+> | $2\tau$ | $1-e^{-2}\approx 0.865$ |
+> | $3\tau$ | $1-e^{-3}\approx 0.950$ |
+> | $4\tau$ | $1-e^{-4}\approx 0.982$ |
+> | $5\tau$ | $1-e^{-5}\approx 0.993$ |
 > | $\infty$ | $1$ |
 
-# Criterios de tiempo de establecimiento
+> [!teorema] Tiempo de establecimiento $t_s$
+> Tiempo en que la respuesta entra y permanece en la banda del $\pm\%$ alrededor de $y(\infty)$.
 
-> [!definicion] Tiempo de establecimiento ($t_s$)
-> Es el tiempo necesario para que la respuesta entre y permanezca dentro de una **banda porcentual** alrededor del valor final.
-> 
-> **Fundamento matemático:**
-> $$|y(t) - y(\infty)| \le \frac{\%}{100} \cdot y(\infty)$$
-> 
-> Para primer orden: $y(\infty) = K$, $y(t) = K(1 - e^{-t/\tau})$
-> 
-> $$|K(1 - e^{-t/\tau}) - K| = K e^{-t/\tau} \le \frac{\%}{100} K$$
-> 
-> $$e^{-t/\tau} \le \frac{\%}{100}$$
-> 
-> Aplicando logaritmo natural:
-> $$-\frac{t}{\tau} \le \ln\left(\frac{\%}{100}\right)$$
-> 
-> Multiplicando por $-1$ (invierte desigualdad):
-> $$\frac{t}{\tau} \ge -\ln\left(\frac{\%}{100}\right)$$
-> 
-> **Por lo tanto:**
-> $$t_s = -\tau \cdot \ln\left(\frac{\%}{100}\right)$$
+> [!demostracion]
+> **Paso 1.** El error respecto al valor final es $|y(t)-y(\infty)|=Ke^{-t/\tau}$.
+>
+> **Paso 2.** Imponer la banda: $Ke^{-t/\tau}\le \tfrac{\%}{100}K\Rightarrow e^{-t/\tau}\le\tfrac{\%}{100}$.
+>
+> **Paso 3.** Tomar $\ln$ y despejar (el $-1$ invierte la desigualdad):
+> $$\boxed{\,t_s=-\tau\ln\!\left(\tfrac{\%}{100}\right).}$$
 
-> [!info] Tabla de criterios comunes
+> [!info] Criterios de banda
 > | Criterio | $\%$ | $-\ln(\%/100)$ | $t_s$ |
 > |----------|------|----------------|-------|
-> | $\pm 5\%$ | $5$ | $-\ln(0.05) \approx 2.9957$ | $3\tau$ |
-> | $\pm 2\%$ | $2$ | $-\ln(0.02) \approx 3.9120$ | $4\tau$ |
-> | $\pm 1\%$ | $1$ | $-\ln(0.01) \approx 4.6052$ | $4.6\tau$ |
-> 
-> **Regla práctica:** $t_s(2\%) = 4\tau$ (la más usada en control clásico)
+> | $\pm 5\%$ | $5$ | $2.996$ | $3\tau$ |
+> | $\pm 2\%$ | $2$ | $3.912$ | $4\tau$ |
+> | $\pm 1\%$ | $1$ | $4.605$ | $4.6\tau$ |
+>
+> **Regla práctica:** $t_s(2\%)=4\tau$ (la más usada en control clásico).
 
-# Tiempo de subida
-
-> [!definicion] Tiempo de subida ($t_r$)
-> Tiempo en pasar del $10\%$ al $90\%$ del valor final.
-> 
-> **Cálculo:**
-> 
-> Para $90\%$: $0.9 = 1 - e^{-t_{90}/\tau} \implies e^{-t_{90}/\tau} = 0.1 \implies t_{90} = -\tau \ln(0.1) = \tau \ln(10)$
-> 
-> Para $10\%$: $0.1 = 1 - e^{-t_{10}/\tau} \implies e^{-t_{10}/\tau} = 0.9 \implies t_{10} = -\tau \ln(0.9)$
-> 
-> $$t_r = t_{90} - t_{10} = \tau [\ln(10) - \ln(0.9)] = \tau \ln\left(\frac{10}{0.9}\right) = \tau \ln(11.11\ldots)$$
-> 
-> $$t_r \approx 2.1972\tau \approx 2.2\tau$$
-
-# Otras entradas
+> [!teorema] Tiempo de subida $t_r$ (10 %→90 %)
+> $$t_r=t_{90}-t_{10}=\tau\big[\ln(10)-\ln(0.9)\big]=\tau\ln\!\left(\tfrac{10}{0.9}\right)\approx 2.197\,\tau\approx 2.2\,\tau.$$
 
 > [!info] Respuesta a otras señales de prueba
-> 
-> | Entrada | Respuesta|
-> |------|-----|
-> | [[Impulso]] | $y(t) = \frac{K}{\tau} e^{-t/\tau}$ |
-> | [[Rampa]] | $y(t) = K(t - \tau + \tau e^{-t/\tau})$, $e_{ss} = K\tau$ |
-> | [[Parabola]] | $y(t) = K\left(\frac{t^2}{2} - \tau t + \tau^2 - \tau^2 e^{-t/\tau}\right)$, $e_{ss} \to \infty$ |
+> | Entrada | Respuesta | $e_{ss}$ |
+> |------|-----|-----|
+> | [[Impulso \| impulso]] | $y(t)=\frac{K}{\tau}e^{-t/\tau}$ | — |
+> | [[Rampa \| rampa]] | $y(t)=K\left(t-\tau+\tau e^{-t/\tau}\right)$ | $K\tau$ |
+> | [[Parabola \| parábola]] | $y(t)=K\left(\frac{t^2}{2}-\tau t+\tau^2-\tau^2 e^{-t/\tau}\right)$ | $\infty$ |
 
-# Ejemplo resuelto
+> [!info] En MATLAB
+> ```matlab
+> K=50; tau=10;
+> G = tf(K, [tau 1]);   % 50/(10s+1)
+> step(2*G)             % respuesta al escalon de 2 V
+> stepinfo(G)           % t_s, t_r, valor final
+> ```
 
-> [!ejemplo] Problema: Sistema térmico
-> Un horno se modela como un sistema de primer orden con función transferencia:
-> $$G(s) = \frac{50}{10s + 1}$$
-> donde la entrada $u(t)$ es el voltaje de control [V] y la salida $y(t)$ es la temperatura [°C].
-> 
-> **a)** Determine la constante de tiempo $\tau$ y la ganancia estática $K$.
-> 
-> **b)** Si se aplica un escalón de $2V$, ¿cuál es la temperatura final?
-> 
-> **c)** ¿Cuánto tarda en alcanzar el $95\%$ de la temperatura final?
-> 
-> **d)** ¿Cuánto tarda en pasar de $10\%$ a $90\%$ de la temperatura final?
-> 
-> **e)** Si se aplica una rampa $u(t) = 3t$, ¿cuál es el error estacionario?
-> 
-> ---
-> 
-> **Solución:**
-> 
-> **a)** Comparando con $G(s) = \frac{K}{\tau s + 1}$:
-> $$K = 50, \quad \tau = 10 \text{ s}$$
-> 
-> **b)** Escalón de $2V$: $u(t) = 2 \cdot 1(t)$, $U(s) = 2/s$
-> 
-> Por linealidad, la salida final es $y(\infty) = K \cdot u_{ss} = 50 \cdot 2 = 100°C$.
-> 
-> O aplicando [[Teorema Valor Inicial Final | TVF]]:
-> $$\lim_{t\to\infty} y(t) = \lim_{s\to 0} s \cdot \frac{50}{10s+1} \cdot \frac{2}{s} = \lim_{s\to 0} \frac{100}{10s+1} = 100°C$$
-> 
-> **c)** $95\%$ de $100°C$ es $95°C$.
-> 
-> Para $y(t) = 100(1 - e^{-t/10}) = 95$:
-> $$1 - e^{-t/10} = 0.95 \implies e^{-t/10} = 0.05 \implies -\frac{t}{10} = \ln(0.05)$$
-> $$t = -10 \ln(0.05) = 10 \cdot 2.9957 \approx 29.96 \text{ s}$$
-> 
-> Que es aproximadamente $3\tau = 30$ s (criterio del $5\%$).
-> 
-> **d)** $t_r = 2.2\tau = 22$ s.
-> 
-> **e)** Para rampa $u(t)=3t$, $U(s)=3/s^2$. Por [[Error Estacionario/index | error estacionario]]:
-> $$K_v = \lim_{s\to 0} s G(s) = \lim_{s\to 0} s \cdot \frac{50}{10s+1} = 0$$
-> 
-> Sistemas tipo 0 tienen $e_{ss} \to \infty$ para rampa. Verificar con TVF:
-> $$E(s) = \frac{1}{1+G(s)} U(s) = \frac{1}{1 + \frac{50}{10s+1}} \cdot \frac{3}{s^2} = \frac{10s+1}{10s+51} \cdot \frac{3}{s^2}$$
-> 
-> $$e_{ss} = \lim_{s\to 0} s E(s) = \lim_{s\to 0} \frac{10s+1}{10s+51} \cdot \frac{3}{s} = \frac{1}{51} \cdot \infty = \infty$$
-> 
-> El error tiende a infinito porque el sistema no puede seguir una rampa (necesita al menos un integrador, tipo 1).
+---
 
-# Relaciones importantes
-
-> [!info] Conexiones con otras notas
-> - [[Ganancia Estatica]]: $K = G(0)$
-> - [[Polos Ceros]]: polo $s = -1/\tau$, condición de estabilidad $\tau > 0$
-> - [[Teorema Valor Inicial Final]]: usado para calcular $y(\infty)$
-> - [[Error Estacionario/index]]: coeficientes $K_p, K_v, K_a$
-> - [[Escalon]], [[Rampa]], [[Parabola]], [[Impulso]]: señales de prueba
-> - [[Funcion Transferencia/index | Función Transferencia]]: forma general
-
-# Limitaciones
+## Limitaciones
 
 > [!warning]
-> 1. Los sistemas reales rara vez son primer orden puro
-> 2. En la práctica, se aproximan por primer orden si hay un [[Polos Ceros#Polos dominantes | polo dominante]]
-> 3. La respuesta no tiene sobrepico, por lo que no puede modelar sistemas subamortiguados (ver [[Segundo Orden/index | segundo orden]])
+> 1. Los sistemas reales rara vez son de primer orden puro.
+> 2. En la práctica se aproximan por primer orden si existe un [[Polos Ceros#Polos dominantes | polo dominante]] (ver [[Reduccion Orden]]).
+> 3. La respuesta no tiene sobrepico: no modela sistemas subamortiguados (ver [[Segundo Orden/index | segundo orden]]).
+
+---
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | FT | $G(s)=\dfrac{K}{\tau s+1}$ |
+> | Polo | $s=-1/\tau$ (estable si $\tau>0$) |
+> | Respuesta escalón | $y(t)=K(1-e^{-t/\tau})$ |
+> | $y(\tau)$ | $0.632\,K$ (63 %) |
+> | $t_s(2\%)$ | $4\tau$ |
+> | $t_r$ (10–90 %) | $2.2\tau$ |
+> | Sobrepico | ninguno |
+
+> [!corolario]
+> Un sistema de primer orden queda totalmente descrito por $K$ y $\tau$: la ganancia fija el valor final $y(\infty)=K\,u_{ss}$ y la constante de tiempo fija la velocidad (63 % en $\tau$, asentado en $4\tau$). Sin polos complejos no hay oscilación ni sobrepico; cuando un sistema mayor tiene un polo mucho más lento que los demás, se comporta como uno de primer orden (ver [[Reduccion Orden]]).
+
+> [!referencia]
+> - Forma general: [[Funcion Transferencia/index]] · [[Ganancia Estatica]].
+> - Dinámica con dos polos: [[Segundo Orden/index]].
+> - Polo dominante y aproximación: [[Polos Ceros]] · [[Reduccion Orden]].
+> - Valor final y error: [[Teorema Valor Inicial Final]] · [[Error Estacionario/index]].
+> - Señales de prueba: [[Escalon]] · [[Rampa]] · [[Parabola]] · [[Impulso]].

@@ -13,178 +13,111 @@ aliases:
 
 # Variables de Desviación
 
-# Definición
+> [!definicion]
+> Las **variables de desviación** miden la separación respecto al punto de operación $(\mathbf{x}_0,\mathbf{u}_0,\mathbf{y}_0)$:
+> $$\delta\mathbf{x}=\mathbf{x}-\mathbf{x}_0,\qquad \delta\mathbf{u}=\mathbf{u}-\mathbf{u}_0,\qquad \delta\mathbf{y}=\mathbf{y}-\mathbf{y}_0.$$
+> Este cambio de variable **traslada el equilibrio al origen** ($\mathbf{x}=\mathbf{x}_0\Rightarrow\delta\mathbf{x}=\mathbf{0}$), de modo que el modelo [[Linealizacion/index | linealizado]] $\delta\dot{\mathbf{x}}=\mathbf{A}\delta\mathbf{x}+\mathbf{B}\delta\mathbf{u}$ tiene CI nulas y admite directamente una función de transferencia.
 
-> [!definicion] Variables de desviación
-> Dado un punto de operación $(\mathbf{x}_0, \mathbf{u}_0, \mathbf{y}_0)$:
-> 
-> $$\delta \mathbf{x}(t) = \mathbf{x}(t) - \mathbf{x}_0$$
-> $$\delta \mathbf{u}(t) = \mathbf{u}(t) - \mathbf{u}_0$$
-> $$\delta \mathbf{y}(t) = \mathbf{y}(t) - \mathbf{y}_0$$
+> [!info]
+> Nota de la carpeta [[Linealizacion/index | Linealización]]. Es el tercer ingrediente del método, junto a la [[Serie Taylor | serie de Taylor]] (base) y el [[Jacobiano | jacobiano]] (cálculo de $\mathbf{A},\mathbf{B}$). Permite conectar el modelo lineal con la [[Funcion Transferencia/index | función de transferencia]].
+
+---
+
+## Ejemplo
+
+> [!ejemplo]
+> **Cambio de variable y FT con punto de equilibrio no nulo.** Tanque calentado, salida temperatura $T$, entrada potencia $q$, modelo de primer orden no lineal con pérdida radiativa linealizable:
+> $$\dot{T}=\frac{1}{C}\big(q-h(T-T_a)\big),\qquad C=2,\ h=0.5,\ T_a=20.$$
+>
+> **Paso 1 — Equilibrio** para una potencia de operación $q_0=15$:
+> $$0=\frac{1}{C}\big(q_0-h(T_0-T_a)\big)\Rightarrow T_0=T_a+\frac{q_0}{h}=20+\frac{15}{0.5}=50.$$
+> Punto de operación $(T_0,q_0)=(50,15)$, con $y_0=T_0=50$.
+>
+> **Paso 2 — Variables de desviación:**
+> $$\delta T=T-50,\qquad \delta q=q-15.$$
+>
+> **Paso 3 — Sustituir el cambio de variable.** Como $\dot{T}=\delta\dot{T}$ y $T-T_a=(\delta T+50)-20=\delta T+30$:
+> $$\delta\dot{T}=\frac{1}{2}\big((\delta q+15)-0.5(\delta T+30)\big)=\frac{1}{2}\big(\delta q-0.5\,\delta T\big).$$
+> Los términos constantes ($15-0.5\cdot 30=0$) se cancelan **exactamente** por ser el equilibrio. Queda lineal:
+> $$\delta\dot{T}=-0.25\,\delta T+0.5\,\delta q.$$
+>
+> **Paso 4 — Función de transferencia.** Con CI nula ($\delta T(0)=0$), $\mathcal{L}\{\delta\dot{T}\}=s\,\delta T(s)$:
+> $$s\,\delta T(s)=-0.25\,\delta T(s)+0.5\,\delta Q(s)\Rightarrow G(s)=\frac{\delta T(s)}{\delta Q(s)}=\frac{0.5}{s+0.25}.$$
+> Sistema estable, constante de tiempo $\tau=1/0.25=4$ s. La FT relaciona **incrementos** de potencia con **incrementos** de temperatura sobre el punto de operación, no valores absolutos.
+
+---
+
+## En qué consiste
 
 > [!info] Propiedad fundamental
-> En variables de desviación, el **punto de equilibrio se traslada al origen**:
-> 
-> Cuando $\mathbf{x}(t) = \mathbf{x}_0$ y $\mathbf{u}(t) = \mathbf{u}_0$, entonces $\delta \mathbf{x} = \mathbf{0}$ y $\delta \mathbf{u} = \mathbf{0}$.
+> En desviación el equilibrio queda en el **origen**: cuando $\mathbf{x}=\mathbf{x}_0$, $\mathbf{u}=\mathbf{u}_0$, se tiene $\delta\mathbf{x}=\mathbf{0}$, $\delta\mathbf{u}=\mathbf{0}$. Esto coloca las CI del modelo lineal en cero y habilita la transformada de Laplace sin términos de condición inicial.
 
-# Por qué usar variables de desviación
+> [!info] Por qué conviene
+> 1. El equilibrio en el origen simplifica el análisis de estabilidad (estabilidad del origen).
+> 2. $\delta\mathbf{x}(0)=\mathbf{x}(0)-\mathbf{x}_0$ es la desviación inicial, lista para la respuesta.
+> 3. La validez lineal exige $\delta\mathbf{x},\delta\mathbf{u}$ pequeñas — el marco natural del incremento.
+> 4. Permite definir una FT $\delta Y(s)=G(s)\,\delta U(s)$ con CI nulas.
 
-> [!info] Ventajas
-> 1. **Simplifica el análisis:** El punto de equilibrio está en el origen
-> 2. **Condiciones iniciales:** $\delta \mathbf{x}(0) = \mathbf{x}(0) - \mathbf{x}_0$ representa la desviación inicial
-> 3. **Linealización:** La aproximación lineal es válida para pequeñas $\delta \mathbf{x}$ y $\delta \mathbf{u}$
-> 4. **Teoremas de estabilidad:** Se aplican directamente (estabilidad del origen)
-
-# Transformación del sistema
-
-> [!teorema] Sistema original en variables de desviación
-> Dado $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, \mathbf{u})$ con punto de equilibrio $(\mathbf{x}_0, \mathbf{u}_0)$:
-> 
-> $$\delta \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}_0 + \delta \mathbf{x}, \mathbf{u}_0 + \delta \mathbf{u})$$
-> 
-> con $\delta \mathbf{x}(0) = \mathbf{x}(0) - \mathbf{x}_0$.
+> [!teorema] Sistema en variables de desviación
+> Derivando $\delta\mathbf{x}=\mathbf{x}-\mathbf{x}_0$ (con $\mathbf{x}_0$ constante) y usando [[Serie Taylor | Taylor]] alrededor de $(\mathbf{x}_0,\mathbf{u}_0)$:
+> $$\delta\dot{\mathbf{x}}\approx\mathbf{A}\,\delta\mathbf{x}+\mathbf{B}\,\delta\mathbf{u},\qquad \mathbf{A}=\left.\frac{\partial\mathbf{f}}{\partial\mathbf{x}}\right|_0,\ \mathbf{B}=\left.\frac{\partial\mathbf{f}}{\partial\mathbf{u}}\right|_0.$$
 
 > [!demostracion]
-> Derivando $\delta \mathbf{x} = \mathbf{x} - \mathbf{x}_0$:
-> 
-> $$\delta \dot{\mathbf{x}} = \dot{\mathbf{x}} - \dot{\mathbf{x}}_0 = \dot{\mathbf{x}} - \mathbf{0} = \dot{\mathbf{x}}$$
-> 
-> Pero $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, \mathbf{u}) = \mathbf{f}(\mathbf{x}_0 + \delta \mathbf{x}, \mathbf{u}_0 + \delta \mathbf{u})$.
+> $\delta\dot{\mathbf{x}}=\dot{\mathbf{x}}-\dot{\mathbf{x}}_0=\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x}_0+\delta\mathbf{x},\mathbf{u}_0+\delta\mathbf{u})$. Expandiendo en Taylor:
+> $$\mathbf{f}(\mathbf{x}_0+\delta\mathbf{x},\mathbf{u}_0+\delta\mathbf{u})=\underbrace{\mathbf{f}(\mathbf{x}_0,\mathbf{u}_0)}_{=\,\mathbf{0}}+\mathbf{A}\,\delta\mathbf{x}+\mathbf{B}\,\delta\mathbf{u}+\text{SO}.$$
+> El término constante se anula por ser equilibrio; despreciando SO queda $\delta\dot{\mathbf{x}}\approx\mathbf{A}\,\delta\mathbf{x}+\mathbf{B}\,\delta\mathbf{u}$. $\blacksquare$
 
-# Sistema linealizado en variables de desviación
+> [!ejemplo] Péndulo en $\theta_0=\pi/6$ (equilibrio no nulo)
+> Equilibrio sostenido por par $u_0=mgl\sin(\pi/6)=0.5\,mgl$. Desviaciones $\delta x_1=x_1-\pi/6$, $\delta u=u-0.5mgl$. Como $\partial_{x_1}f_2=-\frac{g}{l}\cos x_1$ y $\cos(\pi/6)=0.866$:
+> $$\mathbf{A}=\begin{bmatrix}0&1\\-0.866\frac{g}{l}&-\frac{b}{ml^2}\end{bmatrix},\qquad \mathbf{B}=\begin{bmatrix}0\\\frac{1}{ml^2}\end{bmatrix}.$$
+> La gravedad efectiva es $0.866g$, menor que en la vertical: el cambio de variable expone que la rigidez del péndulo decae al inclinarse.
 
-> [!teorema] Forma lineal
-> Usando expansión de [[Serie Taylor | Taylor]] alrededor de $(\mathbf{x}_0, \mathbf{u}_0)$:
-> 
-> $$\delta \dot{\mathbf{x}} \approx \mathbf{A} \delta \mathbf{x} + \mathbf{B} \delta \mathbf{u}$$
-> 
-> donde:
-> $$\mathbf{A} = \left. \frac{\partial \mathbf{f}}{\partial \mathbf{x}} \right|_{(\mathbf{x}_0, \mathbf{u}_0)}, \quad
->    \mathbf{B} = \left. \frac{\partial \mathbf{f}}{\partial \mathbf{u}} \right|_{(\mathbf{x}_0, \mathbf{u}_0)}$$
+---
 
-> [!demostracion]
-> Sustituyendo la expansión de Taylor en $\delta \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}_0 + \delta \mathbf{x}, \mathbf{u}_0 + \delta \mathbf{u})$:
-> 
-> $$\mathbf{f}(\mathbf{x}_0 + \delta \mathbf{x}, \mathbf{u}_0 + \delta \mathbf{u}) = \mathbf{f}(\mathbf{x}_0, \mathbf{u}_0) + \mathbf{A} \delta \mathbf{x} + \mathbf{B} \delta \mathbf{u} + \text{SO}$$
-> 
-> Como $\mathbf{f}(\mathbf{x}_0, \mathbf{u}_0) = \mathbf{0}$ (punto de equilibrio):
-> 
-> $$\delta \dot{\mathbf{x}} = \mathbf{A} \delta \mathbf{x} + \mathbf{B} \delta \mathbf{u} + \text{SO}$$
-> 
-> Despreciando SO se obtiene la aproximación lineal.
-
-# Ejemplo 1: Péndulo
-
-> [!ejemplo] Modelo original
-> $$x_1 = \theta, \quad x_2 = \dot{\theta}$$
-> $$\dot{x}_1 = x_2$$
-> $$\dot{x}_2 = -\frac{g}{l} \sin x_1 - \frac{b}{ml^2} x_2 + \frac{1}{ml^2} u$$
-> 
-> **Punto de equilibrio:** $x_{10} = 0$, $x_{20} = 0$, $u_0 = 0$
-> 
-> **Variables de desviación:**
-> $$\delta x_1 = x_1 - 0 = \theta, \quad \delta x_2 = x_2 - 0 = \dot{\theta}, \quad \delta u = u - 0 = u$$
-> 
-> **Sistema linealizado en desviación:**
-> $$\delta \dot{x}_1 = \delta x_2$$
-> $$\delta \dot{x}_2 = -\frac{g}{l} \delta x_1 - \frac{b}{ml^2} \delta x_2 + \frac{1}{ml^2} \delta u$$
-> 
-> (En este caso, como $x_0 = 0$, las variables de desviación son iguales a las originales)
-
-# Ejemplo 2: Péndulo con punto de equilibrio no nulo
-
-> [!ejemplo] Péndulo en $\theta_0 = \pi/6$
-> Punto de equilibrio: $x_{10} = \pi/6$ rad ($30^\circ$), $x_{20} = 0$, $u_0 = mgl \sin(\pi/6) = mgl \cdot 0.5$
-> 
-> **Variables de desviación:**
-> $$\delta x_1 = x_1 - \pi/6, \quad \delta x_2 = x_2 - 0, \quad \delta u = u - 0.5 mgl$$
-> 
-> **Linealización:**
-> $$\mathbf{A} = \begin{bmatrix} 0 & 1 \\ -\frac{g}{l} \cos(\pi/6) & -\frac{b}{ml^2} \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -\frac{g}{l} \cdot 0.866 & -\frac{b}{ml^2} \end{bmatrix}$$
-> 
-> $$\mathbf{B} = \begin{bmatrix} 0 \\ \frac{1}{ml^2} \end{bmatrix}$$
-> 
-> **Sistema linealizado en desviación:**
-> $$\delta \dot{x}_1 = \delta x_2$$
-> $$\delta \dot{x}_2 = -0.866\frac{g}{l} \delta x_1 - \frac{b}{ml^2} \delta x_2 + \frac{1}{ml^2} \delta u$$
-> 
-> **Interpretación:** La constante gravitacional efectiva es $0.866g$ (menor que en la vertical).
-
-# Ejemplo 3: Sistema de levitación magnética
-
-> [!ejemplo] Modelo simplificado
-> $$\dot{x}_1 = x_2$$
-> $$\dot{x}_2 = g - \frac{k}{m} \frac{u^2}{x_1^2}$$
-> 
-> donde $x_1$ es posición (positiva hacia arriba), $x_2$ velocidad, $u$ corriente.
-> 
-> **Punto de equilibrio:** $x_{10} = h_0$, $x_{20} = 0$, $u_0 = \sqrt{\frac{mg}{k}} h_0$
-> 
-> **Variables de desviación:**
-> $$\delta x_1 = x_1 - h_0, \quad \delta x_2 = x_2, \quad \delta u = u - u_0$$
-> 
-> **Linealización (desarrollar en serie):**
-> 
-> Para $\frac{u^2}{x_1^2}$ alrededor de $(h_0, u_0)$:
-> 
-> $$\frac{u^2}{x_1^2} \approx \frac{u_0^2}{h_0^2} + \frac{2u_0}{h_0^2} \delta u - \frac{2u_0^2}{h_0^3} \delta x_1 + \text{SO}$$
-> 
-> Como $\frac{u_0^2}{h_0^2} = \frac{mg}{k}$:
-> 
-> $$\dot{x}_2 = g - \frac{k}{m}\left( \frac{mg}{k} + \frac{2u_0}{h_0^2} \delta u - \frac{2u_0^2}{h_0^3} \delta x_1 \right)$$
-> 
-> $$\dot{x}_2 = -\frac{2k u_0}{m h_0^2} \delta u + \frac{2k u_0^2}{m h_0^3} \delta x_1$$
-> 
-> **Sistema linealizado:**
-> $$\delta \dot{x}_1 = \delta x_2$$
-> $$\delta \dot{x}_2 = \frac{2k u_0^2}{m h_0^3} \delta x_1 - \frac{2k u_0}{m h_0^2} \delta u$$
-
-# Ecuación de salida en variables de desviación
+## Salida y función de transferencia
 
 > [!teorema] Salida linealizada
-> Dada $\mathbf{y} = \mathbf{h}(\mathbf{x}, \mathbf{u})$ con $\mathbf{y}_0 = \mathbf{h}(\mathbf{x}_0, \mathbf{u}_0)$:
-> 
-> $$\delta \mathbf{y} \approx \mathbf{C} \delta \mathbf{x} + \mathbf{D} \delta \mathbf{u}$$
-> 
-> donde:
-> $$\mathbf{C} = \left. \frac{\partial \mathbf{h}}{\partial \mathbf{x}} \right|_{(\mathbf{x}_0, \mathbf{u}_0)}, \quad
->    \mathbf{D} = \left. \frac{\partial \mathbf{h}}{\partial \mathbf{u}} \right|_{(\mathbf{x}_0, \mathbf{u}_0)}$$
+> Para $\mathbf{y}=\mathbf{h}(\mathbf{x},\mathbf{u})$ con $\mathbf{y}_0=\mathbf{h}(\mathbf{x}_0,\mathbf{u}_0)$:
+> $$\delta\mathbf{y}\approx\mathbf{C}\,\delta\mathbf{x}+\mathbf{D}\,\delta\mathbf{u},\qquad \mathbf{C}=\left.\frac{\partial\mathbf{h}}{\partial\mathbf{x}}\right|_0,\ \mathbf{D}=\left.\frac{\partial\mathbf{h}}{\partial\mathbf{u}}\right|_0.$$
 
-> [!ejemplo] Salida no lineal
-> $$y = x_1^2 + x_2$$
-> Con $x_{10}=1$, $x_{20}=0$:
-> 
-> $y_0 = 1^2 + 0 = 1$
-> 
-> $\frac{\partial h}{\partial x_1} = 2x_1 = 2$, $\frac{\partial h}{\partial x_2} = 1$
-> 
-> $\mathbf{C} = \begin{bmatrix} 2 & 1 \end{bmatrix}$
-> 
-> $\delta y = y - 1 \approx 2 \delta x_1 + \delta x_2$
+> [!info] FT en desviación
+> Para el modelo lineal, la FT relaciona incrementos con CI nulas:
+> $$\delta Y(s)=G(s)\,\delta U(s),\qquad G(s)=\mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B}+\mathbf{D}.$$
+> Toda la teoría de [[Funcion Transferencia/index | función de transferencia]] opera sobre estas variables incrementales, nunca sobre los valores absolutos.
 
-# Relación con función transferencia
+> [!info] Linealidad del operador $\delta$
+> 1. $\delta(\dot{\mathbf{x}})=\delta\dot{\mathbf{x}}$ (derivada y desviación conmutan).
+> 2. $\delta(\mathbf{x}_1+\mathbf{x}_2)=\delta\mathbf{x}_1+\delta\mathbf{x}_2$.
+> 3. $\delta(\alpha\mathbf{x})=\alpha\,\delta\mathbf{x}$, $\alpha$ constante.
+> 4. $\delta(\mathbf{x}_1\mathbf{x}_2)\approx x_{10}\,\delta\mathbf{x}_2+x_{20}\,\delta\mathbf{x}_1$ (producto, linealizado).
 
-> [!info] FT en variables de desviación
-> Para sistemas lineales o linealizados, la función transferencia relaciona $\delta Y(s)$ con $\delta U(s)$:
-> 
-> $$\delta Y(s) = G(s) \delta U(s)$$
-> 
-> donde $\delta Y(s) = \mathcal{L}\{\delta y(t)\}$ y $\delta U(s) = \mathcal{L}\{\delta u(t)\}$.
-> 
-> Esto es válido porque las condiciones iniciales son $\delta \mathbf{x}(0) = \mathbf{x}(0) - \mathbf{x}_0$.
+---
 
-# Propiedades importantes
-
-> [!info] Linealidad del operador desviación
-> 1. $\delta(\dot{\mathbf{x}}) = \delta \dot{\mathbf{x}}$ (derivada y desviación conmutan)
-> 2. $\delta(\mathbf{x}_1 + \mathbf{x}_2) = \delta \mathbf{x}_1 + \delta \mathbf{x}_2$
-> 3. $\delta(\alpha \mathbf{x}) = \alpha \delta \mathbf{x}$ para $\alpha$ constante
-> 4. $\delta(\mathbf{x}_1 \mathbf{x}_2) \approx \mathbf{x}_{10} \delta \mathbf{x}_2 + \mathbf{x}_{20} \delta \mathbf{x}_1$ (linealizado)
-
-# Limitaciones
+## Limitaciones
 
 > [!warning]
-> 1. **Solo válido para pequeñas desviaciones** del punto de operación
-> 2. **El punto de operación debe ser un equilibrio** ($\mathbf{f}(\mathbf{x}_0, \mathbf{u}_0) = \mathbf{0}$)
-> 3. **No captura dinámicas no lineales** como saturación o histéresis
-> 4. **Para sistemas con múltiples equilibrios**, se necesita una linealización por cada uno
+> 1. **Solo desviaciones pequeñas** respecto al punto de operación.
+> 2. **El punto base debe ser equilibrio** ($\mathbf{f}(\mathbf{x}_0,\mathbf{u}_0)=\mathbf{0}$); de lo contrario quedan términos constantes sin cancelar.
+> 3. **No captura** saturación, histéresis ni otras no linealidades fuertes.
+> 4. **Múltiples equilibrios:** una linealización (y un juego de variables de desviación) por cada uno.
+
+## Resumen
+
+> [!resumen]
+> | Aspecto | Resultado |
+> |---|---|
+> | Definición | $\delta\mathbf{x}=\mathbf{x}-\mathbf{x}_0$, $\delta\mathbf{u}=\mathbf{u}-\mathbf{u}_0$ |
+> | Efecto | equilibrio trasladado al origen |
+> | Modelo | $\delta\dot{\mathbf{x}}=\mathbf{A}\delta\mathbf{x}+\mathbf{B}\delta\mathbf{u}$ |
+> | Salida | $\delta\mathbf{y}=\mathbf{C}\delta\mathbf{x}+\mathbf{D}\delta\mathbf{u}$ |
+> | FT | $\delta Y(s)=G(s)\,\delta U(s)$, CI nulas |
+> | Validez | desviaciones pequeñas, base = equilibrio |
+
+> [!corolario]
+> Las variables de desviación son el cambio de coordenadas $\delta=(\cdot)-(\cdot)_0$ que lleva el equilibrio al origen: anula los términos constantes, pone CI nulas y deja el modelo lineal $\delta\dot{\mathbf{x}}=\mathbf{A}\delta\mathbf{x}+\mathbf{B}\delta\mathbf{u}$ listo para Laplace. Su producto final es una [[Funcion Transferencia/index | FT]] que relaciona **incrementos** de entrada con incrementos de salida sobre el punto de operación elegido.
+
+> [!referencia]
+> - Justificación del truncamiento: [[Serie Taylor]].
+> - Cálculo de $\mathbf{A},\mathbf{B},\mathbf{C},\mathbf{D}$: [[Jacobiano]].
+> - Marco general: [[Linealizacion/index]].
+> - Destino del modelo: [[Funcion Transferencia/index]].

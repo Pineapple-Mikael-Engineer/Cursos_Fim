@@ -1,0 +1,15 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.5cm}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  \draw (0,3) node[ocirc]{} node[above=2pt]{$a$} to[L=$L_1-M$] (3,3) coordinate(X);
+  \draw (X) to[L=$L_2-M$] (6,3) node[ocirc]{} node[above=2pt]{$b$};
+  \draw (X) to[L=$M$] (3,0);
+  \draw (0,0) node[ocirc]{} node[below=2pt]{$a'$} -- (6,0) node[ocirc]{} node[below=2pt]{$b'$};
+  \draw (0,3) -- (0,0); \draw (6,3) -- (6,0);
+  \draw (3,0) -- (3,0);
+  \fill (3,0) circle(2pt);
+  \node at (3,3.7){\small equivalente en T (sin acoplo magnético)};
+\end{circuitikz}
+\end{document}

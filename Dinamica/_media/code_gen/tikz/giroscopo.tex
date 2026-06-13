@@ -1,0 +1,23 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}\usepackage{amsmath}\usetikzlibrary{calc,arrows.meta}
+\begin{document}
+\begin{tikzpicture}[line width=0.9pt,>={Latex[length=2.6mm]}]
+  \coordinate (O) at (0,0);
+  % eje vertical (de precesion), discontinuo
+  \draw[densely dashed] (0,-1.7)--(0,1.7);
+  \draw[thick] (-0.3,-1.7)--(0.3,-1.7);   % base/pivote
+  \fill (O) circle(1.7pt) node[below left=1pt]{$O$};
+  % eje del rotor (horizontal)
+  \draw[thick] (O)--(3.1,0);
+  % disco
+  \draw[thick,fill=black!8] (3.1,0) ellipse (0.22 and 0.95);
+  % spin
+  \draw[->,red!60!black,line width=1.1pt] (1.5,0)--(2.6,0) node[above]{$\vec\omega$ (spin)};
+  % peso
+  \draw[->] (3.1,-0.12)--(3.1,-1.25) node[below]{$m\vec g$};
+  % precesion: circulo horizontal (perspectiva) alrededor del eje vertical
+  \draw[->] (1.05,1.0) arc (0:-310:1.05 and 0.34);
+  \node[align=center] at (0,1.95){$\vec\Omega$ (precesión)};
+  \node at (1.55,-1.95){\small precesión estacionaria: $M=\Omega\,I\omega$};
+\end{tikzpicture}
+\end{document}

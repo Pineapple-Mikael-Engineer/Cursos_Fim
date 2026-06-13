@@ -1,0 +1,17 @@
+% Filtro pasa altos activo (inversor con C_1 en serie a la entrada)
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\begin{document}
+\begin{circuitikz}
+  \node[op amp] (A) {};
+  \coordinate (m) at ($(A.-)+(-1.3,0)$);
+  \draw (A.-) -- (m);
+  \draw (m) to[C=$C_1$] ++(-1.6,0) to[R=$R_1$] ++(-1.6,0) to[short,-o] ++(-0.3,0) node[left]{$v_i$};
+  \draw (m) -- ++(0,1.7) coordinate(ft);
+  \draw (ft) to[R=$R_f$] (ft -| A.out) coordinate(fr);
+  \draw (fr) -- (A.out);
+  \draw (A.+) -- ++(-0.7,0) node[ground]{};
+  \draw (A.out) to[short,-o] ++(1.4,0) node[right]{$v_o$};
+\end{circuitikz}
+\end{document}

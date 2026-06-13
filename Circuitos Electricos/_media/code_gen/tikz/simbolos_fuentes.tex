@@ -1,0 +1,10 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}[american]
+  \draw (0,0) to[V=$V_s$, o-o] (0,3);
+  \node[align=center] at (0,-0.8){fuente de\\tensión ideal};
+  \draw (4,0) to[I=$I_s$, o-o] (4,3);
+  \node[align=center] at (4,-0.8){fuente de\\corriente ideal};
+\end{circuitikz}
+\end{document}

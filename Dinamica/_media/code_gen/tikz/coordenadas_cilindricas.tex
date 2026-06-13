@@ -1,0 +1,20 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}\usepackage{amsmath}\usetikzlibrary{calc,arrows.meta}
+\begin{document}
+\begin{tikzpicture}[line width=0.9pt,>={Latex[length=2.2mm]}]
+  \coordinate (O) at (0,0);
+  \draw[->] (O)--(0,3.2) node[above]{$z$};
+  \draw[->] (O)--(3.2,-0.15) node[right]{$x$};
+  \draw[->] (O)--(-1.7,-1.25) node[below left]{$y$};
+  \coordinate (Pp) at (2.1,0.55);            % proyeccion en plano
+  \coordinate (P) at (2.1,2.5);              % punto P
+  \draw[densely dashed] (O)--(Pp) node[midway,below]{$r$};
+  \draw[densely dashed] (Pp)--(P) node[midway,right]{$z$};
+  \draw[densely dashed] (O)--(P);
+  \fill (P) circle(1.6pt) node[above right]{$P$};
+  \draw (0.85,0) arc (-8:18:0.95); \node at (1.15,0.12){$\theta$};
+  \draw[->] (P)--($(P)+(0.45,0.12)$) node[right]{$\hat e_r$};
+  \draw[->] (P)--($(P)+(-0.32,0.95)$) node[above]{$\hat e_z$};
+  \draw[->] (P)--($(P)+(-0.75,0.35)$) node[left]{$\hat e_\theta$};
+\end{tikzpicture}
+\end{document}
