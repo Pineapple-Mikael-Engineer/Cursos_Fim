@@ -158,7 +158,7 @@ aliases:
 > - [[Balance de Masa VC]] (para volumen de control, la forma cambia e introduce entalpía)
 > - [[Segunda Ley SC]] (complementa con la dirección de los procesos)
 > - [[Energia Interna]] (propiedad clave para sistemas cerrados)
-> - [[Procesos Termodinamicos]] (aplicaciones isotérmicas, isobáricas, etc.)
+> - [[Procesos/index | Procesos Termodinámicos]] (aplicaciones isotérmicas, isobáricas, etc.)
 
 > [!warning]
 > - **Signos**: $Q$ positivo **hacia** el sistema, $W$ positivo **realizado por** el sistema. Muchos textos de ingeniería usan convención opuesta para $W$
