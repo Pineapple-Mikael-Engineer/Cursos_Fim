@@ -22,13 +22,14 @@ aliases:
 
 ## Variables de estado del aire húmedo
 
-Sean $m_a$ la masa de aire seco y $m_v$ la masa de vapor de agua en la mezcla.
-
-**Razón de humedad** (humidity ratio, razón de mezcla):
-$$\omega \equiv \frac{m_v}{m_a}\quad [\mathrm{kg\,vapor/kg\,aire\,seco}].$$
-
-**Relación con presiones parciales.** Aplicando el modelo de Dalton con gas ideal a cada componente ($P_v = P_v$, $P_a = P - P_v$):
-$$\frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a} = \frac{P_v/P_a \cdot M_v}{M_a} = \frac{P_v}{P-P_v}\cdot\frac{18.015}{28.97}$$
+> [!teoria] Definiciones y relaciones fundamentales
+> Sean $m_a$ la masa de aire seco y $m_v$ la masa de vapor de agua en la mezcla.
+>
+> **Razón de humedad** (humidity ratio, razón de mezcla):
+> $$\omega \equiv \frac{m_v}{m_a}\quad [\mathrm{kg\,vapor/kg\,aire\,seco}].$$
+>
+> **Relación con presiones parciales.** Por el modelo de Dalton con gas ideal ($P_a = P - P_v$):
+> $$\frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a} = \frac{P_v}{P-P_v}\cdot\frac{18.015}{28.97}$$
 
 > [!demostracion]
 > **Paso 1.** Número de moles: $n_v = m_v/M_v = m_v/18.015$, $n_a = m_a/M_a = m_a/28.97$.
@@ -41,16 +42,14 @@ $$\frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a} = \frac{P_v/P_a \cdot M_v}{M_a} = \f
 > **Paso 4.** El cociente $18.015/28.97 = 0.6219\approx0.622$:
 > $$\boxed{\omega = 0.622\,\frac{P_v}{P-P_v}.} \qquad \blacksquare$$
 
-**Humedad relativa:**
-$$\phi \equiv \frac{P_v}{P_{\rm sat}(T)} \in [0,1].$$
-$\phi=0$: aire seco. $\phi=1$: aire saturado (máxima humedad sin condensación). Si se añade vapor con $\phi=1$, el exceso condensa.
-
-**Temperatura de rocío $T_d$:** temperatura a la que el aire húmedo, enfriado a $P$ y $\omega$ constantes, alcanza la saturación:
-$$P_v = P_{\rm sat}(T_d) \implies T_d = T_{\rm sat}^{-1}(P_v).$$
-Relación con $\omega$ y $\phi$:
-$$P_v = \frac{\omega\,P}{0.622+\omega} = \phi\,P_{\rm sat}(T).$$
-
-**Temperatura de bulbo húmedo $T_{bh}$:** temperatura alcanzada por el aire que se satura adiabáticamente. Para el **saturador adiabático ideal** (proceso de referencia termodinámico):
+ **Humedad relativa:**
+> $$\phi \equiv \frac{P_v}{P_{\rm sat}(T)} \in [0,1].$$
+> $\phi=0$: aire seco. $\phi=1$: aire saturado. Si se añade vapor con $\phi=1$, el exceso condensa.
+>
+> **Temperatura de rocío $T_d$:** temperatura a la que el aire, enfriado a $P$ y $\omega$ constantes, alcanza la saturación:
+> $$P_v = P_{\rm sat}(T_d) \implies T_d = T_{\rm sat}^{-1}(P_v), \qquad P_v = \frac{\omega\,P}{0.622+\omega} = \phi\,P_{\rm sat}(T).$$
+>
+> **Temperatura de bulbo húmedo $T_{bh}$:** temperatura que alcanza el aire al saturarse adiabáticamente. Para el **saturador adiabático ideal**:
 
 > [!proposicion] Balance del saturador adiabático
 > El aire húmedo entra con $(T,\omega)$, sale saturado a $(T_{bh},\omega_{bh})$, y el agua de maquillaje entra como líquido a $T_{bh}$. Balance de masa de agua y balance de energía (por kg de aire seco):
@@ -80,42 +79,34 @@ $$P_v = \frac{\omega\,P}{0.622+\omega} = \phi\,P_{\rm sat}(T).$$
 
 ---
 
-## Entalpía del aire húmedo
+## Entalpía y volumen específico
 
-Por kg de **aire seco** (base estándar en psicrometría):
-$$h = h_a + \omega\,h_v \approx c_{pa}\,T + \omega\,(h_{fg,0}+c_{pv}\,T)$$
-
-donde $c_{pa}=1.005\,\mathrm{kJ/(kg\cdot K)}$, $c_{pv}=1.86\,\mathrm{kJ/(kg\cdot K)}$, $h_{fg,0}=2501\,\mathrm{kJ/kg}$ (entalpía de vaporización a $0\,°\mathrm{C}$).
-
-En forma compacta:
-$$h = (1.005 + 1.86\,\omega)\,T + 2501\,\omega \qquad [\mathrm{kJ/kg\,a.s.}]$$
-con $T$ en $°\mathrm{C}$ y $\omega$ en kg/kg.
-
----
-
-## Volumen específico y densidad
-
-Por kg de aire seco:
-$$v = \frac{R_a T}{P_a} = \frac{R_a T}{P - P_v} = \frac{(R_u/M_a)T}{P(1-P_v/P)}\qquad [\mathrm{m^3/kg\,a.s.}]$$
-
-donde $R_a = R_u/M_a = 8.314/28.97 = 0.2870\,\mathrm{kJ/(kg\cdot K)}$.
+> [!proposicion] Entalpía del aire húmedo (por kg de aire seco)
+> $$h = h_a + \omega\,h_v \approx c_{pa}\,T + \omega\,(h_{fg,0}+c_{pv}\,T)$$
+> con $c_{pa}=1.005\,\mathrm{kJ/(kg\cdot K)}$, $c_{pv}=1.86\,\mathrm{kJ/(kg\cdot K)}$, $h_{fg,0}=2501\,\mathrm{kJ/kg}$. En forma compacta ($T$ en °C):
+> $$\boxed{h = (1.005 + 1.86\,\omega)\,T + 2501\,\omega} \qquad [\mathrm{kJ/kg\,a.s.}]$$
+>
+> **Volumen específico** (por kg de aire seco):
+> $$v = \frac{R_a\,T}{P - P_v} = \frac{0.2870\,T}{P - P_v}\qquad [\mathrm{m^3/kg\,a.s.},\; T\text{ en K}]$$
+> con $R_a=R_u/M_a=8.314/28.97=0.2870\,\mathrm{kJ/(kg\cdot K)}$.
 
 ---
 
-## Diagrama psicrométrico (carta de Mollier para aire húmedo)
+## Diagrama psicrométrico
 
-El diagrama psicrométrico traza $\omega$ (eje $y$) vs. $T$ de bulbo seco (eje $x$) a presión fija ($P=101.325\,\mathrm{kPa}$). Las curvas principales son:
-
-| Curva | Condición |
-|:---|:---|
-| Humedad relativa $\phi=\text{cte}$ | $P_v/P_{\rm sat}(T)=\phi$ |
-| Temperatura de bulbo húmedo $T_{bh}=\text{cte}$ | Líneas diagonales (casi rectas) |
-| Entalpía $h=\text{cte}$ | Casi paralelas a $T_{bh}=\text{cte}$ |
-| Temperatura de rocío $T_d=\text{cte}$ | Horizontales ($\omega=\text{cte}$) |
-| Volumen específico $v=\text{cte}$ | Líneas con pendiente negativa |
-
-![[diagrama_psicrometrico.svg|500]]
-*Carta psicrométrica a $P=101.325\,\mathrm{kPa}$. La curva de saturación ($\phi=1$) es el límite superior; los estados sobre ella corresponden a niebla o lluvia. Las líneas de $T_{bh}=\text{cte}$ y $h=\text{cte}$ son casi paralelas, lo que permite leer la entalpía en la escala de $T_{bh}$.*
+> [!info] Carta psicrométrica — cinco familias de curvas
+> La carta psicrométrica traza $\omega$ (eje $y$) vs. $T$ de bulbo seco (eje $x$) a $P=101.325\,\mathrm{kPa}$. Conocidas dos propiedades, las demás se leen directamente. Ver [[Carta Psicrometrica]] para la lectura detallada de cada familia.
+>
+> | Curva | Condición | Dirección en la carta |
+> |:---|:---|:---|
+> | Humedad relativa $\phi=\text{cte}$ | $P_v/P_{\rm sat}(T)=\phi$ | Curvas divergentes hacia la derecha |
+> | Bulbo húmedo $T_{bh}=\text{cte}$ | Saturador adiabático | Diagonales, pendiente negativa |
+> | Entalpía $h=\text{cte}$ | $(1.005+1.86\omega)T+2501\omega=\text{cte}$ | Casi paralelas a $T_{bh}$ |
+> | Rocío $T_d=\text{cte}$ | $\omega=\text{cte}$ | Horizontales |
+> | Volumen $v=\text{cte}$ | $R_aT/(P-P_v)=\text{cte}$ | Pendiente positiva leve |
+>
+> ![[diagrama_psicrometrico.svg|500]]
+> *Carta psicrométrica a $P=101.325\,\mathrm{kPa}$. La curva de saturación ($\phi=100\%$) es el límite superior. Para lectura completa con los 5 tipos de curva ver [[Carta Psicrometrica]].*
 
 ---
 

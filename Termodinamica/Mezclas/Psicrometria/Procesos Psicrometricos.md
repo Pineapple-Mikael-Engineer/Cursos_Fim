@@ -25,68 +25,63 @@ aliases:
 
 ## Proceso 1: Calentamiento sensible (sin cambio de $\omega$)
 
-El aire pasa por una batería de calefacción sin aporte de humedad. $\omega=\text{cte}$, $P=\text{cte}$, $T$ aumenta. En el diagrama psicrométrico: **trayectoria horizontal** hacia la derecha.
-
-**Balance de energía** (VC adiabático al exterior excepto la fuente de calor, flujo estacionario):
-$$\dot{Q} = \dot{m}_a(h_2-h_1) = \dot{m}_a\,c_{pa,h}(T_2-T_1)$$
-donde $c_{pa,h}=(1.005+1.86\,\omega)$ es el calor específico del aire húmedo a $\omega$ constante.
-
-La humedad relativa **disminuye** al aumentar $T$ (con $P_v$ fija, $P_{\rm sat}(T)$ crece):
-$$\phi_2 = \frac{P_v}{P_{\rm sat}(T_2)} < \phi_1.$$
+> [!teoria] Calentamiento sensible — $\omega=\text{cte}$, trayectoria horizontal en la carta
+> El aire pasa por una batería de calefacción sin aporte de humedad. $P=\text{cte}$, $T$ aumenta. Balance de energía (VC estacionario, $\dot{W}=0$):
+> $$\dot{Q} = \dot{m}_a(h_2-h_1) = \dot{m}_a\,(1.005+1.86\,\omega)\,(T_2-T_1).$$
+> La humedad relativa **disminuye** (con $P_v$ fija, $P_{\rm sat}(T)$ crece al calentar):
+> $$\phi_2 = \frac{P_v}{P_{\rm sat}(T_2)} < \phi_1.$$
 
 ---
 
 ## Proceso 2: Enfriamiento sensible por encima de $T_d$
 
-Si $T_2 > T_d$: mismo análisis que calentamiento con $\dot{Q}<0$. $\omega$ no cambia.
+> [!teoria] Enfriamiento sin condensación — $\omega=\text{cte}$, $T_2>T_d$
+> Análogo al calentamiento con $\dot{Q}<0$. $\omega$ no cambia; $\phi$ aumenta al bajar $T$. Si $T_2$ alcanza $T_d$, el vapor llega a la saturación y comienza la condensación (Proceso 3).
 
 ---
 
 ## Proceso 3: Enfriamiento con condensación ($T_2 < T_d$)
 
-Al enfriar por debajo del punto de rocío, el vapor comienza a condensar. La trayectoria en el diagrama psicrométrico sigue la curva de saturación ($\phi=1$) hasta $T_2$.
-
-**Balance de masa de vapor:**
-$$\dot{m}_{w,\rm cond} = \dot{m}_a(\omega_1 - \omega_2)$$
-donde $\omega_2 = \omega_{\rm sat}(T_2) = 0.622\,P_{\rm sat}(T_2)/(P-P_{\rm sat}(T_2))$.
-
-**Balance de energía:**
-$$\dot{Q} = \dot{m}_a[(h_2-h_1) - (\omega_1-\omega_2)\,h_f(T_2)]$$
-donde el término $(\omega_1-\omega_2)h_f(T_2)$ es la entalpía del condensado que sale como líquido a $T_2$.
-
-![[proceso_enfriamiento_deshumidificacion.svg|440]]
-*Diagrama psicrométrico: proceso de enfriamiento con deshumidificación. El estado 1 entra a la izquierda de $T_d$; al llegar a la curva de saturación ($\phi=1$) empieza la condensación; el estado 2 está sobre la curva a $T_2<T_d$. El estado del aire de salida queda siempre sobre la curva de saturación si el proceso termina en la bobina fría.*
+> [!teoria] Enfriamiento y deshumidificación — trayectoria sobre la curva $\phi=100\%$
+> Al enfriar por debajo del punto de rocío, el vapor condensa y $\omega$ disminuye. El estado de salida se ubica sobre la curva de saturación a $T_2$.
+>
+> **Balance de masa de vapor:**
+> $$\dot{m}_{w,\rm cond} = \dot{m}_a(\omega_1 - \omega_2), \qquad \omega_2 = 0.622\,\frac{P_{\rm sat}(T_2)}{P-P_{\rm sat}(T_2)}.$$
+>
+> **Balance de energía** (el condensado sale como líquido a $T_2$):
+> $$\dot{Q} = \dot{m}_a\left[(h_2-h_1) - (\omega_1-\omega_2)\,h_f(T_2)\right].$$
+>
+> ![[proceso_enfriamiento_deshumidificacion.svg|440]]
+> *Trayectoria: el estado 1 se enfría horizontalmente hasta la curva $\phi=100\%$ (donde empieza la condensación) y luego desciende sobre ella hasta $T_2$.*
 
 ---
 
 ## Proceso 4: Humidificación (inyección de vapor)
 
-Se inyecta vapor de agua saturado (o sobrecalentado) al flujo de aire. $T$ cambia poco si el vapor entra cerca de la temperatura del aire.
-
-**Balance de masa:** $\dot{m}_v = \dot{m}_a(\omega_2-\omega_1)$.
-
-**Balance de energía:**
-$$\dot{Q}+\dot{m}_v\,h_v = \dot{m}_a(h_2-h_1)$$
-Si el proceso es adiabático y se inyecta vapor saturado a $T_v$:
-$$h_2 = h_1 + (\omega_2-\omega_1)\,h_v(T_v).$$
-
-Si se inyecta agua líquida en lugar de vapor (humidificador evaporativo): el agua se evapora tomando calor del aire, por lo que $T$ disminuye (proceso aproximadamente a $T_{bh}=\text{cte}$ si es adiabático).
+> [!teoria] Humidificación — $\omega$ aumenta, $T$ casi constante (vapor) o disminuye (agua)
+> Se inyecta vapor o agua líquida al flujo de aire. Balance de masa: $\dot{m}_v=\dot{m}_a(\omega_2-\omega_1)$.
+>
+> **Inyección de vapor saturado** (adiabática):
+> $$h_2 = h_1 + (\omega_2-\omega_1)\,h_v(T_v); \qquad T_2 \approx T_1\text{ (vapor cercano a }T_1\text{)}.$$
+>
+> **Humidificador evaporativo** (agua líquida fría): el agua se evapora tomando calor sensible del aire, por lo que $T$ baja. El proceso es aproximadamente a $T_{bh}=\text{cte}$ si es adiabático.
 
 ---
 
 ## Proceso 5: Mezcla adiabática de dos corrientes
 
-Dos flujos de aire húmedo con estados $(T_1,\omega_1,\dot{m}_{a,1})$ y $(T_2,\omega_2,\dot{m}_{a,2})$ se mezclan adiabáticamente.
-
-**Balance de masa de aire seco:** $\dot{m}_{a,3}=\dot{m}_{a,1}+\dot{m}_{a,2}$.
-**Balance de masa de vapor:** $\dot{m}_{a,3}\,\omega_3 = \dot{m}_{a,1}\,\omega_1 + \dot{m}_{a,2}\,\omega_2$.
-**Balance de energía:** $\dot{m}_{a,3}\,h_3 = \dot{m}_{a,1}\,h_1 + \dot{m}_{a,2}\,h_2$.
-
-De los tres balances:
-$$\omega_3 = \frac{\dot{m}_{a,1}\,\omega_1+\dot{m}_{a,2}\,\omega_2}{\dot{m}_{a,1}+\dot{m}_{a,2}}, \qquad h_3 = \frac{\dot{m}_{a,1}\,h_1+\dot{m}_{a,2}\,h_2}{\dot{m}_{a,1}+\dot{m}_{a,2}}.$$
-
-**Regla de la palanca psicrométrica.** El estado 3 divide el segmento $\overline{1\text{-}2}$ en el diagrama psicrométrico en razón inversa a los caudales:
-$$\frac{d(1\text{-}3)}{d(2\text{-}3)} = \frac{\dot{m}_{a,2}}{\dot{m}_{a,1}}.$$
+> [!teoria] Mezcla adiabática — estado resultante sobre el segmento entre los estados originales
+> Dos corrientes $(T_1,\omega_1,\dot{m}_{a,1})$ y $(T_2,\omega_2,\dot{m}_{a,2})$ se mezclan adiabáticamente. Los tres balances simultáneos:
+>
+> **Masa de aire seco:** $\dot{m}_{a,3}=\dot{m}_{a,1}+\dot{m}_{a,2}$.
+> **Masa de vapor:** $\dot{m}_{a,3}\,\omega_3 = \dot{m}_{a,1}\,\omega_1 + \dot{m}_{a,2}\,\omega_2$.
+> **Energía:** $\dot{m}_{a,3}\,h_3 = \dot{m}_{a,1}\,h_1 + \dot{m}_{a,2}\,h_2$.
+>
+> El estado de mezcla:
+> $$\omega_3 = \frac{\dot{m}_{a,1}\,\omega_1+\dot{m}_{a,2}\,\omega_2}{\dot{m}_{a,1}+\dot{m}_{a,2}}, \qquad h_3 = \frac{\dot{m}_{a,1}\,h_1+\dot{m}_{a,2}\,h_2}{\dot{m}_{a,1}+\dot{m}_{a,2}}.$$
+>
+> **Regla de la palanca psicrométrica:** el estado 3 divide $\overline{1\text{-}2}$ en razón inversa a los caudales:
+> $$\frac{d(1\text{-}3)}{d(2\text{-}3)} = \frac{\dot{m}_{a,2}}{\dot{m}_{a,1}}.$$
 
 > [!demostracion]
 > De $\omega_3 = \frac{\dot{m}_{a,1}\omega_1+\dot{m}_{a,2}\omega_2}{\dot{m}_{a,1}+\dot{m}_{a,2}}$:

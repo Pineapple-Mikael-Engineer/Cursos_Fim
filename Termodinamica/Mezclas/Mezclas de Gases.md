@@ -70,18 +70,19 @@ $$y_i = \frac{n_i}{n} = \frac{m_i/M_i}{\sum_k m_k/M_k} = \frac{fm_i/M_i}{\sum_k 
 
 ## Propiedades de la mezcla
 
-Las propiedades extensivas se obtienen sumando las contribuciones de cada componente. La excepción crítica es la entropía, que depende de la composición.
-
-**Energía interna y entalpía** (dependen solo de $T$ para gas ideal):
-$$U = \sum_i n_i\,\bar{u}_i(T), \quad H = \sum_i n_i\,\bar{h}_i(T).$$
-En base molar de mezcla: $\bar{u}=\sum_i y_i\,\bar{u}_i(T)$, $\bar{h}=\sum_i y_i\,\bar{h}_i(T)$.
-
-**Calores específicos:**
-$$\bar{c}_v = \sum_i y_i\,\bar{c}_{v,i}, \qquad \bar{c}_p = \sum_i y_i\,\bar{c}_{p,i}, \qquad k = \frac{\bar{c}_p}{\bar{c}_v}.$$
-
-**Entropía.** El componente $i$ en la mezcla ocupa el volumen total a $T$ y su presión parcial $P_i<P$; como resultado su entropía es **mayor** que si estuviera a la presión total:
-$$S = \sum_i n_i\,\bar{s}_i(T,P_i) = \sum_i n_i\left[\bar{s}_i^\circ(T) - R_u\ln\frac{P_i}{P^\circ}\right]$$
-$$= \sum_i n_i\bar{s}_i^\circ(T) - R_u\sum_i n_i\ln(y_i P/P^\circ).$$
+> [!teoria] Propiedades extensivas de la mezcla
+> Las propiedades extensivas se obtienen sumando las contribuciones de cada componente. La excepción crítica es la entropía, que depende de la composición.
+>
+> **Energía interna y entalpía** (dependen solo de $T$ para gas ideal):
+> $$U = \sum_i n_i\,\bar{u}_i(T), \quad H = \sum_i n_i\,\bar{h}_i(T).$$
+> En base molar de mezcla: $\bar{u}=\sum_i y_i\,\bar{u}_i(T)$, $\bar{h}=\sum_i y_i\,\bar{h}_i(T)$.
+>
+> **Calores específicos:**
+> $$\bar{c}_v = \sum_i y_i\,\bar{c}_{v,i}, \qquad \bar{c}_p = \sum_i y_i\,\bar{c}_{p,i}, \qquad k = \frac{\bar{c}_p}{\bar{c}_v}.$$
+>
+> **Entropía.** El componente $i$ en la mezcla ocupa el volumen total a $T$ y su presión parcial $P_i<P$; como resultado su entropía es **mayor** que si estuviera a la presión total:
+> $$S = \sum_i n_i\,\bar{s}_i(T,P_i) = \sum_i n_i\left[\bar{s}_i^\circ(T) - R_u\ln\frac{P_i}{P^\circ}\right]$$
+> $$= \sum_i n_i\bar{s}_i^\circ(T) - R_u\sum_i n_i\ln(y_i P/P^\circ).$$
 
 ---
 
@@ -108,14 +109,14 @@ $$= \sum_i n_i\bar{s}_i^\circ(T) - R_u\sum_i n_i\ln(y_i P/P^\circ).$$
 
 ## Cambios de propiedad entre estados (composición constante)
 
-Entre estados $(T_1,P_1)$ y $(T_2,P_2)$, por kmol de mezcla:
-$$\Delta\bar{u} = \sum_i y_i\,\Delta\bar{u}_i(T_1\to T_2), \qquad \Delta\bar{h} = \sum_i y_i\,\Delta\bar{h}_i(T_1\to T_2).$$
-$$\Delta\bar{s} = \sum_i y_i\left[\bar{s}_i^\circ(T_2)-\bar{s}_i^\circ(T_1) - R_u\ln\frac{y_i P_2}{y_i P_1}\right] = \sum_i y_i\left[\Delta\bar{s}_i^\circ - R_u\ln\frac{P_2}{P_1}\right].$$
-
-El cociente $y_i$ se cancela en la entropía cuando la composición es constante: la entropía de mezcla se computa una sola vez al fijar la composición.
-
-Con $c_p$, $c_v$ constantes (approx. baja temperatura):
-$$\Delta\bar{u}=\bar{c}_v(T_2-T_1), \quad \Delta\bar{h}=\bar{c}_p(T_2-T_1), \quad \Delta\bar{s}=\bar{c}_p\ln\frac{T_2}{T_1}-R_u\ln\frac{P_2}{P_1}.$$
+> [!proposicion] Variaciones de $u$, $h$, $s$ entre dos estados
+> Entre estados $(T_1,P_1)$ y $(T_2,P_2)$ con composición fija, por kmol de mezcla:
+> $$\Delta\bar{u} = \sum_i y_i\,\Delta\bar{u}_i(T_1\to T_2), \qquad \Delta\bar{h} = \sum_i y_i\,\Delta\bar{h}_i(T_1\to T_2).$$
+> $$\Delta\bar{s} = \sum_i y_i\left[\Delta\bar{s}_i^\circ(T_1\to T_2) - R_u\ln\frac{P_2}{P_1}\right].$$
+> El cociente $y_i$ se cancela en la entropía a composición constante: los $\ln y_i$ de la presión parcial son iguales en ambos extremos y desaparecen en la diferencia.
+>
+> Con $c_p$, $c_v$ constantes (gas a baja temperatura):
+> $$\Delta\bar{u}=\bar{c}_v(T_2-T_1), \quad \Delta\bar{h}=\bar{c}_p(T_2-T_1), \quad \Delta\bar{s}=\bar{c}_p\ln\frac{T_2}{T_1}-R_u\ln\frac{P_2}{P_1}.$$
 
 ---
 

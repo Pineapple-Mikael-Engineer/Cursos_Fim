@@ -27,32 +27,17 @@ aliases:
 
 ### Combustión estequiométrica (teórica)
 
-Para un hidrocarburo $\mathrm{C_xH_y}$ con aire seco ($\mathrm{O_2}+3.76\,\mathrm{N_2}$ por mol de $\mathrm{O_2}$):
-$$\mathrm{C_xH_y} + a_{\rm est}\left(\mathrm{O_2}+3.76\,\mathrm{N_2}\right) \to x\,\mathrm{CO_2}+\frac{y}{2}\mathrm{H_2O}+3.76\,a_{\rm est}\,\mathrm{N_2}$$
+> [!proposicion] Combustión estequiométrica de $\mathrm{C_xH_y}$
+> Con aire seco ($\mathrm{O_2}+3.76\,\mathrm{N_2}$ por mol de $\mathrm{O_2}$, donde $3.76=79/21$):
+> $$\mathrm{C_xH_y} + a_{\rm est}\left(\mathrm{O_2}+3.76\,\mathrm{N_2}\right) \to x\,\mathrm{CO_2}+\frac{y}{2}\mathrm{H_2O}+3.76\,a_{\rm est}\,\mathrm{N_2}$$
+> Balance de $\mathrm{O_2}$: $a_{\rm est} = x + y/4$. La **relación aire-combustible másica estequiométrica**:
+> $$\mathrm{AF}_{\rm est} = \frac{a_{\rm est}(32+3.76\times28)}{M_{\rm comb}} = \frac{137.28\,a_{\rm est}}{M_{\rm comb}}.$$
 
-Balance de oxígeno determina $a_{\rm est}$:
-$$a_{\rm est} = x + \frac{y}{4}.$$
-
-El **factor $3.76$** proviene de la composición molar del aire seco: $21\%\,\mathrm{O_2}$ y $79\%\,\mathrm{N_2}$, luego $\mathrm{N_2}/\mathrm{O_2}=79/21=3.762\approx3.76$.
-
-### Relación aire-combustible
-
-La **relación aire-combustible másica** (AF, air-fuel ratio):
-$$\mathrm{AF} = \frac{m_{\rm aire}}{m_{\rm comb}} = \frac{a_{\rm est}(M_{\mathrm{O_2}}+3.76\,M_{\mathrm{N_2}})}{M_{\rm comb}} = \frac{a_{\rm est}(32+3.76\times28)}{M_{\rm comb}}.$$
-
-Para el aire: $M_{\rm aire}=28.97$, por lo que $M_{\mathrm{O_2}}+3.76\,M_{\mathrm{N_2}}=32+105.28=137.28$ por mol de $\mathrm{O_2}$.
-
-**Relación aire-combustible estequiométrica** $\mathrm{AF}_{\rm est}$: calculada con $a_{\rm est}$.
-
-### Exceso de aire y relación de equivalencia
-
-$$\%\,\text{exceso de aire} = \frac{\mathrm{AF}-\mathrm{AF}_{\rm est}}{\mathrm{AF}_{\rm est}}\times100$$
-
-**Relación de equivalencia** (equivalence ratio):
-$$\Phi = \frac{\mathrm{AF}_{\rm est}}{\mathrm{AF}} = \frac{\lambda_{\rm comb}}{\lambda_{\rm aire}}.$$
-- $\Phi<1$: mezcla **pobre** (excess air, lean) — exceso de $\mathrm{O_2}$ en productos.
-- $\Phi=1$: mezcla estequiométrica.
-- $\Phi>1$: mezcla **rica** (rich) — $\mathrm{CO}$ y $\mathrm{H_2}$ en productos (combustión incompleta).
+> [!teoria] Exceso de aire y relación de equivalencia
+> $$\%\,\text{exceso} = \frac{\mathrm{AF}-\mathrm{AF}_{\rm est}}{\mathrm{AF}_{\rm est}}\times100, \qquad \Phi = \frac{\mathrm{AF}_{\rm est}}{\mathrm{AF}}.$$
+> - $\Phi<1$: mezcla **pobre** (lean) — exceso de $\mathrm{O_2}$ en productos; combustión completa.
+> - $\Phi=1$: estequiométrica.
+> - $\Phi>1$: mezcla **rica** (rich) — $\mathrm{CO}$, $\mathrm{H_2}$ en productos; ver [[Combustion Incompleta]].
 
 > [!demostracion] Combustión con exceso de aire
 > Con $\Phi<1$ (porcentaje de exceso $e=1/\Phi-1$), la reacción con exceso de $\mathrm{O_2}$ y $\mathrm{N_2}$:
@@ -63,7 +48,9 @@ $$\Phi = \frac{\mathrm{AF}_{\rm est}}{\mathrm{AF}} = \frac{\lambda_{\rm comb}}{\
 
 ## Entalpía de formación y energía de reacción
 
-La **entalpía de formación estándar** $\bar{h}_f^\circ$ de una sustancia es la entalpía de reacción para formar **1 mol** de esa sustancia a partir de sus **elementos en estado de referencia** a $T^\circ=25\,°\mathrm{C}=298.15\,\mathrm{K}$ y $P^\circ=1\,\mathrm{atm}$. Para los elementos puros en estado estable: $\bar{h}_f^\circ=0$ por convención.
+> [!teoria] Entalpía de formación estándar $\bar{h}_f^\circ$
+> La **entalpía de formación estándar** $\bar{h}_f^\circ$ es la entalpía de reacción para formar **1 mol** de una sustancia desde sus **elementos en estado de referencia** a $T^\circ=25\,°\mathrm{C}$, $P^\circ=1\,\mathrm{atm}$. Por convención, los elementos puros en estado estable tienen $\bar{h}_f^\circ=0$. La entalpía de reacción a $T^\circ$ es:
+> $$\bar{h}_R^\circ = \sum_{\rm prod} n_i\,\bar{h}_{f,i}^\circ - \sum_{\rm react} n_j\,\bar{h}_{f,j}^\circ < 0\quad(\text{exotérmica}).$$
 
 Valores relevantes:
 
@@ -78,17 +65,9 @@ Valores relevantes:
 | $\mathrm{C_8H_{18}}(l)$ | líquido | $-249\,950$ |
 | $\mathrm{N_2}(g)$, $\mathrm{O_2}(g)$, $\mathrm{H_2}(g)$, $\mathrm{C}(s)$ | — | $0$ |
 
-**Entalpía de reacción** a $T^\circ$:
-$$\bar{h}_R^\circ = \sum_{\rm prod} n_i\,\bar{h}_{f,i}^\circ - \sum_{\rm react} n_j\,\bar{h}_{f,j}^\circ.$$
-
-Para la combustión, $\bar{h}_R^\circ < 0$ (exotérmica).
-
-### Poder calorífico superior e inferior
-
-El **Poder Calorífico Superior (PCS, HHV)** considera el agua en productos como **líquida** (recupera el calor de condensación). El **Poder Calorífico Inferior (PCI, LHV)** considera el agua como **vapor**:
-$$\mathrm{PCS} = -\bar{h}_R^\circ\big|_{H_2O(l)}, \qquad \mathrm{PCI} = -\bar{h}_R^\circ\big|_{H_2O(g)}.$$
-$$\mathrm{PCS} = \mathrm{PCI} + n_{H_2O}\,h_{fg}(25\,°\mathrm{C})\cdot\frac{M_{H_2O}}{M_{\rm comb}}.$$
-donde $h_{fg}(25\,°\mathrm{C})=2441.7\,\mathrm{kJ/kg}$.
+ > [!proposicion] Poder calorífico: PCS y PCI
+> $$\mathrm{PCS} = -\bar{h}_R^\circ\big|_{H_2O(l)}, \qquad \mathrm{PCI} = -\bar{h}_R^\circ\big|_{H_2O(g)}.$$
+> $$\mathrm{PCS} = \mathrm{PCI} + n_{H_2O}\,h_{fg}(25\,°\mathrm{C})\cdot\frac{M_{H_2O}}{M_{\rm comb}}, \qquad h_{fg}(25\,°\mathrm{C})=2441.7\,\mathrm{kJ/kg}.$$
 
 > [!warning]
 > Los motores de combustión interna y turbinas descargan agua como vapor ($T_{\rm escape}\gg100\,°\mathrm{C}$): usar el **PCI**. Solo las calderas de condensación recuperan el calor de condensación y se refieren al **PCS**.
