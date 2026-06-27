@@ -1,5 +1,6 @@
 ---
 title: "Razón de calores específicos $\\gamma$"
+order: 1
 tags:
   - termodinamica
   - relaciones_termodinamicas

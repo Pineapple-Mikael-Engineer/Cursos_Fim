@@ -1,11 +1,12 @@
 ---
 title: Psicrometría
+order: 1
 tags:
   - termodinamica
-  - teoria
   - mezclas
   - psicrometria
   - aire-humedo
+  - index
 draft: false
 aliases:
   - Psicrometría
@@ -13,128 +14,151 @@ aliases:
   - Psychrometrics
 ---
 
-# Psicrometría $\omega=0.622\dfrac{P_v}{P-P_v},\quad \phi=\dfrac{P_v}{P_{\rm sat}(T)}$
+# Psicrometría
 
 > [!definicion]
-> La **psicrometría** es el estudio termodinámico del **aire húmedo**: mezcla binaria de aire seco (componente no condensable, tratado como gas ideal con $M_a=28.97\,\mathrm{kg/kmol}$) y vapor de agua (componente condensable). El estado del aire húmedo queda fijado por tres variables: presión total $P$, temperatura $T$ y composición (expresada como $\omega$, $\phi$ o $T_d$). La psicrometría es el fundamento del diseño de sistemas de climatización (HVAC).
+> La **psicrometría** estudia las propiedades termodinámicas del **aire húmedo**: la mezcla binaria de **aire seco** y **vapor de agua**. El aire seco se modela como gas ideal con $M_a = 28.97\,\mathrm{kg/kmol}$; el vapor de agua también se modela como gas ideal con $M_v = 18.015\,\mathrm{kg/kmol}$, pero es **condensable**: puede pasar a líquido si la temperatura baja suficientemente.
+>
+> *¿Por qué el vapor cambia todo?* A diferencia de los gases permanentes del aire (N₂, O₂, Ar), el vapor de agua puede condensar o evaporarse durante un proceso, liberando o absorbiendo el **calor latente de vaporización** ($h_{fg} \approx 2500\,\mathrm{kJ/kg}$ a temperatura ambiente). Este calor latente domina los balances energéticos en climatización, torres de enfriamiento y secadores industriales.
+>
+> El estado del aire húmedo queda fijado por **tres variables independientes**: $T$, $P$ y la composición (expresada como razón de humedad $\omega$, humedad relativa $\phi$, o temperatura de rocío $T_d$). Conocidas dos de ellas, la tercera y todas las propiedades derivadas quedan determinadas.
+
+![[diagrama_psicrometrico.svg|500]]
+*Carta psicrométrica a $P=101.325\,\mathrm{kPa}$. Cada punto es un estado del aire húmedo. Las cinco familias de curvas permiten leer $\omega$, $\phi$, $T_d$, $T_{bh}$, $h$ y $v$ conocidas dos propiedades. Para lectura detallada ver [[Carta Psicrometrica]].*
 
 ---
 
-## Variables de estado del aire húmedo
+## Razón de humedad $\omega$
 
-> [!teoria] Definiciones y relaciones fundamentales
-> Sean $m_a$ la masa de aire seco y $m_v$ la masa de vapor de agua en la mezcla.
+> [!definicion]
+> La **razón de humedad** (o razón de mezcla) $\omega$ es la masa de vapor de agua por unidad de masa de **aire seco**:
+> $$\omega \equiv \frac{m_v}{m_a} \quad [\mathrm{kg\,vapor/kg\,a.s.}].$$
 >
-> **Razón de humedad** (humidity ratio, razón de mezcla):
-> $$\omega \equiv \frac{m_v}{m_a}\quad [\mathrm{kg\,vapor/kg\,aire\,seco}].$$
->
-> **Relación con presiones parciales.** Por el modelo de Dalton con gas ideal ($P_a = P - P_v$):
-> $$\frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a} = \frac{P_v}{P-P_v}\cdot\frac{18.015}{28.97}$$
+> *¿Por qué normalizar por aire seco y no por la mezcla?* Porque en la mayoría de los procesos psicrométricos el aire seco no cambia de cantidad (es conservativo), pero el vapor sí entra o sale. Al usar $m_a$ como referencia, todos los balances se simplifican: el flujo de referencia es $\dot{m}_a$ (constante), y los cambios en $\omega$ miden directamente cuánto vapor se añadió o retiró.
 
-> [!demostracion]
-> **Paso 1.** Número de moles: $n_v = m_v/M_v = m_v/18.015$, $n_a = m_a/M_a = m_a/28.97$.
->
-> **Paso 2.** Por Dalton (gas ideal): $P_v = (n_v/n)P$ y $P_a = (n_a/n)P$, luego $P_v/P_a = n_v/n_a$.
->
-> **Paso 3.** Sustituyendo:
-> $$\omega = \frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a} = \frac{P_v}{P_a}\cdot\frac{M_v}{M_a} = \frac{P_v}{P-P_v}\cdot\frac{18.015}{28.97}.$$
->
-> **Paso 4.** El cociente $18.015/28.97 = 0.6219\approx0.622$:
-> $$\boxed{\omega = 0.622\,\frac{P_v}{P-P_v}.} \qquad \blacksquare$$
-
- **Humedad relativa:**
-> $$\phi \equiv \frac{P_v}{P_{\rm sat}(T)} \in [0,1].$$
-> $\phi=0$: aire seco. $\phi=1$: aire saturado. Si se añade vapor con $\phi=1$, el exceso condensa.
->
-> **Temperatura de rocío $T_d$:** temperatura a la que el aire, enfriado a $P$ y $\omega$ constantes, alcanza la saturación:
-> $$P_v = P_{\rm sat}(T_d) \implies T_d = T_{\rm sat}^{-1}(P_v), \qquad P_v = \frac{\omega\,P}{0.622+\omega} = \phi\,P_{\rm sat}(T).$$
->
-> **Temperatura de bulbo húmedo $T_{bh}$:** temperatura que alcanza el aire al saturarse adiabáticamente. Para el **saturador adiabático ideal**:
-
-> [!proposicion] Balance del saturador adiabático
-> El aire húmedo entra con $(T,\omega)$, sale saturado a $(T_{bh},\omega_{bh})$, y el agua de maquillaje entra como líquido a $T_{bh}$. Balance de masa de agua y balance de energía (por kg de aire seco):
-> $$\omega_{bh}-\omega = \frac{(\omega_{bh}-\omega)\,h_{f}(T_{bh}) + (h_{a,bh}-h_a) + \omega_{bh}\,h_{v,bh} - \omega\,h_v}{0}$$
->
-> Resulta la ecuación del saturador:
-> $$\omega = \frac{c_{pa}(T_{bh}-T) + \omega_{bh}\,h_{fg}(T_{bh})}{h_v(T) - h_f(T_{bh})}$$
-> o equivalentemente:
-> $$\omega \approx \omega_{bh} - \frac{c_{pa}(T-T_{bh})}{h_{fg}(T_{bh})}.$$
+> [!teorema]
+> La razón de humedad en función de las presiones parciales:
+> $$\boxed{\omega = 0.622\,\frac{P_v}{P - P_v}}.$$
 
 > [!demostracion]
-> **Sistema:** saturador adiabático en régimen estacionario. Por kg de aire seco.
+> **Hipótesis:** aire seco y vapor de agua, ambos modelados como gases ideales; ley de Dalton: $P = P_a + P_v$.
 >
-> **Balance de masa (vapor):**
-> $$\dot{m}_{\rm maq} = \dot{m}_a(\omega_{bh}-\omega).$$
-> El agua de maquillaje entra como líquido saturado a $T_{bh}$: $h_{\rm maq}=h_f(T_{bh})$.
+> **Paso 1 — Expresar $\omega$ en función de moles.** Por definición:
+> $$\omega = \frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a}.$$
 >
-> **Balance de energía** (adiabático, sin trabajo de eje, $\Delta\mathrm{Ec}=0$):
-> $$h_{\rm entrada} + (\omega_{bh}-\omega)h_f(T_{bh}) = h_{\rm salida}$$
-> $$[h_a(T)+\omega h_v(T)] + (\omega_{bh}-\omega)h_f(T_{bh}) = h_a(T_{bh})+\omega_{bh}h_v(T_{bh}).$$
+> **Paso 2 — Fracción de moles desde la ley de Dalton.** Para gases ideales en la misma mezcla a $(T, V)$: $P_i V = n_i R_u T$. Dividiendo:
+> $$\frac{n_v}{n_a} = \frac{P_v}{P_a}.$$
 >
-> Usando $h_a(T)=c_{pa}T$, $h_v(T)\approx h_{fg,0}+c_{pv}T$ (con $h_{fg,0}=2501\,\mathrm{kJ/kg}$), y $h_v(T_{bh})-h_f(T_{bh})=h_{fg}(T_{bh})$:
-> $$c_{pa}(T-T_{bh}) = \omega_{bh}\,h_{fg}(T_{bh}) - \omega[h_v(T)-h_f(T_{bh})].$$
+> **Paso 3 — Sustituir en $\omega$:**
+> $$\omega = \frac{P_v}{P_a}\cdot\frac{M_v}{M_a} = \frac{P_v}{P_a}\cdot\frac{18.015}{28.97} = 0.6220\,\frac{P_v}{P_a}.$$
 >
-> Como $h_v(T)-h_f(T_{bh})\approx h_{fg}(T_{bh}) + c_{pv}(T-T_{bh})\approx h_{fg}(T_{bh})$ (corrección $c_{pv}\Delta T$ pequeña):
+> **Paso 4 — Usar $P_a = P - P_v$:**
+> $$\omega = 0.622\,\frac{P_v}{P - P_v}.$$
+>
+> **Paso 5 — Despejar $P_v$** (útil para el análisis de la carta):
+> $$P_v = \frac{\omega\,P}{0.622 + \omega}.$$
+>
+> Verificación: si $\omega = 0$ (aire seco), $P_v = 0$ ✓. Si $\omega \to \infty$ (solo vapor), $P_v \to P$ ✓. $\blacksquare$
+
+---
+
+## Humedad relativa $\phi$
+
+> [!definicion]
+> La **humedad relativa** compara la presión parcial del vapor con la presión de saturación a la misma temperatura:
+> $$\phi \equiv \frac{P_v}{P_{\rm sat}(T)} \in [0,\,1].$$
+>
+> *Interpretación:* $\phi = 1$ (100%) significa que el vapor está en saturación; cualquier enfriamiento adicional causará condensación. $\phi = 0.5$ (50%) significa que hay la mitad del vapor que podría haber a esa $T$. $\phi$ mide la "capacidad restante para absorber humedad" — a $\phi$ bajo, el aire puede evaporar agua rápidamente (buena condición para secar ropa).
+>
+> Relación entre $\phi$, $\omega$ y $T$ (combinando las definiciones):
+> $$\omega = 0.622\,\frac{\phi\,P_{\rm sat}(T)}{P - \phi\,P_{\rm sat}(T)}.$$
+
+---
+
+## Temperatura de rocío $T_d$
+
+> [!definicion]
+> La **temperatura de rocío** es la temperatura a la que el aire, enfriado a $\omega$ y $P$ constantes, alcanza la saturación ($\phi = 1$). Es la temperatura mínima de una superficie antes de que se forme condensación sobre ella.
+>
+> $$P_{\rm sat}(T_d) = P_v = \frac{\omega\,P}{0.622+\omega}.$$
+>
+> *Uso práctico:* en invierno, si el vidrio de una ventana está a $T < T_d$ del aire interior, se forma empañamiento. En meteorología, $T_d \approx T$ indica humedad relativa alta y riesgo de lluvia.
+
+---
+
+## Temperatura de bulbo húmedo $T_{bh}$
+
+> [!definicion]
+> La **temperatura de bulbo húmedo** es la temperatura de equilibrio del aire cuando se humedifica adiabáticamente hasta la saturación. Se mide con un termómetro cuyo bulbo está cubierto por una mecha húmeda.
+>
+> La ecuación fundamental que determina $\omega$ desde $T_{bh}$ medido proviene del **balance del saturador adiabático**: un dispositivo en que el aire húmedo entra a $(T, \omega)$, se humidifica adiabáticamente hasta la saturación, y sale a $(T_{bh}, \omega_{bh})$. El agua de reposición (*maquillaje*) se inyecta a $T_{bh}$.
+
+> [!teorema]
+> Del balance del saturador adiabático, la razón de humedad del aire en función de $T$ y $T_{bh}$:
+> $$\boxed{\omega = \omega_{bh} - \frac{c_{pa}(T - T_{bh})}{h_{fg}(T_{bh})}},$$
+> donde $\omega_{bh} = 0.622\,P_{\rm sat}(T_{bh})/(P - P_{\rm sat}(T_{bh}))$ y $h_{fg}(T_{bh})$ es el calor latente a $T_{bh}$.
+
+> [!demostracion]
+> **Hipótesis:** VC estacionario, adiabático ($\dot{Q}=0$), sin trabajo de eje, sin EC ni EP. Base: 1 kg de aire seco. El agua de maquillaje entra como líquido saturado a $T_{bh}$. El aire sale saturado ($\phi_2=1$) a $T_{bh}$.
+>
+> **Paso 1 — Balance de masa de vapor.** El aire seco no cambia; el vapor que sale minus el que entra es el agua de maquillaje evaporada:
+> $$\dot{m}_{\rm maq}/\dot{m}_a = \omega_{bh} - \omega.$$
+>
+> **Paso 2 — Balance de energía.** Primera ley por kg de aire seco:
+> $$h_a(T) + \omega\,h_v(T) + (\omega_{bh}-\omega)\,h_f(T_{bh}) = h_a(T_{bh}) + \omega_{bh}\,h_v(T_{bh}).$$
+>
+> **Paso 3 — Reorganizar.** Llevar todos los términos con $\omega$ a un lado:
+> $$\omega\,[h_v(T) - h_f(T_{bh})] = [h_a(T_{bh}) - h_a(T)] + \omega_{bh}[h_v(T_{bh}) - h_f(T_{bh})].$$
+>
+> **Paso 4 — Simplificar.** Usando $h_a(T_{bh}) - h_a(T) = c_{pa}(T_{bh}-T) = -c_{pa}(T-T_{bh})$ y $h_v(T_{bh}) - h_f(T_{bh}) = h_{fg}(T_{bh})$:
+> $$\omega\,[h_v(T) - h_f(T_{bh})] = -c_{pa}(T-T_{bh}) + \omega_{bh}\,h_{fg}(T_{bh}).$$
+>
+> **Paso 5 — Aproximación de denominador.** Para $(T - T_{bh}) \lesssim 15\,°\mathrm{C}$, el término $c_{pv}(T-T_{bh}) \ll h_{fg}(T_{bh}) \approx 2500\,\mathrm{kJ/kg}$, por lo que $h_v(T) - h_f(T_{bh}) \approx h_{fg}(T_{bh})$. Dividiendo:
 > $$\omega \approx \omega_{bh} - \frac{c_{pa}(T-T_{bh})}{h_{fg}(T_{bh})}. \qquad \blacksquare$$
+>
+> Verificación: si $T = T_{bh}$ (aire ya saturado), $\omega = \omega_{bh}$ ✓. Si $T > T_{bh}$ (aire no saturado), $\omega < \omega_{bh}$: el aire seco tiene menos vapor que el saturado a $T_{bh}$ ✓.
 
 ---
 
-## Entalpía y volumen específico
+## Entalpía del aire húmedo
 
-> [!proposicion] Entalpía del aire húmedo (por kg de aire seco)
-> $$h = h_a + \omega\,h_v \approx c_{pa}\,T + \omega\,(h_{fg,0}+c_{pv}\,T)$$
-> con $c_{pa}=1.005\,\mathrm{kJ/(kg\cdot K)}$, $c_{pv}=1.86\,\mathrm{kJ/(kg\cdot K)}$, $h_{fg,0}=2501\,\mathrm{kJ/kg}$. En forma compacta ($T$ en °C):
-> $$\boxed{h = (1.005 + 1.86\,\omega)\,T + 2501\,\omega} \qquad [\mathrm{kJ/kg\,a.s.}]$$
+> [!proposicion]
+> La entalpía por kg de aire seco, tomando como referencia $T_0 = 0\,°\mathrm{C}$:
+> $$h = c_{pa}\,T + \omega\,(h_{fg,0} + c_{pv}\,T) = (1.005 + 1.86\,\omega)\,T + 2501\,\omega \quad [\mathrm{kJ/kg\,a.s.}],$$
+> donde $T$ está en °C, $c_{pa} = 1.005\,\mathrm{kJ/(kg\cdot K)}$, $c_{pv} = 1.86\,\mathrm{kJ/(kg\cdot K)}$ y $h_{fg,0} = 2501\,\mathrm{kJ/kg}$ (calor latente a 0°C).
 >
-> **Volumen específico** (por kg de aire seco):
-> $$v = \frac{R_a\,T}{P - P_v} = \frac{0.2870\,T}{P - P_v}\qquad [\mathrm{m^3/kg\,a.s.},\; T\text{ en K}]$$
-> con $R_a=R_u/M_a=8.314/28.97=0.2870\,\mathrm{kJ/(kg\cdot K)}$.
+> El término $c_{pa} T$ es la entalpía sensible del aire seco; el término $\omega(h_{fg,0}+c_{pv}T)$ es la entalpía del vapor (latente + sensible). A 25°C y $\omega = 0.010$: entalpía sensible = 25.1, entalpía latente = 25.0 — son comparables, lo que muestra la importancia del vapor.
 
 ---
 
-## Diagrama psicrométrico
-
-> [!info] Carta psicrométrica — cinco familias de curvas
-> La carta psicrométrica traza $\omega$ (eje $y$) vs. $T$ de bulbo seco (eje $x$) a $P=101.325\,\mathrm{kPa}$. Conocidas dos propiedades, las demás se leen directamente. Ver [[Carta Psicrometrica]] para la lectura detallada de cada familia.
->
-> | Curva | Condición | Dirección en la carta |
-> |:---|:---|:---|
-> | Humedad relativa $\phi=\text{cte}$ | $P_v/P_{\rm sat}(T)=\phi$ | Curvas divergentes hacia la derecha |
-> | Bulbo húmedo $T_{bh}=\text{cte}$ | Saturador adiabático | Diagonales, pendiente negativa |
-> | Entalpía $h=\text{cte}$ | $(1.005+1.86\omega)T+2501\omega=\text{cte}$ | Casi paralelas a $T_{bh}$ |
-> | Rocío $T_d=\text{cte}$ | $\omega=\text{cte}$ | Horizontales |
-> | Volumen $v=\text{cte}$ | $R_aT/(P-P_v)=\text{cte}$ | Pendiente positiva leve |
->
-> ![[diagrama_psicrometrico.svg|500]]
-> *Carta psicrométrica a $P=101.325\,\mathrm{kPa}$. La curva de saturación ($\phi=100\%$) es el límite superior. Para lectura completa con los 5 tipos de curva ver [[Carta Psicrometrica]].*
-
----
-
-## Ejemplo: condiciones de un cuarto climatizado
+## Ejemplo: propiedades del aire de un cuarto
 
 > [!ejemplo]
-> Aire entra a un salón a $T=28\,°\mathrm{C}$, $\phi=70\%$ y $P=101.325\,\mathrm{kPa}$. Determinar:
-> (a) Presión parcial del vapor $P_v$.
-> (b) Razón de humedad $\omega$.
-> (c) Temperatura de rocío $T_d$.
-> (d) Entalpía específica $h$ por kg de aire seco.
-> (e) Si la temperatura baja a $15\,°\mathrm{C}$ sin cambio de composición, ¿condensa agua?
+> Aire a $T=28\,°\mathrm{C}$, $\phi=70\%$, $P=101.325\,\mathrm{kPa}$. Determinar: (a) $P_v$, (b) $\omega$, (c) $T_d$, (d) $h$.
 
 > [!solucion]
-> **Datos.** De tablas (CATT3 o A-4): $P_{\rm sat}(28\,°\mathrm{C})=3.779\,\mathrm{kPa}$.
+> $P_{\rm sat}(28\,°\mathrm{C}) = 3.779\,\mathrm{kPa}$.
 >
-> **(a)** $P_v = \phi\cdot P_{\rm sat}(T) = 0.70\times3.779 = 2.645\,\mathrm{kPa}$.
+> **(a)** $P_v = \phi\cdot P_{\rm sat} = 0.70\times3.779 = 2.645\,\mathrm{kPa}$.
 >
-> **(b)** $\omega = 0.622\times P_v/(P-P_v) = 0.622\times2.645/(101.325-2.645) = 0.622\times2.645/98.68 = 0.01668\,\mathrm{kg/kg\,a.s.}$
+> **(b)** $\omega = 0.622\times2.645/(101.325-2.645) = 0.622\times2.645/98.68 = 0.01668\,\mathrm{kg/kg}$.
 >
-> **(c)** $T_d$: la temperatura a la que $P_{\rm sat}(T_d)=P_v=2.645\,\mathrm{kPa}$. De tablas: $P_{\rm sat}(22\,°\mathrm{C})=2.645\,\mathrm{kPa}$ (interpolando: exactamente $22.0\,°\mathrm{C}$). Luego $T_d\approx22.0\,°\mathrm{C}$.
+> **(c)** $T_d$: $P_{\rm sat}(T_d) = P_v = 2.645\,\mathrm{kPa}$. De tablas: $P_{\rm sat}(22\,°\mathrm{C}) = 2.645\,\mathrm{kPa}$ → $T_d = 22\,°\mathrm{C}$.
 >
-> **(d)** $h = (1.005+1.86\times0.01668)\times28 + 2501\times0.01668$.
-> $= (1.005+0.03102)\times28 + 41.71 = 1.0360\times28 + 41.71 = 29.01 + 41.71 = 70.72\,\mathrm{kJ/kg\,a.s.}$
+> **(d)** $h = (1.005+1.86\times0.01668)\times28 + 2501\times0.01668 = 1.036\times28 + 41.7 = 29.0 + 41.7 = 70.7\,\mathrm{kJ/kg\,a.s.}$
 >
-> **(e)** A $T=15\,°\mathrm{C}$: $P_{\rm sat}(15\,°\mathrm{C})=1.706\,\mathrm{kPa}$. Como $P_v=2.645\,\mathrm{kPa}>P_{\rm sat}(15\,°\mathrm{C})=1.706\,\mathrm{kPa}$, el aire estaría supersaturado: **sí condensa**. La cantidad de condensado por kg de aire seco es:
-> $$\Delta m_{\rm cond} = \omega - \omega'\quad\text{con}\quad\omega' = 0.622\times\frac{P_{\rm sat}(15)}{P-P_{\rm sat}(15)}=0.622\times\frac{1.706}{101.325-1.706}=0.622\times0.01712=0.01065\,\mathrm{kg/kg}.$$
-> $$\Delta m_{\rm cond}=0.01668-0.01065=0.00603\,\mathrm{kg\,agua/kg\,a.s.}\quad(6.03\,\mathrm{g/kg}). \qquad \blacksquare$$
+> El calor latente (41.7) representa el 59% de la entalpía total. Si se enfría a 15°C: $P_{\rm sat}(15°\mathrm{C}) = 1.706 < 2.645 = P_v$ → el aire condensa. El condensado por kg de aire seco: $\omega - \omega' = 0.01668 - 0.622\times1.706/(101.325-1.706) = 0.01668 - 0.01065 = 0.00603\,\mathrm{kg/kg}$.
+>
+> $\boxed{T_d = 22\,°\mathrm{C},\quad h = 70.7\,\mathrm{kJ/kg\,a.s.}}$ $\blacksquare$
+
+---
+
+## Mapa de notas
+
+> [!info]
+> - [[Carta Psicrometrica]] — estructura de la carta; los cinco tipos de curvas; lectura desde $(T,\phi)$ y desde $(T,T_{bh})$.
+> - [[Procesos Psicrometricos]] — calentamiento/enfriamiento sensible, deshumidificación, humidificación, mezcla de corrientes; sistema HVAC completo.
+> - [[Torres de Enfriamiento]] — balance de masa y energía en contacto directo aire–agua; agua de maquillaje; aproximación de torre.
 
 > [!referencia]
-> Çengel & Boles, *Termodinámica*, cap. 14; Moran & Shapiro §12.5; ASHRAE Fundamentals Handbook, cap. 1 (Psychrometrics).
+> Borgnakke & Sonntag, cap. 12; Çengel & Boles, cap. 14; Moran & Shapiro, §12.5; ASHRAE Fundamentals, cap. 1.

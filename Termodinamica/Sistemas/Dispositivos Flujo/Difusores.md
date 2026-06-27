@@ -1,10 +1,10 @@
 ---
-title: "Difusores"
+title: Difusores
+order: 4
 tags:
   - termodinamica
-  - dispositivos_flujo
+  - dispositivos-flujo
   - difusores
-  - conversion_energia
 draft: false
 aliases:
   - diffuser
@@ -14,168 +14,76 @@ aliases:
 # Difusores
 
 > [!definicion]
-> Dispositivo de [[Flujo Estacionario]] que desacelera un fluido de alta velocidad, convirtiendo energía cinética en aumento de presión (entalpía). Es el proceso inverso de una [[Toberas | tobera]].
+> Un **difusor** es un conducto de sección creciente, sin trabajo de eje ($\dot{W}=0$), que convierte **energía cinética en entalpía (presión)**: el fluido entra con alta velocidad, desacelera, y sale a mayor presión. Es el proceso inverso de una [[Toberas | tobera]].
+>
+> *¿Por qué aumenta la presión?* La ecuación de Bernoulli para flujo incompresible ($P + \frac{1}{2}\rho C^2 = \text{cte}$) lo ilustra: al caer $C^2$, sube $P$. En el caso compresible, el balance de entalpía de estancamiento reemplaza a Bernoulli, pero el mecanismo es el mismo: intercambio entre energía cinética y presión estática.
+>
+> *Aplicaciones:* entrada de aire en turbinas de gas (el difusor aerodinámico del fuselaje), difusores en compresores centrífugos (convierten la velocidad saliente del rotor en presión), intercambiadores de calor de carcasa (reducen velocidad para maximizar tiempo de residencia).
 
-## Hipótesis estándar para análisis
+![[difusor_esquema_vc.svg|440]]
+*Difusor simple. El fluido entra rápido en el estado 1 y sale lento en el estado 2. La sección crece en dirección del flujo. El gradiente adverso de presión ($dP/dx>0$) es la causa principal de irreversibilidades: la capa límite puede despegarse si el ángulo de apertura es demasiado grande (separación del flujo).*
 
-> [!info]
-> 1. [[Flujo Estacionario]] ($dm_{VC}/dt = 0$, $dE_{VC}/dt = 0$)
-> 2. Una entrada, una salida
-> 3. Adiabática ($\dot{Q} = 0$) — común, aunque puede haber pérdidas
-> 4. Sin trabajo de eje ($\dot{W} = 0$)
-> 5. Despreciable $\Delta EP$ ($z_1 \approx z_2$)
-> 6. Proceso internamente irreversible (real) → $S_{gen} > 0$
+---
 
-## Ecuaciones de gobierno
+## Balance de energía
 
 > [!teorema]
-> **Conservación de masa**: $\dot{m} = \rho_1 C_1 A_1 = \rho_2 C_2 A_2$
+> Para un difusor adiabático, estacionario, sin trabajo de eje, con una entrada y una salida:
+> $$h_1 + \frac{C_1^2}{2} = h_2 + \frac{C_2^2}{2}.$$
 >
-> **Primera ley (energía)**:
-> $$
-> h_1 + \frac{C_1^2}{2} = h_2 + \frac{C_2^2}{2}
-> $$
+> Como $C_2 < C_1$, se tiene $h_2 > h_1$: la entalpía (y con ella la temperatura y la presión) aumenta.
 >
-> Despejando aumento de entalpía:
-> $$
-> h_2 - h_1 = \frac{C_1^2 - C_2^2}{2}
-> $$
+> **Eficiencia del difusor** (relación entre la recuperación de presión isentrópica y la recuperación real):
+> $$\boxed{\eta_d = \frac{h_{2s} - h_1}{h_2 - h_1} = \frac{h_{2s} - h_1}{C_1^2/2 - C_2^2/2},}$$
+> donde $2s$ es el estado isentrópico que tendría la misma presión $P_2$ que el estado real.
+
+> [!demostracion]
+> **Hipótesis:** VC estacionario, $\dot{Q}=0$, $\dot{W}=0$, $\Delta EP=0$, una corriente.
 >
-> **Segunda ley (entropía)**:
-> $$
-> \dot{S}_{gen} = \dot{m}(s_2 - s_1) \geq 0 \quad \Rightarrow \quad s_2 \geq s_1
-> $$
+> **Paso 1 — Primera ley del VC.** Idéntica a la tobera:
+> $$h_1 + \frac{C_1^2}{2} = h_2 + \frac{C_2^2}{2}.$$
 >
-> **Balance de exergía**:
-> $$
-> \dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) \geq 0
-> $$
-
-## Aumento de presión ideal (isentrópico)
-
-> [!teorema]
-> Para un difusor **reversible y adiabático** ($s_2 = s_1$):
-> - La presión aumenta al máximo posible para una dada desaceleración
-> - Para gas ideal: $P_{2s} = P_1 \left( \frac{T_{2s}}{T_1} \right)^{\gamma/(\gamma-1)}$
-> - $T_{2s}$ se obtiene de $h_{2s} = h_1 + (C_1^2 - C_2^2)/2$
-
-## Eficiencia de difusor
-
-> [!definicion]
-> Relación entre el aumento de presión real y el ideal (isentrópico):
-> $$
-> \eta_d = \frac{P_2 - P_1}{P_{2s} - P_1}
-> $$
+> **Paso 2 — Signo del cambio de entalpía.** En el difusor $C_2 < C_1$, luego $C_2^2/2 < C_1^2/2$, por lo que $h_2 > h_1$. La conversión EC → $h$ es el proceso opuesto a la tobera.
 >
-> **Forma alternativa** (basada en velocidades, para gas ideal):
-> $$
-> \eta_d = \frac{h_{2s} - h_1}{h_2 - h_1} = \frac{T_{2s} - T_1}{T_2 - T_1}
-> $$
-
-> [!info]
-> **Rango típico**: $\eta_d \approx 0.80 - 0.92$ para difusores bien diseñados
-
-## Recuperación de presión
-
-> [!definicion]
-> Porcentaje de presión cinética recuperada como presión estática:
-> $$
-> R = \frac{P_2 - P_1}{P_{01} - P_1}
-> $$
-> donde $P_{01} = P_1 + \rho_1 C_1^2/2$ es la presión de estancamiento (para flujo incompresible)
-
-## Casos particulares
+> **Paso 3 — Estado isentrópico de referencia.** El estado $2s$ tiene la misma $P_2$ que el estado real pero fue alcanzado sin irreversibilidades: $s_{2s}=s_1$. En el diagrama $h$-$s$: el punto $2s$ está a la izquierda de $2$ (misma $P_2$, menor $s$), y $h_{2s} < h_2$ (la entalpía real de salida es mayor que la isentrópica porque las irreversibilidades depositan calor).
+>
+> **Paso 4 — ¿Por qué $h_{2s} < h_2$?** Las irreversibilidades (fricción, separación de capa límite) disipan EC en calor interno, elevando más la temperatura que en el caso reversible. Para la misma $P_2$, el estado real 2 tiene mayor $T$ (y $h$) que el isentrópico $2s$.
+>
+> **Paso 5 — Definición de $\eta_d$.** El difusor ideal comprime isentrópicamente desde $P_1$ hasta $P_2$ usando solo la energía cinética disponible. La eficiencia compara cuánta entalpía isentrópica se "ganó" sobre cuánta energía cinética se "gastó":
+> $$\eta_d = \frac{h_{2s}-h_1}{h_1+C_1^2/2-h_1-C_2^2/2} = \frac{h_{2s}-h_1}{(C_1^2-C_2^2)/2} \leq 1.$$ $\blacksquare$
 
 > [!proposicion]
-> **Gas ideal con $c_p$ constante**:
-> - Aumento de temperatura: $T_2 = T_1 + (C_1^2 - C_2^2)/(2c_p)$
-> - Isentrópico: $T_{2s} = T_1 + \eta_d (T_2 - T_1)$ ¿cuidado? mejor: $T_{2s} = T_2$ no, la eficiencia relaciona presiones
-> - Relación de presiones: $\frac{P_{2s}}{P_1} = \left(\frac{T_{2s}}{T_1}\right)^{\gamma/(\gamma-1)}$
+> Para gas ideal y $C_2 \approx 0$ (difusor completo que detiene el fluido):
+> $$h_{2s} - h_1 = c_p(T_{2s}-T_1), \qquad \frac{P_{2s}}{P_1} = \left(\frac{T_{2s}}{T_1}\right)^{\gamma/(\gamma-1)}, \qquad T_{2s} = T_1+\frac{\eta_d C_1^2}{2c_p}.$$
 
-> [!proposicion]
-> **Líquido incompresible** ($\rho$ constante):
-> - Ecuación de Bernoulli con pérdidas:
->   $$
->   P_2 = P_1 + \frac{\rho}{2}(C_1^2 - C_2^2) - \Delta P_{perd}
->   $$
-> - Eficiencia: $\eta_d = \frac{P_2 - P_1}{\frac{\rho}{2}(C_1^2 - C_2^2)}$
+---
 
-> [!proposicion]
-> **Flujo supersónico en entrada**:
-> - Se forma una onda de choque normal si el difusor no está diseñado para condiciones supersónicas
-> - La onda de choque causa pérdida de presión total significativa
+## Ejemplo: difusor de entrada de turborreactor
 
-## Limitaciones y consideraciones prácticas
+> [!ejemplo]
+> Un avión vuela a $Ma_\infty=0.80$ a $H=10\,\mathrm{km}$ de altitud. En esas condiciones: $T_\infty=223\,\mathrm{K}$, $P_\infty=26.5\,\mathrm{kPa}$, $a_\infty=\sqrt{\gamma RT_\infty}=299\,\mathrm{m/s}$. El difusor de entrada desacelera el aire hasta $C_2\approx0$ (cámara de combustión) con eficiencia $\eta_d=0.88$. Calcular: (a) temperatura y presión de estancamiento isentrópica ($T_{0s}$, $P_{0s}$); (b) temperatura de salida real $T_2$; (c) presión real de salida $P_2$. Datos: $c_p=1.005\,\mathrm{kJ/(kg\cdot K)}$, $\gamma=1.4$.
+
+> [!solucion]
+> **Paso 1 — Velocidad de vuelo.**
+> $$C_1 = Ma_\infty\times a_\infty = 0.80\times299 = 239.2\,\mathrm{m/s}.$$
+>
+> **Paso 2 — Temperatura de estancamiento isentrópica.**
+> $$T_{0s} = T_\infty + \frac{C_1^2}{2c_p} = 223 + \frac{239.2^2}{2\times1005} = 223 + 28.5 = 251.5\,\mathrm{K}.$$
+>
+> **Paso 3 — Presión de estancamiento isentrópica.**
+> $$P_{0s} = P_\infty\!\left(\frac{T_{0s}}{T_\infty}\right)^{\gamma/(\gamma-1)} = 26.5\times\!\left(\frac{251.5}{223}\right)^{3.5} = 26.5\times1.524 = 40.4\,\mathrm{kPa}.$$
+>
+> **Paso 4 — Temperatura real de salida.** La temperatura de parada real $T_2=T_{0s}=251.5\,\mathrm{K}$ (la energía se conserva; la temperatura de salida no depende de $\eta_d$ cuando $C_2=0$). La presión real sí depende de $\eta_d$.
+>
+> **Paso 5 — Presión real de salida.** $h_{2s}-h_1 = \eta_d\,c_p(T_2-T_1) = 0.88\times1.005\times28.5=25.2\,\mathrm{kJ/kg}$.
+> $T_{2s} = T_1 + (h_{2s}-h_1)/c_p = 223+25.1=248.1\,\mathrm{K}$.
+> $$P_2 = P_\infty\!\left(\frac{T_{2s}}{T_\infty}\right)^{3.5} = 26.5\times\!\left(\frac{248.1}{223}\right)^{3.5} = 26.5\times1.478 = 39.2\,\mathrm{kPa}.$$
+> Relación de recuperación de presión: $P_2/P_{0s}=39.2/40.4=0.970$. Se pierden 1.2 kPa respecto al difusor ideal.
+>
+> $\boxed{T_{0s}=251.5\,\mathrm{K},\quad P_{0s}=40.4\,\mathrm{kPa},\quad P_2=39.2\,\mathrm{kPa}.}$ $\blacksquare$
 
 > [!warning]
-> - **Desprendimiento de la capa límite**: Si el ángulo de divergencia es muy grande (>7-10°), el flujo se separa de la pared, reduciendo la recuperación de presión.
-> - **Ondas de choque**: En difusores supersónicos, se requiere geometría convergente-divergente (inverso de tobera de Laval).
-> - **Pérdidas por fricción**: Dominantes en difusores de baja velocidad.
-> - **Limitación de Mach**: Para $M_1 > 1.5-2.0$, la recuperación de presión es muy pobre debido a ondas de choque.
+> El ángulo de divergencia del difusor es crítico: si supera $\sim8°$–$12°$, la capa límite se desprende y la eficiencia cae abruptamente. Los difusores de alta eficiencia son largos y estrechos, o usan diseños con múltiples canales paralelos.
 
-> [!ejemplo]
-> **Difusor de entrada de motor a reacción** (calcular presión de salida y eficiencia)
->
-> Datos: $C_1 = 200 m/s$, $P_1 = 40 kPa$, $T_1 = 230 K$, $C_2 = 50 m/s$, $\eta_d = 0.85$, $c_p = 1.005 kJ/kg·K$, $\gamma = 1.4$, $R = 0.287 kJ/kg·K$
->
-> **1. Aumento de entalpía**:
-> $h_2 - h_1 = (C_1^2 - C_2^2)/2 = (200^2 - 50^2)/2 = (40000 - 2500)/2 = 37500/2 = 18750 J/kg = 18.75 kJ/kg$
->
-> **2. Temperatura real de salida**:
-> $T_2 = T_1 + (h_2 - h_1)/c_p = 230 + 18.75/1.005 = 230 + 18.66 = 248.66 K$
->
-> **3. Para calcular $P_2$, usar eficiencia**:
-> $\eta_d = (P_2 - P_1)/(P_{2s} - P_1)$ ⇒ necesito $P_{2s}$
->
-> **4. Estado isentrópico** (misma entalpía):
-> $h_{2s} = h_1 + (C_1^2 - C_2^2)/2 = h_2$, entonces $T_{2s} = T_2 = 248.66 K$ (para gas ideal, si $c_p$ constante, $T$ determina $h$)
-> ¿Conflicto? Si $h_{2s} = h_2$, entonces $T_{2s} = T_2$, pero el proceso isentrópico requiere $s_{2s}=s_1$, y $s_2 > s_1$ por irreversibilidades. Entonces $T_{2s}$ y $T_2$ no son iguales.
->
-> **Enfoque correcto**:
-> - Para isentrópico: $s_{2s} = s_1$ ⇒ $T_{2s} = T_1 (P_{2s}/P_1)^{(\gamma-1)/\gamma}$
-> - Pero $h_{2s} = h_1 + (C_1^2 - C_2^2)/2$ ⇒ $T_{2s} = T_1 + (C_1^2 - C_2^2)/(2c_p) = 230 + 18.66 = 248.66 K$
-> - Esto implica que $T_{2s}$ está fijado por la conservación de energía
-> - Entonces $s_{2s} = s_1$ no se cumple automáticamente; se requiere una $P_{2s}$ específica
->
-> **5. Calcular $P_{2s}$**:
-> Relación isentrópica: $P_{2s} = P_1 (T_{2s}/T_1)^{\gamma/(\gamma-1)} = 40 \times (248.66/230)^{3.5}$
-> $248.66/230 = 1.0811$
-> $1.0811^{3.5} = e^{3.5 \ln(1.0811)} = e^{3.5 \times 0.0780} = e^{0.273} = 1.314$
-> $P_{2s} = 40 \times 1.314 = 52.56 kPa$
->
-> **6. Calcular $P_2$ real**:
-> $\eta_d = (P_2 - P_1)/(P_{2s} - P_1)$
-> $0.85 = (P_2 - 40)/(52.56 - 40) = (P_2 - 40)/12.56$
-> $P_2 - 40 = 0.85 \times 12.56 = 10.68$
-> $P_2 = 50.68 kPa$
->
-> **7. Verificar aumento de entropía**:
-> $\Delta s = c_p \ln(T_2/T_1) - R \ln(P_2/P_1) = 1.005 \ln(248.66/230) - 0.287 \ln(50.68/40)$
-> $\Delta s = 1.005 \times 0.0780 - 0.287 \times 0.237 = 0.0784 - 0.0680 = 0.0104 kJ/kg·K$
-> $S_{gen} = \dot{m} \Delta s > 0$ (irreversible)
-
-> [!ejemplo]
-> **Difusor incompresible** (flujo de agua)
->
-> Datos: $C_1 = 15 m/s$, $P_1 = 150 kPa$, $C_2 = 3 m/s$, $\rho = 1000 kg/m^3$, $\eta_d = 0.88$
->
-> **1. Presión ideal (sin pérdidas)**:
-> $P_{2s} = P_1 + \frac{\rho}{2}(C_1^2 - C_2^2) = 150000 + 500 \times (225 - 9) = 150000 + 500 \times 216 = 150000 + 108000 = 258000 Pa = 258 kPa$
->
-> **2. Presión real**:
-> $\eta_d = (P_2 - P_1)/(P_{2s} - P_1)$
-> $0.88 = (P_2 - 150)/(258 - 150) = (P_2 - 150)/108$
-> $P_2 - 150 = 0.88 \times 108 = 95.04$
-> $P_2 = 245.04 kPa$
->
-> **3. Pérdida de presión**:
-> $\Delta P_{perd} = (P_{2s} - P_2) = 258 - 245.04 = 12.96 kPa$
-
-## Relaciones con otras notas
-
-> [!info]
-> - [[Toberas]] (proceso inverso: acelera flujo, disminuye presión)
-> - [[Compresores]] (aumenta presión con trabajo de eje)
-> - [[Flujo Estacionario]] (aplicación directa)
-> - [[Gas Ideal]] (ecuaciones específicas para aire y gases)
-
+> [!referencia]
+> Borgnakke & Sonntag, §6.5; Çengel & Boles, §9-3; Moran & Shapiro, §9.6.

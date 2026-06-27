@@ -1,90 +1,107 @@
 ---
-title: "Flash (Vaporización instantánea)"
+title: Flash (Vaporización Instantánea)
+order: 7
 tags:
   - termodinamica
-  - dispositivos_flujo
+  - dispositivos-flujo
   - separacion
-  - equilibrio_fases
+  - equilibrio-fases
+  - flash-drum
 draft: false
 aliases:
   - flash drum
   - vaporizacion instantanea
-  - equilibrio
+  - tambor de flash
 ---
 
-# Flash (Vaporización instantánea) $\Delta P \rightarrow \text{Separacion}$
+# Flash (Vaporización Instantánea)
 
 > [!definicion]
-> Un proceso de **Flash** es una técnica de separación de una sola etapa donde una corriente líquida a alta presión y temperatura se expande bruscamente (a través de una válvula o tobera) hacia una cámara a menor presión. La drástica caída de presión provoca que una fracción del líquido se **vaporice instantáneamente** o "flashee". En la cámara, llamada **Tambor de Flash**, las dos fases se separan por gravedad: el vapor más ligero sale por la parte superior y el líquido más pesado, por la inferior.
+> Un proceso de **flash** es una separación de una sola etapa en la que una corriente líquida a alta presión se expande bruscamente (mediante una [[Valvulas | válvula de estrangulamiento]]) a una cámara a menor presión. La caída de presión hace que una fracción del líquido se **vaporice instantáneamente**; las dos fases resultantes se separan por gravedad en el **tambor de flash**.
+>
+> *¿Por qué se vaporiza?* La expansión isoentálpica reduce $P$ por debajo de la presión de burbuja del líquido. Para alcanzar el nuevo equilibrio a $P_{\rm tambor}$, parte del líquido debe evaporarse — la energía para el cambio de fase sale del propio líquido, que se enfría. El resultado es una mezcla bifásica en equilibrio a $T_{\rm tambor}$, $P_{\rm tambor}$.
+>
+> *Ventaja:* es el separador más sencillo y barato posible. No requiere calefacción externa ni trabajo de eje. Su limitación es que la separación es solo parcial (una sola etapa equilibrada); para separaciones más completas se usan columnas de destilación (muchas etapas en serie).
+>
+> *Aplicaciones:* destilación de crudo (la columna atmosférica es un flash multicomponente de muchas etapas), desalinización MSF, separadores de gas-líquido en campos petroleros, ciclos de refrigeración de dos etapas (flash economizer).
 
-## Hipótesis estándar para análisis
+![[flash_drum_esquema.svg|440]]
+*Tambor de flash. La alimentación $F$ entra a través de una válvula de expansión. En el tambor las fases se separan: vapor $V$ sale por arriba, líquido $L$ por abajo. Un eliminador de niebla retiene las gotas arrastradas por el vapor.*
 
-> [!info]
-> 1.  **Una entrada, dos salidas:** Una corriente de alimentación ($F$), una corriente de vapor saliente ($V$) y una corriente de líquido saliente ($L$).
-> 2.  **Equilibrio Termodinámico:** Las fases de vapor y líquido que abandonan el tambor están en equilibrio entre sí a la **temperatura** ($T_{tambor}$) y **presión** ($P_{tambor}$) del tambor. Es una suposición clave para el diseño.
-> 3.  **Adiabático:** El proceso a través de la válvula y en el tambor se considera sin intercambio de calor con el exterior ($Q=0$).
-> 4.  **Sin Trabajo de Eje:** No hay dispositivos que realicen o extraigan trabajo ($W=0$).
-> 5.  **Sistema en Estado Estacionario:** Las propiedades dentro del tambor y en las corrientes de salida no cambian con el tiempo.
+---
 
-## Ecuaciones de gobierno (Modelo Flash)
+## Modelo termodinámico del flash
 
 > [!teorema]
-> El modelo de un flash se rige por tres ecuaciones fundamentales que deben cumplirse simultáneamente.
+> Para un tambor de flash estacionario, adiabático, sin trabajo de eje:
 >
-> **1. Balance de Materia Global y por Componente**
+> **Balance de masa global:**
+> $$F = V + L.$$
 >
-> *   **Global:** La masa que entra es igual a la que sale.
->     $$F = L + V$$
+> **Balance de masa por componente** (fracción molar $z_i$ en alimentación, $y_i$ en vapor, $x_i$ en líquido):
+> $$F z_i = V y_i + L x_i \quad \forall\,i.$$
 >
-> *   **Por Componente ($i$):** La masa de un componente en la alimentación se divide entre la fase líquida y la fase vapor.
->     $$F z_i = L x_i + V y_i$$
+> **Balance de energía** (proceso total: válvula + tambor):
+> $$\boxed{F h_F = V H_V + L h_L,}$$
+> donde $h_F = h_F(T_F, P_F)$ antes de la válvula; $H_V$ y $h_L$ en equilibrio a $(T_{\rm tambor}, P_{\rm tambor})$.
 >
-> *Donde $z_i$, $x_i$, $y_i$ son las fracciones molares del componente $i$ en la alimentación, el líquido y el vapor, respectivamente.*
->
-> **2. Relaciones de Equilibrio de Fases**
->
-> Para cada componente en el equilibrio, su fugacidad en la fase líquida y vapor es igual. Una forma común es usando la **ley de Raoult** modificada o coeficientes de distribución ($K_i$):
-> $$
-> y_i = K_i(T, P, x, y) \cdot x_i
-> $$
-> Donde $K_i$ no es una constante, sino que depende fuertemente de la temperatura, la presión y la composición de la mezcla. Para mezclas ideales a baja presión, $K_i \approx P_i^{sat}(T)/P$.
->
-> **3. Balance de Energía**
->
-> Para un flash **adiabático**, la entalpía de la alimentación se reparte entre las corrientes de salida.
-> $$
-> F \cdot h_F = V \cdot H_V + L \cdot h_L
-> $$
-> *Donde $h_F$, $H_V$ y $h_L$ son las entalpías específicas de la alimentación, el vapor de salida y el líquido de salida, respectivamente.*
+> **Equilibrio de fases:** a cada componente $i$, en la fase vapor y líquida se cumple la igualdad de fugacidades; en la aproximación de ley de Raoult modificada:
+> $$y_i = K_i(T_{\rm tambor}, P_{\rm tambor})\,x_i, \qquad K_i \approx \frac{P_i^{\rm sat}(T_{\rm tambor})}{P_{\rm tambor}}.$$
 
-## El Flash como un Dispositivo
+> [!demostracion]
+> **Hipótesis:** VC estacionario (válvula + tambor como un VC único), $\dot{Q}=0$, $\dot{W}=0$, $\Delta EC=\Delta EP=0$, equilibrio entre fases en el tambor.
+>
+> **Paso 1 — Vc válvula.** La válvula es isoentálpica: $h_F(P_F, T_F) = h_{F'}(P_{\rm tambor}, T_{\rm tambor,\ entrada})$. El estado $F'$ es la mezcla bifásica justo al entrar al tambor.
+>
+> **Paso 2 — VC tambor.** En el tambor (sin Q, sin W, estado estacionario), primera ley:
+> $$F h_{F'} = V H_V + L h_L.$$
+> Como $h_{F'} = h_F$ (por el paso 1), se puede combinar: $F h_F = V H_V + L h_L$.
+>
+> **Paso 3 — Balance de masa por componente.** Para cada especie $i$:
+> $$F z_i = V y_i + L x_i.$$
+> Sustituyendo $L=F-V$ y usando $y_i = K_i x_i$:
+> $$F z_i = V K_i x_i + (F-V) x_i = x_i[F + V(K_i-1)].$$
+> $$x_i = \frac{z_i}{1 + (V/F)(K_i-1)}, \qquad y_i = \frac{K_i z_i}{1 + (V/F)(K_i-1)}.$$
+>
+> **Paso 4 — Ecuación de Rachford-Rice.** La normalización $\sum_i y_i = \sum_i x_i$ conduce a la ecuación implícita en $\Psi = V/F$:
+> $$\sum_i \frac{z_i(K_i-1)}{1+\Psi(K_i-1)} = 0.$$
+> Esta ecuación se resuelve iterativamente para obtener $\Psi$ dado $\{z_i, K_i\}$.
+>
+> **Paso 5 — Consistencia termodinámica.** La segunda ley exige $\dot{S}_{\rm gen} = V s_V + L s_L - F s_F \geq 0$. Como la válvula es irreversible y la separación en el tambor es aproximadamente reversible (equilibrio), $\dot{S}_{\rm gen}$ es dominado por la válvula. $\blacksquare$
+
+---
+
+## Ejemplo: flash de mezcla propano-butano
 
 > [!ejemplo]
-> **Operación de un Tambor de Flash y su uso en el mundo real**
+> Una alimentación equimolar de propano (C₃H₈, $P_1^{\rm sat}(60\,°\mathrm{C})=10.0\,\mathrm{bar}$) y n-butano (C₄H₁₀, $P_2^{\rm sat}(60\,°\mathrm{C})=2.6\,\mathrm{bar}$) con caudal total $F=100\,\mathrm{kmol/h}$ se flashea a $P_{\rm tambor}=5.0\,\mathrm{bar}$, $T_{\rm tambor}=60\,°\mathrm{C}$. Calcular las corrientes de vapor $V$ y líquido $L$, y sus composiciones. Usar ley de Raoult: $K_i = P_i^{\rm sat}/P$.
+
+> [!solucion]
+> **Paso 1 — Calcular $K_i$ a $(60\,°\mathrm{C},\,5\,\mathrm{bar})$.**
+> $$K_{\rm C_3} = 10.0/5.0 = 2.00, \qquad K_{\rm C_4} = 2.6/5.0 = 0.52.$$
+> Verificación: $K_1>1$ (propano más volátil que la mezcla), $K_2<1$ (butano menos volátil) ✓.
 >
-> 1.  **Alimentación:** Una corriente líquida caliente y a alta presión entra al sistema.
-> 2.  **Válvula de Expansión:** Pasa por una **válvula de estrangulamiento** (como las que ya estudiamos), donde ocurre la caída de presión ($P_2 \ll P_1$). Este proceso es isentálpico ($h = \text{cte.}$).
-> 3.  **Formación de Vapor:** La presión cae por debajo de la presión de burbuja del líquido. Para mantener el equilibrio, el líquido debe "hervir" o vaporizarse. La energía para este cambio de fase (el calor latente de vaporización) la extrae del propio líquido, causando un **descenso de temperatura** (efecto auto-refrigerante).
-> 4.  **Separación en el Tambor:** La mezcla de dos fases entra a un gran recipiente cilíndrico llamado **Tambor de Flash**. La baja velocidad (debido al gran diámetro) permite que las gotas de líquido más pesadas caigan al fondo por gravedad, mientras que el vapor más ligero asciende. Un **eliminador de niebla** en la salida del vapor ayuda a retener cualquier gota remanente.
-> 5.  **Salidas:** Se obtienen dos productos: un **vapor** enriquecido con los componentes más volátiles y un **líquido** residual enriquecido con los componentes menos volátiles.
+> **Paso 2 — Ecuación de Rachford-Rice.** Con $z_1=z_2=0.50$:
+> $$f(\Psi) = \frac{0.50\times(2.00-1)}{1+\Psi\times1.00} + \frac{0.50\times(0.52-1)}{1+\Psi\times(-0.48)} = \frac{0.50}{1+\Psi} - \frac{0.24}{1-0.48\Psi} = 0.$$
+>
+> **Paso 3 — Resolver para $\Psi$.** Igualando numeradores tras llevar a denominador común:
+> $$0.50(1-0.48\Psi) - 0.24(1+\Psi) = 0 \implies 0.50 - 0.24\Psi - 0.24 - 0.24\Psi = 0.$$
+> $$0.26 = 0.48\Psi \implies \Psi = V/F = 0.541.$$
+> $$V = 54.1\,\mathrm{kmol/h}, \quad L = 45.9\,\mathrm{kmol/h}.$$
+>
+> **Paso 4 — Composiciones.**
+> $$x_1 = \frac{z_1}{1+\Psi(K_1-1)} = \frac{0.50}{1+0.541\times1.00} = \frac{0.50}{1.541} = 0.325.$$
+> $$x_2 = 1-x_1 = 0.675. \qquad y_1 = K_1 x_1 = 2.00\times0.325 = 0.650. \qquad y_2 = 0.350.$$
+>
+> **Paso 5 — Verificación de balances.** $V y_1+L x_1 = 54.1\times0.650+45.9\times0.325=35.2+14.9=50.1\approx50$ ✓. $V y_2+L x_2=54.1\times0.350+45.9\times0.675=18.9+31.0=49.9\approx50$ ✓.
+>
+> $\boxed{V=54.1\,\mathrm{kmol/h}\;(y_{\rm C_3}=0.650),\quad L=45.9\,\mathrm{kmol/h}\;(x_{\rm C_3}=0.325).}$ $\blacksquare$
 
-> [!info]
-> **Aplicaciones Comunes**
-> *   **Refino de Petróleo y Gas Natural:** Es la etapa básica en la **destilación de crudo**. Un horno calienta el crudo y su presión se reduce drásticamente en una **Torre de Destilación Atmosférica**, que opera como un tambor de flash gigante y multicomponente, separando el crudo en fracciones como gas, nafta, queroseno, etc..
-> *   **Plantas de Energía (Ciclo Rankine):** A la salida de la turbina de vapor, el vapor de escape se condensa parcialmente. El **condensador** actúa como un tambor de flash, separando el agua líquida del vapor remanente.
-> *   **Desalinización de Agua (MSF):** En las plantas de destilación flash multi-etapa, el agua de mar caliente pasa por varias etapas a presión cada vez más baja, "flasheando" o evaporándose instantáneamente y separándose del agua salada concentrada.
-> *   **Plantas Químicas y Petroquímicas:** Se usa como un separador preliminar (simple y económico) antes de enviar una corriente a una columna de destilación más compleja.
-> *   **Sistemas de Refrigeración:** Tras la válvula de expansión, el refrigerante líquido se evapora parcialmente en un **separador de líquido** que actúa como un pequeño tambor de flash antes de entrar al evaporador.
-
-## Relaciones con otras notas
-
-> [!info]
-> -   [[Valvulas]] (El dispositivo que provoca el "flasheo").
-> -   [[Intercambiadores de Calor]] (Se usan para precalentar la alimentación antes del flash).
-> -   [[Ciclos de Refrigeracion]] (El proceso de expansión en la válvula es un flash).
-> -   [[Mezclas de Gases]] (Fundamental para entender el equilibrio de fases multicomponente).
-> -   [[Equilibrio de Fases]] (Tema central para el cálculo de las composiciones de salida).
+> [!teoria]
+> El flash adiabático que incluye el balance de energía simultáneamente (para determinar $T_{\rm tambor}$, no solo la composición) se llama **flash adiabático completo**. Requiere resolver el sistema $\{f(\Psi,T)=0, \, \text{balance de} \, h\}$ de forma acoplada e iterativa: se propone $T$, se calculan $K_i(T)$, se resuelve Rachford-Rice, se verifican las entalpías, y se ajusta $T$ hasta que el balance de energía converge.
 
 > [!warning]
-> En un examen, el "problema del flash" es clásico. Normalmente se te dan las propiedades de la alimentación y la $P$ (y a veces la $T$) del tambor. Hay que resolver las tres ecuaciones (masa, equilibrio, energía) de forma iterativa, porque $K_i$ y las entalpías dependen de las composiciones y la temperatura. Es un problema de prueba y error.
+> El flash tiene sentido solo si $\sum_i z_i/K_i < 1 < \sum_i z_i K_i$ (condición de punto de burbuja / punto de rocío encuadrando la $P$ del tambor). Si $\sum_i K_i z_i < 1$ toda la alimentación es líquida (no hay flash); si $\sum_i z_i/K_i < 1$ y se cumple la condición inversa, todo es vapor.
 
+> [!referencia]
+> Borgnakke & Sonntag, §12.4; Çengel & Boles, §Apéndice Mezclas; Moran & Shapiro, §12.3. Para la ecuación de Rachford-Rice: Smith, Van Ness & Abbott, *Introduction to Chemical Engineering Thermodynamics*, §13.

@@ -1,5 +1,6 @@
 ---
 title: Proceso Isocórico
+order: 2
 tags:
   - termodinamica
   - teoria
@@ -192,5 +193,5 @@ El área bajo la isócora en el plano $T$–$s$, $\int T\,ds$, representa el cal
 | Curva en $T$–$s$ | $T=T_1\,e^{\Delta s/c_v}$ |
 | Pendiente en $T$–$s$ | $(\partial T/\partial s)_v=T/c_v$ |
 
-> [!regla]
+> [!warning]
 > Antes de escribir $q_v=\Delta u$, verifique que el **único** modo de trabajo es el de frontera (que aquí es nulo). Si hay resistencias eléctricas, agitadores u otros, use el balance completo $\Delta u=q-w$ con $w$ acumulando todos los modos, y recuerde que el trabajo que **entra** lleva signo negativo en el convenio $w>0$ por el sistema.

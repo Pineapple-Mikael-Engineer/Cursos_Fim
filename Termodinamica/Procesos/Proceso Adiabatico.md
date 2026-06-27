@@ -1,5 +1,6 @@
 ---
 title: Proceso Adiabático
+order: 5
 tags:
   - termodinamica
   - teoria
@@ -113,7 +114,7 @@ aliases:
 > $$
 > Las tres expresiones son equivalentes; se usa la más cómoda según las variables dato. $\blacksquare$
 
-> [!regla]
+> [!info]
 > En la práctica, la forma más usada para relacionar estados es
 > $$
 > \frac{T_2}{T_1} = \left(\frac{P_2}{P_1}\right)^{(\gamma-1)/\gamma} = \left(\frac{v_1}{v_2}\right)^{\gamma-1}.

@@ -1,5 +1,6 @@
 ---
 title: Procesos Reversibles e Irreversibles
+order: 1
 tags:
   - termodinamica
   - teoria
@@ -92,7 +93,7 @@ Solo cuando el proceso es internamente reversible se cumple $P_{ext}=P$ en todo 
 > $$ S_2-S_1=\int_{1}^{2}\frac{\delta Q}{T}+S_{gen},\qquad S_{gen}\ge 0.$$
 > Del Paso 3, $S_{gen}=(S_2-S_1)-\int\delta Q/T\ge 0$, y vale $0$ exactamente cuando el ciclo (y por tanto el tramo real) es reversible. $\blacksquare$
 
-> [!regla]
+> [!info]
 > **Cómo se lee el balance.** El término $\int\delta Q/T$ es **transporte** de entropía por calor (puede ser positivo o negativo). $S_{gen}\ge 0$ es **producción interna**, nunca destrucción. Para un sistema **adiabático** ($\delta Q=0$) queda $\Delta S=S_{gen}\ge 0$: la entropía de un sistema aislado nunca disminuye.
 
 ---

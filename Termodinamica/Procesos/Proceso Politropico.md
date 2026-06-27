@@ -1,5 +1,6 @@
 ---
 title: Proceso Politrópico
+order: 6
 tags:
   - termodinamica
   - teoria
