@@ -16,7 +16,7 @@ aliases:
 # Derivadas isentrópicas y velocidad del sonido
 
 > [!definicion]
-> Las **derivadas isentrópicas** son derivadas parciales tomadas a entropía constante ($s = \text{cte}$). Su cálculo con el [[index | método de Jacobianos]] da expresiones exactas en función de $c_p$, $c_v$, $\alpha$, $\kappa_T$ para cualquier sustancia. La más importante es la **compresibilidad isentrópica**:
+> Las **derivadas isentrópicas** son derivadas parciales tomadas a entropía constante ($s = \text{cte}$). Su cálculo con el [[Jacobianos/index | método de Jacobianos]] da expresiones exactas en función de $c_p$, $c_v$, $\alpha$, $\kappa_T$ para cualquier sustancia. La más importante es la **compresibilidad isentrópica**:
 > $$\kappa_s \equiv -\frac{1}{v}\!\left(\frac{\partial v}{\partial P}\right)_s = \frac{\kappa_T}{\gamma} = \frac{c_v}{c_p}\,\kappa_T,$$
 > que entra directamente en la velocidad de propagación del sonido: $c_{\rm son}^2 = v/\kappa_s$.
 
@@ -124,9 +124,9 @@ aliases:
 ## Relación con otras notas
 
 > [!info]
-> - Los cinco coeficientes se derivan con el [[index | método de Jacobianos]] (ver [[Aplicaciones Termodinamicas]] para el cálculo detallado).
+> - Los cinco coeficientes se derivan con el [[Jacobianos/index | método de Jacobianos]] (ver [[Aplicaciones Termodinamicas]] para el cálculo detallado).
 > - $\kappa_s$ entra en la relación $\gamma = \kappa_T/\kappa_s$ de la nota [[Razon de Calores | Razón $\gamma$]].
-> - La velocidad del sonido conecta con la mecánica de fluidos (ver el módulo de [[Mecanica de Fluidos/index | Mecánica de Fluidos]]).
+> - La velocidad del sonido conecta con la mecánica de fluidos (ver el módulo de Mecánica de Fluidos).
 > - Las relaciones $Tv^{\gamma-1} = \text{cte}$ y $Pv^\gamma = \text{cte}$ son base de los ciclos Brayton y Otto.
 
 > [!referencia]

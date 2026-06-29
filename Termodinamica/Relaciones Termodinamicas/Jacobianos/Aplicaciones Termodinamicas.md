@@ -15,7 +15,7 @@ aliases:
 # Aplicaciones termodinámicas de los jacobianos
 
 > [!definicion]
-> Este nodo aplica el [[index | método de Jacobianos]] para derivar sistemáticamente las relaciones que más se utilizan en análisis de sustancias reales: cambios de $u$, $h$, $s$ a lo largo de procesos generales; coeficientes isentrópicos; y la presión interna. En todos los casos la mecánica es la misma: calcular dos determinantes $2\times2$ de la tabla de Bridgman y dividirlos.
+> Este nodo aplica el [[Jacobianos/index | método de Jacobianos]] para derivar sistemáticamente las relaciones que más se utilizan en análisis de sustancias reales: cambios de $u$, $h$, $s$ a lo largo de procesos generales; coeficientes isentrópicos; y la presión interna. En todos los casos la mecánica es la misma: calcular dos determinantes $2\times2$ de la tabla de Bridgman y dividirlos.
 
 ---
 
@@ -24,7 +24,7 @@ aliases:
 > [!teoria] Receta en tres pasos
 > Para calcular $(\partial x/\partial y)_z$:
 >
-> **Paso 1 — Escribir** los jacobianos elementales de $x$, $y$, $z$ desde la tabla de [[index | Bridgman]]:
+> **Paso 1 — Escribir** los jacobianos elementales de $x$, $y$, $z$ desde la tabla de [[Jacobianos/index | Bridgman]]:
 > $$J(x,P) = \left(\frac{\partial x}{\partial T}\right)_P, \qquad J(x,T) = -\left(\frac{\partial x}{\partial P}\right)_T$$
 > (y análogos para $y$, $z$).
 >
@@ -141,7 +141,7 @@ aliases:
 ## Relación con otras notas
 
 > [!info]
-> - El procedimiento usa la tabla de [[index | Bridgman]] con los coeficientes $\alpha$, $\kappa_T$, $c_p$.
+> - El procedimiento usa la tabla de [[Jacobianos/index | Bridgman]] con los coeficientes $\alpha$, $\kappa_T$, $c_p$.
 > - Los resultados de $(\partial u/\partial v)_T$ y $(\partial h/\partial P)_T$ se discuten en [[Presion Interna | presión interna]] y [[Efecto Joule Thomson | Joule-Thomson]].
 > - Los coeficientes isentrópicos se completan en [[Derivadas Isentropicas]].
 

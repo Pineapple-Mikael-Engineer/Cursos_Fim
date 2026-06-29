@@ -15,7 +15,7 @@ aliases:
 # Aplicaciones de la regla cíclica
 
 > [!definicion]
-> La **regla cíclica** $(\partial x/\partial y)_z\,(\partial y/\partial z)_x\,(\partial z/\partial x)_y = -1$ es la herramienta que convierte cualquier derivada parcial termodinámica en función de los coeficientes medibles $\alpha$, $\kappa_T$, $c_p$. Su aplicación más usada produce $(\partial P/\partial T)_v = \alpha/\kappa_T$, que a su vez alimenta las [[Maxwell | relaciones de Maxwell]], las [[TdS | ecuaciones $T\,ds$]] y la [[Presion Interna | presión interna]]. La demostración de la regla está en [[index | Identidades]].
+> La **regla cíclica** $(\partial x/\partial y)_z\,(\partial y/\partial z)_x\,(\partial z/\partial x)_y = -1$ es la herramienta que convierte cualquier derivada parcial termodinámica en función de los coeficientes medibles $\alpha$, $\kappa_T$, $c_p$. Su aplicación más usada produce $(\partial P/\partial T)_v = \alpha/\kappa_T$, que a su vez alimenta las [[Maxwell | relaciones de Maxwell]], las [[TdS | ecuaciones $T\,ds$]] y la [[Presion Interna | presión interna]]. La demostración de la regla está en [[Identidades/index | Identidades]].
 
 ---
 
@@ -63,7 +63,7 @@ aliases:
 ## Relación con otras notas
 
 > [!info]
-> - La regla cíclica y la recíproca están demostradas en [[index | Identidades]].
+> - La regla cíclica y la recíproca están demostradas en [[Identidades/index | Identidades]].
 > - $(\partial P/\partial T)_v = \alpha/\kappa_T$ alimenta las [[Maxwell | relaciones de Maxwell]] y las [[TdS | ecuaciones $T\,ds$]].
 > - La [[Presion Interna | presión interna]] $\pi_T = T\alpha/\kappa_T - P$ y su energía configuracional se desarrollan en su nota propia.
 > - El [[Jacobianos/index | método de Jacobianos]] sistematiza el cálculo de todas estas derivadas.

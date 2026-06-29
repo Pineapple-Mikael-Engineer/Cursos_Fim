@@ -64,9 +64,9 @@ A presiones moderadas, ambos efectos se compensan. A alta presión ($P \gg P_c$)
 
 > [!teoria]
 > La EOS provee las derivadas parciales $(\partial P/\partial T)_v$ y $(\partial v/\partial T)_P$ que aparecen en:
-> - Las **relaciones de Maxwell** (ver [[../../Relaciones Termodinamicas/Maxwell | Maxwell]]): para calcular variaciones de entropía desde $P$, $T$, $v$.
+> - Las **relaciones de Maxwell** (ver [[Maxwell | Maxwell]]): para calcular variaciones de entropía desde $P$, $T$, $v$.
 > - Las **ecuaciones $TdS$**: para integrar $du$, $dh$, $ds$ en sustancias sin tablas.
-> - La diferencia $c_p - c_v = -T[(\partial P/\partial T)_v]^2/(\partial P/\partial v)_T$ (ver [[../../Relaciones Termodinamicas/Cp Cv/index | $c_p - c_v$]]).
+> - La diferencia $c_p - c_v = -T[(\partial P/\partial T)_v]^2/(\partial P/\partial v)_T$ (ver [[Cp Cv/index | $c_p - c_v$]]).
 >
 > Por eso, conocida la EOS y los calores específicos $c_v(T)$ o $c_p(T)$ a baja presión, quedan determinados todos los cambios de propiedades termodinámicas a cualquier estado.
 

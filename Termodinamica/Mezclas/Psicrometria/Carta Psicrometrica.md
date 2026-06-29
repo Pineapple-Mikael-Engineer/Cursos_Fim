@@ -53,7 +53,7 @@ aliases:
 > $$\left.\frac{d\omega}{dT}\right|_{T_{bh}} \approx -\frac{c_{pa}}{h_{fg}(T_{bh})} \approx -\frac{1.005}{2450} \approx -4.1\times10^{-4}\,\mathrm{(kg/kg)/K}.$$
 
 > [!demostracion]
-> **Hipótesis:** aproximación lineal del balance del saturador (ver [[index | Psicrometría]]).
+> **Hipótesis:** aproximación lineal del balance del saturador (ver [[Psicrometria/index | Psicrometría]]).
 >
 > **Paso 1 — Ecuación de la línea.** Del balance del saturador adiabático:
 > $$\omega = \omega_{bh} - \frac{c_{pa}}{h_{fg}(T_{bh})}(T - T_{bh}).$$

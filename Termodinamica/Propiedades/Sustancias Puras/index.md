@@ -18,13 +18,13 @@ aliases:
 > Una **sustancia pura** es aquella cuya composición química es homogénea e invariante. Puede coexistir en múltiples fases siempre que cada fase tenga la misma composición. El agua ($\mathrm{H_2O}$), el refrigerante R-134a y el nitrógeno son sustancias puras. El aire húmedo no lo es: al condensar agua cambia la composición de la fase gaseosa.
 
 > [!info]
-> **Ubicación.** Curso MN121 · sección Propiedades / Sustancias Puras. Esta sección fundamenta el uso de las tablas termodinámicas (CATT3) y los ciclos de vapor ([[../../../Conversion de Energia/Ciclos Potencia/index | Ciclos de Potencia]]). Se apoya en [[Variables de Estado/index | Variables de Estado]] y alimenta directamente los balances de [[../../../Conservacion/Volumenes de Control/Balance de Energia VC | energía en volúmenes de control]].
+> **Ubicación.** Curso MN121 · sección Propiedades / Sustancias Puras. Esta sección fundamenta el uso de las tablas termodinámicas (CATT3) y los ciclos de vapor ([[Ciclos de Potencia/index | Ciclos de Potencia]]). Se apoya en [[Variables de Estado/index | Variables de Estado]] y alimenta directamente los balances de [[Balance de Energia VC | energía en volúmenes de control]].
 
 ---
 
 ## Principio de estado y la superficie $P$–$v$–$T$
 
-Para una sustancia pura **simple** (un solo modo relevante de trabajo reversible: $\delta w = -P\,dv$), el **principio de estado** establece que dos propiedades intensivas independientes fijan el estado de equilibrio. La información completa de equilibrio reside en la superficie termodinámica $P$–$v$–$T$.
+Para una sustancia pura **simple** (un solo modo relevante de trabajo reversible: $\delta w = +P\,dv$), el **principio de estado** establece que dos propiedades intensivas independientes fijan el estado de equilibrio. La información completa de equilibrio reside en la superficie termodinámica $P$–$v$–$T$.
 
 Las fases se separan por **líneas de coexistencia** en el plano $P$–$T$. En cada punto de esas líneas dos fases coexisten; la relación entre presión y temperatura a lo largo de cada curva está gobernada por la [[Diagramas de Fase | ecuación de Clausius-Clapeyron]]:
 

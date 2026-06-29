@@ -94,7 +94,7 @@ aliases:
 ## Relación con otras notas
 
 > [!info]
-> - La relación $\gamma = \kappa_T/\kappa_s$ se demuestra con las [[TdS | ecuaciones $T\,ds$]] y la relación [[index | $c_p - c_v$]].
+> - La relación $\gamma = \kappa_T/\kappa_s$ se demuestra con las [[TdS | ecuaciones $T\,ds$]] y la relación [[Cp Cv/index | $c_p - c_v$]].
 > - El [[Efecto Joule Thomson]] depende de $\alpha$ y $c_p$ pero no de $\gamma$ directamente.
 > - Las relaciones isentrópicas del gas ideal son la base de los ciclos de la nota [[Sistemas/Dispositivos Flujo/Turbinas | Turbinas]] y del ciclo Brayton.
 

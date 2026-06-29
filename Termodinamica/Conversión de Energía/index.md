@@ -49,10 +49,10 @@ $$
 |:---|:---:|:---|:---|
 | [[Rankine/index \| Rankine]] | Vapor de agua | Vapor → turbina → condensador → bomba → caldera | Plantas eléctricas |
 | [[Brayton/index \| Brayton]] | Gas (aire) | Compresor → cámara → turbina → descarga | Turbinas de gas, aviación |
-| [[../Ciclos de Combustión Interna/index \| Otto]] | Aire (SI) | Compresión → combustión isocórica → expansión | Motor gasolina |
-| [[../Ciclos de Combustión Interna/index \| Diesel]] | Aire (CI) | Compresión → combustión isobárica → expansión | Motor diésel |
-| [[../Refrigeración/index \| Compresión de Vapor]] | Refrigerante | Evaporador → compresor → condensador → válvula | AC, refrigerador |
-| [[../Refrigeración/Bomba de Calor \| Bomba de Calor]] | Refrigerante | Igual al anterior, pero el efecto útil es $q_H$ | Calefacción eficiente |
+| [[Ciclo Otto \| Otto]] | Aire (SI) | Compresión → combustión isocórica → expansión | Motor gasolina |
+| [[Ciclo Diesel \| Diesel]] | Aire (CI) | Compresión → combustión isobárica → expansión | Motor diésel |
+| [[Compresión de Vapor \| Compresión de Vapor]] | Refrigerante | Evaporador → compresor → condensador → válvula | AC, refrigerador |
+| [[Bomba de Calor \| Bomba de Calor]] | Refrigerante | Igual al anterior, pero el efecto útil es $q_H$ | Calefacción eficiente |
 
 ---
 

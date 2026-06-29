@@ -71,7 +71,7 @@ aliases:
 > |:---|:---|:---|
 > | $\Delta EC = \frac{1}{2}(C_2^2-C_1^2)$ | Velocidades similares en entrada y salida | [[Toberas]], [[Difusores]] |
 > | $\Delta EP = g(z_2-z_1)$ | Desnivel < 10 m | Columnas de líquido, bombas hidráulicas |
-> | $\dot{Q}=0$ (adiabático) | Aislamiento térmico bueno; proceso rápido | [[Intercambiadores]] (en el lado caliente) |
+> | $\dot{Q}=0$ (adiabático) | Aislamiento térmico bueno; proceso rápido | [[Intercambiadores de Calor]] (en el lado caliente) |
 > | $\dot{W}=0$ (sin eje) | No hay conexión mecánica al exterior | [[Turbinas]], [[Compresores]] |
 >
 > Balances reducidos para cada dispositivo:
@@ -81,7 +81,7 @@ aliases:
 > | [[Turbinas]] / [[Compresores]] | $\dot{Q}=0$, $\Delta EC\approx0$, $\Delta EP\approx0$ | $\dot{W} = \dot{m}(h_1-h_2)$ |
 > | [[Toberas]] / [[Difusores]] | $\dot{Q}=0$, $\dot{W}=0$, $\Delta EP\approx0$ | $h_1+C_1^2/2 = h_2+C_2^2/2$ |
 > | [[Valvulas]] | $\dot{Q}=0$, $\dot{W}=0$, $\Delta EC\approx0$ | $h_2 = h_1$ |
-> | [[Intercambiadores]] | $\dot{W}=0$, $\dot{Q}_{\rm ext}=0$, $\Delta EC\approx0$ | $\sum \dot{m}_i h_i = \sum \dot{m}_e h_e$ |
+> | [[Intercambiadores de Calor]] | $\dot{W}=0$, $\dot{Q}_{\rm ext}=0$, $\Delta EC\approx0$ | $\sum \dot{m}_i h_i = \sum \dot{m}_e h_e$ |
 
 ---
 

@@ -42,7 +42,7 @@ aliases:
 > [!demostracion]
 > **Hipótesis:** gas ideal ($Pv = RT$).
 >
-> **Paso 1 — Expresión general para $(\partial u/\partial v)_T$.** De la primera ecuación $TdS$ y la relación de Maxwell correspondiente (ver [[../../../Relaciones Termodinamicas/TdS | $TdS$]]):
+> **Paso 1 — Expresión general para $(\partial u/\partial v)_T$.** De la primera ecuación $TdS$ y la relación de Maxwell correspondiente (ver [[TdS | $TdS$]]):
 > $$
 > \left(\frac{\partial u}{\partial v}\right)_T = T\left(\frac{\partial P}{\partial T}\right)_v - P.
 > $$
@@ -104,7 +104,7 @@ aliases:
 > $$
 > \Delta u = c_v (T_2 - T_1), \qquad \Delta h = c_p (T_2 - T_1).
 > $$
-> El cambio de [[../../../Propiedades/Potenciales Termodinamicos/Entropia | entropía]] se obtiene de las ecuaciones $TdS$:
+> El cambio de [[Entropia | entropía]] se obtiene de las ecuaciones $TdS$:
 > $$
 > \Delta s = c_v \ln\frac{T_2}{T_1} + R \ln\frac{v_2}{v_1} = c_p \ln\frac{T_2}{T_1} - R \ln\frac{P_2}{P_1}.
 > $$

@@ -119,7 +119,7 @@ aliases:
 > [!info]
 > - La tabla de Bridgman es la herramienta operativa; el cálculo mecánico se aplica en [[Aplicaciones Termodinamicas]].
 > - Reproduce como casos particulares las [[Maxwell | relaciones de Maxwell]] y la relación [[Cp Cv/index | $c_p - c_v$]].
-> - Depende de los coeficientes $\alpha$, $\kappa_T$, $c_p$ definidos en el [[index | índice de Relaciones Termodinámicas]].
+> - Depende de los coeficientes $\alpha$, $\kappa_T$, $c_p$ definidos en el [[Relaciones Termodinamicas/index | índice de Relaciones Termodinámicas]].
 
 > [!referencia]
 > Bridgman, *A Complete Collection of Thermodynamic Formulas* (1925); Callen, *Thermodynamics*, §7-4; Smith, Van Ness & Abbott, *Chemical Engineering Thermodynamics*, §6.4; Moran & Shapiro, §11.6.

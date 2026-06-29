@@ -98,7 +98,7 @@ aliases:
 ## Relación con otras notas
 
 > [!info]
-> - La demostración usa la 3.ª relación de [[Maxwell]] y la [[index | regla cíclica]].
+> - La demostración usa la 3.ª relación de [[Maxwell]] y la [[Identidades/index | regla cíclica]].
 > - La energía configuracional del gas de vdW es $-a/v$; determina la corrección a $u$ respecto al gas ideal.
 > - $\pi_T$ se conecta con el [[Efecto Joule Thomson]] y con la presión de vapor de las sustancias.
 

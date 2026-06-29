@@ -121,8 +121,8 @@ aliases:
 
 > [!info]
 > - $\mu_{JT}$ se deriva usando la 4.ª relación de [[Maxwell]] y la [[Identidades/index | regla cíclica]].
-> - Depende de $\alpha$, $v$ y $c_p$, todos conectados por la relación [[index | $c_p - c_v$]].
-> - La válvula Joule-Thomson es el dispositivo de expansión del ciclo de refrigeración por compresión de vapor (ver [[Sistemas/Ciclos/Refrigeracion | Ciclo de refrigeración]]).
+> - Depende de $\alpha$, $v$ y $c_p$, todos conectados por la relación [[Cp Cv/index | $c_p - c_v$]].
+> - La válvula Joule-Thomson es el dispositivo de expansión del ciclo de refrigeración por compresión de vapor (ver [[Compresión de Vapor | Ciclo de refrigeración]]).
 
 > [!referencia]
 > Çengel & Boles, *Termodinámica*, §12-5; Moran & Shapiro, §11.4; Callen, *Thermodynamics*, §8-3; Smith, Van Ness & Abbott, *Introduction to Chemical Engineering Thermodynamics*, §7.4.
