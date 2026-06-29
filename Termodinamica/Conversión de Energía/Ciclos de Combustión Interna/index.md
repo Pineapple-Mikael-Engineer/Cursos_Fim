@@ -22,7 +22,7 @@ aliases:
 >
 > El análisis estándar usa la **hipótesis aire-estándar con calor específico constante**: se reemplaza la combustión por adición de calor externo, y la purga de gases quemados por rechazo de calor. El fluido es aire ideal con $c_v = 0.718\,\mathrm{kJ/(kg\cdot K)}$ y $\gamma = 1.4$.
 >
-> *Variable clave:* la **relación de compresión volumétrica** $r = V_1/V_2$, donde $V_1$ es el volumen máximo (PMS, punto muerto superior inferior) y $V_2$ el mínimo (PMI, punto muerto superior). A mayor $r$, mayor eficiencia — pero limitado por la detonación (Otto) o los esfuerzos mecánicos (Diesel).
+> *Variable clave:* la **relación de compresión volumétrica** $r = V_1/V_2$, donde $V_1$ es el volumen máximo (cilindro lleno, pistón en el **PMI**, punto muerto inferior) y $V_2$ el mínimo (cámara de combustión, pistón en el **PMS**, punto muerto superior). A mayor $r$, mayor eficiencia — pero limitado por la detonación (Otto) o los esfuerzos mecánicos (Diesel).
 
 ![[CCI_PV_otto_diesel.svg|480]]
 *Diagramas $P$-$v$ del ciclo Otto (izquierda) y Diesel (derecha). En el Otto, la adición de calor es isocórica (volumen constante). En el Diesel, la adición es isobárica (presión constante), lo que permite mayor relación de compresión sin detonación.*

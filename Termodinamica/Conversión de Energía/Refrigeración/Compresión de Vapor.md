@@ -106,44 +106,24 @@ aliases:
 > Determinar: (a) entalpías en los 4 estados; (b) $\text{COP}_R$ y $\text{COP}_{HP}$; (c) caudal másico $\dot{m}$; (d) potencia del compresor $\dot{W}_C$.
 
 > [!solucion]
-> **Propiedades del R-134a** (de tablas de saturación, Borgnakke & Sonntag, Apéndice):
+> **Propiedades del R-134a** (tablas de saturación, **referencia IIR**: $h_f=200\,\mathrm{kJ/kg}$, $s_f=1.00\,\mathrm{kJ/(kg\cdot K)}$ para líquido saturado a $0°\mathrm{C}$). Se usa una sola convención en los cuatro estados.
 >
-> **Estado 1** — vapor saturado a $T_L = -20°\mathrm{C}$:
-> $P_L = 132.68\,\mathrm{kPa}$, $h_1 = h_g(-20°\mathrm{C}) = 238.41\,\mathrm{kJ/kg}$, $s_1 = s_g(-20°\mathrm{C}) = 0.9456\,\mathrm{kJ/(kg\cdot K)}$.
+> A $T_L=-20°\mathrm{C}$ ($P_L=132.68\,\mathrm{kPa}$): $h_f=173.74$, $h_g=386.55$, $h_{fg}=212.81\,\mathrm{kJ/kg}$; $s_g=1.7414\,\mathrm{kJ/(kg\cdot K)}$.
+> A $T_H=40°\mathrm{C}$ ($P_H=1016.6\,\mathrm{kPa}$): $h_f=256.44\,\mathrm{kJ/kg}$.
 >
-> **Estado 3** — líquido saturado a $T_H = 40°\mathrm{C}$:
-> $P_H = 1016.6\,\mathrm{kPa}$, $h_3 = h_f(40°\mathrm{C}) = 256.44\,\mathrm{kJ/kg}$.
+> **Estado 1** — vapor saturado a $T_L=-20°\mathrm{C}$:
+> $h_1 = 386.55\,\mathrm{kJ/kg}$, $s_1 = 1.7414\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Estado 2** — compresor isentrópico ($s_2 = s_1 = 0.9456$, $P_2 = P_H = 1016.6\,\mathrm{kPa}$):
+> **Estado 3** — líquido saturado a $T_H=40°\mathrm{C}$:
+> $h_3 = 256.44\,\mathrm{kJ/kg}$.
 >
-> A $P_H = 1016.6\,\mathrm{kPa}$ (≈ $T_{\rm sat} = 40°\mathrm{C}$), interpolando en tabla de vapor sobrecalentado de R-134a:
-> A $50°\mathrm{C}$: $s = 0.9240\,\mathrm{kJ/(kg\cdot K)}$, $h = 271.99\,\mathrm{kJ/kg}$.
-> A $60°\mathrm{C}$: $s = 0.9567\,\mathrm{kJ/(kg\cdot K)}$, $h = 281.10\,\mathrm{kJ/kg}$.
-> Interpolando para $s_2 = 0.9456$:
-> $T_2 = 50 + (0.9456-0.9240)/(0.9567-0.9240)\times10 = 50 + 0.660\times10 = 56.6°\mathrm{C}$.
-> $h_2 = 271.99 + 0.660\times(281.10-271.99) = 271.99 + 6.01 = 278.00\,\mathrm{kJ/kg}$.
+> **Estado 2** — compresión isentrópica a $P_H=1016.6\,\mathrm{kPa}$ con $s_2=s_1=1.7414\,\mathrm{kJ/(kg\cdot K)}$. Interpolando en la tabla de vapor sobrecalentado de R-134a (misma referencia IIR) a esa presión y entropía:
+> $$T_2\approx56.6°\mathrm{C}, \qquad h_2 = 428.35\,\mathrm{kJ/kg}.$$
 >
-> **Estado 4** — válvula isoenthálpica:
-> $h_4 = h_3 = 256.44\,\mathrm{kJ/kg}$.
-> $x_4 = (h_4 - h_f(-20°\mathrm{C}))/h_{fg}(-20°\mathrm{C}) = (256.44-173.65)/(238.41-173.65) = 82.79/64.76 = ?$
+> **Estado 4** — válvula isoentálpica, $h_4=h_3=256.44\,\mathrm{kJ/kg}$. Como $h_f(P_L)=173.74 < h_4 < h_g(P_L)=386.55$, la salida es bifásica con calidad
+> $$x_4=\frac{h_4-h_f(-20°\mathrm{C})}{h_{fg}(-20°\mathrm{C})}=\frac{256.44-173.74}{212.81}=0.389.$$
 >
-> Recalcular con valores de tabla: $h_f(-20°\mathrm{C}) = 173.65\,\mathrm{kJ/kg}$, $h_{fg}(-20°\mathrm{C}) = 64.76\,\mathrm{kJ/kg}$.
-> $x_4 = (256.44-173.65)/64.76 = 82.79/64.76 = 1.278$?? ← No válido.
->
-> *Nota:* el valor correcto usando tablas reales: a $-20°\mathrm{C}$, $h_f = 173.65$ y $h_g = 238.41$, así $h_{fg} = 64.76\,\mathrm{kJ/kg}$. Como $h_4 = h_3 = 256.44 > h_g(-20°\mathrm{C}) = 238.41$, esto indicaría sobrecalentamiento, lo que es incorrecto para una válvula.
->
-> La inconsistencia es esperada: con $T_H = 40°\mathrm{C}$ y $T_L = -20°\mathrm{C}$, $h_f(40°\mathrm{C}) = 256.44 > h_g(-20°\mathrm{C}) = 238.41$. Los valores de entalpía de líquido saturado a temperatura alta suelen ser mayores que los de vapor saturado a temperatura muy baja para muchos refrigerantes: el valor de $h$ aumenta con $T$ incluso cruzando las líneas de saturación. Esto se debe a que el eje de referencia es diferente.
->
-> *Corrección:* los valores de R-134a en tablas reales (Çengel, Apéndice):
-> A $-20°\mathrm{C}$: $h_f = 173.65$, $h_g = 238.41$, $h_{fg} = 64.76$.
-> A $40°\mathrm{C}$: $h_f = 256.44$, $h_g = 421.00$ (aproximadamente).
->
-> Como $h_4 = h_3 = 256.44\,\mathrm{kJ/kg}$ y a $P_L$: $h_f(-20°\mathrm{C}) = 173.65$ y $h_g(-20°\mathrm{C}) = 238.41$, como $256.44 > 238.41 = h_g$, el estado 4 sería vapor sobrecalentado — lo cual es inusual para el estado de entrada al evaporador.
->
-> *Resolución:* en la práctica, con diferencia grande $T_H-T_L=60°\mathrm{C}$, la fracción flash $x_4$ puede ser alta (≈ 0.28–0.35). Usando valores corregidos de tablas reales completas:
-> $h_f(-20) = 173.65$, $h_{fg}(-20) = 212.54$ (corr.), $h_g(-20) = 386.19$ (estos valores varían por fuente; aquí los tomo de Borgnakke apéndice F):
->
-> Para el presente ejemplo se usan los siguientes valores consolidados de R-134a:
+> Resumen de estados:
 >
 > | Estado | $T$ [°C] | $P$ [kPa] | $h$ [kJ/kg] | $s$ [kJ/(kg·K)] |
 > |:---:|:---:|:---:|:---:|:---:|
@@ -151,8 +131,6 @@ aliases:
 > | 2 | ≈56.6 | 1016.6 | 428.35 | 1.7414 |
 > | 3 | 40 | 1016.6 | 256.44 | — |
 > | 4 | $-20$ | 132.68 | 256.44 | — |
->
-> (Usando la convención de Borgnakke donde $h$ de vapor saturado es ≈386 a $-20°\mathrm{C}$.)
 >
 > **(a) Entalpías:**
 > $h_1 = 386.55\,\mathrm{kJ/kg}$, $h_2 = 428.35\,\mathrm{kJ/kg}$, $h_3 = h_4 = 256.44\,\mathrm{kJ/kg}$.

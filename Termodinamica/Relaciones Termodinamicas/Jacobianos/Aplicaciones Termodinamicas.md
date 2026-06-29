@@ -68,10 +68,12 @@ aliases:
 > **Calcular $J(P,v)$:**
 > $$J(P,v) = \left(\frac{\partial P}{\partial T}\right)_P\!\left(\frac{\partial v}{\partial P}\right)_T - \left(\frac{\partial P}{\partial P}\right)_T\!\left(\frac{\partial v}{\partial T}\right)_P = 0\cdot(-v\kappa_T) - 1\cdot v\alpha = -v\alpha.$$
 >
-> **Resultado:**
-> $$\left(\frac{\partial s}{\partial P}\right)_v = \frac{-c_pv\kappa_T/T + v^2\alpha^2}{-v\alpha} = \frac{c_p\kappa_T}{\alpha T} - \frac{v\alpha}{\alpha} = \frac{c_p\kappa_T}{\alpha T} - v. \qquad \blacksquare$$
+> **Resultado:** dividiendo término a término por $-v\alpha$ (nótese $v^2\alpha^2/(-v\alpha) = -v\alpha$):
+> $$\left(\frac{\partial s}{\partial P}\right)_v = \frac{-c_pv\kappa_T/T + v^2\alpha^2}{-v\alpha} = \frac{c_p\kappa_T}{\alpha T} - v\alpha. \qquad \blacksquare$$
 >
-> Para gas ideal: $\alpha = 1/T$, $\kappa_T = v/(RT) = 1/P$, luego $c_p\kappa_T/(\alpha T) = c_p/(P) \cdot (1/T)\cdot T = c_p/P$... verificación: de $ds = c_p\,dT/T - R\,dP/P$, a $v=\text{cte}$ (isocora ideal: $dv=0$ implica $dT/T = dP/P$), $ds = (c_p - R)dP/P = c_v\,dP/P$, es decir $(\partial s/\partial P)_v^{\rm ideal} = c_v/P$. $\checkmark$
+> Para gas ideal: $\alpha = 1/T$, $\kappa_T = 1/P$, $v = RT/P$, luego $c_p\kappa_T/(\alpha T) = c_p/P$ y $-v\alpha = -R/P$, de modo que
+> $$\left(\frac{\partial s}{\partial P}\right)_v^{\rm ideal} = \frac{c_p - R}{P} = \frac{c_v}{P}.$$
+> Coincide con $ds = c_p\,dT/T - R\,dP/P$ evaluado sobre la isócora ideal ($dv=0 \Rightarrow dT/T = dP/P$): $ds = (c_p - R)\,dP/P = c_v\,dP/P$. $\checkmark$
 
 ---
 

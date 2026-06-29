@@ -100,7 +100,7 @@ aliases:
 > $\boxed{C_2 = 718.9\,\mathrm{m/s},\quad T_2 \approx 162\,°\mathrm{C}.}$ $\blacksquare$
 
 > [!warning]
-> La velocidad $C_2=719\,\mathrm{m/s}$ corresponde al número de Mach subsónico a esa condición ($a_2 \approx 575\,\mathrm{m/s}$ para vapor a $162\,°\mathrm{C}$). Una tobera convergente simple alcanzaría el máximo en la garganta ($Ma=1$). Para velocidades supersónicas se requiere la geometría convergente-divergente de Laval.
+> La velocidad de salida $C_2=719\,\mathrm{m/s}$ es **supersónica**: con $a_2 \approx 575\,\mathrm{m/s}$ para vapor a esa condición, $Ma_2 = C_2/a_2 \approx 1.25 > 1$. Esto es coherente con la relación de presiones $P_2/P_1 = 0.2$, muy por debajo de la relación crítica ($\approx 0.55$ para vapor, $\gamma\approx1.3$): el flujo se **bloquea** (*choke*) en la garganta a $Ma=1$, y la salida supersónica solo se alcanza con una geometría **convergente-divergente de Laval**; una tobera convergente simple limitaría la salida a $Ma=1$ (sónica). La relación área-velocidad $dA/A = (Ma^2-1)\,dC/C$ lo resume: con $Ma>1$ el área debe **crecer** para seguir acelerando el flujo.
 
 > [!referencia]
 > Borgnakke & Sonntag, §6.5; Çengel & Boles, §9-3; Moran & Shapiro, §6.4.

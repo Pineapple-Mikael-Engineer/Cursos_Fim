@@ -107,38 +107,36 @@ La elección depende de qué dato es conocido: si se conoce $T$, usar Tabla A-4;
 > [!solucion]
 > **Datos de tablas a $T_{\rm sat}=120\,°\mathrm{C}$ (Tabla A-4):**
 > $P_{\rm sat}=198.5\,\mathrm{kPa}$, $v_f=0.001060\,\mathrm{m^3/kg}$, $v_{fg}=0.8858\,\mathrm{m^3/kg}$, $v_g=0.8869\,\mathrm{m^3/kg}$.
-> $u_f=503.5\,\mathrm{kJ/kg}$, $u_{fg}=1853.9\,\mathrm{kJ/kg}$, $u_g=2357.4\,\mathrm{kJ/kg}$.
+> $u_f=503.5\,\mathrm{kJ/kg}$, $u_{fg}=2025.8\,\mathrm{kJ/kg}$, $u_g=2529.3\,\mathrm{kJ/kg}$.
 > $h_f=503.7\,\mathrm{kJ/kg}$, $h_{fg}=2202.6\,\mathrm{kJ/kg}$, $h_g=2706.3\,\mathrm{kJ/kg}$.
 > $s_f=1.5278\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=5.6015\,\mathrm{kJ/(kg\cdot K)}$, $s_g=7.1296\,\mathrm{kJ/(kg\cdot K)}$.
 >
 > **Parte (a) — Estado inicial.**
 > $$v_1=v_f+x_1\,v_{fg}=0.001060+0.40\times0.8858=0.001060+0.3543=0.3554\,\mathrm{m^3/kg}.$$
-> $$u_1=503.5+0.40\times1853.9=503.5+741.6=1245.1\,\mathrm{kJ/kg}.$$
+> $$u_1=503.5+0.40\times2025.8=503.5+810.3=1313.8\,\mathrm{kJ/kg}.$$
 > $$h_1=503.7+0.40\times2202.6=503.7+881.0=1384.7\,\mathrm{kJ/kg}.$$
 > $$s_1=1.5278+0.40\times5.6015=1.5278+2.2406=3.768\,\mathrm{kJ/(kg\cdot K)}.$$
 >
 > **Parte (b) — Estado final** (mismo $P_2=P_1=198.5\,\mathrm{kPa}$, mismo $T_2=120\,°\mathrm{C}$, pues aún estamos bajo la cúpula):
 > $$v_2=0.001060+0.80\times0.8858=0.001060+0.7086=0.7097\,\mathrm{m^3/kg}.$$
-> $$u_2=503.5+0.80\times1853.9=503.5+1483.1=1986.6\,\mathrm{kJ/kg}.$$
+> $$u_2=503.5+0.80\times2025.8=503.5+1620.6=2124.1\,\mathrm{kJ/kg}.$$
 > $$h_2=503.7+0.80\times2202.6=503.7+1762.1=2265.8\,\mathrm{kJ/kg}.$$
 > $$s_2=1.5278+0.80\times5.6015=1.5278+4.4812=6.009\,\mathrm{kJ/(kg\cdot K)}.$$
 >
 > **Parte (c) — Calor y trabajo (proceso isobárico en sistema cerrado).**
 > Para proceso isobárico: $w = P\,\Delta v$ y $q = \Delta h$ (primera ley para proceso a $P$ constante).
-> $$W = mP(v_2-v_1) = 2\times198.5\times(0.7097-0.3554) = 2\times198.5\times0.3543 = 140.8\,\mathrm{kJ}.$$
-> $$Q = m(h_2-h_1) = 2\times(2265.8-1384.7) = 2\times881.1 = 1762.2\,\mathrm{kJ}.$$
+> $$W = mP(v_2-v_1) = 2\times198.5\times(0.7097-0.3554) = 2\times198.5\times0.3543 = 140.7\,\mathrm{kJ}.$$
+> $$Q = m(h_2-h_1) = 2\times(2265.8-1384.7) = 2\times881.1 = \mathbf{1762.2\,\mathrm{kJ}}.$$
 >
-> Verificación con primera ley: $Q - W = m\Delta u = 2\times(1986.6-1245.1) = 2\times741.5 = 1483.0\,\mathrm{kJ}$.
-> $Q-W = 1762.2-140.8 = 1621.4$ vs. $1483.0$ — hay diferencia porque la aproximación $q_p=\Delta h$ ya incluye el trabajo. Verificación directa:
-> $Q = \Delta U + W = 1483.0 + 140.8 = 1623.8$ vs. $1762.2$. Discrepancia: revisar — el proceso isobárico en sistema cerrado da $q=\Delta h$ solo si la única forma de trabajo es $P\Delta v$. Verificación correcta:
-> $$Q = m\Delta u + W = 1483.0 + 140.8 = 1623.8\,\mathrm{kJ}.$$
-> La diferencia con $m\Delta h=1762.2$ proviene de que $\Delta h=\Delta u + \Delta(Pv)=\Delta u+P\Delta v$ (proceso isobárico): $m\Delta(Pv)=mP\Delta v=W=140.8\,\mathrm{kJ}$, luego $m\Delta h = m\Delta u + W = 1483.0+140.8=1623.8\,\mathrm{kJ}$. Concuerda. El valor $1762.2$ calculado antes tenía un error de redondeo; el correcto es $\mathbf{Q=1623.8\,\mathrm{kJ}}$.
+> Verificación con la primera ley (sistema cerrado): el calor neto debe igualar $\Delta U + W$.
+> $$m\,\Delta u = 2\times(2124.1-1313.8) = 2\times810.3 = 1620.6\,\mathrm{kJ}, \qquad Q-W = 1762.2-140.7 = 1621.5\,\mathrm{kJ}.$$
+> Ambos coinciden (la pequeña diferencia es redondeo de tablas), confirmando $Q=1762.2\,\mathrm{kJ}$. Esto es consistente con $q=\Delta h$ para el proceso isobárico, pues $\Delta h=\Delta u+P\,\Delta v$ y $mP\,\Delta v=W$.
 >
 > **Parte (d) — Variación de entropía.**
 > $$\Delta S = m(s_2-s_1) = 2\times(6.009-3.768) = 2\times2.241 = 4.482\,\mathrm{kJ/K}.$$
-> El proceso recibe calor a $T_{\rm sat}=120\,°\mathrm{C}=393.15\,\mathrm{K}$ (proceso reversible dentro de la cúpula):
-> $$\Delta S_{\rm esperado} = \frac{Q}{T_{\rm sat}} = \frac{1623.8}{393.15} = 4.130\,\mathrm{kJ/K}.$$
-> La pequeña diferencia ($4.482$ vs. $4.130$) indica que la integración de las tablas captura variaciones discretas; en el límite diferencial $dS=\delta Q_{\rm rev}/T$ es exacto. $\dot{S}_{\rm gen}=0$ para el proceso isotérmico reversible bajo la cúpula. $\blacksquare$
+> El cambio de fase ocurre a $T_{\rm sat}=120\,°\mathrm{C}=393.15\,\mathrm{K}$ constante, y el calor entra reversiblemente a esa temperatura, de modo que $\Delta S = Q_{\rm rev}/T_{\rm sat}$ debe ser exacto:
+> $$\frac{Q}{T_{\rm sat}} = \frac{1762.2}{393.15} = 4.482\,\mathrm{kJ/K}.$$
+> Coincide con $\Delta S = 4.482\,\mathrm{kJ/K}$ calculado de las tablas: la igualdad confirma a la vez el valor $Q=1762.2\,\mathrm{kJ}$ y que el proceso isotérmico bajo la cúpula es internamente reversible ($\dot{S}_{\rm gen}=0$). $\blacksquare$
 
 > [!warning]
 > $x$ es una propiedad **solo** dentro de la cúpula ($0\le x\le 1$). Si de las tablas se obtiene $h<h_f$: estado de líquido comprimido. Si $h>h_g$: vapor sobrecalentado. Usar la tabla correspondiente; no aplicar la fórmula de mezcla fuera de la cúpula.

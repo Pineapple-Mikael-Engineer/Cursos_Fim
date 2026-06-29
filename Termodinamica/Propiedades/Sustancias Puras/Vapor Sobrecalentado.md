@@ -76,13 +76,13 @@ Las ecuaciones de estado reales (Van der Waals, Peng-Robinson, Redlich-Kwong) ca
 ## Ejemplo complejo: turbina de vapor con interpolación bilineal y análisis de exergía
 
 > [!ejemplo]
-> Vapor de agua entra a una turbina a $P_1=3.5\,\mathrm{MPa}$, $T_1=450\,°\mathrm{C}$. Sale a $P_2=0.2\,\mathrm{MPa}$ con calidad $x_2=0.95$ (mezcla bifásica). La turbina opera en régimen estacionario con $\dot{m}=20\,\mathrm{kg/s}$. La temperatura ambiente es $T_0=25\,°\mathrm{C}=298.15\,\mathrm{K}$, $P_0=100\,\mathrm{kPa}$.
+> Vapor de agua entra a una turbina a $P_1=3.5\,\mathrm{MPa}$, $T_1=450\,°\mathrm{C}$ y se expande hasta la presión de condensador $P_2=10\,\mathrm{kPa}$. La turbina opera en régimen estacionario y adiabático, con $\dot{m}=20\,\mathrm{kg/s}$ y **eficiencia isentrópica $\eta_T=0.85$** (dato). La temperatura ambiente es $T_0=25\,°\mathrm{C}=298.15\,\mathrm{K}$.
 >
 > Determinar:
 > (a) Estado 1: $h_1$, $s_1$ por interpolación bilineal en tablas.
-> (b) Estado 2: $h_2$, $s_2$.
-> (c) Potencia real $\dot{W}_T$.
-> (d) Eficiencia isentrópica $\eta_T$.
+> (b) Estado isentrópico de salida $2s$: calidad $x_{2s}$ y $h_{2s}$.
+> (c) Estado real de salida 2: $h_2$, calidad $x_2$ y $s_2$ (a partir de $\eta_T$).
+> (d) Potencia real $\dot{W}_T$.
 > (e) Tasa de destrucción de exergía $\dot{E}_{d}$.
 
 > [!solucion]
@@ -110,30 +110,30 @@ Las ecuaciones de estado reales (Van der Waals, Peng-Robinson, Redlich-Kwong) ca
 > $$h_1=3343.7+\frac{3.5-3.0}{4.0-3.0}(3329.5-3343.7)=3343.7+0.5\times(-14.2)=3343.7-7.1=3336.6\,\mathrm{kJ/kg}.$$
 > $$s_1=7.0775+0.5\times(6.9296-7.0775)=7.0775-0.0740=7.0036\,\mathrm{kJ/(kg\cdot K)}.$$
 >
-> **Parte (b) — Estado 2: mezcla bifásica a $P_2=0.2\,\mathrm{MPa}$, $x_2=0.95$.**
-> Tabla A-5 a $P=0.2\,\mathrm{MPa}$: $T_{\rm sat}=120.23\,°\mathrm{C}$, $h_f=504.7\,\mathrm{kJ/kg}$, $h_{fg}=2201.6\,\mathrm{kJ/kg}$, $h_g=2706.3\,\mathrm{kJ/kg}$, $s_f=1.5301\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=5.5970\,\mathrm{kJ/(kg\cdot K)}$.
-> $$h_2=504.7+0.95\times2201.6=504.7+2091.5=2596.2\,\mathrm{kJ/kg}.$$
-> $$s_2=1.5301+0.95\times5.5970=1.5301+5.3172=6.847\,\mathrm{kJ/(kg\cdot K)}.$$
+> **Parte (b) — Estado isentrópico de salida $2s$ ($s_{2s}=s_1$, $P_2=10\,\mathrm{kPa}$).**
+> Tabla de saturación a $P=10\,\mathrm{kPa}$: $T_{\rm sat}=45.81\,°\mathrm{C}$, $h_f=191.83\,\mathrm{kJ/kg}$, $h_{fg}=2392.8\,\mathrm{kJ/kg}$, $h_g=2584.6\,\mathrm{kJ/kg}$, $s_f=0.6493\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=7.5009\,\mathrm{kJ/(kg\cdot K)}$, $s_g=8.1502\,\mathrm{kJ/(kg\cdot K)}$.
+> Como $s_f < s_{2s}=7.0036 < s_g$, el estado isentrópico es bifásico:
+> $$x_{2s}=\frac{s_{2s}-s_f}{s_{fg}}=\frac{7.0036-0.6493}{7.5009}=0.8471.$$
+> $$h_{2s}=h_f+x_{2s}h_{fg}=191.83+0.8471\times2392.8=2218.9\,\mathrm{kJ/kg}.$$
 >
-> **Parte (c) — Potencia real.**
-> Balance de energía (adiabático, estado estacionario, $\Delta\mathrm{Ec}=0$):
-> $$\dot{W}_T = \dot{m}(h_1-h_2)=20\times(3336.6-2596.2)=20\times740.4=14808\,\mathrm{kW}\approx14.81\,\mathrm{MW}.$$
+> **Parte (c) — Estado real de salida a partir de $\eta_T$.**
+> De la definición $\eta_T=(h_1-h_2)/(h_1-h_{2s})$ se despeja el salto real:
+> $$h_1-h_2=\eta_T(h_1-h_{2s})=0.85\times(3336.6-2218.9)=0.85\times1117.7=950.0\,\mathrm{kJ/kg},$$
+> $$h_2=3336.6-950.0=2386.6\,\mathrm{kJ/kg}.$$
+> Como $h_f < h_2 < h_g$, la salida real también es bifásica; su calidad y entropía son **resultado**, no dato:
+> $$x_2=\frac{h_2-h_f}{h_{fg}}=\frac{2386.6-191.83}{2392.8}=0.917,$$
+> $$s_2=s_f+x_2\,s_{fg}=0.6493+0.917\times7.5009=7.529\,\mathrm{kJ/(kg\cdot K)}.$$
+> La irreversibilidad eleva la calidad de salida de $x_{2s}=0.847$ a $x_2=0.917$: la expansión real disipa parte del salto entálpico y termina más seca (mayor $h_2$, mayor $s_2$) que la isentrópica.
 >
-> **Parte (d) — Eficiencia isentrópica.**
-> El estado isentrópico $2s$: $s_{2s}=s_1=7.0036\,\mathrm{kJ/(kg\cdot K)}$, $P_{2s}=0.2\,\mathrm{MPa}$.
-> Verificar si $2s$ es bifásico: $s_f=1.5301$, $s_g=s_f+s_{fg}=7.1271\,\mathrm{kJ/(kg\cdot K)}$. Como $s_f < s_{2s} < s_g$, el estado $2s$ es bifásico.
-> $$x_{2s}=\frac{s_{2s}-s_f}{s_{fg}}=\frac{7.0036-1.5301}{5.5970}=\frac{5.4735}{5.5970}=0.9779.$$
-> $$h_{2s}=504.7+0.9779\times2201.6=504.7+2152.1=2656.8\,\mathrm{kJ/kg}.$$
-> $$\eta_T=\frac{h_1-h_2}{h_1-h_{2s}}=\frac{3336.6-2596.2}{3336.6-2656.8}=\frac{740.4}{679.8}=1.089.$$
->
-> $\eta_T > 1$: imposible — indica que el estado real 2 ($x_2=0.95$, $h_2=2596.2$) es **más húmedo** que el isentrópico ($x_{2s}=0.978$, $h_{2s}=2656.8$). Esto significa que la expansión real produce más humedad que la isentrópica, lo cual es termodinámicamente posible en presencia de irreversibilidades que favorecen la condensación (efectos de enfriamiento local). En la práctica, $\eta_T > 1$ suele indicar un error en el planteo o en los datos. Si el estado real tuviera $h_2>h_{2s}$ (mayor temperatura final), la eficiencia sería $<1$ como siempre. El ejemplo sirve para resaltar que la calidad $x_2$ debe verificarse con $s_1$.
->
-> **Replanteando:** si $x_2$ fuera $x_2=0.90$: $h_2=504.7+0.90\times2201.6=504.7+1981.4=2486.1\,\mathrm{kJ/kg}$, $\dot{W}_T=20\times(3336.6-2486.1)=17010\,\mathrm{kW}$, $\eta_T=(3336.6-2486.1)/(3336.6-2656.8)=850.5/679.8=1.25$: aún $>1$, lo que indica que en el ciclo con esas condiciones la turbina real produce más trabajo que la isentrópica. La única salida consistente es tomar $x_2$ como resultado del cálculo (no como dato), y obtenerla de $h_2=h_1-\dot{W}_T/\dot{m}$ con $\eta_T<1$ dado.
+> **Parte (d) — Potencia real.**
+> Balance de energía (adiabático, estacionario, $\Delta\mathrm{Ec}=0$):
+> $$\dot{W}_T = \dot{m}(h_1-h_2)=20\times950.0=19000\,\mathrm{kW}\approx19.0\,\mathrm{MW}.$$
 >
 > **Parte (e) — Destrucción de exergía.**
-> Para el caso $x_2=0.95$, $s_2=6.847\,\mathrm{kJ/(kg\cdot K)}$:
-> $$\dot{E}_d = T_0\,\dot{S}_{\rm gen} = T_0\,\dot{m}(s_2-s_1) = 298.15\times20\times(6.847-7.004).$$
-> $s_2-s_1=6.847-7.004=-0.157\,\mathrm{kJ/(kg\cdot K)}<0$: la entropía del fluido disminuye, lo que implica $\dot{S}_{\rm gen}<0$ como si fuera un proceso con extracción de calor. Para una turbina adiabática, $\dot{S}_{\rm gen}=\dot{m}(s_2-s_1)\ge0$ es obligatorio. El resultado negativo confirma la inconsistencia del estado 2 con el estado 1 dado. En diseño real, $s_2\ge s_1$ siempre para una turbina adiabática. $\blacksquare$
+> Para una turbina adiabática $\dot{S}_{\rm gen}=\dot{m}(s_2-s_1)\ge0$ es obligatorio:
+> $$\dot{S}_{\rm gen}=20\times(7.529-7.0036)=20\times0.5254=10.51\,\mathrm{kW/K}>0,$$
+> $$\dot{E}_d = T_0\,\dot{S}_{\rm gen} = 298.15\times10.51=3133\,\mathrm{kW}\approx3.13\,\mathrm{MW}.$$
+> El signo positivo de $\dot{S}_{\rm gen}$ — garantizado por $s_2>s_1$, ya que la irreversibilidad de la turbina real siempre aumenta la entropía del fluido — confirma la consistencia del estado de salida obtenido. $\blacksquare$
 
 > [!warning]
 > En tablas de vapor sobrecalentado, verificar siempre que $T > T_{\rm sat}(P)$ antes de interpolar. Si $T=T_{\rm sat}(P)$ y $x=1$: usar la fila de vapor saturado. Si $T<T_{\rm sat}(P)$ y se obtuvo una propiedad de tablas de vapor: hubo un error de lectura.

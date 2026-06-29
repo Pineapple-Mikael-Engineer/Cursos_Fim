@@ -68,7 +68,7 @@ aliases:
 > La igualdad $W_{\rm máx} = -\Delta F$ se logra cuando $Q = T\,\Delta S$, es decir, cuando el proceso es internamente reversible e isotérmico. En ese caso, el sistema puede intercambiar calor con el reservorio de forma cuasiestática sin generar entropía.
 >
 > **Paso 5 — Verificación para proceso en que $W = 0$.**
-> Si no se realiza trabajo ($W = 0$) y el proceso ocurre a $T, V$ constantes: $\Delta F = -W + Q - Q\,(\text{rev}) = 0 - T\,\Delta S + Q$... En un sistema a $T, V$ constantes sin trabajo, la primera ley da $\Delta U = Q$ y la segunda $Q \le T\,\Delta S$, luego:
+> Si no se realiza trabajo ($W = 0$) y el proceso ocurre a $T, V$ constantes, la primera ley da $\Delta U = Q$ y la segunda $Q \le T\,\Delta S$, luego:
 > $$\Delta F = \Delta U - T\,\Delta S = Q - T\,\Delta S \le 0.$$
 > El equilibrio se alcanza cuando $\Delta F = 0$ (mínimo de $F$ a $T, V$ constantes). $\blacksquare$
 
@@ -115,17 +115,17 @@ aliases:
 > **Una batería de Li-ion a $T = 298\,\text{K}$ tiene $\Delta U = -200\,\text{kJ/mol}$ y $\Delta S = -10\,\text{J/(mol·K)}$ en la reacción de descarga.** ¿Cuánto trabajo eléctrico puede extraerse como máximo?
 >
 > **Paso 1 — Calcular $\Delta F$:**
-> $$\Delta F = \Delta U - T\,\Delta S = -200{,}000 + 298 \times (-10) = -200{,}000 - 2{,}980 = -202{,}980\,\text{J/mol}.$$
+> $$\Delta F = \Delta U - T\,\Delta S = -200{,}000 - 298 \times (-10) = -200{,}000 + 2{,}980 = -197{,}020\,\text{J/mol}.$$
 >
 > **Paso 2 — Trabajo eléctrico máximo:**
-> $$W_{\rm máx} = -\Delta F = 202{,}980\,\text{J/mol} \approx 203\,\text{kJ/mol}.$$
+> $$W_{\rm máx} = -\Delta F = 197{,}020\,\text{J/mol} \approx 197\,\text{kJ/mol}.$$
 >
 > **Paso 3 — Calor cedido al entorno en proceso reversible:**
 > $$Q_{\rm rev} = T\,\Delta S = 298 \times (-10) = -2{,}980\,\text{J/mol}.$$
 > En el proceso reversible, la batería cede 2.98 kJ/mol al entorno (enfriamiento leve). En operación real con corriente alta, se generan pérdidas óhmicas que $\Delta F$ no incluye y se disipa más calor.
 >
 > **Paso 4 — Comparar con la energía interna:**
-> $-\Delta U = 200\,\text{kJ/mol}$, pero $W_{\rm máx} = 203\,\text{kJ/mol}$: el sistema extrae más trabajo que su disminución de energía interna porque también "toma prestada" entropía del entorno. $\blacksquare$
+> $-\Delta U = 200\,\text{kJ/mol}$, pero $W_{\rm máx} = 197\,\text{kJ/mol} < -\Delta U$: el sistema extrae **menos** trabajo que su disminución de energía interna. La razón es que la reacción reduce la entropía ($\Delta S < 0$), de modo que el sistema debe ceder $|T\,\Delta S| = 2.98\,\text{kJ/mol}$ como calor al reservorio ($Q_{\rm rev} = T\,\Delta S < 0$, Paso 3) en lugar de convertirlo en trabajo. En efecto $W_{\rm máx} = -\Delta U + T\,\Delta S = 200 - 2.98 \approx 197\,\text{kJ/mol}$, consistente con el calor cedido del Paso 3. $\blacksquare$
 
 ---
 

@@ -61,7 +61,7 @@ consecuencia directa del proceso reversible a $T$ constante ($\Delta s = q_{\rm 
 
 Para estimar $h_{fg}$ a temperaturas distintas de las tabuladas, la correlación de Watson predice la variación con $T$ a partir de un valor de referencia $h_{fg,r}$ a $T_r$:
 
-$$\boxed{h_{fg}(T) = h_{fg,r}\left(\frac{1-T_r/T_c}{1-T/T_c}\right)^{0.38}}$$
+$$\boxed{h_{fg}(T) = h_{fg,r}\left(\frac{1-T/T_c}{1-T_r/T_c}\right)^{0.38}}$$
 
 donde $T$, $T_r$, $T_c$ están en Kelvin y el exponente $0.38$ proviene del comportamiento crítico universal (exponente crítico $\beta\approx 0.326$, combinado con la relación de escala).
 
@@ -73,9 +73,9 @@ donde $T$, $T_r$, $T_c$ están en Kelvin y el exponente $0.38$ proviene del comp
 > **Paso de verificación dimensional.** A $T\to T_c$: $(1-T/T_c)\to 0$, luego $h_{fg}\to 0$. A $T=T_r$: la razón es $1$ y $h_{fg}=h_{fg,r}$. Ambas condiciones son satisfechas. $\blacksquare$
 
 **Ejemplo de uso.** Para el refrigerante R-134a: $T_c=374.2\,\mathrm{K}$, $h_{fg}=204.6\,\mathrm{kJ/kg}$ a $T_r=30\,°\mathrm{C}=303.15\,\mathrm{K}$. Estimar $h_{fg}$ a $-20\,°\mathrm{C}=253.15\,\mathrm{K}$:
-$$h_{fg}(-20\,°\mathrm{C})=204.6\left(\frac{1-303.15/374.2}{1-253.15/374.2}\right)^{0.38}=204.6\left(\frac{0.1901}{0.3232}\right)^{0.38}=204.6\times(0.5882)^{0.38}.$$
-$(0.5882)^{0.38}=e^{0.38\ln 0.5882}=e^{0.38\times(-0.5306)}=e^{-0.2016}=0.8174.$
-$h_{fg}\approx204.6\times1.223=250.2\,\mathrm{kJ/kg}$. Valor tabular: $212.9\,\mathrm{kJ/kg}$ (error $\approx17\%$; la correlación es más precisa cuando $T$ y $T_r$ están más cercanos).
+$$h_{fg}(-20\,°\mathrm{C})=204.6\left(\frac{1-253.15/374.2}{1-303.15/374.2}\right)^{0.38}=204.6\left(\frac{0.3232}{0.1901}\right)^{0.38}=204.6\times(1.700)^{0.38}.$$
+$(1.700)^{0.38}=e^{0.38\ln 1.700}=e^{0.38\times0.5306}=e^{0.2016}=1.223.$
+$h_{fg}\approx204.6\times1.223=250.2\,\mathrm{kJ/kg}$. Valor tabular: $212.9\,\mathrm{kJ/kg}$ (error $\approx17\%$; la correlación es más precisa cuando $T$ y $T_r$ están más cercanos). Como $-20\,°\mathrm{C}<T_r$, el resultado $h_{fg}>h_{fg,r}$ tiene el signo correcto: $h_{fg}$ crece al alejarse del punto crítico.
 
 ---
 
