@@ -154,13 +154,13 @@ Valores fundamentales:
 > | $\mathrm{N_2}$ | 28.2 | 83.68% |
 >
 > **(d) PCI y PCS.**
-> $$\bar{h}_R^\circ\big|_{\mathrm{H_2O(g)}} = [3(-393520)+4(-241826)] - [(-103850)+0] = -2043014\,\mathrm{kJ/kmol}.$$
-> $$\mathrm{PCI} = 2043014/44.09 = 46340\,\mathrm{kJ/kg} \approx 46.3\,\mathrm{MJ/kg}.$$
+> $$\bar{h}_R^\circ\big|_{\mathrm{H_2O(g)}} = [3(-393520)+4(-241826)] - [(-103850)+0] = -2044014\,\mathrm{kJ/kmol}.$$
+> $$\mathrm{PCI} = 2044014/44.09 = 46360\,\mathrm{kJ/kg} \approx 46.4\,\mathrm{MJ/kg}.$$
 >
 > Con $\mathrm{H_2O(l)}$: $\bar{h}_R^\circ = [3(-393520)+4(-285826)]-[-103850] = -2220014\,\mathrm{kJ/kmol}$.
 > $$\mathrm{PCS} = 2220014/44.09 = 50350\,\mathrm{kJ/kg} \approx 50.4\,\mathrm{MJ/kg}.$$
 >
-> Verificación: $\mathrm{PCS}-\mathrm{PCI}=4010\,\mathrm{kJ/kg}$. Por condensación de $4\,\mathrm{mol}$ de agua: $4\times18.015\times2441.7/44.09=4010\,\mathrm{kJ/kg}$ ✓.
+> Verificación: $\mathrm{PCS}-\mathrm{PCI}=3992\,\mathrm{kJ/kg}$. Por condensación de $4\,\mathrm{mol}$ de agua: $4\times18.015\times2442/44.09=3992\,\mathrm{kJ/kg}$ ✓.
 >
 > $\boxed{\mathrm{PCI}=46.3\,\mathrm{MJ/kg},\quad\mathrm{PCS}=50.4\,\mathrm{MJ/kg},\quad\mathrm{AF}=23.35\,\mathrm{kg/kg}.}$ $\blacksquare$
 

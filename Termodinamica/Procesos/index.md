@@ -49,16 +49,16 @@ aliases:
 
 ## Resultados para gas ideal
 
-> [!proposicion] Tabla maestra de los procesos (sistema cerrado, gas ideal, masa $m$)
-> Con $\Delta u=m c_v\Delta T$ y $\Delta h=m c_p\Delta T$ **siempre** (gas ideal), por proceso:
+> [!proposicion] Tabla maestra de los procesos (sistema cerrado, gas ideal, por unidad de masa)
+> Con $\Delta u=c_v\Delta T$ y $\Delta h=c_p\Delta T$ **siempre** (gas ideal), por proceso:
 >
 > | Proceso | $n$ | Relación | $w=\int P\,dv$ | $q$ | $\Delta s$ |
 > |:---|:--:|:---|:---|:---|:---|
-> | Isocórico | $\infty$ | $v=$cte | $0$ | $\Delta u=mc_v\Delta T$ | $mc_v\ln\dfrac{T_2}{T_1}$ |
-> | Isobárico | $0$ | $P=$cte | $P(v_2-v_1)=mR\Delta T$ | $\Delta h=mc_p\Delta T$ | $mc_p\ln\dfrac{T_2}{T_1}$ |
-> | Isotérmico | $1$ | $Pv=$cte | $mRT\ln\dfrac{v_2}{v_1}$ | $=w$ ($\Delta u=0$) | $mR\ln\dfrac{v_2}{v_1}$ |
+> | Isocórico | $\infty$ | $v=$cte | $0$ | $\Delta u=c_v\Delta T$ | $c_v\ln\dfrac{T_2}{T_1}$ |
+> | Isobárico | $0$ | $P=$cte | $P(v_2-v_1)=R\Delta T$ | $\Delta h=c_p\Delta T$ | $c_p\ln\dfrac{T_2}{T_1}$ |
+> | Isotérmico | $1$ | $Pv=$cte | $RT\ln\dfrac{v_2}{v_1}$ | $=w$ ($\Delta u=0$) | $R\ln\dfrac{v_2}{v_1}$ |
 > | Adiabático rev. | $\gamma$ | $Pv^\gamma=$cte | $\dfrac{P_1v_1-P_2v_2}{\gamma-1}=-\Delta u$ | $0$ | $0$ |
-> | Politrópico | $n$ | $Pv^n=$cte | $\dfrac{P_1v_1-P_2v_2}{n-1}$ | $\Delta u+w$ | $mc_v\ln\dfrac{T_2}{T_1}+mR\ln\dfrac{v_2}{v_1}$ |
+> | Politrópico | $n$ | $Pv^n=$cte | $\dfrac{P_1v_1-P_2v_2}{n-1}$ | $\Delta u+w$ | $c_v\ln\dfrac{T_2}{T_1}+R\ln\dfrac{v_2}{v_1}$ |
 >
 > Cada fila se deduce en su nota. La columna $w$ es trabajo de frontera cuasiestático; $\Delta u,\Delta h$ valen para cualquier camino entre los mismos $T$.
 

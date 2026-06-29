@@ -91,7 +91,7 @@ aliases:
 > | $\left(\partial P/\partial T\right)_v$ | $\alpha/\kappa_T$ | Regla cíclica en $P(T,v)$ |
 > | $\left(\partial v/\partial P\right)_T$ | $-v\kappa_T$ | Definición de $\kappa_T$ |
 > | $\left(\partial v/\partial T\right)_P$ | $v\alpha$ | Definición de $\alpha$ |
-> | $\left(\partial T/\partial P\right)_v$ | $v\kappa_T/(\alpha)^{-1} = \kappa_T/\alpha$ | Regla recíproca |
+> | $\left(\partial T/\partial P\right)_v$ | $\kappa_T/\alpha$ | Recíproca de $(\partial P/\partial T)_v$ |
 > | $\left(\partial T/\partial v\right)_P$ | $1/(v\alpha)$ | Regla recíproca |
 > | $\left(\partial P/\partial v\right)_T$ | $-1/(v\kappa_T)$ | Regla recíproca |
 >

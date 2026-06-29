@@ -105,7 +105,7 @@ aliases:
 >
 > **Estado 4 real** (con $\eta_T = 0.88$):
 > $h_{4,\rm real} = h_3 - \eta_T(h_3 - h_{4s}) = 3196.7 - 0.88\times(3196.7-2103.6) = 3196.7 - 0.88\times1093.1 = 3196.7 - 961.9 = 2234.8\,\mathrm{kJ/kg}$.
-> $x_{4,\rm real} = (2234.8 - 191.8)/2392.8 = 2043.0/2392.8 = 0.854 > 0.88$? No: $0.854 < 0.88$. La calidad $x_{4} = 0.854$ está por debajo de 0.88 — en diseño real se requeriría recalentamiento.
+> $x_{4,\rm real} = (2234.8 - 191.8)/2392.8 = 2043.0/2392.8 = 0.854$. La calidad $x_4 = 0.854$ queda por debajo del mínimo recomendado ($x_{\rm min}=0.88$) — en diseño real se requeriría recalentamiento.
 >
 > **(b) Eficiencia térmica real:**
 > $w_T = h_3 - h_{4,\rm real} = 3196.7 - 2234.8 = 961.9\,\mathrm{kJ/kg}$.

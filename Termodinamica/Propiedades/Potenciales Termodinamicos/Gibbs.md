@@ -115,7 +115,7 @@ aliases:
 ## Gibbs-Duhem: no toda la variación de potenciales es independiente
 
 > [!proposicion]
-> Para un sistema a composición constante con $G = nG/n = n\bar{g} = n\mu$ (sustancia pura):
+> Para un sistema a composición constante con $G = n\bar{g} = n\mu$ (sustancia pura):
 > $$G = \sum_i n_i\,\mu_i \implies dG = \sum_i n_i\,d\mu_i + \sum_i \mu_i\,dn_i.$$
 > Comparando con $dG = -S\,dT + V\,dP + \sum_i \mu_i\,dn_i$:
 > $$\boxed{S\,dT - V\,dP + \sum_i n_i\,d\mu_i = 0.}$$

@@ -41,7 +41,7 @@ aliases:
 > *Condición "simple compresible":* no hay efectos eléctricos, magnéticos ni de tensión superficial relevantes. Cubre prácticamente toda la termodinámica de ingeniería: vapor, gases, líquidos, mezclas no reactivas.
 
 > [!teoria] Ejemplo concreto del postulado
-> Agua líquida a $P = 1\,\text{MPa}$, $T = 180\,°\text{C}$: el volumen específico vale exactamente $v = 0.002033\,\text{m}^3/\text{kg}$, la entalpía $h = 763.1\,\text{kJ/kg}$, la entropía $s = 2.1396\,\text{kJ/(kg·K)}$. No importa cómo llegó el agua a ese estado — calentada isobaramente desde 20 °C, o comprimida isotérmicamente desde 0.1 MPa — el estado y todas sus propiedades son idénticos. El postulado no se demuestra: es un hecho experimental verificado con cualquier sustancia.
+> Agua líquida comprimida a $P = 1\,\text{MPa}$, $T = 170\,°\text{C}$ (por debajo de $T_{\rm sat}=179.9\,°\text{C}$, así que $T$ y $P$ son independientes): el volumen específico vale $v = 0.001114\,\text{m}^3/\text{kg}$, la entalpía $h = 719.3\,\text{kJ/kg}$, la entropía $s = 2.042\,\text{kJ/(kg·K)}$. No importa cómo llegó el agua a ese estado — calentada isobaramente desde 20 °C, o comprimida isotérmicamente desde 0.1 MPa — el estado y todas sus propiedades son idénticos. El postulado no se demuestra: es un hecho experimental verificado con cualquier sustancia.
 
 ---
 

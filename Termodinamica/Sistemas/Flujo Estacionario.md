@@ -97,7 +97,7 @@ aliases:
 
 ---
 
-## Ejemplo: caldera de caldera recuperadora
+## Ejemplo: caldera recuperadora de calor (HRSG)
 
 > [!ejemplo]
 > Agua líquida a $P_1=10\,\mathrm{MPa}$, $T_1=30\,°\mathrm{C}$ ($h_1=134.2\,\mathrm{kJ/kg}$) entra a una caldera y sale como vapor sobrecalentado a $P_2=10\,\mathrm{MPa}$, $T_2=550\,°\mathrm{C}$ ($h_2=3500.9\,\mathrm{kJ/kg}$). Caudal $\dot{m}=50\,\mathrm{kg/s}$. Calcular el calor suministrado y la potencia calorífica.

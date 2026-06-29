@@ -153,7 +153,7 @@ aliases:
 > **¿Por qué crece $S$ en procesos irreversibles?** Si se abren compartimentos (gas que se expande libremente) o se mezclan sustancias, el número de microestados compatibles aumenta enormemente. La "flecha del tiempo" es la tendencia estadística de ir de estados de baja $\Omega$ (altamente organizados) a estados de alta $\Omega$ (más dispersos).
 >
 > Relación cuantitativa: $R = N_A k_B$. La entropía específica $s$ de 1 mol es:
-> $$s = \frac{S}{n} = k_B N_A \ln \Omega^{1/N} = R \ln \Omega^{1/N_A} \quad [{\rm kJ/(mol\cdot K)}].$$
+> $$s = \frac{S}{n} = k_B N_A \ln \Omega^{1/N_A} = R \ln \Omega^{1/N_A} \quad [{\rm J/(mol\cdot K)}].$$
 >
 > **Tercer principio:** a $T \to 0$ K, un cristal perfecto tiene $\Omega = 1$ (un único microestado): $S = k_B \ln 1 = 0$. Esto fija el cero absoluto de la entropía.
 

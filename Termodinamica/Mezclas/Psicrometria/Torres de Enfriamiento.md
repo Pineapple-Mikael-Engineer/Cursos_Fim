@@ -81,7 +81,7 @@ aliases:
 
 ---
 
-## Ejemplo: torre de enfriamiento para planta de 50 MW
+## Ejemplo: torre de enfriamiento de una central térmica
 
 > [!ejemplo]
 > Una planta de potencia rechaza $\dot{Q}_{\rm cond} = 120\,\mathrm{MW}$ en su condensador. El agua de enfriamiento entra a la torre a $T_3=40\,°\mathrm{C}$ y sale a $T_4=24\,°\mathrm{C}$. El aire ambiente entra a $T_1=20\,°\mathrm{C}$, $\phi_1=40\%$, y sale saturado a $T_2=34\,°\mathrm{C}$, $\phi_2=100\%$. $P=101.325\,\mathrm{kPa}$.

@@ -155,10 +155,10 @@ aliases:
 >
 > Masas molares ($\mathrm{kg/kmol}$): $M_{\mathrm{CO}}=28.01$, $M_{\mathrm{H_2}}=2.016$, $M_{\mathrm{CO_2}}=44.01$, $M_{\mathrm{N_2}}=28.014$.
 >
-> $$M = 0.30\times28.01 + 0.25\times2.016 + 0.15\times44.01 + 0.30\times28.014 = 8.403+0.504+6.602+8.404 = 21.91\,\mathrm{kg/kmol}.$$
+> $$M = 0.30\times28.01 + 0.25\times2.016 + 0.15\times44.01 + 0.30\times28.014 = 8.403+0.504+6.602+8.404 = 23.91\,\mathrm{kg/kmol}.$$
 >
 > Fracciones másicas: $fm_i = y_i M_i/M$:
-> $fm_{\mathrm{CO}} = 8.403/21.91 = 0.3835$; $fm_{\mathrm{H_2}} = 0.504/21.91 = 0.0230$; $fm_{\mathrm{CO_2}} = 6.602/21.91 = 0.3013$; $fm_{\mathrm{N_2}} = 8.404/21.91 = 0.3836$. Suma $= 0.9914 \approx 1.000$ (error de redondeo). ✓
+> $fm_{\mathrm{CO}} = 8.403/23.91 = 0.3514$; $fm_{\mathrm{H_2}} = 0.504/23.91 = 0.0211$; $fm_{\mathrm{CO_2}} = 6.602/23.91 = 0.2761$; $fm_{\mathrm{N_2}} = 8.404/23.91 = 0.3515$. Suma $= 1.000$. ✓
 >
 > **(b) $\Delta\bar{h}$ y $\Delta h$.** $\bar{c}_p$ promedio en kJ/(kmol·K): $\bar{c}_{p,\mathrm{CO}}=29.1$, $\bar{c}_{p,\mathrm{H_2}}=29.0$, $\bar{c}_{p,\mathrm{CO_2}}=43.1$, $\bar{c}_{p,\mathrm{N_2}}=29.1$.
 >
@@ -166,7 +166,7 @@ aliases:
 >
 > $$\Delta\bar{h} = 31.18\times(500-300) = 6236\,\mathrm{kJ/kmol}.$$
 >
-> $$\Delta h = 6236/21.91 = 284.6\,\mathrm{kJ/kg}.$$
+> $$\Delta h = 6236/23.91 = 260.8\,\mathrm{kJ/kg}.$$
 >
 > **(c) $\Delta\bar{s}$.**
 > $$\Delta\bar{s} = \bar{c}_p\ln\frac{T_2}{T_1} - R_u\ln\frac{P_2}{P_1} = 31.18\times\ln\frac{500}{300} - 8.314\times\ln\frac{800}{200}.$$
@@ -180,12 +180,12 @@ aliases:
 > $$T_{2s} = T_1\left(\frac{P_2}{P_1}\right)^{R_u/\bar{c}_p} = 300\times4^{0.2667} = 300\times e^{0.2667\ln4} = 300\times1.447 = 434.2\,\mathrm{K}.$$
 >
 > Trabajo específico isentrópico:
-> $$w_s = \frac{\bar{c}_p}{M}(T_{2s}-T_1) = \frac{31.18}{21.91}\times134.2 = 1.423\times134.2 = 191.0\,\mathrm{kJ/kg}.$$
+> $$w_s = \frac{\bar{c}_p}{M}(T_{2s}-T_1) = \frac{31.18}{23.91}\times134.2 = 1.304\times134.2 = 175.0\,\mathrm{kJ/kg}.$$
 >
 > Potencia mínima:
-> $$\dot{W}_{\rm min} = \dot{m}\,w_s = 5\times191.0 = 955\,\mathrm{kW}.$$
+> $$\dot{W}_{\rm min} = \dot{m}\,w_s = 5\times175.0 = 875\,\mathrm{kW}.$$
 >
-> $\boxed{M = 21.91\,\mathrm{kg/kmol},\quad \dot{W}_{\rm min} = 955\,\mathrm{kW}.}$ $\blacksquare$
+> $\boxed{M = 23.91\,\mathrm{kg/kmol},\quad \dot{W}_{\rm min} = 875\,\mathrm{kW}.}$ $\blacksquare$
 
 > [!referencia]
 > Borgnakke & Sonntag, cap. 12; Çengel & Boles, cap. 13; Moran & Shapiro, cap. 12.

@@ -35,7 +35,7 @@ aliases:
 > $$\left(\frac{\partial v}{\partial P}\right)_s = \left(\frac{\partial v}{\partial P}\right)_T + \frac{T}{c_p}\!\left(\frac{\partial v}{\partial T}\right)_P^{\!2}.$$
 >
 > **Paso 4 — Dividir por $(\partial v/\partial P)_T$ (negativo):**
-> $$\frac{(\partial v/\partial P)_s}{(\partial v/\partial P)_T} = 1 + \frac{T\,[(\partial v/\partial T)_P]^2}{c_p\,(\partial v/\partial P)_T} = 1 - \frac{Tv\,\alpha^2}{c_p\,\kappa_T^{-1}\cdot(-v\kappa_T)} = 1 - \frac{Tv\,\alpha^2}{c_p\,\kappa_T^{-1}\cdot v\kappa_T}.$$
+> $$\frac{(\partial v/\partial P)_s}{(\partial v/\partial P)_T} = 1 + \frac{T\,[(\partial v/\partial T)_P]^2}{c_p\,(\partial v/\partial P)_T} = 1 + \frac{T\,v^2\alpha^2}{c_p\,(-v\kappa_T)} = 1 - \frac{Tv\,\alpha^2}{c_p\,\kappa_T}.$$
 >
 > Simplificando con $c_p - c_v = Tv\alpha^2/\kappa_T$ (ver [[Cp Cv/index | $c_p - c_v$]]):
 > $$\frac{(\partial v/\partial P)_s}{(\partial v/\partial P)_T} = 1 - \frac{c_p - c_v}{c_p} = \frac{c_v}{c_p}.$$

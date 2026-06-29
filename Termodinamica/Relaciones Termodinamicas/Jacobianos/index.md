@@ -63,13 +63,13 @@ aliases:
 > | $x$ | $J(x,P) = (\partial x/\partial T)_P$ | $J(x,T) = -(\partial x/\partial P)_T$ |
 > |:---:|:---:|:---:|
 > | $T$ | $1$ | $0$ |
-> | $P$ | $0$ | $1$ |
+> | $P$ | $0$ | $-1$ |
 > | $v$ | $v\alpha$ | $v\kappa_T$ |
 > | $s$ | $c_p/T$ | $v\alpha$ |
-> | $u$ | $c_p - Pv\alpha$ | $v(\kappa_T P - T\alpha)$ |
-> | $h$ | $c_p$ | $v(1-T\alpha)$ |
-> | $f$ | $-(Pv\alpha + s)$ | $v\kappa_T P - s\cdot 0$ |
-> | $g$ | $-s$ | $v$ |
+> | $u$ | $c_p - Pv\alpha$ | $v(T\alpha - \kappa_T P)$ |
+> | $h$ | $c_p$ | $v(T\alpha - 1)$ |
+> | $f$ | $-(Pv\alpha + s)$ | $-Pv\kappa_T$ |
+> | $g$ | $-s$ | $-v$ |
 >
 > Con estos bloques, $(\partial x/\partial y)_z = J(x,z)/J(y,z)$ se calcula expandiendo el determinante $2\times2$.
 
@@ -81,7 +81,7 @@ aliases:
 > **3.ª relación de Maxwell** $(\partial s/\partial v)_T = (\partial P/\partial T)_v$:
 >
 > **Lado izquierdo:**
-> $$\left(\frac{\partial s}{\partial v}\right)_T = \frac{J(s,T)}{J(v,T)} = \frac{-v\alpha}{-v\kappa_T} = \frac{\alpha}{\kappa_T}.$$
+> $$\left(\frac{\partial s}{\partial v}\right)_T = \frac{J(s,T)}{J(v,T)} = \frac{v\alpha}{v\kappa_T} = \frac{\alpha}{\kappa_T}.$$
 >
 > **Lado derecho:**
 > $$\left(\frac{\partial P}{\partial T}\right)_v = \frac{J(P,v)}{J(T,v)} = \frac{(\partial P/\partial T)_P(\partial v/\partial P)_T - (\partial P/\partial P)_T(\partial v/\partial T)_P}{(\partial T/\partial T)_P(\partial v/\partial P)_T - (\partial T/\partial P)_T(\partial v/\partial T)_P}.$$

@@ -32,9 +32,9 @@ donde $\kappa_T$ es la compresibilidad isotérmica. Para el agua líquida a $20\
 
 $$\boxed{v(T,P) \approx v_f(T).}$$
 
-Para la energía interna, la ecuación de estado termodinámica da:
-$$\left(\frac{\partial u}{\partial P}\right)_T = -P\left(\frac{\partial v}{\partial P}\right)_T - T\left(\frac{\partial P}{\partial T}\right)_v \cdot \left(\frac{\partial v}{\partial P}\right)_T + P\left(\frac{\partial v}{\partial P}\right)_T = -T\left(\frac{\partial v}{\partial T}\right)_P$$
-(identidad de la primera ley para el potencial termodinámica). Para líquidos, $(\partial v/\partial T)_P = v\beta_P$ con $\beta_P$ pequeño, así que $u$ también es poco sensible a $P$:
+Para la energía interna, partiendo de $du = T\,ds - P\,dv$ y la relación de Maxwell $(\partial s/\partial P)_T = -(\partial v/\partial T)_P$:
+$$\left(\frac{\partial u}{\partial P}\right)_T = T\left(\frac{\partial s}{\partial P}\right)_T - P\left(\frac{\partial v}{\partial P}\right)_T = -T\left(\frac{\partial v}{\partial T}\right)_P - P\left(\frac{\partial v}{\partial P}\right)_T = v(P\kappa_T - T\alpha).$$
+Para líquidos, tanto $\alpha$ como $\kappa_T$ son pequeños, así que $(\partial u/\partial P)_T\approx 0$ y $u$ es poco sensible a la presión:
 $$u(T,P) \approx u_f(T).$$
 
 ---
@@ -107,9 +107,8 @@ Para presiones moderadas ($P < 5\,\mathrm{MPa}$) la aproximación $y(T,P)\approx
 > Para $P_2=8\,\mathrm{MPa}$ y $h_2=201.3\,\mathrm{kJ/kg}$: iterando en tablas de líquido comprimido (A-7), a $T_2\approx46\,°\mathrm{C}$ y $P=8\,\mathrm{MPa}$: $h\approx201.9\,\mathrm{kJ/kg}$. Así $T_2\approx46\,°\mathrm{C}$ (aumento ínfimo de temperatura, característico de las bombas de líquido).
 >
 > **Parte (d) — Comparación con tablas de líquido comprimido (A-7).**
-> En Tabla A-7 a $T=45\,°\mathrm{C}$, $P=8\,\mathrm{MPa}$: $h=193.9\,\mathrm{kJ/kg}$, $v=0.001009\,\mathrm{m^3/kg}$.
-> $w_{B,s} = v_1(P_2-P_1)$ vs. $w_{B,s}^{\rm tablas} = h_{2s}^{\rm tablas}-h_1 = (191.8 + v_f\Delta P) = 191.8+8.07=199.87\,\mathrm{kJ/kg}$ como estado final isentrópico.
-> Diferencia: $< 0.5\%$. La aproximación de líquido incompresible es excelente para la bomba. $\blacksquare$
+> El estado final isentrópico tiene $h_{2s} = h_1 + w_{B,s} = 191.8 + 8.07 = 199.87\,\mathrm{kJ/kg}$. En Tabla A-7, el líquido comprimido a $T_2\approx46\,°\mathrm{C}$ y $P_2=8\,\mathrm{MPa}$ tiene $h\approx199.9\,\mathrm{kJ/kg}$ (la entalpía del líquido comprimido se aproxima muy bien por $h_f(T)+v_f\,[P-P_{\rm sat}(T)]$).
+> El trabajo deducido de tablas, $w_{B,s}^{\rm tablas} = h_{2s}-h_1 \approx 8.1\,\mathrm{kJ/kg}$, coincide con la estimación $w_{B,s}=v_1\,\Delta P=8.07\,\mathrm{kJ/kg}$ dentro de $<0.5\%$. La aproximación de líquido incompresible es excelente para la bomba. $\blacksquare$
 
 > [!warning]
 > La fórmula $w_{B,s}=-v\,\Delta P$ (trabajo de flujo reversible) es **diferente** del trabajo de frontera $w=-\int P\,dv\approx 0$ para líquido incompresible. La bomba realiza trabajo de flujo, no de frontera. El trabajo de frontera es nulo porque $\Delta v\approx 0$; el trabajo de flujo $-\int v\,dP$ es no nulo porque $\Delta P\neq 0$.

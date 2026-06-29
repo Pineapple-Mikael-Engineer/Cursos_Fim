@@ -19,7 +19,7 @@ aliases:
 > [!definicion]
 > Para un [[Sistemas Cerrados/index | sistema cerrado]] (masa fija), el balance de entropía es:
 > $$\boxed{S_2 - S_1 = \int_1^2 \frac{\delta Q}{T_b} + S_{\rm gen},}$$
-> donde $T_b$ es la temperatura en la frontera donde se transfiere el calor $\delta Q$, y $S_{\rm gen} \ge 0$ es la entropía generada por irreversibilidades internas. Forma diferencial:
+> donde $T_b$ es la temperatura en la frontera donde se transfiere el calor $\delta Q$, y $S_{\rm gen} \ge 0$ es la entropía generada por irreversibilidades internas. Este balance no es un postulado: se **deduce** de la desigualdad de Clausius (sección [[#Del enunciado de Clausius al balance de entropía|más abajo]]). Forma diferencial:
 > $$dS = \frac{\delta Q}{T_b} + \delta S_{\rm gen}, \qquad \delta S_{\rm gen} \ge 0.$$
 >
 > La primera ley ($\Delta U = Q - W$) no impone dirección: dice cuánta energía cambia, no en qué dirección puede fluir el proceso. La segunda ley impone la dirección: $S_{\rm gen} \ge 0$ hace que los procesos reales siempre generen entropía; la igualdad $S_{\rm gen} = 0$ solo se alcanza en el límite reversible (idealización). **Lo que nunca puede decrecer es la entropía del universo (sistema + entorno).**
@@ -84,6 +84,31 @@ aliases:
 >
 > **Paso 5 — Verificación de límites.**
 > Si el ciclo es reversible, también puede ejecutarse en sentido contrario (igual pero con signos opuestos), y para que ambas desigualdades sean compatibles: $\oint \delta Q/T = 0$. Si es irreversible, solo puede haber la desigualdad estricta $< 0$. ✓
+
+---
+
+## Del enunciado de Clausius al balance de entropía
+
+> [!demostracion]
+> **Meta:** deducir el balance $S_2 - S_1 = \int_1^2 \delta Q/T_b + S_{\rm gen}$ a partir de la desigualdad de Clausius $\oint \delta Q/T_b \le 0$.
+>
+> **Paso 1 — Cerrar un ciclo.** Sea un proceso **real** (posiblemente irreversible) que lleva el sistema del estado 1 al 2. Se completa un ciclo con un camino de retorno $2\to1$ **internamente reversible** — siempre existe, porque $S$ es función de estado y los estados 1 y 2 son fijos. El ciclo combinado es $1 \xrightarrow{\text{real}} 2 \xrightarrow{\text{rev}} 1$.
+>
+> **Paso 2 — Aplicar la desigualdad de Clausius al ciclo.** La integral cíclica se parte en los dos tramos:
+> $$\oint \frac{\delta Q}{T_b} = \int_1^2 \left(\frac{\delta Q}{T_b}\right)_{\rm real} + \int_2^1 \left(\frac{\delta Q}{T}\right)_{\rm rev} \le 0.$$
+> En el tramo reversible la temperatura de frontera coincide con la del sistema ($T_b = T$), por ser cuasiestático.
+>
+> **Paso 3 — Evaluar el tramo reversible.** Por la definición de entropía, $dS = \delta Q_{\rm rev}/T$ sobre cualquier camino reversible, de modo que
+> $$\int_2^1 \left(\frac{\delta Q}{T}\right)_{\rm rev} = \int_2^1 dS = S_1 - S_2.$$
+>
+> **Paso 4 — Despejar.** Sustituyendo en el Paso 2:
+> $$\int_1^2 \left(\frac{\delta Q}{T_b}\right)_{\rm real} + (S_1 - S_2) \le 0 \;\Longrightarrow\; S_2 - S_1 \ge \int_1^2 \frac{\delta Q}{T_b}.$$
+>
+> **Paso 5 — Definir $S_{\rm gen}$.** La desigualdad se convierte en igualdad introduciendo el **déficit** no negativo
+> $$S_{\rm gen} \equiv (S_2 - S_1) - \int_1^2 \frac{\delta Q}{T_b} \ge 0,$$
+> que es precisamente la entropía generada por las irreversibilidades internas del tramo real. Reordenando se obtiene el balance:
+> $$\boxed{S_2 - S_1 = \int_1^2 \frac{\delta Q}{T_b} + S_{\rm gen}, \qquad S_{\rm gen} \ge 0.}$$
+> El déficit es estrictamente positivo ($S_{\rm gen} > 0$) cuando el tramo $1\to2$ es irreversible, y nulo solo en el límite reversible. $\blacksquare$
 
 ---
 

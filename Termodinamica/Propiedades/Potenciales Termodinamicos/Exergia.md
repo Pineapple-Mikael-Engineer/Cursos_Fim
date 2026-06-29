@@ -137,22 +137,22 @@ aliases:
 >
 > **Paso 1 — Exergías de flujo:**
 > $$\psi_1 = (h_1 - h_0) - T_0(s_1 - s_0) = (3422.2 - 104.9) - 298.15(6.882 - 0.3674) = 3317.3 - 1942.1 = 1375.2\,\text{kJ/kg}.$$
-> $$\psi_2 = (h_2 - h_0) - T_0(s_2 - s_0) = (2330.2 - 104.9) - 298.15(7.47 - 0.3674) = 2225.3 - 2092.5 = 132.8\,\text{kJ/kg}.$$
+> $$\psi_2 = (h_2 - h_0) - T_0(s_2 - s_0) = (2330.2 - 104.9) - 298.15(7.47 - 0.3674) = 2225.3 - 2117.6 = 107.7\,\text{kJ/kg}.$$
 >
 > **Paso 2 — Trabajo real de la turbina:**
 > $$w_{\rm real} = h_1 - h_2 = 3422.2 - 2330.2 = 1092.0\,\text{kJ/kg}.$$
 >
 > **Paso 3 — Exergía destruida:**
-> $$\Phi = \psi_1 - \psi_2 - w_{\rm real} = 1375.2 - 132.8 - 1092.0 = 150.4\,\text{kJ/kg}.$$
+> $$\Phi = \psi_1 - \psi_2 - w_{\rm real} = 1375.2 - 107.7 - 1092.0 = 175.5\,\text{kJ/kg}.$$
 >
 > **Paso 4 — Verificación con Gouy-Stodola:**
 > $$\Delta s_{\rm gen} = s_2 - s_1 = 7.47 - 6.882 = 0.588\,\text{kJ/(kg·K)}.$$
 > $$T_0\,\Delta s_{\rm gen} = 298.15 \times 0.588 = 175.3\,\text{kJ/kg}.$$
-> (La diferencia con 150.4 se debe a que parte de la entropía generada se lleva con el fluido de salida al ambiente.)
+> Coincide con $\Phi = 175.5\,\text{kJ/kg}$ (diferencia por redondeo): para una turbina adiabática toda la exergía destruida es $\Phi = T_0\,\dot S_{\rm gen}/\dot m$ exactamente, sin término de transferencia con el ambiente.
 >
 > **Paso 5 — Eficiencia exergética:**
-> $$\epsilon = \frac{w_{\rm real}}{\psi_1 - \psi_2} = \frac{1092.0}{1375.2 - 132.8} = \frac{1092.0}{1242.4} = 87.9\%.$$
-> Comparar: eficiencia isentrópica $\eta_T = 88\%$ vs. eficiencia exergética $\epsilon = 87.9\%$ — valores cercanos para turbinas porque la única irreversibilidad significativa es la generación de entropía interna. $\blacksquare$
+> $$\epsilon = \frac{w_{\rm real}}{\psi_1 - \psi_2} = \frac{1092.0}{1375.2 - 107.7} = \frac{1092.0}{1267.5} = 86.2\%.$$
+> Comparar: eficiencia isentrópica $\eta_T = 88\%$ vs. eficiencia exergética $\epsilon = 86.2\%$ — valores cercanos para turbinas porque la única irreversibilidad significativa es la generación de entropía interna. $\blacksquare$
 
 ---
 

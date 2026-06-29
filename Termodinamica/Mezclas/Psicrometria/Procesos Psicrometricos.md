@@ -156,13 +156,13 @@ aliases:
 > **Estado 1 (entrada):** $T_1=35\,°\mathrm{C}$, $\phi_1=80\%$.
 > $P_{v,1} = 0.80\times5.629 = 4.503\,\mathrm{kPa}$.
 > $\omega_1 = 0.622\times4.503/(101.325-4.503) = 0.02893\,\mathrm{kg/kg}$.
-> $h_1 = (1.005+1.86\times0.02893)\times35+2501\times0.02893 = 1.0538\times35+72.36 = 36.88+72.36 = 109.2\,\mathrm{kJ/kg}$.
+> $h_1 = (1.005+1.86\times0.02893)\times35+2501\times0.02893 = 1.0588\times35+72.36 = 37.06+72.36 = 109.4\,\mathrm{kJ/kg}$.
 >
 > **(b) Calor de enfriamiento (etapa A):**
 > $\dot{m}_{\rm cond} = \dot{m}_a(\omega_1-\omega_2) = 2\times(0.02893-0.008222) = 2\times0.02071 = 0.04142\,\mathrm{kg/s}$.
 >
 > $\dot{Q}_{\rm enfr} = \dot{m}_a[(h_2-h_1)-(\omega_1-\omega_2)\,h_f(T_2)]$.
-> $= 2\times[(31.9-109.2)-0.02071\times46.6] = 2\times[-77.3-0.965] = 2\times(-78.3) = -156.5\,\mathrm{kW}$.
+> $= 2\times[(31.9-109.4)-0.02071\times46.6] = 2\times[-77.5-0.965] = 2\times(-78.5) = -156.9\,\mathrm{kW}$.
 >
 > **(c) Condensado:**
 > $\dot{m}_{\rm cond} = 0.04142\,\mathrm{kg/s} = 149.1\,\mathrm{kg/h}$.
