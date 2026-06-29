@@ -1,0 +1,22 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}\usepackage{amsmath}\usetikzlibrary{arrows.meta}
+\begin{document}
+\begin{tikzpicture}[line width=1pt,>={Latex[length=2.6mm]}]
+  % torre (trapecio invertido ligero)
+  \fill[blue!5] (0.4,0)--(3.6,0)--(4.0,4.2)--(0,4.2)--cycle;
+  \draw[line width=1.2pt] (0.4,0)--(3.6,0)--(4.0,4.2)--(0,4.2)--cycle;
+  % relleno (lineas)
+  \foreach \y in {1.4,2.0,2.6} \draw[black!30] (0.5,\y)--(3.5,\y);
+  \node at (2.0,3.4){\small torre};
+  % agua caliente entra arriba
+  \draw[->,red!65!black,line width=1.4pt] (-1.6,3.8)--(0.9,3.8); \node[above] at (-0.6,3.85){\small agua $T_3$ (caliente)};
+  % agua fria sale abajo
+  \draw[->,blue!60!black,line width=1.4pt] (2.0,0)--(2.0,-1.2); \node[below] at (2.0,-1.2){\small agua $T_4$ (fría)};
+  % aire entra abajo, sale arriba
+  \draw[->,teal!55!black,line width=1.3pt] (4.8,0.6)--(3.55,0.6); \node[right] at (4.8,0.6){\small aire 1};
+  \draw[->,teal!55!black,line width=1.3pt] (2.0,4.2)--(2.0,5.4); \node[above] at (2.0,5.4){\small aire 2 (saturado)};
+  % reposicion
+  \draw[->,blue!50!black,line width=1.1pt] (5.0,-0.8)--(3.0,-0.8); \node[right] at (5.0,-0.8){\small reposición};
+  \node[align=center] at (2.0,-2.2){\small evaporación parcial enfría el agua};
+\end{tikzpicture}
+\end{document}
