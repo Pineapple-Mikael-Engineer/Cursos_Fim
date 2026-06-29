@@ -16,93 +16,82 @@ aliases:
 # Volumen de Control
 
 > [!definicion]
-> Un **volumen de control** (VC) — también llamado *sistema abierto* — es una región del espacio de frontera fija o deformable, **a través de la cual puede fluir masa**. Es el modelo de todos los equipos termodinámicos que tienen corrientes de entrada y salida: turbinas, compresores, calderas, reactores continuos.
+> Un **volumen de control** (VC) — también llamado *sistema abierto* — es una región del espacio de frontera fija o deformable, **a través de la cual puede fluir masa**. Es el modelo de todos los equipos con corrientes de entrada y salida: turbinas, compresores, calderas, toberas, reactores continuos.
 >
-> *¿Por qué la entalpía y no la energía interna?* Cada kilogramo de fluido que cruza la frontera del VC trae consigo su energía interna $u$, pero además tiene que hacer un trabajo de "empuje" para abrirse paso: el fluido de atrás empuja con presión $P$ y el volumen específico que ocupa es $v$. Este trabajo de flujo vale exactamente $Pv$ por kilogramo. En total, la energía que transporta cada corriente es:
-> $$\theta = \underbrace{u + Pv}_{=h} + \frac{C^2}{2} + gz.$$
-> La entalpía $h = u + Pv$ es, pues, la propiedad natural de los sistemas abiertos.
+> *¿Por qué la entalpía y no la energía interna?* Cada kilogramo que cruza la frontera trae su energía interna $u$, pero además realiza un **trabajo de empuje** $Pv$ para abrirse paso. La energía que transporta cada corriente es por tanto
+> $$\theta = \underbrace{u + Pv}_{=\,h} + \frac{C^2}{2} + gz,$$
+> de modo que la entalpía $h=u+Pv$ es la propiedad natural de los sistemas abiertos. La deducción del trabajo de flujo $Pv$ está en [[Balance de Energia VC]].
 
 ![[volumen_de_control_generico.svg|440]]
-*Volumen de control genérico con $n_e$ entradas e $n_s$ salidas. La frontera (superficie de control) puede ser fija o deformable. A través de ella cruzan calor $\dot{Q}$, trabajo $\dot{W}$ y corrientes másicas $\dot{m}$. Dentro del VC las propiedades pueden variar en el tiempo (transitorio) o permanecer constantes (estacionario).*
+*Volumen de control genérico con $n_e$ entradas e $n_s$ salidas. La frontera (superficie de control) puede ser fija o deformable. A través de ella cruzan calor $\dot{Q}$, trabajo de eje $\dot{W}$ y corrientes másicas $\dot{m}$. Las propiedades internas pueden variar en el tiempo (transitorio) o permanecer constantes (estacionario).*
+
+> [!info]
+> Esta nota es el **encuadre** del modelo: qué es un VC, por qué la entalpía es su variable natural y cuándo elegirlo. Los balances en detalle viven en [[Conservacion/Volumenes de Control/index | Conservación — Volumen de Control]].
 
 ---
 
-## Origen del trabajo de flujo: derivación del término $h = u + Pv$
-
-> [!demostracion]
-> **Hipótesis:** fluido en flujo unidimensional; el control de volumen tiene una entrada de área $A$ con presión $P$, velocidad $C$ y densidad $\rho=1/v$.
->
-> **Paso 1 — Inventario de energía transportada.** En un intervalo $dt$, un volumen $dV = CA\,dt$ de fluido atraviesa la frontera. Su masa es $dm = \rho\,dV = CA\,dt/v$. Este fluido porta energía interna $u\,dm$.
->
-> **Paso 2 — Trabajo de empuje.** Para que el fluido entre al VC, el fluido de aguas arriba ejerce una fuerza $F=PA$ sobre la cara de entrada. El trabajo realizado en el intervalo $dt$ es:
-> $$\delta W_{\rm flujo} = F\,C\,dt = PA\cdot C\,dt = P\cdot(CA\,dt) = P\cdot dV = P v\,dm.$$
->
-> **Paso 3 — Energía total por unidad de masa.** La energía total que cruza la frontera por kilogramo de fluido es la suma de la interna más el trabajo de empuje:
-> $$\frac{\delta E_{\rm masa}}{dm} = u + Pv = h.$$
->
-> **Paso 4 — Incluir EC y EP.** Si además el fluido tiene velocidad $C$ y altura $z$:
-> $$\theta = h + \frac{C^2}{2} + gz.$$
->
-> **Paso 5 — Implicación para el balance de energía.** Cada corriente contribuye al balance de energía del VC con $\dot{m}\,\theta$, no con $\dot{m}\,u$. La diferencia $\dot{m}\,Pv$ es el trabajo de flujo, invisible en el [[Sistemas Cerrados | sistema cerrado]] donde no hay cruce de masa. $\blacksquare$
-
----
-
-## Balances generales del VC
-
-> [!teorema]
-> Para un VC con $n_e$ entradas ($i$) y $n_s$ salidas ($e$), en forma de tasa:
->
-> **Balance de masa:**
-> $$\frac{dm_{\rm vc}}{dt} = \sum_{i}\dot{m}_i - \sum_{e}\dot{m}_e.$$
->
-> **Balance de energía:**
-> $$\frac{dE_{\rm vc}}{dt} = \dot{Q} - \dot{W} + \sum_{i}\dot{m}_i\theta_i - \sum_{e}\dot{m}_e\theta_e,$$
-> donde $\dot{W}$ incluye solo trabajo de eje (no el trabajo de flujo, ya absorbido en $h$).
->
-> **Balance de entropía:**
-> $$\frac{dS_{\rm vc}}{dt} = \sum_k\frac{\dot{Q}_k}{T_k} + \sum_{i}\dot{m}_i s_i - \sum_{e}\dot{m}_e s_e + \dot{S}_{\rm gen}, \quad \dot{S}_{\rm gen}\geq0.$$
->
-> El caso más frecuente — equipo en operación continua — es el [[Flujo Estacionario | flujo estacionario]], donde las derivadas temporales se anulan.
-
----
-
-## Comparación SC vs. VC
+## Sistema cerrado vs. volumen de control
 
 > [!teoria]
-> | Característica | Sistema cerrado (SC) | Volumen de control (VC) |
+> La elección del modelo depende de si **cruza masa la frontera**:
+>
+> | Característica | [[Sistemas Cerrados \| Sistema cerrado (SC)]] | Volumen de control (VC) |
 > |:---|:---|:---|
 > | Masa | Fija ($dm=0$) | Variable (hay flujo) |
-> | Propiedad energética natural | $U$ (energía interna) | $h$ (entalpía) |
-> | Trabajo de frontera | $\int P\,dV$ | Incluido en $h$ vía $Pv$ |
-> | Forma diferencial 1ª ley | $dU=\delta Q-\delta W$ | $dE_{\rm vc}=\dot{Q}-\dot{W}+\sum\dot{m}\theta$ |
+> | Frontera | Sigue a la masa | Fija/deformable en el espacio |
+> | Propiedad energética natural | $U$ (energía interna) | $h$ (entalpía, incluye $Pv$) |
+> | Trabajo característico | Frontera móvil $\int P\,dV$ | Trabajo de eje $\dot W_{\rm eje}$ |
 > | Modelo típico | Pistón-cilindro, batch | Turbina, compresor, tobera |
 >
-> La transición de SC a VC es conceptual: el mismo gas puede tratarse como SC si se "sigue" la masa, o como VC si se fija un volumen y se permite el paso de masa.
+> La transición SC → VC es conceptual: el mismo gas se trata como SC si se "sigue" la masa, o como VC si se fija un volumen y se permite el paso de masa. Lo que aparece al abrir la frontera es el conjunto de términos de flujo $\dot m\,\theta$.
+
+> [!teoria] Cuándo modelar como VC
+> Conviene el volumen de control cuando el fluido **circula de forma continua** por el dispositivo. El caso dominante es el [[Flujo Estacionario | flujo estacionario]] (turbinas, bombas, intercambiadores en operación normal), donde las derivadas temporales se anulan. El caso **transitorio** (llenado o vaciado de tanques) conserva las derivadas $d/dt$ — ver el ejemplo más abajo.
 
 ---
 
-## Ejemplo: llenado de un recipiente rígido
+## Balances generales (resumen y delegación)
+
+> [!teorema]
+> Para un VC con entradas $i$ y salidas $e$, en forma de tasa:
+> $$\frac{dm_{\rm vc}}{dt} = \sum_i\dot m_i - \sum_e\dot m_e,$$
+> $$\frac{dE_{\rm vc}}{dt} = \dot Q - \dot W + \sum_i\dot m_i\theta_i - \sum_e\dot m_e\theta_e, \qquad \theta = h+\tfrac{C^2}{2}+gz,$$
+> $$\frac{dS_{\rm vc}}{dt} = \sum_k\frac{\dot Q_k}{T_k} + \sum_i\dot m_i s_i - \sum_e\dot m_e s_e + \dot S_{\rm gen}, \qquad \dot S_{\rm gen}\ge0.$$
+> Aquí $\dot W$ es solo trabajo de eje (el de flujo ya está en $h$). Las deducciones, las hipótesis y los ejemplos de cada balance están en [[Balance de Masa VC]], [[Balance de Energia VC]], [[Balance de Entropia VC]] y [[Balance de Exergia VC]].
+
+---
+
+## Ejemplo: llenado de un recipiente rígido (VC transitorio)
 
 > [!ejemplo]
-> Un recipiente rígido de $V=0.5\,\mathrm{m^3}$, inicialmente evacuado, se conecta a una línea de suministro de vapor a $P_L=1\,\mathrm{MPa}$, $T_L=300\,°\mathrm{C}$ ($h_L=3051.2\,\mathrm{kJ/kg}$). La conexión se mantiene abierta hasta que la presión en el recipiente iguala $P_L$. El proceso es adiabático. Determinar la temperatura final del vapor en el recipiente.
+> Un recipiente rígido de $V=0.5\,\mathrm{m^3}$, inicialmente evacuado, se conecta a una línea de suministro de vapor a $P_L=1\,\mathrm{MPa}$, $T_L=300\,°\mathrm{C}$ ($h_L=3051.2\,\mathrm{kJ/kg}$). La conexión se mantiene abierta hasta que la presión en el recipiente iguala $P_L$. El proceso es adiabático. Determinar la temperatura final del vapor.
 
 > [!solucion]
-> **Paso 1 — VC: el recipiente rígido.** Una sola entrada (línea), sin salida, sin trabajo de eje ($\dot{W}=0$), adiabático ($\dot{Q}=0$).
+> **Paso 1 — VC: el recipiente.** Una sola entrada, sin salida, sin trabajo de eje ($\dot{W}=0$), adiabático ($\dot{Q}=0$). Es **transitorio**: el contenido del VC cambia con el tiempo.
 >
-> **Paso 2 — Balance de masa.** $m_2 - 0 = m_{\rm entra}$. Toda la masa que entra queda en el recipiente.
+> **Paso 2 — Balance de masa.** $m_2 - 0 = m_{\rm entra}$: toda la masa que entra queda dentro.
 >
-> **Paso 3 — Balance de energía (no estacionario).** Con $E_{\rm vc,1}=0$ (recipiente vacío):
-> $$U_{2} - 0 = 0 - 0 + m_{\rm entra}\,h_L \implies m_2 u_2 = m_2 h_L.$$
-> Luego $u_2 = h_L = 3051.2\,\mathrm{kJ/kg}$.
+> **Paso 3 — Balance de energía no estacionario.** Integrando $dE_{\rm vc}/dt = \dot m\,h_L$ con $E_{\rm vc,1}=0$ (vacío):
+> $$U_2 - 0 = m_{\rm entra}\,h_L \implies m_2 u_2 = m_2 h_L \implies u_2 = h_L = 3051.2\,\mathrm{kJ/kg}.$$
 >
-> **Paso 4 — Determinar el estado final.** A $P_2=1\,\mathrm{MPa}$ y $u_2=3051.2\,\mathrm{kJ/kg}$. De tablas de vapor sobrecalentado a $1\,\mathrm{MPa}$: $u(300\,°\mathrm{C})=2793.2$, $u(400\,°\mathrm{C})=2957.3$, $u(500\,°\mathrm{C})=3131.4$. Interpolando para $u_2=3051.2$: $T_2=400+(3051.2-2957.3)/(3131.4-2957.3)\times100\approx454\,°\mathrm{C}$.
+> **Paso 4 — Estado final.** A $P_2=1\,\mathrm{MPa}$ y $u_2=3051.2\,\mathrm{kJ/kg}$. De tablas de vapor sobrecalentado a $1\,\mathrm{MPa}$: $u(400\,°\mathrm{C})=2957.3$, $u(500\,°\mathrm{C})=3131.4$. Interpolando: $T_2 = 400 + (3051.2-2957.3)/(3131.4-2957.3)\times100 \approx 454\,°\mathrm{C}$.
 >
-> **Paso 5 — Razonabilidad.** El vapor final ($454\,°\mathrm{C}$) está más caliente que la línea ($300\,°\mathrm{C}$) porque el trabajo de flujo $Pv$ de la línea se convierte en energía interna adicional al comprimirse el vapor en el recipiente.
+> **Paso 5 — Razonabilidad.** El vapor final ($454\,°\mathrm{C}$) queda más caliente que la línea ($300\,°\mathrm{C}$): el trabajo de flujo $Pv$ con que la línea empuja el vapor hacia el recipiente se convierte en energía interna ($u_2=h_L>u_L$). Es la firma del término de flujo que distingue el VC del SC.
 >
 > $\boxed{T_2 \approx 454\,°\mathrm{C},\quad u_2=h_L=3051.2\,\mathrm{kJ/kg}.}$ $\blacksquare$
 
+---
+
+## Relación con otras notas
+
 > [!info]
-> **Notación:** $\dot{m}$ flujo másico [kg/s]; $C$ velocidad [m/s]; $z$ altura [m]; $\theta = h+C^2/2+gz$ energía específica de la corriente. Subíndices $i$: entrada; $e$: salida. Balances detallados: [[Balance de Masa VC]], [[Balance de Energia VC]], [[Balance de Entropia VC]].
+> - [[Conservacion/Volumenes de Control/index | Conservación — Volumen de Control]] — los cuatro balances (masa, energía, entropía, exergía) en detalle.
+> - [[Sistemas Cerrados]] — el modelo complementario, con masa fija.
+> - [[Flujo Estacionario]] — el caso estacionario (SFSS) y sus consecuencias.
+> - [[Balance de Energia VC]] — deducción del trabajo de flujo $h=u+Pv$.
+
+> [!info]
+> **Notación:** $\dot{m}$ flujo másico [kg/s]; $C$ velocidad [m/s]; $z$ altura [m]; $\theta=h+C^2/2+gz$ energía específica de la corriente. Subíndices $i$: entrada; $e$: salida.
 
 > [!referencia]
 > Borgnakke & Sonntag, Cap. 6; Çengel & Boles, Cap. 5; Moran & Shapiro, Cap. 4.

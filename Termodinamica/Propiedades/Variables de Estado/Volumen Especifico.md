@@ -38,7 +38,7 @@ aliases:
 >
 > 1. **Trabajo de frontera.** El trabajo reversible de un sistema simple compresible es $\delta w = P\,dv$. Integrar $\int P\,dv$ a lo largo de una curva en el plano $P$-$v$ es natural; la forma en $\rho$ requiere un cambio de variable que complica los diferenciales.
 >
-> 2. **Ecuación de estado.** Para el gas ideal, $Pv = RT$ (forma de Clausius-Clapeyron). En forma de densidad: $P = \rho R T$. Ambas son equivalentes, pero la forma con $v$ es la que aparece en la relación fundamental y en los potenciales termodinámicos.
+> 2. **Ecuación de estado.** Para el gas ideal, $Pv = RT$. En forma de densidad: $P = \rho R T$. Ambas son equivalentes, pero la forma con $v$ es la que aparece en la relación fundamental y en los potenciales termodinámicos.
 >
 > 3. **Variables naturales.** La energía interna $U$ tiene a $(S, V)$ como variables naturales: $dU = T\,dS - P\,dV$. El volumen $V$ (o $v$ específico) es la variable de estado, no la densidad.
 >
@@ -62,37 +62,9 @@ aliases:
 ## Región bifásica: regla de la palanca
 
 > [!proposicion]
-> En la región de coexistencia líquido–vapor, el volumen específico de la mezcla se obtiene a partir de la [[Calidad]] $x$:
+> En la región de coexistencia líquido–vapor, el volumen específico de la mezcla se obtiene a partir de la [[Calidad]] $x$ por la **regla de la palanca**:
 > $$v = v_f + x\,v_{fg}, \qquad v_{fg} = v_g - v_f,$$
-> donde $v_f$ y $v_g$ son los volúmenes específicos del líquido saturado y el vapor saturado a esa temperatura o presión. La misma expresión es válida para **cualquier** propiedad específica extensiva: $y = y_f + x\,y_{fg}$ para $y \in \{u, h, s\}$.
-
-> [!demostracion]
-> **Hipótesis:** el sistema es una mezcla en equilibrio de líquido saturado (masa $m_f$, volumen específico $v_f$) y vapor saturado (masa $m_g$, volumen específico $v_g$), sin efectos de superficie.
->
-> **Paso 1 — Aditividad del volumen total.**
-> El volumen total de la mezcla es la suma de los volúmenes de las dos fases (el volumen es propiedad extensiva):
-> $$V = V_f + V_g = m_f\,v_f + m_g\,v_g.$$
-> Aquí se usa que cada fase ocupa un volumen $V_f = m_f v_f$ y $V_g = m_g v_g$ con sus propiedades de fase saturada.
->
-> **Paso 2 — Dividir por la masa total.**
-> La masa total de la mezcla es $m = m_f + m_g$. Dividiendo la expresión del paso 1:
-> $$v \equiv \frac{V}{m} = \frac{m_f\,v_f + m_g\,v_g}{m_f + m_g}.$$
->
-> **Paso 3 — Introducir la calidad $x = m_g/m$.**
-> Entonces $m_f/m = 1 - x$ y $m_g/m = x$:
-> $$v = \frac{m_f}{m}\,v_f + \frac{m_g}{m}\,v_g = (1-x)\,v_f + x\,v_g.$$
->
-> **Paso 4 — Reescribir en forma estándar.**
-> Expandiendo y agrupando:
-> $$v = v_f - x\,v_f + x\,v_g = v_f + x\,(v_g - v_f) = v_f + x\,v_{fg}.$$
-> $$\boxed{v = v_f + x\,v_{fg}.} \qquad \blacksquare$$
->
-> **Paso 5 — Extensión a otras propiedades.**
-> El argumento de los pasos 1–4 aplica a cualquier propiedad extensiva $Y$: $Y = m_f y_f + m_g y_g$. Dividiendo por $m$ y usando $x = m_g/m$:
-> $$y = y_f + x\,y_{fg} \qquad \text{para } y \in \{u, h, s\}.$$
-> Esta generalización es exacta: no requiere hipótesis adicionales más allá de que $u$, $h$, $s$ sean extensivas y estén en equilibrio termodinámico.
->
-> **Verificación de límites:** para $x = 0$ (líquido puro), $v = v_f$. Para $x = 1$ (vapor puro), $v = v_f + v_{fg} = v_g$. Ambos límites son correctos. $\checkmark$
+> donde $v_f$ y $v_g$ son los volúmenes específicos del líquido y el vapor saturados a esa $T$ o $P$. La misma expresión vale para **cualquier** propiedad específica extensiva, $y = y_f + x\,y_{fg}$ con $y \in \{u, h, s\}$. La derivación (aditividad del volumen total más la definición de calidad) y su interpretación geométrica se desarrollan en [[Propiedades en la Region Bifasica]].
 
 > [!ejemplo]
 > **Agua a $P = 200\,\text{kPa}$, calidad $x = 0.4$.** De tablas de vapor saturado: $T_{sat} = 120.23\,°\text{C}$, $v_f = 0.001061\,\text{m}^3/\text{kg}$, $v_g = 0.8857\,\text{m}^3/\text{kg}$.

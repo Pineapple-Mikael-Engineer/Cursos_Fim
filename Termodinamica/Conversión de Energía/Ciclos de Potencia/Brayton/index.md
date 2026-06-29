@@ -44,33 +44,10 @@ aliases:
 > \eta_{\rm th,Brayton} = 1 - \frac{1}{r_P^{(\gamma-1)/\gamma}}.
 > $$
 
-> [!demostracion]
-> **Hipótesis:** gas ideal, $c_p$ constante, procesos 1→2 y 3→4 isentrópicos, 2→3 y 4→1 isobáricos.
+> [!teoria]
+> El rasgo notable es que $\eta$ **solo depende de $r_P$**, no de la temperatura máxima $T_3$. La razón aparece al escribir los calores $q_H=c_p(T_3-T_2)$ y $q_L=c_p(T_4-T_1)$ y usar las relaciones isentrópicas $\dfrac{T_2}{T_1}=\dfrac{T_3}{T_4}=r_P^{(\gamma-1)/\gamma}\equiv t$: las dos temperaturas extremas se factorizan en $\eta=1-\dfrac{T_4-T_1}{T_3-T_2}$ y queda $\eta=1-1/t$. La **derivación paso a paso** y el ejemplo numérico completo están en [[Brayton Simple]].
 >
-> **Paso 1 — Calores:**
-> $q_H = c_p(T_3 - T_2)$ (adición isobárica).
-> $q_L = c_p(T_4 - T_1)$ (rechazo isobárico).
->
-> **Paso 2 — Eficiencia general:**
-> $$
-> \eta_{\rm th} = 1 - \frac{q_L}{q_H} = 1 - \frac{T_4 - T_1}{T_3 - T_2}.
-> $$
->
-> **Paso 3 — Relaciones isentrópicas.** Para los dos procesos isentrópicos (gas ideal, $Pv^\gamma = \text{cte}$):
-> $$
-> \frac{T_2}{T_1} = \left(\frac{P_H}{P_L}\right)^{(\gamma-1)/\gamma} = r_P^{(\gamma-1)/\gamma} \equiv t.
-> $$
-> $$
-> \frac{T_3}{T_4} = \left(\frac{P_H}{P_L}\right)^{(\gamma-1)/\gamma} = r_P^{(\gamma-1)/\gamma} = t.
-> $$
-> Luego $T_2 = t\,T_1$ y $T_4 = T_3/t$.
->
-> **Paso 4 — Sustituir:**
-> $$
-> \eta_{\rm th} = 1 - \frac{T_3/t - T_1}{T_3 - t\,T_1} = 1 - \frac{(T_3 - t\,T_1)/t}{T_3 - t\,T_1} = 1 - \frac{1}{t} = 1 - \frac{1}{r_P^{(\gamma-1)/\gamma}}. \qquad \blacksquare
-> $$
->
-> *Nota:* la eficiencia no depende de $T_3/T_1$, solo de $r_P$. A mayor compresión, mayor eficiencia. El límite práctico de $r_P$ está fijado por la temperatura máxima de los materiales de la turbina.
+> *Consecuencia de diseño:* subir $r_P$ siempre mejora $\eta$, pero el límite lo fija la temperatura máxima admisible por los materiales de la turbina (que acota $T_3$ y, con ella, el trabajo neto por unidad de masa). El compromiso entre $\eta$ (favorece $r_P$ alto) y trabajo neto (tiene un óptimo intermedio) es el criterio central de diseño del Brayton.
 
 ---
 

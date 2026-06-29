@@ -38,35 +38,7 @@ aliases:
 > x = \frac{y - y_f}{y_{fg}}
 > $$
 >
-> Las propiedades de las fases ($y_f$, $y_g$) se leen en las tablas de saturación a la presión o temperatura dada.
-
-> [!demostracion]
-> **Hipótesis:** sistema binario en equilibrio termodinámico; dos fases coexistentes (líquido saturado y vapor saturado) sin efectos de superficie; mezcla homogénea dentro de cada fase.
->
-> **Paso 1 — Definición operativa de la calidad.**
-> La calidad mide la fracción en masa de la fase vapor:
-> $$x = \frac{m_g}{m_g + m_f} = \frac{m_g}{m},$$
-> donde $m = m_f + m_g$ es la masa total. Por tanto $m_f/m = 1 - x$. La calidad $x = 0$ corresponde a líquido saturado puro; $x = 1$, a vapor saturado puro.
->
-> **Paso 2 — Aditividad extensiva del volumen.**
-> El volumen total del sistema es la suma de los volúmenes de las dos fases (propiedad extensiva):
-> $$V = V_f + V_g.$$
-> Cada fase ocupa su volumen con las propiedades de saturación a la temperatura de la mezcla: $V_f = m_f\,v_f$ y $V_g = m_g\,v_g$.
->
-> **Paso 3 — Expresar $V$ en función de las masas y propiedades de saturación.**
-> Sustituyendo:
-> $$V = m_f\,v_f + m_g\,v_g.$$
->
-> **Paso 4 — Dividir por la masa total para obtener $v$ específico.**
-> $$v = \frac{V}{m} = \frac{m_f\,v_f + m_g\,v_g}{m} = \frac{m_f}{m}\,v_f + \frac{m_g}{m}\,v_g = (1-x)\,v_f + x\,v_g.$$
->
-> **Paso 5 — Reescribir en la forma estándar y generalizar.**
-> Expandiendo y agrupando términos:
-> $$v = v_f + x\,(v_g - v_f) = v_f + x\,v_{fg}. \qquad \blacksquare$$
-> El mismo argumento aplica a $U$, $H$, $S$ porque son extensivas: $Y = m_f y_f + m_g y_g$. Dividiendo por $m$:
-> $$y = y_f + x\,y_{fg} \qquad \text{para } y \in \{u, h, s\}.$$
->
-> **Verificación de límites:** para $x=0$, $y = y_f$ (líquido saturado puro). Para $x=1$, $y = y_f + y_{fg} = y_g$ (vapor saturado puro). $\checkmark$
+> Las propiedades de las fases ($y_f$, $y_g$) se leen en las tablas de saturación a la presión o temperatura dada. La **derivación** de la regla de la palanca (aditividad extensiva $Y = m_f y_f + m_g y_g$ dividida por la masa total) y su interpretación geométrica están en [[Propiedades en la Region Bifasica]].
 
 > [!ejemplo]
 > **Calidad a partir de la entropía.** Agua a $P = 100\ \text{kPa}$ con $s = 5.0\ \text{kJ/kg·K}$. De tablas: $s_f = 1.3026$, $s_g = 7.3594\ \text{kJ/kg·K}$.

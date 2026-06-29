@@ -103,9 +103,9 @@ aliases:
 > $u = u(T)$ por el experimento de Joule; $RT$ depende solo de $T$. Por tanto:
 > $$h = h(T) \quad \text{únicamente.} \qquad \blacksquare$$
 >
-> **Paso 4 — Calcular $dh$ y probar la relación de Mayer:**
-> $$dh = du + R\,dT = c_v\,dT + R\,dT = (c_v + R)\,dT = c_p\,dT.$$
-> Esto prueba la **relación de Mayer** $c_p - c_v = R$ para gas ideal.
+> **Paso 4 — Calcular $dh$:**
+> $$dh = du + R\,dT = c_v\,dT + R\,dT = (c_v + R)\,dT = c_p\,dT,$$
+> donde se usó la **relación de Mayer** $c_p - c_v = R$ (deducida para el gas ideal en [[Gas Ideal]]). Así $dh = c_p\,dT$ con $c_p$ constante.
 >
 > **Paso 5 — Verificar el límite para gases reales:**
 > Para cualquier sustancia, $(\partial h/\partial P)_T = v(1 - T\alpha)$. Para gas ideal: $\alpha = 1/T$, luego $v(1 - T/T) = 0$, lo que confirma que $h$ no depende de $P$ para el gas ideal. Para gas real, $T\alpha \neq 1$ y la dependencia de $h$ en $P$ es el **efecto Joule-Thomson**. $\checkmark$
