@@ -20,7 +20,7 @@ aliases:
 > **positivo** ($+M$); si una entra y la otra sale, es **negativo** ($-M$).
 
 > [!info]
-> Lo que completa la [[Inductancia Mutua| inductancia mutua]] en [[Induccion Magnetica/index| Inducción magnética]] ([[6 Acoplamiento Magnetico/index| capítulo 6]]): sin los puntos, el signo de
+> Lo que completa la [[Inductancia Mutua| inductancia mutua]] en [[6 Acoplamiento Magnetico/index| Inducción magnética]] ([[6 Acoplamiento Magnetico/index| capítulo 6]]): sin los puntos, el signo de
 > $M$ queda indeterminado. Imprescindible para plantear bien las mallas del [[Transformador con Nucleo de Aire| transformador]]. Fraile Mora, cap. 1, §1.19.
 
 ---

@@ -24,7 +24,7 @@ aliases:
 > Extiende la energía del [[Inductor| inductor]] ($\tfrac12 L i^2$) al **par acoplado**, en el
 > [[6 Acoplamiento Magnetico/index| capítulo 6]]; el acoplamiento se mide con la
 > [[Inductancia Mutua| inductancia mutua]] $M$. De exigir $W\ge0$ para todo par de corrientes sale la
-> cota del [[Coeficiente de Acoplamiento| coeficiente de acoplamiento]] ($k\le1$). Fraile Mora, cap. 1,
+> cota del [[Inductancia Mutua| coeficiente de acoplamiento]] ($k\le1$). Fraile Mora, cap. 1,
 > §1.19.
 
 ---
@@ -101,10 +101,10 @@ aliases:
 > [!corolario]
 > La energía de un par de bobinas acopladas suma la energía propia de cada una más un término mutuo con
 > signo. Exigir que esa energía sea siempre no negativa fuerza $M\le\sqrt{L_1 L_2}$: el acoplamiento no
-> puede ser arbitrariamente grande, y el [[Coeficiente de Acoplamiento| coeficiente de acoplamiento]]
+> puede ser arbitrariamente grande, y el [[Inductancia Mutua| coeficiente de acoplamiento]]
 > nunca supera la unidad.
 
 > [!referencia]
 > Fraile Mora, cap. 1, §1.19. Parámetro del acoplo: [[Inductancia Mutua]]. Cota deducida:
-> [[Coeficiente de Acoplamiento]]. Caso de una sola bobina: [[Inductor]]. Signo del término:
+> [[Inductancia Mutua| coeficiente de acoplamiento]]. Caso de una sola bobina: [[Inductor]]. Signo del término:
 > [[Regla de los Puntos]]. Índice: [[6 Acoplamiento Magnetico/index]].

@@ -24,7 +24,7 @@ aliases:
 > de **ese par**.
 
 > [!info]
-> Generaliza la [[Inductancia Mutua]] a $n$ bobinas, dentro de [[Induccion Magnetica/index| Inducción magnética]] ([[6 Acoplamiento Magnetico/index| capítulo 6]]). Los **signos** fuera de la diagonal
+> Generaliza la [[Inductancia Mutua]] a $n$ bobinas, dentro de [[6 Acoplamiento Magnetico/index| Inducción magnética]] ([[6 Acoplamiento Magnetico/index| capítulo 6]]). Los **signos** fuera de la diagonal
 > los da la [[Regla de los Puntos]], aplicada par a par. La matriz $[L]$ se integra directamente en el
 > [[Analisis de Mallas| análisis de mallas]] (y de nodos), sustituyendo $j\omega[L]$ en régimen
 > sinusoidal. Fraile Mora, cap. 1, §1.19.
@@ -104,4 +104,4 @@ aliases:
 
 > [!referencia]
 > Fraile Mora, cap. 1, §1.19. Base: [[Inductancia Mutua]]. Signos: [[Regla de los Puntos]].
-> Aplicación: [[Analisis de Mallas]]. Contexto: [[Induccion Magnetica/index]].
+> Aplicación: [[Analisis de Mallas]]. Contexto: [[6 Acoplamiento Magnetico/index| Inducción magnética]].

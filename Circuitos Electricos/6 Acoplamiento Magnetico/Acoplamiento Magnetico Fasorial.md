@@ -32,31 +32,16 @@ aliases:
 
 ---
 
-## Ejemplo
+## Del tiempo al fasor
 
 > [!ejemplo]
-> **Tensiones inducidas con el secundario abierto.**
->
-> Dos bobinas acopladas trabajan a una frecuencia tal que $\omega L_1=4\ \Omega$, $\omega L_2=16\ \Omega$
-> y $\omega M=6\ \Omega$. Por el primario circula $\overline{I}_1=2\angle0^\circ\ \text{A}$ y el
-> secundario está **abierto** ($\overline{I}_2=0$). Hallar $\overline{V}_1$ y $\overline{V}_2$.
->
-> ![[inductancia_mutua.svg|470]]
->
-> *En régimen sinusoidal, la corriente $\overline{I}_1$ del primario induce en el secundario una tensión
-> $\overline{V}_2=j\omega M\,\overline{I}_1$ a través del flujo mutuo.*
->
-> **Paso 1 — Tensión del primario.** Con $\overline{I}_2=0$, solo queda el término propio:
-> $$\overline{V}_1=j\omega L_1\,\overline{I}_1=j4\cdot2=8\angle90^\circ\ \text{V}.$$
->
-> **Paso 2 — Tensión del secundario.** Aunque no circule corriente por él, el flujo mutuo de
-> $\overline{I}_1$ induce tensión:
-> $$\overline{V}_2=j\omega M\,\overline{I}_1=j6\cdot2=12\angle90^\circ\ \text{V}.$$
->
-> > [!solucion]
-> > $\overline{V}_1=8\angle90^\circ\ \text{V}$ y $\overline{V}_2=12\angle90^\circ\ \text{V}$. Ambas
-> > **adelantan $90^\circ$** a $\overline{I}_1$, como en un inductor: el factor $j$ es justamente ese
-> > desfase. El secundario abierto **no consume**, pero "ve" una tensión inducida $\propto\omega M$.
+> El mismo caso del **secundario abierto** de [[Inductancia Mutua]] ($\overline{I}_2=0$), en fasores:
+> con $\omega L_1=4\ \Omega$, $\omega M=6\ \Omega$ e $\overline{I}_1=2\angle0^\circ$,
+> $$\overline{V}_1=j\omega L_1\,\overline{I}_1=8\angle90^\circ\ \text{V},\qquad
+> \overline{V}_2=j\omega M\,\overline{I}_1=12\angle90^\circ\ \text{V}.$$
+> Ambas **adelantan $90^\circ$** a $\overline{I}_1$ (el factor $j$): el secundario abierto no consume,
+> pero "ve" una tensión inducida $\propto\omega M$. El paso clave es $d/dt\to j\omega$; lo demás es
+> idéntico a la versión en el tiempo.
 
 ---
 

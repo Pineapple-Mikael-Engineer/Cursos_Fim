@@ -25,7 +25,7 @@ aliases:
 
 > [!info]
 > El modelo idealizado del [[Transformador con Nucleo de Aire| transformador]] en el
-> [[6 Acoplamiento Magnetico/index| capítulo 6]]; surge del [[Coeficiente de Acoplamiento| acoplo perfecto]] ($k=1$). Su capacidad de **reflejar impedancias** lo hace clave en adaptación. Fraile
+> [[6 Acoplamiento Magnetico/index| capítulo 6]]; surge del [[Inductancia Mutua| acoplo perfecto]] ($k=1$). Su capacidad de **reflejar impedancias** lo hace clave en adaptación. Fraile
 > Mora, cap. 1, §1.19.
 
 ---
@@ -109,4 +109,4 @@ aliases:
 > la adaptación de cargas en toda la electrotecnia.
 
 > [!referencia]
-> Fraile Mora, cap. 1, §1.19. Caso real: [[Transformador con Nucleo de Aire]]. Hipótesis: [[Coeficiente de Acoplamiento]] ($k=1$). Adaptación: [[Maxima Transferencia AC]].
+> Fraile Mora, cap. 1, §1.19. Caso real: [[Transformador con Nucleo de Aire]]. Hipótesis: [[Inductancia Mutua| coeficiente de acoplamiento]] ($k=1$). Adaptación: [[Maxima Transferencia AC]].

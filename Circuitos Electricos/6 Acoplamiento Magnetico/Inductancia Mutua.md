@@ -22,9 +22,10 @@ aliases:
 > $$v_1=L_1\frac{di_1}{dt}\pm M\frac{di_2}{dt},\qquad v_2=L_2\frac{di_2}{dt}\pm M\frac{di_1}{dt}.$$
 
 > [!info]
-> El concepto central de [[Induccion Magnetica/index| Inducción magnética]] ([[6 Acoplamiento Magnetico/index| capítulo 6]]). Extiende la [[Autoinduccion| autoinducción]] al par de bobinas; el
-> **signo** $\pm M$ lo fija la [[Regla de los Puntos]], y su tamaño relativo, el
-> [[Coeficiente de Acoplamiento]]. Fraile Mora, cap. 1, §1.19.
+> El concepto central del [[6 Acoplamiento Magnetico/index| acoplamiento magnético]]. Extiende la
+> [[Autoinduccion| autoinducción]] al par de bobinas; el **signo** $\pm M$ lo fija la
+> [[Regla de los Puntos]], y su tamaño relativo, el **coeficiente de acoplamiento** $k$ (más abajo).
+> Fraile Mora, cap. 1, §1.19.
 
 ---
 
@@ -70,11 +71,15 @@ aliases:
 > donde $i'=di/dt$ y el signo $\pm$ lo da la [[Regla de los Puntos]]. En régimen sinusoidal, $d/dt\to
 > j\omega$, así que la reactancia mutua es $j\omega M$ ([[Acoplamiento Magnetico Fasorial]]).
 
-> [!proposicion] Límite del acoplamiento
-> No todo el flujo se comparte: $M$ está acotada por las autoinductancias,
-> $$M\le\sqrt{L_1 L_2},$$
-> y la igualdad ($k=1$) es el **acoplamiento perfecto** (todo el flujo enlaza ambas bobinas). El
-> cociente $k=M/\sqrt{L_1L_2}$ es el [[Coeficiente de Acoplamiento]].
+> [!proposicion] Coeficiente de acoplamiento $k$
+> No todo el flujo se comparte: $M$ está acotada por las autoinductancias, $M\le\sqrt{L_1 L_2}$ (la
+> cota se **demuestra** por energía en [[Energia en Bobinas Acopladas]]). El cociente adimensional
+> $$k=\frac{M}{\sqrt{L_1 L_2}}\in[0,1]$$
+> mide qué **fracción del flujo** se comparte: $k\to0$ bobinas casi independientes (núcleo de aire,
+> $k\sim0{,}01$–$0{,}5$); $k\to1$ **acoplamiento perfecto** (núcleo ferromagnético, $k\sim0{,}99$;
+> todo el flujo enlaza ambas bobinas). En el límite $k=1$, $M=\sqrt{L_1L_2}$ y la relación de
+> transformación queda fijada por las espiras, $V_2/V_1=\sqrt{L_2/L_1}=N_2/N_1$ (puente con el
+> [[Transformador Ideal]]). Un cálculo que dé $k>1$ señala datos incompatibles.
 
 > [!warning]
 > La inductancia mutua **no** es un elemento aparte: es un **acoplamiento** entre dos inductores. Sus
@@ -98,5 +103,5 @@ aliases:
 > acoplado —y, en el límite, el transformador—.
 
 > [!referencia]
-> Fraile Mora, cap. 1, §1.19. Base: [[Autoinduccion]]. Signo: [[Regla de los Puntos]]. Intensidad:
-> [[Coeficiente de Acoplamiento]]. Energía: [[Energia en Bobinas Acopladas]].
+> Fraile Mora, cap. 1, §1.19. Base: [[Autoinduccion]]. Signo: [[Regla de los Puntos]]. Energía y cota
+> de $M$: [[Energia en Bobinas Acopladas]].

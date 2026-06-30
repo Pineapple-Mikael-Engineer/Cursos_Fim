@@ -10,6 +10,7 @@ aliases:
   - acoplamiento magnético
   - circuitos acoplados magnéticamente
   - inductancia mutua y transformador
+  - inducción magnética
 ---
 
 # Acoplamiento Magnético
@@ -28,35 +29,52 @@ aliases:
 
 ---
 
-## Del flujo propio al flujo compartido
+## Todo nace de la ley de Faraday
 
-> [!teoria] Autoinducción, inducción mutua y la regla de los puntos
-> El [[Inductor| inductor]] ya tenía **autoinducción** $L$: su propia corriente crea un flujo que lo
-> enlaza a sí mismo, $v=L\,di/dt$. Cuando una segunda bobina recoge parte de ese flujo, aparece la
-> **inducción mutua**: la corriente de una induce tensión en la otra, $v_2=M\,di_1/dt$. Las dos
-> bobinas quedan descritas por **ecuaciones acopladas**, y el **signo** del término mutuo lo fija la
-> **regla de los puntos** (la orientación relativa de los devanados).
-> → [[Induccion Magnetica/index| Inducción magnética]].
+> [!teoria] Del flujo propio al flujo compartido
+> Una corriente $i$ crea un **flujo magnético** $\phi$; multiplicado por las $N$ espiras que enlaza da
+> el **flujo concatenado** $\lambda=N\phi$. La **ley de Faraday** ($v=d\lambda/dt$) da las dos
+> inducciones:
+> - Si el flujo enlaza a la **propia** bobina, $\lambda=L\,i$ y $v=L\,di/dt$: es la **autoinducción**
+>   $L$. → [[Autoinduccion]].
+> - Si una **fracción** atraviesa una **segunda** bobina, su variación induce $v_2=M\,di_1/dt$: es la
+>   **inducción mutua** $M$, el canal por el que dos bobinas se comunican **sin tocarse**.
+>   → [[Inductancia Mutua]].
+>
+> Con ambas corrientes presentes, cada tensión suma su autoinducción y la mutua de la vecina: las dos
+> bobinas quedan descritas por **ecuaciones acopladas**.
 
-> [!teoria] Cuánto se acoplan, y el transformador
-> El **coeficiente de acoplamiento** $k=\dfrac{M}{\sqrt{L_1 L_2}}$ (entre $0$ y $1$) mide qué fracción
-> del flujo se comparte: $k\to0$ bobinas casi independientes, $k\to1$ acoplo perfecto. Sobre esta
-> física se construye el **transformador**: con núcleo de aire ([[Transformador con Nucleo de Aire]]) o
-> en el límite ideal ([[Transformador Ideal]]), que **transforma** tensiones y corrientes y **refleja**
-> impedancias de un lado a otro. Un par acoplado también guarda **energía** en función de $L_1$, $L_2$
-> y $M$ ([[Energia en Bobinas Acopladas]]).
+> [!teoria] Simetría, cota y signo
+> Tres hechos sobre $M$ no son casualidad:
+> - **Simetría** ($M_{12}=M_{21}=M$): el acoplamiento "se ve igual" desde cualquiera de las dos bobinas.
+> - **Cota** ($M\le\sqrt{L_1L_2}$): no puede compartirse más flujo del que cada bobina enlaza consigo
+>   misma. El cociente $k=M/\sqrt{L_1L_2}\in[0,1]$ —el **coeficiente de acoplamiento**— mide qué
+>   fracción se comparte (tratado en [[Inductancia Mutua]]). Ambas se deducen exigiendo
+>   energía $\ge0$ → [[Energia en Bobinas Acopladas]].
+> - **Signo**: el término mutuo $\pm M$ lo fija la geometría del bobinado, codificada con un **punto**
+>   en cada bobina → [[Regla de los Puntos]]. Para **más de dos** bobinas, todo se ordena en una
+>   **matriz de inductancias** → [[Acoplamiento Multiple]].
+
+> [!teoria] El transformador
+> Sobre esta física se construye el **transformador**: con núcleo de aire
+> ([[Transformador con Nucleo de Aire]], $k<1$, **impedancia reflejada**) o en el límite ideal
+> ([[Transformador Ideal]], $k=1$, **relación de transformación**). En alterna, el par acoplado se
+> reduce a ecuaciones algebraicas con el término $j\omega M$ → [[Acoplamiento Magnetico Fasorial]].
 
 ## Mapa del capítulo
 
-> [!info] Las secciones y notas
+> [!info] Las notas
 > | Nota | Contenido |
 > |:---|:---|
-> | [[Induccion Magnetica/index\| Inducción magnética]] | autoinducción, mutua, $k$, regla de los puntos |
-> | [[Acoplamiento Magnetico Fasorial]] | bobinas acopladas en régimen sinusoidal ($j\omega M$) |
-> | [[Transformador con Nucleo de Aire]] | el transformador real acoplado |
-> | [[Circuito Equivalente con Acoplo Conductivo]] | el equivalente en T (sin acoplo) |
+> | [[Autoinduccion]] | $L=N\phi/i$; base de una sola bobina (delega en [[Inductor]]) |
+> | [[Inductancia Mutua]] | ecuaciones del par $v_1,v_2$; coeficiente de acoplamiento $k$ |
+> | [[Regla de los Puntos]] | el signo $\pm M$ del término mutuo |
+> | [[Energia en Bobinas Acopladas]] | $W=\tfrac12 L_1i_1^2+\tfrac12 L_2i_2^2\pm M i_1 i_2$; cota de $M$ |
+> | [[Acoplamiento Multiple]] | varias bobinas; la matriz $[L]$ |
+> | [[Acoplamiento Magnetico Fasorial]] | el par acoplado en régimen sinusoidal ($j\omega M$) |
+> | [[Transformador con Nucleo de Aire]] | transformador real; impedancia reflejada |
 > | [[Transformador Ideal]] | relación de transformación; reflejo de impedancias |
-> | [[Energia en Bobinas Acopladas]] | $W=\tfrac12 L_1 i_1^2+\tfrac12 L_2 i_2^2\pm M i_1 i_2$ |
+> | [[Circuito Equivalente con Acoplo Conductivo]] | el equivalente en T (sin acoplo) |
 
 > [!corolario]
 > El acoplamiento magnético añade un canal nuevo —el flujo compartido— por el que los circuitos
