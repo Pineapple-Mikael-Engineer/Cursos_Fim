@@ -1,5 +1,6 @@
 ---
 title: Transformador con Núcleo de Aire
+order: 7
 tags:
   - circuitos-electricos
   - teoria
@@ -20,7 +21,7 @@ aliases:
 > El **transformador con núcleo de aire** (o *transformador lineal*) es un par de bobinas acopladas **reales**, devanadas sobre un soporte **no ferromagnético** (aire, plástico, cerámica), con acoplamiento **parcial** ($k<1$) y **sin** las idealizaciones del [[Transformador Ideal| transformador ideal]] ($k=1$, $L\to\infty$, sin pérdidas). Se analiza directamente con las **ecuaciones del par acoplado** en régimen fasorial, y su efecto sobre el primario se condensa en un único concepto: la **impedancia reflejada**.
 
 > [!info]
-> Esta nota presenta el transformador **real** del [[6 Acoplamiento Magnetico/index| capítulo 6]], en contraposición al [[Transformador Ideal| transformador ideal]]. El acoplamiento entre ambos devanados se modela con el término mutuo $j\omega M$ del [[Acoplamiento Magnetico Fasorial| acoplamiento magnético fasorial]], y el grado de acoplo lo mide el [[Coeficiente de Acoplamiento| coeficiente de acoplamiento]] $k$.
+> Esta nota presenta el transformador **real** del [[6 Acoplamiento Magnetico/index| capítulo 6]], en contraposición al [[Transformador Ideal| transformador ideal]]. El acoplamiento entre ambos devanados se modela con el término mutuo $j\omega M$ del [[Acoplamiento Magnetico Fasorial| acoplamiento magnético fasorial]], y el grado de acoplo lo mide el [[Inductancia Mutua| coeficiente de acoplamiento]] $k$.
 >
 > Referencia: Fraile Mora, *Circuitos Eléctricos*, cap. 1, §1.19 (transformadores con acoplamiento magnético).
 
@@ -103,4 +104,4 @@ aliases:
 
 > [!referencia]
 > - Fraile Mora, J. *Circuitos Eléctricos*. Cap. 1, §1.19.
-> - Notas relacionadas: [[Acoplamiento Magnetico Fasorial]], [[Transformador Ideal]], [[Coeficiente de Acoplamiento]], [[6 Acoplamiento Magnetico/index]].
+> - Notas relacionadas: [[Acoplamiento Magnetico Fasorial]], [[Transformador Ideal]], [[Inductancia Mutua| coeficiente de acoplamiento]], [[6 Acoplamiento Magnetico/index]].

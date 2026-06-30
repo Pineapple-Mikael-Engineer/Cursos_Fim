@@ -1,5 +1,6 @@
 ---
 title: Cargas Desbalanceadas en Triángulo
+order: 2
 tags:
   - circuitos-electricos
   - teoria
@@ -29,8 +30,7 @@ aliases:
 > [!ejemplo] Triángulo resistivo desequilibrado a 400 V
 > Un triángulo se alimenta con una tensión de línea equilibrada de $V_L=400\ \text{V}$:
 > $$\overline{V}_{ab}=400\angle0^\circ\ \text{V},\qquad \overline{V}_{bc}=400\angle{-}120^\circ\ \text{V},\qquad \overline{V}_{ca}=400\angle{+}120^\circ\ \text{V}.$$
-> Las cargas son resistivas pero desiguales: $Z_{ab}=40\ \Omega$, $Z_{bc}=40\ \Omega$, $Z_{ca}=20\ \Omega$.
-> Hallar las **corrientes de fase** y la **corriente de línea** $\overline{I}_a$.
+> Las cargas son resistivas pero desiguales: $Z_{ab}=40\ \Omega$, $Z_{bc}=40\ \Omega$, $Z_{ca}=20\ \Omega$. Hallar las **corrientes de fase** y la **corriente de línea** $\overline{I}_a$.
 >
 > > [!solucion]
 > > **Paso 1 — corrientes de fase** (cada rama es un problema monofásico independiente, tensión de línea / impedancia de rama):

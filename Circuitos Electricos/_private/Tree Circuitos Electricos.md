@@ -157,22 +157,18 @@ Circuitos Electricos/
 │   │
 │   └── (opcional) Resonancia.md                  # RLC resonante; ancho de banda, Q  # fig: |Z|(ω)
 │
-├── 6 Acoplamiento Magnetico/                      # Cap VI (sem 12)
-│   ├── index.md
-│   │
-│   ├── Induccion Magnetica/                       # ✔ carpeta existente
-│   │   ├── index.md
-│   │   ├── Autoinduccion.md                      # ✔ L; flujo propio  # fig
-│   │   ├── Inductancia Mutua.md                  # ✔ M; flujo mutuo  # fig: dos bobinas
-│   │   ├── Acoplamiento Multiple.md              # ✔
-│   │   ├── Coeficiente de Acoplamiento.md        # k=M/√(L1L2)
-│   │   └── Regla de los Puntos.md                # convención de puntos  # fig: puntos
-│   │
-│   ├── Acoplamiento Magnetico Fasorial.md        # ✔ (mover desde Fasores/) respuesta sinusoidal acoplada
-│   ├── Transformador con Nucleo de Aire.md       # # fig: transformador
-│   ├── Circuito Equivalente con Acoplo Conductivo.md  # T equivalente  # fig: T
+├── 6 Acoplamiento Magnetico/                      # Cap VI (sem 12) — aplanado (purga 2026)
+│   ├── index.md                                  # absorbe la inducción magnética (autoind./mutua/k/signo)
+│   ├── Autoinduccion.md                          # L; delega derivación a Inductor
+│   ├── Inductancia Mutua.md                      # M; ecuaciones del par; coef. de acoplamiento k  # fig: dos bobinas
+│   ├── Regla de los Puntos.md                    # convención de puntos (signo ±M)  # fig: puntos
+│   ├── Acoplamiento Multiple.md                  # matriz [L]
+│   ├── Energia en Bobinas Acopladas.md           # W=½L1I1²+½L2I2²±MI1I2; única demo de la cota M≤√(L1L2)
+│   ├── Acoplamiento Magnetico Fasorial.md        # respuesta sinusoidal acoplada (jωM)
+│   ├── Transformador con Nucleo de Aire.md       # impedancia reflejada  # fig: transformador
 │   ├── Transformador Ideal.md                    # relación n; reflejo de impedancias  # fig
-│   └── Energia en Bobinas Acopladas.md           # W=½L1I1²+½L2I2²±MI1I2
+│   └── Circuito Equivalente con Acoplo Conductivo.md  # T equivalente  # fig: T
+│   # PURGA: eliminados Induccion Magnetica/ (subcarpeta+index) y Coeficiente de Acoplamiento (→ Inductancia Mutua)
 │
 ├── 7 Circuitos Trifasicos/                        # Cap VII (sem 13-15)
 │   ├── index.md
