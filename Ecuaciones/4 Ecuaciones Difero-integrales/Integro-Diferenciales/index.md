@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones Integro-Diferenciales
+order: 1
 tags:
   - ecuaciones
   - difero-integrales
@@ -16,35 +17,23 @@ aliases:
 # Ecuaciones Integro-Diferenciales
 
 > [!definicion]
-> Una **ecuación integro-diferencial** contiene, sobre la misma incógnita, **derivadas** $\varphi',
-> \varphi'',\dots$ **y** una **integral** $\int K\varphi$. La forma típica (de Volterra) es
+> Una **ecuación integro-diferencial** contiene, sobre la misma incógnita, **derivadas** $\varphi', \varphi'',\dots$ **y** una **integral** $\int K\varphi$. La forma típica (de Volterra) es
 > $$\varphi'(t)=f(t)+\lambda\int_{0}^{t}K(t,s)\,\varphi(s)\,ds,\qquad \varphi(0)=\varphi_0.$$
-> Modela sistemas con **memoria**: la tasa de cambio actual depende de toda la **historia** de la
-> incógnita, no solo de su valor presente.
+> Modela sistemas con **memoria**: la tasa de cambio actual depende de toda la **historia** de la incógnita, no solo de su valor presente.
 
 > [!info]
-> Primera rama del [[4 Ecuaciones Difero-integrales/index| capítulo difero-integral]]: la unión
-> explícita de lo diferencial y lo integral. Su herramienta maestra es la
-> [[Transformada de Laplace/index| transformada de Laplace]] cuando el núcleo es de **convolución**
-> $K(t-s)$ — la misma de las [[Ecuaciones de Convolucion| ecuaciones de convolución]] de Volterra.
+> Primera rama del [[4 Ecuaciones Difero-integrales/index| capítulo difero-integral]]: la unión explícita de lo diferencial y lo integral. Su herramienta maestra es la [[Transformada de Laplace/index| transformada de Laplace]] cuando el núcleo es de **convolución** $K(t-s)$ — la misma de las [[Ecuaciones de Convolucion| ecuaciones de convolución]] de Volterra.
 
 ---
 
 ## Por qué aparece la memoria
 
 > [!teoria]
-> En una EDO ordinaria $\varphi'=f(t,\varphi)$, el futuro depende **solo del estado presente** (sistema
-> sin memoria, markoviano). Pero muchos sistemas reales **recuerdan**: un material viscoelástico
-> responde según toda su historia de deformación; una población depende de los nacimientos pasados;
-> un circuito con un elemento de memoria "arrastra" su carga previa. Eso introduce el término integral
-> $\int_0^t K(t-s)\varphi(s)\,ds$: una **suma ponderada del pasado**, con el núcleo $K$ como **función
-> de memoria** (cuánto pesa lo ocurrido hace $t-s$).
+> En una EDO ordinaria $\varphi'=f(t,\varphi)$, el futuro depende **solo del estado presente** (sistema sin memoria, markoviano). Pero muchos sistemas reales **recuerdan**: un material viscoelástico responde según toda su historia de deformación; una población depende de los nacimientos pasados; un circuito con un elemento de memoria "arrastra" su carga previa. Eso introduce el término integral $\int_0^t K(t-s)\varphi(s)\,ds$: una **suma ponderada del pasado**, con el núcleo $K$ como **función de memoria** (cuánto pesa lo ocurrido hace $t-s$).
 >
 > La estrategia general es **convertir la memoria en álgebra**:
-> - **Laplace** (si $K$ es de convolución): transforma la integral en un producto y la derivada en
->   multiplicar por $s$ → una ecuación **algebraica** ([[Resolucion por Transformada de Laplace| resolución por Laplace]]).
-> - **Reducción a sistemas**: introducir la integral como nueva variable convierte la ecuación en un
->   **sistema** de EDO/integrales ([[Reduccion a Sistemas| reducción a sistemas]]).
+> - **Laplace** (si $K$ es de convolución): transforma la integral en un producto y la derivada en multiplicar por $s$ → una ecuación **algebraica** ([[Resolucion por Transformada de Laplace| resolución por Laplace]]).
+> - **Reducción a sistemas**: introducir la integral como nueva variable convierte la ecuación en un **sistema** de EDO/integrales ([[Reduccion a Sistemas| reducción a sistemas]]).
 
 > [!info] Recorrido de la sección
 > | Nota | Aporte |
@@ -67,9 +56,7 @@ aliases:
 > | Puente | con núcleo $1/(t-s)^\alpha$ → ecuación **fraccionaria** |
 
 > [!corolario]
-> Las integro-diferenciales son EDO **con historia**: el término integral es la huella del pasado
-> sobre el presente. Cuando esa memoria es de convolución, Laplace la desenreda de un golpe,
-> convirtiendo derivar-e-integrar en multiplicar y dividir.
+> Las integro-diferenciales son EDO **con historia**: el término integral es la huella del pasado sobre el presente. Cuando esa memoria es de convolución, Laplace la desenreda de un golpe, convirtiendo derivar-e-integrar en multiplicar y dividir.
 
 > [!referencia]
 > - El método estrella: [[Resolucion por Transformada de Laplace]].

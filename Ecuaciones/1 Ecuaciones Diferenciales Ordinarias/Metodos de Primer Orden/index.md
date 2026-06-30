@@ -1,5 +1,6 @@
 ---
 title: Métodos de Primer Orden
+order: 2
 tags:
   - ecuaciones
   - edo
@@ -15,37 +16,22 @@ aliases:
 # Métodos de Primer Orden
 
 > [!definicion]
-> Catálogo de técnicas para resolver una EDO de **primer orden** $y'=f(x,y)$ (o
-> $M\,dx+N\,dy=0$). No hay un método universal: se **reconoce el tipo** por la forma de la
-> ecuación y se aplica su truco, que casi siempre consiste en **reducirla a una integral** o a un
-> tipo ya resuelto (separable o lineal).
+> Catálogo de técnicas para resolver una EDO de **primer orden** $y'=f(x,y)$ (o $M\,dx+N\,dy=0$). No hay un método universal: se **reconoce el tipo** por la forma de la ecuación y se aplica su truco, que casi siempre consiste en **reducirla a una integral** o a un tipo ya resuelto (separable o lineal).
 
 > [!info]
-> Núcleo operativo del [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]] (libro, caps. 1.1–1.3 y 2.1, 2.3). Apóyate
-> antes en los [[Fundamentos y Teoria Cualitativa/index| fundamentos]] (qué es una solución,
-> cuándo es única). La estrella transversal es el [[Lineal Primer Orden| factor integrante]], que
-> reaparece en [[Bernoulli]], [[Riccati]] y [[Lineales de Orden Superior/index| orden superior]].
+> Núcleo operativo del [[1 Ecuaciones Diferenciales Ordinarias/index| capítulo de EDO]] (libro, caps. 1.1–1.3 y 2.1, 2.3). Apóyate antes en los [[Fundamentos y Teoria Cualitativa/index| fundamentos]] (qué es una solución, cuándo es única). La estrella transversal es el [[Lineal Primer Orden| factor integrante]], que reaparece en [[Bernoulli]], [[Riccati]] y [[Lineales de Orden Superior/index| orden superior]].
 
 ---
 
 ## La habilidad real: clasificar, no memorizar
 
 > [!teoria]
-> Una EDO de primer orden $y'=f(x,y)$ es, en el fondo, una **integral disfrazada**: la dificultad
-> es que $f$ mezcla $x$ e $y$ de un modo que impide integrar de inmediato. Cada "tipo" de este
-> capítulo es una **forma reconocible** en la que esa mezcla se puede deshacer, y su método es el
-> gesto que la deshace:
+> Una EDO de primer orden $y'=f(x,y)$ es, en el fondo, una **integral disfrazada**: la dificultad es que $f$ mezcla $x$ e $y$ de un modo que impide integrar de inmediato. Cada "tipo" de este capítulo es una **forma reconocible** en la que esa mezcla se puede deshacer, y su método es el gesto que la deshace:
 > - **separar** las variables a lados distintos ([[Variables Separables]]),
-> - hacer un **cambio de variable** que la vuelva separable o lineal ([[Ecuaciones Homogeneas]],
->   [[Coeficientes Lineales]], [[Bernoulli]], [[Riccati]]),
-> - reconocer el lado izquierdo como un **diferencial total** ([[Ecuaciones Exactas]]) o
->   **fabricar** uno con un [[Factor Integrante]].
+> - hacer un **cambio de variable** que la vuelva separable o lineal ([[Ecuaciones Homogeneas]], [[Coeficientes Lineales]], [[Bernoulli]], [[Riccati]]),
+> - reconocer el lado izquierdo como un **diferencial total** ([[Ecuaciones Exactas]]) o **fabricar** uno con un [[Factor Integrante]].
 >
-> Por eso el trabajo no es recordar nueve fórmulas, sino **diagnosticar la forma**: una misma
-> ecuación puede ser lineal *y* exacta a la vez, o lineal en $x$ aunque no en $y$. La regla práctica
-> es escribirla en sus dos caras —forma normal $y'=f(x,y)$ y forma diferencial $M\,dx+N\,dy=0$— y
-> recorrer la tabla siguiente hasta que una encaje. La teoría de fondo (por qué cada método
-> funciona) va al final de esta nota; lo de cada tipo, en su hoja.
+> Por eso el trabajo no es recordar nueve fórmulas, sino **diagnosticar la forma**: una misma ecuación puede ser lineal *y* exacta a la vez, o lineal en $x$ aunque no en $y$. La regla práctica es escribirla en sus dos caras —forma normal $y'=f(x,y)$ y forma diferencial $M\,dx+N\,dy=0$— y recorrer la tabla siguiente hasta que una encaje. La teoría de fondo (por qué cada método funciona) va al final de esta nota; lo de cada tipo, en su hoja.
 
 ---
 
@@ -80,9 +66,7 @@ aliases:
 > - *Bernoulli* y *Riccati* son no lineales que un cambio convierte en lineales.
 
 > [!regla]
-> Reescribe siempre primero en forma normal $y'=f(x,y)$ **y** en forma diferencial
-> $M\,dx+N\,dy=0$: una misma ecuación puede ser "lineal en $y$" y a la vez "exacta", y conviene ver
-> ambas caras. A veces es **lineal en $x$** aunque no en $y$ (intercambiar los papeles de $x$ e $y$).
+> Reescribe siempre primero en forma normal $y'=f(x,y)$ **y** en forma diferencial $M\,dx+N\,dy=0$: una misma ecuación puede ser "lineal en $y$" y a la vez "exacta", y conviene ver ambas caras. A veces es **lineal en $x$** aunque no en $y$ (intercambiar los papeles de $x$ e $y$).
 
 ## Resumen
 
@@ -99,8 +83,7 @@ aliases:
 > | Riccati | $y'+py^2+qy=r$ | $y=y_p+1/u$ | lineal |
 
 > [!corolario]
-> Resolver de primer orden es, en el fondo, **clasificar bien**. El 90 % del trabajo es reconocer a
-> qué patrón pertenece la ecuación; el método correcto la convierte casi siempre en una integral.
+> Resolver de primer orden es, en el fondo, **clasificar bien**. El 90 % del trabajo es reconocer a qué patrón pertenece la ecuación; el método correcto la convierte casi siempre en una integral.
 
 > [!referencia]
 > - Punto de partida: [[Variables Separables]] (a él reducen los demás).

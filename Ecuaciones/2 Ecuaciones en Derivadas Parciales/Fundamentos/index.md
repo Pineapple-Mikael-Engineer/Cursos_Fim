@@ -1,5 +1,6 @@
 ---
 title: Fundamentos de EDP
+order: 1
 tags:
   - ecuaciones
   - edp
@@ -15,28 +16,19 @@ aliases:
 # Fundamentos de EDP
 
 > [!definicion]
-> El marco común antes de resolver: qué es una EDP y su solución, cómo se **clasifican** las de
-> segundo orden (elíptica/parabólica/hiperbólica), qué significa que un problema esté **bien
-> planteado** (Hadamard) y qué **condiciones** —iniciales y de frontera— corresponden a cada tipo.
+> El marco común antes de resolver: qué es una EDP y su solución, cómo se **clasifican** las de segundo orden (elíptica/parabólica/hiperbólica), qué significa que un problema esté **bien planteado** (Hadamard) y qué **condiciones** —iniciales y de frontera— corresponden a cada tipo.
 
 > [!info]
-> Base del [[2 Ecuaciones en Derivadas Parciales/index| capítulo de EDP]]. Aquí no se resuelve
-> ninguna ecuación concreta; se establece el lenguaje y, sobre todo, la **clasificación**, que es la
-> que decide después qué método y qué datos usar para el calor, la onda y Laplace.
+> Base del [[2 Ecuaciones en Derivadas Parciales/index| capítulo de EDP]]. Aquí no se resuelve ninguna ecuación concreta; se establece el lenguaje y, sobre todo, la **clasificación**, que es la que decide después qué método y qué datos usar para el calor, la onda y Laplace.
 
 ---
 
 ## Por qué la clasificación lo es todo
 
 > [!teoria]
-> Una EDO de orden $n$ se resuelve siempre con $n$ datos: el problema "está bien" casi por defecto.
-> En las EDP **no**: una misma ecuación puede tener solución única, ninguna o infinitas según
-> **qué** condiciones se impongan y **dónde**. La clave es el **tipo** de la EDP, que se lee de un
-> **discriminante** —exactamente como las cónicas $Ax^2+Bxy+Cy^2$ son elipse/parábola/hipérbola según
-> $B^2-4AC$—. Ese tipo determina:
+> Una EDO de orden $n$ se resuelve siempre con $n$ datos: el problema "está bien" casi por defecto. En las EDP **no**: una misma ecuación puede tener solución única, ninguna o infinitas según **qué** condiciones se impongan y **dónde**. La clave es el **tipo** de la EDP, que se lee de un **discriminante** —exactamente como las cónicas $Ax^2+Bxy+Cy^2$ son elipse/parábola/hipérbola según $B^2-4AC$—. Ese tipo determina:
 > - la **física**: difusión (parabólica), propagación (hiperbólica) o equilibrio (elíptica);
-> - las **condiciones bien planteadas**: solo de frontera (elíptica), inicial + frontera (parabólica),
->   inicial con dos datos + frontera (hiperbólica);
+> - las **condiciones bien planteadas**: solo de frontera (elíptica), inicial + frontera (parabólica), inicial con dos datos + frontera (hiperbólica);
 > - el **comportamiento**: suavizado irreversible, frentes a velocidad finita, o promediado.
 >
 > Por eso clasificar es el primer reflejo ante cualquier EDP de segundo orden.
@@ -60,8 +52,7 @@ aliases:
 > | Hiperbólica | $B^2-4AC>0$ | onda $u_{tt}=c^2u_{xx}$ | $u,u_t$ iniciales + frontera |
 
 > [!corolario]
-> Antes de elegir método, **clasifica**: el tipo de la EDP fija qué datos la hacen bien planteada y
-> cómo se comportará la solución. Esta sección es el "manual de instrucciones" del resto del capítulo.
+> Antes de elegir método, **clasifica**: el tipo de la EDP fija qué datos la hacen bien planteada y cómo se comportará la solución. Esta sección es el "manual de instrucciones" del resto del capítulo.
 
 > [!referencia]
 > - El corazón de la sección: [[Clasificacion Segundo Orden]].
