@@ -1,5 +1,6 @@
 ---
 title: Potencial Eléctrico
+order: 3
 tags:
   - electromagnetismo
   - teoria
@@ -24,10 +25,7 @@ aliases:
 ---
 
 > [!info]
-> **Sección [[2 Electrostatica/index | Electrostática]]** (capítulo 2). Esta nota desarrolla la segunda ecuación estática, $\nabla\times\vec E=\vec 0$, y su consecuencia: el potencial.
-> **Notas hermanas.** [[Ley de Gauss]] (la otra ecuación, $\nabla\cdot\vec E=\rho/\varepsilon_0$), [[Poisson y Laplace]] (qué EDP cumple $V$) y [[Energia Electrostatica]] (energía en términos de $V$).
-> **Herramientas.** Usa [[Identidades Vectoriales]] (rotacional de un gradiente, teorema del gradiente) y [[Teoremas Integrales]] (Stokes).
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 2. Unidades SI; constante $k=\dfrac{1}{4\pi\varepsilon_0}$.
+> **Sección [[2 Electrostatica/index | Electrostática]]** (capítulo 2). Esta nota desarrolla la segunda ecuación estática, $\nabla\times\vec E=\vec 0$, y su consecuencia: el potencial. **Notas hermanas.** [[Ley de Gauss]] (la otra ecuación, $\nabla\cdot\vec E=\rho/\varepsilon_0$), [[Poisson y Laplace]] (qué EDP cumple $V$) y [[Energia Electrostatica]] (energía en términos de $V$). **Herramientas.** Usa [[Identidades Vectoriales]] (rotacional de un gradiente, teorema del gradiente) y [[Teoremas Integrales]] (Stokes). **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 2. Unidades SI; constante $k=\dfrac{1}{4\pi\varepsilon_0}$.
 
 ---
 

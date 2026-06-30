@@ -1,5 +1,6 @@
 ---
 title: Ley de Biot-Savart
+order: 2
 tags:
   - electromagnetismo
   - teoria
@@ -65,28 +66,24 @@ aliases:
 > Un hilo recto infinito sobre el eje $x$ transporta una corriente estacionaria $I$. Halla el campo magnético a una distancia perpendicular $s$ del hilo, integrando directamente la Ley de Biot–Savart.
 
 > [!solucion] Integración directa para el hilo
-> **Paso 1 — Geometría y parametrización.**
-> Colocamos el hilo a lo largo del eje $x$, con la corriente en sentido $+x$. El punto de campo $P$ está a distancia perpendicular $s$. Un elemento genérico de corriente está en la posición $x$ a lo largo del hilo:
+> **Paso 1 — Geometría y parametrización.** Colocamos el hilo a lo largo del eje $x$, con la corriente en sentido $+x$. El punto de campo $P$ está a distancia perpendicular $s$. Un elemento genérico de corriente está en la posición $x$ a lo largo del hilo:
 > $$I\,d\vec l\,'=I\,dx\,\hat x.$$
 > El vector que va del elemento fuente al punto de campo tiene módulo
 > $$\mathscr r=\sqrt{x^{2}+s^{2}},$$
 > y forma un ángulo $\theta$ con el hilo.
 >
-> **Paso 2 — El producto vectorial.**
-> Sea $\theta$ el ángulo entre $d\vec l\,'$ y $\hat{\mathscr r}$. Entonces
+> **Paso 2 — El producto vectorial.** Sea $\theta$ el ángulo entre $d\vec l\,'$ y $\hat{\mathscr r}$. Entonces
 > $$|d\vec l\,'\times\hat{\mathscr r}|=dx\,\sin\theta.$$
 > La dirección de $d\vec l\,'\times\hat{\mathscr r}$ es la misma para **todos** los elementos: sale del plano (sentido azimutal $\hat\phi$ alrededor del hilo). Por eso todas las contribuciones se suman como escalares, sin cancelaciones direccionales:
 > $$dB=\frac{\mu_0 I}{4\pi}\frac{\sin\theta\,dx}{\mathscr r^{2}}=\frac{\mu_0 I}{4\pi}\frac{\sin\theta\,dx}{x^{2}+s^{2}}.$$
 >
-> **Paso 3 — Cambio a una sola variable.**
-> Conviene usar el ángulo $\theta$ medido desde $+\hat x$ hacia $\hat{\mathscr r}$. De la geometría:
+> **Paso 3 — Cambio a una sola variable.** Conviene usar el ángulo $\theta$ medido desde $+\hat x$ hacia $\hat{\mathscr r}$. De la geometría:
 > $$x=-\frac{s}{\tan\theta}=-s\cot\theta\ \Rightarrow\ dx=\frac{s}{\sin^{2}\theta}\,d\theta,$$
 > $$s=\mathscr r\,\sin\theta\ \Rightarrow\ \frac{1}{\mathscr r^{2}}=\frac{\sin^{2}\theta}{s^{2}}.$$
 > Sustituyendo en $dB$:
 > $$dB=\frac{\mu_0 I}{4\pi}\,\sin\theta\cdot\frac{\sin^{2}\theta}{s^{2}}\cdot\frac{s}{\sin^{2}\theta}\,d\theta=\frac{\mu_0 I}{4\pi s}\,\sin\theta\,d\theta.$$
 >
-> **Paso 4 — Integración sobre todo el hilo.**
-> Cuando $x$ recorre $-\infty\to+\infty$, el ángulo $\theta$ recorre $0\to\pi$:
+> **Paso 4 — Integración sobre todo el hilo.** Cuando $x$ recorre $-\infty\to+\infty$, el ángulo $\theta$ recorre $0\to\pi$:
 > $$B=\frac{\mu_0 I}{4\pi s}\int_{0}^{\pi}\sin\theta\,d\theta=\frac{\mu_0 I}{4\pi s}\Big[-\cos\theta\Big]_{0}^{\pi}=\frac{\mu_0 I}{4\pi s}\,(1-(-1)).$$
 >
 > **Paso 5 — Resultado.**
@@ -102,21 +99,18 @@ aliases:
 > $$B_z=\frac{\mu_0 I R^{2}}{2\,(R^{2}+z^{2})^{3/2}}.$$
 
 > [!demostracion] Espira en su eje
-> **Paso 1 — Simetría: solo sobrevive $B_z$.**
-> Tomamos la espira en el plano $xy$ centrada en el origen y el punto de campo en $(0,0,z)$. Para un elemento $I\,d\vec l\,'$ sobre la espira, el vector separación $\hat{\mathscr r}$ apunta del aro al punto del eje, con
+> **Paso 1 — Simetría: solo sobrevive $B_z$.** Tomamos la espira en el plano $xy$ centrada en el origen y el punto de campo en $(0,0,z)$. Para un elemento $I\,d\vec l\,'$ sobre la espira, el vector separación $\hat{\mathscr r}$ apunta del aro al punto del eje, con
 > $$\mathscr r=\sqrt{R^{2}+z^{2}}\quad(\text{igual para todo el aro}).$$
 > Como $d\vec l\,'\perp\hat{\mathscr r}$ (el elemento es tangente al aro y $\hat{\mathscr r}$ vive en un plano que lo contiene), el módulo de la contribución es
 > $$dB=\frac{\mu_0 I}{4\pi}\frac{dl'}{R^{2}+z^{2}}.$$
 > Cada $d\vec B$ forma un cono alrededor del eje. Por simetría de rotación, al recorrer toda la espira las **componentes perpendiculares al eje se cancelan** por pares diametralmente opuestos; solo sobrevive la componente $z$.
 >
-> **Paso 2 — Proyección sobre el eje.**
-> El ángulo $\alpha$ entre $d\vec B$ y el eje cumple
+> **Paso 2 — Proyección sobre el eje.** El ángulo $\alpha$ entre $d\vec B$ y el eje cumple
 > $$\cos\alpha=\frac{R}{\mathscr r}=\frac{R}{\sqrt{R^{2}+z^{2}}},$$
 > de modo que la componente útil es
 > $$dB_z=dB\,\cos\alpha=\frac{\mu_0 I}{4\pi}\frac{1}{R^{2}+z^{2}}\cdot\frac{R}{\sqrt{R^{2}+z^{2}}}\,dl'.$$
 >
-> **Paso 3 — Integración sobre el aro.**
-> Todo el integrando es constante a lo largo de la espira; basta con $\oint dl'=2\pi R$:
+> **Paso 3 — Integración sobre el aro.** Todo el integrando es constante a lo largo de la espira; basta con $\oint dl'=2\pi R$:
 > $$B_z=\frac{\mu_0 I}{4\pi}\frac{R}{(R^{2}+z^{2})^{3/2}}\oint dl'=\frac{\mu_0 I}{4\pi}\frac{R}{(R^{2}+z^{2})^{3/2}}\,(2\pi R).$$
 >
 > **Paso 4 — Resultado.**

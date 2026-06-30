@@ -1,5 +1,6 @@
 ---
 title: Polarización
+order: 1
 tags:
   - electromagnetismo
   - teoria
@@ -20,8 +21,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota de la subsección [[2 Electrostatica/Dielectricos/index | Dieléctricos]]**, dentro de [[2 Electrostatica/index | Electrostática]] (curso Electromagnetismo). Aquí se construye el vector $\vec P$ y se deducen las **cargas ligadas** $\rho_b=-\nabla\cdot\vec P$ y $\sigma_b=\vec P\cdot\hat n$; la nota hermana [[Desplazamiento Electrico]] introduce $\vec D=\varepsilon_0\vec E+\vec P$ para separar carga libre y ligada.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4.
+> **Nota de la subsección [[2 Electrostatica/Dielectricos/index | Dieléctricos]]**, dentro de [[2 Electrostatica/index | Electrostática]] (curso Electromagnetismo). Aquí se construye el vector $\vec P$ y se deducen las **cargas ligadas** $\rho_b=-\nabla\cdot\vec P$ y $\sigma_b=\vec P\cdot\hat n$; la nota hermana [[Desplazamiento Electrico]] introduce $\vec D=\varepsilon_0\vec E+\vec P$ para separar carga libre y ligada. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4.
 
 ---
 

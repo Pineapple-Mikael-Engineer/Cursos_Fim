@@ -1,5 +1,6 @@
 ---
 title: Maxwell Covariante
+order: 3
 tags:
   - electromagnetismo
   - teoria
@@ -23,9 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Sección [[6 Formulacion Covariante/index | Formulación Covariante]].** Notas hermanas: [[Tensor de Campo]] (de donde sale la matriz $F^{\mu\nu}$ y su dual), [[Cuadrivectores]] (espaciotiempo, métrica, $J^\mu$, $A^\mu$) y [[Tensor Energia-Momento]]. Esta nota **reescribe en forma tensorial** las [[Ecuaciones de Maxwell]] del enfoque vectorial: es el mismo contenido físico, vestido para que su simetría de Lorentz sea visible.
-> **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; convenio de suma de Einstein; unidades SI; $c=1/\sqrt{\mu_0\varepsilon_0}$, de modo que $\mu_0 c^2=1/\varepsilon_0$.
-> **Referencia.** Griffiths cap. 12; Landau-Lifshitz Vol. 2.
+> **Sección [[6 Formulacion Covariante/index | Formulación Covariante]].** Notas hermanas: [[Tensor de Campo]] (de donde sale la matriz $F^{\mu\nu}$ y su dual), [[Cuadrivectores]] (espaciotiempo, métrica, $J^\mu$, $A^\mu$) y [[Tensor Energia-Momento]]. Esta nota **reescribe en forma tensorial** las [[Ecuaciones de Maxwell]] del enfoque vectorial: es el mismo contenido físico, vestido para que su simetría de Lorentz sea visible. **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; convenio de suma de Einstein; unidades SI; $c=1/\sqrt{\mu_0\varepsilon_0}$, de modo que $\mu_0 c^2=1/\varepsilon_0$. **Referencia.** Griffiths cap. 12; Landau-Lifshitz Vol. 2.
 
 > [!proposicion] La matriz de campo de la que partimos
 > De [[Tensor de Campo]], el tensor contravariante con dos índices arriba es

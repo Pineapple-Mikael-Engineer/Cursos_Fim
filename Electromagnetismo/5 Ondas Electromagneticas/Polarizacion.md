@@ -1,5 +1,6 @@
 ---
 title: Polarización (ondas)
+order: 3
 tags:
   - electromagnetismo
   - teoria
@@ -209,8 +210,7 @@ donde $\hat n$ es el **vector de polarización** (unitario, fijo) y $E_0=\sqrt{E
 > $$
 
 > [!demostracion]
-> **Paso 1 — Proyección del campo.** El polarizador transmite la proyección $E_\parallel=E_0\cos\theta$ del campo incidente sobre su eje.
-> **Paso 2 — De campo a intensidad.** La intensidad es proporcional al cuadrado del campo, $I\propto E^2$. Por tanto
+> **Paso 1 — Proyección del campo.** El polarizador transmite la proyección $E_\parallel=E_0\cos\theta$ del campo incidente sobre su eje. **Paso 2 — De campo a intensidad.** La intensidad es proporcional al cuadrado del campo, $I\propto E^2$. Por tanto
 > $$
 > I=I_0\left(\frac{E_\parallel}{E_0}\right)^{2}=I_0\cos^{2}\theta.
 > $$

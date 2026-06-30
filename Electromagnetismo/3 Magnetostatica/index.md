@@ -1,5 +1,6 @@
 ---
 title: Magnetostática
+order: 3
 tags:
   - electromagnetismo
   - teoria
@@ -22,8 +23,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 3 del curso Electromagnetismo.** Reutiliza toda la maquinaria de [[1 Calculo Vectorial/index | Cálculo Vectorial]] (rotacional, Stokes, divergencia) y corre **en paralelo** con [[2 Electrostatica/index | Electrostática]]. Constante magnética $\mu_0$ (permeabilidad del vacío); $c=1/\sqrt{\mu_0\varepsilon_0}$.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 5.
+> **Capítulo 3 del curso Electromagnetismo.** Reutiliza toda la maquinaria de [[1 Calculo Vectorial/index | Cálculo Vectorial]] (rotacional, Stokes, divergencia) y corre **en paralelo** con [[2 Electrostatica/index | Electrostática]]. Constante magnética $\mu_0$ (permeabilidad del vacío); $c=1/\sqrt{\mu_0\varepsilon_0}$. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 5.
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Identidades Vectoriales
+order: 3
 tags:
   - electromagnetismo
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Ubicación.** Curso Electromagnetismo · sección [[1 Calculo Vectorial/index | Cálculo Vectorial]]. Hermanas: [[Campos y Operadores]] (define los operadores), [[Teoremas Integrales]] (Gauss y Stokes), [[Delta de Dirac y Singularidades]] (las identidades fallan en singularidades — ahí nace la delta).
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 1 (§1.2.6 y portada interior). Las dos identidades nulas $\nabla\times(\nabla\varphi)=0$ y $\nabla\cdot(\nabla\times\vec F)=0$ son la **raíz de los potenciales** $\vec E=-\nabla V$ y $\vec B=\nabla\times\vec A$.
+> **Ubicación.** Curso Electromagnetismo · sección [[1 Calculo Vectorial/index | Cálculo Vectorial]]. Hermanas: [[Campos y Operadores]] (define los operadores), [[Teoremas Integrales]] (Gauss y Stokes), [[Delta de Dirac y Singularidades]] (las identidades fallan en singularidades — ahí nace la delta). **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 1 (§1.2.6 y portada interior). Las dos identidades nulas $\nabla\times(\nabla\varphi)=0$ y $\nabla\cdot(\nabla\times\vec F)=0$ son la **raíz de los potenciales** $\vec E=-\nabla V$ y $\vec B=\nabla\times\vec A$.
 
 ---
 
@@ -57,8 +57,7 @@ aliases:
 > $$\epsilon_{ijk}\,\epsilon_{ilm}=\delta_{jl}\,\delta_{km}-\delta_{jm}\,\delta_{kl}.$$
 >
 > > [!demostracion]
-> > **Paso 1 — Por qué un determinante.** El producto $\epsilon_{ijk}\epsilon_{ilm}$ es antisimétrico bajo $j\!\leftrightarrow\! k$ y bajo $l\!\leftrightarrow\! m$ (hereda la antisimetría de cada épsilon), y simétrico bajo el intercambio de pares $(jk)\!\leftrightarrow\!(lm)$. El único tensor con esa estructura, construido con deltas, es la combinación $\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$ (un determinante $2\times2$ de Kronecker).
-> > **Paso 2 — Fijar la constante.** Basta evaluar un caso no nulo, digamos $j=l=1$, $k=m=2$:
+> > **Paso 1 — Por qué un determinante.** El producto $\epsilon_{ijk}\epsilon_{ilm}$ es antisimétrico bajo $j\!\leftrightarrow\! k$ y bajo $l\!\leftrightarrow\! m$ (hereda la antisimetría de cada épsilon), y simétrico bajo el intercambio de pares $(jk)\!\leftrightarrow\!(lm)$. El único tensor con esa estructura, construido con deltas, es la combinación $\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$ (un determinante $2\times2$ de Kronecker). **Paso 2 — Fijar la constante.** Basta evaluar un caso no nulo, digamos $j=l=1$, $k=m=2$:
 > > $$\epsilon_{i12}\,\epsilon_{i12}=\epsilon_{312}\,\epsilon_{312}=(+1)(+1)=1,$$
 > > mientras que el lado derecho da $\delta_{11}\delta_{22}-\delta_{12}\delta_{21}=1\cdot1-0\cdot0=1$. Coinciden, luego la constante es $1$. $\blacksquare$
 
@@ -109,9 +108,7 @@ aliases:
 > | $\nabla\cdot(\vec F\times\vec G)=\vec G\cdot(\nabla\times\vec F)-\vec F\cdot(\nabla\times\vec G)$ | $\partial_i\,\epsilon_{ijk}F_j G_k=\epsilon_{ijk}(\partial_i F_j)G_k+\epsilon_{ijk}F_j(\partial_i G_k)$, y se reordenan los épsilon |
 >
 > > [!demostracion] La cuarta, en detalle
-> > **Paso 1.** $\nabla\cdot(\vec F\times\vec G)=\partial_i\big(\epsilon_{ijk}F_j G_k\big)=\epsilon_{ijk}\big[(\partial_i F_j)G_k+F_j(\partial_i G_k)\big]$ por Leibniz.
-> > **Paso 2.** En el primer término, $\epsilon_{ijk}(\partial_i F_j)G_k=G_k\,\epsilon_{kij}\partial_i F_j=\vec G\cdot(\nabla\times\vec F)$ (ciclé $\epsilon_{ijk}=\epsilon_{kij}$ y reconocí el rotacional con índices libres en $k$).
-> > **Paso 3.** En el segundo, $\epsilon_{ijk}F_j(\partial_i G_k)=-F_j\,\epsilon_{jik}\partial_i G_k=-\vec F\cdot(\nabla\times\vec G)$ (una transposición $i\!\leftrightarrow\!j$ aporta el signo). Sumando: $\vec G\cdot(\nabla\times\vec F)-\vec F\cdot(\nabla\times\vec G)$. $\blacksquare$
+> > **Paso 1.** $\nabla\cdot(\vec F\times\vec G)=\partial_i\big(\epsilon_{ijk}F_j G_k\big)=\epsilon_{ijk}\big[(\partial_i F_j)G_k+F_j(\partial_i G_k)\big]$ por Leibniz. **Paso 2.** En el primer término, $\epsilon_{ijk}(\partial_i F_j)G_k=G_k\,\epsilon_{kij}\partial_i F_j=\vec G\cdot(\nabla\times\vec F)$ (ciclé $\epsilon_{ijk}=\epsilon_{kij}$ y reconocí el rotacional con índices libres en $k$). **Paso 3.** En el segundo, $\epsilon_{ijk}F_j(\partial_i G_k)=-F_j\,\epsilon_{jik}\partial_i G_k=-\vec F\cdot(\nabla\times\vec G)$ (una transposición $i\!\leftrightarrow\!j$ aporta el signo). Sumando: $\vec G\cdot(\nabla\times\vec F)-\vec F\cdot(\nabla\times\vec G)$. $\blacksquare$
 
 ---
 

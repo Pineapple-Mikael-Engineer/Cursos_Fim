@@ -1,5 +1,6 @@
 ---
 title: Ecuación de Ondas
+order: 1
 tags:
   - electromagnetismo
   - teoria
@@ -45,33 +46,27 @@ $$
 > [!demostracion]
 > Buscamos una ecuación que involucre **solo** a $\vec E$. La estrategia es eliminar a $\vec B$ tomando un segundo rotacional.
 >
-> **Paso 1 — Aplicar $\nabla\times$ a la ley de Faraday.**
-> Tomamos el rotacional de ambos lados de $\nabla\times\vec E=-\partial_t\vec B$:
+> **Paso 1 — Aplicar $\nabla\times$ a la ley de Faraday.** Tomamos el rotacional de ambos lados de $\nabla\times\vec E=-\partial_t\vec B$:
 > $$\nabla\times(\nabla\times\vec E)=\nabla\times\left(-\frac{\partial\vec B}{\partial t}\right)=-\frac{\partial}{\partial t}\big(\nabla\times\vec B\big),$$
 > donde hemos intercambiado el rotacional espacial con la derivada temporal (los operadores actúan sobre variables independientes).
 >
-> **Paso 2 — Sustituir Ampère–Maxwell en el lado derecho.**
-> Como $\nabla\times\vec B=\mu_0\varepsilon_0\,\partial_t\vec E$:
+> **Paso 2 — Sustituir Ampère–Maxwell en el lado derecho.** Como $\nabla\times\vec B=\mu_0\varepsilon_0\,\partial_t\vec E$:
 > $$\nabla\times(\nabla\times\vec E)=-\frac{\partial}{\partial t}\left(\mu_0\varepsilon_0\,\frac{\partial\vec E}{\partial t}\right)=-\mu_0\varepsilon_0\,\frac{\partial^2\vec E}{\partial t^2}.$$
 >
-> **Paso 3 — Desarrollar el lado izquierdo con BAC–CAB.**
-> La identidad del doble rotacional ([[Identidades Vectoriales]]) establece
+> **Paso 3 — Desarrollar el lado izquierdo con BAC–CAB.** La identidad del doble rotacional ([[Identidades Vectoriales]]) establece
 > $$\nabla\times(\nabla\times\vec E)=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E.$$
 > Pero la ley de Gauss en el vacío da $\nabla\cdot\vec E=0$, de modo que el primer término se anula:
 > $$\nabla\times(\nabla\times\vec E)=-\nabla^2\vec E.$$
 >
-> **Paso 4 — Igualar ambas expresiones.**
-> Combinando los Pasos 2 y 3:
+> **Paso 4 — Igualar ambas expresiones.** Combinando los Pasos 2 y 3:
 > $$-\nabla^2\vec E=-\mu_0\varepsilon_0\,\frac{\partial^2\vec E}{\partial t^2}\;\Longrightarrow\;\boxed{\;\nabla^2\vec E=\mu_0\varepsilon_0\,\frac{\partial^2\vec E}{\partial t^2}\;}$$
 >
-> **Paso 5 — El campo magnético cumple lo mismo.**
-> El argumento es idéntico cambiando los papeles. Tomamos $\nabla\times$ de Ampère–Maxwell:
+> **Paso 5 — El campo magnético cumple lo mismo.** El argumento es idéntico cambiando los papeles. Tomamos $\nabla\times$ de Ampère–Maxwell:
 > $$\nabla\times(\nabla\times\vec B)=\mu_0\varepsilon_0\,\frac{\partial}{\partial t}\big(\nabla\times\vec E\big)=\mu_0\varepsilon_0\,\frac{\partial}{\partial t}\left(-\frac{\partial\vec B}{\partial t}\right)=-\mu_0\varepsilon_0\,\frac{\partial^2\vec B}{\partial t^2}.$$
 > Con BAC–CAB y $\nabla\cdot\vec B=0$ se tiene $\nabla\times(\nabla\times\vec B)=-\nabla^2\vec B$, y por tanto
 > $$\nabla^2\vec B=\mu_0\varepsilon_0\,\frac{\partial^2\vec B}{\partial t^2}.$$
 >
-> **Paso 6 — Identificar la velocidad.**
-> Comparando con la forma canónica $\nabla^2 u=\frac{1}{c^2}\partial_t^2 u$, la constante que multiplica a la derivada temporal debe ser $1/c^2$. Luego
+> **Paso 6 — Identificar la velocidad.** Comparando con la forma canónica $\nabla^2 u=\frac{1}{c^2}\partial_t^2 u$, la constante que multiplica a la derivada temporal debe ser $1/c^2$. Luego
 > $$\mu_0\varepsilon_0=\frac{1}{c^2}\;\Longrightarrow\;c=\frac{1}{\sqrt{\mu_0\varepsilon_0}}.\qquad\blacksquare$$
 
 > [!teoria] Evaluación numérica de $c$
@@ -93,25 +88,21 @@ $$\frac{\partial^2 u}{\partial z^2}=\frac{1}{c^2}\frac{\partial^2 u}{\partial t^
 > con $f$ y $g$ funciones **arbitrarias** (dos veces derivables). El término $f(z-ct)$ representa un pulso que viaja hacia $+z$ y $g(z+ct)$ uno que viaja hacia $-z$, ambos a velocidad $c$ y **sin deformarse**.
 
 > [!demostracion]
-> **Paso 1 — Cambio de variables característico.**
-> Introducimos las **coordenadas características**
+> **Paso 1 — Cambio de variables característico.** Introducimos las **coordenadas características**
 > $$\xi=z-ct,\qquad \eta=z+ct.$$
 > Por la regla de la cadena, las derivadas respecto de $z$ y $t$ se reescriben en términos de $\xi,\eta$. Como $\partial\xi/\partial z=1$, $\partial\eta/\partial z=1$, $\partial\xi/\partial t=-c$, $\partial\eta/\partial t=+c$:
 > $$\frac{\partial}{\partial z}=\frac{\partial}{\partial\xi}+\frac{\partial}{\partial\eta},\qquad \frac{\partial}{\partial t}=-c\,\frac{\partial}{\partial\xi}+c\,\frac{\partial}{\partial\eta}.$$
 >
-> **Paso 2 — Segundas derivadas.**
-> Aplicando dos veces:
+> **Paso 2 — Segundas derivadas.** Aplicando dos veces:
 > $$\frac{\partial^2 u}{\partial z^2}=\left(\partial_\xi+\partial_\eta\right)^2 u=u_{\xi\xi}+2u_{\xi\eta}+u_{\eta\eta},$$
 > $$\frac{\partial^2 u}{\partial t^2}=c^2\left(-\partial_\xi+\partial_\eta\right)^2 u=c^2\left(u_{\xi\xi}-2u_{\xi\eta}+u_{\eta\eta}\right).$$
 >
-> **Paso 3 — Sustituir en la ecuación.**
-> La ecuación $\partial_z^2 u=\frac{1}{c^2}\partial_t^2 u$ se convierte en
+> **Paso 3 — Sustituir en la ecuación.** La ecuación $\partial_z^2 u=\frac{1}{c^2}\partial_t^2 u$ se convierte en
 > $$u_{\xi\xi}+2u_{\xi\eta}+u_{\eta\eta}=u_{\xi\xi}-2u_{\xi\eta}+u_{\eta\eta}.$$
 > Cancelando $u_{\xi\xi}$ y $u_{\eta\eta}$ y reordenando queda $4u_{\xi\eta}=0$, es decir
 > $$\frac{\partial^2 u}{\partial\xi\,\partial\eta}=0.$$
 >
-> **Paso 4 — Integrar la ecuación desacoplada.**
-> Que $\partial_\xi(\partial_\eta u)=0$ significa que $\partial_\eta u$ no depende de $\xi$: $\partial_\eta u=G(\eta)$ para alguna función $G$. Integrando en $\eta$:
+> **Paso 4 — Integrar la ecuación desacoplada.** Que $\partial_\xi(\partial_\eta u)=0$ significa que $\partial_\eta u$ no depende de $\xi$: $\partial_\eta u=G(\eta)$ para alguna función $G$. Integrando en $\eta$:
 > $$u=\int G(\eta)\,d\eta+f(\xi)=g(\eta)+f(\xi),$$
 > donde $g$ es una primitiva de $G$ y $f(\xi)$ es la "constante" de integración (que puede depender de $\xi$). Deshaciendo el cambio:
 > $$u(z,t)=f(z-ct)+g(z+ct).\qquad\blacksquare$$
@@ -156,8 +147,7 @@ de modo que el perfil viaja a velocidad $\omega/k$. Para que sea solución de la
 > satisface la ecuación de ondas, y determina la condición sobre $\omega$ y $k$.
 
 > [!solucion]
-> **Paso 1 — Calcular $\nabla^2\vec E$.**
-> Como $\vec E$ solo tiene componente $x$ y depende únicamente de $z$, el laplaciano se reduce a la segunda derivada respecto de $z$:
+> **Paso 1 — Calcular $\nabla^2\vec E$.** Como $\vec E$ solo tiene componente $x$ y depende únicamente de $z$, el laplaciano se reduce a la segunda derivada respecto de $z$:
 > $$\nabla^2\vec E=\frac{\partial^2}{\partial z^2}\big[E_0\cos(kz-\omega t)\big]\,\hat x.$$
 > Derivando dos veces respecto de $z$:
 > $$\frac{\partial}{\partial z}\cos(kz-\omega t)=-k\sin(kz-\omega t),$$
@@ -165,15 +155,13 @@ de modo que el perfil viaja a velocidad $\omega/k$. Para que sea solución de la
 > Por tanto:
 > $$\nabla^2\vec E=-k^2 E_0\cos(kz-\omega t)\,\hat x=-k^2\,\vec E.$$
 >
-> **Paso 2 — Calcular $\partial_t^2\vec E$.**
-> Derivando dos veces respecto de $t$:
+> **Paso 2 — Calcular $\partial_t^2\vec E$.** Derivando dos veces respecto de $t$:
 > $$\frac{\partial}{\partial t}\cos(kz-\omega t)=+\omega\sin(kz-\omega t),$$
 > $$\frac{\partial^2}{\partial t^2}\cos(kz-\omega t)=-\omega^2\cos(kz-\omega t).$$
 > Por tanto:
 > $$\frac{\partial^2\vec E}{\partial t^2}=-\omega^2 E_0\cos(kz-\omega t)\,\hat x=-\omega^2\,\vec E.$$
 >
-> **Paso 3 — Imponer la ecuación de ondas.**
-> Sustituyendo en $\nabla^2\vec E=\frac{1}{c^2}\partial_t^2\vec E$:
+> **Paso 3 — Imponer la ecuación de ondas.** Sustituyendo en $\nabla^2\vec E=\frac{1}{c^2}\partial_t^2\vec E$:
 > $$-k^2\,\vec E=\frac{1}{c^2}\,(-\omega^2\,\vec E)\;\Longrightarrow\; k^2=\frac{\omega^2}{c^2}.$$
 > Como $\omega,k,c>0$, tomamos la raíz positiva:
 > $$\boxed{\;\omega=c\,k\;}$$

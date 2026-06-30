@@ -1,5 +1,6 @@
 ---
 title: Ley de Ampère
+order: 3
 tags:
   - electromagnetismo
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Sección [[3 Magnetostatica/index | Magnetostática]]** (capítulo 3 del curso). Es la ley de **fuente** del campo magnético: el análogo de la ley de Gauss para $\vec B$, pero para la *circulación* en lugar del *flujo*. Notas hermanas: [[Ley de Biot-Savart]] (de donde se deduce el campo del hilo que aquí verificamos) y [[Potencial Vector]]. La equivalencia entre ambas formas usa el **teorema de Stokes** ([[Teoremas Integrales]]).
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 5.
+> **Sección [[3 Magnetostatica/index | Magnetostática]]** (capítulo 3 del curso). Es la ley de **fuente** del campo magnético: el análogo de la ley de Gauss para $\vec B$, pero para la *circulación* en lugar del *flujo*. Notas hermanas: [[Ley de Biot-Savart]] (de donde se deduce el campo del hilo que aquí verificamos) y [[Potencial Vector]]. La equivalencia entre ambas formas usa el **teorema de Stokes** ([[Teoremas Integrales]]). **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 5.
 
 ---
 

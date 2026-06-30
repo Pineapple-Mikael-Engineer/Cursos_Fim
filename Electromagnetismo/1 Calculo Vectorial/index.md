@@ -1,5 +1,6 @@
 ---
 title: Cálculo Vectorial
+order: 1
 tags:
   - electromagnetismo
   - teoria
@@ -19,8 +20,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 1 del curso Electromagnetismo.** Es la caja de herramientas que el resto del curso usa sin volver a deducir. Notación SI, vectores con flecha $\vec F$, **convenio de suma de Einstein** y símbolos $\delta_{ij},\epsilon_{ijk}$ para las demostraciones.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 1. Para profundidad y la versión tensorial que culmina el curso, Jackson y Landau-Lifshitz Vol. 2.
+> **Capítulo 1 del curso Electromagnetismo.** Es la caja de herramientas que el resto del curso usa sin volver a deducir. Notación SI, vectores con flecha $\vec F$, **convenio de suma de Einstein** y símbolos $\delta_{ij},\epsilon_{ijk}$ para las demostraciones. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 1. Para profundidad y la versión tensorial que culmina el curso, Jackson y Landau-Lifshitz Vol. 2.
 
 ---
 
