@@ -51,10 +51,7 @@ aliases:
 > **Conexión del banco.** Los condensadores en **triángulo** soportan la tensión de línea $V_L$, mayor que en estrella, pero por ello necesitan **menos capacidad** (un tercio) para entregar la misma $Q_C$. Por eso suele preferirse la conexión $\Delta$.
 
 > [!algoritmo] Procedimiento de cálculo
-> **Paso 1.** Determinar la potencia activa $P$ y el ángulo $\varphi_1$ de la carga (a partir de $\cos\varphi_1$).
-> **Paso 2.** Fijar el factor de potencia objetivo $\cos\varphi_2$ y obtener $\tan\varphi_2$.
-> **Paso 3.** Calcular la reactiva a compensar: $Q_C = P\,(\tan\varphi_1 - \tan\varphi_2)$.
-> **Paso 4.** Repartir entre los 3 condensadores ($Q_{C,\text{fase}} = Q_C/3$) y hallar $C$ según la conexión:
+> **Paso 1.** Determinar la potencia activa $P$ y el ángulo $\varphi_1$ de la carga (a partir de $\cos\varphi_1$). **Paso 2.** Fijar el factor de potencia objetivo $\cos\varphi_2$ y obtener $\tan\varphi_2$. **Paso 3.** Calcular la reactiva a compensar: $Q_C = P\,(\tan\varphi_1 - \tan\varphi_2)$. **Paso 4.** Repartir entre los 3 condensadores ($Q_{C,\text{fase}} = Q_C/3$) y hallar $C$ según la conexión:
 > - en **triángulo**: $C = \dfrac{Q_{C,\text{fase}}}{\omega\,V_L^2}$ (cada condensador ve $V_L$);
 > - en **estrella**: $C = \dfrac{Q_{C,\text{fase}}}{\omega\,V_F^2}$ (cada condensador ve la tensión de fase $V_F = V_L/\sqrt{3}$).
 
