@@ -62,3 +62,49 @@ def fig_componentes_simetricas():
 if __name__ == '__main__':
     fig_componentes_simetricas()
     print('comp listo')
+
+
+def fig_neutro_desplazado():
+    import numpy as _np
+    fig, (a1, a2) = of.plt.subplots(1, 2, figsize=(9.6, 4.8))
+    fig.patch.set_facecolor(of.PANEL)
+    cols = [of.CURVE, of.ACCENT, of.BROWN]
+    labs = ['a', 'b', 'c']
+    S = [_np.exp(1j*_np.deg2rad(d)) for d in (0, -120, 120)]   # tensiones de fuente (pu)
+    RED = '#b0303a'
+
+    # ---- panel 1: con neutro (N'=N) ----
+    of.style_axes(a1)
+    a1.axhline(0, color=of.GRID, lw=0.7); a1.axvline(0, color=of.GRID, lw=0.7)
+    for v, c, l in zip(S, cols, labs):
+        a1.annotate('', xy=(v.real, v.imag), xytext=(0, 0),
+                    arrowprops=dict(arrowstyle='-|>', color=c, lw=2.6))
+        a1.text(1.17*v.real, 1.17*v.imag, fr'$\overline{{V}}_{l}$', color=c,
+                fontsize=12, ha='center', va='center')
+    a1.plot(0, 0, 'o', color=of.TEXT, ms=7)
+    a1.text(0.07, -0.16, r"$N'\!=\!N$", color=of.TEXT, fontsize=11)
+    a1.set_title("con neutro:  $N'\\!=\\!N$  (tensiones iguales)", color=of.TEXT, fontsize=11)
+    a1.set_xlim(-1.55, 1.55); a1.set_ylim(-1.55, 1.55); a1.set_aspect('equal')
+
+    # ---- panel 2: neutro roto ----
+    of.style_axes(a2)
+    a2.axhline(0, color=of.GRID, lw=0.7); a2.axvline(0, color=of.GRID, lw=0.7)
+    Vnn = 0.2*_np.exp(1j*_np.deg2rad(60))           # V_{N'N}: desplazamiento del neutro
+    for v, c, l in zip(S, cols, labs):              # vértices fijos a, b, c (referencia tenue)
+        a2.annotate('', xy=(v.real, v.imag), xytext=(0, 0),
+                    arrowprops=dict(arrowstyle='-', color=c, lw=1.0, alpha=0.30, ls='--'))
+        a2.plot(v.real, v.imag, 'o', color=c, ms=4, alpha=0.7)
+        a2.text(1.17*v.real, 1.17*v.imag, f'${l}$', color=c, fontsize=12, ha='center', va='center')
+    for v, c in zip(S, cols):                        # tensiones de carga: de N' a cada vértice
+        a2.annotate('', xy=(v.real, v.imag), xytext=(Vnn.real, Vnn.imag),
+                    arrowprops=dict(arrowstyle='-|>', color=c, lw=2.6))
+    a2.annotate('', xy=(Vnn.real, Vnn.imag), xytext=(0, 0),   # desplazamiento N -> N'
+                arrowprops=dict(arrowstyle='-|>', color=RED, lw=2.4))
+    a2.text(Vnn.real+0.10, Vnn.imag-0.16, r'$\overline{V}_{N'+"'"+r'N}$', color=RED, fontsize=11)
+    a2.plot(0, 0, 'o', color=of.TEXT, ms=6); a2.text(-0.24, -0.16, r'$N$', color=of.TEXT, fontsize=11)
+    a2.plot(Vnn.real, Vnn.imag, 'o', color=of.TEXT, ms=7)
+    a2.text(Vnn.real+0.05, Vnn.imag+0.12, r"$N'$", color=of.TEXT, fontsize=11)
+    a2.set_title("neutro roto:  $N'$ se desplaza  →  tensiones desiguales", color=of.TEXT, fontsize=11)
+    a2.set_xlim(-1.55, 1.55); a2.set_ylim(-1.55, 1.55); a2.set_aspect('equal')
+
+    fig.tight_layout(); of.save(fig, 'neutro_desplazado')
