@@ -1,5 +1,6 @@
 ---
 title: Generación de Tensiones Trifásicas
+order: 2
 tags:
   - circuitos-electricos
   - teoria

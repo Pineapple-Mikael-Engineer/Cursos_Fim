@@ -1,5 +1,6 @@
 ---
 title: Circuito Equivalente con Acoplo Conductivo
+order: 9
 tags:
   - circuitos-electricos
   - teoria

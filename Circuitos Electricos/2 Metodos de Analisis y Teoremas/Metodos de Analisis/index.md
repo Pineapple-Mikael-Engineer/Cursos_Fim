@@ -1,5 +1,6 @@
 ---
 title: Métodos de Análisis
+order: 2
 tags:
   - circuitos-electricos
   - teoria

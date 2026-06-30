@@ -1,5 +1,6 @@
 ---
 title: Medición con Dos Vatímetros
+order: 2
 tags:
   - circuitos-electricos
   - teoria

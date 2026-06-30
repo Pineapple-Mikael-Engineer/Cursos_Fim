@@ -1,5 +1,6 @@
 ---
 title: Diagramas Fasoriales
+order: 2
 tags:
   - circuitos-electricos
   - teoria

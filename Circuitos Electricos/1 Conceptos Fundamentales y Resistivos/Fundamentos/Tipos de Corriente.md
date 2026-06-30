@@ -1,5 +1,6 @@
 ---
 title: Tipos de Corriente
+order: 5
 tags:
   - circuitos-electricos
   - teoria

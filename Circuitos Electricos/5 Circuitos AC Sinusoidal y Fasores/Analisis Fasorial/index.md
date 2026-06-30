@@ -1,5 +1,6 @@
 ---
 title: Análisis Fasorial
+order: 3
 tags:
   - circuitos-electricos
   - teoria

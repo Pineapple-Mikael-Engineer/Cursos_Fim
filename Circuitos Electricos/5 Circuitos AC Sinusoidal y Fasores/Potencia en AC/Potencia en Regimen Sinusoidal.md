@@ -1,5 +1,6 @@
 ---
 title: Potencia en Régimen Sinusoidal
+order: 1
 tags:
   - circuitos-electricos
   - teoria

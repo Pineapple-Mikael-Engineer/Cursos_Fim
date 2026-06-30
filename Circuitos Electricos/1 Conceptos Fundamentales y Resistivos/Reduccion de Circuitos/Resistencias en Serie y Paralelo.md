@@ -1,5 +1,6 @@
 ---
 title: Resistencias en Serie y Paralelo
+order: 1
 tags:
   - circuitos-electricos
   - teoria

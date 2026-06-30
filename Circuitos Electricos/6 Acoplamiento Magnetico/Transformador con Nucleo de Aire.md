@@ -1,5 +1,6 @@
 ---
 title: Transformador con Núcleo de Aire
+order: 7
 tags:
   - circuitos-electricos
   - teoria

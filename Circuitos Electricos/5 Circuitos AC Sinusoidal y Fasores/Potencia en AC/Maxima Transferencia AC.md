@@ -1,5 +1,6 @@
 ---
 title: Maxima Transferencia de Potencia en CA
+order: 7
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Potencia y Energia
+order: 3
 tags:
   - circuitos-electricos
   - teoria

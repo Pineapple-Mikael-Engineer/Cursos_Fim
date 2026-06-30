@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones Independientes de Kirchhoff
+order: 3
 tags:
   - circuitos-electricos
   - teoria

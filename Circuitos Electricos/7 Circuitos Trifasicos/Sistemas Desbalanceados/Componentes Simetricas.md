@@ -1,5 +1,6 @@
 ---
 title: Componentes Simétricas
+order: 3
 tags:
   - circuitos-electricos
   - teoria

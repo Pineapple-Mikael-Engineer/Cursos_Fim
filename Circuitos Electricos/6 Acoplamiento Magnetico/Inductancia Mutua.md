@@ -1,5 +1,6 @@
 ---
 title: Inductancia Mutua
+order: 2
 tags:
   - circuitos-electricos
   - teoria

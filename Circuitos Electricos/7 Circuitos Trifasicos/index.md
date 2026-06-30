@@ -1,5 +1,6 @@
 ---
 title: Circuitos Trifásicos
+order: 7
 tags:
   - circuitos-electricos
   - teoria

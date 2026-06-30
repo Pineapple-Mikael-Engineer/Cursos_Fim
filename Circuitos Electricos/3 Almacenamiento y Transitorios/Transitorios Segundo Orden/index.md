@@ -1,5 +1,6 @@
 ---
 title: Transitorios de Segundo Orden
+order: 3
 tags:
   - circuitos-electricos
   - teoria

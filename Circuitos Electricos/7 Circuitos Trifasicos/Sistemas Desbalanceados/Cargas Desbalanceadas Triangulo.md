@@ -1,5 +1,6 @@
 ---
 title: Cargas Desbalanceadas en Triángulo
+order: 2
 tags:
   - circuitos-electricos
   - teoria

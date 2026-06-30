@@ -1,5 +1,6 @@
 ---
 title: Conexiones Balanceadas
+order: 2
 tags:
   - circuitos-electricos
   - teoria

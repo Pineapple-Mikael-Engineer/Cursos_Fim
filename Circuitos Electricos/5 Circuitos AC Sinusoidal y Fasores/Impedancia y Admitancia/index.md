@@ -1,5 +1,6 @@
 ---
 title: Impedancia y Admitancia
+order: 2
 tags:
   - circuitos-electricos
   - teoria

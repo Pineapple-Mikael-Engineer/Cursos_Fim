@@ -1,5 +1,6 @@
 ---
 title: Regla de los Puntos
+order: 3
 tags:
   - circuitos-electricos
   - teoria

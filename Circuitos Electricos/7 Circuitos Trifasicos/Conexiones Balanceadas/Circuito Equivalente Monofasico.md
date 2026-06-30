@@ -1,5 +1,6 @@
 ---
 title: Circuito Equivalente Monofásico
+order: 4
 tags:
   - circuitos-electricos
   - teoria

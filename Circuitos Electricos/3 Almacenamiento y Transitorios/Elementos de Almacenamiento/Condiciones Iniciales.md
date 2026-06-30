@@ -1,5 +1,6 @@
 ---
 title: Condiciones Iniciales
+order: 4
 tags:
   - circuitos-electricos
   - teoria

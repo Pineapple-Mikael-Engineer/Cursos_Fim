@@ -1,5 +1,6 @@
 ---
 title: Ley de Voltajes de Kirchhoff (LKV)
+order: 2
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Transitorios de Primer Orden
+order: 2
 tags:
   - circuitos-electricos
   - teoria

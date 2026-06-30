@@ -1,5 +1,6 @@
 ---
 title: Ventajas del Trifásico
+order: 4
 tags:
   - circuitos-electricos
   - teoria

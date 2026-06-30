@@ -1,5 +1,6 @@
 ---
 title: Teorema de Norton
+order: 3
 tags:
   - circuitos-electricos
   - teoria

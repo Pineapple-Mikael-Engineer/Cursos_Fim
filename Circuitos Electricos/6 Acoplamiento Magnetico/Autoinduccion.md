@@ -1,5 +1,6 @@
 ---
 title: Autoinducción
+order: 1
 tags:
   - circuitos-electricos
   - teoria

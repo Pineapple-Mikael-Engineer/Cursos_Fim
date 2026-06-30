@@ -1,5 +1,6 @@
 ---
 title: Generación de Tensión Alterna
+order: 6
 tags:
   - circuitos-electricos
   - teoria

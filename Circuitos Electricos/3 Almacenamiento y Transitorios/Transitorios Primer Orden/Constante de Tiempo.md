@@ -1,5 +1,6 @@
 ---
 title: Constante de Tiempo
+order: 3
 tags:
   - circuitos-electricos
   - teoria

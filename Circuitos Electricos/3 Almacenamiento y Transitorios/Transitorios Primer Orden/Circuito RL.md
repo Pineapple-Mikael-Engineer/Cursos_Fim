@@ -1,5 +1,6 @@
 ---
 title: Circuito RL
+order: 1
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Ley de Corrientes de Kirchhoff (LKC)
+order: 1
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Simetría en Circuitos
+order: 7
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Energía en Bobinas Acopladas
+order: 5
 tags:
   - circuitos-electricos
   - teoria

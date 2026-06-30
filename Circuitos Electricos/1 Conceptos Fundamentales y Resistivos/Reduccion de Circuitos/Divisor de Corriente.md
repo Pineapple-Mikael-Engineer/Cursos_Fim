@@ -1,5 +1,6 @@
 ---
 title: Divisor de Corriente
+order: 3
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Circuito RLC Serie
+order: 1
 tags:
   - circuitos-electricos
   - teoria

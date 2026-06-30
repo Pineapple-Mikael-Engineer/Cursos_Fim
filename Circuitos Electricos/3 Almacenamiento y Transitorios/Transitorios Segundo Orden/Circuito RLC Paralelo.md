@@ -1,5 +1,6 @@
 ---
 title: Circuito RLC Paralelo
+order: 2
 tags:
   - circuitos-electricos
   - teoria

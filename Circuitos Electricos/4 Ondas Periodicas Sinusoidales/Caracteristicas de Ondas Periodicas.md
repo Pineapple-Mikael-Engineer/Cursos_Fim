@@ -1,5 +1,6 @@
 ---
 title: Características de Ondas Periódicas
+order: 2
 tags:
   - circuitos-electricos
   - teoria

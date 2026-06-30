@@ -1,5 +1,6 @@
 ---
 title: Elementos del Circuito
+order: 2
 tags:
   - circuitos-electricos
   - teoria

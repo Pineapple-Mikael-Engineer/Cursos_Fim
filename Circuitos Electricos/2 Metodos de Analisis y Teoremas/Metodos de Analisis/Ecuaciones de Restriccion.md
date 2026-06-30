@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones de Restriccion
+order: 5
 tags:
   - circuitos-electricos
   - teoria

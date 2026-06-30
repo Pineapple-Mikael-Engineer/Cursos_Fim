@@ -1,5 +1,6 @@
 ---
 title: Correccion del Factor de Potencia
+order: 6
 tags:
   - circuitos-electricos
   - teoria

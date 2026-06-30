@@ -1,5 +1,6 @@
 ---
 title: Circuito RC
+order: 2
 tags:
   - circuitos-electricos
   - teoria

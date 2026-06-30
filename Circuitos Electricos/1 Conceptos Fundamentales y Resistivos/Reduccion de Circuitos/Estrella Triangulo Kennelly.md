@@ -1,5 +1,6 @@
 ---
 title: Estrella-Triángulo (Kennelly)
+order: 5
 tags:
   - circuitos-electricos
   - teoria

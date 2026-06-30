@@ -1,5 +1,6 @@
 ---
 title: Solución de Transitorios con Laplace
+order: 4
 tags:
   - circuitos-electricos
   - teoria

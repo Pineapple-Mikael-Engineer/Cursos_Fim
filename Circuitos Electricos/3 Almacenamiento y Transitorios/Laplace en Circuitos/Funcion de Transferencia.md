@@ -1,5 +1,6 @@
 ---
 title: Función de Transferencia
+order: 3
 tags:
   - circuitos-electricos
   - teoria

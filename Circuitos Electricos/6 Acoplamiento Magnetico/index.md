@@ -1,5 +1,6 @@
 ---
 title: Acoplamiento Magnético
+order: 6
 tags:
   - circuitos-electricos
   - teoria

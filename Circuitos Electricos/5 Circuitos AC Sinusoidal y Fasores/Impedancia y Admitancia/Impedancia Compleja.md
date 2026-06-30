@@ -1,5 +1,6 @@
 ---
 title: Impedancia Compleja
+order: 2
 tags:
   - circuitos-electricos
   - teoria

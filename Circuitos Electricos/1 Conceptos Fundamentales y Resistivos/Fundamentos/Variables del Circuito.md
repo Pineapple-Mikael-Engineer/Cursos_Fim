@@ -1,5 +1,6 @@
 ---
 title: Variables del Circuito
+order: 1
 tags:
   - circuitos-electricos
   - teoria

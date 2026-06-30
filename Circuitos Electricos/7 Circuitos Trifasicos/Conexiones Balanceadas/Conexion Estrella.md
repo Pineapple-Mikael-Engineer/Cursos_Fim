@@ -1,5 +1,6 @@
 ---
 title: Conexión Estrella
+order: 1
 tags:
   - circuitos-electricos
   - teoria

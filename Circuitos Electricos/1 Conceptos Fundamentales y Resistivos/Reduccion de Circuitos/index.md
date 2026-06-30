@@ -1,5 +1,6 @@
 ---
 title: Reducción de Circuitos
+order: 4
 tags:
   - circuitos-electricos
   - teoria

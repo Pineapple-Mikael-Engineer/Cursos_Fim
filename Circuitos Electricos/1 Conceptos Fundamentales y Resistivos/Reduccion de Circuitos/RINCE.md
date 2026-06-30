@@ -1,5 +1,6 @@
 ---
 title: RINCE
+order: 6
 tags:
   - circuitos-electricos
   - teoria

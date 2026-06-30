@@ -1,5 +1,6 @@
 ---
 title: Resistencia y Ley de Ohm
+order: 1
 tags:
   - circuitos-electricos
   - teoria

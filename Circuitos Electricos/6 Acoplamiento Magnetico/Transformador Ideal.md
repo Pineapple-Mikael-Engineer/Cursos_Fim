@@ -1,5 +1,6 @@
 ---
 title: Transformador Ideal
+order: 8
 tags:
   - circuitos-electricos
   - teoria

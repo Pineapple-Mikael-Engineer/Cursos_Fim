@@ -1,5 +1,6 @@
 ---
 title: Métodos en Régimen Fasorial
+order: 1
 tags:
   - circuitos-electricos
   - teoria

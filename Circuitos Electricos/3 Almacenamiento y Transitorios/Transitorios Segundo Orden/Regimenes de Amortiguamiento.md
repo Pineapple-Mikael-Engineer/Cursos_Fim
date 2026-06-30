@@ -1,5 +1,6 @@
 ---
 title: Regímenes de Amortiguamiento
+order: 3
 tags:
   - circuitos-electricos
   - teoria

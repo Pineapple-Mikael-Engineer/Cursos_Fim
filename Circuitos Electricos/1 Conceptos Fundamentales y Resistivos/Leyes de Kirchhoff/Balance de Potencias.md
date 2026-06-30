@@ -1,5 +1,6 @@
 ---
 title: Balance de Potencias (Teorema de Tellegen)
+order: 4
 tags:
   - circuitos-electricos
   - teoria

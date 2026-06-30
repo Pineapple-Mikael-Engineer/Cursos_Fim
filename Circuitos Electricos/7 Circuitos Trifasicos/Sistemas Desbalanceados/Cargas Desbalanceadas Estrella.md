@@ -1,5 +1,6 @@
 ---
 title: Cargas Desbalanceadas en Estrella
+order: 1
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Acoplamiento Magnético Fasorial
+order: 6
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Instrumentos de Medicion
+order: 6
 tags:
   - circuitos-electricos
   - teoria

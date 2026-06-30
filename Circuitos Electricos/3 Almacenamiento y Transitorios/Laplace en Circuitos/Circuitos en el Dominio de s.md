@@ -1,5 +1,6 @@
 ---
 title: Circuitos en el Dominio de s
+order: 2
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Fuentes Independientes
+order: 2
 tags:
   - circuitos-electricos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Potencia en Sistemas Balanceados
+order: 1
 tags:
   - circuitos-electricos
   - teoria

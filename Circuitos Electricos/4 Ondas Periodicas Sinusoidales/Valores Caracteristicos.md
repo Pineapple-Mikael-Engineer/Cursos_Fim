@@ -1,5 +1,6 @@
 ---
 title: Valores Característicos de una Onda
+order: 3
 tags:
   - circuitos-electricos
   - teoria

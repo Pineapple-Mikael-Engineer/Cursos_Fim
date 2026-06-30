@@ -1,5 +1,6 @@
 ---
 title: Sistemas Y-Y, Delta-Delta, Y-Delta
+order: 3
 tags:
   - circuitos-electricos
   - teoria
