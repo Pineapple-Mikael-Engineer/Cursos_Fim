@@ -1,5 +1,6 @@
 ---
 title: Deducción de la Energía Cinética
+order: 3
 tags:
   - dinamica
   - teoria
@@ -14,15 +15,12 @@ aliases:
 # Deducción de la Energía Cinética $\;T=\tfrac12 m v_c^2+\tfrac12\,\vec\omega\cdot\mathbf I_c\vec\omega$
 
 > [!definicion]
-> Integrando $dT=\tfrac12 v_p^2\,dm$ sobre el cuerpo rígido, con **el desarrollo indicial completo**, se
-> obtiene la descomposición de **König**:
+> Integrando $dT=\tfrac12 v_p^2\,dm$ sobre el cuerpo rígido, con **el desarrollo indicial completo**, se obtiene la descomposición de **König**:
 > $$\boxed{\;T=\tfrac12 m v_c^2+\tfrac12\,\vec\omega\cdot\mathbf I_c\,\vec\omega\;}$$
-> energía de **traslación** del CM más energía de **rotación**. El tensor de inercia surge al contraer
-> el doble producto con el símbolo de Levi-Civita.
+> energía de **traslación** del CM más energía de **rotación**. El tensor de inercia surge al contraer el doble producto con el símbolo de Levi-Civita.
 
 > [!info]
-> Deducción de la [[Deducciones/index | inercia]]; hermana de [[Deduccion del Momento Angular]] y
-> [[Deduccion del Torque]]; usa el [[Tensor de Inercia]]. Goldstein §5.
+> Deducción de la [[Deducciones/index | inercia]]; hermana de [[Deduccion del Momento Angular]] y [[Deduccion del Torque]]; usa el [[Tensor de Inercia]]. Goldstein §5.
 
 ---
 
@@ -36,17 +34,14 @@ aliases:
 > $$T=\tfrac12 m v_c^2+\tfrac12\Big(\tfrac12 mR^2\Big)\Big(\tfrac{v_c}{R}\Big)^2=\tfrac12 m v_c^2+\tfrac14 m v_c^2=\tfrac34 m v_c^2.$$
 >
 > > [!solucion]
-> > $T=\tfrac34 m v_c^2$: **un tercio** de la energía ($\tfrac14$ sobre $\tfrac34$) es rotacional. Por
-> > eso un cilindro rueda más despacio que un bloque que desliza: parte de la energía va al giro.
+> > $T=\tfrac34 m v_c^2$: **un tercio** de la energía ($\tfrac14$ sobre $\tfrac34$) es rotacional. Por eso un cilindro rueda más despacio que un bloque que desliza: parte de la energía va al giro.
 
 ---
 
 ## En qué consiste
 
 > [!definicion] Convenios y herramientas
-> Notación indicial con suma sobre repetidos; $\vec r\equiv\vec r_{p/c}$; $Q_{ij}=\int r_i r_j\,dm$ y
-> $\mathbf I=\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q$. Propiedad del CM $\int\vec r\,dm=\vec0$, y la
-> identidad de Levi-Civita $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$.
+> Notación indicial con suma sobre repetidos; $\vec r\equiv\vec r_{p/c}$; $Q_{ij}=\int r_i r_j\,dm$ y $\mathbf I=\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q$. Propiedad del CM $\int\vec r\,dm=\vec0$, y la identidad de Levi-Civita $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$.
 
 ![[cuerpo_inercia.svg|420]]
 
@@ -63,8 +58,7 @@ aliases:
 > **Constante:** $\displaystyle\int_N\tfrac12 v_c^2\,dm=\tfrac12 v_c^2\int_N dm=\tfrac12 m v_c^2$. $\blacksquare$
 
 > [!demostracion] El término cuadrático da $\tfrac12\,\vec\omega\cdot\mathbf I_c\vec\omega$
-> Escribo $\vec\omega\times\vec r=\omega_i r_j\,\epsilon_{ijk}\,\hat e_k$. El producto escalar consigo
-> mismo contrae dos Levi-Civita por el índice $k$:
+> Escribo $\vec\omega\times\vec r=\omega_i r_j\,\epsilon_{ijk}\,\hat e_k$. El producto escalar consigo mismo contrae dos Levi-Civita por el índice $k$:
 > $$(\vec\omega\times\vec r)\cdot(\vec\omega\times\vec r)=(\omega_i r_j\epsilon_{ijk})(\omega_m r_n\epsilon_{mnk})=\omega_i r_j\,\omega_m r_n\,\epsilon_{ijk}\epsilon_{mnk}.$$
 > Usando $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$,
 > $$\omega_i r_j\omega_m r_n(\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm})=\underbrace{\omega_i\omega_i\,r_j r_j}_{\omega^2 r^2}-\underbrace{(\omega_i r_i)(\omega_j r_j)}_{(\vec\omega\cdot\vec r)^2}.$$
@@ -74,15 +68,10 @@ aliases:
 > $$\int_N\tfrac12(\vec\omega\times\vec r)^2\,dm=\tfrac12\,\vec\omega\cdot\big[\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q\big]\cdot\vec\omega=\tfrac12\,\vec\omega\cdot\mathbf I_c\,\vec\omega.\qquad\blacksquare$$
 
 > [!proposicion] Forma final, ejes principales y positividad
-> Sumando, $T=\tfrac12 m v_c^2+\tfrac12\,\vec\omega\cdot\mathbf I_c\vec\omega$. En **ejes principales**,
-> $T_{rot}=\tfrac12(I_1\omega_1^2+I_2\omega_2^2+I_3\omega_3^2)$. Como $T_{rot}>0$ para todo
-> $\vec\omega\neq\vec0$, esta deducción **prueba** que $\mathbf I_c$ es **definido positivo**.
+> Sumando, $T=\tfrac12 m v_c^2+\tfrac12\,\vec\omega\cdot\mathbf I_c\vec\omega$. En **ejes principales**, $T_{rot}=\tfrac12(I_1\omega_1^2+I_2\omega_2^2+I_3\omega_3^2)$. Como $T_{rot}>0$ para todo $\vec\omega\neq\vec0$, esta deducción **prueba** que $\mathbf I_c$ es **definido positivo**.
 
 > [!warning]
-> La separación traslación+rotación (König) exige tomar la rotación respecto al **CM** (es la
-> propiedad $\int\vec r\,dm=\vec0$ la que mata el término cruzado). $T_{rot}=\tfrac12\vec\omega\cdot\mathbf I\vec\omega$
-> usa el tensor en el **mismo** punto que $\vec\omega$ (CM o punto fijo). El paso clave es la identidad
-> $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$.
+> La separación traslación+rotación (König) exige tomar la rotación respecto al **CM** (es la propiedad $\int\vec r\,dm=\vec0$ la que mata el término cruzado). $T_{rot}=\tfrac12\vec\omega\cdot\mathbf I\vec\omega$ usa el tensor en el **mismo** punto que $\vec\omega$ (CM o punto fijo). El paso clave es la identidad $\epsilon_{ijk}\epsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$.
 
 ## Resumen
 
@@ -95,10 +84,7 @@ aliases:
 > | Total | — | $T=\tfrac12 m v_c^2+\tfrac12\,\vec\omega\cdot\mathbf I_c\vec\omega$ |
 
 > [!corolario]
-> La energía cinética del sólido se **integra** desde $\tfrac12 v^2\,dm$: la contracción de los dos
-> Levi-Civita hace nacer $\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q=\mathbf I_c$. Verlo con índices es el
-> sentido de la deducción tensorial.
+> La energía cinética del sólido se **integra** desde $\tfrac12 v^2\,dm$: la contracción de los dos Levi-Civita hace nacer $\mathrm{Tr}(\mathbf Q)\mathbb 1-\mathbf Q=\mathbf I_c$. Verlo con índices es el sentido de la deducción tensorial.
 
 > [!referencia]
-> Goldstein §5. Hermanas: [[Deduccion del Momento Angular]], [[Deduccion del Torque]]. Tensor:
-> [[Tensor de Inercia]].
+> Goldstein §5. Hermanas: [[Deduccion del Momento Angular]], [[Deduccion del Torque]]. Tensor: [[Tensor de Inercia]].

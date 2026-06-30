@@ -1,5 +1,6 @@
 ---
 title: Teorema del Eje Paralelo
+order: 3
 tags:
   - dinamica
   - teoria
