@@ -1,10 +1,10 @@
 ---
-title: "Turbinas"
+title: Turbinas
+order: 1
 tags:
   - termodinamica
-  - dispositivos_flujo
+  - dispositivos-flujo
   - turbinas
-  - conversion_energia
 draft: false
 aliases:
   - turbine
@@ -14,124 +14,96 @@ aliases:
 # Turbinas
 
 > [!definicion]
-> Dispositivo de [[Flujo Estacionario]] que extrae trabajo de un fluido en expansión. El fluido pasa de alta presión/alta temperatura a baja presión/baja temperatura, produciendo trabajo de eje.
+> Una **turbina** es un volumen de control de flujo estacionario que extrae trabajo de un fluido en expansión: el fluido entra a alta presión y temperatura, entrega energía al rotor mediante su expansión, y sale a baja presión y temperatura. Es el dispositivo que convierte energía interna (o química) en trabajo mecánico en ciclos de potencia.
+>
+> *¿Por qué la entalpía?* En un sistema cerrado (pistón), el trabajo sería $\int P\,dv$. En el volumen de control, cada kg que cruza la frontera también arrastra la energía de "empuje" $Pv$ para abrirse paso. Por eso la energía transportada por cada corriente es $h = u + Pv$ (entalpía), y el balance de energía del flujo estacionario adiabático da directamente $\dot{W} = \dot{m}(h_1 - h_2)$.
+>
+> *Tipos:* turbinas de vapor (ciclo Rankine), turbinas de gas (ciclo Brayton), turbinas hidráulicas. Todas comparten la misma ecuación de energía; difieren en el modelo del fluido (tablas de vapor, gas ideal, líquido incompresible).
 
-## Hipótesis estándar para análisis
+![[turbina_esquema_vc.svg|440]]
+*Volumen de control de una turbina. El fluido entra por el estado 1 (alta $P$, alta $T$) y sale por el estado 2 (baja $P$, baja $T$). El rotor extrae trabajo de eje $\dot{W}_t$. La flecha de $\dot{S}_{\rm gen}$ indica que el proceso real es irreversible.*
 
-> [!info]
-> 1. [[Flujo Estacionario]] ($dm_{VC}/dt = 0$, $dE_{VC}/dt = 0$)
-> 2. Una entrada, una salida
-> 3. Adiabática ($\dot{Q} = 0$) — común en turbinas de vapor/gas, excepto casos con enfriamiento
-> 4. Despreciables $\Delta EC$ y $\Delta EP$ ($C_1 \approx C_2$, $z_1 \approx z_2$)
-> 5. Proceso internamente irreversible (real) → $S_{gen} > 0$
+---
 
-## Ecuaciones de gobierno
+## Balance de energía y eficiencia isentrópica
 
 > [!teorema]
-> **Conservación de masa**: $\dot{m}_1 = \dot{m}_2 = \dot{m}$
+> Para una turbina en flujo estacionario con una entrada y una salida, despreciando $\Delta EC$ y $\Delta EP$:
 >
-> **Primera ley (energía)**:
-> $$
-> \dot{W}_{turb} = \dot{m}(h_1 - h_2)
-> $$
-> (convención: $\dot{W}_{turb} > 0$ cuando sale del VC)
+> **Trabajo de la turbina:**
+> $$\dot{W}_t = \dot{m}(h_1 - h_2).$$
 >
-> **Segunda ley (entropía)**:
-> $$
-> \dot{S}_{gen} = \dot{m}(s_2 - s_1) \geq 0 \quad \Rightarrow \quad s_2 \geq s_1
-> $$
+> **Eficiencia isentrópica** (relación entre trabajo real y trabajo reversible máximo):
+> $$\boxed{\eta_t = \frac{\dot{W}_{\rm real}}{\dot{W}_{\rm rev}} = \frac{h_1 - h_2}{h_1 - h_{2s}},}$$
+> donde el estado $2s$ es la salida hipotética de un proceso **isentrópico** ($s_{2s} = s_1$, $P_{2s} = P_2$).
+
+> [!demostracion]
+> **Hipótesis:** VC estacionario, $\dot{Q}=0$ (adiabático), $\dot{W}_{\rm eje}\neq0$ (turbina), $\Delta EC \approx 0$, $\Delta EP \approx 0$.
 >
-> **Balance de exergía**:
-> $$
-> \dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) - \dot{W}_{turb} = T_0 \dot{S}_{gen}
-> $$
-
-## Eficiencia isoentrópica (de turbina)
-
-> [!definicion]
-> Relación entre trabajo real y trabajo isentrópico (reversible):
-> $$
-> \eta_t = \frac{\dot{W}_{real}}{\dot{W}_s} = \frac{h_1 - h_2}{h_1 - h_{2s}}
-> $$
+> **Paso 1 — Primera ley del VC estacionario.** Para una entrada (1) y una salida (2), la SFEE es:
+> $$\dot{Q} - \dot{W}_t = \dot{m}[(h_2 - h_1) + \underbrace{\tfrac{1}{2}(C_2^2-C_1^2)}_{\approx0} + \underbrace{g(z_2-z_1)}_{\approx0}].$$
 >
-> - Estado 1: entrada real
-> - Estado 2: salida real
-> - Estado $2s$: salida para proceso isentrópico ($s_{2s} = s_1$, $P_{2s} = P_2$)
-
-> [!info]
-> **Rango típico**: $\eta_t \approx 0.85 - 0.92$ para turbinas de vapor/gas modernas
-
-## Casos particulares
+> **Paso 2 — Aplicar $\dot{Q}=0$.** Despejando $\dot{W}_t$:
+> $$\dot{W}_t = \dot{m}(h_1 - h_2).$$
+> Como $h_1 > h_2$ (el fluido se expande, cede entalpía), $\dot{W}_t > 0$ ✓ (sale del sistema).
+>
+> **Paso 3 — Proceso isentrópico de referencia.** El proceso reversible y adiabático no genera entropía: $s_{2s} = s_1$. Combinado con $P_2$ conocida, $h_{2s}$ queda determinado unívocamente por la ecuación de estado (tablas o $Pv^{\gamma}=\text{cte}$ para gas ideal).
+>
+> **Paso 4 — Definir eficiencia isentrópica.** Las irreversibilidades internas (fricción en los álabes, remolinos) elevan la entropía de salida: $s_2 > s_{2s}$, lo que implica $h_2 > h_{2s}$ (mayor temperatura de salida para la misma $P_2$). El trabajo real es menor que el reversible:
+> $$\dot{W}_{\rm real} = \dot{m}(h_1-h_2) < \dot{m}(h_1-h_{2s}) = \dot{W}_{\rm rev}.$$
+>
+> **Paso 5 — Expresión de $\eta_t$.** Dividiendo:
+> $$\eta_t = \frac{h_1-h_2}{h_1-h_{2s}} < 1.$$
+> Despejando el estado real de salida: $h_2 = h_1 - \eta_t(h_1-h_{2s})$. $\blacksquare$
 
 > [!proposicion]
-> **Gas ideal con $c_p$ constante**:
-> $$
-> \eta_t = \frac{T_1 - T_2}{T_1 - T_{2s}}
-> $$
-> donde $T_{2s} = T_1 (P_2/P_1)^{(\gamma-1)/\gamma}$
+> Para gas ideal con $c_p$ constante, la eficiencia isentrópica toma la forma:
+> $$\eta_t = \frac{T_1 - T_2}{T_1 - T_{2s}}, \qquad T_{2s} = T_1\!\left(\frac{P_2}{P_1}\right)^{(\gamma-1)/\gamma}.$$
+
+---
+
+## Destrucción de exergía
 
 > [!proposicion]
-> **Vapor de agua**:
-> - Usar tablas de vapor para $h_1$, $s_1$, $h_{2s}$ (buscando $P_2$ con $s_{2s}=s_1$)
-> - Salida real puede estar en región húmeda → $x_2 = (h_2 - h_f)/h_{fg}$
-
-## Eficiencia exergética (segunda ley)
-
-> [!definicion]
-> $$
-> \varepsilon_t = \frac{\dot{W}_{turb}}{\dot{m}(\psi_1 - \psi_2)} = 1 - \frac{\dot{B}_{dest}}{\dot{m}(\psi_1 - \psi_2)}
-> $$
+> La destrucción de exergía en una turbina real (adiabática) es directamente proporcional a la entropía generada:
+> $$\dot{X}_{\rm dest} = T_0\,\dot{S}_{\rm gen} = T_0\,\dot{m}(s_2 - s_1) \geq 0.$$
 >
-> Para turbina adiabática: $\varepsilon_t = \eta_t$ solo si el fluido es gas ideal con $c_p$ constante y $T_0$ coincide con temperatura de referencia? **No siempre**. Difieren si $T_0 \neq T_{ambiente}$ del problema.
+> La eficiencia exergética (de segunda ley):
+> $$\varepsilon_t = \frac{\dot{W}_t}{\dot{m}(\psi_1-\psi_2)} = 1 - \frac{\dot{X}_{\rm dest}}{\dot{m}(\psi_1-\psi_2)}.$$
+>
+> Para turbinas de vapor con gas ideal y $c_p$ constante, $\varepsilon_t \approx \eta_t$; en general difieren porque $\psi = h - T_0 s - (h_0 - T_0 s_0)$ incluye el calor latente.
 
-## Limitaciones y consideraciones prácticas
+---
 
-> [!warning]
-> - **Turbina de vapor**: entrada típicamente vapor sobrecalentado o saturado. Salida puede ser mezcla húmeda (problemas de erosión si $x < 0.88-0.90$)
-> - **Turbina de gas**: entrada gases de combustión a alta temperatura. El compresor consume parte del trabajo generado ($W_{neto} = W_{turb} - W_{comp}$)
-> - **Turbina hidráulica**: el fluido es incompresible. Usar $h_1 - h_2 \approx v(P_1 - P_2)$ (despreciando $\Delta T$), o mejor usar Bernoulli con eficiencia
+## Ejemplo: turbina de vapor de planta de potencia
 
 > [!ejemplo]
-> **Turbina de vapor** (calcular trabajo, eficiencia, destrucción de exergía)
->
-> Datos: $\dot{m} = 10 kg/s$, $P_1 = 6 MPa$, $T_1 = 600°C$, $P_2 = 10 kPa$, $\eta_t = 0.90$, $T_0 = 298K$, $P_0 = 100 kPa$
->
-> **1. Entrada (tablas de vapor)**:
-> $P_1 = 6 MPa$, $T_1 = 600°C$ → $h_1 = 3658.4 kJ/kg$, $s_1 = 7.167 kJ/kg·K$
->
-> **2. Salida isentrópica**:
-> $P_2 = 10 kPa$, $s_{2s} = s_1 = 7.167 kJ/kg·K$
-> A $10 kPa$: $s_f = 0.649 kJ/kg·K$, $s_g = 8.151 kJ/kg·K$
-> $x_{2s} = (7.167 - 0.649)/(8.151 - 0.649) = 6.518/7.502 = 0.869$
-> $h_{2s} = h_f + x_{2s} h_{fg} = 191.8 + 0.869 \times 2392.8 = 191.8 + 2079.0 = 2270.8 kJ/kg$
->
-> **3. Eficiencia isoentrópica**:
-> $\eta_t = (h_1 - h_2)/(h_1 - h_{2s})$ → $0.90 = (3658.4 - h_2)/(3658.4 - 2270.8) = (3658.4 - h_2)/1387.6$
-> $3658.4 - h_2 = 0.90 \times 1387.6 = 1248.8$
-> $h_2 = 3658.4 - 1248.8 = 2409.6 kJ/kg$
->
-> **4. Trabajo real**:
-> $\dot{W} = \dot{m}(h_1 - h_2) = 10 \times (3658.4 - 2409.6) = 10 \times 1248.8 = 12488 kW$
->
-> **5. Entropía salida real** (con $h_2 = 2409.6 kJ/kg$ a $P_2=10kPa$):
-> $x_2 = (2409.6 - 191.8)/2392.8 = 2217.8/2392.8 = 0.927$
-> $s_2 = s_f + x_2 s_{fg} = 0.649 + 0.927 \times 7.502 = 0.649 + 6.954 = 7.603 kJ/kg·K$
->
-> **6. Destrucción de exergía**:
-> $\psi_1 = (h_1 - h_0) - T_0(s_1 - s_0)$
-> $h_0$ (líquido saturado a $P_0$) ≈ $417.5 kJ/kg$, $s_0 ≈ 1.303 kJ/kg·K$
-> $\psi_1 = (3658.4 - 417.5) - 298(7.167 - 1.303) = 3240.9 - 298 \times 5.864 = 3240.9 - 1747.5 = 1493.4 kJ/kg$
-> $\psi_2 = (2409.6 - 417.5) - 298(7.603 - 1.303) = 1992.1 - 298 \times 6.300 = 1992.1 - 1877.4 = 114.7 kJ/kg$
-> $\dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) - \dot{W} = 10 \times (1493.4 - 114.7) - 12488 = 10 \times 1378.7 - 12488 = 13787 - 12488 = 1299 kW$
->
-> **7. Eficiencia exergética**:
-> $\varepsilon = \dot{W} / [\dot{m}(\psi_1 - \psi_2)] = 12488 / 13787 = 0.906$ (vs. $\eta_t=0.90$)
+> Vapor a $P_1=6\,\mathrm{MPa}$, $T_1=600\,°\mathrm{C}$ se expande en una turbina hasta $P_2=10\,\mathrm{kPa}$ con eficiencia isentrópica $\eta_t=0.90$ y caudal $\dot{m}=10\,\mathrm{kg/s}$. Temperatura de referencia $T_0=298\,\mathrm{K}$, $P_0=100\,\mathrm{kPa}$. Determinar: (a) potencia real; (b) estado de salida real; (c) destrucción de exergía.
 
-## Relaciones con otras notas
+> [!solucion]
+> **Paso 1 — Estado de entrada (tablas de vapor sobrecalentado).** A $P_1=6\,\mathrm{MPa}$, $T_1=600\,°\mathrm{C}$:
+> $$h_1 = 3658.4\,\mathrm{kJ/kg}, \quad s_1 = 7.1677\,\mathrm{kJ/(kg\cdot K)}.$$
+>
+> **Paso 2 — Estado isentrópico de salida.** A $P_2=10\,\mathrm{kPa}$, $s_{2s}=s_1=7.1677\,\mathrm{kJ/(kg\cdot K)}$.
+> De tablas de saturación a $10\,\mathrm{kPa}$: $s_f=0.6493$, $s_g=8.1502$, $h_f=191.8$, $h_{fg}=2392.8$.
+> $$x_{2s}=\frac{7.1677-0.6493}{8.1502-0.6493}=\frac{6.5184}{7.5009}=0.869.$$
+> $$h_{2s}=191.8+0.869\times2392.8=191.8+2079.3=2271.1\,\mathrm{kJ/kg}.$$
+>
+> **Paso 3 — Trabajo isentrópico y potencia real.** Trabajo isentrópico: $w_s=h_1-h_{2s}=3658.4-2271.1=1387.3\,\mathrm{kJ/kg}$. Potencia real:
+> $$\dot{W}_t = \eta_t\,\dot{m}\,w_s = 0.90\times10\times1387.3 = 12\,486\,\mathrm{kW} \approx 12.5\,\mathrm{MW}.$$
+>
+> **Paso 4 — Estado real de salida.** $h_2 = h_1 - \dot{W}_t/\dot{m} = 3658.4 - 1248.6 = 2409.8\,\mathrm{kJ/kg}$.
+> A $P_2=10\,\mathrm{kPa}$: $x_2=(2409.8-191.8)/2392.8=2218.0/2392.8=0.927$.
+> $s_2=0.6493+0.927\times7.5009=0.6493+6.953=7.602\,\mathrm{kJ/(kg\cdot K)}$.
+>
+> **Paso 5 — Destrucción de exergía.** $\dot{S}_{\rm gen}=\dot{m}(s_2-s_1)=10\times(7.602-7.168)=10\times0.434=4.34\,\mathrm{kW/K}$.
+> $$\dot{X}_{\rm dest}=T_0\,\dot{S}_{\rm gen}=298\times4.34=1293\,\mathrm{kW}.$$
+> Representa el 9.4% de la potencia real, principalmente por fricción en álabes.
+>
+> $\boxed{\dot{W}_t = 12.5\,\mathrm{MW},\quad x_2=0.927,\quad \dot{X}_{\rm dest}=1293\,\mathrm{kW}.}$ $\blacksquare$
 
-> [!info]
-> - [[Compresores]] (proceso inverso: consume trabajo)
-> - [[Ciclos de Potencia]] (Rankine, Brayton)
-> - [[Segunda Ley SC]] (para $S_{gen}$)
-> - [[Balance de Exergia VC]] (para $B_{dest}$)
+> [!warning]
+> La calidad de salida $x_2$ debe mantenerse por encima de $0.88$–$0.90$. Con $x_2=0.927$ este diseño es aceptable. Si $x_2 < 0.88$, las gotas de líquido erosionan los álabes de las últimas etapas.
 
+> [!referencia]
+> Borgnakke & Sonntag, §6.3; Çengel & Boles, §9-1; Moran & Shapiro, §6.6.

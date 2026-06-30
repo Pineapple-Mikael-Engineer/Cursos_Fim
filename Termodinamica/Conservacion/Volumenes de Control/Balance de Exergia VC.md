@@ -1,5 +1,6 @@
 ---
 title: "Balance de Exergía (Volumen de Control)"
+order: 4
 tags:
   - termodinamica
   - conservacion
@@ -13,189 +14,113 @@ aliases:
   - exergy balance VC
 ---
 
-# Balance de Exergía (Volumen de Control)
+# Balance de Exergía — Volumen de Control
 
 > [!definicion]
-> **Balance de exergía** para un [[Volumenes de Control]] fijo en el espacio, combinando primera y segunda ley:
-> $$
-> \frac{dB_{VC}}{dt} = \sum_k \left(1 - \frac{T_0}{T_k}\right) \dot{Q}_k - \left(\dot{W}_{VC} - P_0 \frac{dV_{VC}}{dt}\right) + \sum_{in} \dot{m}_i \psi_i - \sum_{out} \dot{m}_e \psi_e - \dot{B}_{dest}
-> $$
+> El **balance de exergía** para un [[Volumenes de Control/index | volumen de control]] en régimen estacionario con un fluido entrante (1) y uno saliente (2):
+> $$\boxed{\dot{B}_{\rm dest} = \dot{m}(\psi_1 - \psi_2) + \sum_k\!\left(1 - \frac{T_0}{T_k}\right)\dot{Q}_k - \dot{W}_{\rm útil},}$$
+> donde la **exergía de flujo** específica es:
+> $$\psi = (h - h_0) - T_0(s - s_0) + \frac{V^2}{2} + gz \quad [\text{kJ/kg}],$$
+> y $\dot{B}_{\rm dest} = T_0\,\dot{S}_{\rm gen} \ge 0$ es la tasa de destrucción de exergía (ecuación de Gouy-Stodola).
 >
-> - $B_{VC} = \int_{VC} \phi \, dm$: exergía total en el VC [kJ]
-> - $\phi = (u - u_0) - T_0(s - s_0) + P_0(v - v_0)$: exergía específica de no flujo [kJ/kg]
-> - $\psi = (h - h_0) - T_0(s - s_0) + \frac{C^2}{2} + gz$: exergía específica de flujo [kJ/kg]
-> - $T_0$, $P_0$: temperatura y presión del ambiente muerto
-> - $\dot{B}_{dest} = T_0 \dot{S}_{gen} \geq 0$: tasa de destrucción de exergía [kW]
+> **Lectura:** la exergía que "entra" con el fluido ($\dot{m}\psi_1$) menos la que "sale" ($\dot{m}\psi_2$) más la exergía de calor más/menos la que sale como trabajo útil equals la exergía destruida. Todo proceso real tiene $\dot{B}_{\rm dest} > 0$; el proceso ideal tiene $\dot{B}_{\rm dest} = 0$.
 
-## Formas particulares
+---
 
-> [!proposicion]
-> **Flujo estacionario** ($dB_{VC}/dt = 0$, $dV_{VC}/dt = 0$ para VC rígido):
-> $$
-> 0 = \sum_k \left(1 - \frac{T_0}{T_k}\right) \dot{Q}_k - \dot{W}_{VC} + \sum_{in} \dot{m}_i \psi_i - \sum_{out} \dot{m}_e \psi_e - \dot{B}_{dest}
-> $$
+## Qué es la exergía de flujo $\psi$
+
+> [!teoria]
+> La exergía de flujo $\psi = (h - h_0) - T_0(s - s_0)$ es el trabajo máximo útil que podría extraerse del kilogramo de fluido en estado $(h, s)$ si se llevara reversiblemente al estado muerto $(h_0, s_0)$, con el entorno a $T_0$.
 >
-> Reordenando:
-> $$
-> \dot{B}_{dest} = \sum_{in} \dot{m}_i \psi_i - \sum_{out} \dot{m}_e \psi_e + \sum_k \left(1 - \frac{T_0}{T_k}\right) \dot{Q}_k - \dot{W}_{VC} \geq 0
-> $$
-
-> [!proposicion]
-> **Flujo estacionario, una entrada, una salida** ($\dot{m}_1 = \dot{m}_2 = \dot{m}$):
-> $$
-> \dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) + \sum_k \left(1 - \frac{T_0}{T_k}\right) \dot{Q}_k - \dot{W}_{VC} \geq 0
-> $$
-
-> [!proposicion]
-> **Volumen de control adiabático** ($\dot{Q}_k = 0$):
-> $$
-> \dot{B}_{dest} = \sum_{in} \dot{m}_i \psi_i - \sum_{out} \dot{m}_e \psi_e - \dot{W}_{VC} \geq 0
-> $$
+> **¿Por qué $h$ y no $u$?** En un VC, el fluido que fluye ya "pagó" su trabajo de flujo $Pv$ al entrar. La energía que el kg de fluido puede convertir en trabajo cuando sale es la entalpía $h$ (no $u$), menos la parte que no puede convertirse porque la segunda ley lo impide: $T_0(s - s_0)$ (la "energía de baja calidad" atrapada en la entropía).
 >
-> Para una entrada, una salida: $\dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) - \dot{W}_{VC}$
+> **Estado muerto** $(h_0, s_0)$: las propiedades del fluido cuando está en equilibrio termodinámico con el entorno a $T_0$ y $P_0$. Para el agua líquida: $h_0 \approx 104.9\,\text{kJ/kg}$, $s_0 \approx 0.3674\,\text{kJ/(kg·K)}$ a $T_0 = 25\,°\text{C}$.
 
-> [!proposicion]
-> **Sistema cerrado** (caso particular: sin flujos másicos):
-> $$
-> \frac{d\Phi}{dt} = \sum_k \left(1 - \frac{T_0}{T_k}\right) \dot{Q}_k - \left(\dot{W} - P_0 \frac{dV}{dt}\right) - \dot{B}_{dest}
-> $$
-> Integrando: $\Delta \Phi = \int \left(1 - \frac{T_0}{T}\right) \delta Q - \underbrace{ \left[W - P_0(V_2 - V_1)\right] }_{ W_{util} } - B_{dest}$
+---
 
-> [!proposicion]
-> **Dispositivos comunes** (flujo estacionario, una entrada, una salida, $\dot{Q}=0$, despreciando $EC$ y $EP$):
-> - **Turbina**: $\dot{W} = \dot{m}(\psi_1 - \psi_2) - \dot{B}_{dest}$ (trabajo real menor que la disminución de exergía)
-> - **Compresor**: $\dot{W} = \dot{m}(\psi_2 - \psi_1) + \dot{B}_{dest}$ (trabajo real mayor que el aumento de exergía)
-> - **Tobera/Difusor** ($\dot{W}=0$, $\dot{Q}=0$): $\dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2)$
+## Derivación: combinar balance de energía y entropía en el VC
 
 > [!demostracion]
-> **De la combinación de primera y segunda ley**
+> **Meta:** deducir el balance de exergía del VC a partir del balance de energía y el de entropía.
 >
-> 1. **Balance de energía** para VC (flujo estacionario, una entrada, una salida):
->    $$
->    \dot{Q} - \dot{W} = \dot{m}(h_2 - h_1)
->    $$
->    (despreciando $EC$ y $EP$ por simplicidad; se añaden después)
+> **Hipótesis:** VC en régimen estacionario, una entrada (1), una salida (2), calor $\dot{Q}_k$ a través de fronteras a $T_k$, trabajo de eje $\dot{W}$. Entorno a $T_0$.
 >
-> 2. **Balance de entropía** para VC:
->    $$
->    0 = \frac{\dot{Q}}{T} + \dot{m}(s_1 - s_2) + \dot{S}_{gen}
->    $$
->    donde se usó $T$ constante para la transferencia de calor (caso simple)
+> **Paso 1 — Balance de energía (régimen estacionario, $V^2$ y $gz$ despreciables):**
+> $$\dot{Q} - \dot{W} = \dot{m}(h_2 - h_1).$$
 >
-> 3. **Despejar** $\dot{Q}$ del balance de entropía:
->    $$
->    \dot{Q} = T \dot{m}(s_2 - s_1) - T \dot{S}_{gen}
->    $$
+> **Paso 2 — Balance de entropía (régimen estacionario):**
+> $$\dot{S}_{\rm gen} = \dot{m}(s_2 - s_1) - \sum_k \frac{\dot{Q}_k}{T_k} \ge 0$$
+> $$\implies \sum_k \frac{\dot{Q}_k}{T_k} = \dot{m}(s_2 - s_1) - \dot{S}_{\rm gen}.$$
 >
-> 4. **Sustituir** en el balance de energía:
->    $$
->    T \dot{m}(s_2 - s_1) - T \dot{S}_{gen} - \dot{W} = \dot{m}(h_2 - h_1)
->    $$
+> **Paso 3 — Multiplicar la ecuación de entropía por $T_0$ y sumar a la de energía.**
+> El objetivo es eliminar $\dot{Q}$ y encontrar el balance en términos de exergía. Multiplico el balance de entropía por $(-T_0)$:
+> $$-T_0\sum_k\frac{\dot{Q}_k}{T_k} = -\dot{m}\,T_0(s_2 - s_1) + T_0\dot{S}_{\rm gen}.$$
+> Sumo al balance de energía:
+> $$\dot{Q} - T_0\sum_k\frac{\dot{Q}_k}{T_k} - \dot{W} = \dot{m}[(h_2 - h_1) - T_0(s_2 - s_1)] + T_0\dot{S}_{\rm gen}.$$
 >
-> 5. **Reordenar**:
->    $$
->    \dot{W} = \dot{m} \left[(h_1 - h_2) - T(s_1 - s_2)\right] - T \dot{S}_{gen}
->    $$
+> **Paso 4 — Identificar los factores de Carnot y la exergía de calor.**
+> El lado izquierdo: $\dot{Q} - T_0\sum_k \dot{Q}_k/T_k = \sum_k(1 - T_0/T_k)\dot{Q}_k$ (exergía del calor). El lado derecho contiene $\dot{m}[(h_1 - h_0) - T_0(s_1 - s_0)] - \dot{m}[(h_2 - h_0) - T_0(s_2 - s_0)] = \dot{m}(\psi_1 - \psi_2)$.
 >
-> 6. **Identificar exergía de flujo** (despreciando $EC$, $EP$ y con $h_0$, $s_0$ como referencia):
->    $$
->    \psi = (h - h_0) - T_0(s - s_0)
->    $$
->    Notar que $(h_1 - h_2) - T_0(s_1 - s_2) = \psi_1 - \psi_2$ (los términos $h_0$, $s_0$ se cancelan)
->
-> 7. **Sustituir**:
->    $$
->    \dot{W} = \dot{m}(\psi_1 - \psi_2) - T_0 \dot{S}_{gen}
->    $$
->
-> 8. **Identificar destrucción de exergía**: $\dot{B}_{dest} = T_0 \dot{S}_{gen} \geq 0$
->    $$
->    \dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) - \dot{W}
->    $$
->
-> 9. **Generalización**:
->    - Múltiples entradas/salidas
->    - Transferencia de calor a temperaturas variables: el término $(1 - T_0/T_k)\dot{Q}_k$ representa la exergía asociada al calor
->    - Términos de energía cinética y potencial se añaden dentro de $\psi$
->    - Para flujo no estacionario, se incluye $dB_{VC}/dt$
->    - Para VC con frontera móvil, se resta $P_0 dV_{VC}/dt$ del trabajo
->
-> **Forma general**:
-> $$
-> \frac{dB_{VC}}{dt} = \sum_k \left(1 - \frac{T_0}{T_k}\right) \dot{Q}_k - \left(\dot{W}_{VC} - P_0 \frac{dV_{VC}}{dt}\right) + \sum_{in} \dot{m}_i \psi_i - \sum_{out} \dot{m}_e \psi_e - \dot{B}_{dest}
-> $$
+> **Paso 5 — Reescribir como balance de exergía.**
+> Despejando $\dot{W}$:
+> $$\dot{W} = \dot{m}(\psi_1 - \psi_2) + \sum_k\!\left(1 - \frac{T_0}{T_k}\right)\dot{Q}_k - T_0\dot{S}_{\rm gen}.$$
+> Identificando $\dot{B}_{\rm dest} = T_0\dot{S}_{\rm gen} \ge 0$ (Gouy-Stodola):
+> $$\dot{W}_{\rm útil} = \dot{m}(\psi_1 - \psi_2) + \sum_k\!\left(1 - \frac{T_0}{T_k}\right)\dot{Q}_k - \dot{B}_{\rm dest}. \qquad \blacksquare$$
 
-## Relaciones con otras notas
+---
+
+## Eficiencia exergética de dispositivos de flujo
+
+> [!proposicion]
+> Para una **turbina adiabática** (produce trabajo):
+> $$\epsilon_T = \frac{\dot{W}}{\dot{m}(\psi_1 - \psi_2)} = 1 - \frac{\dot{B}_{\rm dest}}{\dot{m}(\psi_1 - \psi_2)}.$$
+>
+> Para un **compresor adiabático** (consume trabajo):
+> $$\epsilon_C = \frac{\dot{m}(\psi_2 - \psi_1)}{\dot{W}} = 1 - \frac{\dot{B}_{\rm dest}}{\dot{W}}.$$
+>
+> Para un **intercambiador de calor** (VC sin trabajo):
+> $$\epsilon_{HX} = \frac{\dot{m}_C(\psi_{C,2} - \psi_{C,1})}{\dot{m}_H(\psi_{H,1} - \psi_{H,2})}.$$
+
+---
+
+## Ejemplo: análisis exergético de compresor
+
+> [!ejemplo]
+> **Compresor adiabático** comprime aire de $T_1 = 300\,\text{K}$, $P_1 = 100\,\text{kPa}$ a $P_2 = 600\,\text{kPa}$. Eficiencia isentrópica $\eta_C = 0.82$. Flujo $\dot{m} = 1\,\text{kg/s}$. Entorno: $T_0 = 298\,\text{K}$.
+>
+> **Paso 1 — Estado isentrópico de salida:**
+> $$T_{2s} = 300 \times 6^{0.2857} = 300 \times 1.669 = 500.7\,\text{K}.$$
+>
+> **Paso 2 — Trabajo isentrópico y real ($c_p = 1.005\,\text{kJ/(kg·K)}$):**
+> $$w_s = c_p(T_{2s} - T_1) = 1.005 \times 200.7 = 201.7\,\text{kJ/kg}.$$
+> $$w_{\rm real} = w_s/\eta_C = 201.7/0.82 = 245.9\,\text{kJ/kg}.$$
+>
+> **Paso 3 — Temperatura de salida real:**
+> $$T_2 = T_1 + w_{\rm real}/c_p = 300 + 245.9/1.005 = 300 + 244.7 = 544.7\,\text{K}.$$
+>
+> **Paso 4 — Exergías de flujo** (despreciando cinética y potencial, $h_0$ y $s_0$ al estado muerto con $T_0$, $P_0$):
+> $$\psi = c_p(T - T_0) - T_0\!\left[c_p\ln\frac{T}{T_0} - R\ln\frac{P}{P_0}\right].$$
+> $$\psi_1 = 1.005(300 - 298) - 298[1.005\ln(300/298) - 0.287\ln(100/100)] = 2.01 - 298(0.00671) = 2.01 - 2.0 = 0.01\,\text{kJ/kg} \approx 0.$$
+> $$\psi_2 = 1.005(544.7 - 298) - 298[1.005\ln(544.7/298) - 0.287\ln(600/100)]$$
+> $$= 1.005 \times 246.7 - 298[1.005 \times 0.607 - 0.287 \times 1.792] = 247.9 - 298[0.610 - 0.514] = 247.9 - 28.6 = 219.3\,\text{kJ/kg}.$$
+>
+> **Paso 5 — Exergía destruida y eficiencia exergética:**
+> $$\dot{B}_{\rm dest} = \dot{m}(\psi_1 - \psi_2) + \dot{W}_{\rm útil}\text{ (entra)} = w_{\rm real} - (\psi_2 - \psi_1) = 245.9 - 219.3 = 26.6\,\text{kJ/kg}.$$
+> $$\epsilon_C = 1 - \frac{\dot{B}_{\rm dest}}{\dot{W}} = 1 - \frac{26.6}{245.9} = 89.2\%.$$
+> Comparar con $\eta_C = 82\%$ (energética) — la eficiencia exergética es mayor porque toma en cuenta que el fluido comprimido a alta presión todavía tiene mucha exergía disponible. $\blacksquare$
+
+---
+
+## Relación con otras notas
 
 > [!info]
-> - [[Balance de Masa VC]] (provee $\dot{m}$)
-> - [[Balance de Energia VC]] (determina estados)
-> - [[Balance de Entropia VC]] (provee $\dot{S}_{gen}$ para calcular $\dot{B}_{dest} = T_0 \dot{S}_{gen}$)
-> - [[Exergia]] (definiciones y propiedades de $\phi$ y $\psi$)
-> - [[Eficiencia Exergética]] ($\varepsilon$)
-
-> [!ejemplo]
-> **Turbina de vapor** (flujo estacionario, adiabática, una entrada, una salida)
->
-> Datos: $\dot{m} = 12 kg/s$, $h_1 = 3400 kJ/kg$, $s_1 = 6.5 kJ/kg·K$
-> $h_2 = 2500 kJ/kg$, $s_2 = 6.7 kJ/kg·K$, $T_0 = 298 K$, $h_0 \approx 104 kJ/kg$, $s_0 \approx 0.367 kJ/kg·K$
->
-> 1. Exergías de flujo:
->    $\psi_1 = (h_1 - h_0) - T_0(s_1 - s_0) = (3400 - 104) - 298(6.5 - 0.367) = 3296 - 1827.6 = 1468.4 kJ/kg$
->    $\psi_2 = (2500 - 104) - 298(6.7 - 0.367) = 2396 - 1887.2 = 508.8 kJ/kg$
->
-> 2. Trabajo real: $\dot{W} = \dot{m}(h_1 - h_2) = 12 \times 900 = 10800 kW$
->
-> 3. Destrucción: $\dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) - \dot{W} = 12 \times (1468.4 - 508.8) - 10800 = 12 \times 959.6 - 10800 = 11515.2 - 10800 = 715.2 kW$
->
-> 4. Eficiencia exergética: $\varepsilon = \dot{W} / [\dot{m}(\psi_1 - \psi_2)] = 10800 / 11515.2 = 0.938$ (93.8%)
-
-> [!ejemplo]
-> **Válvula de estrangulamiento** (flujo estacionario, adiabática, sin trabajo)
->
-> Datos: $\dot{m} = 0.5 kg/s$, R-134a, $h_1 = h_2$, $P_1 = 1.0 MPa$, $P_2 = 0.2 MPa$, $T_0 = 298 K$
->
-> De tablas: $s_1 = 0.95 kJ/kg·K$, $s_2 = 1.01 kJ/kg·K$ (aprox., depende de $T$)
->
-> $\psi_1 - \psi_2 = (h_1 - h_2) - T_0(s_1 - s_2) = 0 - 298 \times (0.95 - 1.01) = -298 \times (-0.06) = 17.88 kJ/kg$
->
-> $\dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) - \dot{W} = 0.5 \times 17.88 - 0 = 8.94 kW$
->
-> Interpretación: La caída de presión irreversible destruye exergía, aunque la energía se conserva ($h$ constante).
-
-> [!ejemplo]
-> **Intercambiador de calor** (flujo estacionario, dos corrientes, $\dot{W}=0$)
->
-> Datos: Fluido caliente: $\dot{m}_h = 2 kg/s$, $\psi_{h,ent} = 500 kJ/kg$, $\psi_{h,sal} = 300 kJ/kg$
-> Fluido frío: $\dot{m}_c = 5 kg/s$, $\psi_{c,ent} = 50 kJ/kg$, $\psi_{c,sal} = 120 kJ/kg$
-> Transferencia de calor desde el fluido caliente al frío a través de una pared.
->
-> Balance (VC que incluye ambas corrientes, adiabático externamente):
-> $\dot{B}_{dest} = \sum_{in} \dot{m}\psi - \sum_{out} \dot{m}\psi - \dot{W}$
->
-> $\dot{B}_{dest} = [\dot{m}_h \psi_{h,ent} + \dot{m}_c \psi_{c,ent}] - [\dot{m}_h \psi_{h,sal} + \dot{m}_c \psi_{c,sal}]$
-> $= [2 \times 500 + 5 \times 50] - [2 \times 300 + 5 \times 120]$
-> $= [1000 + 250] - [600 + 600] = 1250 - 1200 = 50 kW$
->
-> Interpretación: La diferencia finita de temperatura en la transferencia de calor destruye exergía.
-
-> [!warning]
-> - $\dot{B}_{dest} = T_0 \dot{S}_{gen}$ **solo** si $T_0$ es constante y corresponde al ambiente muerto
-> - La exergía **no se conserva**: $\dot{B}_{dest} \geq 0$ para procesos irreversibles
-> - El término $(1 - T_0/T_k)\dot{Q}_k$ puede ser positivo (calor a $T_k > T_0$) o negativo (calor a $T_k < T_0$)
-> - En flujo no estacionario, $dB_{VC}/dt$ puede ser positivo o negativo
-> - Un balance de exergía por sí solo **no reemplaza** la primera y segunda ley; requiere estados termodinámicos ya determinados
-> - La exergía de flujo $\psi$ incluye $h$, no $u$; no confundir con $\phi$ (sistema cerrado)
+> - [[Balance de Energia VC]] — proporciona el trabajo y los estados que aparecen en $\psi_1 - \psi_2$.
+> - [[Balance de Entropia VC]] — proporciona $\dot{S}_{\rm gen}$ para calcular $\dot{B}_{\rm dest} = T_0\dot{S}_{\rm gen}$.
+> - [[Exergia]] — definición general de $\psi$, teorema de Gouy-Stodola, eficiencias.
+> - [[Balance de Exergia SC]] — la versión para sistemas cerrados.
 
 > [!info]
-> **Interpretación de términos**:
-> - $\sum (1 - T_0/T_k)\dot{Q}_k$: exergía asociada a la transferencia de calor (trabajo máximo obtenible de ese calor)
-> - $\dot{W}_{VC} - P_0 dV_{VC}/dt$: trabajo útil (descontando el trabajo contra la atmósfera)
-> - $\sum \dot{m}\psi$: exergía que entra/sale con el flujo de masa
-> - $\dot{B}_{dest}$: exergía destruida por irreversibilidades (pérdida de potencial de trabajo)
->
-> **Convención de signos**:
-> - $\dot{Q}_k$ positivo hacia el VC
-> - $\dot{W}_{VC}$ positivo realizado por el VC
-> - $\dot{B}_{dest}$ siempre $\geq 0$
-> - $\psi$ puede ser negativo si el estado está por debajo del ambiente muerto (ej. fluido muy frío)
+> **Notación:** $\psi$ [kJ/kg]: exergía específica de flujo; $\dot{B}_{\rm dest}$ [kW]: tasa de destrucción de exergía; $T_0$ [K]: temperatura del entorno (estado muerto).
+
+> [!referencia]
+> Borgnakke & Sonntag, *Fundamentals of Thermodynamics*, cap. 10; Çengel & Boles, *Termodinámica*, cap. 8; Moran & Shapiro, caps. 7–8; Bejan, *Advanced Engineering Thermodynamics*, §3.4.

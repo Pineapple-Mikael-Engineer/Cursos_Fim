@@ -117,9 +117,12 @@ Solo usar:
 [!corolario]
 [!axioma]
 [!ejemplo]
+[!solucion]      (resolución de un ejemplo; suele seguir a [!ejemplo])
 [!teoria]
 [!info]
 [!warning]
+[!regla]
+[!referencia]    (fuentes/bibliografía al final de la nota)
 
 No inventar otros.
 

@@ -1,5 +1,6 @@
 ---
 title: "Balance de Entropía (Volumen de Control)"
+order: 3
 tags:
   - termodinamica
   - conservacion
@@ -13,155 +14,102 @@ aliases:
   - entropy balance VC
 ---
 
-# Balance de Entropía (Volumen de Control)
+# Balance de Entropía — Volumen de Control
 
 > [!definicion]
-> **Segunda ley de la termodinámica** para un [[Volumenes de Control]] fijo en el espacio:
-> $$
-> \frac{dS_{VC}}{dt} = \sum_k \frac{\dot{Q}_k}{T_k} + \sum_{in} \dot{m}_i s_i - \sum_{out} \dot{m}_e s_e + \dot{S}_{gen}
-> $$
+> La **segunda ley de la termodinámica** para un [[Volumenes de Control/index | volumen de control]] fijo en el espacio:
+> $$\boxed{\frac{dS_{VC}}{dt} = \sum_k \frac{\dot{Q}_k}{T_k} + \sum_i \dot{m}_i\,s_i - \sum_e \dot{m}_e\,s_e + \dot{S}_{\rm gen},}$$
+> con $\dot{S}_{\rm gen} \ge 0$ siempre. El balance de entropía describe **cómo evoluciona la entropía del VC**: aumenta cuando entra calor ($\dot{Q}_k/T_k$), cuando entra flujo de entropía con el fluido ($\dot{m}_i s_i$), y cuando se generan irreversibilidades internas ($\dot{S}_{\rm gen}$); disminuye cuando sale calor o flujo de entropía.
 >
-> - $S_{VC} = \int_{VC} s \, dm$: entropía total en el VC [kJ/K]
-> - $\dot{Q}_k$: tasa de transferencia de calor a través de la frontera a temperatura $T_k$ [kW]
-> - $T_k$: temperatura en la frontera donde ocurre $\dot{Q}_k$ [K]
-> - $s$: [[Entropia]] específica [kJ/kg·K]
-> - $\dot{S}_{gen} \geq 0$: tasa de generación de entropía por irreversibilidades [kW/K]
+> La diferencia fundamental con el balance de energía: la energía **se conserva** ($\dot{E}_{\rm gen} = 0$ siempre), pero la entropía **se genera** ($\dot{S}_{\rm gen} \ge 0$ — nunca negativa). Medir $\dot{S}_{\rm gen}$ en un dispositivo real dice cuán lejos está de la operación ideal reversible.
 
-## Formas particulares
+---
 
-> [!proposicion]
-> **Flujo estacionario** ($dS_{VC}/dt = 0$):
-> $$
-> 0 = \sum_k \frac{\dot{Q}_k}{T_k} + \sum_{in} \dot{m}_i s_i - \sum_{out} \dot{m}_e s_e + \dot{S}_{gen}
-> $$
-> o equivalentemente:
-> $$
-> \dot{S}_{gen} = \sum_{out} \dot{m}_e s_e - \sum_{in} \dot{m}_i s_i - \sum_k \frac{\dot{Q}_k}{T_k} \geq 0
-> $$
+## Por qué la entropía se genera pero no se destruye
+
+> [!teoria]
+> Las irreversibilidades internas al VC (fricción, mezcla, transferencia de calor con gradiente de temperatura dentro del VC, reacciones espontáneas) crean entropía que no puede "deshacerse". A diferencia del calor ($\dot{Q}$ puede ser positivo o negativo) o del trabajo ($\dot{W}$ puede cambiar de signo), $\dot{S}_{\rm gen}$ **solo puede ser $\ge 0$**.
+>
+> Esto impone una asimetría temporal: el estado con más entropía es estadísticamente abrumadoramente más probable, y los procesos espontáneos van de estados menos probables (menos entropía) a estados más probables (más entropía). Aplicado al VC: si calculamos $\dot{S}_{\rm gen} < 0$ para un proceso propuesto, ese proceso viola la segunda ley y es físicamente imposible.
+
+---
+
+## Régimen estacionario: generación de entropía directamente observable
 
 > [!proposicion]
-> **Flujo estacionario, una entrada, una salida** ($\dot{m}_1 = \dot{m}_2 = \dot{m}$):
-> $$
-> \dot{S}_{gen} = \dot{m}(s_2 - s_1) - \sum_k \frac{\dot{Q}_k}{T_k} \geq 0
-> $$
+> En régimen estacionario ($dS_{VC}/dt = 0$), con una entrada y una salida, $\dot{m}_1 = \dot{m}_2 = \dot{m}$:
+> $$\dot{S}_{\rm gen} = \dot{m}(s_e - s_i) - \sum_k \frac{\dot{Q}_k}{T_k} \ge 0.$$
+> En forma específica ($s_{\rm gen} = \dot{S}_{\rm gen}/\dot{m}$):
+> $$s_{\rm gen} = (s_e - s_i) - \sum_k \frac{q_k}{T_k} \ge 0.$$
+>
+> **Caso adiabático** ($\dot{Q}_k = 0$):
+> $$\dot{S}_{\rm gen} = \dot{m}(s_e - s_i) \ge 0 \implies s_e \ge s_i.$$
+> En un dispositivo adiabático, la entropía específica del fluido **nunca puede decrecer**. Si un ingeniero presenta un diseño donde $s_2 < s_1$ en una turbina adiabática, el diseño es termodinámicamente imposible.
+
+---
+
+## Cómo usar el balance de entropía en la práctica
+
+> [!teoria]
+> El balance de entropía tiene dos aplicaciones principales:
+>
+> 1. **Verificar la viabilidad de un proceso:** dado un proceso propuesto con estados 1, 2 y calor $\dot{Q}$, calcular $\dot{S}_{\rm gen}$. Si $\dot{S}_{\rm gen} < 0$: el proceso viola la segunda ley, es imposible.
+>
+> 2. **Cuantificar las pérdidas por irreversibilidad:** $\dot{S}_{\rm gen}$ mide la "calidad de energía" disipada. Junto con el balance de exergía: $\dot{B}_{\rm dest} = T_0\,\dot{S}_{\rm gen}$. Minimizar $\dot{S}_{\rm gen}$ equivale a maximizar el trabajo útil del dispositivo.
+>
+> 3. **Encontrar el estado de salida de un proceso ideal vs. real:** para turbina adiabática ideal ($\dot{S}_{\rm gen} = 0$): $s_2 = s_1$ → proceso isentrópico. Para turbina real: $s_2 > s_1$ → estado de salida real.
+
+---
+
+## Proceso isentrópico como límite ideal
 
 > [!proposicion]
-> **Volumen de control adiabático** ($\dot{Q}_k = 0$):
-> $$
-> \dot{S}_{gen} = \sum_{out} \dot{m}_e s_e - \sum_{in} \dot{m}_i s_i \geq 0
-> $$
-> Para una entrada, una salida: $s_2 \geq s_1$
+> En un dispositivo adiabático ($\dot{Q} = 0$) y en régimen estacionario, la segunda ley impone:
+> $$s_e \ge s_i.$$
+> El caso $s_e = s_i$ ($s_{\rm gen} = 0$) corresponde al **proceso isentrópico ideal** — el límite reversible para ese dispositivo. Este límite es la referencia contra la que se define la **eficiencia isentrópica**:
+>
+> | Dispositivo | Eficiencia isentrópica | Definición |
+> |:---|:---:|:---|
+> | Turbina | $\eta_T$ | $w_{\rm real}/w_s = (h_1 - h_2)/(h_1 - h_{2s})$ |
+> | Compresor | $\eta_C$ | $w_s/w_{\rm real} = (h_{2s} - h_1)/(h_2 - h_1)$ |
+> | Tobera | $\eta_N$ | $V_e^2/V_{es}^2 = (h_1 - h_e)/(h_1 - h_{es})$ |
 
-> [!proposicion]
-> **Sistema cerrado** (caso particular: sin flujos másicos):
-> $$
-> \frac{dS}{dt} = \frac{\dot{Q}}{T} + \dot{S}_{gen}, \quad \dot{S}_{gen} \geq 0
-> $$
-> Integrando: $\Delta S = \int \frac{\delta Q}{T} + S_{gen}$
+---
 
-> [!demostracion]
-> **De la desigualdad de Clausius a la forma de VC**
->
-> 1. **Desigualdad de Clausius** para un sistema cerrado que experimenta un ciclo:
->    $$
->    \oint \frac{\delta Q}{T} \leq 0
->    $$
->    Para un proceso entre dos estados: $S_2 - S_1 \geq \int_1^2 \frac{\delta Q}{T}$
->
-> 2. **Forma de tasa** para sistema cerrado:
->    $$
->    \frac{dS_{sis}}{dt} \geq \frac{\dot{Q}_{sis}}{T}
->    $$
->    Definiendo $\dot{S}_{gen} \geq 0$: $\frac{dS_{sis}}{dt} = \frac{\dot{Q}_{sis}}{T} + \dot{S}_{gen}$
->
-> 3. **Sistema cerrado = VC + masa que entra/sale** (mismo procedimiento que en energía):
->    - $S_{sis}(t) = S_{VC}(t) + \delta m_i s_i$
->    - $S_{sis}(t+dt) = S_{VC}(t+dt) + \delta m_e s_e$
->
-> 4. **Resta y divide por $dt$**:
->    $$
->    \frac{dS_{sis}}{dt} = \frac{dS_{VC}}{dt} + \dot{m}_e s_e - \dot{m}_i s_i
->    $$
->
-> 5. **Transferencia de calor** en el VC puede ocurrir a múltiples temperaturas:
->    $$
->    \frac{\dot{Q}_{sis}}{T} = \sum_k \frac{\dot{Q}_k}{T_k}
->    $$
->    (se suma sobre cada frontera donde hay flujo de calor)
->
-> 6. **Sustituir** en $\frac{dS_{sis}}{dt} = \frac{\dot{Q}_{sis}}{T} + \dot{S}_{gen}$:
->    $$
->    \frac{dS_{VC}}{dt} + \dot{m}_e s_e - \dot{m}_i s_i = \sum_k \frac{\dot{Q}_k}{T_k} + \dot{S}_{gen}
->    $$
->
-> 7. **Forma final**:
->    $$
->    \frac{dS_{VC}}{dt} = \sum_k \frac{\dot{Q}_k}{T_k} + \sum_{in} \dot{m}_i s_i - \sum_{out} \dot{m}_e s_e + \dot{S}_{gen}, \quad \dot{S}_{gen} \geq 0
->    $$
->
-> **Significado físico**:
-> - $\sum \dot{Q}_k/T_k$: transferencia de entropía asociada al calor
-> - $\sum \dot{m} s$: transferencia de entropía asociada al flujo de masa
-> - $\dot{S}_{gen}$: entropía **generada** dentro del VC por irreversibilidades (fricción, transferencia de calor con diferencia finita, mezclado, reacciones, etc.)
+## Ejemplo: generación de entropía en un intercambiador de calor
 
-## Relaciones con otras notas
+> [!ejemplo]
+> **Intercambiador de calor adiabático** (sin pérdidas al exterior). Corriente de aire caliente ($\dot{m}_H = 2\,\text{kg/s}$, $T_{H,1} = 500\,\text{K}$) cede calor a corriente de agua ($\dot{m}_C = 1\,\text{kg/s}$, $T_{C,1} = 300\,\text{K}$). Salidas: aire a $T_{H,2} = 350\,\text{K}$, agua a $T_{C,2} = ?$. Datos: $c_{p,\rm aire} = 1.005\,\text{kJ/(kg·K)}$, $c_{p,\rm agua} = 4.18\,\text{kJ/(kg·K)}$.
+>
+> **Paso 1 — Balance de masa:** dos fluidos separados, cada uno conserva su masa en régimen estacionario.
+>
+> **Paso 2 — Balance de energía del intercambiador completo** (VC que incluye ambas corrientes, adiabático con el exterior):
+> $$\dot{m}_H c_{p,H}(T_{H,1} - T_{H,2}) = \dot{m}_C c_{p,C}(T_{C,2} - T_{C,1}).$$
+> $$2 \times 1.005 \times (500 - 350) = 1 \times 4.18 \times (T_{C,2} - 300).$$
+> $$301.5 = 4.18(T_{C,2} - 300) \implies T_{C,2} = 300 + 72.1 = 372.1\,\text{K}.$$
+>
+> **Paso 3 — Balance de entropía del intercambiador.** VC adiabático con dos entradas y dos salidas:
+> $$\dot{S}_{\rm gen} = \dot{m}_H(s_{H,2} - s_{H,1}) + \dot{m}_C(s_{C,2} - s_{C,1}).$$
+> Para gases ideales y líquidos incompresibles (variación isobárica): $\Delta s = c_p\ln(T_2/T_1)$.
+> $$\dot{S}_{\rm gen} = 2 \times 1.005\ln\frac{350}{500} + 1 \times 4.18\ln\frac{372.1}{300}$$
+> $$= 2.010 \times (-0.357) + 4.18 \times 0.2155 = -0.718 + 0.901 = +0.183\,\text{kW/K}.$$
+>
+> **Paso 4 — Verificar e interpretar.** $\dot{S}_{\rm gen} = 0.183\,\text{kW/K} > 0$ ✓. El proceso es irreversible (siempre lo es con diferencia finita de temperatura). La exergía destruida es $\dot{B}_{\rm dest} = T_0\dot{S}_{\rm gen} = 298 \times 0.183 = 54.5\,\text{kW}$ — esa potencia podría haberse convertido en trabajo útil en una instalación reversible (e.g., máquina de Carnot entre 500 K y 300 K). $\blacksquare$
+
+---
+
+## Relación con otras notas
 
 > [!info]
-> - [[Balance de Masa VC]] (provee $\dot{m}$)
-> - [[Balance de Energia VC]] (determina estados, necesario para calcular $s$)
-> - [[Exergia]] ($B_{destruida} = T_0 \dot{S}_{gen}$)
-> - [[Irreversibilidad]] (relacionada con $\dot{S}_{gen}$)
-
-> [!ejemplo]
-> **Turbina adiabática** (flujo estacionario, una entrada, una salida, $\dot{Q}=0$)
->
-> Datos: $\dot{m} = 10 kg/s$, $s_1 = 6.5 kJ/kg·K$, $s_2 = 6.7 kJ/kg·K$
->
-> Balance: $\dot{S}_{gen} = \dot{m}(s_2 - s_1) = 10 \times (6.7 - 6.5) = 2 kW/K$
->
-> Interpretación: Se generan $2 kW/K$ de entropía por irreversibilidades internas (fricción del fluido, turbulencia, etc.)
-
-> [!ejemplo]
-> **Compresor adiabático** (flujo estacionario, una entrada, una salida, $\dot{Q}=0$)
->
-> Datos: $\dot{m} = 2 kg/s$, aire como gas ideal, $T_1 = 300K$, $P_1 = 100kPa$, $P_2 = 800kPa$, $\eta_{iso} = 0.85$
->
-> 1. Proceso isentrópico: $T_{2s} = T_1 (P_2/P_1)^{(\gamma-1)/\gamma} = 300 \times 8^{0.2857} = 543.3K$
-> 2. Eficiencia: $\eta = (h_{2s} - h_1)/(h_2 - h_1) \approx (T_{2s} - T_1)/(T_2 - T_1)$
-> 3. $T_2 = T_1 + (T_{2s} - T_1)/\eta = 300 + 243.3/0.85 = 586.2K$
-> 4. Para gas ideal con $c_p$ constante: $\Delta s = c_p \ln(T_2/T_1) - R \ln(P_2/P_1)$
->    $c_p = 1.005 kJ/kg·K$, $R = 0.287 kJ/kg·K$
->    $\Delta s = 1.005 \ln(586.2/300) - 0.287 \ln 8 = 0.678 - 0.597 = 0.081 kJ/kg·K$
-> 5. $\dot{S}_{gen} = \dot{m} \Delta s = 2 \times 0.081 = 0.162 kW/K$
-
-> [!ejemplo]
-> **Intercambiador de calor** (flujo estacionario, dos corrientes)
->
-> Datos: Fluido caliente: $\dot{m}_h = 2 kg/s$, $s_{h,ent} = 2.5 kJ/kg·K$, $s_{h,sal} = 2.3 kJ/kg·K$
-> Fluido frío: $\dot{m}_c = 5 kg/s$, $s_{c,ent} = 0.8 kJ/kg·K$, $s_{c,sal} = 1.0 kJ/kg·K$
-> Superficie de intercambio a $T_{sup} = 400K$, calor transferido $\dot{Q} = 500 kW$ desde el fluido caliente a la superficie
->
-> Balance: $\dot{S}_{gen} = \sum \dot{m}_e s_e - \sum \dot{m}_i s_i - \sum \dot{Q}_k/T_k$
->
-> $\Delta \dot{S}_{masa} = \dot{m}_h(s_{h,sal} - s_{h,ent}) + \dot{m}_c(s_{c,sal} - s_{c,ent})$
-> $= 2 \times (2.3 - 2.5) + 5 \times (1.0 - 0.8) = -0.4 + 1.0 = 0.6 kW/K$
->
-> Entropía cedida por calor: el calor sale del fluido caliente hacia la superficie a 400K. El VC incluye ambos fluidos y la pared. El calor cruza la frontera del VC desde la superficie hacia el ambiente exterior? Depende de la definición del VC. Para un VC adiabático externamente: $\dot{S}_{gen} = 0.6 kW/K$
+> - [[Balance de Energia VC]] — da los estados de entrada/salida que aparecen en $\dot{m}(s_e - s_i)$.
+> - [[Entropia]] — definición de $s$, su cálculo para gas ideal e incompresible.
+> - [[Balance de Exergia VC]] — usa $\dot{S}_{\rm gen}$ de este balance: $\dot{B}_{\rm dest} = T_0\dot{S}_{\rm gen}$.
+> - [[Sistemas/Dispositivos Flujo/index | Dispositivos de Flujo]] — eficiencia isentrópica de turbinas, compresores y toberas.
 
 > [!warning]
-> - La entropía **no se conserva**: $\dot{S}_{gen} \geq 0$ estrictamente para procesos irreversibles, igual a cero solo para procesos reversibles
-> - **No existe** "balance de entropía" sin el término $\dot{S}_{gen}$ — eso violaría la segunda ley
-> - El término $\sum \dot{Q}_k/T_k$ **no es** $\dot{Q}/T$ global a menos que toda la frontera esté a temperatura uniforme
-> - En flujo no estacionario, $dS_{VC}/dt$ puede ser positivo, negativo o cero; lo que nunca es negativo es $\dot{S}_{gen}$
-> - Para procesos adiabáticos, $s_2 \geq s_1$ en flujo estacionario (la entropía específica nunca disminuye)
+> - $\dot{S}_{\rm gen}$ calculado $< 0$ significa que el proceso propuesto viola la segunda ley — revisar los datos o el modelo.
+> - La temperatura $T_k$ en $\dot{Q}_k/T_k$ es la temperatura **en la frontera** del VC donde entra o sale el calor, no la temperatura interior del VC.
+> - En el intercambiador de calor del ejemplo, los dos fluidos tienen fronteras separadas dentro del intercambiador; el VC único que los envuelve tiene una sola frontera exterior (adiabática).
 
-> [!info]
-> **Casos con $\dot{S}_{gen} = 0$** (procesos internamente reversibles):
-> - Flujo isentrópico en tobera o difusor
-> - Compresión o expansión adiabática reversible en turbina/compresor
-> - Transferencia de calor **reversible** (requiere $T_{fluido} = T_{fuente}$ → prácticamente irrealizable)
->
-> **Convención de signos**:
-> - $\dot{Q}_k$ positivo **hacia** el VC
-> - El signo de $\sum \dot{Q}_k/T_k$ sigue el signo de $\dot{Q}_k$
-> - $\dot{S}_{gen}$ siempre $\geq 0$ por definición
+> [!referencia]
+> Borgnakke & Sonntag, *Fundamentals of Thermodynamics*, §9.1–9.2; Çengel & Boles, *Termodinámica*, §7-1 a 7-4; Moran & Shapiro, §6.4.

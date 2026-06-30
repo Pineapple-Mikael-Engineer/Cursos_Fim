@@ -1,5 +1,6 @@
 ---
 title: "Ecuaciones $TdS$"
+order: 2
 tags:
   - termodinamica
   - relaciones_termodinamicas
@@ -16,80 +17,151 @@ aliases:
 # Ecuaciones $TdS$
 
 > [!definicion]
-> Expresan el calor reversible $T\,ds$ —y por tanto el cambio de [[Entropia]]— en función de variables medibles ($T$, $P$, $v$) y los calores específicos. Permiten integrar $\Delta s$ entre dos estados a partir de la [[Ecuaciones de Estado/index | ecuación de estado]], sin medir la entropía directamente.
+> Las **ecuaciones $T\,ds$** expresan el diferencial de entropía específica en términos de cantidades medibles ($T$, $P$, $v$, $c_p$, $c_v$), eliminando las derivadas de $s$ mediante las [[Maxwell | relaciones de Maxwell]]. Son la herramienta operativa central para calcular $\Delta s$ entre dos estados cualesquiera de una sustancia real, sin medir entropía de forma directa.
+
+---
 
 ## Las dos ecuaciones
 
 > [!teorema]
-> Para una sustancia simple compresible (forma específica):
-> $$
-> T\,ds = c_v\,dT + T\left(\frac{\partial P}{\partial T}\right)_v dv \qquad \text{(primera ecuación } TdS\text{)}
-> $$
-> $$
-> T\,ds = c_p\,dT - T\left(\frac{\partial v}{\partial T}\right)_P dP \qquad \text{(segunda ecuación } TdS\text{)}
-> $$
->
-> Equivalen a las formas compactas $T\,ds = du + P\,dv$ y $T\,ds = dh - v\,dP$, obtenidas de los diferenciales de la [[Energia Interna]] y la [[Entalpia]].
+> Para una sustancia simple compresible (propiedades específicas):
+> $$T\,ds = c_v\,dT + T\!\left(\frac{\partial P}{\partial T}\right)_v\!dv \qquad \textbf{(1.ª ecuación }T\!ds\textbf{)}$$
+> $$T\,ds = c_p\,dT - T\!\left(\frac{\partial v}{\partial T}\right)_P\!dP \qquad \textbf{(2.ª ecuación }T\!ds\textbf{)}$$
+> La 1.ª conviene cuando el proceso se describe en variables $(T,v)$; la 2.ª cuando se describe en $(T,P)$.
 
-## Derivación
+---
+
+## Derivación completa de ambas ecuaciones
+
+### 1.ª ecuación $T\,ds$ — desde $s(T,v)$
 
 > [!demostracion]
-> **Primera ecuación.** Tomando $s = s(T,v)$:
-> $$
-> ds = \left(\frac{\partial s}{\partial T}\right)_v dT + \left(\frac{\partial s}{\partial v}\right)_T dv
-> $$
-> El primer coeficiente se identifica con el calor específico a volumen constante, $\left(\partial s/\partial T\right)_v = c_v/T$; el segundo se sustituye por la relación de [[Maxwell]] desde $f$, $\left(\partial s/\partial v\right)_T = \left(\partial P/\partial T\right)_v$. Multiplicando por $T$ se obtiene la primera ecuación.
+> **Paso 1 — Diferencial total de $s = s(T,v)$:**
+> $$ds = \left(\frac{\partial s}{\partial T}\right)_v\!dT + \left(\frac{\partial s}{\partial v}\right)_T\!dv.$$
 >
-> **Segunda ecuación.** Tomando $s = s(T,P)$, con $\left(\partial s/\partial T\right)_P = c_p/T$ y la relación de [[Maxwell]] desde $g$, $\left(\partial s/\partial P\right)_T = -\left(\partial v/\partial T\right)_P$, se llega de forma análoga a la segunda.
+> **Paso 2 — Identificar $(\partial s/\partial T)_v$.** A volumen constante, $\delta q_{\rm rev} = T\,ds = du$, por lo que:
+> $$c_v \equiv \left(\frac{\partial u}{\partial T}\right)_v = T\left(\frac{\partial s}{\partial T}\right)_v \;\Longrightarrow\; \left(\frac{\partial s}{\partial T}\right)_v = \frac{c_v}{T}.$$
+>
+> **Paso 3 — Sustituir $(\partial s/\partial v)_T$ con la 3.ª relación de [[Maxwell]]** (desde $f$, exactitud de $df = -s\,dT - P\,dv$):
+> $$\left(\frac{\partial s}{\partial v}\right)_T = \left(\frac{\partial P}{\partial T}\right)_v.$$
+>
+> **Paso 4 — Combinar y multiplicar por $T$:**
+> $$T\,ds = c_v\,dT + T\!\left(\frac{\partial P}{\partial T}\right)_v\!dv. \qquad \blacksquare$$
 
-## Aplicación: cambio de entropía
+### 2.ª ecuación $T\,ds$ — desde $s(T,P)$
+
+> [!demostracion]
+> **Paso 1 — Diferencial total de $s = s(T,P)$:**
+> $$ds = \left(\frac{\partial s}{\partial T}\right)_P\!dT + \left(\frac{\partial s}{\partial P}\right)_T\!dP.$$
+>
+> **Paso 2 — Identificar $(\partial s/\partial T)_P$.** A presión constante, $\delta q_{\rm rev} = T\,ds = dh$, por lo que:
+> $$c_p \equiv \left(\frac{\partial h}{\partial T}\right)_P = T\left(\frac{\partial s}{\partial T}\right)_P \;\Longrightarrow\; \left(\frac{\partial s}{\partial T}\right)_P = \frac{c_p}{T}.$$
+>
+> **Paso 3 — Sustituir $(\partial s/\partial P)_T$ con la 4.ª relación de [[Maxwell]]** (desde $g$, exactitud de $dg = -s\,dT + v\,dP$):
+> $$\left(\frac{\partial s}{\partial P}\right)_T = -\left(\frac{\partial v}{\partial T}\right)_P.$$
+>
+> **Paso 4 — Combinar y multiplicar por $T$:**
+> $$T\,ds = c_p\,dT - T\!\left(\frac{\partial v}{\partial T}\right)_P\!dP. \qquad \blacksquare$$
+
+> [!info]
+> La 2.ª ecuación no es "análoga" a la 1.ª de forma superficial: parte de una expansión diferente ($s(T,P)$ frente a $s(T,v)$) y usa una relación de Maxwell de un potencial distinto ($g$ frente a $f$). La estructura es paralela pero las variables naturales y los potenciales de origen son distintos.
+
+---
+
+## Integración: cambio de entropía entre dos estados
 
 > [!proposicion]
-> Integrando entre dos estados, el cambio de entropía específica es
-> $$
-> \Delta s = \int_1^2 \frac{c_v}{T}\,dT + \int_1^2 \left(\frac{\partial P}{\partial T}\right)_v dv
-> = \int_1^2 \frac{c_p}{T}\,dT - \int_1^2 \left(\frac{\partial v}{\partial T}\right)_P dP
-> $$
-> Se elige la forma cuyo segundo término sea más simple según los datos: la primera para procesos descritos en $(T,v)$, la segunda en $(T,P)$.
+> Para cualquier proceso entre estados $1$ y $2$ (la ruta de integración es libre; $s$ es función de estado):
+> $$\Delta s = \int_1^2 \frac{c_v}{T}\,dT + \int_1^2 \left(\frac{\partial P}{\partial T}\right)_v\!dv = \int_1^2 \frac{c_p}{T}\,dT - \int_1^2 \left(\frac{\partial v}{\partial T}\right)_P\!dP.$$
+> Estrategia conveniente: integrar por la ruta $1\to A$ (isoterma, $dT=0$) seguida de $A\to 2$ (a $v$ ó $P$ constante). Las dos formas dan el mismo resultado.
+>
+> ![[tds_rutas_integracion.svg|440]]
+> *Dos rutas equivalentes de integración: isoterma seguida de isocora (izquierda) o isobara (derecha). La entropía es función de estado.*
+
+---
+
+## Gas ideal
 
 > [!ejemplo]
-> **Gas ideal.** Con $Pv = RT$: $\left(\partial P/\partial T\right)_v = R/v$ y $\left(\partial v/\partial T\right)_P = R/P$. Las ecuaciones $TdS$ se reducen a
-> $$
-> ds = c_v\frac{dT}{T} + R\frac{dv}{v}, \qquad ds = c_p\frac{dT}{T} - R\frac{dP}{P}
-> $$
-> que para $c_p$, $c_v$ constantes integran a las expresiones conocidas de $\Delta s$ del [[Gas Ideal]] (ver [[Entropia]]).
+> Con $Pv = RT$: $(\partial P/\partial T)_v = R/v$ y $(\partial v/\partial T)_P = R/P$.
+>
+> **1.ª ecuación $T\,ds$:**
+> $$T\,ds = c_v\,dT + \frac{RT}{v}\,dv \;\Rightarrow\; ds = c_v\frac{dT}{T} + R\frac{dv}{v}.$$
+> Integrando con $c_v$ constante:
+> $$\Delta s = c_v\ln\frac{T_2}{T_1} + R\ln\frac{v_2}{v_1}.$$
+>
+> **2.ª ecuación $T\,ds$:**
+> $$T\,ds = c_p\,dT - \frac{RT}{P}\,dP \;\Rightarrow\; ds = c_p\frac{dT}{T} - R\frac{dP}{P}.$$
+> Integrando:
+> $$\Delta s = c_p\ln\frac{T_2}{T_1} - R\ln\frac{P_2}{P_1}. \qquad \blacksquare$$
+
+---
+
+## Gas de van der Waals
 
 > [!ejemplo]
-> **Sustancia incompresible** ($dv = 0$, $c_p = c_v = c$). La primera ecuación da directamente
-> $$
-> ds = c\,\frac{dT}{T} \;\Rightarrow\; \Delta s = c\,\ln\frac{T_2}{T_1}
-> $$
-> El cambio de entropía depende solo de la temperatura.
+> $(P + a/v^2)(v-b) = RT$. Calcular $\Delta s$ entre $(T_1,v_1)$ y $(T_2,v_2)$.
+>
+> **Paso 1 — Derivada para la 1.ª ecuación.** De $P = RT/(v-b) - a/v^2$:
+> $$\left(\frac{\partial P}{\partial T}\right)_v = \frac{R}{v-b}.$$
+> El parámetro $a$ (atracción intermolecular) no contribuye: $\partial(a/v^2)/\partial T = 0$.
+>
+> **Paso 2 — 1.ª ecuación $T\,ds$ para vdW:**
+> $$T\,ds = c_v^{\rm vdW}(T,v)\,dT + \frac{RT}{v-b}\,dv.$$
+>
+> **Paso 3 — Integrar por la ruta** $1\to A=(T_1,v_2)$ (isoterma a $T_1$) $\to 2=(T_2,v_2)$ (isocora a $v_2$):
+> $$\Delta s = R\ln\frac{v_2-b}{v_1-b} + \int_{T_1}^{T_2}\frac{c_v^{\rm vdW}(T,v_2)}{T}\,dT.$$
+>
+> **Paso 4 — Comparación con el gas ideal.** El término isotermo es $R\ln[(v_2-b)/(v_1-b)]$ en lugar de $R\ln(v_2/v_1)$: el volumen excluido $b$ reduce el espacio efectivo disponible. El parámetro $a$ no aparece porque $(\partial P/\partial T)_v$ no depende de $a$. Para $c_v^{\rm vdW} \approx c_v^{\rm ideal}$ (válido a bajas presiones reducidas):
+> $$\Delta s \approx c_v\ln\frac{T_2}{T_1} + R\ln\frac{v_2-b}{v_1-b}. \qquad \blacksquare$$
 
-## Consecuencias
+---
+
+## Sustancia incompresible
+
+> [!ejemplo]
+> $dv = 0$, $c_p \approx c_v = c$. La 1.ª ecuación con $dv = 0$:
+> $$T\,ds = c\,dT \;\Longrightarrow\; \Delta s = c\,\ln\frac{T_2}{T_1}.$$
+> El cambio de entropía depende únicamente de la temperatura. Usado para líquidos y sólidos en rangos moderados de presión. $\blacksquare$
+
+---
+
+## Procesos isentrópicos
 
 > [!proposicion]
-> **Relación $c_p - c_v$.** Igualando las dos ecuaciones $TdS$ se obtiene
-> $$
-> c_p - c_v = T\left(\frac{\partial P}{\partial T}\right)_v \left(\frac{\partial v}{\partial T}\right)_P
-> = -T\frac{\left(\partial v/\partial T\right)_P^2}{\left(\partial v/\partial P\right)_T}
-> $$
-> El desarrollo completo se trata en [[Cp Cv/index | $c_p - c_v$]]. El segundo miembro es siempre $\ge 0$, de modo que $c_p \ge c_v$.
+> Imponiendo $ds = 0$ en cada ecuación:
+>
+> **Desde la 1.ª:**
+> $$dT\big|_{ds=0} = -\frac{T}{c_v}\left(\frac{\partial P}{\partial T}\right)_v\!dv.$$
+> Para gas ideal: $dT/T = -(R/c_v)\,dv/v$ → integra a $Tv^{\gamma-1} = \text{cte}$.
+>
+> **Desde la 2.ª:**
+> $$dT\big|_{ds=0} = \frac{T}{c_p}\left(\frac{\partial v}{\partial T}\right)_P\!dP.$$
+> Para gas ideal: $dT/T = (R/c_p)\,dP/P$ → integra a $T\,P^{-(\gamma-1)/\gamma} = \text{cte}$.
+>
+> Combinando ambas con $Pv = RT$: la relación isentrópica $Pv^\gamma = \text{cte}$.
+
+---
+
+## Consecuencia: $c_p - c_v$
 
 > [!proposicion]
-> **Procesos isentrópicos.** Imponiendo $ds = 0$ en cada ecuación se obtienen las relaciones que ligan $T$ con $v$ o con $P$ a entropía constante, base de las relaciones $Pv^\gamma = \text{cte}$ del [[Gas Ideal]] tratadas en [[Entropia]].
+> Igualando las dos ecuaciones $T\,ds$ y usando $dv = (\partial v/\partial T)_P\,dT + (\partial v/\partial P)_T\,dP$ para expresar $dv$ en función de las variables independientes de la 2.ª ecuación se obtiene, comparando coeficiente de $dT$:
+> $$c_p - c_v = T\!\left(\frac{\partial P}{\partial T}\right)_v\!\left(\frac{\partial v}{\partial T}\right)_P = \frac{Tv\,\alpha^2}{\kappa_T} \ge 0.$$
+> La prueba completa, incluyendo el paso con la [[Identidades/index | regla triple producto]], está en [[Cp Cv/index | $c_p - c_v$]].
 
-> [!warning]
-> Válidas para sustancia simple compresible en equilibrio. Los calores específicos $c_p$, $c_v$ son en general funciones de $T$ (y, fuera del gas ideal, también de $P$ o $v$); no sacarlos de la integral salvo que se justifique constancia.
+---
 
 ## Relación con otras notas
 
 > [!info]
-> - Se construyen sobre las relaciones de [[Maxwell]] y los diferenciales de [[Energia Interna]] y [[Entalpia]].
-> - Son la herramienta de cálculo de $\Delta s$ que usa la nota de [[Entropia]].
-> - Conducen a la relación [[Cp Cv/index | $c_p - c_v$]] y a la de Clapeyron.
+> - Construidas sobre las [[Maxwell | relaciones de Maxwell]] (3.ª y 4.ª).
+> - Para gas ideal, reproducen los $\Delta s$ de la nota de [[Entropia]].
+> - Igualadas derivan la relación [[Cp Cv/index | $c_p - c_v$]].
+> - El [[Jacobianos/index | método de Jacobianos]] las genera como casos particulares del determinante jacobiano.
 
-> [!info]
-> **Convención de notación**:
-> - $s$: entropía específica [kJ/kg·K]; $c_p$, $c_v$: calores específicos [kJ/kg·K]
-> - Derivadas $\left(\partial P/\partial T\right)_v$, $\left(\partial v/\partial T\right)_P$: evaluadas desde la ecuación de estado
+> [!warning]
+> Los calores específicos $c_p$, $c_v$ son en general funciones de $T$ (y de $P$ o $v$ fuera del gas ideal): no sacarlos de la integral salvo que se justifique constancia en el rango de integración.
+
+> [!referencia]
+> Çengel & Boles, *Termodinámica*, §12-3; Callen, *Thermodynamics*, §7-1; Moran & Shapiro, §11.2; Borgnakke & Sonntag, §13.4.

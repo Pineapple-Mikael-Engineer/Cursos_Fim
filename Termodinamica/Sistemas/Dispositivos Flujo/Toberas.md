@@ -1,178 +1,106 @@
 ---
-title: "Toberas"
+title: Toberas
+order: 3
 tags:
   - termodinamica
-  - dispositivos_flujo
+  - dispositivos-flujo
   - toberas
-  - conversion_energia
 draft: false
 aliases:
   - nozzle
-  - tobera
+  - boquilla
 ---
 
 # Toberas
 
 > [!definicion]
-> Dispositivo de [[Flujo Estacionario]] que acelera un fluido hasta alta velocidad, convirtiendo entalpía (presión) en energía cinética. La presión disminuye a lo largo de la tobera, mientras que la velocidad aumenta.
+> Una **tobera** es un conducto de sección variable sin trabajo de eje ($\dot{W}=0$) que convierte **entalpía en energía cinética**: el fluido entra lento, se acelera expandiéndose, y sale con alta velocidad. El proceso inverso (fluido entrando rápido y saliéndose lento) es un [[Difusores | difusor]].
+>
+> *¿Por qué una sección convergente acelera un fluido compresible?* Para gas subsónico ($Ma < 1$), reducir el área $A$ obliga a aumentar la velocidad (por conservación de masa: $\dot{m}=\rho C A = \text{cte}$, y aunque $\rho$ baja, $A$ baja más). Para gas supersónico ($Ma > 1$), sucede lo contrario: la densidad cae más rápido que el área, por lo que se necesita aumentar $A$ para seguir acelerando. De ahí la tobera **convergente-divergente** (de Laval) para alcanzar regímenes supersónicos.
+>
+> *Aplicaciones:* inyectores de vapor (ciclo Rankine), toberas de cohetes y aviones, válvulas de expansión acústica, antorchas de soldadura oxiacetileno.
 
-## Hipótesis estándar para análisis
+![[tobera_esquema_area_velocidad.svg|460]]
+*Tobera convergente-divergente (de Laval). En la sección convergente el fluido es subsónico y se acelera al reducir $A$. En la garganta $Ma=1$. En la divergente el fluido es supersónico y sigue acelerándose al aumentar $A$. Si la presión de salida es insuficiente para mantener el supersónico, aparece un choque normal.*
 
-> [!info]
-> 1. [[Flujo Estacionario]] ($dm_{VC}/dt = 0$, $dE_{VC}/dt = 0$)
-> 2. Una entrada, una salida
-> 3. Adiabática ($\dot{Q} = 0$) — común, aunque puede haber pérdidas
-> 4. Sin trabajo de eje ($\dot{W} = 0$)
-> 5. Despreciable $\Delta EP$ ($z_1 \approx z_2$)
-> 6. Proceso internamente irreversible (real) → $S_{gen} > 0$
+---
 
-## Ecuaciones de gobierno
+## Balance de energía: conversión h → EC
 
 > [!teorema]
-> **Conservación de masa**: $\dot{m} = \rho_1 C_1 A_1 = \rho_2 C_2 A_2$
+> Para una tobera adiabática, estacionaria, sin trabajo de eje, con una entrada y una salida:
+> $$h_1 + \frac{C_1^2}{2} = h_2 + \frac{C_2^2}{2}.$$
 >
-> **Primera ley (energía)**:
-> $$
-> h_1 + \frac{C_1^2}{2} = h_2 + \frac{C_2^2}{2}
-> $$
-> 
-> Despejando velocidad de salida:
-> $$
-> C_2 = \sqrt{C_1^2 + 2(h_1 - h_2)}
-> $$
+> Despejando la velocidad de salida:
+> $$\boxed{C_2 = \sqrt{C_1^2 + 2(h_1 - h_2)}.}$$
 >
-> **Segunda ley (entropía)**:
-> $$
-> \dot{S}_{gen} = \dot{m}(s_2 - s_1) \geq 0 \quad \Rightarrow \quad s_2 \geq s_1
-> $$
+> **Eficiencia de la tobera** (relación entre EC real obtenida y EC isentrópica máxima):
+> $$\eta_{\rm tob} = \frac{C_2^2/2}{C_{2s}^2/2} = \frac{h_1 - h_2}{h_1 - h_{2s}},$$
+> donde $h_{2s}$ corresponde al proceso isentrópico desde 1 hasta $P_2$.
+
+> [!demostracion]
+> **Hipótesis:** VC estacionario, $\dot{Q}=0$, $\dot{W}=0$, $\Delta EP = 0$, una sola corriente.
 >
-> **Balance de exergía**:
-> $$
-> \dot{B}_{dest} = \dot{m}(\psi_1 - \psi_2) \geq 0
-> $$
-
-## Velocidad máxima (isentrópica)
-
-> [!teorema]
-> Para una tobera **reversible y adiabática** ($s_2 = s_1$):
-> $$
-> C_{2,max} = \sqrt{C_1^2 + 2(h_1 - h_{2s})}
-> $$
-> donde $h_{2s}$ es la entalpía de salida para expansión isentrópica hasta $P_2$.
-
-## Eficiencia de tobera
-
-> [!definicion]
-> Relación entre la velocidad real y la velocidad isentrópica (ideal):
-> $$
-> \eta_n = \frac{C_2^2 - C_1^2}{C_{2s}^2 - C_1^2} = \frac{h_1 - h_2}{h_1 - h_{2s}}
-> $$
+> **Paso 1 — Primera ley del VC.** La SFEE con $\dot{Q}=\dot{W}=0$:
+> $$\dot{m}\!\left[h_2 + \frac{C_2^2}{2} - h_1 - \frac{C_1^2}{2}\right] = 0 \implies h_1 + \frac{C_1^2}{2} = h_2 + \frac{C_2^2}{2}.$$
 >
-> - $C_1$: velocidad real de entrada
-> - $C_2$: velocidad real de salida
-> - $C_{2s}$: velocidad de salida para proceso isentrópico
-
-> [!info]
-> **Rango típico**: $\eta_n \approx 0.90 - 0.98$ para toberas bien diseñadas
-
-## Flujo supersónico
-
-> [!info]
-> **Tobera convergente-divergente (de Laval)**:
-> - Sección convergente → acelera flujo hasta $M = 1$ (sónico) en la garganta
-> - Sección divergente → acelera flujo a $M > 1$ (supersónico)
+> **Paso 2 — Significado físico.** La entalpía de estancamiento $h_0 = h + C^2/2$ es constante a lo largo de la tobera. La entalpía "cae" exactamente en la cantidad que aumenta la energía cinética.
 >
-> **Relación de áreas** (flujo isentrópico, gas ideal):
-> $$
-> \frac{A}{A^*} = \frac{1}{M} \left[ \frac{2}{\gamma+1} \left(1 + \frac{\gamma-1}{2} M^2\right) \right]^{\frac{\gamma+1}{2(\gamma-1)}}
-> $$
-> - $A^*$: área de garganta (donde $M = 1$)
-> - $M = C/c$: número de Mach ($c = \sqrt{\gamma R T}$: velocidad del sonido)
+> **Paso 3 — Despejar $C_2$.** Reorganizando:
+> $$\frac{C_2^2}{2} - \frac{C_1^2}{2} = h_1 - h_2 \implies C_2 = \sqrt{C_1^2 + 2(h_1-h_2)}.$$
+> Si $C_1 \ll C_2$ (tobera de cohete), aproximar $C_2 \approx \sqrt{2(h_1-h_2)}$.
+>
+> **Paso 4 — Proceso isentrópico de referencia.** El proceso real tiene $s_2 > s_{2s}$ (la fricción genera entropía). Esto implica $h_2 > h_{2s}$ para la misma $P_2$: menos entalpía disponible para EC → $C_2 < C_{2s}$.
+>
+> **Paso 5 — Eficiencia.** Dividiendo EC real entre EC isentrópica:
+> $$\eta_{\rm tob} = \frac{C_2^2/2}{C_{2s}^2/2} = \frac{h_1-h_2}{h_1-h_{2s}} \leq 1.$$
+> Valores típicos: $0.92$–$0.99$ para toberas de vapor bien diseñadas. $\blacksquare$
 
-## Casos particulares
+---
+
+## Caso especial: gas ideal con $c_p$ constante
 
 > [!proposicion]
-> **Gas ideal con $c_p$ constante**:
-> - Isentrópico: $T_{2s} = T_1 (P_2/P_1)^{(\gamma-1)/\gamma}$
-> - $C_{2s} = \sqrt{C_1^2 + 2c_p(T_1 - T_{2s})}$
-> - Real: $T_2 = T_1 - \eta_n (T_1 - T_{2s})$
+> Para gas ideal con $c_p$ constante y $C_1 \approx 0$:
+> $$C_2 = \sqrt{2c_p(T_1-T_2)}, \qquad T_{2s} = T_1\!\left(\frac{P_2}{P_1}\right)^{(\gamma-1)/\gamma}.$$
+>
+> La velocidad de salida isentrópica:
+> $$C_{2s} = \sqrt{2c_pT_1\!\left[1-\left(\frac{P_2}{P_1}\right)^{(\gamma-1)/\gamma}\right]}.$$
+>
+> Para comparar con la velocidad del sonido: $a = \sqrt{\gamma R T}$. Número de Mach de salida: $Ma_2 = C_{2s}/a_2$.
 
-> [!proposicion]
-> **Vapor de agua**:
-> - Usar tablas de vapor para $h_1$, $s_1$, $h_{2s}$ (buscando $P_2$ con $s_{2s}=s_1$)
-> - Salida real puede estar en región húmeda → $x_2 = (h_2 - h_f)/h_{fg}$
+---
 
-> [!proposicion]
-> **Líquido incompresible** ($\rho$ constante):
-> - Ecuación de Bernoulli con pérdidas: $P_1 + \frac{\rho C_1^2}{2} = P_2 + \frac{\rho C_2^2}{2} + \Delta P_{perd}$
-> - Velocidad máxima: $C_2 = \sqrt{C_1^2 + 2(P_1 - P_2)/\rho}$
+## Ejemplo: tobera de vapor en turbina de impulso
 
-## Limitaciones y consideraciones prácticas
+> [!ejemplo]
+> Vapor a $P_1=1\,\mathrm{MPa}$, $T_1=300\,°\mathrm{C}$ entra en una tobera con velocidad $C_1=20\,\mathrm{m/s}$ y se expande hasta $P_2=200\,\mathrm{kPa}$. La eficiencia de la tobera es $\eta_{\rm tob}=0.95$. Determinar: (a) velocidad de salida real; (b) temperatura de salida real.
+
+> [!solucion]
+> **Paso 1 — Estado de entrada (tablas de vapor sobrecalentado).** A $P_1=1\,\mathrm{MPa}$, $T_1=300\,°\mathrm{C}$:
+> $$h_1 = 3051.2\,\mathrm{kJ/kg}, \quad s_1 = 7.1229\,\mathrm{kJ/(kg\cdot K)}.$$
+>
+> **Paso 2 — Estado isentrópico de salida.** A $P_2=200\,\mathrm{kPa}$, $s_{2s}=s_1=7.1229\,\mathrm{kJ/(kg\cdot K)}$.
+> De tablas de vapor sobrecalentado a $200\,\mathrm{kPa}$, $s=7.1229$ está entre $150\,°\mathrm{C}$ ($s=7.0792$) y $200\,°\mathrm{C}$ ($s=7.5074$). Interpolando:
+> $$T_{2s} = 150 + \frac{7.1229-7.0792}{7.5074-7.0792}\times50 = 150+5.1=155.1\,°\mathrm{C}.$$
+> $$h_{2s} = 2769.1 + \frac{7.1229-7.0792}{7.5074-7.0792}\times(2870.5-2769.1)=2769.1+10.3=2779.4\,\mathrm{kJ/kg}.$$
+>
+> **Paso 3 — Velocidad isentrópica de salida.**
+> $$C_{2s}=\sqrt{C_1^2+2(h_1-h_{2s})\times10^3}=\sqrt{20^2+2\times(3051.2-2779.4)\times10^3}.$$
+> $$=\sqrt{400+543\,600}=\sqrt{544\,000}=737.6\,\mathrm{m/s}.$$
+>
+> **Paso 4 — Velocidad real de salida.**
+> $$C_2 = C_{2s}\sqrt{\eta_{\rm tob}} = 737.6\times\sqrt{0.95} = 737.6\times0.9747 = 718.9\,\mathrm{m/s}.$$
+>
+> **Paso 5 — Entalpía y temperatura real de salida.**
+> EC real $= C_2^2/2 = 718.9^2/2\times10^{-3} = 258.4\,\mathrm{kJ/kg}$.
+> $h_2 = h_1 + C_1^2/2\times10^{-3} - C_2^2/2\times10^{-3} = 3051.2+0.2-258.4 = 2793.0\,\mathrm{kJ/kg}$.
+> A $P_2=200\,\mathrm{kPa}$, interpolando: $T_2 \approx 162\,°\mathrm{C}$.
+>
+> $\boxed{C_2 = 718.9\,\mathrm{m/s},\quad T_2 \approx 162\,°\mathrm{C}.}$ $\blacksquare$
 
 > [!warning]
-> - **Ondas de choque**: En flujo supersónico, si la contrapresión $P_{back}$ es mayor que $P_{diseño}$, se forman ondas de choque que reducen la velocidad.
-> - **Condensación**: En vapor o gases húmedos, la expansión rápida puede causar condensación (gotas de líquido), afectando eficiencia.
-> - **Erosión**: Partículas en suspensión pueden erosionar las paredes de la tobera.
-> - **Temperaturas extremas**: En toberas de cohete, los materiales deben soportar altas temperaturas.
+> La velocidad de salida $C_2=719\,\mathrm{m/s}$ es **supersónica**: con $a_2 \approx 575\,\mathrm{m/s}$ para vapor a esa condición, $Ma_2 = C_2/a_2 \approx 1.25 > 1$. Esto es coherente con la relación de presiones $P_2/P_1 = 0.2$, muy por debajo de la relación crítica ($\approx 0.55$ para vapor, $\gamma\approx1.3$): el flujo se **bloquea** (*choke*) en la garganta a $Ma=1$, y la salida supersónica solo se alcanza con una geometría **convergente-divergente de Laval**; una tobera convergente simple limitaría la salida a $Ma=1$ (sónica). La relación área-velocidad $dA/A = (Ma^2-1)\,dC/C$ lo resume: con $Ma>1$ el área debe **crecer** para seguir acelerando el flujo.
 
-> [!ejemplo]
-> **Tobera convergente de vapor** (calcular velocidad de salida y eficiencia)
->
-> Datos: $\dot{m}$ no dado, $P_1 = 2.0 MPa$, $T_1 = 300°C$, $P_2 = 0.1 MPa$, $\eta_n = 0.92$, $C_1 \approx 0$
->
-> **1. Entrada (tablas de vapor)**:
-> $P_1 = 2.0 MPa$, $T_1 = 300°C$ → $h_1 = 3024.7 kJ/kg$, $s_1 = 6.768 kJ/kg·K$
->
-> **2. Salida isentrópica**:
-> $P_2 = 0.1 MPa$, $s_{2s} = s_1 = 6.768 kJ/kg·K$
-> A $0.1 MPa$: $s_f = 1.303 kJ/kg·K$, $s_g = 7.359 kJ/kg·K$
-> $x_{2s} = (6.768 - 1.303)/(7.359 - 1.303) = 5.465/6.056 = 0.902$
-> $h_{2s} = h_f + x_{2s} h_{fg} = 417.5 + 0.902 \times 2257.5 = 417.5 + 2036.3 = 2453.8 kJ/kg$
->
-> **3. Velocidad isentrópica** ($C_1 \approx 0$):
-> $C_{2s} = \sqrt{2(h_1 - h_{2s}) \times 1000} = \sqrt{2 \times (3024.7 - 2453.8) \times 1000}$
-> $C_{2s} = \sqrt{2 \times 570.9 \times 1000} = \sqrt{1.1418 \times 10^6} = 1068.5 m/s$
->
-> **4. Eficiencia de tobera**:
-> $\eta_n = (h_1 - h_2)/(h_1 - h_{2s})$ → $0.92 = (3024.7 - h_2)/570.9$
-> $3024.7 - h_2 = 0.92 \times 570.9 = 525.2$
-> $h_2 = 3024.7 - 525.2 = 2499.5 kJ/kg$
->
-> **5. Velocidad real**:
-> $C_2 = \sqrt{2(h_1 - h_2) \times 1000} = \sqrt{2 \times 525.2 \times 1000} = \sqrt{1.0504 \times 10^6} = 1024.9 m/s$
->
-> **6. Verificar** $\eta_n = C_2^2/C_{2s}^2 = (1024.9^2)/(1068.5^2) = 1.0504/1.1418 = 0.92$ ✓
->
-> **7. Calidad a la salida real** (con $h_2 = 2499.5 kJ/kg$ a $0.1 MPa$):
-> $x_2 = (2499.5 - 417.5)/2257.5 = 2082.0/2257.5 = 0.922$
-
-> [!ejemplo]
-> **Tobera convergente de aire** (gas ideal, calcular $C_2$, $T_2$)
->
-> Datos: $\dot{m} = 0.5 kg/s$, $P_1 = 500 kPa$, $T_1 = 400 K$, $P_2 = 100 kPa$, $C_1 \approx 0$, $\eta_n = 0.95$, $c_p = 1.005 kJ/kg·K$, $\gamma = 1.4$
->
-> **1. Salida isentrópica**:
-> $T_{2s} = T_1 (P_2/P_1)^{(\gamma-1)/\gamma} = 400 \times (0.2)^{0.2857} = 400 \times 0.631 = 252.4 K$
-> $h_1 - h_{2s} = c_p (T_1 - T_{2s}) = 1.005 \times (400 - 252.4) = 1.005 \times 147.6 = 148.3 kJ/kg$
-> $C_{2s} = \sqrt{2 \times 148.3 \times 1000} = \sqrt{296600} = 544.6 m/s$
->
-> **2. Eficiencia**:
-> $h_1 - h_2 = \eta_n (h_1 - h_{2s}) = 0.95 \times 148.3 = 140.9 kJ/kg$
-> $C_2 = \sqrt{2 \times 140.9 \times 1000} = \sqrt{281800} = 530.9 m/s$
->
-> **3. Temperatura real de salida**:
-> $T_2 = T_1 - (h_1 - h_2)/c_p = 400 - 140.9/1.005 = 400 - 140.2 = 259.8 K$
->
-> **4. Flujo másico** (verificar área):
-> $\rho_2 = P_2/(R T_2)$, $R = 0.287 kJ/kg·K = 287 J/kg·K$
-> $\rho_2 = 100000/(287 \times 259.8) = 100000/74526 = 1.342 kg/m^3$
-> $A_2 = \dot{m}/(\rho_2 C_2) = 0.5/(1.342 \times 530.9) = 0.5/712.5 = 0.000702 m^2 = 7.02 cm^2$
-
-## Relaciones con otras notas
-
-> [!info]
-> - [[Difusores]] (proceso inverso: desacelera flujo, aumenta presión)
-> - [[Turbinas]] (expande fluido con producción de trabajo)
-> - [[Valvulas]] (reduce presión sin trabajo, pero sin aceleración significativa)
-> - [[Flujo Estacionario]] (aplicación directa)
-
+> [!referencia]
+> Borgnakke & Sonntag, §6.5; Çengel & Boles, §9-3; Moran & Shapiro, §6.4.

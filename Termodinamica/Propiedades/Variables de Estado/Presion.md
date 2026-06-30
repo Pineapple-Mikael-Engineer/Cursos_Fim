@@ -1,5 +1,6 @@
 ---
 title: "Presión $P$"
+order: 1
 tags:
   - termodinamica
   - propiedades
@@ -20,6 +21,24 @@ aliases:
 > $$
 >
 > En un fluido en equilibrio, $P$ es isótropa (igual en toda dirección) y uniforme salvo por efectos gravitatorios. En equilibrio termodinámico es **uniforme entre fases** en contacto (equilibrio mecánico).
+
+## Significado físico y órdenes de magnitud
+
+> [!teoria]
+> La presión es la manifestación macroscópica del **bombardeo molecular** sobre la frontera del sistema: cada molécula que impacta una superficie transfiere momento, y la suma estadística de miles de millones de impactos por segundo produce una fuerza neta por unidad de área uniforme en todas las direcciones. En un fluido en reposo, $P$ es **isótropa**: la fuerza normal es la misma en cualquier orientación del área elemental.
+>
+> Órdenes de magnitud útiles:
+>
+> | Situación | $P$ [kPa] | Equivalencia |
+> |:---|:---:|:---|
+> | Vacío perfecto | $0$ | — |
+> | Presión atmosférica estándar | $101.325$ | — |
+> | Fondo del océano (10 km) | $\approx 101\,000$ | $\approx 1000\,\text{atm}$ |
+> | Caldera de vapor (ciclo Rankine típico) | $3\,000$–$15\,000$ | $30$–$150\,\text{bar}$ |
+> | Punto crítico del agua | $22\,064$ | $218\,\text{atm}$ |
+> | Interior del sol (estimación) | $\approx 2.5 \times 10^{13}$ | — |
+>
+> En termodinámica, $P$ aparece como el conjugado intensivo del volumen: el trabajo reversible de frontera es $\delta w = P\,dv$, y la presión es la variable natural de la entalpía $H$ y de la energía de Gibbs $G$.
 
 ## Escalas y referencias
 
