@@ -35,6 +35,8 @@ aliases:
 > El **orden** en que las tensiones alcanzan su máximo —la **secuencia de fases** ($abc$ o $acb$)— determina el sentido de giro de los motores; invertir dos fases invierte el giro. → [[Secuencia de Fases]].
 >
 > ¿Por qué el trifásico se impuso? Porque entrega **potencia instantánea constante** (el monofásico pulsa a $2\omega$), crea un **campo magnético giratorio** (motores sin escobillas ni arranque especial) y transporta la misma potencia con **menos material conductor**. → [[Ventajas del Trifasico]].
+>
+> La aplicación más importante de ese campo giratorio es el **motor de inducción**: qué es, en qué se diferencia del monofásico y cómo se leen su potencia (CV/HP), su rendimiento $\eta$ y su factor de potencia. → [[Motores Electricos Trifasicos]].
 
 ## Mapa de la sección
 
@@ -43,8 +45,9 @@ aliases:
 > |:---|:---|
 > | [[Sistema Polifasico]] | qué es un sistema de varias fases; el caso $n=3$ |
 > | [[Generacion de Tensiones Trifasicas]] | el alternador trifásico; $120^\circ$ por construcción |
-> | [[Secuencia de Fases]] | orden $abc$ / $acb$; sentido de giro |
+> | [[Secuencia de Fases]] | orden $abc=RST=L_1L_2L_3$ / $acb$; tensiones de fase y línea; sentido de giro |
 > | [[Ventajas del Trifasico]] | potencia constante, campo giratorio, ahorro de cobre |
+> | [[Motores Electricos Trifasicos]] | motor de inducción; 1φ vs 3φ; placa (CV/HP, $\eta$, FP) |
 
 > [!corolario]
 > Tres tensiones iguales a $120^\circ$ que suman cero: esa simetría es el origen de todas las virtudes del trifásico. Entender de dónde salen y por qué convienen prepara para conectarlas (Y/Δ) y calcular su potencia.

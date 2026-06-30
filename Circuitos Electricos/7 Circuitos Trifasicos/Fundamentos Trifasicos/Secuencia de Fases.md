@@ -21,7 +21,17 @@ aliases:
 > la **secuencia inversa** (negativa) sigue el orden $a\to c\to b$. La secuencia determina el **sentido de giro** de los motores trifásicos.
 
 > [!info]
-> Es una propiedad del orden de las tensiones de [[Generacion de Tensiones Trifasicas| generación trifásica]], dentro de [[Fundamentos Trifasicos/index| Fundamentos]] ([[7 Circuitos Trifasicos/index| capítulo 7]]). Afecta a las conexiones [[Conexion Estrella| en estrella]] y, sobre todo, al sentido de giro de los motores. Fraile Mora, cap. 3, §3.2.
+> Es una propiedad del orden de las tensiones de [[Generacion de Tensiones Trifasicas| generación trifásica]], dentro de [[Fundamentos Trifasicos/index| Fundamentos]] ([[7 Circuitos Trifasicos/index| capítulo 7]]). Afecta a las conexiones [[Conexion Estrella| en estrella]] y, sobre todo, al sentido de giro de los [[Motores Electricos Trifasicos| motores]]. Fraile Mora, cap. 3, §3.2.
+
+> [!teoria] Nomenclatura: $abc$, $RST$, $L_1L_2L_3$
+> Las tres fases reciben **distintos nombres** según la tradición, pero son **lo mismo**:
+> $$a\equiv R\equiv L_1\equiv U,\qquad b\equiv S\equiv L_2\equiv V,\qquad c\equiv T\equiv L_3\equiv W.$$
+> - **$a,b,c$** (o $A,B,C$): notación de la mayoría de los textos (Norteamérica); la que se usa en estas notas.
+> - **$R,S,T$**: notación europea clásica (de *Rot, Schwarz, Türkis* — colores del cableado). Muy común en instalaciones y máquinas en España y Latinoamérica.
+> - **$L_1,L_2,L_3$**: notación normalizada **IEC/CENELEC** actual para los conductores de línea; el neutro es $N$.
+> - **$U,V,W$**: bornes de los **devanados de máquinas** (motores, transformadores).
+>
+> Así, la secuencia directa $abc$ es la misma que $RST$ o $L_1L_2L_3$, y la inversa $acb$ es $RTS$ o $L_1L_3L_2$. El nombre no cambia la física; solo hay que ser **coherente** dentro de un mismo problema.
 
 ---
 
@@ -52,6 +62,23 @@ aliases:
 > $$abc=bca=cab\quad(\text{directa}),\qquad acb=cba=bac\quad(\text{inversa}).$$
 > Lo que cuenta es el **orden cíclico**, no cuál de las fases se llame "primera": empezar a contar por $a$, por $b$ o por $c$ describe la misma secuencia.
 
+> [!proposicion] Tensiones de fase y de línea en cada secuencia
+> Tomando $\overline{V}_a=V_F\angle0^\circ$ como referencia, las **tensiones de fase** (conductor–neutro) en cada secuencia son:
+>
+> | Secuencia | $\overline{V}_a$ | $\overline{V}_b$ | $\overline{V}_c$ |
+> |:---|:---|:---|:---|
+> | Directa $abc$ | $V_F\angle0^\circ$ | $V_F\angle{-}120^\circ$ | $V_F\angle{+}120^\circ$ |
+> | Inversa $acb$ | $V_F\angle0^\circ$ | $V_F\angle{+}120^\circ$ | $V_F\angle{-}120^\circ$ |
+>
+> Las **tensiones de línea** (conductor–conductor) son la **resta** de dos de fase, $\overline{V}_{ab}=\overline{V}_a-\overline{V}_b$, etc.: salen $\sqrt3$ veces mayores y **giradas $\pm30^\circ$** (ver [[Conexion Estrella]]):
+>
+> | Secuencia | $\overline{V}_{ab}$ | $\overline{V}_{bc}$ | $\overline{V}_{ca}$ | Línea respecto a fase |
+> |:---|:---|:---|:---|:---|
+> | Directa $abc$ | $\sqrt3\,V_F\angle{+}30^\circ$ | $\sqrt3\,V_F\angle{-}90^\circ$ | $\sqrt3\,V_F\angle{+}150^\circ$ | **adelanta** $30^\circ$ |
+> | Inversa $acb$ | $\sqrt3\,V_F\angle{-}30^\circ$ | $\sqrt3\,V_F\angle{+}90^\circ$ | $\sqrt3\,V_F\angle{-}150^\circ$ | **atrasa** $30^\circ$ |
+>
+> El módulo ($\sqrt3\,V_F$) y la separación de $120^\circ$ entre líneas son **iguales** en ambas; lo único que distingue a las secuencias es el **signo del desfase** $30^\circ$ línea–fase: en directa la línea **adelanta**, en inversa **atrasa**.
+
 > [!warning]
 > No confundir **secuencia** con **etiquetas**: renombrar las fases (cambiar qué conductor llamamos $a$, $b$ o $c$) **no** cambia la secuencia física del sistema. Y el giro solo se invierte permutando **dos** conductores; permutar los **tres** (una rotación cíclica completa) deja la secuencia **igual** y el motor gira en el mismo sentido.
 
@@ -61,7 +88,10 @@ aliases:
 > | Aspecto | Directa (positiva) | Inversa (negativa) |
 > |:---|:---|:---|
 > | Orden | $abc$ ($a\to b\to c$) | $acb$ ($a\to c\to b$) |
-> | Fasores | $V\angle0^\circ,\ V\angle{-}120^\circ,\ V\angle{+}120^\circ$ | $V\angle0^\circ,\ V\angle{+}120^\circ,\ V\angle{-}120^\circ$ |
+> | Nombres equivalentes | $RST$, $L_1L_2L_3$ | $RTS$, $L_1L_3L_2$ |
+> | Fases | $V_F\angle0^\circ,\ V_F\angle{-}120^\circ,\ V_F\angle{+}120^\circ$ | $V_F\angle0^\circ,\ V_F\angle{+}120^\circ,\ V_F\angle{-}120^\circ$ |
+> | Líneas | $\sqrt3V_F\angle30^\circ,\ \angle{-}90^\circ,\ \angle150^\circ$ | $\sqrt3V_F\angle{-}30^\circ,\ \angle90^\circ,\ \angle{-}150^\circ$ |
+> | Línea vs. fase | adelanta $30^\circ$ | atrasa $30^\circ$ |
 > | Giro del motor | un sentido | sentido contrario |
 > | Cómo invertirla | — | permutar **dos** conductores |
 > | Ordenaciones equivalentes | $abc=bca=cab$ | $acb=cba=bac$ |

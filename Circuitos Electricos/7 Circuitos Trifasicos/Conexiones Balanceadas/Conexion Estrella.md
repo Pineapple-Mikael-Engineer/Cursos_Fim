@@ -50,7 +50,9 @@ aliases:
 > [!teoria] De dónde sale el $\sqrt3$
 > La tensión de línea es la **diferencia** de dos tensiones de fase: $\overline{V}_{ab}=\overline{V}_a-\overline{V}_b$. Restando dos fasores de igual módulo $V_F$ separados $120^\circ$, el resultado tiene módulo $\sqrt3\,V_F$ y está adelantado $30^\circ$ respecto a $\overline{V}_a$:
 > $$\overline{V}_{ab}=\overline{V}_a-\overline{V}_b=\sqrt3\,V_F\angle30^\circ.$$
-> El $\sqrt3=2\cos30^\circ$ es pura geometría de la resta de dos vectores a $120^\circ$. La corriente, en cambio, no se reparte: la que sale de la rama es la misma que va por la línea, $I_L=I_F$.
+> El $\sqrt3=2\cos30^\circ$ es pura geometría de la resta de dos vectores a $120^\circ$. Las **otras dos** salen igual, separadas $120^\circ$ entre sí, de modo que las tres tensiones de línea forman a su vez un sistema equilibrado (secuencia directa $abc$):
+> $$\overline{V}_{ab}=\sqrt3\,V_F\angle30^\circ,\quad \overline{V}_{bc}=\sqrt3\,V_F\angle{-}90^\circ,\quad \overline{V}_{ca}=\sqrt3\,V_F\angle150^\circ.$$
+> En **secuencia inversa** $acb$ los ángulos cambian de signo ($+30^\circ\to-30^\circ$, etc.): la línea pasa a **atrasar** $30^\circ$ a la fase (ver [[Secuencia de Fases]]). La corriente, en cambio, no se reparte: la que sale de la rama es la misma que va por la línea, $I_L=I_F$.
 
 > [!proposicion] El neutro y los cuatro hilos
 > El punto común permite sacar un **cuarto conductor**, el **neutro**. Con carga **equilibrada**, la corriente del neutro es **cero** ($\overline{I}_a+\overline{I}_b+\overline{I}_c=0$), así que puede suprimirse (sistema a 3 hilos). Si la carga se **desequilibra**, el neutro lleva corriente y conviene mantenerlo. → [[Cargas Desbalanceadas Estrella]].

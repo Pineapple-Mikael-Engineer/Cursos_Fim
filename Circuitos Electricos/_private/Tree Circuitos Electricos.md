@@ -177,8 +177,9 @@ Circuitos Electricos/
 │   │   ├── index.md
 │   │   ├── Sistema Polifasico.md                 # qué es; por qué trifásico
 │   │   ├── Generacion de Tensiones Trifasicas.md # 3 fases a 120°  # fig: 3 senoides + fasores
-│   │   ├── Secuencia de Fases.md                 # ABC vs ACB
-│   │   └── Ventajas del Trifasico.md             # transporte; vs monofásico
+│   │   ├── Secuencia de Fases.md                 # abc=RST=L1L2L3 vs acb; tensiones fase y línea
+│   │   ├── Ventajas del Trifasico.md             # transporte; vs monofásico
+│   │   └── Motores Electricos Trifasicos.md      # motor de inducción; 1φ vs 3φ; placa (CV/HP, η, FP)
 │   │
 │   ├── Conexiones Balanceadas/
 │   │   ├── index.md
