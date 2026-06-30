@@ -4,45 +4,45 @@
 \begin{document}
 \begin{circuitikz}[american, line width=0.9pt]
   % ---- carga trifasica ----
-  \draw (6.6,-2.0) rectangle (8.4,2.0);
-  \node[align=center] at (7.5,0){carga\\$3\phi$};
+  \draw (7.2,-2.0) rectangle (9.0,2.0);
+  \node[align=center] at (8.1,0){carga\\$3\phi$};
 
   % línea b (referencia, común a las dos bobinas de tensión)
-  \draw (0,0) node[left]{$b$} -- (6.6,0);
+  \draw (0,0) node[left]{$b$} -- (7.2,0);
 
   % ===================== W1 en la línea a =====================
-  \draw (0,1.6) node[left]{$a$} -- (6.6,1.6);
-  % flecha del sentido de la corriente que atraviesa la bobina de intensidad
-  \draw[-{Latex[length=2.4mm]}] (0.35,2.05) -- (1.05,2.05);
-  \node at (0.70,2.35){\small $i_a$};
-  % cuerpo del vatímetro (tapa la línea: la línea es la bobina de intensidad, en serie)
-  \filldraw[fill=white] (1.55,1.6) circle(0.5);
-  \node at (1.55,1.6){$W_1$};
-  % borne homólogo (±) de la bobina de intensidad, lado fuente
-  \node[circle,fill=black,inner sep=1.0pt] at (1.05,1.6){};
-  \node at (0.80,1.92){\small $\pm$};
-  % bobina de tensión (en paralelo, referida a b); ± en su línea (a)
-  \draw[densely dashed] (1.55,1.1) -- (1.55,0);
-  \node[circle,fill=black,inner sep=1.0pt] at (1.55,1.1){};
-  \node at (1.82,0.95){\small $\pm$};
-  \node[circle,fill=black,inner sep=1.0pt] at (1.55,0){};
+  \draw (0,1.6) node[left]{$a$} -- (7.2,1.6);
+  % sentido de la corriente por la bobina de intensidad
+  \draw[-{Latex[length=2.4mm]}] (0.25,2.05) -- (0.95,2.05);
+  \node at (0.60,2.36){\small $i_a$};
+  % cuerpo del vatímetro (la línea que lo atraviesa ES la bobina de intensidad, en serie)
+  \filldraw[fill=white] (1.75,1.6) circle(0.5);
+  \node at (1.75,1.6){$W_1$};
+  % bornes de la BOBINA DE INTENSIDAD: la corriente entra por + y sale por -
+  \node[font=\large\bfseries] at (1.02,1.92){$+$};
+  \node[font=\large\bfseries] at (2.48,1.92){$-$};
+  % BOBINA DE TENSION (en paralelo a b): + en su línea (a), - en el neutro de referencia (b)
+  \draw[densely dashed] (1.75,1.1) -- (1.75,0);
+  \node[font=\large\bfseries] at (2.05,0.92){$+$};
+  \node[font=\large\bfseries] at (2.05,0.22){$-$};
+  \node[circle,fill=black,inner sep=0.9pt] at (1.75,0){};
 
   % ===================== W2 en la línea c =====================
-  \draw (0,-1.6) node[left]{$c$} -- (6.6,-1.6);
-  \draw[-{Latex[length=2.4mm]}] (0.35,-2.05) -- (1.05,-2.05);
-  \node at (0.70,-2.35){\small $i_c$};
-  \filldraw[fill=white] (1.55,-1.6) circle(0.5);
-  \node at (1.55,-1.6){$W_2$};
-  \node[circle,fill=black,inner sep=1.0pt] at (1.05,-1.6){};
-  \node at (0.80,-1.92){\small $\pm$};
-  \draw[densely dashed] (1.55,-1.1) -- (1.55,0);
-  \node[circle,fill=black,inner sep=1.0pt] at (1.55,-1.1){};
-  \node at (1.82,-0.95){\small $\pm$};
-  \node[circle,fill=black,inner sep=1.0pt] at (1.55,0){};
+  \draw (0,-1.6) node[left]{$c$} -- (7.2,-1.6);
+  \draw[-{Latex[length=2.4mm]}] (0.25,-2.05) -- (0.95,-2.05);
+  \node at (0.60,-2.36){\small $i_c$};
+  \filldraw[fill=white] (1.75,-1.6) circle(0.5);
+  \node at (1.75,-1.6){$W_2$};
+  \node[font=\large\bfseries] at (1.02,-1.92){$+$};
+  \node[font=\large\bfseries] at (2.48,-1.92){$-$};
+  \draw[densely dashed] (1.75,-1.1) -- (1.75,0);
+  \node[font=\large\bfseries] at (2.05,-0.92){$+$};
+  \node[font=\large\bfseries] at (2.05,-0.22){$-$};
+  \node[circle,fill=black,inner sep=0.9pt] at (1.75,0){};
 
-  % leyenda
-  \node[align=left,font=\small] at (4.7,2.55){bobina de intensidad: en serie\quad($\pm$ hacia la fuente, por donde entra $i$)};
-  \node[align=left,font=\small] at (4.55,-2.75){bobina de tensión: en paralelo a $b$\quad($\pm$ en su misma línea)};
-  \node at (4.0,3.15){\small $P_{3\phi}=W_1+W_2\qquad Q_{3\phi}=\sqrt{3}\,(W_2-W_1)$};
+  % leyendas
+  \node[align=left,font=\small] at (5.0,2.55){bobina de intensidad (serie): la corriente entra por el borne $+$};
+  \node[align=left,font=\small] at (4.75,-2.7){bobina de tensión (paralelo a $b$): borne $+$ en su línea, $-$ en $b$};
+  \node[align=center,font=\small] at (3.6,3.2){lectura $W>0$ cuando la potencia fluye de la fuente a la carga\\$P_{3\phi}=W_1+W_2$\qquad $Q_{3\phi}=\sqrt{3}\,(W_2-W_1)$};
 \end{circuitikz}
 \end{document}
