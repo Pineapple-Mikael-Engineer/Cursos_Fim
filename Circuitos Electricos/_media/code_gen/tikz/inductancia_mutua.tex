@@ -3,8 +3,8 @@
 \ctikzset{bipoles/length=1.5cm}
 \begin{document}
 \begin{circuitikz}[american, line width=0.9pt]
-  % primario
-  \draw (0,0) to[L, l_=$L_1$, i>^=$i_1$] (0,3.2);
+  % primario — i1 entra por el terminal con punto (arriba)
+  \draw (0,0) to[L, l_=$L_1$, i<^=$i_1$] (0,3.2);
   \draw (0,3.2) -- (-1.2,3.2) node[ocirc]{};
   \draw (0,0) -- (-1.2,0) node[ocirc]{};
   \draw (-1.2,3.2) to[open, v^=$v_1$] (-1.2,0);
