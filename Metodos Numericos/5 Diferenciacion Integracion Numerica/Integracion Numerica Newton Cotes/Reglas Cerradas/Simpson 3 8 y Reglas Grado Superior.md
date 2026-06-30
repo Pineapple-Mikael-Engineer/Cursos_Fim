@@ -1,5 +1,6 @@
 ---
 title: Simpson 3/8 y Reglas de Grado Superior
+order: 3
 tags:
   - metodos-numericos
   - teoria

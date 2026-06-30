@@ -1,5 +1,6 @@
 ---
 title: Convergencia Local Cuadrática
+order: 2
 tags:
   - metodos-numericos
   - teoria

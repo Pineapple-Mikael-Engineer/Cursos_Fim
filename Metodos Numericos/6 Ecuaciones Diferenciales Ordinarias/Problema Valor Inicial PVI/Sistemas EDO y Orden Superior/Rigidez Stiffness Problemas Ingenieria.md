@@ -1,5 +1,6 @@
 ---
 title: Rigidez (Stiffness) en Problemas de Ingeniería
+order: 3
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones Diferenciales Ordinarias
+order: 6
 tags:
   - metodos-numericos
   - teoria

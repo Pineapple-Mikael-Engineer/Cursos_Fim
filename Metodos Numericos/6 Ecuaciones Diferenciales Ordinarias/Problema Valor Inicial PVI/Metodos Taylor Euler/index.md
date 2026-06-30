@@ -1,5 +1,6 @@
 ---
 title: Métodos de Taylor y Euler
+order: 2
 tags:
   - metodos-numericos
   - teoria

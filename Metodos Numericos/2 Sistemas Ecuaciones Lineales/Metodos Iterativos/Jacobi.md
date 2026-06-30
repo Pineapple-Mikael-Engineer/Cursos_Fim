@@ -1,5 +1,6 @@
 ---
 title: Método de Jacobi
+order: 2
 tags:
   - metodos-numericos
   - teoria

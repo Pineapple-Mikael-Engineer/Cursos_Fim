@@ -1,5 +1,6 @@
 ---
 title: Propiedad de Mínima Curvatura
+order: 4
 tags:
   - metodos-numericos
   - teoria

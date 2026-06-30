@@ -1,5 +1,6 @@
 ---
 title: Factorizacion Cholesky Matrices Definidas Positivas
+order: 3
 tags:
   - metodos-numericos
   - teoria
@@ -36,8 +37,7 @@ Antes de desarrollar el algoritmo, es crucial caracterizar la clase de matrices 
 > 2. $x^T A x > 0$ para todo vector $x \in \mathbb{R}^n$, $x \neq 0$ (definición positiva).
 
 > [!proposicion]
-> **Caracterizaciones equivalentes de matrices SDP.**
-> Sea $A \in \mathbb{R}^{n \times n}$ simétrica. Las siguientes afirmaciones son equivalentes:
+> **Caracterizaciones equivalentes de matrices SDP.** Sea $A \in \mathbb{R}^{n \times n}$ simétrica. Las siguientes afirmaciones son equivalentes:
 > 1. $A$ es definida positiva.
 > 2. Todos los **valores propios** de $A$ son estrictamente positivos: $\lambda_i > 0$, $i = 1, \dots, n$.
 > 3. Todos los **menores principales líderes** son estrictamente positivos: $\Delta_k > 0$, $k = 1, \dots, n$ (criterio de Sylvester).
@@ -61,19 +61,16 @@ La última caracterización es exactamente lo que garantiza la existencia de la 
 ## Existencia y unicidad
 
 > [!teorema]
-> **Existencia y unicidad de la factorización de Cholesky.**
-> Sea $A \in \mathbb{R}^{n \times n}$ una matriz simétrica definida positiva. Entonces:
+> **Existencia y unicidad de la factorización de Cholesky.** Sea $A \in \mathbb{R}^{n \times n}$ una matriz simétrica definida positiva. Entonces:
 > 1. **Existencia:** Existe una única matriz triangular inferior $L$ con $\ell_{ii} > 0$ tal que $A = L L^T$.
 > 2. **Unicidad:** Si se exige $\ell_{ii} > 0$, la factorización es única.
 
 > [!demostracion]
 > **Demostración por inducción sobre $n$.**
 > 
-> **Caso base $n=1$:**
-> $A = [a_{11}]$ con $a_{11} > 0$ (por definición positiva). Tomamos $L = [\sqrt{a_{11}}]$ con $\ell_{11} > 0$. Única.
+> **Caso base $n=1$:** $A = [a_{11}]$ con $a_{11} > 0$ (por definición positiva). Tomamos $L = [\sqrt{a_{11}}]$ con $\ell_{11} > 0$. Única.
 > 
-> **Paso inductivo:**
-> Supongamos cierto para $n-1$. Escribimos $A$ en bloques:
+> **Paso inductivo:** Supongamos cierto para $n-1$. Escribimos $A$ en bloques:
 > $$A = \begin{pmatrix} A_{11} & a \\ a^T & a_{nn} \end{pmatrix}$$
 > 
 > donde $A_{11} \in \mathbb{R}^{(n-1) \times (n-1)}$ es SDP (por ser submatriz principal de $A$).
@@ -108,8 +105,7 @@ La demostración anterior sugiere un algoritmo constructivo. Existen varias vers
 > 1. **Calcular elemento diagonal:**
 >    $$\ell_{kk} = \sqrt{a_{kk} - \sum_{p=1}^{k-1} \ell_{kp}^2}$$
 > 
-> 2. **Calcular elementos por debajo de la diagonal en la columna $k$:**
->    Para $i = k+1, \dots, n$:
+> 2. **Calcular elementos por debajo de la diagonal en la columna $k$:** Para $i = k+1, \dots, n$:
 >    $$\ell_{ik} = \frac{1}{\ell_{kk}} \left( a_{ik} - \sum_{p=1}^{k-1} \ell_{ip} \ell_{kp} \right)$$
 
 > [!algoritmo]
@@ -152,8 +148,7 @@ Ambas versiones son algebraicamente equivalentes y tienen el mismo costo computa
 ## Complejidad computacional
 
 > [!teorema]
-> **Costo de la factorización de Cholesky.**
-> La factorización de Cholesky requiere aproximadamente $\frac{1}{3}n^3$ FLOPs.
+> **Costo de la factorización de Cholesky.** La factorización de Cholesky requiere aproximadamente $\frac{1}{3}n^3$ FLOPs.
 > 
 > **Comparación:**
 > - [[Factorizacion LU|LU]] (Doolittle/Crout): $\frac{2}{3}n^3$ FLOPs.
@@ -192,8 +187,7 @@ Ambas versiones son algebraicamente equivalentes y tienen el mismo costo computa
 Una propiedad notable de Cholesky es su **estabilidad sin pivoteo**.
 
 > [!teorema]
-> **Estabilidad de Cholesky.**
-> Si $A$ es simétrica definida positiva, la factorización de Cholesky en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$ produce un factor calculado $\tilde{L}$ que satisface:
+> **Estabilidad de Cholesky.** Si $A$ es simétrica definida positiva, la factorización de Cholesky en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$ produce un factor calculado $\tilde{L}$ que satisface:
 > $$\tilde{L} \tilde{L}^T = A + \Delta A, \quad \|\Delta A\|_2 \leq c_n \cdot u \cdot \|A\|_2$$
 > donde $c_n$ es una constante moderada que depende de $n$.
 > 
@@ -249,8 +243,7 @@ Cholesky puede implementarse sobrescribiendo la mitad triangular inferior de $A$
 > ```
 
 > [!warning]
-> **Precaución numérica.**
-> En la práctica, se debe verificar que el radicando $a_{kk} - \sum \ell_{kp}^2$ sea positivo. Si es negativo o muy cercano a cero (salvo error de redondeo), la matriz no es numéricamente definida positiva, y Cholesky **fallará** con una raíz cuadrada de número negativo.
+> **Precaución numérica.** En la práctica, se debe verificar que el radicando $a_{kk} - \sum \ell_{kp}^2$ sea positivo. Si es negativo o muy cercano a cero (salvo error de redondeo), la matriz no es numéricamente definida positiva, y Cholesky **fallará** con una raíz cuadrada de número negativo.
 
 ---
 
@@ -271,8 +264,7 @@ Para matrices simétricas que **no son definidas positivas** (indefinidas o semi
 > 1. **Calcular elemento diagonal de $D$:**
 >    $$d_{kk} = a_{kk} - \sum_{p=1}^{k-1} \ell_{kp}^2 d_{pp}$$
 > 
-> 2. **Calcular columna $k$ de $L$ por debajo de la diagonal:**
->    Para $i = k+1, \dots, n$:
+> 2. **Calcular columna $k$ de $L$ por debajo de la diagonal:** Para $i = k+1, \dots, n$:
 >    $$\ell_{ik} = \frac{1}{d_{kk}} \left( a_{ik} - \sum_{p=1}^{k-1} \ell_{ip} \ell_{kp} d_{pp} \right)$$
 
 **Ventajas de $LDL^T$:**
@@ -311,8 +303,7 @@ Para matrices simétricas que **no son definidas positivas** (indefinidas o semi
 Para matrices simétricas indefinidas, $LDL^T$ sin pivoteo puede ser numéricamente inestable si algún $d_{kk}$ es muy pequeño.
 
 > [!info]
-> **Pivoteo simétrico.**
-> Para preservar la simetría, los intercambios deben aplicarse simultáneamente a filas y columnas:
+> **Pivoteo simétrico.** Para preservar la simetría, los intercambios deben aplicarse simultáneamente a filas y columnas:
 > $$P A P^T = L D L^T$$
 > donde $P$ es una matriz de permutación.
 
@@ -325,8 +316,7 @@ El algoritmo estándar es el de **Bunch-Kaufman**, que usa bloques $1 \times 1$ 
 Cuando $A$ es SDP y además tiene estructura de banda, el factor $L$ hereda la estructura.
 
 > [!proposicion]
-> **Cholesky para matrices banda.**
-> Si $A$ es SDP con ancho de banda $b$ ($a_{ij} = 0$ para $|i-j| > b$), entonces $L$ también tiene ancho de banda $b$.
+> **Cholesky para matrices banda.** Si $A$ es SDP con ancho de banda $b$ ($a_{ij} = 0$ para $|i-j| > b$), entonces $L$ también tiene ancho de banda $b$.
 > 
 > **Costo:** $O(n b^2)$ FLOPs, en lugar de $O(n^3)$.
 > 

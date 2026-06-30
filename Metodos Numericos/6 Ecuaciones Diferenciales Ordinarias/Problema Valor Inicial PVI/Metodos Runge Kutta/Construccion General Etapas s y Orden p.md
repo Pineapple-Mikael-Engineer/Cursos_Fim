@@ -1,5 +1,6 @@
 ---
 title: Construcción General — Etapas s y Orden p
+order: 1
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Relación entre Diferencias Divididas y Derivadas
+order: 3
 tags:
   - metodos-numericos
   - teoria

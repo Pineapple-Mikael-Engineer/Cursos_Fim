@@ -1,5 +1,6 @@
 ---
 title: Ajuste por Mínimos Cuadrados
+order: 3
 tags:
   - metodos-numericos
   - teoria

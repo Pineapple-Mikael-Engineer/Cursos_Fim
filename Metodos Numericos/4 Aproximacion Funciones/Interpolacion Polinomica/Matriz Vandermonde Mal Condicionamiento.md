@@ -1,5 +1,6 @@
 ---
 title: Matriz de Vandermonde y Mal Condicionamiento
+order: 2
 tags:
   - metodos-numericos
   - teoria

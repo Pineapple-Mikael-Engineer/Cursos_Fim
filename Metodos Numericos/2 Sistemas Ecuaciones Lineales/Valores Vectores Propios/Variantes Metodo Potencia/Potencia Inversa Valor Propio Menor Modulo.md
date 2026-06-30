@@ -1,5 +1,6 @@
 ---
 title: Potencia Inversa Valor Propio Menor Modulo
+order: 1
 tags:
   - metodos-numericos
   - teoria

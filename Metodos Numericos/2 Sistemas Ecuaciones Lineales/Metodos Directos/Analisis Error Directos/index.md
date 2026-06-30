@@ -1,5 +1,6 @@
 ---
 title: Análisis de Error en Métodos Directos
+order: 3
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Eliminacion Gaussiana
+order: 1
 tags:
   - metodos-numericos
   - teoria
@@ -30,8 +31,7 @@ El método, atribuido a Carl Friedrich Gauss (aunque usado siglos antes en China
 > 
 > $$A = \begin{pmatrix} 2 & 1 & -1 \\ -3 & -1 & 2 \\ -2 & 1 & 2 \end{pmatrix}, \quad b = \begin{pmatrix} 8 \\ -11 \\ -3 \end{pmatrix}$$
 > 
-> **Paso 1: Pivoteo parcial en columna 1.**
-> Mayor valor absoluto en columna 1: $|-3| = 3$ en fila 2. Intercambiar fila 1 y fila 2.
+> **Paso 1: Pivoteo parcial en columna 1.** Mayor valor absoluto en columna 1: $|-3| = 3$ en fila 2. Intercambiar fila 1 y fila 2.
 > 
 > Matriz aumentada después del intercambio:
 > $$\begin{pmatrix} -3 & -1 & 2 & | & -11 \\ 2 & 1 & -1 & | & 8 \\ -2 & 1 & 2 & | & -3 \end{pmatrix}$$
@@ -40,14 +40,12 @@ El método, atribuido a Carl Friedrich Gauss (aunque usado siglos antes en China
 > - $m_{21} = 2/(-3) = -2/3$
 > - $m_{31} = -2/(-3) = 2/3$
 > 
-> Fila 2: $(2, 1, -1, 8) - (-2/3)(-3, -1, 2, -11) = (0, 1/3, 1/3, 2/3)$
-> Fila 3: $(-2, 1, 2, -3) - (2/3)(-3, -1, 2, -11) = (0, 5/3, 2/3, 13/3)$
+> Fila 2: $(2, 1, -1, 8) - (-2/3)(-3, -1, 2, -11) = (0, 1/3, 1/3, 2/3)$ Fila 3: $(-2, 1, 2, -3) - (2/3)(-3, -1, 2, -11) = (0, 5/3, 2/3, 13/3)$
 > 
 > Matriz resultante:
 > $$\begin{pmatrix} -3 & -1 & 2 & | & -11 \\ 0 & 1/3 & 1/3 & | & 2/3 \\ 0 & 5/3 & 2/3 & | & 13/3 \end{pmatrix}$$
 > 
-> **Paso 3: Pivoteo parcial en columna 2.**
-> Mayor valor absoluto en subcolumna 2: $|5/3| = 5/3$ en fila 3. Intercambiar fila 2 y fila 3.
+> **Paso 3: Pivoteo parcial en columna 2.** Mayor valor absoluto en subcolumna 2: $|5/3| = 5/3$ en fila 3. Intercambiar fila 2 y fila 3.
 > 
 > Matriz después del intercambio:
 > $$\begin{pmatrix} -3 & -1 & 2 & | & -11 \\ 0 & 5/3 & 2/3 & | & 13/3 \\ 0 & 1/3 & 1/3 & | & 2/3 \end{pmatrix}$$
@@ -76,8 +74,7 @@ El algoritmo en su forma más simple asume que todos los pivotes $a_{kk}^{(k)}$ 
 > [!algoritmo]
 > **Eliminación Gaussiana sin pivoteo.**
 > 
-> **Entrada:** Matriz $A \in \mathbb{R}^{n \times n}$, vector $b \in \mathbb{R}^n$.
-> **Salida:** Vector solución $x \in \mathbb{R}^n$.
+> **Entrada:** Matriz $A \in \mathbb{R}^{n \times n}$, vector $b \in \mathbb{R}^n$. **Salida:** Vector solución $x \in \mathbb{R}^n$.
 > 
 > 1. Para $k = 1, 2, \dots, n-1$:
 >     - Para $i = k+1, \dots, n$:
@@ -162,8 +159,7 @@ Dado un sistema $Ax = b$ con $A \in \mathbb{R}^{n \times n}$ no singular, la eli
 2. **Fase de sustitución regresiva (back substitution):** Se resuelve $Ux = c$ desde $x_n$ hasta $x_1$.
 
 > [!teoria]
-> **Complejidad computacional.**
-> La eliminación Gaussiana requiere aproximadamente $\frac{2}{3}n^3 + O(n^2)$ operaciones de punto flotante. Este costo $O(n^3)$ la hace prohibitiva para sistemas extremadamente grandes ($n > 10^5$), donde se prefieren [[Metodos Iterativos|métodos iterativos]].
+> **Complejidad computacional.** La eliminación Gaussiana requiere aproximadamente $\frac{2}{3}n^3 + O(n^2)$ operaciones de punto flotante. Este costo $O(n^3)$ la hace prohibitiva para sistemas extremadamente grandes ($n > 10^5$), donde se prefieren [[Metodos Iterativos|métodos iterativos]].
 
 ---
 
@@ -186,8 +182,7 @@ El análisis detallado del factor de crecimiento y las cotas de error se desarro
 La eliminación Gaussiana está íntimamente ligada a la [[Factorizacion LU]].
 
 > [!proposicion]
-> **Equivalencia con LU.**
-> Los multiplicadores $m_{ik}$ generados durante la eliminación forman una matriz triangular inferior unitaria $L$ tal que:
+> **Equivalencia con LU.** Los multiplicadores $m_{ik}$ generados durante la eliminación forman una matriz triangular inferior unitaria $L$ tal que:
 > $$A = L U$$
 > donde $U$ es la matriz triangular superior resultante de la eliminación.
 > 
@@ -205,14 +200,12 @@ Esta conexión es fundamental porque:
 El error en la solución calculada $\tilde{x}$ por eliminación Gaussiana con pivoteo parcial satisface una cota de error hacia atrás.
 
 > [!teorema]
-> **Estabilidad hacia atrás (Wilkinson, 1961).**
-> Sea $\tilde{x}$ la solución calculada mediante eliminación Gaussiana con pivoteo parcial en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$. Entonces $\tilde{x}$ es la solución exacta de un sistema perturbado:
+> **Estabilidad hacia atrás (Wilkinson, 1961).** Sea $\tilde{x}$ la solución calculada mediante eliminación Gaussiana con pivoteo parcial en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$. Entonces $\tilde{x}$ es la solución exacta de un sistema perturbado:
 > $$(A + \Delta A)\tilde{x} = b, \quad \|\Delta A\|_\infty \leq \rho \cdot u \cdot \|A\|_\infty$$
 > donde $\rho$ es el **factor de crecimiento**.
 
 > [!corolario]
-> **Error hacia adelante.**
-> Combinando con el [[Condicionamiento Numerico Numero Condicion|número de condición]] $\kappa_\infty(A)$:
+> **Error hacia adelante.** Combinando con el [[Condicionamiento Numerico Numero Condicion|número de condición]] $\kappa_\infty(A)$:
 > $$\frac{\|\tilde{x} - x\|_\infty}{\|x\|_\infty} \leq \frac{\rho \cdot u \cdot \kappa_\infty(A)}{1 - \rho \cdot u \cdot \kappa_\infty(A)}$$
 > 
 > Para matrices bien condicionadas ($\kappa \approx 1$) y pivoteo parcial ($\rho$ moderado), la eliminación Gaussiana produce soluciones con precisión cercana a $u$.

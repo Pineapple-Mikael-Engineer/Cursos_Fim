@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones Normales y Matriz de Gram
+order: 2
 tags:
   - metodos-numericos
   - teoria

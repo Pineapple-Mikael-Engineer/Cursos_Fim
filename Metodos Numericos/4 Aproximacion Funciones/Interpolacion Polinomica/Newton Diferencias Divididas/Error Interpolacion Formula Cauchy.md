@@ -1,5 +1,6 @@
 ---
 title: Error de Interpolación y Fórmula de Cauchy
+order: 4
 tags:
   - metodos-numericos
   - teoria

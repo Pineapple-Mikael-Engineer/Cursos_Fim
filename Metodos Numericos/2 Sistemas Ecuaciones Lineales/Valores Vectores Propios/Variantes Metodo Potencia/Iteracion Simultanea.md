@@ -1,5 +1,6 @@
 ---
 title: Iteracion Simultanea
+order: 3
 tags:
   - metodos-numericos
   - teoria
@@ -46,8 +47,7 @@ aliases:
 > Ortonormalizando:
 > $$Y^{(2)} \approx \begin{pmatrix} 0.707 & -0.408 \\ 0.707 & 0.408 \\ 0.141 & 0.816 \end{pmatrix}$$
 >
-> **Iteración 3:**
-> Después de ortonormalizar, las columnas de $Y^{(3)}$ convergen a los autovectores dominantes:
+> **Iteración 3:** Después de ortonormalizar, las columnas de $Y^{(3)}$ convergen a los autovectores dominantes:
 > - Columna 1: autovector de $\lambda_1 \approx (0.5, 0.707, 0.5)^T$
 > - Columna 2: autovector de $\lambda_2 \approx (0.707, 0, -0.707)^T$
 >

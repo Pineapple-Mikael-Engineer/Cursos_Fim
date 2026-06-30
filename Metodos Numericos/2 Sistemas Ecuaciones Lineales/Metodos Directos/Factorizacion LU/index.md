@@ -1,5 +1,6 @@
 ---
 title: Factorizacion LU
+order: 2
 tags:
   - metodos-numericos
   - teoria
@@ -56,8 +57,7 @@ El algoritmo básico es esencialmente la eliminación Gaussiana, pero **almacena
 > [!algoritmo]
 > **Factorización LU in-place (sin pivoteo).**
 > 
-> **Entrada:** Matriz $A \in \mathbb{R}^{n \times n}$.
-> **Salida:** Matriz $A$ modificada: parte triangular superior contiene $U$, parte estrictamente inferior contiene los multiplicadores $m_{ik}$ de $L$ (los unos de la diagonal de $L$ no se almacenan).
+> **Entrada:** Matriz $A \in \mathbb{R}^{n \times n}$. **Salida:** Matriz $A$ modificada: parte triangular superior contiene $U$, parte estrictamente inferior contiene los multiplicadores $m_{ik}$ de $L$ (los unos de la diagonal de $L$ no se almacenan).
 > 
 > 1. Para $k = 1, 2, \dots, n-1$:
 >     - Para $i = k+1, \dots, n$:
@@ -68,8 +68,7 @@ El algoritmo básico es esencialmente la eliminación Gaussiana, pero **almacena
 > [!algoritmo]
 > **Resolución de $Ax = b$ vía LU (con permutación).**
 > 
-> **Entrada:** Factores $L$, $U$, vector de permutación $\text{piv}$, lado derecho $b$.
-> **Salida:** Solución $x$.
+> **Entrada:** Factores $L$, $U$, vector de permutación $\text{piv}$, lado derecho $b$. **Salida:** Solución $x$.
 > 
 > 2. **Aplicar permutación:** $b \leftarrow P b$ (reordenar según $\text{piv}$).
 > 3. **Sustitución progresiva:** Resolver $L y = b$ para $y$.
@@ -123,8 +122,7 @@ El algoritmo básico es esencialmente la eliminación Gaussiana, pero **almacena
 La [[Eliminacion Gaussiana]] resuelve $Ax = b$ en $O(n^3)$ operaciones. Pero si se necesita resolver para **múltiples lados derechos** $b_1, b_2, \dots, b_m$, repetir la eliminación desde cero costaría $O(m n^3)$.
 
 > [!proposicion]
-> **Ventaja fundamental de LU.**
-> Resolver $m$ sistemas con la misma matriz $A$ cuesta:
+> **Ventaja fundamental de LU.** Resolver $m$ sistemas con la misma matriz $A$ cuesta:
 > - Eliminación Gaussiana repetida: $\frac{2}{3}m n^3$ FLOPs.
 > - Factorización LU + $m$ sustituciones: $\frac{2}{3}n^3 + m n^2$ FLOPs.
 > 
@@ -137,16 +135,13 @@ El análisis detallado del costo computacional se desarrolla en [[Conteo Operaci
 ## Existencia y unicidad (sin pivoteo)
 
 > [!teorema]
-> **Condiciones de existencia.**
-> Una matriz $A \in \mathbb{R}^{n \times n}$ admite factorización LU (sin pivoteo) si y solo si todos sus **menores principales líderes** son no singulares:
+> **Condiciones de existencia.** Una matriz $A \in \mathbb{R}^{n \times n}$ admite factorización LU (sin pivoteo) si y solo si todos sus **menores principales líderes** son no singulares:
 > $$\det(A_{1:k, 1:k}) \neq 0, \quad k = 1, 2, \dots, n-1$$
 > 
 > Bajo esta condición, la factorización $A = LU$ con $L$ unitaria es **única**.
 
 > [!warning]
-> **¿Qué matrices NO admiten LU sin pivoteo?**
-> Ejemplo clásico: $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.
-> El menor principal líder $A_{1:1, 1:1} = 0$, por lo que no existe LU sin pivoteo. Sin embargo, $P A = L U$ con $P = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ sí existe.
+> **¿Qué matrices NO admiten LU sin pivoteo?** Ejemplo clásico: $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. El menor principal líder $A_{1:1, 1:1} = 0$, por lo que no existe LU sin pivoteo. Sin embargo, $P A = L U$ con $P = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ sí existe.
 
 La demostración completa y el análisis detallado se tratan en [[Existencia Unicidad LU Matrices No Singulares]].
 

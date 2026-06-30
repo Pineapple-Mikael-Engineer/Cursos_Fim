@@ -1,5 +1,6 @@
 ---
 title: Conteo Operaciones Complejidad O n3
+order: 2
 tags:
   - metodos-numericos
   - teoria
@@ -153,8 +154,7 @@ Este costo $O(n^3)$ adicional **duplica** el tiempo de ejecución, razón por la
 | [[Determinante y Matriz Inversa \|Inversa explícita]] | $n^3$ | Rara vez necesaria; mejor resolver sistema |
 
 > [!warning]
-> **Nunca calcular $A^{-1}$ para resolver $Ax = b$.**
-> Calcular $A^{-1}$ requiere $\approx n^3$ FLOPs y luego $x = A^{-1}b$ requiere $n^2$. Resolver directamente con eliminación Gaussiana o LU cuesta $\frac{2}{3}n^3$ y es numéricamente más estable.
+> **Nunca calcular $A^{-1}$ para resolver $Ax = b$.** Calcular $A^{-1}$ requiere $\approx n^3$ FLOPs y luego $x = A^{-1}b$ requiere $n^2$. Resolver directamente con eliminación Gaussiana o LU cuesta $\frac{2}{3}n^3$ y es numéricamente más estable.
 
 ---
 
@@ -257,8 +257,7 @@ Para matrices dispersas grandes ($n > 10^5$, nnz $\ll n^2$), los métodos iterat
 ## Conteo de operaciones en la práctica
 
 > [!warning]
-> **FLOPs teóricos vs. rendimiento real.**
-> El conteo de FLOPs es una **cota inferior ideal**. En la práctica, el rendimiento está limitado por:
+> **FLOPs teóricos vs. rendimiento real.** El conteo de FLOPs es una **cota inferior ideal**. En la práctica, el rendimiento está limitado por:
 > 1. **Jerarquía de memoria:** Accesos a RAM son $\approx 100\times$ más lentos que operaciones en caché.
 > 2. **Vectorización:** Uso de instrucciones SIMD (AVX, SSE) puede acelerar $4\times$-$8\times$.
 > 3. **Paralelismo:** Multi-hilos y GPUs pueden reducir el tiempo en órdenes de magnitud.
@@ -318,5 +317,4 @@ El conteo de operaciones guía la elección del método numérico según el tama
 | $n$ cualquiera | Banda estrecha | Eliminación Gaussiana para banda $O(n b^2)$ |
 
 > [!corolario]
-> **Regla de oro.**
-> Conocer la complejidad $O(n^3)$ de la eliminación Gaussiana permite anticipar si un problema es computacionalmente viable. Para $n > 10^4$, la resolución densa comienza a ser costosa; para $n > 10^5$, es prohibitiva sin hardware especializado o explotación de estructura dispersa.
+> **Regla de oro.** Conocer la complejidad $O(n^3)$ de la eliminación Gaussiana permite anticipar si un problema es computacionalmente viable. Para $n > 10^4$, la resolución densa comienza a ser costosa; para $n > 10^5$, es prohibitiva sin hardware especializado o explotación de estructura dispersa.

@@ -1,5 +1,6 @@
 ---
 title: Grado de Exactitud Polinómica 2n−1
+order: 3
 tags:
   - metodos-numericos
   - teoria
@@ -33,8 +34,7 @@ aliases:
 > $$p(x) = q(x)P_n(x) + r(x), \qquad \deg q,\ \deg r \leq n-1.$$
 > **Integral exacta:**
 > $$\int_{-1}^1 p\,dx = \int_{-1}^1 q P_n\,dx + \int_{-1}^1 r\,dx = 0 + \int_{-1}^1 r\,dx,$$
-> donde $\int q P_n = 0$ por [[Fundamentos Gauss Legendre Polinomios Ortogonales|ortogonalidad]] ($\deg q < n$).
-> **Suma de cuadratura:** en los nodos $P_n(x_i) = 0$, así que $p(x_i) = r(x_i)$. Luego
+> donde $\int q P_n = 0$ por [[Fundamentos Gauss Legendre Polinomios Ortogonales|ortogonalidad]] ($\deg q < n$). **Suma de cuadratura:** en los nodos $P_n(x_i) = 0$, así que $p(x_i) = r(x_i)$. Luego
 > $$\sum_i w_i p(x_i) = \sum_i w_i r(x_i) = \int_{-1}^1 r\,dx,$$
 > porque la regla es exacta para $r$ (grado $\leq n-1$, por construcción de los pesos). Ambas expresiones coinciden con $\int r$, luego son iguales. $\blacksquare$
 

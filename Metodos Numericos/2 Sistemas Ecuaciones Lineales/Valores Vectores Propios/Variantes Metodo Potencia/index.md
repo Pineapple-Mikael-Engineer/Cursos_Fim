@@ -1,5 +1,6 @@
 ---
 title: Variantes Metodo Potencia
+order: 2
 tags:
   - metodos-numericos
   - teoria

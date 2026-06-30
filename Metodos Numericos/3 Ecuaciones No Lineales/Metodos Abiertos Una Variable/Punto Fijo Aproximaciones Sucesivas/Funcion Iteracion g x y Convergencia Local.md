@@ -1,5 +1,6 @@
 ---
 title: Funcion Iteracion g x y Convergencia Local
+order: 2
 tags:
   - metodos-numericos
   - teoria

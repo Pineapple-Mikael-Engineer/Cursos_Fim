@@ -1,5 +1,6 @@
 ---
 title: Convergencia y Estabilidad frente a Polinomios de Grado Alto
+order: 5
 tags:
   - metodos-numericos
   - teoria

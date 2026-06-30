@@ -1,5 +1,6 @@
 ---
 title: Determinación de Nodos y Pesos Óptimos
+order: 2
 tags:
   - metodos-numericos
   - teoria

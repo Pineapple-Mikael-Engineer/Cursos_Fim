@@ -1,5 +1,6 @@
 ---
 title: Newton con Diferencias Divididas
+order: 4
 tags:
   - metodos-numericos
   - teoria

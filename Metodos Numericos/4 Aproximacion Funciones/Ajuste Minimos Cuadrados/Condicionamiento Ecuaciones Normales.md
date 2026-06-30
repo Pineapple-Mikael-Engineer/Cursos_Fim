@@ -1,5 +1,6 @@
 ---
 title: Condicionamiento de las Ecuaciones Normales
+order: 3
 tags:
   - metodos-numericos
   - teoria

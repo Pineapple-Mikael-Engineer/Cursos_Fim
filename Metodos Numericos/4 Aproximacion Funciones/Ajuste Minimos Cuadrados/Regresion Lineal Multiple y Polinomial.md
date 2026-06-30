@@ -1,5 +1,6 @@
 ---
 title: Regresión Lineal Múltiple y Polinomial
+order: 4
 tags:
   - metodos-numericos
   - teoria

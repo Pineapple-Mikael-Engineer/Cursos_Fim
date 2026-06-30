@@ -1,5 +1,6 @@
 ---
 title: Trapecio Compuesto y Convergencia O(h²)
+order: 1
 tags:
   - metodos-numericos
   - teoria

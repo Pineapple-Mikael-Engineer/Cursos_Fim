@@ -1,5 +1,6 @@
 ---
 title: Residuo vs Error Relativo de la Solución
+order: 1
 tags:
   - metodos-numericos
   - teoria

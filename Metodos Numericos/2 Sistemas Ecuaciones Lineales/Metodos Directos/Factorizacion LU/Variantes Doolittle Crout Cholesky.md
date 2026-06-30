@@ -1,5 +1,6 @@
 ---
 title: Variantes Doolittle Crout Cholesky
+order: 2
 tags:
   - metodos-numericos
   - teoria
@@ -339,8 +340,7 @@ En la factorización de Cholesky, se busca $A = L L^T$ con:
 > ```
 
 > [!warning]
-> **Estabilidad numérica en Cholesky.**
-> El cálculo de la raíz cuadrada requiere que el argumento sea positivo. En aritmética de punto flotante pueden aparecer valores negativos muy pequeños debido a error de redondeo, indicando que la matriz no es SPD (o está mal condicionada). Para estos casos existe la variante $LDL^T$ que evita raíces cuadradas (ver [[Factorizacion Cholesky Matrices Definidas Positivas]]).
+> **Estabilidad numérica en Cholesky.** El cálculo de la raíz cuadrada requiere que el argumento sea positivo. En aritmética de punto flotante pueden aparecer valores negativos muy pequeños debido a error de redondeo, indicando que la matriz no es SPD (o está mal condicionada). Para estos casos existe la variante $LDL^T$ que evita raíces cuadradas (ver [[Factorizacion Cholesky Matrices Definidas Positivas]]).
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Condicionamiento Numerico Numero Condicion
+order: 4
 tags:
   - metodos-numericos
   - teoria
@@ -27,8 +28,7 @@ El condicionamiento es una propiedad **intrínseca del problema matemático**, i
 Dado un sistema lineal $Ax = b$ con $A \in \mathbb{R}^{n \times n}$ no singular, interesa cuantificar cómo varía la solución $x$ cuando se perturban la matriz $A$ o el vector $b$.
 
 > [!teorema]
-> **Número de condición de una matriz.**
-> Sea $\| \cdot \|$ una [[Normas Matriciales Inducidas|norma matricial inducida]]. El **número de condición** de $A$ respecto a esa norma se define como:
+> **Número de condición de una matriz.** Sea $\| \cdot \|$ una [[Normas Matriciales Inducidas|norma matricial inducida]]. El **número de condición** de $A$ respecto a esa norma se define como:
 > $$\kappa(A) = \|A\| \cdot \|A^{-1}\|$$
 > 
 > Por convención, si $A$ es singular, $\kappa(A) = \infty$.
@@ -44,8 +44,7 @@ donde $\sigma_{\max}$ y $\sigma_{\min}$ son los valores singulares máximo y mí
 Consideremos perturbaciones en el vector de términos independientes $b$.
 
 > [!teorema]
-> **Sensibilidad respecto a perturbaciones en $b$.**
-> Sea $Ax = b$ y $A(x + \Delta x) = b + \Delta b$. Entonces:
+> **Sensibilidad respecto a perturbaciones en $b$.** Sea $Ax = b$ y $A(x + \Delta x) = b + \Delta b$. Entonces:
 > $$\frac{\|\Delta x\|}{\|x\|} \leq \kappa(A) \cdot \frac{\|\Delta b\|}{\|b\|}$$
 > 
 > El número de condición $\kappa(A)$ actúa como factor de amplificación del error relativo en los datos.
@@ -63,8 +62,7 @@ Consideremos perturbaciones en el vector de términos independientes $b$.
 > $$\frac{\|\Delta x\|}{\|x\|} \leq \|A^{-1}\| \cdot \|\Delta b\| \cdot \frac{\|A\|}{\|b\|} = \kappa(A) \cdot \frac{\|\Delta b\|}{\|b\|}$$
 
 > [!teorema]
-> **Sensibilidad respecto a perturbaciones en $A$.**
-> Sea $(A + \Delta A)(x + \Delta x) = b$. Para perturbaciones suficientemente pequeñas tales que $\|\Delta A\| < 1 / \|A^{-1}\|$:
+> **Sensibilidad respecto a perturbaciones en $A$.** Sea $(A + \Delta A)(x + \Delta x) = b$. Para perturbaciones suficientemente pequeñas tales que $\|\Delta A\| < 1 / \|A^{-1}\|$:
 > $$\frac{\|\Delta x\|}{\|x\|} \leq \frac{\kappa(A)}{1 - \kappa(A)\frac{\|\Delta A\|}{\|A\|}} \cdot \frac{\|\Delta A\|}{\|A\|}$$
 > 
 > Para perturbaciones infinitesimales ($\|\Delta A\| \to 0$), la cota se aproxima a $\kappa(A) \cdot \frac{\|\Delta A\|}{\|A\|}$.
@@ -100,8 +98,7 @@ Consideremos perturbaciones en el vector de términos independientes $b$.
 ## Interpretación geométrica
 
 > [!teoria]
-> **Interpretación mediante [[Valores Singulares y Descomposicion SVD|valores singulares]].**
-> La matriz $A$ mapea la esfera unitaria en un hiperelipsoide. Los semiejes de este elipsoide tienen longitudes $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_n > 0$.
+> **Interpretación mediante [[Valores Singulares y Descomposicion SVD|valores singulares]].** La matriz $A$ mapea la esfera unitaria en un hiperelipsoide. Los semiejes de este elipsoide tienen longitudes $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_n > 0$.
 > 
 > El número de condición $\kappa_2(A) = \sigma_1 / \sigma_n$ es el cociente entre el semieje mayor y el menor.
 > 
@@ -161,14 +158,12 @@ Esta interpretación explica por qué sistemas mal condicionados son sensibles a
 El condicionamiento determina el **límite inferior** del error que cualquier algoritmo puede alcanzar.
 
 > [!teorema]
-> **Cota de error para algoritmos estables.**
-> Si se resuelve $Ax = b$ mediante un algoritmo numéricamente estable (como [[Eliminacion Gaussiana]] con [[Pivoteo Parcial Total Estabilidad|pivoteo parcial]]) en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$, la solución calculada $\tilde{x}$ satisface aproximadamente:
+> **Cota de error para algoritmos estables.** Si se resuelve $Ax = b$ mediante un algoritmo numéricamente estable (como [[Eliminacion Gaussiana]] con [[Pivoteo Parcial Total Estabilidad|pivoteo parcial]]) en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$, la solución calculada $\tilde{x}$ satisface aproximadamente:
 > $$\frac{\|\tilde{x} - x\|}{\|x\|} \lesssim \kappa(A) \cdot u \cdot \rho$$
 > donde $\rho$ es el **factor de crecimiento** de los elementos durante la eliminación. Para pivoteo parcial, $\rho$ típicamente es $O(1)$ o crece lentamente con $n$.
 
 > [!warning]
-> **Regla práctica fundamental.**
-> La solución numérica de un sistema lineal con aritmética de precisión $u$ tendrá aproximadamente:
+> **Regla práctica fundamental.** La solución numérica de un sistema lineal con aritmética de precisión $u$ tendrá aproximadamente:
 > $$\text{dígitos correctos} \approx -\log_{10}(u) - \log_{10}(\kappa(A))$$
 > 
 > Para precisión doble ($u \approx 10^{-16}$) y $\kappa(A) = 10^8$, solo se obtienen $\approx 8$ dígitos correctos, **independientemente del algoritmo**.
@@ -232,8 +227,7 @@ El concepto de condicionamiento se extiende a todos los problemas del análisis 
 > Un problema mal condicionado **no tiene solución numérica precisa**, sin importar cuán estable sea el algoritmo. Un algoritmo inestable **arruina** la solución incluso para problemas bien condicionados.
 
 > [!info]
-> **Regla de Wilkinson:**
-> *"Un algoritmo numéricamente estable aplicado a un problema bien condicionado produce una solución precisa. Un algoritmo inestable aplicado a un problema bien condicionado produce basura. Ningún algoritmo puede rescatar un problema mal condicionado."*
+> **Regla de Wilkinson:** *"Un algoritmo numéricamente estable aplicado a un problema bien condicionado produce una solución precisa. Un algoritmo inestable aplicado a un problema bien condicionado produce basura. Ningún algoritmo puede rescatar un problema mal condicionado."*
 
 Esta distinción es fundamental para diagnosticar fuentes de error en cálculos numéricos y guía el diseño de [[Estabilidad Algoritmos Forward Backward|algoritmos estables]].
 
@@ -244,8 +238,7 @@ Esta distinción es fundamental para diagnosticar fuentes de error en cálculos 
 En la resolución iterativa de sistemas lineales ([[Jacobi]], [[Gauss Seidel]], [[Gradiente Conjugado]]), la velocidad de convergencia depende críticamente de $\kappa(A)$.
 
 > [!teoria]
-> **Convergencia de métodos iterativos.**
-> Para el [[Gradiente Conjugado|método del gradiente conjugado]], el error en la iteración $k$ satisface:
+> **Convergencia de métodos iterativos.** Para el [[Gradiente Conjugado|método del gradiente conjugado]], el error en la iteración $k$ satisface:
 > $$\frac{\|x_k - x^*\|_A}{\|x_0 - x^*\|_A} \leq 2 \left( \frac{\sqrt{\kappa_2(A)} - 1}{\sqrt{\kappa_2(A)} + 1} \right)^k$$
 > 
 > Un $\kappa_2(A)$ grande implica convergencia lenta.

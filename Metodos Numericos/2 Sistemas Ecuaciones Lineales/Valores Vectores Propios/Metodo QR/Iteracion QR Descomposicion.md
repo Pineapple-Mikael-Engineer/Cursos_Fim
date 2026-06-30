@@ -1,5 +1,6 @@
 ---
 title: Iteración QR y Descomposición
+order: 2
 tags:
   - metodos-numericos
   - teoria

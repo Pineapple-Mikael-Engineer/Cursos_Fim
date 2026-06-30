@@ -1,5 +1,6 @@
 ---
 title: Teorema Stein-Rosenberg
+order: 3
 tags:
   - metodos-numericos
   - teoria

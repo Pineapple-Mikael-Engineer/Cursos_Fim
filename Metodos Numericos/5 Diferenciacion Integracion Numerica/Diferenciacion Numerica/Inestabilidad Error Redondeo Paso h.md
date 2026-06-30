@@ -1,5 +1,6 @@
 ---
 title: Inestabilidad y Error de Redondeo en el Paso h
+order: 4
 tags:
   - metodos-numericos
   - teoria

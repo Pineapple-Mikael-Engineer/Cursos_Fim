@@ -1,5 +1,6 @@
 ---
 title: Costo Computacional vs Eliminacion Gaussiana
+order: 4
 tags:
   - metodos-numericos
   - teoria
@@ -36,8 +37,7 @@ Del análisis detallado en [[Conteo Operaciones Complejidad O n3]], tenemos los 
 | **Sustitución regresiva** ($Ux = y$) | $n^2$ |
 
 > [!info]
-> **Observación clave:**
-> La factorización LU tiene el mismo costo asintótico que una eliminación Gaussiana completa. La diferencia radica en que la factorización **separa** la parte costosa ($O(n^3)$) de la parte barata ($O(n^2)$).
+> **Observación clave:** La factorización LU tiene el mismo costo asintótico que una eliminación Gaussiana completa. La diferencia radica en que la factorización **separa** la parte costosa ($O(n^3)$) de la parte barata ($O(n^2)$).
 
 ---
 
@@ -67,8 +67,7 @@ Cuando se necesita resolver $Ax = b_i$ para $m$ vectores $b_i$ **diferentes**, l
 | Factorización LU una vez + $m$ pares de sustituciones | $\frac{2}{3}n^3 + m \cdot 2n^2$ |
 
 > [!teorema]
-> **Punto de equilibrio.**
-> La factorización LU es más eficiente que la eliminación Gaussiana repetida cuando:
+> **Punto de equilibrio.** La factorización LU es más eficiente que la eliminación Gaussiana repetida cuando:
 > $$\frac{2}{3}n^3 + 2m n^2 < m \cdot \frac{2}{3}n^3$$
 > 
 > Simplificando para $n$ grande:
@@ -103,8 +102,7 @@ Si $A$ es simétrica definida positiva, se puede usar la [[Factorizacion Cholesk
 | **Cholesky + $m$ sustituciones** | $\frac{1}{3}n^3$ | $2n^2$ |
 
 > [!proposicion]
-> **Ventaja de Cholesky.**
-> Para matrices SDP, Cholesky no solo es más estable, sino que reduce el costo de factorización a la **mitad** respecto a LU.
+> **Ventaja de Cholesky.** Para matrices SDP, Cholesky no solo es más estable, sino que reduce el costo de factorización a la **mitad** respecto a LU.
 > 
 > **Ahorro adicional:** Factor $\approx 2\times$ sobre LU en la fase de factorización.
 
@@ -145,8 +143,7 @@ Además del tiempo de cómputo, el almacenamiento es un factor crítico para pro
 | Factorización Cholesky in-place | $n(n+1)/2$ (solo mitad triangular) |
 
 > [!warning]
-> **Factorización explícita vs. in-place.**
-> Si se requiere conservar la matriz original $A$, se debe hacer una copia ($+n^2$ memoria). Las implementaciones in-place modifican $A$, ahorrando memoria pero destruyendo la matriz original.
+> **Factorización explícita vs. in-place.** Si se requiere conservar la matriz original $A$, se debe hacer una copia ($+n^2$ memoria). Las implementaciones in-place modifican $A$, ahorrando memoria pero destruyendo la matriz original.
 
 ---
 
@@ -210,5 +207,4 @@ El costo de la factorización LU domina sobre otras operaciones matriciales comu
 | Cálculo de inversa vía LU | $\frac{8}{3}n^3$ | $4\times$ más caro que LU |
 
 > [!corolario]
-> **Regla de oro.**
-> Nunca calcular $A^{-1}$ explícitamente para resolver $Ax = b$. Factorizar LU y resolver por sustituciones es $\approx 4\times$ más rápido y numéricamente más estable.
+> **Regla de oro.** Nunca calcular $A^{-1}$ explícitamente para resolver $Ax = b$. Factorizar LU y resolver por sustituciones es $\approx 4\times$ más rápido y numéricamente más estable.

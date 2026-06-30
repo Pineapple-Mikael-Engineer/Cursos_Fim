@@ -1,5 +1,6 @@
 ---
 title: Metodos Iterativos
+order: 2
 tags:
   - metodos-numericos
   - teoria

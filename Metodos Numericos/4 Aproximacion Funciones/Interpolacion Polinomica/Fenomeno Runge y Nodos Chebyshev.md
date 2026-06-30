@@ -1,5 +1,6 @@
 ---
 title: Fenómeno de Runge y Nodos de Chebyshev
+order: 5
 tags:
   - metodos-numericos
   - teoria

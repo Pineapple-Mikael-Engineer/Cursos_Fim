@@ -1,5 +1,6 @@
 ---
 title: Interpolación por Tramos (Splines)
+order: 2
 tags:
   - metodos-numericos
   - teoria

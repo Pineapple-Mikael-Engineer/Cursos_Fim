@@ -1,5 +1,6 @@
 ---
 title: Regla de Simpson 1/3 y Error de Cuarta Derivada
+order: 2
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Forma Anidada y Eficiencia del Algoritmo de Horner
+order: 2
 tags:
   - metodos-numericos
   - teoria

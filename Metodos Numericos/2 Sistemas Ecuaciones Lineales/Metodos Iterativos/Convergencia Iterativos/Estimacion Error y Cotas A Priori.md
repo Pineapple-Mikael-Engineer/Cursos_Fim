@@ -1,5 +1,6 @@
 ---
 title: Estimación de Error y Cotas A Priori
+order: 4
 tags:
   - metodos-numericos
   - teoria

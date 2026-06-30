@@ -1,5 +1,6 @@
 ---
 title: Caso Simétrico y Convergencia Acelerada
+order: 4
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Método de la Secante y Orden de Convergencia φ
+order: 5
 tags:
   - metodos-numericos
   - teoria

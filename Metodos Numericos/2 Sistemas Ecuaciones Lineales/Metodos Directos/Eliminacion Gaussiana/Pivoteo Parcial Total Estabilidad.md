@@ -1,5 +1,6 @@
 ---
 title: Pivoteo Parcial Total Estabilidad
+order: 1
 tags:
   - metodos-numericos
   - teoria
@@ -66,8 +67,7 @@ Este ejemplo muestra que un pivote minúsculo ($10^{-20}$) genera multiplicadore
 > 4. No requiere conocer la matriz completa a priori (aplicable en eliminación *in-place*).
 
 > [!teoria]
-> **Análisis de error hacia atrás para pivoteo parcial.**
-> Si se aplica [[Eliminacion Gaussiana]] con pivoteo parcial en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$, los factores calculados $\tilde{L}$ y $\tilde{U}$ satisfacen:
+> **Análisis de error hacia atrás para pivoteo parcial.** Si se aplica [[Eliminacion Gaussiana]] con pivoteo parcial en aritmética con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$, los factores calculados $\tilde{L}$ y $\tilde{U}$ satisfacen:
 > $$\tilde{L}\tilde{U} = A + \Delta A, \quad \|\Delta A\|_\infty \leq \rho \cdot u \cdot \|A\|_\infty$$
 > donde $\rho$ es el **factor de crecimiento** definido como:
 > $$\rho = \frac{\max_{i,j,k} |a_{i,j}^{(k)}|}{\max_{i,j} |a_{i,j}|}$$
@@ -76,8 +76,7 @@ Este ejemplo muestra que un pivote minúsculo ($10^{-20}$) genera multiplicadore
 El factor de crecimiento $\rho$ mide cuánto crecen los elementos de la matriz durante el proceso. Para pivoteo parcial, $\rho \leq 2^{n-1}$ en el peor caso teórico, pero en la práctica rara vez excede $n$ o $10$-$100$.
 
 > [!warning]
-> **¿Puede fallar el pivoteo parcial?**
-> Existen ejemplos patológicos (como ciertas matrices de [[Matriz de Wilkinson|Wilkinson]]) donde $\rho \approx 2^{n-1}$, causando pérdida total de precisión. Sin embargo, estas matrices son extremadamente raras en aplicaciones prácticas. El pivoteo parcial es el método por defecto en bibliotecas como LAPACK (`dgetrf`).
+> **¿Puede fallar el pivoteo parcial?** Existen ejemplos patológicos (como ciertas matrices de [[Matriz de Wilkinson|Wilkinson]]) donde $\rho \approx 2^{n-1}$, causando pérdida total de precisión. Sin embargo, estas matrices son extremadamente raras en aplicaciones prácticas. El pivoteo parcial es el método por defecto en bibliotecas como LAPACK (`dgetrf`).
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Punto Fijo Aproximaciones Sucesivas
+order: 1
 tags:
   - metodos-numericos
   - teoria

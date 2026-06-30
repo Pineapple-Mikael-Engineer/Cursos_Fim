@@ -1,5 +1,6 @@
 ---
 title: Regula Falsi
+order: 2
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: RK2 — Heun, Euler Modificado y Punto Medio
+order: 2
 tags:
   - metodos-numericos
   - teoria

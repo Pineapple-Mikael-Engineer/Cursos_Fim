@@ -1,5 +1,6 @@
 ---
 title: Integración Numérica de Newton-Cotes
+order: 2
 tags:
   - metodos-numericos
   - teoria

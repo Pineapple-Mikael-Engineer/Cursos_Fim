@@ -1,5 +1,6 @@
 ---
 title: Condiciones de Continuidad C² y Sistema Tridiagonal
+order: 3
 tags:
   - metodos-numericos
   - teoria
