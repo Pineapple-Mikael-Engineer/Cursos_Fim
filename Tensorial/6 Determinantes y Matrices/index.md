@@ -1,5 +1,6 @@
 ---
 title: Determinantes y Matrices
+order: 7
 tags:
   - analisis-tensorial
   - teoria

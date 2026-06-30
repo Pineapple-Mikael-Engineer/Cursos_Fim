@@ -1,5 +1,6 @@
 ---
 title: Teorema de Helmholtz
+order: 4
 tags:
   - analisis-tensorial
   - teoria

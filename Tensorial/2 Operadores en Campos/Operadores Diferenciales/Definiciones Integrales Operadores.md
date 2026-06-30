@@ -1,5 +1,6 @@
 ---
 title: Definiciones Integrales de los Operadores
+order: 5
 tags:
   - analisis-tensorial
   - teoria

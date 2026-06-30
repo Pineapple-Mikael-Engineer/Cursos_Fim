@@ -1,5 +1,6 @@
 ---
 title: Tensor Metrico
+order: 2
 tags:
   - analisis-tensorial
   - teoria
@@ -41,8 +42,7 @@ aliases:
 > $$\vec A\cdot\vec B=A'^iB'^jM_{ij}=A'^1B'^1\cdot1+A'^2B'^2\cdot1+(A'^1B'^2+A'^2B'^1)\cdot\tfrac12.$$
 > $$=3\cdot1+8\cdot1+(12+2)\cdot\tfrac12=3+8+7=18.$$
 >
-> **Paso 3 — comprobar bajando un índice** (ec. 5.33): $\tilde A'_j=A'^iM_{ij}$ da $\tilde A'_1=3+2\cdot\tfrac12=4$, $\tilde A'_2=3\cdot\tfrac12+2=\tfrac72$; entonces $\vec A\cdot\vec B=\tilde A'_jB'^j=4\cdot1+\tfrac72\cdot4=4+14=18.\ ✓$
-> Coincide con el resultado obtenido en [[Covarianza Contravarianza | covarianza/contravarianza]].
+> **Paso 3 — comprobar bajando un índice** (ec. 5.33): $\tilde A'_j=A'^iM_{ij}$ da $\tilde A'_1=3+2\cdot\tfrac12=4$, $\tilde A'_2=3\cdot\tfrac12+2=\tfrac72$; entonces $\vec A\cdot\vec B=\tilde A'_jB'^j=4\cdot1+\tfrac72\cdot4=4+14=18.\ ✓$ Coincide con el resultado obtenido en [[Covarianza Contravarianza | covarianza/contravarianza]].
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Derivada de una Forma Cuadrática en Notación de Índices
+order: 2
 tags:
   - matemáticas
   - cálculo
@@ -350,8 +351,7 @@ Esta derivada aparece frecuentemente en:
 > [!question] Ejercicio 1
 > Calcular $\frac{\partial}{\partial x_k} (b_i x_i)$, donde $b_i$ son constantes.
 > 
-> <details>
-> <summary>Solución</summary>
+> <details> <summary>Solución</summary>
 > 
 > $$
 > \frac{\partial}{\partial x_k} (b_i x_i) = b_i \frac{\partial x_i}{\partial x_k} = b_i \delta_{ik} = b_k
@@ -361,17 +361,14 @@ Esta derivada aparece frecuentemente en:
 > [!question] Ejercicio 2
 > Calcular $\frac{\partial}{\partial x_k} (a_{ij} b_{pq} x_i x_j x_p x_q)$, con $a_{ij}$ y $b_{pq}$ constantes.
 > 
-> <details>
-> <summary>Pista</summary>
+> <details> <summary>Pista</summary>
 > 
-> Aplicar la regla del producto generalizada y usar la delta de Kronecker. Cada término tendrá cuatro contribuciones, una por cada factor $x$.
-> </details>
+> Aplicar la regla del producto generalizada y usar la delta de Kronecker. Cada término tendrá cuatro contribuciones, una por cada factor $x$. </details>
 
 > [!question] Ejercicio 3
 > Demostrar que $\frac{\partial}{\partial x_k} (x_i x_j x_i x_j) = 4 x_k x_i x_i$ (sumando sobre índices repetidos).
 >
-> <details>
-> <summary>Solución</summary>
+> <details> <summary>Solución</summary>
 > 
 > $$
 > \frac{\partial}{\partial x_k} (x_i x_j x_i x_j) = \frac{\partial}{\partial x_k} (x_i x_i x_j x_j) = \frac{\partial}{\partial x_k} (|\mathbf{x}|^4) = 4 |\mathbf{x}|^2 x_k

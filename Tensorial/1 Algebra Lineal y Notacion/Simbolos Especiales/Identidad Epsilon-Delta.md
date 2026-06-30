@@ -1,5 +1,6 @@
 ---
 title: Identidad Épsilon-Delta
+order: 3
 tags:
   - analisis-tensorial
   - teoria
@@ -65,11 +66,7 @@ aliases:
 > $$\varepsilon_{ijk}\varepsilon_{mnk}=\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}.$$
 
 > [!demostracion]
-> **Verificación por estructura y un caso concreto.**
-> *Paso 1 (anulación).* El lado izquierdo solo es no nulo si $\{i,j\}$ y $\{m,n\}$ son ambos $\{1,2,3\}\setminus\{k\}$, es decir si $\{i,j\}=\{m,n\}$ como conjuntos e $i\neq j$. El lado derecho refleja lo mismo: si $i=j$ entonces $\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$ es antisimétrico en $i,j$ y se anula.
-> *Paso 2 (caso $i=m$, $j=n$, $i\neq j$).* Lado derecho: $\delta_{ii}\delta_{jj}-\delta_{ij}\delta_{ji}=1\cdot1-0=1$. Lado izquierdo: $\varepsilon_{ijk}\varepsilon_{ijk}$ (sin sumar $i,j$, solo el $k$ restante) $=(\pm1)^2=1$. Coinciden.
-> *Paso 3 (caso $i=n$, $j=m$, $i\neq j$).* Lado derecho: $\delta_{in}\!\to\!\delta_{ii}=1$ via $m=j,n=i$ da $\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}=0-1\cdot1=-1$. Lado izquierdo: $\varepsilon_{ijk}\varepsilon_{jik}=-\varepsilon_{ijk}\varepsilon_{ijk}=-1$ (antisimetría). Coinciden.
-> *Paso 4 (numérico).* Con $i=1,j=2,m=1,n=2$: $\varepsilon_{12k}\varepsilon_{12k}=\varepsilon_{123}\varepsilon_{123}=1$, y derecho $\delta_{11}\delta_{22}-\delta_{12}\delta_{21}=1-0=1$. ✓ La igualdad se verifica entrada por entrada.
+> **Verificación por estructura y un caso concreto.** *Paso 1 (anulación).* El lado izquierdo solo es no nulo si $\{i,j\}$ y $\{m,n\}$ son ambos $\{1,2,3\}\setminus\{k\}$, es decir si $\{i,j\}=\{m,n\}$ como conjuntos e $i\neq j$. El lado derecho refleja lo mismo: si $i=j$ entonces $\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}$ es antisimétrico en $i,j$ y se anula. *Paso 2 (caso $i=m$, $j=n$, $i\neq j$).* Lado derecho: $\delta_{ii}\delta_{jj}-\delta_{ij}\delta_{ji}=1\cdot1-0=1$. Lado izquierdo: $\varepsilon_{ijk}\varepsilon_{ijk}$ (sin sumar $i,j$, solo el $k$ restante) $=(\pm1)^2=1$. Coinciden. *Paso 3 (caso $i=n$, $j=m$, $i\neq j$).* Lado derecho: $\delta_{in}\!\to\!\delta_{ii}=1$ via $m=j,n=i$ da $\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}=0-1\cdot1=-1$. Lado izquierdo: $\varepsilon_{ijk}\varepsilon_{jik}=-\varepsilon_{ijk}\varepsilon_{ijk}=-1$ (antisimetría). Coinciden. *Paso 4 (numérico).* Con $i=1,j=2,m=1,n=2$: $\varepsilon_{12k}\varepsilon_{12k}=\varepsilon_{123}\varepsilon_{123}=1$, y derecho $\delta_{11}\delta_{22}-\delta_{12}\delta_{21}=1-0=1$. ✓ La igualdad se verifica entrada por entrada.
 
 ## Resumen
 

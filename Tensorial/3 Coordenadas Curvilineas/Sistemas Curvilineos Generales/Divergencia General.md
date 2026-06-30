@@ -1,5 +1,6 @@
 ---
 title: Divergencia en Coordenadas Curvilíneas
+order: 6
 tags:
   - analisis-tensorial
   - teoria

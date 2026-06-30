@@ -1,5 +1,6 @@
 ---
 title: Geometría Diferencial Local
+order: 3
 tags:
   - analisis-tensorial
   - teoria
