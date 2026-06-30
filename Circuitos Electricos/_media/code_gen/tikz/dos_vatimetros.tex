@@ -1,24 +1,48 @@
 \documentclass[border=12pt]{standalone}
 \usepackage{circuitikz}
+\usetikzlibrary{arrows.meta}
 \begin{document}
 \begin{circuitikz}[american, line width=0.9pt]
-  % carga trifasica
-  \draw (5.4,-1.7) rectangle (7.4,1.7);
-  \node[align=center] at (6.4,0){carga\\$3\phi$};
-  % --- linea a con vatimetro W1 ---
-  \draw (0,1.15) node[left]{$a$} -- (1.4,1.15);
-  \draw (1.4,1.5) rectangle (2.8,0.8); \node at (2.1,1.15){$W_1$};
-  \draw (2.8,1.15) -- (5.4,1.15);
-  % --- linea b (referencia) ---
-  \draw (0,0) node[left]{$b$} -- (5.4,0);
-  % --- linea c con vatimetro W2 ---
-  \draw (0,-1.15) node[left]{$c$} -- (1.4,-1.15);
-  \draw (1.4,-0.8) rectangle (2.8,-1.5); \node at (2.1,-1.15){$W_2$};
-  \draw (2.8,-1.15) -- (5.4,-1.15);
-  % bobinas de tension (a la linea b)
-  \draw[dashed] (2.1,0.8) -- (2.1,0.04);
-  \draw[dashed] (2.1,-0.8) -- (2.1,-0.04);
-  \node[circle,fill=black,inner sep=1.1pt] at (2.1,0){};
-  \node at (3.9,-2.5){\small $P_{3\phi}=W_1+W_2$\quad y\quad $Q_{3\phi}=\sqrt{3}\,(W_2-W_1)$};
+  % ---- carga trifasica ----
+  \draw (6.6,-2.0) rectangle (8.4,2.0);
+  \node[align=center] at (7.5,0){carga\\$3\phi$};
+
+  % línea b (referencia, común a las dos bobinas de tensión)
+  \draw (0,0) node[left]{$b$} -- (6.6,0);
+
+  % ===================== W1 en la línea a =====================
+  \draw (0,1.6) node[left]{$a$} -- (6.6,1.6);
+  % flecha del sentido de la corriente que atraviesa la bobina de intensidad
+  \draw[-{Latex[length=2.4mm]}] (0.35,2.05) -- (1.05,2.05);
+  \node at (0.70,2.35){\small $i_a$};
+  % cuerpo del vatímetro (tapa la línea: la línea es la bobina de intensidad, en serie)
+  \filldraw[fill=white] (1.55,1.6) circle(0.5);
+  \node at (1.55,1.6){$W_1$};
+  % borne homólogo (±) de la bobina de intensidad, lado fuente
+  \node[circle,fill=black,inner sep=1.0pt] at (1.05,1.6){};
+  \node at (0.80,1.92){\small $\pm$};
+  % bobina de tensión (en paralelo, referida a b); ± en su línea (a)
+  \draw[densely dashed] (1.55,1.1) -- (1.55,0);
+  \node[circle,fill=black,inner sep=1.0pt] at (1.55,1.1){};
+  \node at (1.82,0.95){\small $\pm$};
+  \node[circle,fill=black,inner sep=1.0pt] at (1.55,0){};
+
+  % ===================== W2 en la línea c =====================
+  \draw (0,-1.6) node[left]{$c$} -- (6.6,-1.6);
+  \draw[-{Latex[length=2.4mm]}] (0.35,-2.05) -- (1.05,-2.05);
+  \node at (0.70,-2.35){\small $i_c$};
+  \filldraw[fill=white] (1.55,-1.6) circle(0.5);
+  \node at (1.55,-1.6){$W_2$};
+  \node[circle,fill=black,inner sep=1.0pt] at (1.05,-1.6){};
+  \node at (0.80,-1.92){\small $\pm$};
+  \draw[densely dashed] (1.55,-1.1) -- (1.55,0);
+  \node[circle,fill=black,inner sep=1.0pt] at (1.55,-1.1){};
+  \node at (1.82,-0.95){\small $\pm$};
+  \node[circle,fill=black,inner sep=1.0pt] at (1.55,0){};
+
+  % leyenda
+  \node[align=left,font=\small] at (4.7,2.55){bobina de intensidad: en serie\quad($\pm$ hacia la fuente, por donde entra $i$)};
+  \node[align=left,font=\small] at (4.55,-2.75){bobina de tensión: en paralelo a $b$\quad($\pm$ en su misma línea)};
+  \node at (4.0,3.15){\small $P_{3\phi}=W_1+W_2\qquad Q_{3\phi}=\sqrt{3}\,(W_2-W_1)$};
 \end{circuitikz}
 \end{document}
