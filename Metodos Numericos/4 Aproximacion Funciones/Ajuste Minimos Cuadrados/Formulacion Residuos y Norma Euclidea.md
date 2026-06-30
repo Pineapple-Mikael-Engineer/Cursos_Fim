@@ -1,5 +1,6 @@
 ---
 title: Formulación de Residuos y Norma Euclídea
+order: 1
 tags:
   - metodos-numericos
   - teoria

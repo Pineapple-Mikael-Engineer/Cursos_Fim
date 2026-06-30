@@ -1,5 +1,6 @@
 ---
 title: Teorema Diagonal Dominante Estricta
+order: 1
 tags:
   - metodos-numericos
   - teoria

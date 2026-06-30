@@ -1,5 +1,6 @@
 ---
 title: Metodos Cerrados Una Variable
+order: 2
 tags:
   - metodos-numericos
   - teoria

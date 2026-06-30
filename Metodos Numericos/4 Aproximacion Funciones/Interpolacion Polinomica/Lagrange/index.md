@@ -1,5 +1,6 @@
 ---
 title: Interpolación de Lagrange
+order: 3
 tags:
   - metodos-numericos
   - teoria

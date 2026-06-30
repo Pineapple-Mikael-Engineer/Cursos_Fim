@@ -1,5 +1,6 @@
 ---
 title: Método de Gauss-Seidel
+order: 3
 tags:
   - metodos-numericos
   - teoria

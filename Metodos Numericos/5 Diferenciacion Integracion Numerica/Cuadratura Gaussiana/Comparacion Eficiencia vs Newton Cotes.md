@@ -1,5 +1,6 @@
 ---
 title: Comparación de Eficiencia frente a Newton-Cotes
+order: 4
 tags:
   - metodos-numericos
   - teoria

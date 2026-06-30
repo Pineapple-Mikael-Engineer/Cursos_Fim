@@ -1,5 +1,6 @@
 ---
 title: Teorema de Bolzano y Metodo Grafico
+order: 1
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Ecuación de Bernoulli
+order: 2
 tags:
   - fluidos
   - teoria
@@ -20,8 +21,7 @@ aliases:
 ---
 
 > [!info]
-> **Sección [[4 Flujo Ideal/index | Flujo Ideal]] (Capítulo 4).** Es el segundo gran fruto de la [[Ecuacion de Euler]]: la integral del campo de fuerzas a lo largo de una línea de corriente. Notas hermanas: [[Ecuacion de Euler]] (de donde se deduce) y [[Flujo Potencial]] (donde Bernoulli vale en todo el campo).
-> **Referencia.** Landau-Lifshitz, Vol. 6, §5 ("Ecuación de Bernoulli").
+> **Sección [[4 Flujo Ideal/index | Flujo Ideal]] (Capítulo 4).** Es el segundo gran fruto de la [[Ecuacion de Euler]]: la integral del campo de fuerzas a lo largo de una línea de corriente. Notas hermanas: [[Ecuacion de Euler]] (de donde se deduce) y [[Flujo Potencial]] (donde Bernoulli vale en todo el campo). **Referencia.** Landau-Lifshitz, Vol. 6, §5 ("Ecuación de Bernoulli").
 
 ---
 
@@ -80,22 +80,19 @@ La suma se llama **presión total** o **de estancamiento**: lo que un manómetro
 ---
 
 > [!demostracion] Tres aplicaciones clásicas
-> **(a) Teorema de Torricelli — vaciado por un orificio.**
-> Un depósito grande y abierto tiene un orificio pequeño a profundidad $h$ bajo la superficie libre. Tomamos una línea de corriente desde la superficie (punto 1) hasta el chorro de salida (punto 2). Ambos están a presión atmosférica, $p_1=p_2=p_{\text{atm}}$. El depósito es grande, así que la superficie baja muy despacio: $v_1\approx 0$. Situamos el orificio en $z_2=0$ y la superficie en $z_1=h$. Bernoulli da:
+> **(a) Teorema de Torricelli — vaciado por un orificio.** Un depósito grande y abierto tiene un orificio pequeño a profundidad $h$ bajo la superficie libre. Tomamos una línea de corriente desde la superficie (punto 1) hasta el chorro de salida (punto 2). Ambos están a presión atmosférica, $p_1=p_2=p_{\text{atm}}$. El depósito es grande, así que la superficie baja muy despacio: $v_1\approx 0$. Situamos el orificio en $z_2=0$ y la superficie en $z_1=h$. Bernoulli da:
 > $$\tfrac12 v_1^2+\frac{p_{\text{atm}}}{\rho}+g h=\tfrac12 v_2^2+\frac{p_{\text{atm}}}{\rho}+0.$$
 > Cancelando $p_{\text{atm}}/\rho$ y con $v_1\approx0$:
 > $$g h=\tfrac12 v_2^2\quad\Longrightarrow\quad \boxed{\,v_2=\sqrt{2gh}\,.}$$
 > La velocidad de salida es la **misma que la de caída libre** desde la altura $h$. $\blacksquare$
 >
-> **(b) Tubo de Pitot — medida de velocidad.**
-> Un tubo de Pitot enfrenta al flujo un orificio que **frena** el fluido hasta el reposo (punto de **estancamiento**, $v_0=0$, presión $p_0$) y compara con una toma lateral que mide la presión estática $p$ del flujo libre, de velocidad $v$. Sobre una línea de corriente horizontal ($z$ constante, se cancela $gz$):
+> **(b) Tubo de Pitot — medida de velocidad.** Un tubo de Pitot enfrenta al flujo un orificio que **frena** el fluido hasta el reposo (punto de **estancamiento**, $v_0=0$, presión $p_0$) y compara con una toma lateral que mide la presión estática $p$ del flujo libre, de velocidad $v$. Sobre una línea de corriente horizontal ($z$ constante, se cancela $gz$):
 > $$\tfrac12\rho v^2+p=\underbrace{\tfrac12\rho\,v_0^2}_{=0}+p_0.$$
 > Despejando la velocidad:
 > $$\boxed{\,v=\sqrt{\dfrac{2\,(p_0-p)}{\rho}}\,.}$$
 > Midiendo la diferencia $p_0-p$ (presión dinámica) se obtiene la velocidad: así miden su velocidad los aviones. $\blacksquare$
 >
-> **(c) Efecto Venturi — estrangulamiento de un tubo.**
-> En una tubería horizontal que se estrecha de área $A_1$ a $A_2<A_1$, la **continuidad** (conservación de masa, flujo incompresible) impone $A_1 v_1=A_2 v_2$, de modo que en la garganta $v_2>v_1$. Bernoulli horizontal ($gz$ se cancela):
+> **(c) Efecto Venturi — estrangulamiento de un tubo.** En una tubería horizontal que se estrecha de área $A_1$ a $A_2<A_1$, la **continuidad** (conservación de masa, flujo incompresible) impone $A_1 v_1=A_2 v_2$, de modo que en la garganta $v_2>v_1$. Bernoulli horizontal ($gz$ se cancela):
 > $$p_1+\tfrac12\rho v_1^2=p_2+\tfrac12\rho v_2^2.$$
 > Como $v_2>v_1$, necesariamente $p_2<p_1$: **donde el fluido acelera, la presión baja**. Eliminando $v_1=(A_2/A_1)v_2$:
 > $$p_1-p_2=\tfrac12\rho\,v_2^2\left[1-\left(\frac{A_2}{A_1}\right)^{2}\right]>0.\qquad\blacksquare$$

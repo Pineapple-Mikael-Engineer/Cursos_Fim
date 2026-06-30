@@ -1,5 +1,6 @@
 ---
 title: Campos y Operadores
+order: 1
 tags:
   - electromagnetismo
   - teoria
@@ -85,8 +86,7 @@ aliases:
 > > $$d\varphi=\frac{\partial\varphi}{\partial x_i}\,dx_i=\partial_i\varphi\,dx_i \qquad(\text{suma sobre }i).$$
 > > **Paso 2 — escribir como producto escalar.** Sea $\nabla\varphi=(\nabla\varphi)_j\,\hat e_j$ un vector aún por determinar. Su producto con $d\vec l$ es
 > > $$\nabla\varphi\cdot d\vec l=(\nabla\varphi)_j\,\hat e_j\cdot \hat e_i\,dx_i=(\nabla\varphi)_j\,\delta_{ji}\,dx_i=(\nabla\varphi)_i\,dx_i,$$
-> > usando $\hat e_j\cdot\hat e_i=\delta_{ji}$ y la propiedad de filtro de la delta de Kronecker.
-> > **Paso 3 — igualar.** La definición exige $d\varphi=\nabla\varphi\cdot d\vec l$ para **todo** $d\vec l$. Comparando el Paso 1 con el Paso 2:
+> > usando $\hat e_j\cdot\hat e_i=\delta_{ji}$ y la propiedad de filtro de la delta de Kronecker. **Paso 3 — igualar.** La definición exige $d\varphi=\nabla\varphi\cdot d\vec l$ para **todo** $d\vec l$. Comparando el Paso 1 con el Paso 2:
 > > $$\partial_i\varphi\,dx_i=(\nabla\varphi)_i\,dx_i\quad\forall\,dx_i\ \Longrightarrow\ (\nabla\varphi)_i=\partial_i\varphi.\qquad\blacksquare$$
 
 ![[gradiente.svg|360]]
@@ -97,8 +97,7 @@ aliases:
 > Sobre una superficie de nivel $\varphi=\text{cte}$, el gradiente $\nabla\varphi$ es ortogonal a la superficie en cada punto.
 >
 > > [!demostracion]-
-> > **Paso 1 — moverse sobre la superficie.** Si $d\vec l$ es un desplazamiento **tangente** a la superficie de nivel, entonces nos quedamos en $\varphi=\text{cte}$ y por tanto $\varphi$ no cambia: $d\varphi=0$.
-> > **Paso 2 — usar la definición.** Pero $d\varphi=\nabla\varphi\cdot d\vec l$, luego
+> > **Paso 1 — moverse sobre la superficie.** Si $d\vec l$ es un desplazamiento **tangente** a la superficie de nivel, entonces nos quedamos en $\varphi=\text{cte}$ y por tanto $\varphi$ no cambia: $d\varphi=0$. **Paso 2 — usar la definición.** Pero $d\varphi=\nabla\varphi\cdot d\vec l$, luego
 > > $$\nabla\varphi\cdot d\vec l=0\qquad\text{para todo }d\vec l\text{ tangente.}$$
 > > **Paso 3 — concluir.** Un vector ortogonal a todo desplazamiento tangente a la superficie es, por definición, **normal** a la superficie. Por tanto $\nabla\varphi\perp\{\varphi=\text{cte}\}$. $\blacksquare$
 
@@ -108,8 +107,7 @@ aliases:
 > > [!demostracion]-
 > > **Paso 1 — desplazamiento de longitud fija.** Tomemos $d\vec l$ de módulo fijo $|d\vec l|$ y dirección variable, formando un ángulo $\theta$ con $\nabla\varphi$. Por la definición del producto escalar:
 > > $$d\varphi=\nabla\varphi\cdot d\vec l=|\nabla\varphi|\,|d\vec l|\cos\theta.$$
-> > **Paso 2 — maximizar en $\theta$.** Con $|\nabla\varphi|$ y $|d\vec l|$ fijos, $d\varphi$ es máximo cuando $\cos\theta=1$, es decir $\theta=0$: el desplazamiento alineado con $\nabla\varphi$.
-> > **Paso 3 — tasa máxima.** En ese caso $d\varphi=|\nabla\varphi|\,|d\vec l|$, de donde la derivada direccional máxima es $d\varphi/|d\vec l|=|\nabla\varphi|$. (Análogamente, $\theta=\pi$ da el descenso más rápido y $\theta=\pi/2$ da $d\varphi=0$, consistente con la superficie de nivel.) $\blacksquare$
+> > **Paso 2 — maximizar en $\theta$.** Con $|\nabla\varphi|$ y $|d\vec l|$ fijos, $d\varphi$ es máximo cuando $\cos\theta=1$, es decir $\theta=0$: el desplazamiento alineado con $\nabla\varphi$. **Paso 3 — tasa máxima.** En ese caso $d\varphi=|\nabla\varphi|\,|d\vec l|$, de donde la derivada direccional máxima es $d\varphi/|d\vec l|=|\nabla\varphi|$. (Análogamente, $\theta=\pi$ da el descenso más rápido y $\theta=\pi/2$ da $d\varphi=0$, consistente con la superficie de nivel.) $\blacksquare$
 
 ---
 
@@ -201,8 +199,7 @@ aliases:
 > $\displaystyle \nabla^2\varphi=\partial_i\partial_i\varphi=\partial_x^2\varphi+\partial_y^2\varphi+\partial_z^2\varphi$.
 >
 > > [!demostracion]-
-> > **Paso 1 — gradiente.** Por la forma cartesiana del gradiente, $(\nabla\varphi)_i=\partial_i\varphi$.
-> > **Paso 2 — divergencia del gradiente.** Aplicamos $\nabla\cdot(\,\cdot\,)=\partial_i(\,\cdot\,)_i$ al vector $\nabla\varphi$:
+> > **Paso 1 — gradiente.** Por la forma cartesiana del gradiente, $(\nabla\varphi)_i=\partial_i\varphi$. **Paso 2 — divergencia del gradiente.** Aplicamos $\nabla\cdot(\,\cdot\,)=\partial_i(\,\cdot\,)_i$ al vector $\nabla\varphi$:
 > > $$\nabla^2\varphi=\nabla\cdot(\nabla\varphi)=\partial_i\,(\nabla\varphi)_i=\partial_i\,\partial_i\varphi.$$
 > > Desarrollando la suma sobre $i$: $\ \partial_i\partial_i\varphi=\partial_x^2\varphi+\partial_y^2\varphi+\partial_z^2\varphi$. $\blacksquare$
 >

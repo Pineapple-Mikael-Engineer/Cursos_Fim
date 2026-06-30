@@ -1,5 +1,6 @@
 ---
 title: Epsilon Maquina y Precision Relativa
+order: 2
 tags:
   - metodos-numericos
   - teoria
@@ -35,8 +36,7 @@ En un sistema de punto flotante con $p$ bits de precisión (incluyendo el bit im
 $$\Delta x = 2^{E - (p - 1)}$$
 
 > [!teoria]
-> **Cálculo de $u$.**
-> Para el intervalo $[1, 2)$, el exponente real es $E = 0$. Por tanto, el espaciado entre $1.0$ y el siguiente número representable es:
+> **Cálculo de $u$.** Para el intervalo $[1, 2)$, el exponente real es $E = 0$. Por tanto, el espaciado entre $1.0$ y el siguiente número representable es:
 > $$u = 2^{0 - (p - 1)} = 2^{-(p - 1)}$$
 > 
 > En precisión doble, $p = 53$ (52 bits almacenados + 1 bit implícito), luego:
@@ -62,8 +62,7 @@ $$\Delta x = 2^{E - (p - 1)}$$
 El épsilon de máquina no es meramente una curiosidad aritmética, sino la **cota superior del error relativo** cometido al representar un número real en el sistema flotante.
 
 > [!teorema]
-> **Cota del error relativo de redondeo.**
-> Para cualquier número real $x$ dentro del rango normalizado del sistema flotante, existe una representación $\text{fl}(x)$ tal que:
+> **Cota del error relativo de redondeo.** Para cualquier número real $x$ dentro del rango normalizado del sistema flotante, existe una representación $\text{fl}(x)$ tal que:
 > $$\frac{|x - \text{fl}(x)|}{|x|} \leq u$$
 > 
 > Equivalentemente, $\text{fl}(x) = x(1 + \delta)$ con $|\delta| \leq u$.
@@ -106,8 +105,7 @@ Es común confundir el épsilon de máquina con el menor número positivo repres
 La propiedad $\text{fl}(x \circ y) = (x \circ y)(1 + \delta)$ con $|\delta| \leq u$ permite construir un modelo algebraico simple para analizar algoritmos.
 
 > [!proposicion]
-> **Modelo estándar para el error de redondeo.**
-> Para cualquier operación básica $\circ \in \{+, -, \times, \div\}$:
+> **Modelo estándar para el error de redondeo.** Para cualquier operación básica $\circ \in \{+, -, \times, \div\}$:
 > $$\text{fl}(x \circ y) = (x \circ y)(1 + \delta), \quad |\delta| \leq u$$
 > Este modelo asume el [[Modos de Redondeo IEEE 754|modo de redondeo]] por defecto (*round to nearest, ties to even*).
 
@@ -133,8 +131,7 @@ El épsilon de máquina puede calcularse experimentalmente sin conocer los detal
 > u = u * 2.0
 > ```
 > 
-> **Explicación:**
-> El bucle divide $u$ sucesivamente por $2$ hasta que $1 + u$ se redondea exactamente a $1$ (debido al espaciado finito). El valor buscado es el doble del último valor que aún produjo $1 + u > 1$.
+> **Explicación:** El bucle divide $u$ sucesivamente por $2$ hasta que $1 + u$ se redondea exactamente a $1$ (debido al espaciado finito). El valor buscado es el doble del último valor que aún produjo $1 + u > 1$.
 > 
 > En precisión doble, este algoritmo retorna exactamente $2^{-52}$.
 
@@ -145,8 +142,7 @@ El épsilon de máquina puede calcularse experimentalmente sin conocer los detal
 El conocimiento de $u$ establece un **límite de expectativa realista** para cualquier cálculo numérico.
 
 > [!warning]
-> **Precisión finita como límite fundamental.**
-> Ningún algoritmo puede proporcionar más de $-\log_{10}(u) \approx 16$ dígitos decimales de precisión en doble precisión. La meta del análisis numérico no es superar esta barrera, sino **evitar que el error crezca más allá de $O(u \cdot \kappa)$**, donde $\kappa$ es el [[Condicionamiento Numerico Numero Condicion|número de condición]] del problema.
+> **Precisión finita como límite fundamental.** Ningún algoritmo puede proporcionar más de $-\log_{10}(u) \approx 16$ dígitos decimales de precisión en doble precisión. La meta del análisis numérico no es superar esta barrera, sino **evitar que el error crezca más allá de $O(u \cdot \kappa)$**, donde $\kappa$ es el [[Condicionamiento Numerico Numero Condicion|número de condición]] del problema.
 
 Por ejemplo:
 - En la [[Biseccion]], el error mínimo alcanzable está limitado por $u \cdot |r|$, donde $r$ es la raíz.

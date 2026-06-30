@@ -1,5 +1,6 @@
 ---
 title: Variación de Parámetros
+order: 2
 tags:
   - ecuaciones
   - edo
@@ -18,31 +19,23 @@ aliases:
 # Método de Variación de Parámetros
 
 > [!definicion]
-> Método **universal** para hallar una particular $y_p$ de $L[y]=f$. Dado un conjunto fundamental
-> $y_1,y_2$ de la homogénea, se permite que las **constantes** $c_1,c_2$ de $c_1y_1+c_2y_2$ se vuelvan
-> **funciones** $u_1(x),u_2(x)$ (de ahí "variación de parámetros") y se busca
+> Método **universal** para hallar una particular $y_p$ de $L[y]=f$. Dado un conjunto fundamental $y_1,y_2$ de la homogénea, se permite que las **constantes** $c_1,c_2$ de $c_1y_1+c_2y_2$ se vuelvan **funciones** $u_1(x),u_2(x)$ (de ahí "variación de parámetros") y se busca
 > $$y_p=u_1(x)\,y_1+u_2(x)\,y_2.$$
 > Para la ecuación normalizada $y''+p(x)y'+q(x)y=f(x)$ resulta
 > $$u_1'=-\frac{y_2\,f}{W},\qquad u_2'=\frac{y_1\,f}{W},$$
 > con $W=y_1y_2'-y_2y_1'$ el [[Wronskiano e Independencia Lineal| wronskiano]] de $y_1,y_2$. Integrando,
 > $$y_p=-y_1\!\int\!\frac{y_2 f}{W}\,dx+y_2\!\int\!\frac{y_1 f}{W}\,dx.$$
-> Funciona para **cualquier** $f$ continua e incluso con **coeficientes variables**, a cambio de tener
-> que integrar.
+> Funciona para **cualquier** $f$ continua e incluso con **coeficientes variables**, a cambio de tener que integrar.
 
 > [!info]
-> La hija **universal** de [[No Homogenea/index| no homogénea]]. A diferencia de
-> [[Coeficientes Indeterminados| coeficientes indeterminados]] —limitado a $f$ de "buena
-> forma" y coeficientes constantes—, aquí $f$ es arbitraria y los coeficientes pueden depender de $x$
-> (siempre que se conozcan $y_1,y_2$). Requiere el [[Wronskiano e Independencia Lineal| wronskiano]].
-> Capítulo: [[1 Ecuaciones Diferenciales Ordinarias/index| EDO]].
+> La hija **universal** de [[No Homogenea/index| no homogénea]]. A diferencia de [[Coeficientes Indeterminados| coeficientes indeterminados]] —limitado a $f$ de "buena forma" y coeficientes constantes—, aquí $f$ es arbitraria y los coeficientes pueden depender de $x$ (siempre que se conozcan $y_1,y_2$). Requiere el [[Wronskiano e Independencia Lineal| wronskiano]]. Capítulo: [[1 Ecuaciones Diferenciales Ordinarias/index| EDO]].
 
 ---
 
 ## Ejemplo
 
 > [!ejemplo] Una fuente imposible para coeficientes indeterminados
-> **Resolver $y''-3y'+2y=\operatorname{sen}(e^{-x})$.** La fuente $\operatorname{sen}(e^{-x})$ **no** es
-> de "buena forma" (no se reproduce al derivar), así que coeficientes indeterminados no sirve.
+> **Resolver $y''-3y'+2y=\operatorname{sen}(e^{-x})$.** La fuente $\operatorname{sen}(e^{-x})$ **no** es de "buena forma" (no se reproduce al derivar), así que coeficientes indeterminados no sirve.
 >
 > **Paso 1 — homogénea y wronskiano.** Raíces $1,2$ → $y_1=e^{x}$, $y_2=e^{2x}$. El wronskiano:
 > $$W=\begin{vmatrix} e^{x} & e^{2x}\\ e^{x} & 2e^{2x}\end{vmatrix}=2e^{3x}-e^{3x}=e^{3x}.$$
@@ -67,16 +60,13 @@ aliases:
 ## En qué consiste
 
 > [!teorema] Las fórmulas de variación de parámetros
-> Sea $y''+p(x)y'+q(x)y=f(x)$ con conjunto fundamental $y_1,y_2$ de la homogénea y wronskiano
-> $W=y_1y_2'-y_2y_1'\neq0$. Entonces $y_p=u_1y_1+u_2y_2$ es solución particular si
+> Sea $y''+p(x)y'+q(x)y=f(x)$ con conjunto fundamental $y_1,y_2$ de la homogénea y wronskiano $W=y_1y_2'-y_2y_1'\neq0$. Entonces $y_p=u_1y_1+u_2y_2$ es solución particular si
 > $$u_1'=-\frac{y_2 f}{W},\qquad u_2'=\frac{y_1 f}{W}.$$
 
 > [!demostracion]
-> **Paso 1 — proponer e imponer una condición.** Buscamos $y_p=u_1y_1+u_2y_2$ con $u_1,u_2$ por
-> determinar. Derivando,
+> **Paso 1 — proponer e imponer una condición.** Buscamos $y_p=u_1y_1+u_2y_2$ con $u_1,u_2$ por determinar. Derivando,
 > $$y_p'=u_1'y_1+u_2'y_2+u_1y_1'+u_2y_2'.$$
-> Tenemos **dos** funciones incógnita y solo **una** ecuación ($L[y_p]=f$): hay libertad. La usamos
-> imponiendo la **condición**
+> Tenemos **dos** funciones incógnita y solo **una** ecuación ($L[y_p]=f$): hay libertad. La usamos imponiendo la **condición**
 > $$u_1'y_1+u_2'y_2=0,$$
 > que mata los términos con $u_i'$ y evita que aparezcan **segundas** derivadas de los $u_i$.
 >
@@ -96,20 +86,14 @@ aliases:
 > Integrando se obtienen $u_1,u_2$ y con ellos $y_p=u_1y_1+u_2y_2$. $\blacksquare$
 
 > [!info] Cuándo preferir variación de parámetros
-> Úsalo cuando **falla** [[Coeficientes Indeterminados| coeficientes indeterminados]],
-> es decir:
-> - la fuente $f$ **no** es de "buena forma": $\operatorname{sen}(e^{-x})$, $\sec x$, $\tan x$,
->   $\ln x$, $\dfrac{1}{x}$, etc. (no se reproducen al derivar, no hay propuesta finita que adivinar);
-> - los **coeficientes son variables** ($p,q$ dependen de $x$), con tal de **conocer** un conjunto
->   fundamental $y_1,y_2$ (a menudo obtenido por [[Reduccion de Orden| reducción de orden]] o
->   [[Cauchy-Euler| Cauchy-Euler]]).
+> Úsalo cuando **falla** [[Coeficientes Indeterminados| coeficientes indeterminados]], es decir:
+> - la fuente $f$ **no** es de "buena forma": $\operatorname{sen}(e^{-x})$, $\sec x$, $\tan x$, $\ln x$, $\dfrac{1}{x}$, etc. (no se reproducen al derivar, no hay propuesta finita que adivinar);
+> - los **coeficientes son variables** ($p,q$ dependen de $x$), con tal de **conocer** un conjunto fundamental $y_1,y_2$ (a menudo obtenido por [[Reduccion de Orden| reducción de orden]] o [[Cauchy-Euler| Cauchy-Euler]]).
 >
-> Precio a pagar: hay que **integrar** $\int \tfrac{y_2 f}{W}dx$ y $\int \tfrac{y_1 f}{W}dx$, que pueden
-> ser difíciles. Si $f$ encaja en la tabla de coeficientes indeterminados, aquel método es más rápido.
+> Precio a pagar: hay que **integrar** $\int \tfrac{y_2 f}{W}dx$ y $\int \tfrac{y_1 f}{W}dx$, que pueden ser difíciles. Si $f$ encaja en la tabla de coeficientes indeterminados, aquel método es más rápido.
 
 > [!algoritmo] Aplicar variación de parámetros
-> 1. **Normaliza** la EDO a $y''+p(x)y'+q(x)y=f(x)$ (coeficiente líder $1$; cuidado: $f$ es ya el lado
->    derecho normalizado).
+> 1. **Normaliza** la EDO a $y''+p(x)y'+q(x)y=f(x)$ (coeficiente líder $1$; cuidado: $f$ es ya el lado derecho normalizado).
 > 2. Resuelve la **homogénea**: obtén un conjunto fundamental $y_1,y_2$.
 > 3. Calcula el **wronskiano** $W=y_1y_2'-y_2y_1'$.
 > 4. Forma $u_1'=-\dfrac{y_2 f}{W}$ y $u_2'=\dfrac{y_1 f}{W}$.
@@ -117,9 +101,7 @@ aliases:
 > 6. Escribe $y_p=u_1y_1+u_2y_2$ y la general $y=c_1y_1+c_2y_2+y_p$.
 
 > [!warning]
-> Antes de aplicar las fórmulas, **normaliza** la ecuación: $f$ debe ser el término independiente con el
-> coeficiente líder igual a $1$. Si la EDO es $a(x)y''+\dots=g(x)$, primero divide por $a(x)$, de modo
-> que $f=g/a$. Olvidarlo introduce un factor $a(x)$ erróneo en $u_i'$.
+> Antes de aplicar las fórmulas, **normaliza** la ecuación: $f$ debe ser el término independiente con el coeficiente líder igual a $1$. Si la EDO es $a(x)y''+\dots=g(x)$, primero divide por $a(x)$, de modo que $f=g/a$. Olvidarlo introduce un factor $a(x)$ erróneo en $u_i'$.
 
 ## Resumen
 
@@ -133,9 +115,7 @@ aliases:
 > | Particular | $y_p=-y_1\!\int\!\tfrac{y_2 f}{W}dx+y_2\!\int\!\tfrac{y_1 f}{W}dx$ |
 
 > [!corolario]
-> Variación de parámetros es el método **general** para la no homogénea: solo necesita un conjunto
-> fundamental de la homogénea y una integral. Su universalidad (cualquier $f$ continua, coeficientes
-> variables) lo hace el complemento natural de [[Coeficientes Indeterminados| coeficientes indeterminados]]: este es rápido pero restringido; aquel es lento pero siempre funciona.
+> Variación de parámetros es el método **general** para la no homogénea: solo necesita un conjunto fundamental de la homogénea y una integral. Su universalidad (cualquier $f$ continua, coeficientes variables) lo hace el complemento natural de [[Coeficientes Indeterminados| coeficientes indeterminados]]: este es rápido pero restringido; aquel es lento pero siempre funciona.
 
 > [!referencia]
 > - El método rápido para $f$ de "buena forma": [[Coeficientes Indeterminados]].

@@ -1,5 +1,6 @@
 ---
 title: Orden Convergencia Cuadratica Simple
+order: 2
 tags:
   - metodos-numericos
   - teoria

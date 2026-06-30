@@ -1,5 +1,6 @@
 ---
 title: Construcción del Sistema Tridiagonal Lineal
+order: 2
 tags:
   - metodos-numericos
   - teoria

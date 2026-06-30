@@ -1,5 +1,6 @@
 ---
 title: Criterio Radio Espectral Convergencia
+order: 2
 tags:
   - metodos-numericos
   - teoria

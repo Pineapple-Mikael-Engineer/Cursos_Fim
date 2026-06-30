@@ -1,5 +1,6 @@
 ---
 title: Ley de Gauss
+order: 2
 tags:
   - electromagnetismo
   - teoria
@@ -26,8 +27,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota del curso [[2 Electrostatica/index | Electrostática]]** (Capítulo 2 del curso Electromagnetismo). Es hermana de [[Ley de Coulomb y Campo Electrico]] —de la que se deduce— y de [[Potencial Electrico]] —que explota la otra ecuación, $\nabla\times\vec E=\vec 0$—. Usa el **teorema de la divergencia** de [[Teoremas Integrales]] para pasar de la forma integral a la diferencial, y la identidad $\nabla\cdot(\hat r/r^2)=4\pi\,\delta^3(\vec r)$ de [[Delta de Dirac y Singularidades]] para cerrar el círculo con Coulomb.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 2. Unidades SI; constante de Coulomb $k=\dfrac{1}{4\pi\varepsilon_0}$.
+> **Nota del curso [[2 Electrostatica/index | Electrostática]]** (Capítulo 2 del curso Electromagnetismo). Es hermana de [[Ley de Coulomb y Campo Electrico]] —de la que se deduce— y de [[Potencial Electrico]] —que explota la otra ecuación, $\nabla\times\vec E=\vec 0$—. Usa el **teorema de la divergencia** de [[Teoremas Integrales]] para pasar de la forma integral a la diferencial, y la identidad $\nabla\cdot(\hat r/r^2)=4\pi\,\delta^3(\vec r)$ de [[Delta de Dirac y Singularidades]] para cerrar el círculo con Coulomb. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 2. Unidades SI; constante de Coulomb $k=\dfrac{1}{4\pi\varepsilon_0}$.
 
 ---
 

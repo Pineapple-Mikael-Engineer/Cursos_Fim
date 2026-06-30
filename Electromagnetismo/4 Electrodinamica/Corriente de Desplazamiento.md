@@ -1,5 +1,6 @@
 ---
 title: Corriente de Desplazamiento
+order: 2
 tags:
   - electromagnetismo
   - teoria
@@ -23,8 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Sección [[4 Electrodinamica/index | Electrodinámica]]** (capítulo 4 del curso). Este término es el que **cierra** el sistema de las [[Ecuaciones de Maxwell]] y, junto con la [[Ley de Faraday]], permite que los campos se autosostengan: es la pieza que hace posibles las **ondas electromagnéticas**. Parte de corregir la [[Ley de Ampere | ley de Ampère]] de la magnetostática, que solo vale para corrientes estacionarias.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 7.
+> **Sección [[4 Electrodinamica/index | Electrodinámica]]** (capítulo 4 del curso). Este término es el que **cierra** el sistema de las [[Ecuaciones de Maxwell]] y, junto con la [[Ley de Faraday]], permite que los campos se autosostengan: es la pieza que hace posibles las **ondas electromagnéticas**. Parte de corregir la [[Ley de Ampere | ley de Ampère]] de la magnetostática, que solo vale para corrientes estacionarias. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 7.
 
 ---
 

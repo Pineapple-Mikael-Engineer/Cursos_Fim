@@ -1,5 +1,6 @@
 ---
 title: Ecuación de Euler
+order: 1
 tags:
   - fluidos
   - teoria
@@ -194,8 +195,7 @@ Cuando el fluido es **compresible**, $\rho$ deja de ser constante y hay que cerr
 > [!ejemplo] Presión en el fondo de una piscina
 > Una piscina de agua ($\rho=1{,}00\times 10^{3}\ \text{kg/m}^3$) tiene una profundidad de $h=3{,}00\ \text{m}$. La presión atmosférica en la superficie es $p_0=1{,}013\times 10^{5}\ \text{Pa}$ y $g=9{,}81\ \text{m/s}^2$.
 >
-> (a) ¿Cuál es la presión absoluta en el fondo?
-> (b) ¿Qué empuje sufre una boya de volumen $V=2{,}00\times 10^{-2}\ \text{m}^3$ totalmente sumergida?
+> (a) ¿Cuál es la presión absoluta en el fondo? (b) ¿Qué empuje sufre una boya de volumen $V=2{,}00\times 10^{-2}\ \text{m}^3$ totalmente sumergida?
 
 > [!solucion]
 > **(a) Presión en el fondo.** Aplicamos la ley hidrostática $p=p_0+\rho g h$ deducida arriba:

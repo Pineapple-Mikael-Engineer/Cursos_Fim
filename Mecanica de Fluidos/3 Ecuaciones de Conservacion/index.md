@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones de Conservación
+order: 3
 tags:
   - fluidos
   - teoria
@@ -22,8 +23,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 3 del curso Mecánica de Fluidos: la unificación.** Reúne la cinemática del [[1 Cinematica del Flujo/index | Capítulo 1]] (derivada material, transporte de Reynolds) y la dinámica local del [[2 Esfuerzos y Tensor de Tensiones/index | Capítulo 2]] (tensor de esfuerzos) en las ecuaciones de movimiento.
-> **Referencia.** Landau-Lifshitz, Vol. 6, §1 (continuidad, Euler), §15 (Navier–Stokes), §49 (energía); Batchelor, cap. 3.
+> **Capítulo 3 del curso Mecánica de Fluidos: la unificación.** Reúne la cinemática del [[1 Cinematica del Flujo/index | Capítulo 1]] (derivada material, transporte de Reynolds) y la dinámica local del [[2 Esfuerzos y Tensor de Tensiones/index | Capítulo 2]] (tensor de esfuerzos) en las ecuaciones de movimiento. **Referencia.** Landau-Lifshitz, Vol. 6, §1 (continuidad, Euler), §15 (Navier–Stokes), §49 (energía); Batchelor, cap. 3.
 
 ---
 

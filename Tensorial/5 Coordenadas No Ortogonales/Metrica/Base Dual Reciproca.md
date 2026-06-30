@@ -1,5 +1,6 @@
 ---
 title: Base Dual o Reciproca
+order: 3
 tags:
   - analisis-tensorial
   - teoria

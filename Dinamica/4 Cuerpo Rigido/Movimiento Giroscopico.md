@@ -1,5 +1,6 @@
 ---
 title: Movimiento Giroscópico
+order: 5
 tags:
   - dinamica
   - teoria

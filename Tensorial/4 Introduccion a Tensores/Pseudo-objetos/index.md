@@ -1,5 +1,6 @@
 ---
 title: Pseudo-objetos
+order: 6
 tags:
   - analisis-tensorial
   - teoria

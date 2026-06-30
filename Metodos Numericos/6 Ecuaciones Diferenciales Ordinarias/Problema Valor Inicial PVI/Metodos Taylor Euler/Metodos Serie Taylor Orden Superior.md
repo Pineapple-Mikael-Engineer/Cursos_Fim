@@ -1,5 +1,6 @@
 ---
 title: Métodos de Serie de Taylor de Orden Superior
+order: 4
 tags:
   - metodos-numericos
   - teoria

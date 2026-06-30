@@ -1,5 +1,6 @@
 ---
 title: Formulación Covariante
+order: 6
 tags:
   - electromagnetismo
   - teoria
@@ -23,9 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 6 del curso Electromagnetismo: el pico tensorial.** Es la culminación del viaje **vectorial → tensorial**. No requiere mecánica analítica; sí, soltura con índices ([[Identidades Vectoriales]]) y las [[Ecuaciones de Maxwell]]. Es el puente directo a **Landau-Lifshitz Vol. 2** (*Teoría Clásica de Campos*).
-> **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; convenio de suma de Einstein; unidades SI.
-> **Referencia.** Griffiths cap. 12; Jackson cap. 11; Landau-Lifshitz Vol. 2.
+> **Capítulo 6 del curso Electromagnetismo: el pico tensorial.** Es la culminación del viaje **vectorial → tensorial**. No requiere mecánica analítica; sí, soltura con índices ([[Identidades Vectoriales]]) y las [[Ecuaciones de Maxwell]]. Es el puente directo a **Landau-Lifshitz Vol. 2** (*Teoría Clásica de Campos*). **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; convenio de suma de Einstein; unidades SI. **Referencia.** Griffiths cap. 12; Jackson cap. 11; Landau-Lifshitz Vol. 2.
 
 ---
 

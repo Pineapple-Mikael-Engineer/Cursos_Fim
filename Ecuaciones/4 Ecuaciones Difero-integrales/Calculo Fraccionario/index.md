@@ -1,5 +1,6 @@
 ---
 title: Cálculo Fraccionario
+order: 2
 tags:
   - ecuaciones
   - difero-integrales
@@ -17,16 +18,10 @@ aliases:
 # Cálculo Fraccionario
 
 > [!definicion]
-> El **cálculo fraccionario** generaliza la derivada y la integral a **orden arbitrario** $q\in
-> \mathbb{R}$ (o $\mathbb{C}$): un único operador, el **differintegral** $D^{q}$, tal que $D^{1}$ es la
-> derivada, $D^{2}$ la segunda derivada, $D^{-1}$ la integral, $D^{-2}$ la doble integral… y $D^{1/2}$
-> una "**media derivada**" que, aplicada dos veces, da la derivada entera.
+> El **cálculo fraccionario** generaliza la derivada y la integral a **orden arbitrario** $q\in \mathbb{R}$ (o $\mathbb{C}$): un único operador, el **differintegral** $D^{q}$, tal que $D^{1}$ es la derivada, $D^{2}$ la segunda derivada, $D^{-1}$ la integral, $D^{-2}$ la doble integral… y $D^{1/2}$ una "**media derivada**" que, aplicada dos veces, da la derivada entera.
 
 > [!info]
-> Segunda rama del [[4 Ecuaciones Difero-integrales/index| capítulo difero-integral]] y su corazón
-> conceptual. Nació de una pregunta de l'Hôpital a Leibniz ("¿y si $n=1/2$?") y de la inversión del
-> [[Problema de Abel| problema de Abel]] (que es exactamente una media integración). Hoy modela la
-> **difusión anómala** y los materiales con **memoria de ley de potencias**.
+> Segunda rama del [[4 Ecuaciones Difero-integrales/index| capítulo difero-integral]] y su corazón conceptual. Nació de una pregunta de l'Hôpital a Leibniz ("¿y si $n=1/2$?") y de la inversión del [[Problema de Abel| problema de Abel]] (que es exactamente una media integración). Hoy modela la **difusión anómala** y los materiales con **memoria de ley de potencias**.
 
 ---
 
@@ -35,18 +30,12 @@ aliases:
 > [!teoria]
 > Iterar la integral $n$ veces tiene una fórmula cerrada (Cauchy):
 > $$I^{n}f(x)=\frac{1}{(n-1)!}\int_0^x (x-t)^{n-1}f(t)\,dt.$$
-> El paso genial es **reemplazar el factorial por la función Gamma** ($\,(n-1)!=\Gamma(n)$) y permitir
-> $n$ **no entero**: así nace la [[Integral de Riemann-Liouville| integral fraccionaria de Riemann-Liouville]] $I^{\alpha}$, y derivando $\lceil\alpha\rceil$ veces, la
-> [[Derivada de Riemann-Liouville| derivada fraccionaria]]. Hay **varias definiciones** que coinciden
-> para funciones suaves, cada una con su ventaja:
+> El paso genial es **reemplazar el factorial por la función Gamma** ($\,(n-1)!=\Gamma(n)$) y permitir $n$ **no entero**: así nace la [[Integral de Riemann-Liouville| integral fraccionaria de Riemann-Liouville]] $I^{\alpha}$, y derivando $\lceil\alpha\rceil$ veces, la [[Derivada de Riemann-Liouville| derivada fraccionaria]]. Hay **varias definiciones** que coinciden para funciones suaves, cada una con su ventaja:
 > - **Riemann-Liouville** — la más matemática (deriva *después* de integrar).
-> - **[[Derivada de Caputo| Caputo]]** — la **física**: deriva *antes*, de modo que las condiciones
->   iniciales son las habituales $\varphi(0),\varphi'(0),\dots$
+> - **[[Derivada de Caputo| Caputo]]** — la **física**: deriva *antes*, de modo que las condiciones iniciales son las habituales $\varphi(0),\varphi'(0),\dots$
 > - **Grünwald-Letnikov** — como límite de diferencias finitas; base de los métodos **numéricos**.
 >
-> La "exponencial" de este mundo es la [[Funcion de Mittag-Leffler| función de Mittag-Leffler]]
-> $E_\alpha$: igual que $e^{\lambda t}$ resuelve $\varphi'=\lambda\varphi$, $E_\alpha(\lambda t^\alpha)$
-> resuelve la ecuación fraccionaria $D^{\alpha}\varphi=\lambda\varphi$.
+> La "exponencial" de este mundo es la [[Funcion de Mittag-Leffler| función de Mittag-Leffler]] $E_\alpha$: igual que $e^{\lambda t}$ resuelve $\varphi'=\lambda\varphi$, $E_\alpha(\lambda t^\alpha)$ resuelve la ecuación fraccionaria $D^{\alpha}\varphi=\lambda\varphi$.
 
 > [!info] Recorrido de la sección
 > | Nota | Aporte |
@@ -73,9 +62,7 @@ aliases:
 > | Aplicación | difusión anómala, memoria de ley de potencias |
 
 > [!corolario]
-> El cálculo fraccionario disuelve la frontera entre derivar e integrar: ambos son casos de un único
-> operador $D^{q}$ con $q$ deslizándose por la recta real. No es una curiosidad: la memoria de ley de
-> potencias de la naturaleza —viscoelasticidad, difusión en medios complejos— se escribe en su lenguaje.
+> El cálculo fraccionario disuelve la frontera entre derivar e integrar: ambos son casos de un único operador $D^{q}$ con $q$ deslizándose por la recta real. No es una curiosidad: la memoria de ley de potencias de la naturaleza —viscoelasticidad, difusión en medios complejos— se escribe en su lenguaje.
 
 > [!referencia]
 > - La idea fundacional: [[Operador Differintegral]] y [[Integral de Riemann-Liouville]].

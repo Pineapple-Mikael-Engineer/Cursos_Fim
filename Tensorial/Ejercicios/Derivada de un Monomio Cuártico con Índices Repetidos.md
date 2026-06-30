@@ -1,5 +1,6 @@
 ---
 title: Derivada de un Monomio Cuártico con Índices Repetidos
+order: 1
 tags:
   - matemáticas
   - cálculo
@@ -338,9 +339,7 @@ $$
 \frac{\partial M}{\partial x_k} = 2 \delta_{ik} x_i x_j^2 + 2 \delta_{jk} x_i^2 x_j = 2 \delta_{ik} x_k x_j^2 + 2 \delta_{jk} x_i^2 x_k
 $$
 
-Si $k = i$: $\frac{\partial M}{\partial x_i} = 2 x_i x_j^2$
-Si $k = j$: $\frac{\partial M}{\partial x_j} = 2 x_i^2 x_j$
-Si $k$ es otro índice: $\frac{\partial M}{\partial x_k} = 0$
+Si $k = i$: $\frac{\partial M}{\partial x_i} = 2 x_i x_j^2$ Si $k = j$: $\frac{\partial M}{\partial x_j} = 2 x_i^2 x_j$ Si $k$ es otro índice: $\frac{\partial M}{\partial x_k} = 0$
 
 Esto coincide con la derivada directa de $(x_i^2 x_j^2)$.
 
@@ -354,8 +353,7 @@ Esto coincide con la derivada directa de $(x_i^2 x_j^2)$.
 > [!question] Ejercicio 2
 > Calcular $\frac{\partial}{\partial x_k} (x_i x_j x_i x_j x_p x_p)$.
 >
-> <details>
-> <summary>Solución</summary>
+> <details> <summary>Solución</summary>
 >
 > $$
 > \frac{\partial}{\partial x_k} (x_i x_j x_i x_j x_p x_p) = 6 x_k x_i  x_i  x_j x_j

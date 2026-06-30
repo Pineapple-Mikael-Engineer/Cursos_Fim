@@ -1,5 +1,6 @@
 ---
 title: Flujo Viscoso
+order: 5
 tags:
   - fluidos
   - teoria
@@ -20,8 +21,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 5 del curso Mecánica de Fluidos.** Resuelve las [[Ecuaciones de Navier-Stokes]] del [[3 Ecuaciones de Conservacion/index | Capítulo 3]] en los regímenes donde la viscosidad importa, y repara la **paradoja de d'Alembert** del [[4 Flujo Ideal/index | Capítulo 4]] (el arrastre nace de la viscosidad).
-> **Referencia.** Landau-Lifshitz, Vol. 6, §§17–20 (flujo viscoso, Stokes) y §§39–41 (capa límite); Batchelor, caps. 4 y 5; Acheson, caps. 2, 7–8.
+> **Capítulo 5 del curso Mecánica de Fluidos.** Resuelve las [[Ecuaciones de Navier-Stokes]] del [[3 Ecuaciones de Conservacion/index | Capítulo 3]] en los regímenes donde la viscosidad importa, y repara la **paradoja de d'Alembert** del [[4 Flujo Ideal/index | Capítulo 4]] (el arrastre nace de la viscosidad). **Referencia.** Landau-Lifshitz, Vol. 6, §§17–20 (flujo viscoso, Stokes) y §§39–41 (capa límite); Batchelor, caps. 4 y 5; Acheson, caps. 2, 7–8.
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Splines Lineales y Continuidad C⁰
+order: 1
 tags:
   - metodos-numericos
   - teoria

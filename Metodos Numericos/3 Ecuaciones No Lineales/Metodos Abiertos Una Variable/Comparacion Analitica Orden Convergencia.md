@@ -1,5 +1,6 @@
 ---
 title: Comparación Analítica del Orden de Convergencia
+order: 3
 tags:
   - metodos-numericos
   - teoria

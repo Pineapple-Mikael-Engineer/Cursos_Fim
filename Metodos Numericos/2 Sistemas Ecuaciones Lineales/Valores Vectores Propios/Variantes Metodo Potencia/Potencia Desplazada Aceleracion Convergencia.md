@@ -1,5 +1,6 @@
 ---
 title: Potencia Desplazada Aceleracion Convergencia
+order: 2
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Calculo Constante Normalizacion Rayleigh
+order: 3
 tags:
   - metodos-numericos
   - teoria
@@ -65,15 +66,13 @@ aliases:
 > **Propiedad 1 (Homogeneidad):**
 > $$R_A(\alpha y) = \frac{(\alpha y)^T A (\alpha y)}{(\alpha y)^T (\alpha y)} = \frac{\alpha^2 y^T A y}{\alpha^2 y^T y} = \frac{y^T A y}{y^T y} = R_A(y)$$
 >
-> **Propiedad 2 (Rango para $A$ simétrica):**
-> Para $A$ simétrica, existe una base ortonormal de autovectores $\{v_1, \dots, v_n\}$ con autovalores $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$. Escribiendo $y = \sum_{i=1}^n c_i v_i$:
+> **Propiedad 2 (Rango para $A$ simétrica):** Para $A$ simétrica, existe una base ortonormal de autovectores $\{v_1, \dots, v_n\}$ con autovalores $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_n$. Escribiendo $y = \sum_{i=1}^n c_i v_i$:
 > $$R_A(y) = \frac{\sum_{i=1}^n c_i^2 \lambda_i}{\sum_{i=1}^n c_i^2}$$
 >
 > Esto es un promedio ponderado de los autovalores, por lo tanto:
 > $$\lambda_n \leq R_A(y) \leq \lambda_1$$
 >
-> **Propiedad 3 (Estacionariedad):**
-> El gradiente de $R_A(y)$ respecto a $y$ es:
+> **Propiedad 3 (Estacionariedad):** El gradiente de $R_A(y)$ respecto a $y$ es:
 > $$\nabla R_A(y) = \frac{2}{y^T y} \left( A y - R_A(y) y \right)$$
 >
 > Los puntos críticos satisfacen $\nabla R_A(y) = 0$, lo que implica $A y = R_A(y) y$, es decir, $y$ es autovector y $R_A(y)$ su autovalor.

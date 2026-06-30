@@ -1,5 +1,6 @@
 ---
 title: Simpson Compuesto y Convergencia O(h⁴)
+order: 2
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Método de Newton para la Condición de Frontera Residual
+order: 2
 tags:
   - metodos-numericos
   - teoria

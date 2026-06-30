@@ -1,5 +1,6 @@
 ---
 title: Consistencia, Estabilidad y Convergencia (Teorema de Lax)
+order: 3
 tags:
   - metodos-numericos
   - teoria

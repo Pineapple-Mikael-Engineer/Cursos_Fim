@@ -1,5 +1,6 @@
 ---
 title: Ondas en Medios
+order: 4
 tags:
   - electromagnetismo
   - teoria
@@ -21,9 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Sección del capítulo [[5 Ondas Electromagneticas/index | Ondas Electromagnéticas]].** Aquí dejamos el vacío y mandamos la onda dentro de la materia. Las hermanas de esta sección son [[Ondas Planas]] (la onda libre que ahora hacemos viajar por un dieléctrico) y [[5 Ondas Electromagneticas/Polarizacion | Polarización]] (el estado del campo que decide cuánto se refleja).
-> **Apoyos.** La respuesta del medio sale de [[2 Electrostatica/Dielectricos/index | Dieléctricos]] (de ahí $\varepsilon$ y las condiciones de frontera de $\vec D$) y de [[Materiales Magneticos]] (de ahí $\mu$, casi siempre $\approx\mu_0$).
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 9.
+> **Sección del capítulo [[5 Ondas Electromagneticas/index | Ondas Electromagnéticas]].** Aquí dejamos el vacío y mandamos la onda dentro de la materia. Las hermanas de esta sección son [[Ondas Planas]] (la onda libre que ahora hacemos viajar por un dieléctrico) y [[5 Ondas Electromagneticas/Polarizacion | Polarización]] (el estado del campo que decide cuánto se refleja). **Apoyos.** La respuesta del medio sale de [[2 Electrostatica/Dielectricos/index | Dieléctricos]] (de ahí $\varepsilon$ y las condiciones de frontera de $\vec D$) y de [[Materiales Magneticos]] (de ahí $\mu$, casi siempre $\approx\mu_0$). **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 9.
 
 ---
 

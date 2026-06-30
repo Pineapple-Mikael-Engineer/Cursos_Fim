@@ -1,5 +1,6 @@
 ---
 title: Regla del Trapecio y Error de Truncamiento
+order: 1
 tags:
   - metodos-numericos
   - teoria

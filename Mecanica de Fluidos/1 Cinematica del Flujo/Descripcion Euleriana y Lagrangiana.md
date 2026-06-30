@@ -1,5 +1,6 @@
 ---
 title: Descripción Euleriana y Lagrangiana
+order: 1
 tags:
   - fluidos
   - teoria
@@ -67,8 +68,7 @@ aliases:
 > Será clave para deducir Bernoulli más adelante:
 > $$(\vec v\cdot\nabla)\vec v=\nabla\!\left(\tfrac12\,v^2\right)-\vec v\times(\nabla\times\vec v),\qquad v^2=\vec v\cdot\vec v.$$
 >
-> **Demostración (notación indicial).**
-> **Paso 1 — Escribir el doble producto vectorial.** Sea $\vec\omega=\nabla\times\vec v$, de componentes $\omega_k=\epsilon_{klm}\,\partial_l v_m$. La componente $i$ de $\vec v\times\vec\omega$ es
+> **Demostración (notación indicial).** **Paso 1 — Escribir el doble producto vectorial.** Sea $\vec\omega=\nabla\times\vec v$, de componentes $\omega_k=\epsilon_{klm}\,\partial_l v_m$. La componente $i$ de $\vec v\times\vec\omega$ es
 > $$(\vec v\times\vec\omega)_i=\epsilon_{ijk}\,v_j\,\omega_k=\epsilon_{ijk}\,v_j\,\epsilon_{klm}\,\partial_l v_m.$$
 >
 > **Paso 2 — Identidad épsilon-delta.** Usando $\epsilon_{ijk}\epsilon_{klm}=\epsilon_{kij}\epsilon_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}$,

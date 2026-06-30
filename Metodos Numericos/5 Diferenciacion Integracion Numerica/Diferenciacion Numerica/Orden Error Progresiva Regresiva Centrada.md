@@ -1,5 +1,6 @@
 ---
 title: Orden de Error — Progresiva, Regresiva y Centrada
+order: 2
 tags:
   - metodos-numericos
   - teoria

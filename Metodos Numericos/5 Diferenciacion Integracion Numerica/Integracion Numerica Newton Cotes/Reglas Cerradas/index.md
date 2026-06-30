@@ -1,5 +1,6 @@
 ---
 title: Reglas Cerradas de Newton-Cotes
+order: 2
 tags:
   - metodos-numericos
   - teoria

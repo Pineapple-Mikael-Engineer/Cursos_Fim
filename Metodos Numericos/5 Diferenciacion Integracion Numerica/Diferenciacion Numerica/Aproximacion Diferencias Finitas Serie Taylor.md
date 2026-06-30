@@ -1,5 +1,6 @@
 ---
 title: Aproximación por Diferencias Finitas y Serie de Taylor
+order: 1
 tags:
   - metodos-numericos
   - teoria

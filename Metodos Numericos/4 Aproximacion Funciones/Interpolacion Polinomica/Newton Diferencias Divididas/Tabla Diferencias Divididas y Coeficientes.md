@@ -1,5 +1,6 @@
 ---
 title: Tabla de Diferencias Divididas y Coeficientes
+order: 1
 tags:
   - metodos-numericos
   - teoria

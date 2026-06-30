@@ -1,5 +1,6 @@
 ---
 title: Criterios Fallo Divergencia Oscilacion
+order: 4
 tags:
   - metodos-numericos
   - teoria

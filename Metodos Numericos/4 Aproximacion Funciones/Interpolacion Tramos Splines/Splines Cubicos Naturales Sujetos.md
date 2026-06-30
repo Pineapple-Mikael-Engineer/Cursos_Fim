@@ -1,5 +1,6 @@
 ---
 title: Splines Cúbicos Naturales y Sujetos
+order: 2
 tags:
   - metodos-numericos
   - teoria

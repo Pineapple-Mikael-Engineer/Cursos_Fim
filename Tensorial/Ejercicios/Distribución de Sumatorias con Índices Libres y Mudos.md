@@ -1,5 +1,6 @@
 ---
 title: Distribución de Sumatorias con Índices Libres y Mudos
+order: 3
 tags:
   - matemáticas
   - notación-índices
@@ -224,15 +225,13 @@ Esto deja claro que la expresión es una **contracción completa** de tres índi
 > a_{ij} (x_i + y_i) = a_{ij} x_i + a_{ij} y_i
 > $$
 
-<details>
-<summary>Solución</summary>
+<details> <summary>Solución</summary>
 
 **Sí, es correcta.** En este caso, ambos términos tienen el mismo índice libre $j$:
 - $a_{ij} x_i$: suma sobre $i$, índice libre $j$
 - $a_{ij} y_i$: suma sobre $i$, índice libre $j$
 
-La suma tiene sentido porque ambos son vectores (con índice $j$).
-</details>
+La suma tiene sentido porque ambos son vectores (con índice $j$). </details>
 
 > [!question] Ejercicio 2
 > ¿Es correcta la siguiente igualdad?
@@ -240,45 +239,38 @@ La suma tiene sentido porque ambos son vectores (con índice $j$).
 > a_{ij} (x_i + y_j) = a_{ij} x_i + a_{ij} y_j
 > $$
 
-<details>
-<summary>Solución</summary>
+<details> <summary>Solución</summary>
 
 **No es correcta.** 
 - Lado izquierdo: $i$ y $j$ son mudos (cada uno aparece dos veces) → escalar
 - Lado derecho: primer término tiene $j$ libre, segundo término tiene $i$ libre → suma de un vector (en $j$) y un vector (en $i$), que no es un escalar.
 
-La igualdad es incorrecta por la misma razón que el ejercicio principal.
-</details>
+La igualdad es incorrecta por la misma razón que el ejercicio principal. </details>
 
 > [!question] Ejercicio 3
 > Usando la idea del tensor auxiliar $b_{ij} = x_i + y_j$, reescribir correctamente la expresión $a_{ijk} (x_i + y_j) z_k$ en notación de Einstein.
 
-<details>
-<summary>Solución</summary>
+<details> <summary>Solución</summary>
 
 $$
 a_{ijk} (x_i + y_j) z_k = a_{ijk} b_{ij} z_k
 $$
 
-donde $b_{ij} = x_i + y_j$. Esta forma deja claro que todos los índices ($i$, $j$, $k$) están contraídos y la expresión es un escalar.
-</details>
+donde $b_{ij} = x_i + y_j$. Esta forma deja claro que todos los índices ($i$, $j$, $k$) están contraídos y la expresión es un escalar. </details>
 
 > [!question] Ejercicio 4
 > ¿Bajo qué condición la igualdad $a_{ijk} (x_i + y_j) z_k = a_{ijk} x_i z_k + a_{ijk} y_j z_k$ sería válida en notación de Einstein?
 
-<details>
-<summary>Solución</summary>
+<details> <summary>Solución</summary>
 
 La igualdad sería válida si **implícitamente entendemos que en el lado derecho hay sumas sobre todos los índices**, es decir, si interpretamos $a_{ijk} x_i z_k$ como suma sobre $i,j,k$ (lo que requeriría que $j$ aparezca dos veces, pero no es el caso). Esto equivaldría a **romper el convenio de Einstein** y tratar todos los índices como mudos, lo cual no es estándar.
 
-La forma correcta es usar sumatorias explícitas o definir $b_{ij}=x_i+y_j$ para mantener la claridad de los índices.
-</details>
+La forma correcta es usar sumatorias explícitas o definir $b_{ij}=x_i+y_j$ para mantener la claridad de los índices. </details>
 
 > [!question] Ejercicio 5
 > Definir un tensor $c_{ijkl}$ tal que la expresión $a_{ijk} (x_i + y_j) z_k$ pueda escribirse como una contracción completa con $c_{ijkl}$.
 
-<details>
-<summary>Solución</summary>
+<details> <summary>Solución</summary>
 
 Podemos definir:
 $$
@@ -289,8 +281,7 @@ Pero una forma más directa es usar $b_{ij}$ como antes. La contracción complet
 $$
 a_{ijk} b_{ij} z_k = T
 $$
-donde $T$ es un escalar.
-</details>
+donde $T$ es un escalar. </details>
 
 ---
 

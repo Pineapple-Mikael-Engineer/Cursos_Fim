@@ -1,5 +1,6 @@
 ---
 title: Newton-Raphson Multivariable
+order: 1
 tags:
   - metodos-numericos
   - teoria

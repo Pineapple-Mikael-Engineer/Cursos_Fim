@@ -1,5 +1,6 @@
 ---
 title: Convergencia Lineal Raices Multiples
+order: 3
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Transformación de PVF a PVI con Valor Inicial Desconocido
+order: 1
 tags:
   - metodos-numericos
   - teoria

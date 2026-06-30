@@ -1,5 +1,6 @@
 ---
 title: Propagación de Errores en Operaciones Matriciales
+order: 6
 tags:
   - metodos-numericos
   - teoria

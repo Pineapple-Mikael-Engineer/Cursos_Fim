@@ -1,5 +1,6 @@
 ---
 title: Existencia Unicidad LU Matrices No Singulares
+order: 1
 tags:
   - metodos-numericos
   - teoria
@@ -48,8 +49,7 @@ La existencia de la factorización LU está íntimamente ligada a los menores pr
 ## Teorema de existencia
 
 > [!teorema]
-> **Condición necesaria y suficiente para la existencia de LU.**
-> Sea $A \in \mathbb{R}^{n \times n}$ una matriz no singular. Entonces $A$ admite una factorización $A = LU$ con $L$ triangular inferior unitaria y $U$ triangular superior **si y solo si** todos sus menores principales líderes son no nulos:
+> **Condición necesaria y suficiente para la existencia de LU.** Sea $A \in \mathbb{R}^{n \times n}$ una matriz no singular. Entonces $A$ admite una factorización $A = LU$ con $L$ triangular inferior unitaria y $U$ triangular superior **si y solo si** todos sus menores principales líderes son no nulos:
 > $$\Delta_k \neq 0, \quad k = 1, 2, \dots, n-1$$
 > 
 > Nota: La condición $\Delta_n \neq 0$ está garantizada por la hipótesis de que $A$ es no singular.
@@ -57,8 +57,7 @@ La existencia de la factorización LU está íntimamente ligada a los menores pr
 > [!demostracion]
 > **Demostración (constructiva vía eliminación Gaussiana).**
 > 
-> **($\Rightarrow$) Necesidad:**
-> Supongamos que existe $A = LU$. Para cualquier $k$, las submatrices principales satisfacen:
+> **($\Rightarrow$) Necesidad:** Supongamos que existe $A = LU$. Para cualquier $k$, las submatrices principales satisfacen:
 > $$A_{1:k, 1:k} = L_{1:k, 1:k} \cdot U_{1:k, 1:k}$$
 > 
 > Como $L$ es triangular inferior unitaria, $\det(L_{1:k, 1:k}) = 1$. Como $U$ es triangular superior, $\det(U_{1:k, 1:k}) = \prod_{i=1}^{k} u_{ii}$.
@@ -68,8 +67,7 @@ La existencia de la factorización LU está íntimamente ligada a los menores pr
 > 
 > Para que la eliminación Gaussiana proceda sin intercambios, cada pivote $u_{ii}$ debe ser no nulo. Luego $\Delta_k = \prod_{i=1}^{k} u_{ii} \neq 0$ para $k = 1, \dots, n-1$.
 > 
-> **($\Leftarrow$) Suficiencia:**
-> Supongamos que $\Delta_k \neq 0$ para $k = 1, \dots, n-1$. Construimos $L$ y $U$ mediante eliminación Gaussiana sin pivoteo.
+> **($\Leftarrow$) Suficiencia:** Supongamos que $\Delta_k \neq 0$ para $k = 1, \dots, n-1$. Construimos $L$ y $U$ mediante eliminación Gaussiana sin pivoteo.
 > 
 > En el paso $k$, el pivote es $a_{kk}^{(k)}$. Se puede demostrar por inducción que:
 > $$a_{kk}^{(k)} = \frac{\Delta_k}{\Delta_{k-1}}$$
@@ -77,8 +75,7 @@ La existencia de la factorización LU está íntimamente ligada a los menores pr
 > Como $\Delta_k \neq 0$ y $\Delta_{k-1} \neq 0$, el pivote $a_{kk}^{(k)} \neq 0$. Por tanto, la eliminación puede continuar sin intercambios hasta completar $n-1$ pasos, produciendo los factores $L$ y $U$.
 
 > [!corolario]
-> **Relación entre pivotes y menores principales.**
-> Los pivotes $u_{kk}$ generados durante la eliminación Gaussiana sin pivoteo satisfacen:
+> **Relación entre pivotes y menores principales.** Los pivotes $u_{kk}$ generados durante la eliminación Gaussiana sin pivoteo satisfacen:
 > $$u_{kk} = \frac{\Delta_k}{\Delta_{k-1}}, \quad k = 1, 2, \dots, n$$
 > 
 > Esta relación es fundamental para entender por qué ciertas matrices requieren [[Pivoteo Parcial Total Estabilidad|pivoteo]].
@@ -88,8 +85,7 @@ La existencia de la factorización LU está íntimamente ligada a los menores pr
 ## Teorema de unicidad
 
 > [!teorema]
-> **Unicidad de la factorización LU.**
-> Si $A \in \mathbb{R}^{n \times n}$ es no singular y admite una factorización $A = LU$ con $L$ triangular inferior unitaria y $U$ triangular superior, entonces dicha factorización es **única**.
+> **Unicidad de la factorización LU.** Si $A \in \mathbb{R}^{n \times n}$ es no singular y admite una factorización $A = LU$ con $L$ triangular inferior unitaria y $U$ triangular superior, entonces dicha factorización es **única**.
 
 > [!demostracion]
 > Supongamos que existen dos factorizaciones:
@@ -207,14 +203,12 @@ La existencia de la factorización LU está íntimamente ligada a los menores pr
 Cuando $\Delta_k = 0$ para algún $k < n$, la factorización $A = LU$ sin pivoteo no existe. Sin embargo, siempre existe una matriz de permutación $P$ tal que $P A$ admite factorización LU.
 
 > [!teorema]
-> **Existencia de factorización LU con pivoteo.**
-> Para cualquier matriz no singular $A \in \mathbb{R}^{n \times n}$, existe al menos una matriz de permutación $P$ tal que $P A$ admite factorización $P A = L U$ con $L$ triangular inferior unitaria y $U$ triangular superior.
+> **Existencia de factorización LU con pivoteo.** Para cualquier matriz no singular $A \in \mathbb{R}^{n \times n}$, existe al menos una matriz de permutación $P$ tal que $P A$ admite factorización $P A = L U$ con $L$ triangular inferior unitaria y $U$ triangular superior.
 > 
 > El [[Pivoteo Parcial Total Estabilidad|pivoteo parcial]] construye explícitamente dicha $P$ durante la eliminación.
 
 > [!info]
-> **Equivalencia con eliminación Gaussiana con pivoteo.**
-> La factorización $P A = L U$ es exactamente el resultado de aplicar eliminación Gaussiana con pivoteo parcial a $A$. Los multiplicadores forman $L$, la matriz triangular resultante es $U$, y $P$ registra todos los intercambios de filas.
+> **Equivalencia con eliminación Gaussiana con pivoteo.** La factorización $P A = L U$ es exactamente el resultado de aplicar eliminación Gaussiana con pivoteo parcial a $A$. Los multiplicadores forman $L$, la matriz triangular resultante es $U$, y $P$ registra todos los intercambios de filas.
 
 ---
 
@@ -229,11 +223,9 @@ Ciertas clases de matrices garantizan automáticamente que todos los menores pri
 >    $$|a_{ii}| > \sum_{j \neq i} |a_{ij}|, \quad \forall i$$
 >    Para estas matrices, todos los menores principales son no nulos.
 > 
-> 2. **Matrices simétricas definidas positivas:**
->    Todos los menores principales líderes son positivos ($\Delta_k > 0$). Esto es la base de la [[Factorizacion Cholesky Matrices Definidas Positivas|factorización de Cholesky]].
+> 2. **Matrices simétricas definidas positivas:** Todos los menores principales líderes son positivos ($\Delta_k > 0$). Esto es la base de la [[Factorizacion Cholesky Matrices Definidas Positivas|factorización de Cholesky]].
 > 
-> 3. **Matrices M (M-matrices):**
->    Matrices con $a_{ii} > 0$, $a_{ij} \leq 0$ para $i \neq j$, y que son estrictamente diagonal dominantes. Todos los menores principales son positivos.
+> 3. **Matrices M (M-matrices):** Matrices con $a_{ii} > 0$, $a_{ij} \leq 0$ para $i \neq j$, y que son estrictamente diagonal dominantes. Todos los menores principales son positivos.
 
 ---
 
@@ -242,8 +234,7 @@ Ciertas clases de matrices garantizan automáticamente que todos los menores pri
 El teorema de existencia y unicidad tiene consecuencias directas para el análisis numérico.
 
 > [!warning]
-> **¿Qué implica $\Delta_k \approx 0$ aunque no sea exactamente cero?**
-> Si algún $\Delta_k$ es muy pequeño, el pivote $u_{kk} = \Delta_k / \Delta_{k-1}$ también será pequeño. Esto causa:
+> **¿Qué implica $\Delta_k \approx 0$ aunque no sea exactamente cero?** Si algún $\Delta_k$ es muy pequeño, el pivote $u_{kk} = \Delta_k / \Delta_{k-1}$ también será pequeño. Esto causa:
 > 1. Multiplicadores $m_{ik} = a_{ik} / u_{kk}$ de gran magnitud.
 > 2. Amplificación del [[Acumulacion Error Redondeo Gauss|error de redondeo]].
 > 3. Posible [[Perdida Significancia y Cancelacion Catastrofica|pérdida de significancia]] en la actualización de filas.
@@ -251,8 +242,7 @@ El teorema de existencia y unicidad tiene consecuencias directas para el anális
 > El [[Pivoteo Parcial Total Estabilidad|pivoteo]] evita este problema al intercambiar filas para evitar pivotes pequeños.
 
 > [!info]
-> **Relación con el número de condición.**
-> Aunque $\Delta_k \neq 0$ garantiza existencia, no dice nada sobre la estabilidad numérica. Una matriz puede tener todos $\Delta_k \neq 0$ pero estar mal condicionada, como la [[Matriz de Hilbert]]. En esos casos, incluso con LU sin pivoteo, la precisión será pobre debido al [[Condicionamiento Numerico Numero Condicion|mal condicionamiento]].
+> **Relación con el número de condición.** Aunque $\Delta_k \neq 0$ garantiza existencia, no dice nada sobre la estabilidad numérica. Una matriz puede tener todos $\Delta_k \neq 0$ pero estar mal condicionada, como la [[Matriz de Hilbert]]. En esos casos, incluso con LU sin pivoteo, la precisión será pobre debido al [[Condicionamiento Numerico Numero Condicion|mal condicionamiento]].
 
 ---
 

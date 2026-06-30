@@ -1,5 +1,6 @@
 ---
 title: Comparación — Disparo vs Diferencias Finitas
+order: 3
 tags:
   - metodos-numericos
   - teoria

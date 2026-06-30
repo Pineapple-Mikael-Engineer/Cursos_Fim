@@ -1,5 +1,6 @@
 ---
 title: Electrostática
+order: 2
 tags:
   - electromagnetismo
   - teoria
@@ -22,8 +23,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 2 del curso Electromagnetismo.** Usa íntegramente las herramientas de [[1 Calculo Vectorial/index | Cálculo Vectorial]]: la divergencia y el teorema de Gauss, el rotacional y Stokes, el gradiente, y la delta $\nabla\cdot(\hat r/r^2)=4\pi\,\delta^3(\vec r)$ que convierte Coulomb en $\nabla\cdot\vec E=\rho/\varepsilon_0$.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, caps. 2–4. Unidades SI; constante $k=\dfrac{1}{4\pi\varepsilon_0}$.
+> **Capítulo 2 del curso Electromagnetismo.** Usa íntegramente las herramientas de [[1 Calculo Vectorial/index | Cálculo Vectorial]]: la divergencia y el teorema de Gauss, el rotacional y Stokes, el gradiente, y la delta $\nabla\cdot(\hat r/r^2)=4\pi\,\delta^3(\vec r)$ que convierte Coulomb en $\nabla\cdot\vec E=\rho/\varepsilon_0$. **Referencia.** Griffiths, *Introduction to Electrodynamics*, caps. 2–4. Unidades SI; constante $k=\dfrac{1}{4\pi\varepsilon_0}$.
 
 ---
 

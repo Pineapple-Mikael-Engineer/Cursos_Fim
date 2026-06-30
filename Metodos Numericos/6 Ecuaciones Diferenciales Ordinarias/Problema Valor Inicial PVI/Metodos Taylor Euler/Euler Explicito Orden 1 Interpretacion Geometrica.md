@@ -1,5 +1,6 @@
 ---
 title: Euler Explícito — Orden 1 e Interpretación Geométrica
+order: 1
 tags:
   - metodos-numericos
   - teoria

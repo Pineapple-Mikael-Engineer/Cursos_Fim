@@ -1,5 +1,6 @@
 ---
 title: Metodo Potencia Directo
+order: 1
 tags:
   - metodos-numericos
   - teoria

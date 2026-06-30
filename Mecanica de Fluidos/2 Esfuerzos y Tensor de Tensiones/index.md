@@ -1,5 +1,6 @@
 ---
 title: Esfuerzos y Tensor de Tensiones
+order: 2
 tags:
   - fluidos
   - teoria
@@ -22,8 +23,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 2 del curso Mecánica de Fluidos: el corazón tensorial.** Toma la cinemática del [[1 Cinematica del Flujo/index | Capítulo 1]] (el tensor $e_{ij}$) y le añade la **dinámica local**: cómo se transmiten las fuerzas dentro del fluido. Su fruto —$\nabla\cdot\boldsymbol\sigma$— es el ingrediente que faltaba para el balance de momento.
-> **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, caps. 1 y 3; Aris, caps. 5–6.
+> **Capítulo 2 del curso Mecánica de Fluidos: el corazón tensorial.** Toma la cinemática del [[1 Cinematica del Flujo/index | Capítulo 1]] (el tensor $e_{ij}$) y le añade la **dinámica local**: cómo se transmiten las fuerzas dentro del fluido. Su fruto —$\nabla\cdot\boldsymbol\sigma$— es el ingrediente que faltaba para el balance de momento. **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, caps. 1 y 3; Aris, caps. 5–6.
 
 ---
 

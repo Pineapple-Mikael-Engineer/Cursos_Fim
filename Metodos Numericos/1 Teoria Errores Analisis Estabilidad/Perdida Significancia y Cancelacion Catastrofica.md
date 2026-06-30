@@ -1,5 +1,6 @@
 ---
 title: Perdida Significancia y Cancelacion Catastrofica
+order: 3
 tags:
   - metodos-numericos
   - teoria
@@ -36,8 +37,7 @@ $$
 $$
 
 > [!teoria]
-> **Amplificación del error relativo.**
-> El error relativo de la diferencia es:
+> **Amplificación del error relativo.** El error relativo de la diferencia es:
 > $$\frac{|(\tilde{a} - \tilde{b}) - (a - b)|}{|a - b|} = \frac{|a\delta_a - b\delta_b|}{|a - b|}$$
 > 
 > Si $a \approx b$, el denominador $|a - b|$ es muy pequeño, mientras que el numerador $|a\delta_a - b\delta_b|$ es proporcional a $|a|u$. Esto produce un factor de amplificación $\approx |a| / |a - b| \gg 1$.

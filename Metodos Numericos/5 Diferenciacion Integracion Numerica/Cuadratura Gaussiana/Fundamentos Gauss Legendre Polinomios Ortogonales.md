@@ -1,5 +1,6 @@
 ---
 title: Fundamentos de Gauss-Legendre y Polinomios Ortogonales
+order: 1
 tags:
   - metodos-numericos
   - teoria

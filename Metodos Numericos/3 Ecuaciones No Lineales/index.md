@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones No Lineales
+order: 3
 tags:
   - metodos-numericos
   - teoria

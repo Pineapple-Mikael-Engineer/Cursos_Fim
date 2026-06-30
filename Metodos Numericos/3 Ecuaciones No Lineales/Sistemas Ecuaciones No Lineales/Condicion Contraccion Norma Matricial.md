@@ -1,5 +1,6 @@
 ---
 title: Condición de Contracción y Norma Matricial
+order: 2
 tags:
   - metodos-numericos
   - teoria

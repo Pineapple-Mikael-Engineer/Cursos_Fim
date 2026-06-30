@@ -1,5 +1,6 @@
 ---
 title: Fundamentos del Valor Propio Dominante
+order: 1
 tags:
   - metodos-numericos
   - teoria

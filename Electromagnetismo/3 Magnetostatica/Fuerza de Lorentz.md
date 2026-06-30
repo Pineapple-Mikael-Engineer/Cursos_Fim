@@ -1,5 +1,6 @@
 ---
 title: Fuerza de Lorentz
+order: 1
 tags:
   - electromagnetismo
   - teoria
@@ -20,8 +21,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota 1 del capítulo [[3 Magnetostatica/index | Magnetostática]].** Es la **ley de fuerza** del campo magnético, análoga a $\vec F=q\vec E$ de la electrostática. Sus hermanas son [[Ley de Biot-Savart]] (cómo las corrientes *crean* $\vec B$) y [[Ley de Ampere]] (la ley de fuente integral). Aquí estudiamos cómo $\vec B$ *actúa* sobre cargas y corrientes.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 5 ("Magnetostatics"), §5.1.
+> **Nota 1 del capítulo [[3 Magnetostatica/index | Magnetostática]].** Es la **ley de fuerza** del campo magnético, análoga a $\vec F=q\vec E$ de la electrostática. Sus hermanas son [[Ley de Biot-Savart]] (cómo las corrientes *crean* $\vec B$) y [[Ley de Ampere]] (la ley de fuente integral). Aquí estudiamos cómo $\vec B$ *actúa* sobre cargas y corrientes. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 5 ("Magnetostatics"), §5.1.
 
 ---
 
@@ -107,8 +107,7 @@ aliases:
 ## Ejemplo
 
 > [!ejemplo]
-> **(a)** Un protón ($q=1{,}60\times10^{-19}\ \text{C}$, $m=1{,}67\times10^{-27}\ \text{kg}$) entra con rapidez $v=3{,}0\times10^{6}\ \text{m/s}$, perpendicular a un campo uniforme $B=0{,}50\ \text{T}$. Halla el radio y la frecuencia de su órbita.
-> **(b)** Un segmento recto de hilo de longitud $L=0{,}20\ \text{m}$ transporta una corriente $I=8{,}0\ \text{A}$ perpendicular a un campo uniforme $B=0{,}50\ \text{T}$. Halla el módulo de la fuerza sobre el hilo.
+> **(a)** Un protón ($q=1{,}60\times10^{-19}\ \text{C}$, $m=1{,}67\times10^{-27}\ \text{kg}$) entra con rapidez $v=3{,}0\times10^{6}\ \text{m/s}$, perpendicular a un campo uniforme $B=0{,}50\ \text{T}$. Halla el radio y la frecuencia de su órbita. **(b)** Un segmento recto de hilo de longitud $L=0{,}20\ \text{m}$ transporta una corriente $I=8{,}0\ \text{A}$ perpendicular a un campo uniforme $B=0{,}50\ \text{T}$. Halla el módulo de la fuerza sobre el hilo.
 
 > [!solucion]
 > **(a) Radio ciclotrónico.** Por la fórmula deducida $r=mv/(qB)$:

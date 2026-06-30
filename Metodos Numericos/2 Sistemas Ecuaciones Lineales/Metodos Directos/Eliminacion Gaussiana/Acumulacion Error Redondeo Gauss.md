@@ -1,5 +1,6 @@
 ---
 title: Acumulacion Error Redondeo Gauss
+order: 3
 tags:
   - metodos-numericos
   - teoria
@@ -28,8 +29,7 @@ A diferencia del error de truncamiento (que proviene de aproximar procesos conti
 Recordemos el modelo estándar para el error de redondeo en operaciones básicas:
 
 > [!axioma]
-> **Modelo de Wilkinson para error de redondeo.**
-> Para cualquier operación $\circ \in \{+, -, \times, \div\}$ en aritmética de punto flotante con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$:
+> **Modelo de Wilkinson para error de redondeo.** Para cualquier operación $\circ \in \{+, -, \times, \div\}$ en aritmética de punto flotante con [[Epsilon Maquina y Precision Relativa|unidad de redondeo]] $u$:
 > $$\text{fl}(x \circ y) = (x \circ y)(1 + \delta), \quad |\delta| \leq u$$
 > 
 > Este modelo asume el [[Modos de Redondeo IEEE 754|modo de redondeo]] por defecto (*round to nearest, ties to even*).
@@ -47,8 +47,7 @@ $$a_{ij}^{(k+1)} = a_{ij}^{(k)} - m_{ik} \cdot a_{kj}^{(k)}$$
 En aritmética exacta, esto es una simple resta. En aritmética finita, cada operación introduce error.
 
 > [!teoria]
-> **Error local en la actualización.**
-> Sean $\tilde{a}_{ij}^{(k)}$ los valores efectivamente calculados. El valor actualizado satisface:
+> **Error local en la actualización.** Sean $\tilde{a}_{ij}^{(k)}$ los valores efectivamente calculados. El valor actualizado satisface:
 > $$\tilde{a}_{ij}^{(k+1)} = \left( \tilde{a}_{ij}^{(k)} - \tilde{m}_{ik} \cdot \tilde{a}_{kj}^{(k)} (1 + \delta_1) \right) (1 + \delta_2)$$
 > donde $|\delta_1|, |\delta_2| \leq u$.
 > 
@@ -71,8 +70,7 @@ La magnitud del error acumulado depende críticamente de cuánto crecen los elem
 > donde $a_{ij}^{(k)}$ son los elementos generados en el paso $k$ de la eliminación, y $a_{ij}$ son los elementos de la matriz original $A$.
 
 > [!teorema]
-> **Cota de error hacia atrás para eliminación Gaussiana (Wilkinson, 1961).**
-> Si se aplica eliminación Gaussiana con [[Pivoteo Parcial Total Estabilidad|pivoteo parcial]] en aritmética con unidad de redondeo $u$, los factores calculados $\tilde{L}$ y $\tilde{U}$ satisfacen:
+> **Cota de error hacia atrás para eliminación Gaussiana (Wilkinson, 1961).** Si se aplica eliminación Gaussiana con [[Pivoteo Parcial Total Estabilidad|pivoteo parcial]] en aritmética con unidad de redondeo $u$, los factores calculados $\tilde{L}$ y $\tilde{U}$ satisfacen:
 > $$\tilde{L}\tilde{U} = A + \Delta A, \quad \|\Delta A\|_\infty \leq \rho \cdot n \cdot u \cdot \|A\|_\infty$$
 > 
 > El factor $\rho \cdot n \cdot u$ determina la **pérdida de dígitos** en la factorización.
@@ -156,15 +154,13 @@ El valor de $\rho$ determina la estabilidad práctica del algoritmo.
 Combinando el análisis hacia atrás con el [[Condicionamiento Numerico Numero Condicion|número de condición]], obtenemos una cota para el error en la solución.
 
 > [!teorema]
-> **Error hacia adelante para eliminación Gaussiana.**
-> Sea $\tilde{x}$ la solución calculada. Bajo las mismas condiciones que el teorema anterior:
+> **Error hacia adelante para eliminación Gaussiana.** Sea $\tilde{x}$ la solución calculada. Bajo las mismas condiciones que el teorema anterior:
 > $$\frac{\|\tilde{x} - x\|_\infty}{\|x\|_\infty} \leq \frac{\rho \cdot n \cdot u \cdot \kappa_\infty(A)}{1 - \rho \cdot n \cdot u \cdot \kappa_\infty(A)}$$
 > 
 > donde $\kappa_\infty(A) = \|A\|_\infty \|A^{-1}\|_\infty$ es el número de condición.
 
 > [!corolario]
-> **Estimación práctica de dígitos correctos.**
-> Asumiendo $\rho \approx 10$ (típico) y $n \approx 1000$:
+> **Estimación práctica de dígitos correctos.** Asumiendo $\rho \approx 10$ (típico) y $n \approx 1000$:
 > $$\text{Pérdida de dígitos} \approx \log_{10}(\rho \cdot n \cdot \kappa_\infty(A))$$
 > 
 > Para una matriz bien condicionada ($\kappa \approx 1$):
@@ -179,8 +175,7 @@ Combinando el análisis hacia atrás con el [[Condicionamiento Numerico Numero C
 La fase de sustitución regresiva también acumula error, aunque típicamente menos que la eliminación.
 
 > [!proposicion]
-> **Error en sustitución regresiva.**
-> La solución $\tilde{x}$ de $Ux = c$ (con $U$ triangular superior) calculada por sustitución regresiva satisface:
+> **Error en sustitución regresiva.** La solución $\tilde{x}$ de $Ux = c$ (con $U$ triangular superior) calculada por sustitución regresiva satisface:
 > $$(U + \Delta U)\tilde{x} = c, \quad \|\Delta U\|_\infty \leq n \cdot u \cdot \|U\|_\infty + O(u^2)$$
 > 
 > El error es proporcional a $n \cdot u$, que para $n$ moderado es pequeño comparado con el error de la eliminación.
@@ -253,8 +248,7 @@ El pivoteo es la herramienta fundamental para controlar $\rho$.
 Incluso con pivoteo, si la matriz está mal condicionada ($\kappa(A)$ grande), el error puede ser significativo.
 
 > [!warning]
-> **Límite fundamental del condicionamiento.**
-> Si $\kappa_\infty(A) \approx 10^{16}$ en precisión doble, **ningún algoritmo** puede dar dígitos correctos, porque el error relativo en los datos (inevitable por redondeo al almacenar $A$ y $b$) ya es del orden de $10^{-16}$, y el condicionamiento lo amplifica a $\approx 1$ (100% de error).
+> **Límite fundamental del condicionamiento.** Si $\kappa_\infty(A) \approx 10^{16}$ en precisión doble, **ningún algoritmo** puede dar dígitos correctos, porque el error relativo en los datos (inevitable por redondeo al almacenar $A$ y $b$) ya es del orden de $10^{-16}$, y el condicionamiento lo amplifica a $\approx 1$ (100% de error).
 > 
 > Este es un problema del **problema matemático**, no del algoritmo. Ver [[Condicionamiento Numerico Numero Condicion]] para más detalles.
 
@@ -307,8 +301,7 @@ Cuando se requiere alta precisión en sistemas mal condicionados (pero no extrem
 > **Costo adicional:** $O(n^2)$ por iteración (solo sustituciones).
 
 > [!info]
-> **¿Por qué funciona?**
-> El cálculo del residuo $r^{(k)}$ en precisión extendida captura la información perdida por redondeo en la solución inicial. Resolver con la misma $LU$ (que ya está factorizada) es barato.
+> **¿Por qué funciona?** El cálculo del residuo $r^{(k)}$ en precisión extendida captura la información perdida por redondeo en la solución inicial. Resolver con la misma $LU$ (que ya está factorizada) es barato.
 > 
 > El refinamiento iterativo puede recuperar varios dígitos de precisión, incluso hasta alcanzar la precisión de la máquina si el condicionamiento no es extremo.
 
@@ -341,5 +334,4 @@ def refinement(A, b, n_iter=5):
 | [[Perdida Significancia y Cancelacion Catastrofica\|Cancelación catastrófica]] | Variable | Reordenar operaciones |
 
 > [!corolario]
-> **Regla de Wilkinson para eliminación Gaussiana.**
-> *"La eliminación Gaussiana con pivoteo parcial es un algoritmo numéricamente estable para la gran mayoría de matrices prácticas. Cuando falla, es casi siempre debido a un mal condicionamiento del problema, no a inestabilidad del algoritmo."*
+> **Regla de Wilkinson para eliminación Gaussiana.** *"La eliminación Gaussiana con pivoteo parcial es un algoritmo numéricamente estable para la gran mayoría de matrices prácticas. Cuando falla, es casi siempre debido a un mal condicionamiento del problema, no a inestabilidad del algoritmo."*

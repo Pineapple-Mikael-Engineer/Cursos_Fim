@@ -1,5 +1,6 @@
 ---
 title: Ondas Electromagnéticas
+order: 5
 tags:
   - electromagnetismo
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 5 del curso Electromagnetismo.** Es la cosecha del capítulo 4: las ondas salen de las [[Ecuaciones de Maxwell]] sin postulado nuevo. Usa la ecuación de ondas, la identidad BAC–CAB ([[Identidades Vectoriales]]) y el vector de Poynting ([[Energia y Momento]]).
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 9.
+> **Capítulo 5 del curso Electromagnetismo.** Es la cosecha del capítulo 4: las ondas salen de las [[Ecuaciones de Maxwell]] sin postulado nuevo. Usa la ecuación de ondas, la identidad BAC–CAB ([[Identidades Vectoriales]]) y el vector de Poynting ([[Energia y Momento]]). **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 9.
 
 ---
 

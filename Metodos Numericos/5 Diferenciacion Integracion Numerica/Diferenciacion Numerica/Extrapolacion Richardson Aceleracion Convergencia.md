@@ -1,5 +1,6 @@
 ---
 title: Extrapolación de Richardson y Aceleración de Convergencia
+order: 3
 tags:
   - metodos-numericos
   - teoria

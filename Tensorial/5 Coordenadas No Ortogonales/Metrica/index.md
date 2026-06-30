@@ -1,5 +1,6 @@
 ---
 title: Metrica y Componentes Covariantes/Contravariantes
+order: 2
 tags:
   - analisis-tensorial
   - teoria

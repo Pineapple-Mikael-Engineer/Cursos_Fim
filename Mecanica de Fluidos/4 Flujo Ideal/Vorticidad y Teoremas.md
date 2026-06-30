@@ -1,5 +1,6 @@
 ---
 title: Vorticidad y Teoremas
+order: 4
 tags:
   - fluidos
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Cuarta nota de la sección [[4 Flujo Ideal/index | Flujo Ideal]].** Cierra el capítulo: tras la [[Ecuacion de Euler]], la [[Ecuacion de Bernoulli]] y el [[Flujo Potencial]], aquí se demuestra **por qué** un flujo ideal que arranca irrotacional sigue siéndolo —justificando el uso del potencial $\vec v=\nabla\phi$—. Hermanas: [[Flujo Potencial]], [[Ecuacion de Euler]]. Usa la cinemática de [[Deformacion y Vorticidad]] (definición de $\vec\omega$, tubos y líneas de vórtice).
-> **Referencia.** Landau-Lifshitz, Vol. 6, §§7–8 ("Conservación de la circulación", "Flujo potencial"); Batchelor, cap. 5; Acheson, cap. 5.
+> **Cuarta nota de la sección [[4 Flujo Ideal/index | Flujo Ideal]].** Cierra el capítulo: tras la [[Ecuacion de Euler]], la [[Ecuacion de Bernoulli]] y el [[Flujo Potencial]], aquí se demuestra **por qué** un flujo ideal que arranca irrotacional sigue siéndolo —justificando el uso del potencial $\vec v=\nabla\phi$—. Hermanas: [[Flujo Potencial]], [[Ecuacion de Euler]]. Usa la cinemática de [[Deformacion y Vorticidad]] (definición de $\vec\omega$, tubos y líneas de vórtice). **Referencia.** Landau-Lifshitz, Vol. 6, §§7–8 ("Conservación de la circulación", "Flujo potencial"); Batchelor, cap. 5; Acheson, cap. 5.
 
 ---
 
@@ -62,8 +62,7 @@ aliases:
 > El término $(\vec\omega\cdot\nabla)\vec v$ es la **fuente** de toda la dinámica: es la derivada direccional de $\vec v$ a lo largo de $\vec\omega$. Alíneando un eje local con $\vec\omega$ (digamos $\hat z$), $\vec\omega=\omega\,\hat z$ da
 > $$(\vec\omega\cdot\nabla)\vec v=\omega\,\partial_z\vec v=\omega\Big(\underbrace{\partial_z v_z}_{\text{estiramiento}}\,\hat z+\underbrace{\partial_z v_x\,\hat x+\partial_z v_y\,\hat y}_{\text{inclinación}}\Big).$$
 > - **Estiramiento** ($\partial_z v_z>0$): si el fluido se acelera a lo largo del tubo de vórtice, este se **estira** y adelgaza; como su momento angular se conserva (igual que una patinadora que recoge los brazos), $\omega$ **aumenta**. Este *vortex stretching* es el motor de la cascada de la turbulencia tridimensional.
-> - **Inclinación** ($\partial_z v_x,\partial_z v_y$): un gradiente transversal **reorienta** el vector $\vec\omega$ hacia otras direcciones.
-> En **flujo plano** $\vec v=(v_x,v_y,0)$ se tiene $\vec\omega=\omega_z\hat z$ y $(\vec\omega\cdot\nabla)\vec v=\omega_z\partial_z\vec v=0$: el estiramiento **no existe en 2D**, donde $D\omega_z/Dt=0$ (la vorticidad se transporta como un escalar pasivo).
+> - **Inclinación** ($\partial_z v_x,\partial_z v_y$): un gradiente transversal **reorienta** el vector $\vec\omega$ hacia otras direcciones. En **flujo plano** $\vec v=(v_x,v_y,0)$ se tiene $\vec\omega=\omega_z\hat z$ y $(\vec\omega\cdot\nabla)\vec v=\omega_z\partial_z\vec v=0$: el estiramiento **no existe en 2D**, donde $D\omega_z/Dt=0$ (la vorticidad se transporta como un escalar pasivo).
 
 > [!corolario] Un flujo ideal que arranca irrotacional sigue irrotacional
 > La ecuación es **homogénea** en $\vec\omega$: el lado derecho $(\vec\omega\cdot\nabla)\vec v$ se anula donde $\vec\omega=0$. Si en $t=0$ el campo es irrotacional, $\vec\omega(\vec x,0)=0$ en todo el dominio, entonces $D\vec\omega/Dt=0$ y, siguiendo cada partícula, $\vec\omega$ permanece nula para todo $t$. Por eso un flujo ideal que parte del **reposo** (o de una corriente uniforme) es irrotacional y admite potencial $\vec v=\nabla\phi$ con $\nabla^2\phi=0$ ([[Flujo Potencial]]). $\blacksquare$
@@ -148,8 +147,7 @@ aliases:
 > [!warning] El alcance: solo flujo ideal y barotrópico
 > Kelvin, Helmholtz y la permanencia de la irrotacionalidad **dependen** de tres hipótesis. Si se rompen, la vorticidad se **crea**:
 > - **Viscosidad** ($\mu\neq0$): añade a la ecuación un término difusivo $\nu\nabla^2\vec\omega$, de modo que $D\vec\omega/Dt=(\vec\omega\cdot\nabla)\vec v+\nu\nabla^2\vec\omega$. La vorticidad **difunde** desde las paredes hacia el fluido (no deslizamiento), y la circulación de un circuito material **decae**. Por eso las **estelas** reales tienen vorticidad aunque la corriente entrante sea irrotacional.
-> - **Baroclinicidad** ($\nabla\rho\times\nabla p\neq0$): si el flujo **no** es barotrópico, $\nabla\times(\nabla p/\rho)=\tfrac1{\rho^2}\nabla\rho\times\nabla p\neq0$ aparece como término fuente $+\tfrac1{\rho^2}\nabla\rho\times\nabla p$ en la ecuación de vorticidad. Genera rotación allí donde los gradientes de densidad y presión no son paralelos (convección, frentes atmosféricos, *baroclinic instability*).
-> En el [[5 Flujo Viscoso/index | Capítulo 5]] la viscosidad reescribe esta historia cerca de las paredes.
+> - **Baroclinicidad** ($\nabla\rho\times\nabla p\neq0$): si el flujo **no** es barotrópico, $\nabla\times(\nabla p/\rho)=\tfrac1{\rho^2}\nabla\rho\times\nabla p\neq0$ aparece como término fuente $+\tfrac1{\rho^2}\nabla\rho\times\nabla p$ en la ecuación de vorticidad. Genera rotación allí donde los gradientes de densidad y presión no son paralelos (convección, frentes atmosféricos, *baroclinic instability*). En el [[5 Flujo Viscoso/index | Capítulo 5]] la viscosidad reescribe esta historia cerca de las paredes.
 
 ---
 

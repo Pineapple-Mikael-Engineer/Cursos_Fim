@@ -1,5 +1,6 @@
 ---
 title: Teorema del Transporte de Reynolds
+order: 5
 tags:
   - fluidos
   - teoria
@@ -72,8 +73,7 @@ aliases:
 > El teorema de Reynolds también se escribe
 > $$\frac{d}{dt}\int_{V(t)}\phi\,dV=\int_V\left[\frac{D\phi}{Dt}+\phi\,\nabla\cdot\vec v\right]dV.$$
 >
-> **Demostración.**
-> **Paso 1 — Expandir la divergencia del producto.** Por la regla del producto para la divergencia de "escalar por vector",
+> **Demostración.** **Paso 1 — Expandir la divergencia del producto.** Por la regla del producto para la divergencia de "escalar por vector",
 > $$\nabla\cdot(\phi\,\vec v)=\phi\,\nabla\cdot\vec v+\vec v\cdot\nabla\phi.$$
 >
 > **Paso 2 — Sustituir en la forma diferencial.** Partiendo del Paso 5 anterior,

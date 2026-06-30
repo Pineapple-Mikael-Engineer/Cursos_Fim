@@ -1,5 +1,6 @@
 ---
 title: Velocidad Convergencia Razon Lambda2 Lambda1
+order: 2
 tags:
   - metodos-numericos
   - teoria

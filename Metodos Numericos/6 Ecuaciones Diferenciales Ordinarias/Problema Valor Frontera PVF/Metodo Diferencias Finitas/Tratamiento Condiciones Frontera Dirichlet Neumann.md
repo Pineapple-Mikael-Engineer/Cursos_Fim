@@ -1,5 +1,6 @@
 ---
 title: Tratamiento de Condiciones de Frontera (Dirichlet y Neumann)
+order: 4
 tags:
   - metodos-numericos
   - teoria

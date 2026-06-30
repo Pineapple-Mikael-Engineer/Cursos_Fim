@@ -1,5 +1,6 @@
 ---
 title: Fundamentos Iteracion Punto Fijo Lineal
+order: 1
 tags:
   - metodos-numericos
   - teoria

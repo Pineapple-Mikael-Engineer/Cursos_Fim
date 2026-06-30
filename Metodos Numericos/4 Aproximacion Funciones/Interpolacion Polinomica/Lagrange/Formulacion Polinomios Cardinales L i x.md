@@ -1,5 +1,6 @@
 ---
 title: Polinomios Cardinales de Lagrange
+order: 1
 tags:
   - metodos-numericos
   - teoria

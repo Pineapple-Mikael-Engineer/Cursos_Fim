@@ -1,5 +1,6 @@
 ---
 title: Método de Disparo (Shooting)
+order: 2
 tags:
   - metodos-numericos
   - teoria

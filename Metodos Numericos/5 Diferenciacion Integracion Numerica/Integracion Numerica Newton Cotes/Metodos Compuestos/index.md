@@ -1,5 +1,6 @@
 ---
 title: Métodos Compuestos
+order: 3
 tags:
   - metodos-numericos
   - teoria

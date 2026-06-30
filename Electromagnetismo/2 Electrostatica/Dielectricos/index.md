@@ -1,5 +1,6 @@
 ---
 title: Dieléctricos
+order: 7
 tags:
   - electromagnetismo
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Subsección de [[2 Electrostatica/index | Electrostática]]** (curso Electromagnetismo). Cierra el capítulo: tras Coulomb, Gauss, potencial, energía y conductores, describe la **respuesta de la materia aislante**. Contrasta con [[Conductores]] (donde $\vec E=0$ dentro): en un dieléctrico el campo no se anula, solo se **reduce**.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4.
+> **Subsección de [[2 Electrostatica/index | Electrostática]]** (curso Electromagnetismo). Cierra el capítulo: tras Coulomb, Gauss, potencial, energía y conductores, describe la **respuesta de la materia aislante**. Contrasta con [[Conductores]] (donde $\vec E=0$ dentro): en un dieléctrico el campo no se anula, solo se **reduce**. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4.
 
 ---
 

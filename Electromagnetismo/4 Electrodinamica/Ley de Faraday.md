@@ -1,5 +1,6 @@
 ---
 title: Ley de Faraday
+order: 1
 tags:
   - electromagnetismo
   - teoria

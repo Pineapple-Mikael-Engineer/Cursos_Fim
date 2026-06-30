@@ -1,5 +1,6 @@
 ---
 title: Electrodinámica
+order: 4
 tags:
   - electromagnetismo
   - teoria
@@ -23,8 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 4 del curso Electromagnetismo: la unificación.** Reúne [[2 Electrostatica/index | Electrostática]] y [[3 Magnetostatica/index | Magnetostática]] añadiendo la dependencia temporal. Usa el rotacional, Stokes y las identidades de [[1 Calculo Vectorial/index | Cálculo Vectorial]].
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, caps. 7–8.
+> **Capítulo 4 del curso Electromagnetismo: la unificación.** Reúne [[2 Electrostatica/index | Electrostática]] y [[3 Magnetostatica/index | Magnetostática]] añadiendo la dependencia temporal. Usa el rotacional, Stokes y las identidades de [[1 Calculo Vectorial/index | Cálculo Vectorial]]. **Referencia.** Griffiths, *Introduction to Electrodynamics*, caps. 7–8.
 
 ---
 

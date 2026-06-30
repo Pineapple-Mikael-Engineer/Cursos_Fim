@@ -1,5 +1,6 @@
 ---
 title: Aproximación de Funciones
+order: 4
 tags:
   - metodos-numericos
   - teoria

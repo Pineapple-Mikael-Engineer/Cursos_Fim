@@ -1,5 +1,6 @@
 ---
 title: Cuadrivectores
+order: 1
 tags:
   - electromagnetismo
   - teoria
@@ -23,9 +24,7 @@ aliases:
 ---
 
 > [!info]
-> Primera nota de la sección [[6 Formulacion Covariante/index | Formulación Covariante]]. Aquí se monta el **andamiaje**: espaciotiempo, métrica, índices arriba/abajo, invariantes y boosts de Lorentz. Las hermanas lo usan: [[Tensor de Campo]] construye $F^{\mu\nu}$ a partir del cuadripotencial $A^\mu$, y [[Maxwell Covariante]] escribe las ecuaciones del campo con el cuadrigradiente $\partial_\mu$ y la cuadricorriente $J^\mu$ definidos aquí.
-> **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$ (el de **Landau** y física de partículas); índices griegos $0\!-\!3$, latinos $1\!-\!3$; convenio de suma de Einstein.
-> **Referencia.** Griffiths cap. 12; **Landau-Lifshitz Vol. 2** (*Teoría Clásica de Campos*).
+> Primera nota de la sección [[6 Formulacion Covariante/index | Formulación Covariante]]. Aquí se monta el **andamiaje**: espaciotiempo, métrica, índices arriba/abajo, invariantes y boosts de Lorentz. Las hermanas lo usan: [[Tensor de Campo]] construye $F^{\mu\nu}$ a partir del cuadripotencial $A^\mu$, y [[Maxwell Covariante]] escribe las ecuaciones del campo con el cuadrigradiente $\partial_\mu$ y la cuadricorriente $J^\mu$ definidos aquí. **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$ (el de **Landau** y física de partículas); índices griegos $0\!-\!3$, latinos $1\!-\!3$; convenio de suma de Einstein. **Referencia.** Griffiths cap. 12; **Landau-Lifshitz Vol. 2** (*Teoría Clásica de Campos*).
 
 ---
 

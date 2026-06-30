@@ -1,5 +1,6 @@
 ---
 title: Cambio de Variable a Intervalo General
+order: 5
 tags:
   - metodos-numericos
   - teoria

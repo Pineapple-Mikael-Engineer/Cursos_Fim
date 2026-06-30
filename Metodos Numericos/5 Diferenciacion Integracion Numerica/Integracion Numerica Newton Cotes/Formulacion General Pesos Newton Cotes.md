@@ -1,5 +1,6 @@
 ---
 title: Formulación General y Pesos de Newton-Cotes
+order: 1
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Potenciales y Gauge
+order: 4
 tags:
   - electromagnetismo
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota de la sección [[4 Electrodinamica/index | Electrodinámica]].** Sus hermanas son [[Ecuaciones de Maxwell]] (las cuatro leyes que aquí reescribimos) y [[Energia y Momento]] (Poynting, momento del campo). La construcción de $\vec A$ ya se discutió en estática en [[Potencial Vector]]; el álgebra usa el desarrollo BAC–CAB y demás de [[Identidades Vectoriales]].
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 10 (formulación con potenciales) y cap. 7 (electrodinámica). Operador d'Alembertiano: $\Box=\nabla^2-\dfrac{1}{c^2}\partial_t^2$, con $c^2=1/(\mu_0\varepsilon_0)$.
+> **Nota de la sección [[4 Electrodinamica/index | Electrodinámica]].** Sus hermanas son [[Ecuaciones de Maxwell]] (las cuatro leyes que aquí reescribimos) y [[Energia y Momento]] (Poynting, momento del campo). La construcción de $\vec A$ ya se discutió en estática en [[Potencial Vector]]; el álgebra usa el desarrollo BAC–CAB y demás de [[Identidades Vectoriales]]. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 10 (formulación con potenciales) y cap. 7 (electrodinámica). Operador d'Alembertiano: $\Box=\nabla^2-\dfrac{1}{c^2}\partial_t^2$, con $c^2=1/(\mu_0\varepsilon_0)$.
 
 ---
 

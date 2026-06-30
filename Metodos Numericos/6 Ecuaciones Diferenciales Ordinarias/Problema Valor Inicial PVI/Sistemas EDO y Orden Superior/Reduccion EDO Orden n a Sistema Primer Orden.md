@@ -1,5 +1,6 @@
 ---
 title: Reducción de EDO de Orden n a Sistema de Primer Orden
+order: 1
 tags:
   - metodos-numericos
   - teoria

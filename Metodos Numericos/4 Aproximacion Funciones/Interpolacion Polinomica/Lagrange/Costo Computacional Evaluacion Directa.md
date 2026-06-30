@@ -1,5 +1,6 @@
 ---
 title: Costo Computacional y Evaluación Directa
+order: 2
 tags:
   - metodos-numericos
   - teoria

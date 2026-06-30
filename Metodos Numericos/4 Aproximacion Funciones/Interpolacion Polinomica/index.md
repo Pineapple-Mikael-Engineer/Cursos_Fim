@@ -1,5 +1,6 @@
 ---
 title: Interpolación Polinómica
+order: 1
 tags:
   - metodos-numericos
   - teoria

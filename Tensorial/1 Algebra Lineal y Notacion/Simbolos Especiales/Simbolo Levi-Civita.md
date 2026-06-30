@@ -1,5 +1,6 @@
 ---
 title: Símbolo de Levi-Civita
+order: 2
 tags:
   - analisis-tensorial
   - teoria
@@ -64,10 +65,7 @@ aliases:
 > $$\varepsilon_{ijk}=-\varepsilon_{ikj}=-\varepsilon_{jik}=-\varepsilon_{kji},\qquad \varepsilon_{ijk}=\varepsilon_{jki}=\varepsilon_{kij}.$$
 
 > [!demostracion]
-> **Antisimetría y anulación.**
-> *Paso 1 (intercambio).* Un intercambio de dos índices transforma una permutación par en impar y viceversa; por definición eso invierte el signo: $\varepsilon_{ijk}=-\varepsilon_{ikj}$.
-> *Paso 2 (ciclo = dos intercambios).* Una permutación cíclica $ijk\to jki$ son dos intercambios sucesivos, $(-1)^2=+1$, así que conserva el signo: $\varepsilon_{ijk}=\varepsilon_{jki}$.
-> *Paso 3 (índice repetido).* Si dos índices son iguales, p. ej. $i=j$, intercambiarlos no cambia el arreglo pero debe invertir el signo: $\varepsilon_{iik}=-\varepsilon_{iik}$, luego $\varepsilon_{iik}=0$. Por eso solo las permutaciones sin repetición son no nulas.
+> **Antisimetría y anulación.** *Paso 1 (intercambio).* Un intercambio de dos índices transforma una permutación par en impar y viceversa; por definición eso invierte el signo: $\varepsilon_{ijk}=-\varepsilon_{ikj}$. *Paso 2 (ciclo = dos intercambios).* Una permutación cíclica $ijk\to jki$ son dos intercambios sucesivos, $(-1)^2=+1$, así que conserva el signo: $\varepsilon_{ijk}=\varepsilon_{jki}$. *Paso 3 (índice repetido).* Si dos índices son iguales, p. ej. $i=j$, intercambiarlos no cambia el arreglo pero debe invertir el signo: $\varepsilon_{iik}=-\varepsilon_{iik}$, luego $\varepsilon_{iik}=0$. Por eso solo las permutaciones sin repetición son no nulas.
 
 ## Resumen
 

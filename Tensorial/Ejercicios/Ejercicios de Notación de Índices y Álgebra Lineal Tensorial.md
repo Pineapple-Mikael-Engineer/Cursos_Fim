@@ -1,5 +1,6 @@
 ---
 title: Ejercicios de Notación de Índices y Álgebra Lineal Tensorial
+order: 4
 tags:
   - matemáticas
   - ejercicios
@@ -120,16 +121,13 @@ Dada la métrica $g_{ij} = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}$ en $\ma
 >
 > 2. $u_i = g_{ij} u^j$:
 >    - $u_1 = g_{11}u^1 + g_{12}u^2 = 2\cdot1 + 1\cdot2 = 4$
->    - $u_2 = g_{21}u^1 + g_{22}u^2 = 1\cdot1 + 3\cdot2 = 7$
->    Por lo tanto $u_i = (4, 7)$
+>    - $u_2 = g_{21}u^1 + g_{22}u^2 = 1\cdot1 + 3\cdot2 = 7$ Por lo tanto $u_i = (4, 7)$
 >
 > 3. $v^i = g^{ij} v_j$:
 >    - $v^1 = g^{11}v_1 + g^{12}v_2 = \frac{3}{5}\cdot3 + \frac{-1}{5}\cdot4 = \frac{9 - 4}{5} = 1$
->    - $v^2 = g^{21}v_1 + g^{22}v_2 = \frac{-1}{5}\cdot3 + \frac{2}{5}\cdot4 = \frac{-3 + 8}{5} = 1$
->    Por lo tanto $v^i = (1, 1)$
+>    - $v^2 = g^{21}v_1 + g^{22}v_2 = \frac{-1}{5}\cdot3 + \frac{2}{5}\cdot4 = \frac{-3 + 8}{5} = 1$ Por lo tanto $v^i = (1, 1)$
 >
-> 4. $u^i u_i = 1\cdot4 + 2\cdot7 = 4 + 14 = 18$
->    $g_{ij} u^i u^j = 2\cdot1\cdot1 + 1\cdot1\cdot2 + 1\cdot2\cdot1 + 3\cdot2\cdot2 = 2 + 2 + 2 + 12 = 18$ ✅
+> 4. $u^i u_i = 1\cdot4 + 2\cdot7 = 4 + 14 = 18$ $g_{ij} u^i u^j = 2\cdot1\cdot1 + 1\cdot1\cdot2 + 1\cdot2\cdot1 + 3\cdot2\cdot2 = 2 + 2 + 2 + 12 = 18$ ✅
 >
 > 5. $\|u\|^2 = g_{ij} u^i u^j = 18$
 
@@ -261,8 +259,7 @@ En $\mathbb{R}^2$, se define la transformación lineal $\bar{x}^1 = 2x^1 + x^2$,
 >    A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}
 >    $$
 >
-> 2. $A A^T = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 5 & 3 \\ 3 & 2 \end{pmatrix}$
->    $\det(AA^T) = 5\cdot2 - 3\cdot3 = 10 - 9 = 1$
+> 2. $A A^T = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 5 & 3 \\ 3 & 2 \end{pmatrix}$ $\det(AA^T) = 5\cdot2 - 3\cdot3 = 10 - 9 = 1$
 >    $$
 >    G = (A A^T)^{-1} = \begin{pmatrix} 2 & -3 \\ -3 & 5 \end{pmatrix}
 >    $$
@@ -345,13 +342,9 @@ En $\mathbb{R}^2$ se define una base $\{\vec{e}_1, \vec{e}_2\}$ con:
 >
 > 2. $\vec{v} = v^1 \vec{e}_1 + v^2 \vec{e}_2 = 1\vec{e}_1 + 2\vec{e}_2$
 >
-> 3. $\|\vec{v}\|^2 = g_{ij} v^i v^j = 2\cdot1\cdot1 + 1\cdot1\cdot2 + 1\cdot2\cdot1 + 3\cdot2\cdot2 = 2 + 2 + 2 + 12 = 18$
->    $\|\vec{v}\| = \sqrt{18} = 3\sqrt{2}$
+> 3. $\|\vec{v}\|^2 = g_{ij} v^i v^j = 2\cdot1\cdot1 + 1\cdot1\cdot2 + 1\cdot2\cdot1 + 3\cdot2\cdot2 = 2 + 2 + 2 + 12 = 18$ $\|\vec{v}\| = \sqrt{18} = 3\sqrt{2}$
 >
-> 4. $v_i = g_{ij} v^j$:
->    $v_1 = 2\cdot1 + 1\cdot2 = 4$
->    $v_2 = 1\cdot1 + 3\cdot2 = 7$
->    $v_i = (4, 7)$
+> 4. $v_i = g_{ij} v^j$: $v_1 = 2\cdot1 + 1\cdot2 = 4$ $v_2 = 1\cdot1 + 3\cdot2 = 7$ $v_i = (4, 7)$
 
 ---
 
@@ -367,13 +360,9 @@ En $\mathbb{R}^3$, dados los vectores $\vec{u} = (1, 2, 3)$ y $\vec{v} = (4, 5, 
 >
 > **Solución:**
 >
-> 1. $w^1 = \varepsilon^{123} u_2 v_3 + \varepsilon^{132} u_3 v_2 = 1\cdot2\cdot6 + (-1)\cdot3\cdot5 = 12 - 15 = -3$
->    $w^2 = \varepsilon^{213} u_1 v_3 + \varepsilon^{231} u_3 v_1 = (-1)\cdot1\cdot6 + 1\cdot3\cdot4 = -6 + 12 = 6$
->    $w^3 = \varepsilon^{312} u_1 v_2 + \varepsilon^{321} u_2 v_1 = 1\cdot1\cdot5 + (-1)\cdot2\cdot4 = 5 - 8 = -3$
->    $\vec{w} = (-3, 6, -3)$
+> 1. $w^1 = \varepsilon^{123} u_2 v_3 + \varepsilon^{132} u_3 v_2 = 1\cdot2\cdot6 + (-1)\cdot3\cdot5 = 12 - 15 = -3$ $w^2 = \varepsilon^{213} u_1 v_3 + \varepsilon^{231} u_3 v_1 = (-1)\cdot1\cdot6 + 1\cdot3\cdot4 = -6 + 12 = 6$ $w^3 = \varepsilon^{312} u_1 v_2 + \varepsilon^{321} u_2 v_1 = 1\cdot1\cdot5 + (-1)\cdot2\cdot4 = 5 - 8 = -3$ $\vec{w} = (-3, 6, -3)$
 >
-> 2. $\vec{w} \cdot \vec{u} = (-3)\cdot1 + 6\cdot2 + (-3)\cdot3 = -3 + 12 - 9 = 0$
->    $\vec{w} \cdot \vec{v} = (-3)\cdot4 + 6\cdot5 + (-3)\cdot6 = -12 + 30 - 18 = 0$ ✅
+> 2. $\vec{w} \cdot \vec{u} = (-3)\cdot1 + 6\cdot2 + (-3)\cdot3 = -3 + 12 - 9 = 0$ $\vec{w} \cdot \vec{v} = (-3)\cdot4 + 6\cdot5 + (-3)\cdot6 = -12 + 30 - 18 = 0$ ✅
 >
 > 3. $\|\vec{w}\| = \sqrt{(-3)^2 + 6^2 + (-3)^2} = \sqrt{9 + 36 + 9} = \sqrt{54} = 3\sqrt{6}$
 
@@ -395,10 +384,7 @@ Dada la forma cuadrática $Q(\vec{x}) = a_{ij} x^i x^j$ con $a_{ij}$ constante y
 >
 > 2. $\frac{\partial Q}{\partial x^k} = (a_{ik} + a_{ki}) x^i = 2a_{ki} x^i$ (por simetría)
 >
-> 3. $a_{11}=2$, $a_{12}=1$, $a_{21}=1$, $a_{22}=3$
->    $\frac{\partial Q}{\partial x^1} = 2a_{11}x^1 + 2a_{12}x^2 = 2\cdot2\cdot1 + 2\cdot1\cdot2 = 4 + 4 = 8$
->    $\frac{\partial Q}{\partial x^2} = 2a_{21}x^1 + 2a_{22}x^2 = 2\cdot1\cdot1 + 2\cdot3\cdot2 = 2 + 12 = 14$
->    $\nabla Q = (8, 14)$
+> 3. $a_{11}=2$, $a_{12}=1$, $a_{21}=1$, $a_{22}=3$ $\frac{\partial Q}{\partial x^1} = 2a_{11}x^1 + 2a_{12}x^2 = 2\cdot2\cdot1 + 2\cdot1\cdot2 = 4 + 4 = 8$ $\frac{\partial Q}{\partial x^2} = 2a_{21}x^1 + 2a_{22}x^2 = 2\cdot1\cdot1 + 2\cdot3\cdot2 = 2 + 12 = 14$ $\nabla Q = (8, 14)$
 
 ---
 
@@ -417,9 +403,7 @@ Dados los tensores $A^{ij}$ y $B_{jk}$, encuentra la expresión contraída $C^i 
 >    - $C^1 = A^{11}B_{11} + A^{11}B_{12} + A^{12}B_{21} + A^{12}B_{22}$
 >    - $C^2 = A^{21}B_{11} + A^{21}B_{12} + A^{22}B_{21} + A^{22}B_{22}$
 >
-> 2. $C^1 = 1\cdot5 + 1\cdot6 + 2\cdot7 + 2\cdot8 = 5 + 6 + 14 + 16 = 41$
->    $C^2 = 3\cdot5 + 3\cdot6 + 4\cdot7 + 4\cdot8 = 15 + 18 + 28 + 32 = 93$
->    $C^i = (41, 93)$
+> 2. $C^1 = 1\cdot5 + 1\cdot6 + 2\cdot7 + 2\cdot8 = 5 + 6 + 14 + 16 = 41$ $C^2 = 3\cdot5 + 3\cdot6 + 4\cdot7 + 4\cdot8 = 15 + 18 + 28 + 32 = 93$ $C^i = (41, 93)$
 
 ---
 

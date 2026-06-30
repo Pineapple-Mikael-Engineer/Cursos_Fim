@@ -1,5 +1,6 @@
 ---
 title: Teorema del Valor Medio
+order: 7
 tags:
   - ecuaciones
   - edp

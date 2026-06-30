@@ -1,5 +1,6 @@
 ---
 title: Diagonalización de Tensores
+order: 5
 tags:
   - analisis-tensorial
   - teoria

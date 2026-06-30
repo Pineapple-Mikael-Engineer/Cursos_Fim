@@ -1,5 +1,6 @@
 ---
 title: Representacion Punto Flotante IEEE 754
+order: 1
 tags:
   - metodos-numericos
   - teoria
@@ -33,10 +34,8 @@ El estándar define varios formatos. Los más utilizados en métodos numéricos 
 | Exponente ($e$) |          $8$ bits           |         $11$ bits          |
 | Mantisa ($f$)   |          $23$ bits          |         $52$ bits          |
 | Sesgo           |            $127$            |           $1023$           |
- - **binary32:**
-   `s eeeeeeee fffffffffffffffffffffff` 
- - **binary64:**
-   `s eeeeeeeeeee fffff...` 
+ - **binary32:** `s eeeeeeee fffffffffffffffffffffff` 
+ - **binary64:** `s eeeeeeeeeee fffff...` 
 
 ---
 
@@ -49,8 +48,7 @@ $$f = b_1 2^{-1} + b_2 2^{-2} + \dots + b_{p-1} 2^{-(p-1)}$$
 donde $p$ es la precisión ($24$ para simple, $53$ para doble).
 
 > [!info]
-> **Valores especiales del exponente $e$.**
-> El estándar reserva los valores extremos del exponente para casos excepcionales:
+> **Valores especiales del exponente $e$.** El estándar reserva los valores extremos del exponente para casos excepcionales:
 > - **$e = 0$ y $f = 0$:** Cero ($\pm 0$).
 > - **$e = 0$ y $f \neq 0$:** Números **subnormales** (Ver [[Underflow y Numeros Subnormales]]).
 > - **$e = 2^k-1$ y $f = 0$:** Infinito ($\pm\infty$) (Ver [[Overflow e Infinito]]).
@@ -65,8 +63,7 @@ Para entender cómo se almacena un número real, es necesario dominar el proceso
 > [!ejemplo]
 > **Codificar el número $-12.625$ en formato binary32 (precisión simple).**
 > 
-> **1. Bit de signo $s$:**
-> El número es negativo $\implies s = 1$.
+> **1. Bit de signo $s$:** El número es negativo $\implies s = 1$.
 > 
 > **2. Convertir valor absoluto a binario:**
 > - Parte entera $12$: $12_{10} = 1100_2$.
@@ -82,13 +79,9 @@ Para entender cómo se almacena un número real, es necesario dominar el proceso
 > $$1100.101_2 = 1.100101_2 \times 2^3$$
 > El exponente real es $E = 3$.
 > 
-> **4. Calcular exponente sesgado $e$:**
-> $e = E + \text{sesgo} = 3 + 127 = 130_{10}$.
-> Convertir $130$ a binario de $8$ bits: $130 = 128 + 2 \implies 10000010_2$.
+> **4. Calcular exponente sesgado $e$:** $e = E + \text{sesgo} = 3 + 127 = 130_{10}$. Convertir $130$ a binario de $8$ bits: $130 = 128 + 2 \implies 10000010_2$.
 > 
-> **5. Extraer la fracción $f$ (23 bits):**
-> Del significando normalizado $1.100101$, tomamos la parte fraccionaria y rellenamos con ceros:
-> $f = 10010100000000000000000_2$.
+> **5. Extraer la fracción $f$ (23 bits):** Del significando normalizado $1.100101$, tomamos la parte fraccionaria y rellenamos con ceros: $f = 10010100000000000000000_2$.
 > 
 > **6. Representación final (32 bits):**
 > ```
@@ -100,17 +93,14 @@ Para entender cómo se almacena un número real, es necesario dominar el proceso
 > [!ejemplo]
 > **Decodificar el valor binary32 `0x40A00000` a decimal.**
 > 
-> **1. Descomponer en bits:**
-> `0x40A00000` = `0100 0000 1010 0000 0000 0000 0000 0000`
+> **1. Descomponer en bits:** `0x40A00000` = `0100 0000 1010 0000 0000 0000 0000 0000`
 > - $s = 0$ (positivo)
 > - $e = 10000001_2 = 129_{10}$
 > - $f = 01000000000000000000000_2$
 > 
-> **2. Calcular exponente real $E$:**
-> $E = e - \text{sesgo} = 129 - 127 = 2$.
+> **2. Calcular exponente real $E$:** $E = e - \text{sesgo} = 129 - 127 = 2$.
 > 
-> **3. Reconstruir significando:**
-> $M = 1.f = 1.01_2 = 1 + 0 \cdot 2^{-1} + 1 \cdot 2^{-2} = 1.25_{10}$.
+> **3. Reconstruir significando:** $M = 1.f = 1.01_2 = 1 + 0 \cdot 2^{-1} + 1 \cdot 2^{-2} = 1.25_{10}$.
 > 
 > **4. Valor final:**
 > $$x = (-1)^0 \cdot 1.25 \cdot 2^2 = 1.25 \cdot 4 = 5.0$$

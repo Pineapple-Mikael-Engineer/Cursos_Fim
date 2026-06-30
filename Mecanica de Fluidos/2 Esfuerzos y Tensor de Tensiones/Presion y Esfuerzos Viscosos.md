@@ -1,5 +1,6 @@
 ---
 title: Presión y Esfuerzos Viscosos
+order: 2
 tags:
   - fluidos
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> Esta nota pertenece a la sección [[2 Esfuerzos y Tensor de Tensiones/index | Esfuerzos y Tensor de Tensiones]]. Sus hermanas son [[Tensor de Esfuerzos de Cauchy]] (de dónde sale $\sigma_{ij}$ y por qué es simétrico) y [[Fluido Newtoniano]] (la ley que liga $\tau_{ij}$ al movimiento). Aquí solo **separamos** el tensor; allí se le da contenido físico.
-> **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, *An Introduction to Fluid Dynamics*, §3.3.
+> Esta nota pertenece a la sección [[2 Esfuerzos y Tensor de Tensiones/index | Esfuerzos y Tensor de Tensiones]]. Sus hermanas son [[Tensor de Esfuerzos de Cauchy]] (de dónde sale $\sigma_{ij}$ y por qué es simétrico) y [[Fluido Newtoniano]] (la ley que liga $\tau_{ij}$ al movimiento). Aquí solo **separamos** el tensor; allí se le da contenido físico. **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, *An Introduction to Fluid Dynamics*, §3.3.
 
 ---
 
@@ -107,8 +107,7 @@ aliases:
 > $$\sigma_{ij}=-p\,\delta_{ij}+\tau_{ij}=\begin{pmatrix}-p&\tau&0\\[2pt]\tau&-p&0\\[2pt]0&0&-p\end{pmatrix}.$$
 > Comprueba la descomposición: $\sigma_{kk}=-3p$, luego $-\tfrac13\sigma_{kk}=p$ (la presión se recupera) y $\tau_{kk}=0$ (la diagonal de $\tau_{ij}$ es nula). $\checkmark$
 >
-> Calcula la **tracción sobre dos caras** con $t_i=\sigma_{ij}n_j$. Toma $\tau>0$.
-> Para una **cara horizontal**, normal $\hat n=\hat y=(0,1,0)$:
+> Calcula la **tracción sobre dos caras** con $t_i=\sigma_{ij}n_j$. Toma $\tau>0$. Para una **cara horizontal**, normal $\hat n=\hat y=(0,1,0)$:
 > $$\vec t=\sigma_{ij}n_j=(\tau,\,-p,\,0)=\underbrace{-p\,\hat y}_{\text{normal}}+\underbrace{\tau\,\hat x}_{\text{cortante}}.$$
 > Aparece una componente **tangencial** $\tau\,\hat x$: la cara siente cizalla. Para una cara **a $45^\circ$**, normal $\hat n=\tfrac1{\sqrt2}(1,1,0)$:
 > $$\vec t=\sigma_{ij}n_j=\tfrac1{\sqrt2}\big(-p+\tau,\;\tau-p,\;0\big)=\tfrac{\tau-p}{\sqrt2}\,(1,1,0).$$

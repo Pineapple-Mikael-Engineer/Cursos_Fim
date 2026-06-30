@@ -1,5 +1,6 @@
 ---
 title: Desplazamiento Eléctrico
+order: 2
 tags:
   - electromagnetismo
   - teoria
@@ -24,8 +25,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota de la subsección [[2 Electrostatica/Dielectricos/index | Dieléctricos]]**, dentro del capítulo [[2 Electrostatica/index | Electrostática]] (curso Electromagnetismo). Es **hermana** de [[2 Electrostatica/Dielectricos/Polarizacion | Polarización]] —de donde tomamos la carga ligada $\rho_b=-\nabla\cdot\vec P$, ingrediente clave de la deducción— y prolonga la [[Ley de Gauss]] del vacío a la materia, reemplazando $\vec E$ por $\vec D$ y $\rho$ por $\rho_{\text{libre}}$.
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4. Unidades SI; $\varepsilon_0=8{,}854\times10^{-12}\ \text{C}^2/(\text{N}\cdot\text{m}^2)$.
+> **Nota de la subsección [[2 Electrostatica/Dielectricos/index | Dieléctricos]]**, dentro del capítulo [[2 Electrostatica/index | Electrostática]] (curso Electromagnetismo). Es **hermana** de [[2 Electrostatica/Dielectricos/Polarizacion | Polarización]] —de donde tomamos la carga ligada $\rho_b=-\nabla\cdot\vec P$, ingrediente clave de la deducción— y prolonga la [[Ley de Gauss]] del vacío a la materia, reemplazando $\vec E$ por $\vec D$ y $\rho$ por $\rho_{\text{libre}}$. **Referencia.** Griffiths, *Introduction to Electrodynamics*, cap. 4. Unidades SI; $\varepsilon_0=8{,}854\times10^{-12}\ \text{C}^2/(\text{N}\cdot\text{m}^2)$.
 
 ---
 

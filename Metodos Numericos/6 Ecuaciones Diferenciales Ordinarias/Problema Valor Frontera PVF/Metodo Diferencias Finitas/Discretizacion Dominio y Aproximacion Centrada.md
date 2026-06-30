@@ -1,5 +1,6 @@
 ---
 title: Discretización del Dominio y Aproximación Centrada
+order: 1
 tags:
   - metodos-numericos
   - teoria

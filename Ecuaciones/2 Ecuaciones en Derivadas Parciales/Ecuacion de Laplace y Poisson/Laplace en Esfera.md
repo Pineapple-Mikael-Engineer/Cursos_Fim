@@ -1,5 +1,6 @@
 ---
 title: Laplace en Esfera
+order: 5
 tags:
   - ecuaciones
   - edp

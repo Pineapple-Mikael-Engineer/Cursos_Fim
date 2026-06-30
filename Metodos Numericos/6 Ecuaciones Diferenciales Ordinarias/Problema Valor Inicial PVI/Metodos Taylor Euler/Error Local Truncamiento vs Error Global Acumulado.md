@@ -1,5 +1,6 @@
 ---
 title: Error Local de Truncamiento vs Error Global Acumulado
+order: 2
 tags:
   - metodos-numericos
   - teoria

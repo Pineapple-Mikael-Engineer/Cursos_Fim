@@ -1,5 +1,6 @@
 ---
 title: Principio del Maximo Eliptico
+order: 6
 tags:
   - ecuaciones
   - edp

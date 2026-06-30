@@ -1,5 +1,6 @@
 ---
 title: Delta de Dirac y Singularidades
+order: 4
 tags:
   - electromagnetismo
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Ubicación.** Curso Electromagnetismo · sección [[1 Calculo Vectorial/index | Cálculo Vectorial]]. Hermanas: [[Campos y Operadores]] (operadores), [[Teoremas Integrales]] (Gauss, que aquí se usa), [[Identidades Vectoriales]] (las identidades nulas fallan justo en la singularidad que estudia esta nota).
-> **Referencia.** Griffiths, *Introduction to Electrodynamics*, §1.5. El resultado central $\nabla\cdot(\hat r/r^2)=4\pi\,\delta^3(\vec r)$ —equivalente a $\nabla^2(1/r)=-4\pi\,\delta^3(\vec r)$— es la **piedra angular** de la electrostática: hace consistentes la ley de Gauss diferencial y la de Coulomb.
+> **Ubicación.** Curso Electromagnetismo · sección [[1 Calculo Vectorial/index | Cálculo Vectorial]]. Hermanas: [[Campos y Operadores]] (operadores), [[Teoremas Integrales]] (Gauss, que aquí se usa), [[Identidades Vectoriales]] (las identidades nulas fallan justo en la singularidad que estudia esta nota). **Referencia.** Griffiths, *Introduction to Electrodynamics*, §1.5. El resultado central $\nabla\cdot(\hat r/r^2)=4\pi\,\delta^3(\vec r)$ —equivalente a $\nabla^2(1/r)=-4\pi\,\delta^3(\vec r)$— es la **piedra angular** de la electrostática: hace consistentes la ley de Gauss diferencial y la de Coulomb.
 
 ---
 
@@ -55,11 +55,9 @@ aliases:
 > $$\nabla\cdot\!\left(\frac{\hat r}{r^2}\right)=4\pi\,\delta^3(\vec r),\qquad\text{equivalentemente}\qquad \nabla^2\!\left(\frac{1}{r}\right)=-4\pi\,\delta^3(\vec r).$$
 >
 > > [!demostracion]
-> > **Paso 1 — Fuera del origen vale $0$.** Para $r\neq0$, el cálculo del ejemplo da $\nabla\cdot(\hat r/r^2)=0$. La equivalencia con el laplaciano sale de $\nabla(1/r)=-\hat r/r^2$ (pues $\partial_r(1/r)=-1/r^2$), luego $\nabla^2(1/r)=\nabla\cdot\nabla(1/r)=-\nabla\cdot(\hat r/r^2)$, que también es $0$ para $r\neq0$.
-> > **Paso 2 — Pero la integral vale $4\pi$.** Para *cualquier* volumen $V$ que contenga al origen, con frontera $S$, el teorema de la divergencia ([[Teoremas Integrales]]) y el flujo del ejemplo dan
+> > **Paso 1 — Fuera del origen vale $0$.** Para $r\neq0$, el cálculo del ejemplo da $\nabla\cdot(\hat r/r^2)=0$. La equivalencia con el laplaciano sale de $\nabla(1/r)=-\hat r/r^2$ (pues $\partial_r(1/r)=-1/r^2$), luego $\nabla^2(1/r)=\nabla\cdot\nabla(1/r)=-\nabla\cdot(\hat r/r^2)$, que también es $0$ para $r\neq0$. **Paso 2 — Pero la integral vale $4\pi$.** Para *cualquier* volumen $V$ que contenga al origen, con frontera $S$, el teorema de la divergencia ([[Teoremas Integrales]]) y el flujo del ejemplo dan
 > > $$\int_V\nabla\cdot\!\left(\frac{\hat r}{r^2}\right)dV=\oint_S\frac{\hat r}{r^2}\cdot d\vec A=4\pi,$$
-> > donde el último paso usa que el flujo de $\hat r/r^2$ por **cualquier** superficie cerrada que rodee al origen es $4\pi$ (ángulo sólido total; no depende de la forma de $S$). Si $V$ **no** contiene al origen, $\nabla\cdot\vec F=0$ en todo $V$ y la integral es $0$.
-> > **Paso 3 — Conclusión: es una delta.** Tenemos una densidad que es nula en todo punto salvo el origen pero cuya integral sobre cualquier región que incluya el origen es $4\pi$ (y $0$ si no lo incluye). Esa es exactamente la definición de $4\pi\,\delta^3(\vec r)$:
+> > donde el último paso usa que el flujo de $\hat r/r^2$ por **cualquier** superficie cerrada que rodee al origen es $4\pi$ (ángulo sólido total; no depende de la forma de $S$). Si $V$ **no** contiene al origen, $\nabla\cdot\vec F=0$ en todo $V$ y la integral es $0$. **Paso 3 — Conclusión: es una delta.** Tenemos una densidad que es nula en todo punto salvo el origen pero cuya integral sobre cualquier región que incluya el origen es $4\pi$ (y $0$ si no lo incluye). Esa es exactamente la definición de $4\pi\,\delta^3(\vec r)$:
 > > $$\int_V\nabla\cdot\!\left(\frac{\hat r}{r^2}\right)dV=4\pi\int_V\delta^3(\vec r)\,dV\ \ \forall V\ \Longrightarrow\ \nabla\cdot\!\left(\frac{\hat r}{r^2}\right)=4\pi\,\delta^3(\vec r).\qquad\blacksquare$$
 >
 > > [!warning]

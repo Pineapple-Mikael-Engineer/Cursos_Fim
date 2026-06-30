@@ -1,5 +1,6 @@
 ---
 title: Delta de Kronecker
+order: 1
 tags:
   - analisis-tensorial
   - teoria
@@ -61,10 +62,7 @@ aliases:
 > 5. **Identidad:** $[\delta]=I$, es decir $\delta_{ij}=I_{ij}$.
 
 > [!demostracion]
-> **Producto de deltas, $\delta_{ij}\delta_{jk}=\delta_{ik}$.**
-> *Paso 1.* Por sustitución, $\delta_{jk}$ aplicada a $\delta_{ij}$ renombra el índice mudo $j\to k$ en el segundo subíndice: $\delta_{ij}\delta_{jk}=\delta_{ik}$.
-> *Paso 2 (verificación directa).* La suma sobre $j$ tiene un único término no nulo, $j=k$ (donde $\delta_{jk}=1$). Entonces $\delta_{ij}\delta_{jk}=\delta_{ik}\cdot 1=\delta_{ik}$.
-> *Corolario.* Contrayendo de nuevo con $\delta_{ki}$: $\delta_{ij}\delta_{jk}\delta_{ki}=\delta_{ik}\delta_{ki}=\delta_{ii}=n$.
+> **Producto de deltas, $\delta_{ij}\delta_{jk}=\delta_{ik}$.** *Paso 1.* Por sustitución, $\delta_{jk}$ aplicada a $\delta_{ij}$ renombra el índice mudo $j\to k$ en el segundo subíndice: $\delta_{ij}\delta_{jk}=\delta_{ik}$. *Paso 2 (verificación directa).* La suma sobre $j$ tiene un único término no nulo, $j=k$ (donde $\delta_{jk}=1$). Entonces $\delta_{ij}\delta_{jk}=\delta_{ik}\cdot 1=\delta_{ik}$. *Corolario.* Contrayendo de nuevo con $\delta_{ki}$: $\delta_{ij}\delta_{jk}\delta_{ki}=\delta_{ik}\delta_{ki}=\delta_{ii}=n$.
 
 ## Resumen
 

@@ -1,5 +1,6 @@
 ---
 title: Newton Raphson
+order: 2
 tags:
   - metodos-numericos
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Teorema de Gauss
+order: 1
 tags:
   - analisis-tensorial
   - teoria
