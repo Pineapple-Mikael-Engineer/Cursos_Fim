@@ -1,0 +1,35 @@
+\documentclass[border=12pt]{standalone}
+\usepackage{circuitikz}
+\ctikzset{bipoles/length=1.25cm}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\begin{circuitikz}[american, line width=0.9pt]
+  % ===== fuente: bus de neutro N (izquierda) + 3 fuentes horizontales =====
+  \draw (-4.6,-1.9) -- (-4.6,1.9);
+  \fill (-4.6,0) circle(2.4pt); \node[left] at (-4.6,0){$N$};
+  \draw (-4.6,1.9)  to[V=$\overline{V}_a$] (-2.9,1.9)  coordinate(sa);
+  \draw (-4.6,0)    to[V=$\overline{V}_b$] (-2.9,0)    coordinate(sb);
+  \draw (-4.6,-1.9) to[V=$\overline{V}_c$] (-2.9,-1.9) coordinate(sc);
+  % ===== líneas a, b, c con corrientes =====
+  \draw (sa) -- (2.0,1.9)  coordinate(la);
+  \draw (sb) -- (2.0,0)    coordinate(lb);
+  \draw (sc) -- (2.0,-1.9) coordinate(lc);
+  \node[above] at (-0.5,1.95){$a$};
+  \node[above] at (-0.5,0.06){$b$};
+  \node[above] at (-0.5,-1.84){$c$};
+  \draw[-{Latex[length=2mm]}] (-2.0,2.2) -- (-1.3,2.2); \node[above] at (-1.65,2.2){$\overline{I}_a$};
+  \draw[-{Latex[length=2mm]}] (-2.0,0.32) -- (-1.3,0.32); \node[above] at (-1.65,0.32){$\overline{I}_b$};
+  \draw[-{Latex[length=2mm]}] (-2.0,-1.6) -- (-1.3,-1.6); \node[above] at (-1.65,-1.6){$\overline{I}_c$};
+  % ===== carga DESBALANCEADA: Z horizontales + bus N' =====
+  \draw (la) to[generic=$Z_a$] (3.8,1.9);
+  \draw (lb) to[generic=$Z_b$] (3.8,0);
+  \draw (lc) to[generic=$Z_c$] (3.8,-1.9);
+  \draw (3.8,1.9) -- (3.8,-1.9);
+  \fill (3.8,0) circle(2.4pt); \node[right] at (3.95,0){$N'$};
+  % ===== neutro con impedancia Z_N (por abajo) =====
+  \draw (-4.6,-1.9) -- (-4.6,-3) -- (3.8,-3);
+  \draw (3.8,-3) to[generic=$Z_N$] (3.8,-1.9);
+  \draw[-{Latex[length=2mm]}] (0.4,-3) -- (-0.3,-3); \node[below] at (0.05,-3.08){$\overline{I}_N$};
+  \node[align=center] at (-0.4,-3.95){\small carga desbalanceada $Z_a\neq Z_b\neq Z_c$;\ \ neutro con $Z_N$\\ \small ($Z_N=0$: 4 hilos ideal\qquad $Z_N\to\infty$: sin neutro, $N'$ flota)};
+\end{circuitikz}
+\end{document}

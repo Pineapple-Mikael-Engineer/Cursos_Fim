@@ -23,6 +23,10 @@ aliases:
 > [!info]
 > El caso desequilibrado de la [[Conexion Estrella| conexión estrella]], en [[Sistemas Desbalanceados/index| sistemas desbalanceados]] ([[7 Circuitos Trifasicos/index| capítulo 7]]). Muestra **para qué sirve el neutro** —y qué pasa cuando falta o se rompe—. Fraile Mora, cap. 3, §3.10.
 
+![[estrella_desbalanceada.svg|650]]
+
+*Estrella desequilibrada: la fuente equilibrada (neutro $N$) alimenta tres impedancias distintas $Z_a,Z_b,Z_c$, que se unen en el neutro de la carga $N'$; éste se conecta a $N$ por la impedancia de neutro $Z_N$. Con $Z_N=0$ (4 hilos) la tensión de cada fase queda fija y el desbalance retorna por $\overline{I}_N$; con $Z_N\to\infty$ (sin neutro) el punto $N'$ se desplaza.*
+
 ---
 
 ## Ejemplo
@@ -58,10 +62,33 @@ aliases:
 > - **Sin neutro** ($Z_N\to\infty$, $Y_N=0$): desaparece el término $Y_N$ y queda el Millman a 3 hilos. → [[Teorema de Millman]].
 > - **$Z_N$ finita**: el neutro reduce el desplazamiento pero no lo anula del todo; es el caso real de un neutro con resistencia apreciable.
 
+> [!demostracion] La fórmula de Millman, paso a paso
+> Tomamos el neutro de la fuente $N$ como **referencia** ($0\ \text{V}$) y llamamos $\overline{V}_{N'N}$ al potencial del neutro de la carga $N'$. Las tensiones de fuente $\overline{V}_a,\overline{V}_b,\overline{V}_c$ son los potenciales de los nudos $a,b,c$ respecto a $N$.
+>
+> **Paso 1 — Corriente que entra a $N'$ por cada rama.** Por la rama $k$ (impedancia $Z_k$, admitancia $Y_k=1/Z_k$), la corriente que va del nudo $k$ hacia $N'$ es, por la ley de Ohm,
+> $$\overline{I}_k=(\overline{V}_k-\overline{V}_{N'N})\,Y_k.$$
+>
+> **Paso 2 — Corriente que sale de $N'$ por el neutro.** Entre $N'$ y $N$ (admitancia $Y_N=1/Z_N$) la corriente es
+> $$\overline{I}_N=(\overline{V}_{N'N}-0)\,Y_N=\overline{V}_{N'N}\,Y_N.$$
+>
+> **Paso 3 — LKC en el nudo $N'$.** Lo que entra por las tres ramas sale por el neutro:
+> $$\overline{I}_a+\overline{I}_b+\overline{I}_c=\overline{I}_N.$$
+> Sustituyendo los pasos 1 y 2,
+> $$(\overline{V}_a-\overline{V}_{N'N})Y_a+(\overline{V}_b-\overline{V}_{N'N})Y_b+(\overline{V}_c-\overline{V}_{N'N})Y_c=\overline{V}_{N'N}\,Y_N.$$
+>
+> **Paso 4 — Despejar $\overline{V}_{N'N}$.** Agrupando los términos con $\overline{V}_{N'N}$ a un lado:
+> $$\overline{V}_a Y_a+\overline{V}_b Y_b+\overline{V}_c Y_c=\overline{V}_{N'N}\,(Y_a+Y_b+Y_c+Y_N),$$
+> $$\boxed{\;\overline{V}_{N'N}=\dfrac{\overline{V}_a Y_a+\overline{V}_b Y_b+\overline{V}_c Y_c}{Y_a+Y_b+Y_c+Y_N}\;}$$
+> que es la fórmula de [[Teorema de Millman| Millman]] para el desplazamiento del neutro. Hechos los dos límites: con $Y_N\to\infty$ (neutro ideal) el denominador domina y $\overline{V}_{N'N}\to0$; con $Y_N=0$ (sin neutro) desaparece ese término y queda el Millman a tres hilos.
+
 > [!teorema] Sin neutro o neutro roto: el punto común se desplaza
 > Si no hay neutro ($Y_N=0$) —o si **se rompe** el conductor de neutro—, el punto común de la carga $N'$ deja de estar al potencial de $N$ y "flota":
 > $$\overline{V}_{N'N}=\frac{\overline{V}_a Y_a+\overline{V}_b Y_b+\overline{V}_c Y_c}{Y_a+Y_b+Y_c}.$$
 > ¿Cuándo es esto **útil de verdad**? En dos situaciones muy reales: (1) los sistemas a **3 hilos** sin neutro (alimentación entre transformadores, líneas de transporte, [[Motores Electricos Trifasicos| motores]] trifásicos —cuyo punto estrella flota por diseño—); y (2) el análisis de **averías**: una carga equilibrada con el neutro **roto** se vuelve, de hecho, una estrella desequilibrada a 3 hilos. Por eso este caso no es académico: es el que predice qué pasa cuando el neutro falla.
+
+![[neutro_desplazado.svg|720]]
+
+*Con neutro (izq.), $N'$ coincide con $N$ y las tres tensiones de la carga son iguales y equilibradas. Al romperse el neutro (der.), $N'$ se **desplaza** una cantidad $\overline{V}_{N'N}$ (flecha roja): las tensiones de la carga pasan a medirse desde $N'$ hasta los vértices $a,b,c$ y resultan **desiguales** —la fase menos cargada queda **sobretensionada**—. Es la razón de que un neutro roto dañe equipos.*
 
 > [!warning]
 > El **neutro roto** es un peligro real, no un ejercicio: al perderse, las tensiones de las cargas se **desplazan** (unas suben muy por encima de su valor nominal, otras caen), lo que **quema** los equipos sobretensionados. Por eso el neutro se protege y nunca se le pone fusible. Dos avisos de cálculo: con neutro ideal el equivalente **por fase no vale** (hay que resolver las tres por separado); y sin neutro, antes de las corrientes hay que hallar siempre $\overline{V}_{N'N}$ por Millman.
