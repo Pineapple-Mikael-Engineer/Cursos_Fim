@@ -1,5 +1,6 @@
 ---
 title: Tensor de Esfuerzos de Cauchy
+order: 1
 tags:
   - fluidos
   - teoria

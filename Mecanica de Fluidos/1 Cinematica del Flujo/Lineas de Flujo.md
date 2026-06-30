@@ -1,5 +1,6 @@
 ---
 title: Líneas de Flujo
+order: 2
 tags:
   - fluidos
   - teoria
@@ -26,8 +27,7 @@ aliases:
 ---
 
 > [!info]
-> Nota de la sección [[1 Cinematica del Flujo/index | Cinemática del Flujo]]. Hermanas: [[Descripcion Euleriana y Lagrangiana]] (los dos puntos de vista y la derivada material) y [[Tensor Gradiente de Velocidad]] (la estructura local $\partial_j v_i=e_{ij}+\omega_{ij}$).
-> **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §1; Batchelor, *An Introduction to Fluid Dynamics*, cap. 2.
+> Nota de la sección [[1 Cinematica del Flujo/index | Cinemática del Flujo]]. Hermanas: [[Descripcion Euleriana y Lagrangiana]] (los dos puntos de vista y la derivada material) y [[Tensor Gradiente de Velocidad]] (la estructura local $\partial_j v_i=e_{ij}+\omega_{ij}$). **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §1; Batchelor, *An Introduction to Fluid Dynamics*, cap. 2.
 
 ---
 
@@ -125,8 +125,7 @@ aliases:
 ## Ejemplo
 
 > [!ejemplo] Punto de estancamiento (estacionario) vs. campo no estacionario
-> **(a)** Flujo de punto de estancamiento, estacionario: $\vec v=(x,\,-y,\,0)$.
-> **(b)** Flujo no estacionario: $\vec v=(a,\,b\,t,\,0)$ con $a,b>0$ constantes. En ambos hallaremos línea de corriente y trayectoria y veremos si coinciden.
+> **(a)** Flujo de punto de estancamiento, estacionario: $\vec v=(x,\,-y,\,0)$. **(b)** Flujo no estacionario: $\vec v=(a,\,b\,t,\,0)$ con $a,b>0$ constantes. En ambos hallaremos línea de corriente y trayectoria y veremos si coinciden.
 
 > [!solucion] (a) Campo estacionario $\vec v=(x,-y,0)$
 > **Paso 1 — Línea de corriente.** Con $u=x$, $v=-y$:

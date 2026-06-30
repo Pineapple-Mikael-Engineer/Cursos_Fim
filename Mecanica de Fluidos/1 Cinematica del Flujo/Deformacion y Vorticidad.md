@@ -1,5 +1,6 @@
 ---
 title: Deformación y Vorticidad
+order: 4
 tags:
   - fluidos
   - teoria
@@ -25,8 +26,7 @@ aliases:
 ---
 
 > [!info]
-> Nota de la sección [[1 Cinematica del Flujo/index | Cinemática del Flujo]] (capítulo 1). Toma como punto de partida la descomposición $\partial_j v_i=e_{ij}+\omega_{ij}$ de la hermana [[Tensor Gradiente de Velocidad]] y desarrolla el **significado físico** de cada pieza; la siguiente, [[Teorema del Transporte de Reynolds]], usará la dilatación $\nabla\cdot\vec v$ para derivar la continuidad. Notación SI, convenio de suma de Einstein, $\delta_{ij}$, $\epsilon_{ijk}$.
-> **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §1; Batchelor, *An Introduction to Fluid Dynamics*, cap. 2.
+> Nota de la sección [[1 Cinematica del Flujo/index | Cinemática del Flujo]] (capítulo 1). Toma como punto de partida la descomposición $\partial_j v_i=e_{ij}+\omega_{ij}$ de la hermana [[Tensor Gradiente de Velocidad]] y desarrolla el **significado físico** de cada pieza; la siguiente, [[Teorema del Transporte de Reynolds]], usará la dilatación $\nabla\cdot\vec v$ para derivar la continuidad. Notación SI, convenio de suma de Einstein, $\delta_{ij}$, $\epsilon_{ijk}$. **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §1; Batchelor, *An Introduction to Fluid Dynamics*, cap. 2.
 
 ---
 

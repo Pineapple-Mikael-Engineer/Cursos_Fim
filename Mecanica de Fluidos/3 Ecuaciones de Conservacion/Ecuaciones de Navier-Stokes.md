@@ -1,5 +1,6 @@
 ---
 title: Ecuaciones de Navier-Stokes
+order: 3
 tags:
   - fluidos
   - teoria
@@ -20,8 +21,7 @@ aliases:
 ---
 
 > [!info]
-> Nota central de la sección [[3 Ecuaciones de Conservacion/index | Ecuaciones de Conservación]]. Sus hermanas son [[Conservacion de Momento]] (de donde toma la ecuación de Cauchy), [[Conservacion de Masa]] (que aporta la continuidad $\nabla\cdot\vec v=0$) y [[Conservacion de Energia]]. La pieza que cierra la deducción es la relación constitutiva de un [[Fluido Newtoniano]]. Esta ecuación prepara los dos capítulos siguientes: el límite $\mu=0$ da el [[4 Flujo Ideal/index | Flujo Ideal]] (Euler, Bernoulli) y el caso $\mu\neq0$ da el [[5 Flujo Viscoso/index | Flujo Viscoso]] (Reynolds, capa límite).
-> **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, *An Introduction to Fluid Dynamics*, cap. 3.
+> Nota central de la sección [[3 Ecuaciones de Conservacion/index | Ecuaciones de Conservación]]. Sus hermanas son [[Conservacion de Momento]] (de donde toma la ecuación de Cauchy), [[Conservacion de Masa]] (que aporta la continuidad $\nabla\cdot\vec v=0$) y [[Conservacion de Energia]]. La pieza que cierra la deducción es la relación constitutiva de un [[Fluido Newtoniano]]. Esta ecuación prepara los dos capítulos siguientes: el límite $\mu=0$ da el [[4 Flujo Ideal/index | Flujo Ideal]] (Euler, Bernoulli) y el caso $\mu\neq0$ da el [[5 Flujo Viscoso/index | Flujo Viscoso]] (Reynolds, capa límite). **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, *An Introduction to Fluid Dynamics*, cap. 3.
 
 ---
 

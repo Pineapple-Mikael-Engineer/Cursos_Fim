@@ -1,5 +1,6 @@
 ---
 title: Flujo Ideal
+order: 4
 tags:
   - fluidos
   - teoria
@@ -20,8 +21,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 4 del curso Mecánica de Fluidos.** Es el límite $\mu=0$ de las [[Ecuaciones de Navier-Stokes]] del [[3 Ecuaciones de Conservacion/index | Capítulo 3]]. Siguiendo a **Landau** (Vol. 6, cap. 1), la **hidrostática no es un capítulo aparte**: vive como el corolario $\vec v=0$ de Euler.
-> **Referencia.** Landau-Lifshitz, Vol. 6, §§2–9; Batchelor, cap. 5–6; Acheson, cap. 1, 3–5.
+> **Capítulo 4 del curso Mecánica de Fluidos.** Es el límite $\mu=0$ de las [[Ecuaciones de Navier-Stokes]] del [[3 Ecuaciones de Conservacion/index | Capítulo 3]]. Siguiendo a **Landau** (Vol. 6, cap. 1), la **hidrostática no es un capítulo aparte**: vive como el corolario $\vec v=0$ de Euler. **Referencia.** Landau-Lifshitz, Vol. 6, §§2–9; Batchelor, cap. 5–6; Acheson, cap. 1, 3–5.
 
 ---
 

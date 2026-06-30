@@ -1,5 +1,6 @@
 ---
 title: Capa Límite
+order: 3
 tags:
   - fluidos
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> Nota de la sección [[5 Flujo Viscoso/index | Flujo Viscoso]]. Sus hermanas son [[Numero de Reynolds y Adimensionalizacion]] (de donde sale $\mathrm{Re}_x$) y [[Flujo de Stokes]] (el límite opuesto $\mathrm{Re}\ll1$). La capa límite conecta directamente con el [[Flujo Potencial]], al que **resuelve la paradoja de d'Alembert**: explica de dónde nace el arrastre que el flujo ideal predecía nulo.
-> **Referencia.** Landau-Lifshitz, *Mecánica de Fluidos*, Vol. 6, §39.
+> Nota de la sección [[5 Flujo Viscoso/index | Flujo Viscoso]]. Sus hermanas son [[Numero de Reynolds y Adimensionalizacion]] (de donde sale $\mathrm{Re}_x$) y [[Flujo de Stokes]] (el límite opuesto $\mathrm{Re}\ll1$). La capa límite conecta directamente con el [[Flujo Potencial]], al que **resuelve la paradoja de d'Alembert**: explica de dónde nace el arrastre que el flujo ideal predecía nulo. **Referencia.** Landau-Lifshitz, *Mecánica de Fluidos*, Vol. 6, §39.
 
 ---
 

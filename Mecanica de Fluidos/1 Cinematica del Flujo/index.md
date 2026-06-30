@@ -1,5 +1,6 @@
 ---
 title: Cinemática del Flujo
+order: 1
 tags:
   - fluidos
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 1 del curso Mecánica de Fluidos.** Es la base puramente cinemática: el lenguaje con el que luego escribiremos las leyes de balance. Notación SI, $\vec v$ campo de velocidades, convenio de suma de Einstein, $\delta_{ij},\epsilon_{ijk}$.
-> **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §1; Batchelor, cap. 2; Aris, caps. 4–5.
+> **Capítulo 1 del curso Mecánica de Fluidos.** Es la base puramente cinemática: el lenguaje con el que luego escribiremos las leyes de balance. Notación SI, $\vec v$ campo de velocidades, convenio de suma de Einstein, $\delta_{ij},\epsilon_{ijk}$. **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §1; Batchelor, cap. 2; Aris, caps. 4–5.
 
 ---
 

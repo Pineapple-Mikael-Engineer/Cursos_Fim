@@ -1,5 +1,6 @@
 ---
 title: Soluciones Viscosas Exactas
+order: 2
 tags:
   - fluidos
   - teoria
@@ -21,10 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota de la sección [[5 Flujo Viscoso/index | Flujo Viscoso]] (Capítulo 5).** Aquí explotamos los casos en que la viscosidad domina o convive con un gradiente de presión sin que la no linealidad estorbe.
-> **Hermanas.** [[Numero de Reynolds y Adimensionalizacion]] (cuándo el flujo sigue siendo laminar y, por tanto, estas soluciones valen) y [[Capa Limite]] (qué ocurre cuando el flujo **no** está plenamente desarrollado).
-> **Usa.** Las [[Ecuaciones de Navier-Stokes]] del [[3 Ecuaciones de Conservacion/index | Capítulo 3]].
-> **Referencia.** Landau-Lifshitz, Vol. 6, §17 (flujo entre placas y por tubería); Batchelor §4.2; White, *Viscous Fluid Flow*, cap. 3.
+> **Nota de la sección [[5 Flujo Viscoso/index | Flujo Viscoso]] (Capítulo 5).** Aquí explotamos los casos en que la viscosidad domina o convive con un gradiente de presión sin que la no linealidad estorbe. **Hermanas.** [[Numero de Reynolds y Adimensionalizacion]] (cuándo el flujo sigue siendo laminar y, por tanto, estas soluciones valen) y [[Capa Limite]] (qué ocurre cuando el flujo **no** está plenamente desarrollado). **Usa.** Las [[Ecuaciones de Navier-Stokes]] del [[3 Ecuaciones de Conservacion/index | Capítulo 3]]. **Referencia.** Landau-Lifshitz, Vol. 6, §17 (flujo entre placas y por tubería); Batchelor §4.2; White, *Viscous Fluid Flow*, cap. 3.
 
 ---
 

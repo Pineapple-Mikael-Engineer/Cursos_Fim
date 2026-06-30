@@ -1,5 +1,6 @@
 ---
 title: Fluido Newtoniano
+order: 3
 tags:
   - fluidos
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> Nota de la sección [[2 Esfuerzos y Tensor de Tensiones/index | Esfuerzos y Tensor de Tensiones]] (capítulo 2). Cierra el capítulo dando la **ley material** que liga el esfuerzo con el movimiento: el tensor de esfuerzos $\sigma_{ij}$ de la hermana [[Tensor de Esfuerzos de Cauchy]] se descompone en presión y viscosidad como en [[Presion y Esfuerzos Viscosos]], y aquí fijamos cómo la viscosidad responde a la **rapidez de deformación** $e_{ij}$ definida en [[Deformacion y Vorticidad]]. Con esta relación constitutiva, sustituyendo en la ecuación de Cauchy se obtienen las ecuaciones de Navier-Stokes. Notación SI, convenio de suma de Einstein, $\delta_{ij}$.
-> **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §15; Batchelor, *An Introduction to Fluid Dynamics*, §3.3; Aris, *Vectors, Tensors and the Basic Equations of Fluid Mechanics*, cap. 6.
+> Nota de la sección [[2 Esfuerzos y Tensor de Tensiones/index | Esfuerzos y Tensor de Tensiones]] (capítulo 2). Cierra el capítulo dando la **ley material** que liga el esfuerzo con el movimiento: el tensor de esfuerzos $\sigma_{ij}$ de la hermana [[Tensor de Esfuerzos de Cauchy]] se descompone en presión y viscosidad como en [[Presion y Esfuerzos Viscosos]], y aquí fijamos cómo la viscosidad responde a la **rapidez de deformación** $e_{ij}$ definida en [[Deformacion y Vorticidad]]. Con esta relación constitutiva, sustituyendo en la ecuación de Cauchy se obtienen las ecuaciones de Navier-Stokes. Notación SI, convenio de suma de Einstein, $\delta_{ij}$. **Referencia.** Landau-Lifshitz, Vol. 6 (*Mecánica de Fluidos*), §15; Batchelor, *An Introduction to Fluid Dynamics*, §3.3; Aris, *Vectors, Tensors and the Basic Equations of Fluid Mechanics*, cap. 6.
 
 ---
 
@@ -34,8 +34,7 @@ aliases:
 > Las tres hipótesis acotan $A_{ijkl}$ de forma muy fuerte:
 > - **Lineal.** $A_{ijkl}$ no depende de $e_{kl}$ (son constantes del material, a temperatura y presión fijas). De ahí que $\tau_{ij}$ sea una combinación lineal de las $e_{kl}$.
 > - **Isótropa.** El fluido no tiene direcciones privilegiadas: $A_{ijkl}$ debe ser un **tensor isótropo**, idéntico en todo sistema rotado.
-> - **Sin memoria.** $\tau_{ij}$ depende del estado **instantáneo** $e_{kl}$, no de su historia.
-> Además, como $\tau_{ij}$ y $e_{kl}$ son **simétricos**, basta con la parte de $A_{ijkl}$ simétrica en $(i,j)$ y en $(k,l)$.
+> - **Sin memoria.** $\tau_{ij}$ depende del estado **instantáneo** $e_{kl}$, no de su historia. Además, como $\tau_{ij}$ y $e_{kl}$ son **simétricos**, basta con la parte de $A_{ijkl}$ simétrica en $(i,j)$ y en $(k,l)$.
 
 > [!proposicion] El único tensor isótropo de cuarto orden admisible
 > Todo tensor isótropo de cuarto orden con las simetrías $A_{ijkl}=A_{jikl}=A_{ijlk}$ se escribe

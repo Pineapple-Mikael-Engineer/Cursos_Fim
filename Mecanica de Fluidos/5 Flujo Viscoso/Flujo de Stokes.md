@@ -1,5 +1,6 @@
 ---
 title: Flujo de Stokes
+order: 4
 tags:
   - fluidos
   - teoria
@@ -23,10 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Nota de la sección [[5 Flujo Viscoso/index | Flujo Viscoso]]** (Capítulo 5 del curso Mecánica de Fluidos). Es el límite $\mathrm{Re}\ll1$ del mapa de regímenes; su contraparte de alto Reynolds es la [[Capa Limite]], y el parámetro que separa ambos se construye en [[Numero de Reynolds y Adimensionalizacion]].
-> **Usa.** Las [[Ecuaciones de Navier-Stokes]] estacionarias como punto de partida.
-> **Hermanas.** [[Numero de Reynolds y Adimensionalizacion]], [[Capa Limite]], [[Soluciones Viscosas Exactas]].
-> **Referencia.** Landau-Lifshitz, *Mecánica de Fluidos* (Vol. 6), §20.
+> **Nota de la sección [[5 Flujo Viscoso/index | Flujo Viscoso]]** (Capítulo 5 del curso Mecánica de Fluidos). Es el límite $\mathrm{Re}\ll1$ del mapa de regímenes; su contraparte de alto Reynolds es la [[Capa Limite]], y el parámetro que separa ambos se construye en [[Numero de Reynolds y Adimensionalizacion]]. **Usa.** Las [[Ecuaciones de Navier-Stokes]] estacionarias como punto de partida. **Hermanas.** [[Numero de Reynolds y Adimensionalizacion]], [[Capa Limite]], [[Soluciones Viscosas Exactas]]. **Referencia.** Landau-Lifshitz, *Mecánica de Fluidos* (Vol. 6), §20.
 
 ---
 
@@ -134,8 +132,7 @@ La aplicación más útil de la ley de Stokes: una partícula esférica que cae 
 > **Paso 1 — Aplicar la ley de Stokes.** Como $\rho_f\ll\rho_s$, tomamos $\rho_s-\rho_f\approx998{,}8\ \mathrm{kg/m^3}$:
 > $$U_t=\frac{2R^2(\rho_s-\rho_f)g}{9\mu}
 > =\frac{2\,(1{,}0\times10^{-5})^2\,(998{,}8)\,(9{,}8)}{9\,(1{,}8\times10^{-5})}.$$
-> Numerador: $2\times1{,}0\times10^{-10}\times998{,}8\times9{,}8\approx1{,}957\times10^{-6}$.
-> Denominador: $9\times1{,}8\times10^{-5}=1{,}62\times10^{-4}$.
+> Numerador: $2\times1{,}0\times10^{-10}\times998{,}8\times9{,}8\approx1{,}957\times10^{-6}$. Denominador: $9\times1{,}8\times10^{-5}=1{,}62\times10^{-4}$.
 > $$U_t\approx\frac{1{,}957\times10^{-6}}{1{,}62\times10^{-4}}\approx1{,}2\times10^{-2}\ \mathrm{m/s}=1{,}2\ \mathrm{cm/s}.$$
 > La gotita cae a poco más de un centímetro por segundo: la niebla "flota" porque sedimenta despacísimo.
 >

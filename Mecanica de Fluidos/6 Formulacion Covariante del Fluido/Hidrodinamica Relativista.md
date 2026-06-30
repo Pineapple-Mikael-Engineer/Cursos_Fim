@@ -1,5 +1,6 @@
 ---
 title: Hidrodinámica Relativista
+order: 3
 tags:
   - fluidos
   - teoria
@@ -27,9 +28,7 @@ aliases:
 > - Proyector espacial $h^{\mu\nu}=\eta^{\mu\nu}-\dfrac{u^\mu u^\nu}{c^2}$, equivalentemente $h^\alpha{}_\nu=\delta^\alpha_\nu-\dfrac{u^\alpha u_\nu}{c^2}$, con la propiedad clave $h^\alpha{}_\nu u^\nu=0$.
 
 > [!info] Ubicación y enlaces
-> Esta nota pertenece a la sección [[6 Formulacion Covariante del Fluido/index | Formulación Covariante del Fluido]]. Sus notas hermanas son [[Tensor Energia-Momento del Fluido]] (de dónde sale $T^{\mu\nu}$ y qué significa cada componente) y [[Flujo Compresible y Ondas de Choque]] (aplicación a alta velocidad).
-> En el límite no relativista se recuperan las ecuaciones clásicas: [[Ecuacion de Euler]] (de la proyección $\perp u$) y [[Conservacion de Masa]] (de la continuidad covariante).
-> Referencia principal: Landau & Lifshitz, *Mecánica de Fluidos* (Vol. 6), §134.
+> Esta nota pertenece a la sección [[6 Formulacion Covariante del Fluido/index | Formulación Covariante del Fluido]]. Sus notas hermanas son [[Tensor Energia-Momento del Fluido]] (de dónde sale $T^{\mu\nu}$ y qué significa cada componente) y [[Flujo Compresible y Ondas de Choque]] (aplicación a alta velocidad). En el límite no relativista se recuperan las ecuaciones clásicas: [[Ecuacion de Euler]] (de la proyección $\perp u$) y [[Conservacion de Masa]] (de la continuidad covariante). Referencia principal: Landau & Lifshitz, *Mecánica de Fluidos* (Vol. 6), §134.
 
 ---
 
@@ -38,15 +37,13 @@ aliases:
 > [!ejemplo] Recuperar las ecuaciones clásicas como límite $v\ll c$
 > El test de toda formulación covariante es que colapse a lo conocido. Verificamos las **dos** leyes por separado.
 >
-> **1) Continuidad clásica desde $\partial_\mu(n\,u^\mu)=0$.**
-> Desarrollamos la divergencia separando índice temporal y espacial:
+> **1) Continuidad clásica desde $\partial_\mu(n\,u^\mu)=0$.** Desarrollamos la divergencia separando índice temporal y espacial:
 > $$\partial_\mu(n u^\mu)=\partial_0(n u^0)+\partial_i(n u^i)=\frac1c\partial_t\big(n\gamma c\big)+\partial_i\big(n\gamma v^i\big)=0.$$
 > Con $v\ll c$ tenemos $\gamma\to 1$, y la densidad propia por partícula se vuelve la densidad de masa $\rho\equiv m\,n$ (multiplicando por la masa en reposo $m$, constante):
 > $$\partial_t\rho+\partial_i(\rho v^i)=0\quad\Longleftrightarrow\quad \boxed{\;\partial_t\rho+\nabla\cdot(\rho\vec v)=0\;}$$
 > que es exactamente [[Conservacion de Masa]].
 >
-> **2) Euler clásico desde la proyección $\perp u$.**
-> Más adelante demostraremos (sección *En qué consiste*) la **ecuación de Euler relativista**
+> **2) Euler clásico desde la proyección $\perp u$.** Más adelante demostraremos (sección *En qué consiste*) la **ecuación de Euler relativista**
 > $$\frac{\varepsilon+p}{c^2}\,u^\mu\partial_\mu u^\alpha=h^{\alpha\mu}\partial_\mu p.$$
 > Tomamos la componente espacial $\alpha=i$ y aplicamos $v\ll c$, $\varepsilon\approx\rho c^2\gg p$. **Paso a paso, sin retoques de signo:**
 > - *Coeficiente inercial:* $\dfrac{\varepsilon+p}{c^2}\approx\dfrac{\rho c^2}{c^2}=\rho.$
@@ -89,9 +86,7 @@ Esta descomposición es ortogonal y completa porque $u_\nu$ y $h^\alpha{}_\nu$ s
 > - En el primer sumando $u_\nu u^\nu=c^2$, que cancela el $c^2$ del denominador: queda $\partial_\mu(w u^\mu)$.
 > - En el segundo, $u_\nu\,\partial_\mu u^\nu=0$ por el **lema**: se anula entero.
 >
-> Luego el término entálpico vale $\partial_\mu(w u^\mu)=\partial_\mu\big[(\varepsilon+p)u^\mu\big]$.
-> **Término de presión.** $-u_\nu\,\partial_\mu(p\,\eta^{\mu\nu})=-u_\nu\,\eta^{\mu\nu}\partial_\mu p=-u^\mu\,\partial_\mu p$ (la métrica $\eta^{\mu\nu}$ sube el índice de $u_\nu$).
-> **Sumamos e igualamos a cero:**
+> Luego el término entálpico vale $\partial_\mu(w u^\mu)=\partial_\mu\big[(\varepsilon+p)u^\mu\big]$. **Término de presión.** $-u_\nu\,\partial_\mu(p\,\eta^{\mu\nu})=-u_\nu\,\eta^{\mu\nu}\partial_\mu p=-u^\mu\,\partial_\mu p$ (la métrica $\eta^{\mu\nu}$ sube el índice de $u_\nu$). **Sumamos e igualamos a cero:**
 > $$\partial_\mu\big[(\varepsilon+p)u^\mu\big]-u^\mu\partial_\mu p=0.$$
 > Desarrollando $\partial_\mu[(\varepsilon+p)u^\mu]=u^\mu\partial_\mu\varepsilon+u^\mu\partial_\mu p+(\varepsilon+p)\partial_\mu u^\mu$, el término $u^\mu\partial_\mu p$ se **cancela** con el de presión:
 > $$\boxed{\,u^\mu\partial_\mu\varepsilon+(\varepsilon+p)\,\partial_\mu u^\mu=0\,}.$$

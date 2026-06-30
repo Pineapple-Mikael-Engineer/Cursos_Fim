@@ -1,5 +1,6 @@
 ---
 title: Tensor Energía-Momento del Fluido
+order: 2
 tags:
   - fluidos
   - teoria
@@ -21,8 +22,7 @@ aliases:
 ---
 
 > [!info]
-> Nota central de la sección [[6 Formulacion Covariante del Fluido/index | Formulación Covariante del Fluido]]. Es la pieza que conecta sus hermanas: el puente clásico [[Flujo Compresible y Ondas de Choque]] (cuando $U\to c$ la energía deja de desacoplarse) y la dinámica [[Hidrodinamica Relativista]] (que sale de proyectar $\partial_\mu T^{\mu\nu}=0$). Es el **análogo** del [[Tensor Energia-Momento | tensor energía-momento del campo EM]]: la misma maquinaria de índices, pero la fuente ahora es el fluido en vez del campo.
-> **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; cuadrivelocidad $u^\mu=\gamma(c,\vec v)$ con $u_\mu u^\mu=c^2$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; suma de Einstein. Fuente: **Landau-Lifshitz Vol. 6** §133 y **Vol. 2** (*Teoría Clásica de Campos*).
+> Nota central de la sección [[6 Formulacion Covariante del Fluido/index | Formulación Covariante del Fluido]]. Es la pieza que conecta sus hermanas: el puente clásico [[Flujo Compresible y Ondas de Choque]] (cuando $U\to c$ la energía deja de desacoplarse) y la dinámica [[Hidrodinamica Relativista]] (que sale de proyectar $\partial_\mu T^{\mu\nu}=0$). Es el **análogo** del [[Tensor Energia-Momento | tensor energía-momento del campo EM]]: la misma maquinaria de índices, pero la fuente ahora es el fluido en vez del campo. **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; cuadrivelocidad $u^\mu=\gamma(c,\vec v)$ con $u_\mu u^\mu=c^2$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; suma de Einstein. Fuente: **Landau-Lifshitz Vol. 6** §133 y **Vol. 2** (*Teoría Clásica de Campos*).
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Conservación de Momento
+order: 2
 tags:
   - fluidos
   - teoria
@@ -21,9 +22,7 @@ aliases:
 ---
 
 > [!info]
-> **Ubicación.** Tercera ley de balance de la sección [[3 Ecuaciones de Conservacion/index | Ecuaciones de Conservación]]. Sus notas hermanas son [[Conservacion de Masa]] (continuidad) y [[Ecuaciones de Navier-Stokes]] (donde se cierra el sistema). Esta nota apoya su deducción en el [[Tensor de Esfuerzos de Cauchy]] (tracción $t_i=\sigma_{ij}n_j$) y en el [[Teorema del Transporte de Reynolds]].
-> **Convenio.** Índices repetidos suman ($\sum_j\to$ implícito); $\partial_j\equiv\partial/\partial x_j$; $\delta_{ij}$ es la delta de Kronecker. Vectores con flecha.
-> **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, *An Introduction to Fluid Dynamics*, cap. 3.
+> **Ubicación.** Tercera ley de balance de la sección [[3 Ecuaciones de Conservacion/index | Ecuaciones de Conservación]]. Sus notas hermanas son [[Conservacion de Masa]] (continuidad) y [[Ecuaciones de Navier-Stokes]] (donde se cierra el sistema). Esta nota apoya su deducción en el [[Tensor de Esfuerzos de Cauchy]] (tracción $t_i=\sigma_{ij}n_j$) y en el [[Teorema del Transporte de Reynolds]]. **Convenio.** Índices repetidos suman ($\sum_j\to$ implícito); $\partial_j\equiv\partial/\partial x_j$; $\delta_{ij}$ es la delta de Kronecker. Vectores con flecha. **Referencia.** Landau-Lifshitz, Vol. 6, §15; Batchelor, *An Introduction to Fluid Dynamics*, cap. 3.
 
 ---
 

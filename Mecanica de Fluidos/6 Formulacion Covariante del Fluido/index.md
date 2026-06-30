@@ -1,5 +1,6 @@
 ---
 title: Formulación Covariante del Fluido
+order: 6
 tags:
   - fluidos
   - teoria
@@ -23,8 +24,7 @@ aliases:
 ---
 
 > [!info]
-> **Capítulo 6 del curso Mecánica de Fluidos: el pico tensorial.** Es la culminación del viaje **vectorial → tensorial**, gemelo de la [[6 Formulacion Covariante/index | Formulación Covariante del electromagnetismo]]. Reúne la conservación del [[3 Ecuaciones de Conservacion/index | Capítulo 3]] en un solo objeto, $T^{\mu\nu}$. Es el puente a **Landau-Lifshitz Vol. 6** (§§133–134) y, más allá, a la relatividad general.
-> **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; cuadrivelocidad $u^\mu=\gamma(c,\vec v)$ con $u_\mu u^\mu=c^2$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; suma de Einstein.
+> **Capítulo 6 del curso Mecánica de Fluidos: el pico tensorial.** Es la culminación del viaje **vectorial → tensorial**, gemelo de la [[6 Formulacion Covariante/index | Formulación Covariante del electromagnetismo]]. Reúne la conservación del [[3 Ecuaciones de Conservacion/index | Capítulo 3]] en un solo objeto, $T^{\mu\nu}$. Es el puente a **Landau-Lifshitz Vol. 6** (§§133–134) y, más allá, a la relatividad general. **Convenio.** Métrica $\eta_{\mu\nu}=\mathrm{diag}(+1,-1,-1,-1)$; cuadrivelocidad $u^\mu=\gamma(c,\vec v)$ con $u_\mu u^\mu=c^2$; índices griegos $0\!-\!3$, latinos $1\!-\!3$; suma de Einstein.
 
 ---
 
