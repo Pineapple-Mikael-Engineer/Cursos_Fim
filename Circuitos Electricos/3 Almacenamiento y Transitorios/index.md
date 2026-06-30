@@ -45,10 +45,10 @@ aliases:
 > [!info] Las cuatro secciones
 > | Sección | Qué aporta |
 > |:---|:---|
-> | [[Elementos de Almacenamiento/index| Elementos de almacenamiento]] | el condensador y el inductor: leyes, energía, continuidad, comportamiento en DC |
-> | [[Transitorios Primer Orden/index| Transitorios de primer orden]] | RL y RC: exponenciales y constante de tiempo $\tau$ |
-> | [[Transitorios Segundo Orden/index| Transitorios de segundo orden]] | RLC: amortiguamiento y oscilación |
-> | [[Laplace en Circuitos/index| Laplace en circuitos]] | el dominio de $s$: ecuaciones diferenciales → álgebra |
+> | [[Elementos de Almacenamiento/index\| Elementos de almacenamiento]] | el condensador y el inductor: leyes, energía, continuidad, comportamiento en DC |
+> | [[Transitorios Primer Orden/index\| Transitorios de primer orden]] | RL y RC: exponenciales y constante de tiempo $\tau$ |
+> | [[Transitorios Segundo Orden/index\| Transitorios de segundo orden]] | RLC: amortiguamiento y oscilación |
+> | [[Laplace en Circuitos/index\| Laplace en circuitos]] | el dominio de $s$: ecuaciones diferenciales → álgebra |
 
 > [!corolario]
 > Almacenar energía es lo que da **memoria** al circuito y hace que el tiempo importe. Las mismas leyes de Kirchhoff, ahora con derivadas, describen cómo el circuito pasa de un estado a otro. Dominado el transitorio, el [[4 Ondas Periodicas Sinusoidales/index| régimen sinusoidal]] será el caso permanente con excitación senoidal.

@@ -50,9 +50,9 @@ aliases:
 > [!info] Las tres secciones
 > | Sección | Qué aporta |
 > |:---|:---|
-> | [[Topologia de Redes/index| Topología de redes]] | el esqueleto: **cuántas** ecuaciones independientes hay |
-> | [[Metodos de Analisis/index| Métodos de análisis]] | mallas y nodos: cómo plantear y resolver el sistema |
-> | [[Teoremas/index| Teoremas]] | atajos: superposición, Thévenin, Norton, máxima transferencia |
+> | [[Topologia de Redes/index\| Topología de redes]] | el esqueleto: **cuántas** ecuaciones independientes hay |
+> | [[Metodos de Analisis/index\| Métodos de análisis]] | mallas y nodos: cómo plantear y resolver el sistema |
+> | [[Teoremas/index\| Teoremas]] | atajos: superposición, Thévenin, Norton, máxima transferencia |
 
 > [!corolario]
 > Mallas y nodos no son leyes nuevas: son la LKV y la LKC aplicadas con un criterio que **garantiza** ecuaciones independientes y mínimas. La topología justifica ese criterio; los teoremas lo complementan cuando solo interesa una parte de la red.

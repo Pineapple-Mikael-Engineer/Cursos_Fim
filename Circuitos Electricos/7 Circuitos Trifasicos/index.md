@@ -44,10 +44,10 @@ aliases:
 > [!info] Las cuatro secciones
 > | Sección | Qué aporta |
 > |:---|:---|
-> | [[Fundamentos Trifasicos/index| Fundamentos]] | qué es, cómo se genera, secuencia de fases, ventajas |
-> | [[Conexiones Balanceadas/index| Conexiones balanceadas]] | Y y Δ; relación $\sqrt3$; equivalente por fase |
-> | [[Potencia Trifasica/index| Potencia trifásica]] | $P=\sqrt3\,V_LI_L\cos\varphi$; dos vatímetros |
-> | [[Sistemas Desbalanceados/index| Desbalanceados]] | cargas desiguales; el neutro |
+> | [[Fundamentos Trifasicos/index\| Fundamentos]] | qué es, cómo se genera, secuencia de fases, ventajas |
+> | [[Conexiones Balanceadas/index\| Conexiones balanceadas]] | Y y Δ; relación $\sqrt3$; equivalente por fase |
+> | [[Potencia Trifasica/index\| Potencia trifásica]] | $P=\sqrt3\,V_LI_L\cos\varphi$; dos vatímetros |
+> | [[Sistemas Desbalanceados/index\| Desbalanceados]] | cargas desiguales; el neutro |
 
 > [!corolario]
 > El trifásico no es "tres monofásicos juntos": su simetría a $120^\circ$ hace que la potencia sea constante, el cobre menor y los motores posibles. Dominarlo —Y/Δ, $\sqrt3$, potencia— es entender la red eléctrica tal como existe.

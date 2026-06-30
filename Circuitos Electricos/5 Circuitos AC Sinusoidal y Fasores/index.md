@@ -42,10 +42,10 @@ aliases:
 > [!info] Las cuatro secciones
 > | Sección | Qué aporta |
 > |:---|:---|
-> | [[Fasores| Fasores]] | representar la senoide por un complejo $\overline{V}=V\angle\varphi$ |
-> | [[Impedancia y Admitancia/index| Impedancia y admitancia]] | $Z=R+jX$, $Y=1/Z$; respuesta de R, L, C |
-> | [[Analisis Fasorial/index| Análisis fasorial]] | mallas, nodos y teoremas en complejo; diagramas |
-> | [[Potencia en AC/index| Potencia en AC]] | activa, reactiva, aparente; factor de potencia |
+> | [[Fasores\| Fasores]] | representar la senoide por un complejo $\overline{V}=V\angle\varphi$ |
+> | [[Impedancia y Admitancia/index\| Impedancia y admitancia]] | $Z=R+jX$, $Y=1/Z$; respuesta de R, L, C |
+> | [[Analisis Fasorial/index\| Análisis fasorial]] | mallas, nodos y teoremas en complejo; diagramas |
+> | [[Potencia en AC/index\| Potencia en AC]] | activa, reactiva, aparente; factor de potencia |
 
 > [!corolario]
 > El fasor convierte el régimen sinusoidal en un problema **algebraico complejo**, idéntico en estructura al resistivo. Aprender a pasar al fasor, manejar impedancias y leer la potencia es todo lo que separa la CA de la CC.

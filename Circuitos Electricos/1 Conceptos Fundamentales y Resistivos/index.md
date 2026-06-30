@@ -43,10 +43,10 @@ aliases:
 > [!info] Las cuatro secciones
 > | Sección | Qué resuelve |
 > |:---|:---|
-> | [[Fundamentos/index| Fundamentos]] | el lenguaje: $i$, $v$, $p$, convenios, unidades, tipos de corriente |
-> | [[Elementos del Circuito/index| Elementos]] | qué hay dentro: resistencia y fuentes (ideales/reales/dependientes) |
-> | [[Leyes de Kirchhoff/index| Kirchhoff]] | las dos leyes de conservación que gobiernan toda red |
-> | [[Reduccion de Circuitos/index| Reducción]] | simplificar la red antes de resolverla |
+> | [[Fundamentos/index\| Fundamentos]] | el lenguaje: $i$, $v$, $p$, convenios, unidades, tipos de corriente |
+> | [[Elementos del Circuito/index\| Elementos]] | qué hay dentro: resistencia y fuentes (ideales/reales/dependientes) |
+> | [[Leyes de Kirchhoff/index\| Kirchhoff]] | las dos leyes de conservación que gobiernan toda red |
+> | [[Reduccion de Circuitos/index\| Reducción]] | simplificar la red antes de resolverla |
 
 > [!corolario]
 > Con solo $v$, $i$, la ley de Ohm y las dos leyes de Kirchhoff queda resuelto cualquier circuito resistivo. Los capítulos siguientes no cambian estas reglas: las **extienden** a elementos que almacenan energía y a excitaciones que varían en el tiempo.
