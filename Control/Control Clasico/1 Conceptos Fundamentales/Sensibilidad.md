@@ -1,5 +1,6 @@
 ---
 title: Sensibilidad $S(s)$
+order: 2
 tags:
   - control-clasico
   - teoria

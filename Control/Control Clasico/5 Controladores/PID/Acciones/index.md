@@ -1,5 +1,6 @@
 ---
 title: Acciones de Control P, I, D
+order: 1
 tags:
   - control-clasico
   - controladores

@@ -1,5 +1,6 @@
 ---
 title: Casos Especiales en la Tabla de Routh
+order: 2
 tags:
   - control-clasico
   - teoria

@@ -24,8 +24,7 @@ aliases: [turbojet, turborreactor, propulsión a chorro]
 > | $T$ | −10°C | — | 305{,}2°C | 1100°C | 861{,}2°C | — |
 
 > [!solucion] (6) Estado 2 (salida del compresor)
-> Difusor $a\to1$: $h_1=h_a+\tfrac{C_a^2}{2}=263{,}5+\tfrac{280^2}{2}\times10^{-3}=302{,}7$ kJ/kg, de donde $s_1=6{,}877$. La presión de estancamiento: $s_1=s_a+R\ln(P_1/P_a)\Rightarrow P_1=129{,}84$ kPa.
-> Compresor ($r_p=10$): $P_2=10\,P_1=\boxed{1298{,}5\ \text{kPa}}$; isentrópico $s_2=s_1\Rightarrow h_2=584{,}7$, $\boxed{T_2=305{,}2\,^\circ\text{C}}$.
+> Difusor $a\to1$: $h_1=h_a+\tfrac{C_a^2}{2}=263{,}5+\tfrac{280^2}{2}\times10^{-3}=302{,}7$ kJ/kg, de donde $s_1=6{,}877$. La presión de estancamiento: $s_1=s_a+R\ln(P_1/P_a)\Rightarrow P_1=129{,}84$ kPa. Compresor ($r_p=10$): $P_2=10\,P_1=\boxed{1298{,}5\ \text{kPa}}$; isentrópico $s_2=s_1\Rightarrow h_2=584{,}7$, $\boxed{T_2=305{,}2\,^\circ\text{C}}$.
 
 > [!solucion] (5) Estado 4 (salida de turbina)
 > El trabajo de turbina iguala el del compresor: $h_3-h_4=h_2-h_1$:

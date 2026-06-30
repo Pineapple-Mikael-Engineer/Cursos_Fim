@@ -124,8 +124,7 @@ aliases:
 > **Por mol de combustible** (dividiendo por 1.8125):
 > $$\mathrm{C_8H_{18}}+12.48\,\mathrm{O_2}+46.90\,\mathrm{N_2}\to6.62\,\mathrm{CO_2}+1.38\,\mathrm{CO}+9.0\,\mathrm{H_2O}+0.276\,\mathrm{O_2}+46.90\,\mathrm{N_2}.$$
 >
-> **(b) Relación AF real.**
-> $m_{\rm aire}=12.48\times137.28=1713\,\mathrm{kg/kmol\,comb}$.
+> **(b) Relación AF real.** $m_{\rm aire}=12.48\times137.28=1713\,\mathrm{kg/kmol\,comb}$.
 > $$\mathrm{AF}=1713/114.22=15.00\,\mathrm{kg\,aire/kg\,comb}.$$
 >
 > **(c) Relación de equivalencia.** $a_{\rm est}=8+18/4=12.5$. $\mathrm{AF}_{\rm est}=12.5\times137.28/114.22=15.04$.
@@ -133,9 +132,7 @@ aliases:
 >
 > La mezcla es casi estequiométrica pero con ligera tendencia rica ($\Phi>1$): coexisten CO ($2.5\%$) y $\mathrm{O_2}$ ($0.5\%$) por no uniformidad de la mezcla en el cilindro (combustión heterogénea real).
 >
-> **(d) Pérdida por CO.** CO producido: $1.38$ mol por mol de $\mathrm{C_8H_{18}}$.
-> PCI del octano $\approx 44430\,\mathrm{kJ/kg}=44430\times114.22=5.075\times10^6\,\mathrm{kJ/kmol}$.
-> Calor latente en CO: $1.38\times282990=390520\,\mathrm{kJ/kmol\,comb}$.
+> **(d) Pérdida por CO.** CO producido: $1.38$ mol por mol de $\mathrm{C_8H_{18}}$. PCI del octano $\approx 44430\,\mathrm{kJ/kg}=44430\times114.22=5.075\times10^6\,\mathrm{kJ/kmol}$. Calor latente en CO: $1.38\times282990=390520\,\mathrm{kJ/kmol\,comb}$.
 > $$\%\,\text{pérdida}=390520/(5.075\times10^6)\times100=7.7\%.$$
 >
 > Los catalizadores de tres vías (TWC) oxidan el CO residual: $\mathrm{CO}+\tfrac{1}{2}\mathrm{O_2}\to\mathrm{CO_2}$, recuperando ese 7.7% y eliminando la emisión contaminante.

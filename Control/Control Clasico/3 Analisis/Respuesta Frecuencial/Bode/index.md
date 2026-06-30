@@ -1,5 +1,6 @@
 ---
 title: Diagramas de Bode
+order: 1
 tags:
   - control-clasico
   - analisis

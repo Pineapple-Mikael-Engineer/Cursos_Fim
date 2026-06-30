@@ -1,5 +1,6 @@
 ---
 title: Tiempo de Pico (Tp)
+order: 3
 tags:
   - control-clasico
   - analisis

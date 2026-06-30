@@ -157,8 +157,7 @@ aliases:
 >
 > $$M = 0.30\times28.01 + 0.25\times2.016 + 0.15\times44.01 + 0.30\times28.014 = 8.403+0.504+6.602+8.404 = 23.91\,\mathrm{kg/kmol}.$$
 >
-> Fracciones másicas: $fm_i = y_i M_i/M$:
-> $fm_{\mathrm{CO}} = 8.403/23.91 = 0.3514$; $fm_{\mathrm{H_2}} = 0.504/23.91 = 0.0211$; $fm_{\mathrm{CO_2}} = 6.602/23.91 = 0.2761$; $fm_{\mathrm{N_2}} = 8.404/23.91 = 0.3515$. Suma $= 1.000$. ✓
+> Fracciones másicas: $fm_i = y_i M_i/M$: $fm_{\mathrm{CO}} = 8.403/23.91 = 0.3514$; $fm_{\mathrm{H_2}} = 0.504/23.91 = 0.0211$; $fm_{\mathrm{CO_2}} = 6.602/23.91 = 0.2761$; $fm_{\mathrm{N_2}} = 8.404/23.91 = 0.3515$. Suma $= 1.000$. ✓
 >
 > **(b) $\Delta\bar{h}$ y $\Delta h$.** $\bar{c}_p$ promedio en kJ/(kmol·K): $\bar{c}_{p,\mathrm{CO}}=29.1$, $\bar{c}_{p,\mathrm{H_2}}=29.0$, $\bar{c}_{p,\mathrm{CO_2}}=43.1$, $\bar{c}_{p,\mathrm{N_2}}=29.1$.
 >

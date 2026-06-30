@@ -36,9 +36,7 @@ aliases:
 > | $3\to4$ | Expansión isentrópica | Turbina | $s_4=s_3$, adiabática |
 > | $4\to1$ | Rechazo de calor isobárico | Condensador | $P=\text{cte}$, $w=0$, hasta $x=0$ |
 >
-> El estado 1 es **líquido saturado** a la presión del condensador ($x_1=0$).
-> El estado 3 es **vapor sobrecalentado** o vapor saturado a la presión de la caldera.
-> El estado 4 puede ser **mezcla líquido-vapor** o vapor sobrecalentado.
+> El estado 1 es **líquido saturado** a la presión del condensador ($x_1=0$). El estado 3 es **vapor sobrecalentado** o vapor saturado a la presión de la caldera. El estado 4 puede ser **mezcla líquido-vapor** o vapor sobrecalentado.
 
 ---
 
@@ -82,8 +80,7 @@ aliases:
 >
 > **Hipótesis:** fluido incompresible ($v \approx v_1 = \text{cte}$), proceso isentrópico.
 >
-> **Paso 1.** Primera ley para VC estacionario, adiabático, sin EC ni EP:
-> $w_P = -(h_2 - h_1)$ (el trabajo es suministrado al fluido: convenio $w_P > 0$).
+> **Paso 1.** Primera ley para VC estacionario, adiabático, sin EC ni EP: $w_P = -(h_2 - h_1)$ (el trabajo es suministrado al fluido: convenio $w_P > 0$).
 >
 > **Paso 2.** Para proceso isentrópico de fluido incompresible, la ecuación de Gibbs $dh = T\,ds + v\,dP$ con $ds=0$ da: $dh = v\,dP$.
 >

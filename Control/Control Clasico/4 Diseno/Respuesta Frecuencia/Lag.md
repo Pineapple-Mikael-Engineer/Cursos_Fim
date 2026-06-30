@@ -1,5 +1,6 @@
 ---
 title: Compensador Lag (por Frecuencia)
+order: 2
 tags:
   - control-clasico
   - diseno
@@ -65,9 +66,7 @@ aliases:
 > por encima de su esquina superior $z=1/T$. **No** se usa por su retardo de fase (indeseado), sino por esta atenuación: al bajar la curva de magnitud, el cruce de ganancia $\omega_c$ se mueve a frecuencias menores, donde la planta conserva **más** fase y por tanto más margen.
 
 > [!demostracion]
-> **Paso 1.** A baja frecuencia ($\omega\ll1/\beta T$): $|G_c|\to K_c\beta\cdot1=K_c\beta$ → ganancia DC alta (mejora $K_v$).
-> **Paso 2.** A alta frecuencia ($\omega\gg1/T$): $|G_c|\to K_c\beta\cdot\dfrac{\omega T}{\beta\omega T}=K_c$ → la asíntota baja un factor $\beta$ respecto a la DC, es decir $-20\log\beta$ dB.
-> **Paso 3.** Entre las esquinas $1/\beta T$ y $1/T$ la magnitud cae a $-20$ dB/dec; el cruce de ganancia del lazo, que estaba donde $|L_0|=1$, se recorre hacia $\omega$ menor porque ahora $|L|=|G_c||L_0|$ es menor. Allí $\angle L_0$ es menos negativa → mayor MF.
+> **Paso 1.** A baja frecuencia ($\omega\ll1/\beta T$): $|G_c|\to K_c\beta\cdot1=K_c\beta$ → ganancia DC alta (mejora $K_v$). **Paso 2.** A alta frecuencia ($\omega\gg1/T$): $|G_c|\to K_c\beta\cdot\dfrac{\omega T}{\beta\omega T}=K_c$ → la asíntota baja un factor $\beta$ respecto a la DC, es decir $-20\log\beta$ dB. **Paso 3.** Entre las esquinas $1/\beta T$ y $1/T$ la magnitud cae a $-20$ dB/dec; el cruce de ganancia del lazo, que estaba donde $|L_0|=1$, se recorre hacia $\omega$ menor porque ahora $|L|=|G_c||L_0|$ es menor. Allí $\angle L_0$ es menos negativa → mayor MF.
 
 > [!info] Estrategia
 > El lag mejora el margen de fase **indirectamente**: no añade fase, sino que reubica $\omega_c$ a una zona de mejor fase de la planta. A la vez, su ganancia DC ($\beta$) eleva el [[Coeficientes Kp Kv Ka | error estacionario]] sin tocar el transitorio.

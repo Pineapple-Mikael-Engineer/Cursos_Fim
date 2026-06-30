@@ -1,5 +1,6 @@
 ---
 title: Lugar de las Raíces (Root Locus)
+order: 1
 tags:
   - control-clasico
   - diseño

@@ -1,5 +1,6 @@
 ---
 title: Controlador PI
+order: 1
 tags:
   - control-clasico
   - controladores

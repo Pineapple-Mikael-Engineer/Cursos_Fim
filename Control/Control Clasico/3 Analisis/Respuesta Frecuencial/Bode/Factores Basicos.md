@@ -1,5 +1,6 @@
 ---
 title: Factores Básicos de Bode
+order: 1
 tags:
   - control-clasico
   - analisis

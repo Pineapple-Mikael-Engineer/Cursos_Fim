@@ -1,5 +1,6 @@
 ---
 title: Tipo de Sistema
+order: 3
 tags:
   - control-clasico
   - analisis

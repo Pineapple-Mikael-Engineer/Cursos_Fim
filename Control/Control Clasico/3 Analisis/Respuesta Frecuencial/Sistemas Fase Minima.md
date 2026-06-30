@@ -1,5 +1,6 @@
 ---
 title: Sistemas de Fase Mínima
+order: 3
 tags:
   - control-clasico
   - analisis

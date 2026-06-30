@@ -108,14 +108,11 @@ aliases:
 > [!solucion]
 > **Propiedades del R-134a** (tablas de saturación, **referencia IIR**: $h_f=200\,\mathrm{kJ/kg}$, $s_f=1.00\,\mathrm{kJ/(kg\cdot K)}$ para líquido saturado a $0°\mathrm{C}$). Se usa una sola convención en los cuatro estados.
 >
-> A $T_L=-20°\mathrm{C}$ ($P_L=132.68\,\mathrm{kPa}$): $h_f=173.74$, $h_g=386.55$, $h_{fg}=212.81\,\mathrm{kJ/kg}$; $s_g=1.7414\,\mathrm{kJ/(kg\cdot K)}$.
-> A $T_H=40°\mathrm{C}$ ($P_H=1016.6\,\mathrm{kPa}$): $h_f=256.44\,\mathrm{kJ/kg}$.
+> A $T_L=-20°\mathrm{C}$ ($P_L=132.68\,\mathrm{kPa}$): $h_f=173.74$, $h_g=386.55$, $h_{fg}=212.81\,\mathrm{kJ/kg}$; $s_g=1.7414\,\mathrm{kJ/(kg\cdot K)}$. A $T_H=40°\mathrm{C}$ ($P_H=1016.6\,\mathrm{kPa}$): $h_f=256.44\,\mathrm{kJ/kg}$.
 >
-> **Estado 1** — vapor saturado a $T_L=-20°\mathrm{C}$:
-> $h_1 = 386.55\,\mathrm{kJ/kg}$, $s_1 = 1.7414\,\mathrm{kJ/(kg\cdot K)}$.
+> **Estado 1** — vapor saturado a $T_L=-20°\mathrm{C}$: $h_1 = 386.55\,\mathrm{kJ/kg}$, $s_1 = 1.7414\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Estado 3** — líquido saturado a $T_H=40°\mathrm{C}$:
-> $h_3 = 256.44\,\mathrm{kJ/kg}$.
+> **Estado 3** — líquido saturado a $T_H=40°\mathrm{C}$: $h_3 = 256.44\,\mathrm{kJ/kg}$.
 >
 > **Estado 2** — compresión isentrópica a $P_H=1016.6\,\mathrm{kPa}$ con $s_2=s_1=1.7414\,\mathrm{kJ/(kg\cdot K)}$. Interpolando en la tabla de vapor sobrecalentado de R-134a (misma referencia IIR) a esa presión y entropía:
 > $$T_2\approx56.6°\mathrm{C}, \qquad h_2 = 428.35\,\mathrm{kJ/kg}.$$
@@ -132,8 +129,7 @@ aliases:
 > | 3 | 40 | 1016.6 | 256.44 | — |
 > | 4 | $-20$ | 132.68 | 256.44 | — |
 >
-> **(a) Entalpías:**
-> $h_1 = 386.55\,\mathrm{kJ/kg}$, $h_2 = 428.35\,\mathrm{kJ/kg}$, $h_3 = h_4 = 256.44\,\mathrm{kJ/kg}$.
+> **(a) Entalpías:** $h_1 = 386.55\,\mathrm{kJ/kg}$, $h_2 = 428.35\,\mathrm{kJ/kg}$, $h_3 = h_4 = 256.44\,\mathrm{kJ/kg}$.
 >
 > **(b) Coeficientes de desempeño:**
 >

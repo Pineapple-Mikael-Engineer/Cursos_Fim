@@ -1,5 +1,6 @@
 ---
 title: Compensador Lead-Lag
+order: 3
 tags:
   - control-clasico
   - diseno

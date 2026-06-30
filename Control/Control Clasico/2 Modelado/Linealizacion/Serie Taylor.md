@@ -1,5 +1,6 @@
 ---
 title: Serie de Taylor para Linealización
+order: 1
 tags:
   - control-clasico
   - teoria

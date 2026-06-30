@@ -1,5 +1,6 @@
 ---
 title: Teoremas del Valor Inicial y Final
+order: 5
 tags:
   - control-clasico
   - teoria
@@ -28,8 +29,7 @@ aliases:
 
 > [!ejemplo] TVF de un sistema estable de primer orden
 > $$F(s)=\frac{2}{s+1}\cdot\frac1s=\frac{2}{s(s+1)}.$$
-> **Paso 1 — Verificar hipótesis:** $sF(s)=\dfrac{2}{s+1}$ tiene su único polo en $s=-1$ ($\Re<0$). TVF aplicable.
-> **Paso 2 — Tomar el límite:**
+> **Paso 1 — Verificar hipótesis:** $sF(s)=\dfrac{2}{s+1}$ tiene su único polo en $s=-1$ ($\Re<0$). TVF aplicable. **Paso 2 — Tomar el límite:**
 > $$\lim_{t\to\infty}f(t)=\lim_{s\to0}\frac{2}{s+1}=2.$$
 > **Verificación:** $f(t)=2(1-e^{-t})\to 2$. ✓
 
@@ -61,8 +61,7 @@ aliases:
 > $$\lim_{s\to0}\int_0^\infty\dot f\,e^{-st}\,dt=\lim_{s\to0}[sF(s)-f(0^-)].$$
 > **Paso 3 — Intercambiar límite e integral** (convergencia garantizada por las hipótesis):
 > $$\int_0^\infty\dot f\,dt=\lim_{t\to\infty}f(t)-f(0^-).$$
-> **Paso 4 — Igualar:** $\lim_{t\to\infty}f(t)-f(0^-)=\lim_{s\to0}sF(s)-f(0^-)$.
-> **Paso 5 — Cancelar $f(0^-)$:** $\displaystyle\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s).\ \blacksquare$
+> **Paso 4 — Igualar:** $\lim_{t\to\infty}f(t)-f(0^-)=\lim_{s\to0}sF(s)-f(0^-)$. **Paso 5 — Cancelar $f(0^-)$:** $\displaystyle\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s).\ \blacksquare$
 
 ---
 
@@ -72,10 +71,7 @@ aliases:
 > $$f(0^+)=\lim_{s\to\infty}sF(s).$$
 
 > [!demostracion]
-> **Paso 1 — Misma identidad:** $\int_0^\infty\dot f\,e^{-st}\,dt=sF(s)-f(0^-)$.
-> **Paso 2 — Límite $s\to\infty$:** como $e^{-st}\to0$ para todo $t>0$, la integral $\to0$.
-> **Paso 3 — Por tanto** $0=\lim_{s\to\infty}sF(s)-f(0^-)$.
-> **Paso 4 — Con $f(0^-)=f(0^+)$** (sin impulso en el origen): $f(0^+)=\lim_{s\to\infty}sF(s).\ \blacksquare$
+> **Paso 1 — Misma identidad:** $\int_0^\infty\dot f\,e^{-st}\,dt=sF(s)-f(0^-)$. **Paso 2 — Límite $s\to\infty$:** como $e^{-st}\to0$ para todo $t>0$, la integral $\to0$. **Paso 3 — Por tanto** $0=\lim_{s\to\infty}sF(s)-f(0^-)$. **Paso 4 — Con $f(0^-)=f(0^+)$** (sin impulso en el origen): $f(0^+)=\lim_{s\to\infty}sF(s).\ \blacksquare$
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Tiempo de Subida (Tr)
+order: 5
 tags:
   - control-clasico
   - analisis

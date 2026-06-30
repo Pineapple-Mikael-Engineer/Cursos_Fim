@@ -23,8 +23,7 @@ aliases:
 ---
 
 > [!info]
-> **Ubicación.** Curso de Termodinámica (MN121) · sección **Procesos**. Se apoya en las leyes de [[Primera Ley SC | conservación]] y en las [[Gas Ideal | propiedades del gas ideal]]; alimenta los **ciclos** (Rankine, Brayton, Otto/Diesel) y la [[Entropia | entropía]].
-> **Convención.** SI; $w,q$ específicos (por unidad de masa); $\delta q,\delta w$ inexactos, $du,dh,ds$ exactos; $q>0$ hacia el sistema, $w>0$ realizado por el sistema; gas ideal con $Pv=RT$, $c_p-c_v=R$, $\gamma=c_p/c_v$.
+> **Ubicación.** Curso de Termodinámica (MN121) · sección **Procesos**. Se apoya en las leyes de [[Primera Ley SC | conservación]] y en las [[Gas Ideal | propiedades del gas ideal]]; alimenta los **ciclos** (Rankine, Brayton, Otto/Diesel) y la [[Entropia | entropía]]. **Convención.** SI; $w,q$ específicos (por unidad de masa); $\delta q,\delta w$ inexactos, $du,dh,ds$ exactos; $q>0$ hacia el sistema, $w>0$ realizado por el sistema; gas ideal con $Pv=RT$, $c_p-c_v=R$, $\gamma=c_p/c_v$.
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Diagrama Polar
+order: 1
 tags:
   - control-clasico
   - analisis

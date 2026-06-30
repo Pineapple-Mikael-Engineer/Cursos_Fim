@@ -89,19 +89,11 @@ aliases:
 > Determinar: (a) flujo de agua caliente $\dot{m}_3$; (b) flujo de aire seco $\dot{m}_a$; (c) agua de maquillaje $\dot{m}_{\rm maq}$; (d) aproximación de la torre.
 
 > [!solucion]
-> **Tablas de agua y saturación:**
-> $P_{\rm sat}(20) = 2.338\,\mathrm{kPa}$; $P_{\rm sat}(34) = 5.325\,\mathrm{kPa}$.
-> $h_f(24) \approx 100.6\,\mathrm{kJ/kg}$; $h_f(40) = 167.5\,\mathrm{kJ/kg}$.
+> **Tablas de agua y saturación:** $P_{\rm sat}(20) = 2.338\,\mathrm{kPa}$; $P_{\rm sat}(34) = 5.325\,\mathrm{kPa}$. $h_f(24) \approx 100.6\,\mathrm{kJ/kg}$; $h_f(40) = 167.5\,\mathrm{kJ/kg}$.
 >
-> **Estado 1 del aire** ($T_1=20\,°\mathrm{C}$, $\phi_1=40\%$):
-> $P_{v,1} = 0.40\times2.338 = 0.935\,\mathrm{kPa}$.
-> $\omega_1 = 0.622\times0.935/(101.325-0.935) = 0.622\times0.935/100.39 = 0.005797\,\mathrm{kg/kg}$.
-> $h_{a1} = (1.005+1.86\times0.005797)\times20+2501\times0.005797 = 1.01579\times20+14.498 = 20.32+14.50 = 34.82\,\mathrm{kJ/kg}$.
+> **Estado 1 del aire** ($T_1=20\,°\mathrm{C}$, $\phi_1=40\%$): $P_{v,1} = 0.40\times2.338 = 0.935\,\mathrm{kPa}$. $\omega_1 = 0.622\times0.935/(101.325-0.935) = 0.622\times0.935/100.39 = 0.005797\,\mathrm{kg/kg}$. $h_{a1} = (1.005+1.86\times0.005797)\times20+2501\times0.005797 = 1.01579\times20+14.498 = 20.32+14.50 = 34.82\,\mathrm{kJ/kg}$.
 >
-> **Estado 2 del aire** ($T_2=34\,°\mathrm{C}$, $\phi_2=100\%$):
-> $P_{v,2} = P_{\rm sat}(34) = 5.325\,\mathrm{kPa}$.
-> $\omega_2 = 0.622\times5.325/(101.325-5.325) = 0.622\times5.325/96.00 = 0.03449\,\mathrm{kg/kg}$.
-> $h_{a2} = (1.005+1.86\times0.03449)\times34+2501\times0.03449 = 1.06915\times34+86.23 = 36.35+86.23 = 122.6\,\mathrm{kJ/kg}$.
+> **Estado 2 del aire** ($T_2=34\,°\mathrm{C}$, $\phi_2=100\%$): $P_{v,2} = P_{\rm sat}(34) = 5.325\,\mathrm{kPa}$. $\omega_2 = 0.622\times5.325/(101.325-5.325) = 0.622\times5.325/96.00 = 0.03449\,\mathrm{kg/kg}$. $h_{a2} = (1.005+1.86\times0.03449)\times34+2501\times0.03449 = 1.06915\times34+86.23 = 36.35+86.23 = 122.6\,\mathrm{kJ/kg}$.
 >
 > **(a) Flujo de agua caliente.** El condensador aporta $\dot{Q}_{\rm cond}$ al agua que circula:
 > $$\dot{m}_3 = \frac{\dot{Q}_{\rm cond}}{h_f(T_3)-h_f(T_4)} = \frac{120\times10^3\,\mathrm{kW}}{167.5-100.6} = \frac{120000}{66.9} = 1793\,\mathrm{kg/s}.$$

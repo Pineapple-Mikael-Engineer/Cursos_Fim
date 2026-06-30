@@ -1,5 +1,6 @@
 ---
 title: Estabilidad de Sistemas
+order: 4
 tags:
   - control-clasico
   - teoria
@@ -28,14 +29,11 @@ aliases:
 > [!ejemplo] Clasificar tres sistemas por sus polos
 > Decidir la estabilidad de cada $G(s)$ ubicando sus polos.
 >
-> **Sistema A — $G(s)=\dfrac{1}{s^2+3s+2}$.**
-> Denominador $s^2+3s+2=(s+1)(s+2)$ → polos $s=-1,-2$. Ambos con $\Re<0$ → **asintóticamente estable** (y por tanto BIBO).
+> **Sistema A — $G(s)=\dfrac{1}{s^2+3s+2}$.** Denominador $s^2+3s+2=(s+1)(s+2)$ → polos $s=-1,-2$. Ambos con $\Re<0$ → **asintóticamente estable** (y por tanto BIBO).
 >
-> **Sistema B — $G(s)=\dfrac{1}{s^2+4}$.**
-> Polos $s=\pm j2$, simples sobre el eje imaginario → **marginalmente estable**. Una entrada acotada ($\sin t$) produce salida acotada, pero la respuesta libre **oscila sin decaer**, no tiende a cero.
+> **Sistema B — $G(s)=\dfrac{1}{s^2+4}$.** Polos $s=\pm j2$, simples sobre el eje imaginario → **marginalmente estable**. Una entrada acotada ($\sin t$) produce salida acotada, pero la respuesta libre **oscila sin decaer**, no tiende a cero.
 >
-> **Sistema C — $G(s)=\dfrac{1}{s^2-s-2}$.**
-> $s^2-s-2=(s-2)(s+1)$ → polos $s=2,-1$. Hay un polo en $\Re>0$ → **inestable**: un coeficiente negativo ($-s$) ya lo delata.
+> **Sistema C — $G(s)=\dfrac{1}{s^2-s-2}$.** $s^2-s-2=(s-2)(s+1)$ → polos $s=2,-1$. Hay un polo en $\Re>0$ → **inestable**: un coeficiente negativo ($-s$) ya lo delata.
 >
 > | Sistema | Polos | $\Re(p_i)$ | Veredicto |
 > |---|---|---|---|

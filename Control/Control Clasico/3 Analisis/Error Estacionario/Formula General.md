@@ -1,5 +1,6 @@
 ---
 title: Fórmula General del Error Estacionario
+order: 4
 tags:
   - control-clasico
   - analisis

@@ -1,5 +1,6 @@
 ---
 title: Sistemas de Segundo Orden
+order: 2
 tags:
   - control-clasico
   - analisis

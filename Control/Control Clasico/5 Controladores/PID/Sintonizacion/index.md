@@ -1,5 +1,6 @@
 ---
 title: Sintonización del PID
+order: 3
 tags:
   - control-clasico
   - controladores

@@ -56,19 +56,15 @@ aliases:
 > **Paso 1 — Primera ley a presión constante:**
 > $$dU = \delta Q - P\,dV \implies \delta Q = dU + P\,dV = dH \quad (P = \text{cte}).$$
 >
-> **Paso 2 — Aplicar la segunda ley.**
-> Para el sistema: $dS \ge \delta Q/T = dH/T$:
+> **Paso 2 — Aplicar la segunda ley.** Para el sistema: $dS \ge \delta Q/T = dH/T$:
 > $$T\,dS \ge dH \implies dH - T\,dS \le 0 \quad (T, P = \text{cte}).$$
 >
-> **Paso 3 — Identificar la variación de $G$.**
-> A $(T, P)$ constantes: $dG = dH - T\,dS - S\,dT = dH - T\,dS$ (ya que $dT = 0$). Por tanto:
+> **Paso 3 — Identificar la variación de $G$.** A $(T, P)$ constantes: $dG = dH - T\,dS - S\,dT = dH - T\,dS$ (ya que $dT = 0$). Por tanto:
 > $$dG \le 0 \quad (T, P = \text{cte}).$$
 >
-> **Paso 4 — Interpretación.**
-> $G$ solo puede disminuir o mantenerse constante. Los procesos espontáneos ($dG < 0$) ocurren hasta alcanzar el estado donde $dG = 0$ — el mínimo de $G$. Ese mínimo es el equilibrio.
+> **Paso 4 — Interpretación.** $G$ solo puede disminuir o mantenerse constante. Los procesos espontáneos ($dG < 0$) ocurren hasta alcanzar el estado donde $dG = 0$ — el mínimo de $G$. Ese mínimo es el equilibrio.
 >
-> **Paso 5 — Verificación del criterio de estabilidad.**
-> Para que el mínimo sea estable (no solo un punto estacionario): $\delta^2 G > 0$, que implica $c_P > 0$ y $\kappa_T > 0$ (estabilidad mecánica y térmica). Si alguna de estas condiciones falla, el sistema se vuelve inestable y se produce separación de fases. $\blacksquare$
+> **Paso 5 — Verificación del criterio de estabilidad.** Para que el mínimo sea estable (no solo un punto estacionario): $\delta^2 G > 0$, que implica $c_P > 0$ y $\kappa_T > 0$ (estabilidad mecánica y térmica). Si alguna de estas condiciones falla, el sistema se vuelve inestable y se produce separación de fases. $\blacksquare$
 
 ---
 
@@ -90,8 +86,7 @@ aliases:
 >
 > **Hipótesis:** coexistencia de dos fases (f = líquido, g = vapor) en equilibrio; el equilibrio requiere $T_f = T_g$, $P_f = P_g$ y, crucialmente, $\mu_f = \mu_g$, es decir, $g_f = g_g$ (potenciales químicos iguales para sustancia pura).
 >
-> **Paso 1 — Condición de coexistencia.**
-> A lo largo de la curva de saturación, $g_f(T, P_{sat}) = g_g(T, P_{sat})$ en todos los puntos. Diferenciando este requisito cuando $(T, P)$ cambian a lo largo de la curva:
+> **Paso 1 — Condición de coexistencia.** A lo largo de la curva de saturación, $g_f(T, P_{sat}) = g_g(T, P_{sat})$ en todos los puntos. Diferenciando este requisito cuando $(T, P)$ cambian a lo largo de la curva:
 > $$dg_f = dg_g.$$
 >
 > **Paso 2 — Expandir usando $dg = -s\,dT + v\,dP$.**
@@ -100,12 +95,10 @@ aliases:
 > **Paso 3 — Reordenar.**
 > $$(s_g - s_f)\,dT = (v_g - v_f)\,dP \implies \frac{dP_{sat}}{dT} = \frac{s_g - s_f}{v_g - v_f} = \frac{s_{fg}}{v_{fg}}.$$
 >
-> **Paso 4 — Usar $s_{fg} = h_{fg}/T_{sat}$.**
-> El cambio de entropía en el cambio de fase isobárico-isotérmico es $\Delta s = h_{fg}/T_{sat}$ (el calor $h_{fg}$ se transfiere a temperatura constante $T_{sat}$). Por tanto:
+> **Paso 4 — Usar $s_{fg} = h_{fg}/T_{sat}$.** El cambio de entropía en el cambio de fase isobárico-isotérmico es $\Delta s = h_{fg}/T_{sat}$ (el calor $h_{fg}$ se transfiere a temperatura constante $T_{sat}$). Por tanto:
 > $$\boxed{\frac{dP_{sat}}{dT} = \frac{h_{fg}}{T_{sat}\,v_{fg}}.}$$
 >
-> **Paso 5 — Verificación de signos y límites.**
-> Para vaporización ($h_{fg} > 0$, $v_{fg} > 0$): $dP_{sat}/dT > 0$ — la presión de saturación crece con la temperatura. Para fusión del agua ($h_{fg} > 0$, $v_{fg} < 0$ porque el hielo es menos denso que el agua): $dP_{sat}/dT < 0$ — el hielo se funde a mayor presión, lo que explica el patinaje sobre hielo. $\checkmark\,\blacksquare$
+> **Paso 5 — Verificación de signos y límites.** Para vaporización ($h_{fg} > 0$, $v_{fg} > 0$): $dP_{sat}/dT > 0$ — la presión de saturación crece con la temperatura. Para fusión del agua ($h_{fg} > 0$, $v_{fg} < 0$ porque el hielo es menos denso que el agua): $dP_{sat}/dT < 0$ — el hielo se funde a mayor presión, lo que explica el patinaje sobre hielo. $\checkmark\,\blacksquare$
 
 ![[gibbs_curva_saturacion_Clapeyron.svg|440]]
 *Diagrama $P$-$T$ con las curvas de saturación (sólido-líquido, líquido-vapor, sólido-vapor) y el punto triple. La pendiente de cada curva es $dP/dT = h_{fg}/(T v_{fg})$. Para el agua, la curva sólido-líquido tiene pendiente negativa (anotada en la figura).*
@@ -166,8 +159,7 @@ aliases:
 > - El potencial químico en mezclas ideales: $\mu_i = g_i^\circ + RT\ln y_i$; ver [[Mezcla Gas Ideal]].
 
 > [!info]
-> **Convención:** $G$: extensiva [kJ]; $g = G/m$ [kJ/kg]; $\bar{g} = G/n$ [kJ/mol]; $\mu = \bar{g}$ para sustancia pura.
-> Estándar: $g^\circ$ a $T$ dada y $P^\circ = 100\,\text{kPa}$.
+> **Convención:** $G$: extensiva [kJ]; $g = G/m$ [kJ/kg]; $\bar{g} = G/n$ [kJ/mol]; $\mu = \bar{g}$ para sustancia pura. Estándar: $g^\circ$ a $T$ dada y $P^\circ = 100\,\text{kPa}$.
 
 > [!referencia]
 > Borgnakke & Sonntag, *Fundamentals of Thermodynamics*, §12.2–12.4; Callen, *Thermodynamics*, §6-1 a 6-4 y §7-1 a 7-3; Çengel & Boles, *Termodinámica*, §12-1, §14-1; Moran & Shapiro, §12.3–12.4; Clausius-Clapeyron en todo texto de termodinámica clásica.

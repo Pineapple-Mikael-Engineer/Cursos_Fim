@@ -1,5 +1,6 @@
 ---
 title: Controlador PD
+order: 2
 tags:
   - control-clasico
   - controladores

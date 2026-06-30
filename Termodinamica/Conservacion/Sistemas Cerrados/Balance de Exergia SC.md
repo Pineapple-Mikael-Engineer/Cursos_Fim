@@ -46,8 +46,7 @@ aliases:
 > **Paso 4 — Reorganizar sumando y restando $T_0\Delta S$ y $P_0\Delta V$ a ambos lados.**
 > $$\Delta U - T_0\Delta S + P_0\Delta V = \int\!\left(1 - \frac{T_0}{T}\right)\delta Q - (W - P_0\Delta V) - T_0 S_{\rm gen}.$$
 >
-> **Paso 5 — Identificar $\Delta B$ y $B_{\rm dest}$.**
-> El lado izquierdo es exactamente $\Delta B = \Delta U + P_0\Delta V - T_0\Delta S$; el último término del lado derecho es $B_{\rm dest} = T_0 S_{\rm gen} \ge 0$. Por tanto:
+> **Paso 5 — Identificar $\Delta B$ y $B_{\rm dest}$.** El lado izquierdo es exactamente $\Delta B = \Delta U + P_0\Delta V - T_0\Delta S$; el último término del lado derecho es $B_{\rm dest} = T_0 S_{\rm gen} \ge 0$. Por tanto:
 > $$\Delta B = \int_1^2\!\left(1 - \frac{T_0}{T}\right)\delta Q - (W - P_0\Delta V) - B_{\rm dest}. \qquad \blacksquare$$
 
 ---

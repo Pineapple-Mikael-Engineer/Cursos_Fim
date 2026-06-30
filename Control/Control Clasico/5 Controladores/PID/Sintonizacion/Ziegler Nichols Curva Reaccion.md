@@ -1,5 +1,6 @@
 ---
 title: Ziegler-Nichols — Curva de Reacción
+order: 2
 tags:
   - control-clasico
   - controladores

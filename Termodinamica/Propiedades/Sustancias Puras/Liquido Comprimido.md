@@ -80,35 +80,26 @@ Para presiones moderadas ($P < 5\,\mathrm{MPa}$) la aproximación $y(T,P)\approx
 ## Ejemplo: trabajo de la bomba en ciclo Rankine
 
 > [!ejemplo]
-> En un ciclo Rankine simple, la bomba comprime agua líquida desde $P_1=10\,\mathrm{kPa}$ (condensador) hasta $P_2=8\,\mathrm{MPa}$ (caldera). La entrada a la bomba es líquido saturado a $P_1$. La eficiencia isentrópica de la bomba es $\eta_B=0.85$. Determinar:
-> (a) El trabajo de bomba isentrópico $w_{B,s}$ usando la aproximación de líquido comprimido.
-> (b) El trabajo real $w_{B,\rm real}$ y la temperatura de salida $T_2$.
-> (c) La entalpía de salida $h_2$ real.
-> (d) Comparar $w_{B,s}$ con el calculado mediante tablas de líquido comprimido.
+> En un ciclo Rankine simple, la bomba comprime agua líquida desde $P_1=10\,\mathrm{kPa}$ (condensador) hasta $P_2=8\,\mathrm{MPa}$ (caldera). La entrada a la bomba es líquido saturado a $P_1$. La eficiencia isentrópica de la bomba es $\eta_B=0.85$. Determinar: (a) El trabajo de bomba isentrópico $w_{B,s}$ usando la aproximación de líquido comprimido. (b) El trabajo real $w_{B,\rm real}$ y la temperatura de salida $T_2$. (c) La entalpía de salida $h_2$ real. (d) Comparar $w_{B,s}$ con el calculado mediante tablas de líquido comprimido.
 
 > [!solucion]
-> **Datos de tablas a $P_1=10\,\mathrm{kPa}$ (Tabla A-5):**
-> $T_{\rm sat}(10\,\mathrm{kPa})=45.81\,°\mathrm{C}$, estado 1 = líquido saturado: $h_1=h_f=191.8\,\mathrm{kJ/kg}$, $v_1=v_f=0.001010\,\mathrm{m^3/kg}$, $s_1=s_f=0.6493\,\mathrm{kJ/(kg\cdot K)}$.
+> **Datos de tablas a $P_1=10\,\mathrm{kPa}$ (Tabla A-5):** $T_{\rm sat}(10\,\mathrm{kPa})=45.81\,°\mathrm{C}$, estado 1 = líquido saturado: $h_1=h_f=191.8\,\mathrm{kJ/kg}$, $v_1=v_f=0.001010\,\mathrm{m^3/kg}$, $s_1=s_f=0.6493\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Parte (a) — Trabajo isentrópico de bomba.**
-> Para la bomba (volumen de control abierto, flujo estacionario, $q=0$):
+> **Parte (a) — Trabajo isentrópico de bomba.** Para la bomba (volumen de control abierto, flujo estacionario, $q=0$):
 > $$w_{B,s} = -\int_{P_1}^{P_2} v\,dP \approx -v_f(P_2-P_1) = -0.001010\times(8000-10) = -0.001010\times7990 = -8.07\,\mathrm{kJ/kg}.$$
 > El trabajo es negativo (entra a la bomba). En módulo: $\lvert w_{B,s}\rvert=8.07\,\mathrm{kJ/kg}$.
 >
 > **Parte (b) — Trabajo real.**
 > $$\eta_B = \frac{w_{B,s}}{w_{B,\rm real}} \implies w_{B,\rm real} = \frac{w_{B,s}}{\eta_B} = \frac{-8.07}{0.85} = -9.49\,\mathrm{kJ/kg}.$$
 >
-> **Parte (c) — Entalpía de salida real.**
-> Aplicando el balance de energía a la bomba real (adiabática):
+> **Parte (c) — Entalpía de salida real.** Aplicando el balance de energía a la bomba real (adiabática):
 > $$h_2 = h_1 - w_{B,\rm real} = h_1 + \lvert w_{B,\rm real}\rvert = 191.8 + 9.49 = 201.3\,\mathrm{kJ/kg}.$$
 >
 > Temperatura de salida: usando la aproximación de líquido comprimido,
 > $$h_2 \approx h_f(T_2) + v_f(T_2)\,(P_2 - P_{\rm sat}(T_2)).$$
 > Para $P_2=8\,\mathrm{MPa}$ y $h_2=201.3\,\mathrm{kJ/kg}$: iterando en tablas de líquido comprimido (A-7), a $T_2\approx46\,°\mathrm{C}$ y $P=8\,\mathrm{MPa}$: $h\approx201.9\,\mathrm{kJ/kg}$. Así $T_2\approx46\,°\mathrm{C}$ (aumento ínfimo de temperatura, característico de las bombas de líquido).
 >
-> **Parte (d) — Comparación con tablas de líquido comprimido (A-7).**
-> El estado final isentrópico tiene $h_{2s} = h_1 + w_{B,s} = 191.8 + 8.07 = 199.87\,\mathrm{kJ/kg}$. En Tabla A-7, el líquido comprimido a $T_2\approx46\,°\mathrm{C}$ y $P_2=8\,\mathrm{MPa}$ tiene $h\approx199.9\,\mathrm{kJ/kg}$ (la entalpía del líquido comprimido se aproxima muy bien por $h_f(T)+v_f\,[P-P_{\rm sat}(T)]$).
-> El trabajo deducido de tablas, $w_{B,s}^{\rm tablas} = h_{2s}-h_1 \approx 8.1\,\mathrm{kJ/kg}$, coincide con la estimación $w_{B,s}=v_1\,\Delta P=8.07\,\mathrm{kJ/kg}$ dentro de $<0.5\%$. La aproximación de líquido incompresible es excelente para la bomba. $\blacksquare$
+> **Parte (d) — Comparación con tablas de líquido comprimido (A-7).** El estado final isentrópico tiene $h_{2s} = h_1 + w_{B,s} = 191.8 + 8.07 = 199.87\,\mathrm{kJ/kg}$. En Tabla A-7, el líquido comprimido a $T_2\approx46\,°\mathrm{C}$ y $P_2=8\,\mathrm{MPa}$ tiene $h\approx199.9\,\mathrm{kJ/kg}$ (la entalpía del líquido comprimido se aproxima muy bien por $h_f(T)+v_f\,[P-P_{\rm sat}(T)]$). El trabajo deducido de tablas, $w_{B,s}^{\rm tablas} = h_{2s}-h_1 \approx 8.1\,\mathrm{kJ/kg}$, coincide con la estimación $w_{B,s}=v_1\,\Delta P=8.07\,\mathrm{kJ/kg}$ dentro de $<0.5\%$. La aproximación de líquido incompresible es excelente para la bomba. $\blacksquare$
 
 > [!warning]
 > La fórmula $w_{B,s}=-v\,\Delta P$ (trabajo de flujo reversible) es **diferente** del trabajo de frontera $w=-\int P\,dv\approx 0$ para líquido incompresible. La bomba realiza trabajo de flujo, no de frontera. El trabajo de frontera es nulo porque $\Delta v\approx 0$; el trabajo de flujo $-\int v\,dP$ es no nulo porque $\Delta P\neq 0$.

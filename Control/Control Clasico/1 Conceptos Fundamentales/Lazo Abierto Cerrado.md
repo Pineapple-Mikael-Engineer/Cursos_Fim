@@ -1,5 +1,6 @@
 ---
 title: Lazo Abierto y Lazo Cerrado
+order: 1
 tags:
   - control-clasico
   - teoria

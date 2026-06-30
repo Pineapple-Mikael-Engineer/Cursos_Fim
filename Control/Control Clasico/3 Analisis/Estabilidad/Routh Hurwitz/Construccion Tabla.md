@@ -1,5 +1,6 @@
 ---
 title: Construcción de la Tabla de Routh
+order: 1
 tags:
   - control-clasico
   - teoria

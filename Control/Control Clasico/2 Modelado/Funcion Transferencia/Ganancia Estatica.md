@@ -1,5 +1,6 @@
 ---
 title: Ganancia Estática
+order: 4
 tags:
   - control-clasico
   - teoria
@@ -66,8 +67,7 @@ aliases:
 > Se obtienen tomando $\lim_{s\to0}$ en cada fórmula del [[Algebra Diagramas | álgebra de diagramas]].
 
 > [!ejemplo] Interconexión numérica
-> $G_1(s)=\frac{2}{s+1}$ ($G_1(0)=2$), $G_2(s)=\frac{3}{s+2}$ ($G_2(0)=1.5$).
-> Serie: $2\cdot1.5=3$. Paralelo: $2+1.5=3.5$.
+> $G_1(s)=\frac{2}{s+1}$ ($G_1(0)=2$), $G_2(s)=\frac{3}{s+2}$ ($G_2(0)=1.5$). Serie: $2\cdot1.5=3$. Paralelo: $2+1.5=3.5$.
 
 ---
 

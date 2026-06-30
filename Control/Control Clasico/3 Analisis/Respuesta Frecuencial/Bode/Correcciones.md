@@ -1,5 +1,6 @@
 ---
 title: Correcciones del Diagrama de Bode
+order: 3
 tags:
   - control-clasico
   - analisis

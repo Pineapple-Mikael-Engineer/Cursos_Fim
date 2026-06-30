@@ -1,5 +1,6 @@
 ---
 title: Controlador PID
+order: 3
 tags:
   - control-clasico
   - controladores

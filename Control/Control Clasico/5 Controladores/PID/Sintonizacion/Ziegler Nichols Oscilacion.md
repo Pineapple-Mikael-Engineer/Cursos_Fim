@@ -1,5 +1,6 @@
 ---
 title: Ziegler-Nichols — Oscilación Sostenida
+order: 1
 tags:
   - control-clasico
   - controladores

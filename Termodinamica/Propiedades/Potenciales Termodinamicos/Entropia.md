@@ -42,25 +42,20 @@ aliases:
 >
 > **Hipótesis:** sistema cerrado que ejecuta un ciclo intercambiando calor $\delta Q$ con un reservorio a temperatura de frontera $T_b$; la segunda ley de Kelvin-Planck prohíbe convertir todo el calor en trabajo en un ciclo.
 >
-> **Paso 1 — Conectar el sistema a un reservorio único a $T_0$.**
-> Para cada proceso elemental del ciclo, suponemos que el calor $\delta Q$ se transfiere desde un reservorio auxiliar a temperatura $T_0$ al sistema a través de un dispositivo reversible (máquina de Carnot reversible) de modo que el dispositivo entregue $\delta Q$ al sistema y reciba $\delta Q_0$ del reservorio a $T_0$.
+> **Paso 1 — Conectar el sistema a un reservorio único a $T_0$.** Para cada proceso elemental del ciclo, suponemos que el calor $\delta Q$ se transfiere desde un reservorio auxiliar a temperatura $T_0$ al sistema a través de un dispositivo reversible (máquina de Carnot reversible) de modo que el dispositivo entregue $\delta Q$ al sistema y reciba $\delta Q_0$ del reservorio a $T_0$.
 >
-> **Paso 2 — Aplicar la eficiencia de Carnot al dispositivo auxiliar.**
-> La eficiencia de Carnot del dispositivo reversible entre $T_0$ y $T_b$ es:
+> **Paso 2 — Aplicar la eficiencia de Carnot al dispositivo auxiliar.** La eficiencia de Carnot del dispositivo reversible entre $T_0$ y $T_b$ es:
 > $$\eta_{\rm Carnot} = 1 - \frac{T_b}{T_0}.$$
 > El trabajo del dispositivo es $\delta W_d = \delta Q_0 - \delta Q$, y la relación de calores:
 > $$\frac{\delta Q_0}{\delta Q} = \frac{T_0}{T_b} \implies \delta Q_0 = T_0\,\frac{\delta Q}{T_b}.$$
 >
-> **Paso 3 — Balance del sistema combinado (sistema original + dispositivo reversible).**
-> El sistema combinado recibe del único reservorio a $T_0$ un calor total por ciclo:
+> **Paso 3 — Balance del sistema combinado (sistema original + dispositivo reversible).** El sistema combinado recibe del único reservorio a $T_0$ un calor total por ciclo:
 > $$Q_{0,\rm ciclo} = \oint \delta Q_0 = T_0 \oint \frac{\delta Q}{T_b}.$$
 > El trabajo total del sistema combinado en el ciclo es $W_{\rm ciclo,total} = W_{\rm ciclo} + W_d$.
 >
-> **Paso 4 — Aplicar la primera ley al ciclo.**
-> Para el ciclo: $\Delta U = 0$, luego $W_{\rm ciclo,total} = Q_{0,\rm ciclo}$.
+> **Paso 4 — Aplicar la primera ley al ciclo.** Para el ciclo: $\Delta U = 0$, luego $W_{\rm ciclo,total} = Q_{0,\rm ciclo}$.
 >
-> **Paso 5 — Aplicar la segunda ley (enunciado de Kelvin-Planck).**
-> El enunciado de Kelvin-Planck prohíbe que un sistema que interactúa con un solo reservorio produzca trabajo neto: $W_{\rm ciclo,total} \le 0$, luego:
+> **Paso 5 — Aplicar la segunda ley (enunciado de Kelvin-Planck).** El enunciado de Kelvin-Planck prohíbe que un sistema que interactúa con un solo reservorio produzca trabajo neto: $W_{\rm ciclo,total} \le 0$, luego:
 > $$T_0\oint \frac{\delta Q}{T_b} \le 0 \implies \oint \frac{\delta Q}{T_b} \le 0. \qquad \blacksquare$$
 
 ---
@@ -72,15 +67,13 @@ aliases:
 >
 > **Hipótesis:** dos procesos internamente reversibles que conectan los estados 1 y 2; la desigualdad de Clausius es válida.
 >
-> **Paso 1 — Construir un ciclo con los dos caminos.**
-> Sean A y B dos procesos reversibles de 1 a 2. El ciclo $1\to 2$ por A y $2\to 1$ por B (invertido) es un ciclo reversible. Por la desigualdad de Clausius con igualdad para proceso reversible:
+> **Paso 1 — Construir un ciclo con los dos caminos.** Sean A y B dos procesos reversibles de 1 a 2. El ciclo $1\to 2$ por A y $2\to 1$ por B (invertido) es un ciclo reversible. Por la desigualdad de Clausius con igualdad para proceso reversible:
 > $$\oint_{\rm rev}\frac{\delta Q}{T} = 0 \implies \int_{1\to 2,\,A}\frac{\delta Q}{T} + \int_{2\to 1,\,B}\frac{\delta Q}{T} = 0.$$
 >
 > **Paso 2 — Invertir el sentido de integración de B.**
 > $$\int_{1\to 2,\,A}\frac{\delta Q}{T} - \int_{1\to 2,\,B}\frac{\delta Q}{T} = 0 \implies \int_{1\to 2,\,A}\frac{\delta Q}{T} = \int_{1\to 2,\,B}\frac{\delta Q}{T}.$$
 >
-> **Paso 3 — Conclusión: $\int \delta Q_{\rm rev}/T$ no depende del camino.**
-> Como A y B son cualesquiera dos caminos reversibles de 1 a 2, la integral solo depende de los estados extremos. Por tanto existe una función de estado $S$ tal que:
+> **Paso 3 — Conclusión: $\int \delta Q_{\rm rev}/T$ no depende del camino.** Como A y B son cualesquiera dos caminos reversibles de 1 a 2, la integral solo depende de los estados extremos. Por tanto existe una función de estado $S$ tal que:
 > $$S_2 - S_1 = \int_{1}^{2}\left(\frac{\delta Q}{T}\right)_{\rm rev}. \qquad \blacksquare$$
 
 > [!warning]
@@ -203,8 +196,7 @@ aliases:
 > - La función de entropía $s(T,P)$ para gases ideales se tabula en tablas de aire estándar; ver [[Gas Ideal]].
 
 > [!info]
-> **Convención:** $S$: extensiva [kJ/K]; $s = S/m$ [kJ/(kg·K)]; $\bar{s}$ [kJ/(mol·K)].
-> Subíndices: $s_f$ líquido sat., $s_g$ vapor sat., $s_{fg} = s_g - s_f$.
+> **Convención:** $S$: extensiva [kJ/K]; $s = S/m$ [kJ/(kg·K)]; $\bar{s}$ [kJ/(mol·K)]. Subíndices: $s_f$ líquido sat., $s_g$ vapor sat., $s_{fg} = s_g - s_f$.
 
 > [!referencia]
 > Borgnakke & Sonntag, *Fundamentals of Thermodynamics*, caps. 8–9 y §12.1; Çengel & Boles, *Termodinámica*, §6-1 a 6-5 y §7-1 a 7-7; Callen, *Thermodynamics*, §1-7 a 1-10 y cap. 4; Fermi, *Thermodynamics*, cap. IV; Boltzmann, *Vorlesungen über Gastheorie* (1896).

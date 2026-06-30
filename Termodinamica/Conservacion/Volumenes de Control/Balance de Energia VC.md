@@ -36,23 +36,18 @@ aliases:
 >
 > **Hipótesis:** VC fijo en el espacio, fluido entrando por la sección 1 (presión $P_1$, velocidad $V_1$, área $A_1$). Consideramos 1 kg de fluido que entra en un intervalo de tiempo $dt$.
 >
-> **Paso 1 — Energía del kilogramo de fluido entrante.**
-> El kg de fluido que entra al VC trae su energía interna $u_1$ [kJ/kg]. También trae energía cinética $V_1^2/2$ y potencial $gz_1$. La energía total que "posee" es $u_1 + V_1^2/2 + gz_1$.
+> **Paso 1 — Energía del kilogramo de fluido entrante.** El kg de fluido que entra al VC trae su energía interna $u_1$ [kJ/kg]. También trae energía cinética $V_1^2/2$ y potencial $gz_1$. La energía total que "posee" es $u_1 + V_1^2/2 + gz_1$.
 >
-> **Paso 2 — Trabajo de flujo: el fluido de atrás empuja.**
-> Para que ese kg entre al VC, el fluido que viene detrás ejerce una fuerza $P_1 A_1$ sobre él. Para desplazarlo a través de la sección (ocupando su volumen $v_1\cdot 1\,\text{kg} = v_1\,\text{m}^3$), realiza un trabajo:
+> **Paso 2 — Trabajo de flujo: el fluido de atrás empuja.** Para que ese kg entre al VC, el fluido que viene detrás ejerce una fuerza $P_1 A_1$ sobre él. Para desplazarlo a través de la sección (ocupando su volumen $v_1\cdot 1\,\text{kg} = v_1\,\text{m}^3$), realiza un trabajo:
 > $$W_{\rm flujo,\,ent} = P_1\cdot(A_1\cdot v_1/A_1) = P_1\,v_1 \quad [\text{kJ/kg}].$$
 > Este trabajo lo "paga" el fluido corriente arriba; no lo paga ninguna fuente de trabajo de eje.
 >
-> **Paso 3 — Energía total aportada por 1 kg de fluido entrante.**
-> La energía total que llega al VC por cada kg que entra es:
+> **Paso 3 — Energía total aportada por 1 kg de fluido entrante.** La energía total que llega al VC por cada kg que entra es:
 > $$e_{\rm total,\,ent} = u_1 + P_1 v_1 + \frac{V_1^2}{2} + gz_1 = h_1 + \frac{V_1^2}{2} + gz_1.$$
 >
-> **Paso 4 — Análisis equivalente en la salida.**
-> Al salir, el kg del fluido empuja el fluido que viene detrás contra $P_e$: ese trabajo de flujo $P_e v_e$ sale del VC. La energía que "lleva" el kg saliente es $h_e + V_e^2/2 + gz_e$.
+> **Paso 4 — Análisis equivalente en la salida.** Al salir, el kg del fluido empuja el fluido que viene detrás contra $P_e$: ese trabajo de flujo $P_e v_e$ sale del VC. La energía que "lleva" el kg saliente es $h_e + V_e^2/2 + gz_e$.
 >
-> **Paso 5 — Ensamble del balance de energía.**
-> Aplicando la primera ley al VC (la energía del VC cambia porque entra/sale calor $\dot{Q}$, sale trabajo de eje $\dot{W}$, y los flujos másicos traen y llevan $h + V^2/2 + gz$):
+> **Paso 5 — Ensamble del balance de energía.** Aplicando la primera ley al VC (la energía del VC cambia porque entra/sale calor $\dot{Q}$, sale trabajo de eje $\dot{W}$, y los flujos másicos traen y llevan $h + V^2/2 + gz$):
 > $$\frac{dE_{VC}}{dt} = \dot{Q} - \dot{W} + \sum_i \dot{m}_i\!\left(h_i + \frac{V_i^2}{2} + gz_i\right) - \sum_e \dot{m}_e\!\left(h_e + \frac{V_e^2}{2} + gz_e\right). \qquad \blacksquare$$
 
 ---

@@ -1,5 +1,6 @@
 ---
 title: Álgebra de Diagramas de Bloques
+order: 6
 tags:
   - control-clasico
   - teoria
@@ -67,10 +68,7 @@ aliases:
 > [!demostracion]
 > **Paso 1 — Sumador** (realimentación negativa), siendo $E$ su salida:
 > $$E(s)=U(s)-H(s)Y(s).$$
-> **Paso 2 — Bloque directo:** $Y(s)=G(s)E(s)$.
-> **Paso 3 — Sustituir:** $Y=G[U-HY]=GU-GHY$.
-> **Paso 4 — Agrupar:** $Y(1+GH)=GU$.
-> **Paso 5 — Despejar $T=Y/U$:** $\displaystyle T=\frac{G}{1+GH}.\ \blacksquare$
+> **Paso 2 — Bloque directo:** $Y(s)=G(s)E(s)$. **Paso 3 — Sustituir:** $Y=G[U-HY]=GU-GHY$. **Paso 4 — Agrupar:** $Y(1+GH)=GU$. **Paso 5 — Despejar $T=Y/U$:** $\displaystyle T=\frac{G}{1+GH}.\ \blacksquare$
 
 > [!proposicion] Realimentación positiva
 > Si el sumador es positivo ($E=U+HY$), la misma deducción con signo $+$ da

@@ -1,5 +1,6 @@
 ---
 title: Trayectoria en el Eje Real y Asíntotas
+order: 8
 tags:
   - control-clasico
   - diseño

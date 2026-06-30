@@ -74,8 +74,7 @@ donde $T$, $T_r$, $T_c$ están en Kelvin y el exponente $0.38$ proviene del comp
 
 **Ejemplo de uso.** Para el refrigerante R-134a: $T_c=374.2\,\mathrm{K}$, $h_{fg}=204.6\,\mathrm{kJ/kg}$ a $T_r=30\,°\mathrm{C}=303.15\,\mathrm{K}$. Estimar $h_{fg}$ a $-20\,°\mathrm{C}=253.15\,\mathrm{K}$:
 $$h_{fg}(-20\,°\mathrm{C})=204.6\left(\frac{1-253.15/374.2}{1-303.15/374.2}\right)^{0.38}=204.6\left(\frac{0.3232}{0.1901}\right)^{0.38}=204.6\times(1.700)^{0.38}.$$
-$(1.700)^{0.38}=e^{0.38\ln 1.700}=e^{0.38\times0.5306}=e^{0.2016}=1.223.$
-$h_{fg}\approx204.6\times1.223=250.2\,\mathrm{kJ/kg}$. Valor tabular: $212.9\,\mathrm{kJ/kg}$ (error $\approx17\%$; la correlación es más precisa cuando $T$ y $T_r$ están más cercanos). Como $-20\,°\mathrm{C}<T_r$, el resultado $h_{fg}>h_{fg,r}$ tiene el signo correcto: $h_{fg}$ crece al alejarse del punto crítico.
+$(1.700)^{0.38}=e^{0.38\ln 1.700}=e^{0.38\times0.5306}=e^{0.2016}=1.223.$ $h_{fg}\approx204.6\times1.223=250.2\,\mathrm{kJ/kg}$. Valor tabular: $212.9\,\mathrm{kJ/kg}$ (error $\approx17\%$; la correlación es más precisa cuando $T$ y $T_r$ están más cercanos). Como $-20\,°\mathrm{C}<T_r$, el resultado $h_{fg}>h_{fg,r}$ tiene el signo correcto: $h_{fg}$ crece al alejarse del punto crítico.
 
 ---
 
@@ -116,17 +115,13 @@ $$h_s\to h_l\to h_g:\quad h_{sl}+h_{lg}=h_g-h_s=h_{sg}. \qquad \blacksquare$$
 >
 > Vapor de agua a $P=1\,\mathrm{MPa}$: $T_{\rm sat}=179.91\,°\mathrm{C}$, $h_g=2778.1\,\mathrm{kJ/kg}$, $h_f=762.8\,\mathrm{kJ/kg}$, $s_g=6.5865\,\mathrm{kJ/(kg\cdot K)}$, $s_f=2.1387\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> Agua de enfriamiento a $200\,\mathrm{kPa}$ (líquido comprimido ≈ líquido saturado a misma $T$):
-> $h_{\rm agua,e}\approx h_f(15\,°\mathrm{C})=63.0\,\mathrm{kJ/kg}$, $s_{\rm agua,e}\approx s_f(15\,°\mathrm{C})=0.2245\,\mathrm{kJ/(kg\cdot K)}$.
-> $h_{\rm agua,s}\approx h_f(45\,°\mathrm{C})=188.5\,\mathrm{kJ/kg}$, $s_{\rm agua,s}\approx s_f(45\,°\mathrm{C})=0.6384\,\mathrm{kJ/(kg\cdot K)}$.
+> Agua de enfriamiento a $200\,\mathrm{kPa}$ (líquido comprimido ≈ líquido saturado a misma $T$): $h_{\rm agua,e}\approx h_f(15\,°\mathrm{C})=63.0\,\mathrm{kJ/kg}$, $s_{\rm agua,e}\approx s_f(15\,°\mathrm{C})=0.2245\,\mathrm{kJ/(kg\cdot K)}$. $h_{\rm agua,s}\approx h_f(45\,°\mathrm{C})=188.5\,\mathrm{kJ/kg}$, $s_{\rm agua,s}\approx s_f(45\,°\mathrm{C})=0.6384\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Parte (a) — Balance de energía sobre el vapor.**
-> Sistema: el vapor condensando (volumen de control, régimen estacionario, $\dot{W}=0$, $\Delta\mathrm{Ec}=0$):
+> **Parte (a) — Balance de energía sobre el vapor.** Sistema: el vapor condensando (volumen de control, régimen estacionario, $\dot{W}=0$, $\Delta\mathrm{Ec}=0$):
 > $$\dot{Q}_{\rm cedido}=\dot{m}_v(h_g-h_f)=5\times(2778.1-762.8)=5\times2015.3=10076.5\,\mathrm{kW}.$$
 > El vapor cede $10076.5\,\mathrm{kW}$ al agua de enfriamiento.
 >
-> **Parte (b) — Balance de energía sobre el agua de enfriamiento.**
-> El agua de enfriamiento recibe toda esa energía (condensador adiabático al exterior):
+> **Parte (b) — Balance de energía sobre el agua de enfriamiento.** El agua de enfriamiento recibe toda esa energía (condensador adiabático al exterior):
 > $$\dot{Q}=\dot{m}_{\rm agua}(h_{\rm agua,s}-h_{\rm agua,e})$$
 > $$\dot{m}_{\rm agua}=\frac{\dot{Q}}{h_{\rm agua,s}-h_{\rm agua,e}}=\frac{10076.5}{188.5-63.0}=\frac{10076.5}{125.5}=80.3\,\mathrm{kg/s}.$$
 >
@@ -136,8 +131,7 @@ $$h_s\to h_l\to h_g:\quad h_{sl}+h_{lg}=h_g-h_s=h_{sg}. \qquad \blacksquare$$
 > $$=5\times(-4.4478)+80.3\times0.4139$$
 > $$=-22.239+33.236=+10.997\,\mathrm{kW/K}.$$
 >
-> **Parte (d) — Verificación de la segunda ley.**
-> $\dot{S}_{\rm gen}=+10.997\,\mathrm{kW/K}>0$: proceso irreversible pero físicamente válido. La irreversibilidad se origina en la diferencia finita de temperatura entre el vapor ($179.9\,°\mathrm{C}$) y el agua de enfriamiento (promedio $\approx30\,°\mathrm{C}$). El calor fluye de mayor a menor temperatura, lo que siempre genera entropía. $\blacksquare$
+> **Parte (d) — Verificación de la segunda ley.** $\dot{S}_{\rm gen}=+10.997\,\mathrm{kW/K}>0$: proceso irreversible pero físicamente válido. La irreversibilidad se origina en la diferencia finita de temperatura entre el vapor ($179.9\,°\mathrm{C}$) y el agua de enfriamiento (promedio $\approx30\,°\mathrm{C}$). El calor fluye de mayor a menor temperatura, lo que siempre genera entropía. $\blacksquare$
 
 > [!referencia]
 > Çengel & Boles, *Termodinámica*, §3-4 a 3-6; Moran & Shapiro §11.2; Borgnakke & Sonntag §2.7.

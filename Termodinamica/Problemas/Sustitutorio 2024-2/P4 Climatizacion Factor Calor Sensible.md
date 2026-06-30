@@ -17,8 +17,7 @@ aliases: [factor de calor sensible, unidad climatización]
 > El **factor de calor sensible** $\text{FCS}=\dfrac{q_{sensible}}{q_{total}}=\dfrac{1{,}006(T_1-T_2)}{h_1-h_2}$ fija la dirección de la línea de proceso $1\to2$ en la carta. El estado 2 es la intersección de esa línea con la curva de saturación.
 
 > [!solucion] Estado 1 y estado 2 (b)
-> **1** ($25\,^\circ$C, $60\%$): $\omega_1=0{,}0119$ kg/kg, $h_1=55{,}5$ kJ/kg.
-> Con $\text{FCS}=0{,}6$ y estado 2 saturado, iterando sobre la curva $\phi=100\%$ se obtiene
+> **1** ($25\,^\circ$C, $60\%$): $\omega_1=0{,}0119$ kg/kg, $h_1=55{,}5$ kJ/kg. Con $\text{FCS}=0{,}6$ y estado 2 saturado, iterando sobre la curva $\phi=100\%$ se obtiene
 > $$\boxed{T_2\approx11{,}5\,^\circ\text{C},\quad \phi_2=100\%},\qquad \omega_2=0{,}00843,\ h_2=32{,}8\ \text{kJ/kg}.$$
 > (Comprobación: $\text{FCS}=1{,}006(25-11{,}5)/(55{,}5-32{,}8)=13{,}6/22{,}7=0{,}60$ ✓.) Tras calentar a $20\,^\circ$C a $\omega$ constante: estado 3 con $\phi_3=58\%$.
 

@@ -1,5 +1,6 @@
 ---
 title: Condiciones de Ángulo y Magnitud
+order: 1
 tags:
   - control-clasico
   - diseño

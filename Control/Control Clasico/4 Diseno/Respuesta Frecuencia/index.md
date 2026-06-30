@@ -1,5 +1,6 @@
 ---
 title: Diseño en Respuesta de Frecuencia
+order: 2
 tags:
   - control-clasico
   - diseno

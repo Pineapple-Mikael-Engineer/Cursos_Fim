@@ -156,25 +156,21 @@ aliases:
 >
 > $T_{2s} = T_1(P_2/P_1)^{(\gamma-1)/\gamma} = 300\times(8)^{0.2857} = 300\times1.8114 = 543.4\,\mathrm{K}.$
 >
-> Trabajo específico isentrópico (primera ley, adiabático):
-> $w_s = -\Delta h_s = -c_p(T_{2s}-T_1) = -1.005\times(543.4-300) = -244.6\,\mathrm{kJ/kg}.$
+> Trabajo específico isentrópico (primera ley, adiabático): $w_s = -\Delta h_s = -c_p(T_{2s}-T_1) = -1.005\times(543.4-300) = -244.6\,\mathrm{kJ/kg}.$
 >
 > (El trabajo es negativo: el compresor recibe trabajo del entorno.)
 >
 > **(b) Proceso real.**
 >
-> La eficiencia isentrópica del compresor es $\eta_C = w_s / w_{\rm real}$ (relación entre trabajo ideal y real; como ambos son negativos, $|w_{\rm real}|>|w_s|$):
-> $w_{\rm real} = w_s/\eta_C = -244.6/0.85 = -287.8\,\mathrm{kJ/kg}.$
+> La eficiencia isentrópica del compresor es $\eta_C = w_s / w_{\rm real}$ (relación entre trabajo ideal y real; como ambos son negativos, $|w_{\rm real}|>|w_s|$): $w_{\rm real} = w_s/\eta_C = -244.6/0.85 = -287.8\,\mathrm{kJ/kg}.$
 >
 > $T_2 = T_1 - w_{\rm real}/c_p = 300 + 287.8/1.005 = 300 + 286.4 = 586.4\,\mathrm{K}.$
 >
 > **(c) Generación de entropía.**
 >
-> El proceso es adiabático ($\dot{Q}=0$) pero irreversible. Por la segunda ley:
-> $s_{\rm gen} = \Delta s = c_p\ln(T_2/T_{2s}) - R\ln(P_2/P_2) = c_p\ln(T_2/T_{2s}).$
+> El proceso es adiabático ($\dot{Q}=0$) pero irreversible. Por la segunda ley: $s_{\rm gen} = \Delta s = c_p\ln(T_2/T_{2s}) - R\ln(P_2/P_2) = c_p\ln(T_2/T_{2s}).$
 >
-> Aquí $P_2$ es el mismo en el proceso real e ideal (misma presión de salida), así que el término $R\ln(P_2/P_2)=0$:
-> $s_{\rm gen} = 1.005\times\ln(586.4/543.4) = 1.005\times\ln(1.0792) = 1.005\times0.07621 = 0.0766\,\mathrm{kJ/(kg\cdot K)} > 0.$ ✓
+> Aquí $P_2$ es el mismo en el proceso real e ideal (misma presión de salida), así que el término $R\ln(P_2/P_2)=0$: $s_{\rm gen} = 1.005\times\ln(586.4/543.4) = 1.005\times\ln(1.0792) = 1.005\times0.07621 = 0.0766\,\mathrm{kJ/(kg\cdot K)} > 0.$ ✓
 
 ---
 
@@ -188,8 +184,7 @@ aliases:
 > Para el **aire** a condiciones atmosféricas, $T_r \approx 6$: el modelo es excelente. Para el **vapor de agua** en una caldera a 10 MPa, $T_r \approx 1.4$: se requieren tablas.
 
 > [!info]
-> **Convención de notación usada en este curso:**
-> $R$ constante particular [kJ/kg·K]; $R_u = 8.314\,\mathrm{kJ/(kmol\cdot K)}$ universal; $\gamma = c_p/c_v$; $Z = Pv/RT$; barra sobre variable ($\bar{v}$, $\bar{u}$, $\bar{h}$, $\bar{s}$): magnitudes molares [kmol].
+> **Convención de notación usada en este curso:** $R$ constante particular [kJ/kg·K]; $R_u = 8.314\,\mathrm{kJ/(kmol\cdot K)}$ universal; $\gamma = c_p/c_v$; $Z = Pv/RT$; barra sobre variable ($\bar{v}$, $\bar{u}$, $\bar{h}$, $\bar{s}$): magnitudes molares [kmol].
 
 > [!referencia]
 > Borgnakke & Sonntag, *Fundamentals of Thermodynamics*, §3.6–3.7, §8.5; Çengel & Boles, *Termodinámica*, cap. 3 y apéndice A; Callen, *Thermodynamics*, §3.4 (demostración rigurosa de $u=u(T)$ desde postulados).

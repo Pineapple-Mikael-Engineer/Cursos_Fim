@@ -127,10 +127,7 @@ aliases:
 ## Ejemplo: compresión isotérmica de aire vs. compresión adiabática
 
 > [!ejemplo]
-> Se comprime aire (modelado como gas ideal, $R=0{,}287\ \mathrm{kJ/(kg\cdot K)}$, $\gamma=1{,}4$) en un cilindro desde $P_1=100\ \mathrm{kPa}$ y $T_1=300\ \mathrm{K}$ hasta $P_2=600\ \mathrm{kPa}$.
-> **(a)** Para una compresión **isotérmica** reversible, calcule el trabajo específico $w_{\text{iso}}$ y el calor $q_{\text{iso}}$.
-> **(b)** Calcule la variación de entropía $\Delta s$ del gas y verifique que el calor sale del gas.
-> **(c)** Compare con una compresión **adiabática** reversible (isentrópica) entre las mismas presiones: ¿cuál requiere más trabajo y por qué? Dé el cociente de ambos trabajos de compresión.
+> Se comprime aire (modelado como gas ideal, $R=0{,}287\ \mathrm{kJ/(kg\cdot K)}$, $\gamma=1{,}4$) en un cilindro desde $P_1=100\ \mathrm{kPa}$ y $T_1=300\ \mathrm{K}$ hasta $P_2=600\ \mathrm{kPa}$. **(a)** Para una compresión **isotérmica** reversible, calcule el trabajo específico $w_{\text{iso}}$ y el calor $q_{\text{iso}}$. **(b)** Calcule la variación de entropía $\Delta s$ del gas y verifique que el calor sale del gas. **(c)** Compare con una compresión **adiabática** reversible (isentrópica) entre las mismas presiones: ¿cuál requiere más trabajo y por qué? Dé el cociente de ambos trabajos de compresión.
 
 > [!solucion]
 > **Parte (a) — Trabajo y calor de la compresión isotérmica.**

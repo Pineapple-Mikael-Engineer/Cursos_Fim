@@ -140,8 +140,7 @@ Valores fundamentales:
 > $$\boxed{\mathrm{C_3H_8}+7.5\,\mathrm{O_2}+28.2\,\mathrm{N_2}\to3\,\mathrm{CO_2}+4\,\mathrm{H_2O}+2.5\,\mathrm{O_2}+28.2\,\mathrm{N_2}.}$$
 > Verificación: C: $3=3$ ✓; H: $8=8$ ✓; O: $15=6+4+5=15$ ✓; N: $56.4=56.4$ ✓.
 >
-> **(b) Relación AF.**
-> $m_{\rm aire} = 7.5\times(32+3.76\times28) = 7.5\times137.28 = 1029.6\,\mathrm{kg/kmol\,C_3H_8}$.
+> **(b) Relación AF.** $m_{\rm aire} = 7.5\times(32+3.76\times28) = 7.5\times137.28 = 1029.6\,\mathrm{kg/kmol\,C_3H_8}$.
 > $$\mathrm{AF} = 1029.6/44.09 = 23.35\,\mathrm{kg\,aire/kg\,C_3H_8}.$$
 > (Para verificar: $\mathrm{AF}_{\rm est}=5\times137.28/44.09=15.57$; $1.5\times15.57=23.36$ ✓.)
 >

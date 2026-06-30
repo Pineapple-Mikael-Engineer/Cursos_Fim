@@ -84,17 +84,14 @@ aliases:
 > **Paso 1 — Estado de entrada (tablas de vapor sobrecalentado).** A $P_1=6\,\mathrm{MPa}$, $T_1=600\,°\mathrm{C}$:
 > $$h_1 = 3658.4\,\mathrm{kJ/kg}, \quad s_1 = 7.1677\,\mathrm{kJ/(kg\cdot K)}.$$
 >
-> **Paso 2 — Estado isentrópico de salida.** A $P_2=10\,\mathrm{kPa}$, $s_{2s}=s_1=7.1677\,\mathrm{kJ/(kg\cdot K)}$.
-> De tablas de saturación a $10\,\mathrm{kPa}$: $s_f=0.6493$, $s_g=8.1502$, $h_f=191.8$, $h_{fg}=2392.8$.
+> **Paso 2 — Estado isentrópico de salida.** A $P_2=10\,\mathrm{kPa}$, $s_{2s}=s_1=7.1677\,\mathrm{kJ/(kg\cdot K)}$. De tablas de saturación a $10\,\mathrm{kPa}$: $s_f=0.6493$, $s_g=8.1502$, $h_f=191.8$, $h_{fg}=2392.8$.
 > $$x_{2s}=\frac{7.1677-0.6493}{8.1502-0.6493}=\frac{6.5184}{7.5009}=0.869.$$
 > $$h_{2s}=191.8+0.869\times2392.8=191.8+2079.3=2271.1\,\mathrm{kJ/kg}.$$
 >
 > **Paso 3 — Trabajo isentrópico y potencia real.** Trabajo isentrópico: $w_s=h_1-h_{2s}=3658.4-2271.1=1387.3\,\mathrm{kJ/kg}$. Potencia real:
 > $$\dot{W}_t = \eta_t\,\dot{m}\,w_s = 0.90\times10\times1387.3 = 12\,486\,\mathrm{kW} \approx 12.5\,\mathrm{MW}.$$
 >
-> **Paso 4 — Estado real de salida.** $h_2 = h_1 - \dot{W}_t/\dot{m} = 3658.4 - 1248.6 = 2409.8\,\mathrm{kJ/kg}$.
-> A $P_2=10\,\mathrm{kPa}$: $x_2=(2409.8-191.8)/2392.8=2218.0/2392.8=0.927$.
-> $s_2=0.6493+0.927\times7.5009=0.6493+6.953=7.602\,\mathrm{kJ/(kg\cdot K)}$.
+> **Paso 4 — Estado real de salida.** $h_2 = h_1 - \dot{W}_t/\dot{m} = 3658.4 - 1248.6 = 2409.8\,\mathrm{kJ/kg}$. A $P_2=10\,\mathrm{kPa}$: $x_2=(2409.8-191.8)/2392.8=2218.0/2392.8=0.927$. $s_2=0.6493+0.927\times7.5009=0.6493+6.953=7.602\,\mathrm{kJ/(kg\cdot K)}$.
 >
 > **Paso 5 — Destrucción de exergía.** $\dot{S}_{\rm gen}=\dot{m}(s_2-s_1)=10\times(7.602-7.168)=10\times0.434=4.34\,\mathrm{kW/K}$.
 > $$\dot{X}_{\rm dest}=T_0\,\dot{S}_{\rm gen}=298\times4.34=1293\,\mathrm{kW}.$$

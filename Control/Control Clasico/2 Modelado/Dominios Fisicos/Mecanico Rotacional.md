@@ -1,5 +1,6 @@
 ---
 title: Sistemas Mecánicos Rotacionales
+order: 2
 tags:
   - control-clasico
   - dominios-fisicos

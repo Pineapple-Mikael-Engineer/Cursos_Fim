@@ -1,5 +1,6 @@
 ---
 title: Compensador Lead (por Frecuencia)
+order: 1
 tags:
   - control-clasico
   - diseno
@@ -68,10 +69,7 @@ aliases:
 > En $\omega_m$ la magnitud vale $|G_c(j\omega_m)| = 1/\sqrt\alpha$, es decir $+10\log(1/\alpha)$ dB sobre la asíntota $K_c\alpha$.
 
 > [!demostracion]
-> **Paso 1.** La fase del lead (con $K_c\alpha$ real) es $\phi(\omega)=\arctan(\omega T)-\arctan(\alpha\omega T)$.
-> **Paso 2.** Derivando e igualando a cero, $\dfrac{d\phi}{d\omega}=0$ da $\omega^2=\dfrac{1}{\alpha T^2}$, luego $\omega_m=\dfrac{1}{T\sqrt\alpha}$, que es $\sqrt{(1/T)(1/\alpha T)}=\sqrt{zp}$.
-> **Paso 3.** Sustituyendo $\omega_m$: $\tan\phi_m=\dfrac{\omega_mT-\alpha\omega_mT}{1+\alpha\omega_m^2T^2}=\dfrac{(1-\alpha)/\sqrt\alpha}{2}$, de donde $\sin\phi_m=\dfrac{1-\alpha}{1+\alpha}$.
-> **Paso 4.** La magnitud en $\omega_m$: $|G_c(j\omega_m)|/(K_c\alpha)=\sqrt{\dfrac{1+\omega_m^2T^2}{1+\alpha^2\omega_m^2T^2}}=\sqrt{\dfrac{1+1/\alpha}{1+\alpha}}=\dfrac{1}{\sqrt\alpha}$.
+> **Paso 1.** La fase del lead (con $K_c\alpha$ real) es $\phi(\omega)=\arctan(\omega T)-\arctan(\alpha\omega T)$. **Paso 2.** Derivando e igualando a cero, $\dfrac{d\phi}{d\omega}=0$ da $\omega^2=\dfrac{1}{\alpha T^2}$, luego $\omega_m=\dfrac{1}{T\sqrt\alpha}$, que es $\sqrt{(1/T)(1/\alpha T)}=\sqrt{zp}$. **Paso 3.** Sustituyendo $\omega_m$: $\tan\phi_m=\dfrac{\omega_mT-\alpha\omega_mT}{1+\alpha\omega_m^2T^2}=\dfrac{(1-\alpha)/\sqrt\alpha}{2}$, de donde $\sin\phi_m=\dfrac{1-\alpha}{1+\alpha}$. **Paso 4.** La magnitud en $\omega_m$: $|G_c(j\omega_m)|/(K_c\alpha)=\sqrt{\dfrac{1+\omega_m^2T^2}{1+\alpha^2\omega_m^2T^2}}=\sqrt{\dfrac{1+1/\alpha}{1+\alpha}}=\dfrac{1}{\sqrt\alpha}$.
 
 > [!info] Adelanto alcanzable
 > | $\alpha$ | $\phi_m$ |

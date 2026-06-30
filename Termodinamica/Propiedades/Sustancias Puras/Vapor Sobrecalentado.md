@@ -78,12 +78,7 @@ Las ecuaciones de estado reales (Van der Waals, Peng-Robinson, Redlich-Kwong) ca
 > [!ejemplo]
 > Vapor de agua entra a una turbina a $P_1=3.5\,\mathrm{MPa}$, $T_1=450\,°\mathrm{C}$ y se expande hasta la presión de condensador $P_2=10\,\mathrm{kPa}$. La turbina opera en régimen estacionario y adiabático, con $\dot{m}=20\,\mathrm{kg/s}$ y **eficiencia isentrópica $\eta_T=0.85$** (dato). La temperatura ambiente es $T_0=25\,°\mathrm{C}=298.15\,\mathrm{K}$.
 >
-> Determinar:
-> (a) Estado 1: $h_1$, $s_1$ por interpolación bilineal en tablas.
-> (b) Estado isentrópico de salida $2s$: calidad $x_{2s}$ y $h_{2s}$.
-> (c) Estado real de salida 2: $h_2$, calidad $x_2$ y $s_2$ (a partir de $\eta_T$).
-> (d) Potencia real $\dot{W}_T$.
-> (e) Tasa de destrucción de exergía $\dot{E}_{d}$.
+> Determinar: (a) Estado 1: $h_1$, $s_1$ por interpolación bilineal en tablas. (b) Estado isentrópico de salida $2s$: calidad $x_{2s}$ y $h_{2s}$. (c) Estado real de salida 2: $h_2$, calidad $x_2$ y $s_2$ (a partir de $\eta_T$). (d) Potencia real $\dot{W}_T$. (e) Tasa de destrucción de exergía $\dot{E}_{d}$.
 
 > [!solucion]
 > **Parte (a) — Estado 1: interpolación en tablas de vapor sobrecalentado.**
@@ -97,8 +92,7 @@ Las ecuaciones de estado reales (Van der Waals, Peng-Robinson, Redlich-Kwong) ca
 > | 4.0 | 400 | 3213.6 | 6.7690 |
 > | 4.0 | 500 | 3445.3 | 7.0901 |
 >
-> Interpolación primero en $T$ (a cada $P$):
-> A $P=3.0\,\mathrm{MPa}$, $T=450\,°\mathrm{C}$:
+> Interpolación primero en $T$ (a cada $P$): A $P=3.0\,\mathrm{MPa}$, $T=450\,°\mathrm{C}$:
 > $$h(3.0,450)=3230.9+\frac{450-400}{500-400}(3456.5-3230.9)=3230.9+0.5\times225.6=3343.7\,\mathrm{kJ/kg}.$$
 > $$s(3.0,450)=6.9212+0.5\times(7.2338-6.9212)=6.9212+0.1563=7.0775\,\mathrm{kJ/(kg\cdot K)}.$$
 >
@@ -110,14 +104,11 @@ Las ecuaciones de estado reales (Van der Waals, Peng-Robinson, Redlich-Kwong) ca
 > $$h_1=3343.7+\frac{3.5-3.0}{4.0-3.0}(3329.5-3343.7)=3343.7+0.5\times(-14.2)=3343.7-7.1=3336.6\,\mathrm{kJ/kg}.$$
 > $$s_1=7.0775+0.5\times(6.9296-7.0775)=7.0775-0.0740=7.0036\,\mathrm{kJ/(kg\cdot K)}.$$
 >
-> **Parte (b) — Estado isentrópico de salida $2s$ ($s_{2s}=s_1$, $P_2=10\,\mathrm{kPa}$).**
-> Tabla de saturación a $P=10\,\mathrm{kPa}$: $T_{\rm sat}=45.81\,°\mathrm{C}$, $h_f=191.83\,\mathrm{kJ/kg}$, $h_{fg}=2392.8\,\mathrm{kJ/kg}$, $h_g=2584.6\,\mathrm{kJ/kg}$, $s_f=0.6493\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=7.5009\,\mathrm{kJ/(kg\cdot K)}$, $s_g=8.1502\,\mathrm{kJ/(kg\cdot K)}$.
-> Como $s_f < s_{2s}=7.0036 < s_g$, el estado isentrópico es bifásico:
+> **Parte (b) — Estado isentrópico de salida $2s$ ($s_{2s}=s_1$, $P_2=10\,\mathrm{kPa}$).** Tabla de saturación a $P=10\,\mathrm{kPa}$: $T_{\rm sat}=45.81\,°\mathrm{C}$, $h_f=191.83\,\mathrm{kJ/kg}$, $h_{fg}=2392.8\,\mathrm{kJ/kg}$, $h_g=2584.6\,\mathrm{kJ/kg}$, $s_f=0.6493\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=7.5009\,\mathrm{kJ/(kg\cdot K)}$, $s_g=8.1502\,\mathrm{kJ/(kg\cdot K)}$. Como $s_f < s_{2s}=7.0036 < s_g$, el estado isentrópico es bifásico:
 > $$x_{2s}=\frac{s_{2s}-s_f}{s_{fg}}=\frac{7.0036-0.6493}{7.5009}=0.8471.$$
 > $$h_{2s}=h_f+x_{2s}h_{fg}=191.83+0.8471\times2392.8=2218.9\,\mathrm{kJ/kg}.$$
 >
-> **Parte (c) — Estado real de salida a partir de $\eta_T$.**
-> De la definición $\eta_T=(h_1-h_2)/(h_1-h_{2s})$ se despeja el salto real:
+> **Parte (c) — Estado real de salida a partir de $\eta_T$.** De la definición $\eta_T=(h_1-h_2)/(h_1-h_{2s})$ se despeja el salto real:
 > $$h_1-h_2=\eta_T(h_1-h_{2s})=0.85\times(3336.6-2218.9)=0.85\times1117.7=950.0\,\mathrm{kJ/kg},$$
 > $$h_2=3336.6-950.0=2386.6\,\mathrm{kJ/kg}.$$
 > Como $h_f < h_2 < h_g$, la salida real también es bifásica; su calidad y entropía son **resultado**, no dato:
@@ -125,12 +116,10 @@ Las ecuaciones de estado reales (Van der Waals, Peng-Robinson, Redlich-Kwong) ca
 > $$s_2=s_f+x_2\,s_{fg}=0.6493+0.917\times7.5009=7.529\,\mathrm{kJ/(kg\cdot K)}.$$
 > La irreversibilidad eleva la calidad de salida de $x_{2s}=0.847$ a $x_2=0.917$: la expansión real disipa parte del salto entálpico y termina más seca (mayor $h_2$, mayor $s_2$) que la isentrópica.
 >
-> **Parte (d) — Potencia real.**
-> Balance de energía (adiabático, estacionario, $\Delta\mathrm{Ec}=0$):
+> **Parte (d) — Potencia real.** Balance de energía (adiabático, estacionario, $\Delta\mathrm{Ec}=0$):
 > $$\dot{W}_T = \dot{m}(h_1-h_2)=20\times950.0=19000\,\mathrm{kW}\approx19.0\,\mathrm{MW}.$$
 >
-> **Parte (e) — Destrucción de exergía.**
-> Para una turbina adiabática $\dot{S}_{\rm gen}=\dot{m}(s_2-s_1)\ge0$ es obligatorio:
+> **Parte (e) — Destrucción de exergía.** Para una turbina adiabática $\dot{S}_{\rm gen}=\dot{m}(s_2-s_1)\ge0$ es obligatorio:
 > $$\dot{S}_{\rm gen}=20\times(7.529-7.0036)=20\times0.5254=10.51\,\mathrm{kW/K}>0,$$
 > $$\dot{E}_d = T_0\,\dot{S}_{\rm gen} = 298.15\times10.51=3133\,\mathrm{kW}\approx3.13\,\mathrm{MW}.$$
 > El signo positivo de $\dot{S}_{\rm gen}$ — garantizado por $s_2>s_1$, ya que la irreversibilidad de la turbina real siempre aumenta la entropía del fluido — confirma la consistencia del estado de salida obtenido. $\blacksquare$

@@ -14,8 +14,7 @@ aliases: [combustión etano C2H6, exceso aire]
 ![[combustion_esquema_reactivos_productos.svg|400]]
 
 > [!solucion] (a) Balance
-> Estequiométrico: $\mathrm{C_2H_6}+a(\mathrm{O_2}+3{,}76\mathrm{N_2})\to2\,\mathrm{CO_2}+3\,\mathrm{H_2O}+3{,}76a\,\mathrm{N_2}$; O: $2a=7\Rightarrow a=3{,}5$.
-> $100\%$ de exceso ($a=7$): $\mathrm{O_2}=7$, $\mathrm{N_2}=26{,}32$, exceso $\mathrm{O_2}=3{,}5$:
+> Estequiométrico: $\mathrm{C_2H_6}+a(\mathrm{O_2}+3{,}76\mathrm{N_2})\to2\,\mathrm{CO_2}+3\,\mathrm{H_2O}+3{,}76a\,\mathrm{N_2}$; O: $2a=7\Rightarrow a=3{,}5$. $100\%$ de exceso ($a=7$): $\mathrm{O_2}=7$, $\mathrm{N_2}=26{,}32$, exceso $\mathrm{O_2}=3{,}5$:
 > $$\boxed{\mathrm{C_2H_6}+7\,\mathrm{O_2}+26{,}32\,\mathrm{N_2}\to2\,\mathrm{CO_2}+3\,\mathrm{H_2O}+3{,}5\,\mathrm{O_2}+26{,}32\,\mathrm{N_2}}$$
 
 > [!solucion] (b) Caudal de aire

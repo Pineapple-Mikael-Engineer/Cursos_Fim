@@ -1,5 +1,6 @@
 ---
 title: Ajuste de Parámetros con Routh-Hurwitz
+order: 3
 tags:
   - control-clasico
   - teoria

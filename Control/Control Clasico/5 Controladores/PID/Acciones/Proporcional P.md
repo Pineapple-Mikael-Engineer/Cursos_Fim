@@ -1,5 +1,6 @@
 ---
 title: Acción Proporcional $P$
+order: 1
 tags:
   - control-clasico
   - controladores

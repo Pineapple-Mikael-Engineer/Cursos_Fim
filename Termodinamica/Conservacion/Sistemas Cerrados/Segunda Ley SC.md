@@ -68,22 +68,18 @@ aliases:
 >
 > **Hipótesis:** sistema cerrado que ejecuta un ciclo; interactúa con $N$ reservorios a temperaturas $T_k$ (cada uno transfiere calor $\delta Q_k$ al sistema); la segunda ley de Kelvin-Planck prohíbe extraer trabajo neto de un solo reservorio en un ciclo.
 >
-> **Paso 1 — Conectar cada interacción de calor a un dispositivo auxiliar Carnot.**
-> Para cada reservorio $k$ a temperatura $T_k$, se interpone una máquina de Carnot reversible entre ese reservorio y un reservorio único a temperatura $T_0$. La máquina transfiere calor $\delta Q_k$ al sistema y extrae $\delta Q_{0k}$ de $T_0$. Por la eficiencia de Carnot:
+> **Paso 1 — Conectar cada interacción de calor a un dispositivo auxiliar Carnot.** Para cada reservorio $k$ a temperatura $T_k$, se interpone una máquina de Carnot reversible entre ese reservorio y un reservorio único a temperatura $T_0$. La máquina transfiere calor $\delta Q_k$ al sistema y extrae $\delta Q_{0k}$ de $T_0$. Por la eficiencia de Carnot:
 > $$\frac{\delta Q_{0k}}{\delta Q_k} = \frac{T_0}{T_k} \implies \delta Q_{0k} = T_0\frac{\delta Q_k}{T_k}.$$
 >
 > **Paso 2 — Calor total extraído del reservorio único por ciclo.**
 > $$Q_{0,\rm ciclo} = \oint \delta Q_0 = T_0 \oint \frac{\delta Q}{T_b}.$$
 >
-> **Paso 3 — Balance de energía del sistema combinado.**
-> Sistema original + todas las máquinas de Carnot: el conjunto extrae $Q_{0,\rm ciclo}$ del único reservorio $T_0$ y produce trabajo $W_{\rm ciclo,total}$. Por la primera ley de los ciclos: $W_{\rm ciclo,total} = Q_{0,\rm ciclo}$.
+> **Paso 3 — Balance de energía del sistema combinado.** Sistema original + todas las máquinas de Carnot: el conjunto extrae $Q_{0,\rm ciclo}$ del único reservorio $T_0$ y produce trabajo $W_{\rm ciclo,total}$. Por la primera ley de los ciclos: $W_{\rm ciclo,total} = Q_{0,\rm ciclo}$.
 >
-> **Paso 4 — Aplicar la segunda ley (Kelvin-Planck).**
-> Si $W_{\rm ciclo,total} > 0$, el sistema combinado convertiría todo el calor del reservorio único en trabajo: viola Kelvin-Planck. Luego:
+> **Paso 4 — Aplicar la segunda ley (Kelvin-Planck).** Si $W_{\rm ciclo,total} > 0$, el sistema combinado convertiría todo el calor del reservorio único en trabajo: viola Kelvin-Planck. Luego:
 > $$W_{\rm ciclo,total} = Q_{0,\rm ciclo} \le 0 \implies T_0 \oint \frac{\delta Q}{T_b} \le 0 \implies \oint \frac{\delta Q}{T_b} \le 0. \qquad \blacksquare$$
 >
-> **Paso 5 — Verificación de límites.**
-> Si el ciclo es reversible, también puede ejecutarse en sentido contrario (igual pero con signos opuestos), y para que ambas desigualdades sean compatibles: $\oint \delta Q/T = 0$. Si es irreversible, solo puede haber la desigualdad estricta $< 0$. ✓
+> **Paso 5 — Verificación de límites.** Si el ciclo es reversible, también puede ejecutarse en sentido contrario (igual pero con signos opuestos), y para que ambas desigualdades sean compatibles: $\oint \delta Q/T = 0$. Si es irreversible, solo puede haber la desigualdad estricta $< 0$. ✓
 
 ---
 
@@ -145,8 +141,7 @@ aliases:
 > **Paso 3 — Calcular $\Delta S$ por el camino reversible.**
 > $$\Delta S = \frac{Q_{\rm rev}}{T_1} = \frac{mRT_1\ln(V_2/V_1)}{T_1} = mR\ln\frac{V_2}{V_1} = mR\ln 2 > 0.$$
 >
-> **Paso 4 — Calcular $S_{\rm gen}$ del proceso real.**
-> El proceso real es adiabático: $\int \delta Q_{\rm real}/T_b = 0$. Por tanto:
+> **Paso 4 — Calcular $S_{\rm gen}$ del proceso real.** El proceso real es adiabático: $\int \delta Q_{\rm real}/T_b = 0$. Por tanto:
 > $$S_{\rm gen} = \Delta S - \int\frac{\delta Q_{\rm real}}{T_b} = mR\ln 2 - 0 = mR\ln 2 > 0.$$
 >
 > **Paso 5 — Interpretación.** El proceso es irreversible: la expansión libre genera entropía sin producir trabajo ni intercambiar calor. Toda la "calidad" de ese diferencial de presión se disipa — es el ejemplo más claro de que una expansión incontrolada destruye trabajo potencial. $\blacksquare$

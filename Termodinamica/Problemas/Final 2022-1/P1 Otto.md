@@ -14,9 +14,7 @@ aliases: [Otto presión media indicada 2022]
 ![[otto_diagrama_Pv.svg|340]]
 
 > [!solucion] (a) Estados
-> $T_2=303\,(8)^{0{,}4}=696{,}1$ K, $P_2=108\,(8)^{1{,}4}=1985$ kPa.
-> $T_3=T_2+\dfrac{q_{in}}{c_v}=696{,}1+\dfrac{2250}{0{,}718}=3829{,}8$ K, $P_3=P_2\dfrac{T_3}{T_2}=10\,921$ kPa.
-> $T_4=T_3/8^{0{,}4}=1667$ K, $P_4=594$ kPa.
+> $T_2=303\,(8)^{0{,}4}=696{,}1$ K, $P_2=108\,(8)^{1{,}4}=1985$ kPa. $T_3=T_2+\dfrac{q_{in}}{c_v}=696{,}1+\dfrac{2250}{0{,}718}=3829{,}8$ K, $P_3=P_2\dfrac{T_3}{T_2}=10\,921$ kPa. $T_4=T_3/8^{0{,}4}=1667$ K, $P_4=594$ kPa.
 
 > [!solucion] (b) y (c)
 > $$\eta=1-8^{-0{,}4}=\boxed{56{,}5\%},\qquad w_{neto}=\eta\,q_{in}=1271\ \text{kJ/kg}.$$

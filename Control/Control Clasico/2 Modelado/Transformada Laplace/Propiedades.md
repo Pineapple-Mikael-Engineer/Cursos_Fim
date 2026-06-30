@@ -1,5 +1,6 @@
 ---
 title: Propiedades de la TL
+order: 2
 tags:
   - control-clasico
   - teoria

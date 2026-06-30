@@ -1,5 +1,6 @@
 ---
 title: Compensador Lead (por Lugar de Raíces)
+order: 6
 tags:
   - control-clasico
   - diseno
@@ -41,8 +42,7 @@ aliases:
 >
 > **Paso 4 — Colocar cero y polo.** Estrategia simple: cancelar el polo de la planta en $-2$ poniendo el **cero en $z=2$** ($s+2$). El cero aporta entonces $\angle(s_d+2)=90^\circ$. El polo debe restar de modo que $\angle(s_d+z)-\angle(s_d+p)=30^\circ$:
 > $$90^\circ-\angle(s_d+p)=30^\circ\;\Rightarrow\;\angle(s_d+p)=60^\circ.$$
-> Con $s_d=-2+j3.46$ y polo en $-p$ (real): $\angle(-2+p+j3.46)=60^\circ\Rightarrow \dfrac{3.46}{p-2}=\tan60^\circ=1.732\Rightarrow p-2=2\Rightarrow p=4$.
-> Compensador: $G_c(s)=K_c\dfrac{s+2}{s+4}$.
+> Con $s_d=-2+j3.46$ y polo en $-p$ (real): $\angle(-2+p+j3.46)=60^\circ\Rightarrow \dfrac{3.46}{p-2}=\tan60^\circ=1.732\Rightarrow p-2=2\Rightarrow p=4$. Compensador: $G_c(s)=K_c\dfrac{s+2}{s+4}$.
 >
 > **Paso 5 — Ganancia $K_c$ por condición de magnitud** $|G_c(s_d)G(s_d)|=1$. Como el cero cancela el polo en $-2$:
 > $$G_c G=K_c\frac{s+2}{s+4}\cdot\frac{1}{s(s+2)}=\frac{K_c}{s(s+4)}.$$

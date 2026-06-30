@@ -1,5 +1,6 @@
 ---
 title: Configuraciones del PID (PI, PD, PID)
+order: 2
 tags:
   - control-clasico
   - controladores

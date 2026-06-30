@@ -1,5 +1,6 @@
 ---
 title: Orden del Sistema
+order: 3
 tags:
   - control-clasico
   - teoria
@@ -26,10 +27,7 @@ aliases:
 
 > [!ejemplo] La cancelación reduce el orden
 > $$G(s)=\frac{(s+1)}{(s+1)(s+2)(s+3)}=\frac{1}{(s+2)(s+3)}.$$
-> **Paso 1 — Denominador original:** grado 3.
-> **Paso 2 — Cancelar el factor común $(s+1)$.**
-> **Paso 3 — Denominador efectivo:** $(s+2)(s+3)$, grado 2.
-> **Orden = 2.** El sistema tiene solo dos modos observables: $e^{-2t}$ y $e^{-3t}$.
+> **Paso 1 — Denominador original:** grado 3. **Paso 2 — Cancelar el factor común $(s+1)$.** **Paso 3 — Denominador efectivo:** $(s+2)(s+3)$, grado 2. **Orden = 2.** El sistema tiene solo dos modos observables: $e^{-2t}$ y $e^{-3t}$.
 
 > [!ejemplo] Reducción 3.º → 1.er orden (polos dominantes)
 > $$G(s)=\frac{10}{(s+1)(s+10)(s+20)}.$$

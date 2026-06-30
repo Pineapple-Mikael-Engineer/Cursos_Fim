@@ -1,5 +1,6 @@
 ---
 title: Sistemas Mecánicos Traslacionales
+order: 1
 tags:
   - control-clasico
   - dominios-fisicos

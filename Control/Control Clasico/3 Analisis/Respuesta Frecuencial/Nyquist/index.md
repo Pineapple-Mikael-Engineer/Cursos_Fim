@@ -1,5 +1,6 @@
 ---
 title: Diagrama de Nyquist
+order: 2
 tags:
   - control-clasico
   - analisis

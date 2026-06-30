@@ -1,5 +1,6 @@
 ---
 title: Reducción de Orden
+order: 4
 tags:
   - control-clasico
   - analisis

@@ -1,5 +1,6 @@
 ---
 title: Tiempo de Establecimiento (Ts)
+order: 4
 tags:
   - control-clasico
   - analisis

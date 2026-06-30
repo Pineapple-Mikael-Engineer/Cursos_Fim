@@ -1,5 +1,6 @@
 ---
 title: Ángulos de Salida y Llegada
+order: 4
 tags:
   - control-clasico
   - diseno

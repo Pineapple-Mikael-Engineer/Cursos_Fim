@@ -1,5 +1,6 @@
 ---
 title: Reglas de Construcción del Lugar de las Raíces
+order: 2
 tags:
   - control-clasico
   - diseño

@@ -65,8 +65,7 @@ aliases:
 > $$
 > \frac{2}{\bar{v}_c - b} = \frac{3}{\bar{v}_c} \implies \bar{v}_c = 3b.
 > $$
-> Sustituyendo en (1): $R_u T_c/(2b)^2 = 2a/(3b)^3 \implies T_c = 8a/(27 R_u b)$.
-> Con $P_c = R_u T_c/(\bar{v}_c-b) - a/\bar{v}_c^2 = R_u T_c/(2b) - a/(9b^2)$, finalmente:
+> Sustituyendo en (1): $R_u T_c/(2b)^2 = 2a/(3b)^3 \implies T_c = 8a/(27 R_u b)$. Con $P_c = R_u T_c/(\bar{v}_c-b) - a/\bar{v}_c^2 = R_u T_c/(2b) - a/(9b^2)$, finalmente:
 >
 > $$
 > \boxed{a = \frac{27 R_u^2 T_c^2}{64 P_c}, \qquad b = \frac{R_u T_c}{8 P_c}.} \qquad \blacksquare
@@ -126,8 +125,7 @@ aliases:
 > $$
 > Mucho mejor en fase gaseosa; el término $T^{-1/2}$ corrige la temperatura del atractivo.
 >
-> **Soave-Redlich-Kwong (SRK, 1972):**
-> Introduce la función $\alpha(T_r, \omega)$ que depende también del **factor acéntrico** $\omega$ de cada sustancia, mejorando el ajuste en la zona de condensación y en líquidos.
+> **Soave-Redlich-Kwong (SRK, 1972):** Introduce la función $\alpha(T_r, \omega)$ que depende también del **factor acéntrico** $\omega$ de cada sustancia, mejorando el ajuste en la zona de condensación y en líquidos.
 >
 > **Peng-Robinson (PR, 1976):**
 > $$
@@ -172,11 +170,7 @@ aliases:
 > \bar{v}^3 - 0.16339\,\bar{v}^2 + 0.006855\,\bar{v} - 0.0002651 = 0.
 > $$
 >
-> **Paso 4 — Solución numérica.** Probando $\bar{v} = 0.11\,\mathrm{m^3/kmol}$:
-> $0.001331 - 0.16339\times0.0121 + 0.006855\times0.11 - 0.0002651 = 0.001331 - 0.001977 + 0.000754 - 0.000265 = -0.000157 \approx 0$.
-> Probando $\bar{v} = 0.108$:
-> $\approx 0.001259 - 0.001906 + 0.000740 - 0.000265 = -0.000172$. Probando $\bar{v}=0.112$:
-> $0.001405 - 0.002049 + 0.000768 - 0.000265 = -0.000141$. Por interpolación: $\bar{v} \approx 0.110\,\mathrm{m^3/kmol}$.
+> **Paso 4 — Solución numérica.** Probando $\bar{v} = 0.11\,\mathrm{m^3/kmol}$: $0.001331 - 0.16339\times0.0121 + 0.006855\times0.11 - 0.0002651 = 0.001331 - 0.001977 + 0.000754 - 0.000265 = -0.000157 \approx 0$. Probando $\bar{v} = 0.108$: $\approx 0.001259 - 0.001906 + 0.000740 - 0.000265 = -0.000172$. Probando $\bar{v}=0.112$: $0.001405 - 0.002049 + 0.000768 - 0.000265 = -0.000141$. Por interpolación: $\bar{v} \approx 0.110\,\mathrm{m^3/kmol}$.
 >
 > **Paso 5 — Comparación y factor Z.**
 > $$
@@ -185,8 +179,7 @@ aliases:
 > El gas real ocupa un **11.8% menos** que el ideal. Las atracciones dominan a esta temperatura ($T_r = 300/126.2 = 2.38$, relativamente moderada) y presión ($P_r = 20/3.39 = 5.9$, alta). $\blacksquare$
 
 > [!info]
-> **Convención de notación:**
-> $Z = Pv/RT$; $P_r = P/P_c$, $T_r = T/T_c$ propiedades reducidas; barra: magnitudes molares [kmol]; $\omega$: factor acéntrico de Pitzer.
+> **Convención de notación:** $Z = Pv/RT$; $P_r = P/P_c$, $T_r = T/T_c$ propiedades reducidas; barra: magnitudes molares [kmol]; $\omega$: factor acéntrico de Pitzer.
 
 > [!referencia]
 > Borgnakke & Sonntag, *Fundamentals of Thermodynamics*, §12.1–12.4; Çengel & Boles, *Termodinámica*, §3.7; Callen, *Thermodynamics*, §9.4 (van der Waals desde postulados); Smith, Van Ness & Abbott, *Introduction to Chemical Engineering Thermodynamics*, cap. 3 (SRK, PR).

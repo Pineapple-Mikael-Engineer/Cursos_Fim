@@ -1,5 +1,6 @@
 ---
 title: Componentes de un Sistema de Control
+order: 3
 tags:
   - control-clasico
   - teoria

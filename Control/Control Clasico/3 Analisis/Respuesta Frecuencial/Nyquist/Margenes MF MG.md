@@ -1,5 +1,6 @@
 ---
 title: Márgenes de Fase y Ganancia
+order: 3
 tags:
   - control-clasico
   - analisis

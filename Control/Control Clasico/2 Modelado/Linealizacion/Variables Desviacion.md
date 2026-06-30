@@ -1,5 +1,6 @@
 ---
 title: Variables de Desviación
+order: 2
 tags:
   - control-clasico
   - teoria

@@ -1,5 +1,6 @@
 ---
 title: Error Estacionario
+order: 3
 tags:
   - control-clasico
   - analisis

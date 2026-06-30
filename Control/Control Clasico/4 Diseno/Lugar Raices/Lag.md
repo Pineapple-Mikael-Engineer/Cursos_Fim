@@ -1,5 +1,6 @@
 ---
 title: Compensador Lag (por Lugar de Raíces)
+order: 7
 tags:
   - control-clasico
   - diseno

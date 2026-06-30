@@ -14,9 +14,7 @@ aliases: [Rankine 14 bar, planta vapor 20 MW]
 ![[rankine_diagrama_Ts.svg|340]]
 
 > [!solucion] (15) y (16) Estados
-> Salida de turbina (60 °C, $x=0{,}9566$): $s_4=s_f+x\,s_{fg}=0{,}8313+0{,}9566(7{,}0784)=7{,}602$ kJ/kg·K; $h_4=251{,}1+0{,}9566(2358{,}5)=2507$ kJ/kg.
-> Turbina isentrópica $s_1=s_4=7{,}602$ a $P_1=14$ bar $\Rightarrow$ vapor sobrecalentado a $\boxed{T_{max}\approx500\,^\circ\text{C}}$ ($h_1=3474$ kJ/kg).
-> Condensador: $\boxed{P_{cond}=P_{sat}(60\,^\circ\text{C})=19{,}94\ \text{kPa}}$.
+> Salida de turbina (60 °C, $x=0{,}9566$): $s_4=s_f+x\,s_{fg}=0{,}8313+0{,}9566(7{,}0784)=7{,}602$ kJ/kg·K; $h_4=251{,}1+0{,}9566(2358{,}5)=2507$ kJ/kg. Turbina isentrópica $s_1=s_4=7{,}602$ a $P_1=14$ bar $\Rightarrow$ vapor sobrecalentado a $\boxed{T_{max}\approx500\,^\circ\text{C}}$ ($h_1=3474$ kJ/kg). Condensador: $\boxed{P_{cond}=P_{sat}(60\,^\circ\text{C})=19{,}94\ \text{kPa}}$.
 
 > [!solucion] (17)–(19) Eficiencia y flujos
 > Despreciando la bomba ($h_3\approx h_f(60°\text{C})=251{,}1$):

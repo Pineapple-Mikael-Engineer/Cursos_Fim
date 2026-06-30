@@ -85,9 +85,7 @@ aliases:
 > w_T = (h_5 - h_e) + (1-y)(h_e - h_6).
 > $$
 >
-> **Trabajo de bombas:**
-> $w_{P1} = (1-y)(h_2 - h_1) = (1-y)v_1(P_e - P_L)$ (bomba 1: eleva de $P_L$ a $P_e$).
-> $w_{P2} = h_4 - h_3 = v_3(P_H - P_e)$ (bomba 2: eleva de $P_e$ a $P_H$).
+> **Trabajo de bombas:** $w_{P1} = (1-y)(h_2 - h_1) = (1-y)v_1(P_e - P_L)$ (bomba 1: eleva de $P_L$ a $P_e$). $w_{P2} = h_4 - h_3 = v_3(P_H - P_e)$ (bomba 2: eleva de $P_e$ a $P_H$).
 >
 > **Calor de entrada** (solo a la caldera; el CAA no intercambia con el exterior):
 > $$
@@ -114,45 +112,27 @@ aliases:
 > Determinar: (a) fracción extraída $y$; (b) $\eta_{\rm th}$; (c) comparar con ciclo simple a las mismas condiciones.
 
 > [!solucion]
-> **Estado 1** ($10\,\mathrm{kPa}$, líquido saturado):
-> $h_1 = 191.8\,\mathrm{kJ/kg}$, $v_1 = 0.001010\,\mathrm{m^3/kg}$.
+> **Estado 1** ($10\,\mathrm{kPa}$, líquido saturado): $h_1 = 191.8\,\mathrm{kJ/kg}$, $v_1 = 0.001010\,\mathrm{m^3/kg}$.
 >
-> **Estado 2** ($P_e = 1000\,\mathrm{kPa}$, bomba 1 isentrópica):
-> $h_2 = 191.8 + 0.001010\times(1000-10) = 191.8 + 1.00 = 192.8\,\mathrm{kJ/kg}$.
+> **Estado 2** ($P_e = 1000\,\mathrm{kPa}$, bomba 1 isentrópica): $h_2 = 191.8 + 0.001010\times(1000-10) = 191.8 + 1.00 = 192.8\,\mathrm{kJ/kg}$.
 >
-> **Estado 3** ($1\,\mathrm{MPa}$, líquido saturado — salida CAA):
-> $h_3 = h_f(1\,\mathrm{MPa}) = 762.8\,\mathrm{kJ/kg}$, $v_3 = 0.001127\,\mathrm{m^3/kg}$.
+> **Estado 3** ($1\,\mathrm{MPa}$, líquido saturado — salida CAA): $h_3 = h_f(1\,\mathrm{MPa}) = 762.8\,\mathrm{kJ/kg}$, $v_3 = 0.001127\,\mathrm{m^3/kg}$.
 >
-> **Estado 4** ($10\,\mathrm{MPa}$, bomba 2 isentrópica):
-> $h_4 = 762.8 + 0.001127\times(10000-1000) = 762.8 + 10.14 = 772.9\,\mathrm{kJ/kg}$.
+> **Estado 4** ($10\,\mathrm{MPa}$, bomba 2 isentrópica): $h_4 = 762.8 + 0.001127\times(10000-1000) = 762.8 + 10.14 = 772.9\,\mathrm{kJ/kg}$.
 >
-> **Estado 5** ($10\,\mathrm{MPa}$, $500°\mathrm{C}$):
-> $h_5 = 3373.7\,\mathrm{kJ/kg}$, $s_5 = 6.5966\,\mathrm{kJ/(kg\cdot K)}$.
+> **Estado 5** ($10\,\mathrm{MPa}$, $500°\mathrm{C}$): $h_5 = 3373.7\,\mathrm{kJ/kg}$, $s_5 = 6.5966\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Estado $e$** (extracción isentrópica a $P_e = 1\,\mathrm{MPa}$, $s_e = s_5 = 6.5966$):
-> A $1\,\mathrm{MPa}$: $s_g = 6.5865$. $s_e = 6.5966 > s_g$ → vapor levemente sobrecalentado.
-> A $1\,\mathrm{MPa}$, $180°\mathrm{C}$: $s = 6.3794$, $h = 2778.1$; a $200°\mathrm{C}$: $s = 6.6940$, $h = 2827.9$.
-> Interpolando: $h_e = 2778.1 + (6.5966-6.3794)/(6.6940-6.3794)\times(2827.9-2778.1) = 2778.1 + 0.6902\times49.8 = 2778.1 + 34.4 = 2812.5\,\mathrm{kJ/kg}$.
+> **Estado $e$** (extracción isentrópica a $P_e = 1\,\mathrm{MPa}$, $s_e = s_5 = 6.5966$): A $1\,\mathrm{MPa}$: $s_g = 6.5865$. $s_e = 6.5966 > s_g$ → vapor levemente sobrecalentado. A $1\,\mathrm{MPa}$, $180°\mathrm{C}$: $s = 6.3794$, $h = 2778.1$; a $200°\mathrm{C}$: $s = 6.6940$, $h = 2827.9$. Interpolando: $h_e = 2778.1 + (6.5966-6.3794)/(6.6940-6.3794)\times(2827.9-2778.1) = 2778.1 + 0.6902\times49.8 = 2778.1 + 34.4 = 2812.5\,\mathrm{kJ/kg}$.
 >
-> **Estado 6** (expansión isentrópica a $P_L = 10\,\mathrm{kPa}$, $s_6 = s_5 = 6.5966$):
-> $x_6 = (6.5966-0.6493)/7.5009 = 5.9473/7.5009 = 0.793$.
-> $h_6 = 191.8 + 0.793\times2392.8 = 191.8 + 1897.5 = 2089.3\,\mathrm{kJ/kg}$.
+> **Estado 6** (expansión isentrópica a $P_L = 10\,\mathrm{kPa}$, $s_6 = s_5 = 6.5966$): $x_6 = (6.5966-0.6493)/7.5009 = 5.9473/7.5009 = 0.793$. $h_6 = 191.8 + 0.793\times2392.8 = 191.8 + 1897.5 = 2089.3\,\mathrm{kJ/kg}$.
 >
 > **(a) Fracción extraída $y$:**
 > $$y = \frac{h_3 - h_2}{h_e - h_2} = \frac{762.8 - 192.8}{2812.5 - 192.8} = \frac{570.0}{2619.7} = 0.2176.$$
 >
-> **(b) Eficiencia:**
-> $w_T = (3373.7-2812.5) + (1-0.2176)(2812.5-2089.3) = 561.2 + 0.7824\times723.2 = 561.2 + 565.8 = 1127.0\,\mathrm{kJ/kg}$.
-> $w_{P1} = (1-0.2176)\times1.00 = 0.782\,\mathrm{kJ/kg}$.
-> $w_{P2} = 10.14\,\mathrm{kJ/kg}$.
-> $w_{\rm neto} = 1127.0 - 0.782 - 10.14 = 1116.1\,\mathrm{kJ/kg}$.
-> $q_H = h_5 - h_4 = 3373.7 - 772.9 = 2600.8\,\mathrm{kJ/kg}$.
+> **(b) Eficiencia:** $w_T = (3373.7-2812.5) + (1-0.2176)(2812.5-2089.3) = 561.2 + 0.7824\times723.2 = 561.2 + 565.8 = 1127.0\,\mathrm{kJ/kg}$. $w_{P1} = (1-0.2176)\times1.00 = 0.782\,\mathrm{kJ/kg}$. $w_{P2} = 10.14\,\mathrm{kJ/kg}$. $w_{\rm neto} = 1127.0 - 0.782 - 10.14 = 1116.1\,\mathrm{kJ/kg}$. $q_H = h_5 - h_4 = 3373.7 - 772.9 = 2600.8\,\mathrm{kJ/kg}$.
 > $$\eta_{\rm th} = \frac{1116.1}{2600.8} = 0.429 = 42.9\%.$$
 >
-> **(c) Ciclo simple a las mismas condiciones** ($10\,\mathrm{MPa}$, $500°\mathrm{C}$, $10\,\mathrm{kPa}$):
-> $w_T = h_5 - h_6 = 3373.7 - 2089.3 = 1284.4\,\mathrm{kJ/kg}$ (más trabajo, pero...).
-> $q_H = h_5 - h_2' = 3373.7 - 201.9 = 3171.8\,\mathrm{kJ/kg}$ (también más calor).
-> $\eta_{\rm th,simple} = (1284.4-10.14)/3171.8 = 1274.3/3171.8 = 0.402 = 40.2\%$.
+> **(c) Ciclo simple a las mismas condiciones** ($10\,\mathrm{MPa}$, $500°\mathrm{C}$, $10\,\mathrm{kPa}$): $w_T = h_5 - h_6 = 3373.7 - 2089.3 = 1284.4\,\mathrm{kJ/kg}$ (más trabajo, pero...). $q_H = h_5 - h_2' = 3373.7 - 201.9 = 3171.8\,\mathrm{kJ/kg}$ (también más calor). $\eta_{\rm th,simple} = (1284.4-10.14)/3171.8 = 1274.3/3171.8 = 0.402 = 40.2\%$.
 >
 > | Parámetro | Simple | Regenerativo |
 > |:---:|:---:|:---:|

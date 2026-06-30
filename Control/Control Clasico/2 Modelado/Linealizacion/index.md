@@ -1,5 +1,6 @@
 ---
 title: Linealización
+order: 5
 tags:
   - control-clasico
   - teoria

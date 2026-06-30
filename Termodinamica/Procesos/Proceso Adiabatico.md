@@ -225,11 +225,7 @@ aliases:
 ## 5. Ejemplo: compresión adiabática en un compresor
 
 > [!ejemplo]
-> Un compresor de flujo estacionario aspira **aire** a $P_1 = 100\ \text{kPa}$ y $T_1 = 300\ \text{K}$ y lo comprime hasta $P_2 = 800\ \text{kPa}$. El equipo se considera **adiabático**. Tome $c_p = 1{,}005\ \text{kJ/(kg·K)}$, $R = 0{,}287\ \text{kJ/(kg·K)}$ y $\gamma = 1{,}4$. Se pide:
-> a) la temperatura de salida **isentrópica** $T_{2s}$;
-> b) el trabajo **isentrópico** $w_s$;
-> c) si la **eficiencia isentrópica** del compresor es $\eta_s = 0{,}82$, la temperatura real de salida $T_2$ y el trabajo real $w_{real}$;
-> d) la **entropía generada** $s_{gen}$ en el proceso real.
+> Un compresor de flujo estacionario aspira **aire** a $P_1 = 100\ \text{kPa}$ y $T_1 = 300\ \text{K}$ y lo comprime hasta $P_2 = 800\ \text{kPa}$. El equipo se considera **adiabático**. Tome $c_p = 1{,}005\ \text{kJ/(kg·K)}$, $R = 0{,}287\ \text{kJ/(kg·K)}$ y $\gamma = 1{,}4$. Se pide: a) la temperatura de salida **isentrópica** $T_{2s}$; b) el trabajo **isentrópico** $w_s$; c) si la **eficiencia isentrópica** del compresor es $\eta_s = 0{,}82$, la temperatura real de salida $T_2$ y el trabajo real $w_{real}$; d) la **entropía generada** $s_{gen}$ en el proceso real.
 
 > [!solucion]
 > Como es un volumen de control en flujo estacionario, la primera ley por unidad de masa (despreciando energías cinética y potencial) es $q - w = h_2 - h_1$; siendo adiabático ($q=0$):

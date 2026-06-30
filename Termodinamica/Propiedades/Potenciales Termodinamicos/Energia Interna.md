@@ -28,27 +28,22 @@ aliases:
 >
 > **Hipótesis:** sistema cerrado, simple compresible (único modo de trabajo reversible: $P\,dV$), proceso cuasiestático.
 >
-> **Paso 1 — Primera ley en forma diferencial.**
-> Para cualquier proceso infinitesimal en un sistema cerrado:
+> **Paso 1 — Primera ley en forma diferencial.** Para cualquier proceso infinitesimal en un sistema cerrado:
 > $$dU = \delta Q - \delta W.$$
 > Aquí $\delta Q$ y $\delta W$ son inexactas (dependen del camino), pero su diferencia $dU$ es exacta (función de estado).
 >
-> **Paso 2 — Expresar el trabajo para proceso cuasiestático.**
-> El único modo de trabajo reversible es el de frontera:
+> **Paso 2 — Expresar el trabajo para proceso cuasiestático.** El único modo de trabajo reversible es el de frontera:
 > $$\delta W_{\rm rev} = P\,dV.$$
 > Para proceso irreversible, $\delta W < P\,dV$ (se disipa trabajo en fricción); la igualdad es para proceso reversible.
 >
-> **Paso 3 — Segunda ley: definición de entropía.**
-> Para cualquier proceso real o reversible que intercambia calor $\delta Q$ con la frontera a temperatura $T$:
+> **Paso 3 — Segunda ley: definición de entropía.** Para cualquier proceso real o reversible que intercambia calor $\delta Q$ con la frontera a temperatura $T$:
 > $$dS \ge \frac{\delta Q}{T} \quad \Longrightarrow \quad \delta Q \le T\,dS,$$
 > con igualdad solo para procesos internamente reversibles.
 >
-> **Paso 4 — Combinar los pasos 1–3 para proceso reversible.**
-> Sustituyendo $\delta Q_{\rm rev} = T\,dS$ y $\delta W_{\rm rev} = P\,dV$ en la primera ley:
+> **Paso 4 — Combinar los pasos 1–3 para proceso reversible.** Sustituyendo $\delta Q_{\rm rev} = T\,dS$ y $\delta W_{\rm rev} = P\,dV$ en la primera ley:
 > $$dU = T\,dS - P\,dV.$$
 >
-> **Paso 5 — Verificar que la relación es universal, no solo reversible.**
-> Aunque la derivación usó procesos reversibles, el resultado es una relación entre **funciones de estado** ($U$, $S$, $V$) y variables de estado ($T$, $P$). Por tanto, es válida entre cualesquiera dos estados de equilibrio, independientemente del proceso que los conecte. $\blacksquare$
+> **Paso 5 — Verificar que la relación es universal, no solo reversible.** Aunque la derivación usó procesos reversibles, el resultado es una relación entre **funciones de estado** ($U$, $S$, $V$) y variables de estado ($T$, $P$). Por tanto, es válida entre cualesquiera dos estados de equilibrio, independientemente del proceso que los conecte. $\blacksquare$
 >
 > **Interpretación:** $T\,dS$ es el calor reversible que entra al sistema; $P\,dV$ es el trabajo de expansión que el sistema realiza. La diferencia es el cambio de energía interna.
 
@@ -83,11 +78,9 @@ aliases:
 > [!demostracion]
 > **Demostración de $(\partial u/\partial v)_T = 0$ para gas ideal a partir del resultado de Joule:**
 >
-> **Paso 1 — Resultado experimental.**
-> En la expansión libre de Joule: $Q = 0$, $W = 0$ → $\Delta U = 0$. El volumen cambió ($\Delta V \neq 0$) pero la temperatura no ($\Delta T = 0$).
+> **Paso 1 — Resultado experimental.** En la expansión libre de Joule: $Q = 0$, $W = 0$ → $\Delta U = 0$. El volumen cambió ($\Delta V \neq 0$) pero la temperatura no ($\Delta T = 0$).
 >
-> **Paso 2 — Interpretar como derivada parcial.**
-> Si $U$ pudiera depender de $V$ a $T$ constante, entonces el cambio de volumen con $\Delta T = 0$ habría cambiado $U$. Como $\Delta U = 0$ con $\Delta V \neq 0$ y $\Delta T = 0$:
+> **Paso 2 — Interpretar como derivada parcial.** Si $U$ pudiera depender de $V$ a $T$ constante, entonces el cambio de volumen con $\Delta T = 0$ habría cambiado $U$. Como $\Delta U = 0$ con $\Delta V \neq 0$ y $\Delta T = 0$:
 > $$\left(\frac{\partial U}{\partial V}\right)_T = 0.$$
 >
 > **Paso 3 — Escribir la diferencial completa de $U(T,V)$.**
@@ -115,8 +108,7 @@ aliases:
 ## Ejemplo: cambio de energía interna en proceso no isocórico
 
 > [!ejemplo]
-> **Aire (gas ideal) comprimido de $T_1 = 300\,\text{K}$, $P_1 = 100\,\text{kPa}$ a $T_2 = 500\,\text{K}$, $P_2 = 500\,\text{kPa}$.**
-> Calcular $\Delta u$.
+> **Aire (gas ideal) comprimido de $T_1 = 300\,\text{K}$, $P_1 = 100\,\text{kPa}$ a $T_2 = 500\,\text{K}$, $P_2 = 500\,\text{kPa}$.** Calcular $\Delta u$.
 >
 > **Paso 1 — Identificar el tipo de sustancia.** Aire ≈ gas ideal; por tanto $u = u(T)$.
 >

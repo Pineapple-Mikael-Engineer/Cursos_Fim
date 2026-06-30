@@ -1,5 +1,6 @@
 ---
 title: Electrónica (Amplificadores Operacionales)
+order: 7
 tags:
   - control-clasico
   - dominios-fisicos

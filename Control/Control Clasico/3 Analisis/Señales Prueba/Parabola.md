@@ -1,5 +1,6 @@
 ---
 title: Parábola Unitaria
+order: 3
 tags:
   - control-clasico
   - señales-prueba

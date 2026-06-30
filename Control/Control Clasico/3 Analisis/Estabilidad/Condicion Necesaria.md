@@ -1,5 +1,6 @@
 ---
 title: Condición Necesaria de Estabilidad
+order: 2
 tags:
   - control-clasico
   - teoria

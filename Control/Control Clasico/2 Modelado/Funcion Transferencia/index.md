@@ -1,5 +1,6 @@
 ---
 title: Función Transferencia
+order: 3
 tags:
   - control-clasico
   - teoria
@@ -67,8 +68,7 @@ aliases:
 > $$G(s)=\frac{b_m s^m+\dots+b_0}{a_n s^n+\dots+a_0}.$$
 
 > [!demostracion]
-> **Paso 1.** Por linealidad de Laplace y CI nulas, $\mathcal{L}\{f^{(k)}\}=s^k F(s)$ para cada derivada.
-> **Paso 2.** Transformando ambos lados de la EDO:
+> **Paso 1.** Por linealidad de Laplace y CI nulas, $\mathcal{L}\{f^{(k)}\}=s^k F(s)$ para cada derivada. **Paso 2.** Transformando ambos lados de la EDO:
 > $$(a_n s^n+\dots+a_0)Y(s)=(b_m s^m+\dots+b_0)U(s).$$
 > **Paso 3.** Como los paréntesis son escalares en $s$, se despeja el cociente y se obtiene $G(s)=Y(s)/U(s)$. $\blacksquare$
 

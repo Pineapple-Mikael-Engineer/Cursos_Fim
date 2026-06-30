@@ -15,8 +15,7 @@ aliases:
 # P1 — Rankine con recalentamiento (planta de 20 MW)
 
 > [!definicion] Enunciado
-> En una planta térmica a vapor, que opera con un ciclo **Rankine con recalentamiento intermedio**, se genera $\dot W_{neta} = 20\ \text{MW}$ de potencia neta. La caldera tiene una eficiencia del $70\%$. La turbina es de **2 etapas** (alta y baja presión) y cada una tiene una eficiencia de expansión adiabática del $90\%$. El vapor ingresa a la turbina de alta presión a $40\ \text{bar}$ y $400\ ^\circ\text{C}$ y sale a $8\ \text{bar}$. El vapor que sale de la turbina de alta presión es recalentado e ingresa a la turbina de baja presión a $8\ \text{bar}$ y $400\ ^\circ\text{C}$, saliendo a $0{,}1\ \text{bar}$.
-> Considere: eficiencia mecánica $=100\%$, eficiencia adiabática de la bomba $=100\%$, poder calorífico del combustible $= 40\,000\ \text{kJ/kg}$.
+> En una planta térmica a vapor, que opera con un ciclo **Rankine con recalentamiento intermedio**, se genera $\dot W_{neta} = 20\ \text{MW}$ de potencia neta. La caldera tiene una eficiencia del $70\%$. La turbina es de **2 etapas** (alta y baja presión) y cada una tiene una eficiencia de expansión adiabática del $90\%$. El vapor ingresa a la turbina de alta presión a $40\ \text{bar}$ y $400\ ^\circ\text{C}$ y sale a $8\ \text{bar}$. El vapor que sale de la turbina de alta presión es recalentado e ingresa a la turbina de baja presión a $8\ \text{bar}$ y $400\ ^\circ\text{C}$, saliendo a $0{,}1\ \text{bar}$. Considere: eficiencia mecánica $=100\%$, eficiencia adiabática de la bomba $=100\%$, poder calorífico del combustible $= 40\,000\ \text{kJ/kg}$.
 >
 > Se pide: **(1)** trabajo de la bomba [kJ/kg]; **(2)** flujo de vapor [kg/s]; **(3)** calor recibido en el recalentador [kW]; **(4)** consumo de combustible [kg/s]; **(5)** eficiencia térmica de la planta [%].
 

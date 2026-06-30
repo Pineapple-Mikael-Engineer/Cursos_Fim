@@ -1,5 +1,6 @@
 ---
 title: Tabla de Tipos de Sistemas
+order: 2
 tags:
   - control-clasico
   - analisis

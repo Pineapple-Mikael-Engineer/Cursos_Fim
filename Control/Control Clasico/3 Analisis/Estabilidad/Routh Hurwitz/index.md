@@ -1,5 +1,6 @@
 ---
 title: Criterio de Routh-Hurwitz
+order: 1
 tags:
   - control-clasico
   - teoria

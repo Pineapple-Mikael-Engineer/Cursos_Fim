@@ -1,5 +1,6 @@
 ---
 title: Construcción Asintótica de Bode
+order: 2
 tags:
   - control-clasico
   - analisis
