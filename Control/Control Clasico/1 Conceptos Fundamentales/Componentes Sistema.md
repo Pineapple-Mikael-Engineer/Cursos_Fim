@@ -39,7 +39,7 @@ aliases:
 > |---|---|---|
 > | **Referencia** | $r(t)$, $R(s)$ | valor deseado de la salida (consigna, *setpoint*) |
 > | **Comparador** | $\otimes$ | genera el error $e = r - H y$ |
-> | **Controlador** | $G_c(s)$ | procesa el error y genera la señal de control (ver [[Lugar Raices/index | diseño]]) |
+> | **Controlador** | $G_c(s)$ | procesa el error y genera la señal de control (ver [[Lugar Raices/index \| diseño]]) |
 > | **Actuador** | parte de $G(s)$ | convierte la señal de control en acción física (motor, válvula, calefactor) |
 > | **Planta / proceso** | $G_p(s)$ | el sistema a controlar |
 > | **Sensor / transductor** | $H(s)$ | mide la salida y la realimenta |

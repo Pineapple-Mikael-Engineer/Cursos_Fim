@@ -59,8 +59,8 @@ aliases:
 > [!info] Las dos representaciones
 > | Representación | Qué grafica | Fuerte |
 > |---|---|---|
-> | [[Bode/index | Bode]] | $\lvert G\rvert_{\text{dB}}$ y $\angle G$ vs $\omega$ (escala log) | construcción asintótica; lectura directa de márgenes y ancho de banda |
-> | [[Nyquist/index | Nyquist]] | lugar polar de $L(j\omega)$ en el plano complejo | criterio exacto $Z=N+P$ para polos en SPD o retardos |
+> | [[Bode/index \| Bode]] | $\lvert G\rvert_{\text{dB}}$ y $\angle G$ vs $\omega$ (escala log) | construcción asintótica; lectura directa de márgenes y ancho de banda |
+> | [[Nyquist/index \| Nyquist]] | lugar polar de $L(j\omega)$ en el plano complejo | criterio exacto $Z=N+P$ para polos en SPD o retardos |
 
 > [!definicion] Magnitud en decibelios
 > $$|G(j\omega)|_{\text{dB}}=20\log_{10}|G(j\omega)|.$$

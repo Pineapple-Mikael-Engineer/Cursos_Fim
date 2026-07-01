@@ -44,11 +44,11 @@ aliases:
 > [!info] Los cinco bloques
 > | Bloque | Contenido |
 > |:---|:---|
-> | [[1 Particula/index | Partícula]] | cinemática, cinética, energía, momento, sistemas |
-> | [[2 Movimiento Relativo/index | Movimiento relativo]] | Galileo; operador base móvil; Coriolis |
-> | [[3 Inercia/index | Inercia]] | tensor de inercia; ejes principales; deducciones |
-> | [[4 Cuerpo Rigido/index | Cuerpo rígido]] | cinemática y cinética; Euler; giróscopo |
-> | [[5 Vibraciones/index | Vibraciones]] | libre, amortiguada, forzada |
+> | [[1 Particula/index \| Partícula]] | cinemática, cinética, energía, momento, sistemas |
+> | [[2 Movimiento Relativo/index \| Movimiento relativo]] | Galileo; operador base móvil; Coriolis |
+> | [[3 Inercia/index \| Inercia]] | tensor de inercia; ejes principales; deducciones |
+> | [[4 Cuerpo Rigido/index \| Cuerpo rígido]] | cinemática y cinética; Euler; giróscopo |
+> | [[5 Vibraciones/index \| Vibraciones]] | libre, amortiguada, forzada |
 
 > [!corolario]
 > Toda la dinámica clásica se deduce de $\sum\vec F=m\vec a$ y su versión rotacional. Dominando dos herramientas —el operador en base móvil y el tensor de inercia— se cubre desde el tiro parabólico hasta el giróscopo.

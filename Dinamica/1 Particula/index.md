@@ -46,7 +46,7 @@ aliases:
 > [!info] Las notas de este capítulo
 > | Nota | Contenido |
 > |:---|:---|
-> | [[Cinematica/index | cinemática de la partícula]] | $\vec{r},\vec{v},\vec{a}$ en cartesianas, intrínsecas 3D (Frenet), cilíndricas y esféricas |
+> | [[Cinematica/index \| cinemática de la partícula]] | $\vec{r},\vec{v},\vec{a}$ en cartesianas, intrínsecas 3D (Frenet), cilíndricas y esféricas |
 > | [[Cinetica de la Particula]] | leyes de Newton; ecuaciones de movimiento proyectadas |
 > | [[Trabajo y Energia]] | teorema trabajo-energía; fuerzas conservativas; conservación |
 > | [[Impulso y Momento]] | impulso-cantidad de movimiento; momento angular; choques |

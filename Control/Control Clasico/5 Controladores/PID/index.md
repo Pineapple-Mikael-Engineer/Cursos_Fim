@@ -93,7 +93,7 @@ aliases:
 > | P | reduce error, no lo anula |
 > | I | anula $e_{ss}$ (sube el tipo), desestabiliza |
 > | D | amortigua y anticipa, amplifica ruido |
-> | Sintonía | [[Sintonizacion/index | Ziegler-Nichols]] |
+> | Sintonía | [[Sintonizacion/index \| Ziegler-Nichols]] |
 
 > [!corolario]
 > El PID es la combinación de tres miradas al error —presente, pasado y futuro— y por eso resuelve a la vez precisión (la I anula el error estacionario) y buen transitorio (la D amortigua). Equivale a un compensador lead-lag, lo que lo conecta con el [[Lugar Raices/index | diseño por lugar de raíces]] y por [[Respuesta Frecuencia/index | frecuencia]]. Las acciones individuales viven en [[Acciones/index]], las combinaciones en [[Configuraciones/index]] y el ajuste numérico en [[Sintonizacion/index]].

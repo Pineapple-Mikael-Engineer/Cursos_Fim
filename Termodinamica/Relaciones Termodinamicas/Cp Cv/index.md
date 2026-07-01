@@ -106,7 +106,7 @@ aliases:
 > |:---|:---|
 > | [[Razon de Calores \| Razón $\gamma = c_p/c_v$]] | Cociente que gobierna procesos isentrópicos; relación $\kappa_T/\kappa_s = \gamma$ |
 > | [[Efecto Joule Thomson \| Efecto Joule-Thomson]] | $\mu_{JT} = (\partial T/\partial P)_h$; se expresa en función de $\alpha$, $c_p$ y la EdE |
-> | [[TdS | Ecuaciones $T\,ds$]] | Punto de partida de la derivación |
+> | [[TdS \| Ecuaciones $T\,ds$]] | Punto de partida de la derivación |
 > | [[Maxwell]] | Relaciones de Maxwell que entran en las ecuaciones $T\,ds$ |
 > | [[Identidades/index \| Identidades]] | Regla triple producto usada en el Paso 5 |
 

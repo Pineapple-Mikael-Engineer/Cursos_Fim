@@ -186,11 +186,11 @@ La complejidad $O(n^3)$ asume matriz **densa** (sin ceros). Muchas aplicaciones 
 
 | Estructura | Complejidad | Ejemplo de aplicación |
 |:---|:---:|:---|
-| **Tridiagonal** | $O(n)$ | [[Metodo Diferencias Finitas|Diferencias finitas]] 1D, splines cúbicos |
+| **Tridiagonal** | $O(n)$ | [[Metodo Diferencias Finitas\|Diferencias finitas]] 1D, splines cúbicos |
 | **Banda (ancho $b$)** | $O(n b^2)$ | Elementos finitos con numeración adecuada |
-| **Hessenberg superior** | $O(n^2)$ | [[Metodo Potencia Directo|Método de la potencia]], valores propios |
+| **Hessenberg superior** | $O(n^2)$ | [[Metodo Potencia Directo\|Método de la potencia]], valores propios |
 | **Triangular** | $O(n^2)$ | Sustitución regresiva/progresiva |
-| **Dispersa (sparse)** | $O(n^{1.5})$ a $O(n^2)$ | Depende del [[Relleno Matrices Dispersas|relleno]] |
+| **Dispersa (sparse)** | $O(n^{1.5})$ a $O(n^2)$ | Depende del [[Relleno Matrices Dispersas\|relleno]] |
 
 > [!ejemplo]
 > **Sistema tridiagonal.**

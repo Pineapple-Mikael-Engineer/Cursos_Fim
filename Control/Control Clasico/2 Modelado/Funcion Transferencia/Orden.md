@@ -52,7 +52,7 @@ aliases:
 > |---|---|---|
 > | 1 | un polo, $e^{-t/\tau}$ | monótona, sin sobrepico |
 > | 2 | dos polos (reales o complejos) | sobrepico si $\zeta<1$ |
-> | $\ge 3$ | $n$ polos, $n$ modos | a menudo gobernada por [[Polos Ceros | polos dominantes]] |
+> | $\ge 3$ | $n$ polos, $n$ modos | a menudo gobernada por [[Polos Ceros \| polos dominantes]] |
 
 > [!ejemplo] Órdenes canónicos
 > Primer orden $G(s)=\dfrac{K}{\tau s+1}$ (orden 1). Segundo orden $G(s)=\dfrac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}$ (orden 2).

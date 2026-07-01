@@ -192,9 +192,9 @@ El concepto de condicionamiento se extiende a todos los problemas del análisis 
 |:---|:---|
 | **Evaluación de función $f(x)$** | $\kappa_f(x) = \left\| \frac{x \cdot f'(x)}{f(x)} \right\|$ |
 | **Raíces de $f(x)=0$** | $\kappa = 1 / \|f'(r)\|$ para raíces simples |
-| **[[Interpolacion Polinomica y Matriz Vandermonde|Interpolación polinómica]]** | $\kappa \approx \text{condición de la matriz de Vandermonde}$ |
-| **[[Problema Valor Inicial PVI|Problema de valor inicial EDO]]** | $\kappa \approx e^{L t}$ donde $L$ es la constante de Lipschitz |
-| **[[Ajuste Minimos Cuadrados|Mínimos cuadrados]]** | $\kappa(A^T A) = [\kappa_2(A)]^2$ (peligroso) |
+| **[[Interpolacion Polinomica y Matriz Vandermonde\|Interpolación polinómica]]** | $\kappa \approx \text{condición de la matriz de Vandermonde}$ |
+| **[[Problema Valor Inicial PVI\|Problema de valor inicial EDO]]** | $\kappa \approx e^{L t}$ donde $L$ es la constante de Lipschitz |
+| **[[Ajuste Minimos Cuadrados\|Mínimos cuadrados]]** | $\kappa(A^T A) = [\kappa_2(A)]^2$ (peligroso) |
 
 > [!ejemplo]
 > **Condicionamiento de una raíz simple vs. múltiple.**
