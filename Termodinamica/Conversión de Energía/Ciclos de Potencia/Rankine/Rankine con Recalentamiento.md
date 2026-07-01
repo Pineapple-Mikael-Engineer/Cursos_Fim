@@ -89,38 +89,22 @@ aliases:
 > Determinar: (a) entalpías y calidades en todos los estados; (b) $\eta_{\rm th}$; (c) comparar $x_6$ con el ciclo sin recalentamiento.
 
 > [!solucion]
-> **Estado 1** ($P_L = 10\,\mathrm{kPa}$, líquido saturado):
-> $h_1 = 191.8\,\mathrm{kJ/kg}$, $v_1 = 0.001010\,\mathrm{m^3/kg}$.
+> **Estado 1** ($P_L = 10\,\mathrm{kPa}$, líquido saturado): $h_1 = 191.8\,\mathrm{kJ/kg}$, $v_1 = 0.001010\,\mathrm{m^3/kg}$.
 >
-> **Estado 2** ($P_H = 15000\,\mathrm{kPa}$):
-> $h_2 = 191.8 + 0.001010\times(15000-10) = 191.8 + 15.14 = 206.9\,\mathrm{kJ/kg}$.
+> **Estado 2** ($P_H = 15000\,\mathrm{kPa}$): $h_2 = 191.8 + 0.001010\times(15000-10) = 191.8 + 15.14 = 206.9\,\mathrm{kJ/kg}$.
 >
-> **Estado 3** ($15\,\mathrm{MPa}$, $500°\mathrm{C}$):
-> $h_3 = 3310.8\,\mathrm{kJ/kg}$, $s_3 = 6.3480\,\mathrm{kJ/(kg\cdot K)}$.
+> **Estado 3** ($15\,\mathrm{MPa}$, $500°\mathrm{C}$): $h_3 = 3310.8\,\mathrm{kJ/kg}$, $s_3 = 6.3480\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Estado 4** (expansión isentrópica a $P_r = 3\,\mathrm{MPa}$, $s_4 = s_3 = 6.3480$):
-> A $3\,\mathrm{MPa}$: $T_{\rm sat} = 234.0°\mathrm{C}$, $s_g = 6.1869$. Como $s_4 = 6.3480 > s_g$: vapor sobrecalentado.
-> Interpolando en tablas de vapor sobrecalentado a $3\,\mathrm{MPa}$:
-> A $250°\mathrm{C}$: $s = 6.2872$, $h = 2803.3$; a $300°\mathrm{C}$: $s = 6.5390$, $h = 2924.5$.
-> Interpolando: $T_4 = 250 + (6.3480-6.2872)/(6.5390-6.2872)\times50 = 250 + 0.0608/0.2518\times50 = 250+12.1 = 262.1°\mathrm{C}$.
-> $h_4 = 2803.3 + 0.242\times(2924.5-2803.3) = 2803.3 + 29.3 = 2832.6\,\mathrm{kJ/kg}$.
+> **Estado 4** (expansión isentrópica a $P_r = 3\,\mathrm{MPa}$, $s_4 = s_3 = 6.3480$): A $3\,\mathrm{MPa}$: $T_{\rm sat} = 234.0°\mathrm{C}$, $s_g = 6.1869$. Como $s_4 = 6.3480 > s_g$: vapor sobrecalentado. Interpolando en tablas de vapor sobrecalentado a $3\,\mathrm{MPa}$: A $250°\mathrm{C}$: $s = 6.2872$, $h = 2803.3$; a $300°\mathrm{C}$: $s = 6.5390$, $h = 2924.5$. Interpolando: $T_4 = 250 + (6.3480-6.2872)/(6.5390-6.2872)\times50 = 250 + 0.0608/0.2518\times50 = 250+12.1 = 262.1°\mathrm{C}$. $h_4 = 2803.3 + 0.242\times(2924.5-2803.3) = 2803.3 + 29.3 = 2832.6\,\mathrm{kJ/kg}$.
 >
-> **Estado 5** ($3\,\mathrm{MPa}$, $500°\mathrm{C}$, recalentado):
-> $h_5 = 3456.5\,\mathrm{kJ/kg}$, $s_5 = 7.2338\,\mathrm{kJ/(kg\cdot K)}$.
+> **Estado 5** ($3\,\mathrm{MPa}$, $500°\mathrm{C}$, recalentado): $h_5 = 3456.5\,\mathrm{kJ/kg}$, $s_5 = 7.2338\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Estado 6** (expansión isentrópica a $10\,\mathrm{kPa}$, $s_6 = s_5 = 7.2338$):
-> A $10\,\mathrm{kPa}$: $s_f = 0.6493$, $s_g = 8.1502$. Mezcla:
-> $x_6 = (7.2338 - 0.6493)/7.5009 = 6.5845/7.5009 = 0.878$.
-> $h_6 = 191.8 + 0.878\times2392.8 = 191.8 + 2100.9 = 2292.7\,\mathrm{kJ/kg}$.
+> **Estado 6** (expansión isentrópica a $10\,\mathrm{kPa}$, $s_6 = s_5 = 7.2338$): A $10\,\mathrm{kPa}$: $s_f = 0.6493$, $s_g = 8.1502$. Mezcla: $x_6 = (7.2338 - 0.6493)/7.5009 = 6.5845/7.5009 = 0.878$. $h_6 = 191.8 + 0.878\times2392.8 = 191.8 + 2100.9 = 2292.7\,\mathrm{kJ/kg}$.
 >
-> **(b) Eficiencia:**
-> $w_T = (3310.8-2832.6)+(3456.5-2292.7) = 478.2+1163.8 = 1642.0\,\mathrm{kJ/kg}$.
-> $w_P = 15.14\,\mathrm{kJ/kg}$.
-> $q_H = (3310.8-206.9)+(3456.5-2832.6) = 3103.9+623.9 = 3727.8\,\mathrm{kJ/kg}$.
+> **(b) Eficiencia:** $w_T = (3310.8-2832.6)+(3456.5-2292.7) = 478.2+1163.8 = 1642.0\,\mathrm{kJ/kg}$. $w_P = 15.14\,\mathrm{kJ/kg}$. $q_H = (3310.8-206.9)+(3456.5-2832.6) = 3103.9+623.9 = 3727.8\,\mathrm{kJ/kg}$.
 > $$\eta_{\rm th} = \frac{1642.0-15.14}{3727.8} = \frac{1626.9}{3727.8} = 0.436 = 43.6\%.$$
 >
-> **(c) Comparación:** Sin recalentamiento (a $15\,\mathrm{MPa}$, $500°\mathrm{C}$, condenser a $10\,\mathrm{kPa}$):
-> $s_3 = 6.3480$, $x_{4,\rm sin} = (6.3480-0.6493)/7.5009 = 5.6987/7.5009 = 0.760$.
+> **(c) Comparación:** Sin recalentamiento (a $15\,\mathrm{MPa}$, $500°\mathrm{C}$, condenser a $10\,\mathrm{kPa}$): $s_3 = 6.3480$, $x_{4,\rm sin} = (6.3480-0.6493)/7.5009 = 5.6987/7.5009 = 0.760$.
 >
 > | Parámetro | Sin recalentamiento | Con recalentamiento |
 > |:---:|:---:|:---:|

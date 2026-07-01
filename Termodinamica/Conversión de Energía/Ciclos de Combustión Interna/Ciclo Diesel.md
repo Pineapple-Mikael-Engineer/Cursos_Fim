@@ -164,9 +164,7 @@ aliases:
 >
 > $T_4 = T_1 \cdot r_c^\gamma = 300 \times 2^{1.4} = 300 \times 2.639 = 791.7\,\mathrm{K}$.
 >
-> $P_4 = P_3 \cdot (V_3/V_4)^\gamma = P_3 \cdot (r_c/r)^\gamma = 5433.9 \times (2/18)^{1.4} = 5433.9 \times (0.1111)^{1.4}$.
-> $(0.1111)^{1.4} = e^{1.4 \times \ln(0.1111)} = e^{1.4\times(-2.198)} = e^{-3.077} = 0.04612$.
-> $P_4 = 5433.9 \times 0.04612 = 250.6\,\mathrm{kPa}$.
+> $P_4 = P_3 \cdot (V_3/V_4)^\gamma = P_3 \cdot (r_c/r)^\gamma = 5433.9 \times (2/18)^{1.4} = 5433.9 \times (0.1111)^{1.4}$. $(0.1111)^{1.4} = e^{1.4 \times \ln(0.1111)} = e^{1.4\times(-2.198)} = e^{-3.077} = 0.04612$. $P_4 = 5433.9 \times 0.04612 = 250.6\,\mathrm{kPa}$.
 >
 > **(b) Calor añadido:**
 >
@@ -178,9 +176,7 @@ aliases:
 >
 > $$\eta_{\rm th} = 1 - \frac{f(r_c)}{r^{\gamma-1}} = 1 - \frac{1.171}{3.177} = 1 - 0.3686 = 0.6314 = 63.1\%.$$
 >
-> Verificación alternativa:
-> $q_L = c_v(T_4-T_1) = 0.718 \times (791.7-300) = 0.718 \times 491.7 = 353.1\,\mathrm{kJ/kg}$.
-> $\eta = 1 - q_L/q_H = 1 - 353.1/957.9 = 1 - 0.3686 = 0.6314$ ✓.
+> Verificación alternativa: $q_L = c_v(T_4-T_1) = 0.718 \times (791.7-300) = 0.718 \times 491.7 = 353.1\,\mathrm{kJ/kg}$. $\eta = 1 - q_L/q_H = 1 - 353.1/957.9 = 1 - 0.3686 = 0.6314$ ✓.
 >
 > **(d) Trabajo neto:**
 >

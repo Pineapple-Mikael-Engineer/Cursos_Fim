@@ -89,16 +89,13 @@ aliases:
 > [!ejemplo]
 > Agua líquida a $T = 373.15\,\mathrm{K}$, $P = 101.325\,\mathrm{kPa}$. Verificar cuantitativamente que $c_p - c_v \ll c_p$.
 >
-> **Datos tabulados** (Çengel, Apéndice):
-> $v = 0.001044\,\mathrm{m^3/kg}$; $\alpha = 7.52\times10^{-4}\,\mathrm{K^{-1}}$; $\kappa_T = 4.90\times10^{-10}\,\mathrm{Pa^{-1}}$; $c_p = 4.216\,\mathrm{kJ/(kg\cdot K)}$.
+> **Datos tabulados** (Çengel, Apéndice): $v = 0.001044\,\mathrm{m^3/kg}$; $\alpha = 7.52\times10^{-4}\,\mathrm{K^{-1}}$; $\kappa_T = 4.90\times10^{-10}\,\mathrm{Pa^{-1}}$; $c_p = 4.216\,\mathrm{kJ/(kg\cdot K)}$.
 >
 > **Cálculo:**
 > $$c_p - c_v = \frac{Tv\,\alpha^2}{\kappa_T} = \frac{373.15\times0.001044\times(7.52\times10^{-4})^2}{4.90\times10^{-10}}$$
 > $$= \frac{373.15\times0.001044\times5.655\times10^{-7}}{4.90\times10^{-10}} = \frac{2.20\times10^{-7}}{4.90\times10^{-10}} = 0.449\,\mathrm{kJ/(kg\cdot K)}.$$
 >
-> **Resultado:**
-> $c_v = 4.216 - 0.449 = 3.767\,\mathrm{kJ/(kg\cdot K)}$.
-> La diferencia es $c_p - c_v = 0.449\,\mathrm{kJ/(kg\cdot K)} \approx 10.6\%$ de $c_p$: no despreciable para el agua líquida a alta temperatura. Para agua a $20\,°\mathrm{C}$, la diferencia baja a $\approx 1\%$. $\blacksquare$
+> **Resultado:** $c_v = 4.216 - 0.449 = 3.767\,\mathrm{kJ/(kg\cdot K)}$. La diferencia es $c_p - c_v = 0.449\,\mathrm{kJ/(kg\cdot K)} \approx 10.6\%$ de $c_p$: no despreciable para el agua líquida a alta temperatura. Para agua a $20\,°\mathrm{C}$, la diferencia baja a $\approx 1\%$. $\blacksquare$
 
 ---
 
@@ -109,7 +106,7 @@ aliases:
 > |:---|:---|
 > | [[Razon de Calores \| Razón $\gamma = c_p/c_v$]] | Cociente que gobierna procesos isentrópicos; relación $\kappa_T/\kappa_s = \gamma$ |
 > | [[Efecto Joule Thomson \| Efecto Joule-Thomson]] | $\mu_{JT} = (\partial T/\partial P)_h$; se expresa en función de $\alpha$, $c_p$ y la EdE |
-> | [[TdS | Ecuaciones $T\,ds$]] | Punto de partida de la derivación |
+> | [[TdS \| Ecuaciones $T\,ds$]] | Punto de partida de la derivación |
 > | [[Maxwell]] | Relaciones de Maxwell que entran en las ecuaciones $T\,ds$ |
 > | [[Identidades/index \| Identidades]] | Regla triple producto usada en el Paso 5 |
 

@@ -166,11 +166,9 @@ La **relación de presiones** $r_P = P_H / P_L$ es el parámetro de diseño fund
 >
 > $t = r_P^{(\gamma-1)/\gamma} = 10^{(1.4-1)/1.4} = 10^{0.2857} = 1.9307$.
 >
-> Estado 2 (salida compresor ideal):
-> $T_{2s} = T_1 \cdot t = 300 \times 1.9307 = 579.2\,\mathrm{K}$.
+> Estado 2 (salida compresor ideal): $T_{2s} = T_1 \cdot t = 300 \times 1.9307 = 579.2\,\mathrm{K}$.
 >
-> Estado 4 (salida turbina ideal):
-> $T_{4s} = T_3 / t = 1400 / 1.9307 = 725.1\,\mathrm{K}$.
+> Estado 4 (salida turbina ideal): $T_{4s} = T_3 / t = 1400 / 1.9307 = 725.1\,\mathrm{K}$.
 >
 > **(b) Trabajos y bwr (ciclo ideal):**
 >

@@ -24,8 +24,7 @@ aliases:
 > El indicador cuantitativo de la irreversibilidad es la **generación de entropía** $S_{gen}\ge 0$, nula solo en el límite reversible.
 
 > [!info]
-> Esta nota pertenece a la sección [[Procesos/index | Procesos Termodinámicos]]. Notas hermanas: [[Proceso Isotermico]] y [[Proceso Adiabatico]]. La maquinaria que justifica $S_{gen}\ge 0$ está en [[Segunda Ley SC]] y en [[Entropia]]; la lectura del coste de la irreversibilidad como trabajo perdido se desarrolla en [[Balance de Exergia SC]].
-> Convenio: gas ideal $Pv=RT$ (base másica, $R$ constante específica), trabajo de frontera por unidad de masa $w=\int P\,dv$, calor $q$, $\delta Q/T$ evaluado en la frontera.
+> Esta nota pertenece a la sección [[Procesos/index | Procesos Termodinámicos]]. Notas hermanas: [[Proceso Isotermico]] y [[Proceso Adiabatico]]. La maquinaria que justifica $S_{gen}\ge 0$ está en [[Segunda Ley SC]] y en [[Entropia]]; la lectura del coste de la irreversibilidad como trabajo perdido se desarrolla en [[Balance de Exergia SC]]. Convenio: gas ideal $Pv=RT$ (base másica, $R$ constante específica), trabajo de frontera por unidad de masa $w=\int P\,dv$, calor $q$, $\delta Q/T$ evaluado en la frontera.
 
 ---
 
@@ -101,23 +100,18 @@ Solo cuando el proceso es internamente reversible se cumple $P_{ext}=P$ en todo 
 ## 4. El contraste central: tres caminos entre los mismos estados
 
 > [!ejemplo]
-> Un gas ideal evoluciona del estado $1$ al estado $2$ a la **misma temperatura** $T$ (proceso isotérmico global), expandiéndose desde $P_1$ hasta $P_2<P_1$, con $v_2/v_1=P_1/P_2$. Recorre los **mismos estados extremos** por tres caminos distintos:
-> (a) expansión **isotérmica reversible**; (b) **expansión libre** de Joule contra el vacío; (c) expansión **contra presión externa constante** $P_{ext}=P_2$, con calor intercambiado con una fuente a $T_{fuente}=T$.
-> Comparar $w$, $q$, $\Delta s_{sis}$ y $S_{gen}$ en los tres casos.
+> Un gas ideal evoluciona del estado $1$ al estado $2$ a la **misma temperatura** $T$ (proceso isotérmico global), expandiéndose desde $P_1$ hasta $P_2<P_1$, con $v_2/v_1=P_1/P_2$. Recorre los **mismos estados extremos** por tres caminos distintos: (a) expansión **isotérmica reversible**; (b) **expansión libre** de Joule contra el vacío; (c) expansión **contra presión externa constante** $P_{ext}=P_2$, con calor intercambiado con una fuente a $T_{fuente}=T$. Comparar $w$, $q$, $\Delta s_{sis}$ y $S_{gen}$ en los tres casos.
 
 > [!solucion]
 > Como $s$ es **propiedad** y los tres caminos unen los mismos estados $1$ y $2$, el cambio de entropía del sistema es **idéntico** en los tres. Para gas ideal isotérmico, de $T\,ds=du+P\,dv$ con $du=0$ ($u=u(T)$) y $P=RT/v$:
 > $$ \Delta s_{sis}=\int_{1}^{2}\frac{P}{T}\,dv=\int_{1}^{2}\frac{R}{v}\,dv=R\ln\frac{v_2}{v_1}=R\ln\frac{P_1}{P_2}>0.$$
 >
-> **Paso a — Expansión isotérmica reversible.**
-> El trabajo de frontera, con $P=RT/v$:
+> **Paso a — Expansión isotérmica reversible.** El trabajo de frontera, con $P=RT/v$:
 > $$ w_{rev}=\int_{1}^{2}P\,dv=RT\int_{1}^{2}\frac{dv}{v}=RT\ln\frac{v_2}{v_1}.$$
-> Como $\Delta u=0$, la primera ley da $q_{rev}=\Delta u+w_{rev}=w_{rev}=RT\ln(v_2/v_1)>0$.
-> El calor se intercambia con una fuente a $T_{fuente}=T$ (igual temperatura, $\Delta T\to 0$), luego es **internamente y externamente reversible**:
+> Como $\Delta u=0$, la primera ley da $q_{rev}=\Delta u+w_{rev}=w_{rev}=RT\ln(v_2/v_1)>0$. El calor se intercambia con una fuente a $T_{fuente}=T$ (igual temperatura, $\Delta T\to 0$), luego es **internamente y externamente reversible**:
 > $$ S_{gen}^{(a)}=\Delta s_{sis}-\frac{q_{rev}}{T_{fuente}}=R\ln\frac{v_2}{v_1}-\frac{RT\ln(v_2/v_1)}{T}=0.$$
 >
-> **Paso b — Expansión libre (Joule) contra el vacío.**
-> El gas se expande en un recipiente **rígido y aislado** que contenía vacío. No hay frontera móvil que empuje nada: $w=0$. Por ser aislado, $q=0$. La primera ley da
+> **Paso b — Expansión libre (Joule) contra el vacío.** El gas se expande en un recipiente **rígido y aislado** que contenía vacío. No hay frontera móvil que empuje nada: $w=0$. Por ser aislado, $q=0$. La primera ley da
 > $$ \Delta u=q-w=0 \ \Rightarrow\ u_2=u_1\ \Rightarrow\ T_2=T_1=T$$
 > (para gas ideal $u=u(T)$). Aunque $w=q=0$, el cambio de entropía es el de propiedad:
 > $$ \Delta s_{sis}=R\ln\frac{v_2}{v_1}>0.$$
@@ -125,13 +119,11 @@ Solo cuando el proceso es internamente reversible se cumple $P_{ext}=P$ en todo 
 > $$ S_{gen}^{(b)}=\Delta s_{sis}-\frac{q}{T}=R\ln\frac{v_2}{v_1}=\Delta s_{sis}.$$
 > Es el caso de **máxima irreversibilidad**: misma variación de estado, cero trabajo aprovechado y toda la entropía generada internamente.
 >
-> **Paso c — Expansión contra $P_{ext}=P_2$ constante.**
-> El émbolo vence una presión externa fija $P_2$. El trabajo de frontera es
+> **Paso c — Expansión contra $P_{ext}=P_2$ constante.** El émbolo vence una presión externa fija $P_2$. El trabajo de frontera es
 > $$ w_{c}=\int_{1}^{2}P_{ext}\,dv=P_2\,(v_2-v_1).$$
 > Usando $v=RT/P$: $\;v_2-v_1=RT\big(\tfrac{1}{P_2}-\tfrac{1}{P_1}\big)$, luego
 > $$ w_{c}=P_2\,RT\Big(\frac{1}{P_2}-\frac{1}{P_1}\Big)=RT\Big(1-\frac{P_2}{P_1}\Big)<w_{rev}.$$
-> Como $\Delta u=0$ (isotérmico, gas ideal), la primera ley da $q_c=w_c=RT\big(1-\tfrac{P_2}{P_1}\big)$.
-> El cambio de entropía del sistema es el de propiedad, **igual que en (a)**:
+> Como $\Delta u=0$ (isotérmico, gas ideal), la primera ley da $q_c=w_c=RT\big(1-\tfrac{P_2}{P_1}\big)$. El cambio de entropía del sistema es el de propiedad, **igual que en (a)**:
 > $$ \Delta s_{sis}=R\ln\frac{v_2}{v_1}.$$
 > El calor entra desde una fuente a $T_{fuente}=T$, así que
 > $$ S_{gen}^{(c)}=\Delta s_{sis}-\frac{q_c}{T_{fuente}}=R\ln\frac{v_2}{v_1}-R\Big(1-\frac{P_2}{P_1}\Big)>0.$$
@@ -140,8 +132,7 @@ Solo cuando el proceso es internamente reversible se cumple $P_{ext}=P$ en todo 
 > [!solucion]
 > **Tabla comparativa numérica.** Tomamos $R=0{,}287\ \text{kJ/(kg·K)}$ (aire), $T=300\ \text{K}$, $P_1=200\ \text{kPa}$, $P_2=100\ \text{kPa}$, de modo que $v_2/v_1=P_1/P_2=2$ y $\ln 2=0{,}6931$.
 >
-> Valores base: $\;RT=86{,}10\ \text{kJ/kg}$, $\;\Delta s_{sis}=R\ln 2=0{,}1989\ \text{kJ/(kg·K)}$ (idéntico en los tres),
-> $\;w_{rev}=RT\ln 2=59{,}68\ \text{kJ/kg}$, $\;w_c=RT(1-P_2/P_1)=86{,}10\cdot 0{,}5=43{,}05\ \text{kJ/kg}$.
+> Valores base: $\;RT=86{,}10\ \text{kJ/kg}$, $\;\Delta s_{sis}=R\ln 2=0{,}1989\ \text{kJ/(kg·K)}$ (idéntico en los tres), $\;w_{rev}=RT\ln 2=59{,}68\ \text{kJ/kg}$, $\;w_c=RT(1-P_2/P_1)=86{,}10\cdot 0{,}5=43{,}05\ \text{kJ/kg}$.
 >
 > | Camino | $w$ (kJ/kg) | $q$ (kJ/kg) | $\Delta s_{sis}$ (kJ/(kg·K)) | $S_{gen}$ (kJ/(kg·K)) |
 > |---|---|---|---|---|
@@ -149,8 +140,7 @@ Solo cuando el proceso es internamente reversible se cumple $P_{ext}=P$ en todo 
 > | (b) Expansión libre | $0$ | $0$ | $0{,}1989$ | $0{,}1989$ |
 > | (c) Contra $P_{ext}=P_2$ | $43{,}05$ | $43{,}05$ | $0{,}1989$ | $0{,}0554$ |
 >
-> Cálculo de $S_{gen}^{(c)}$: $\;0{,}1989-43{,}05/300=0{,}1989-0{,}1435=0{,}0554\ \text{kJ/(kg·K)}$.
-> Lectura: el **mismo** $\Delta s_{sis}$ en los tres casos, pero el trabajo aprovechado cae de $59{,}68$ a $43{,}05$ y a $0$, mientras la generación de entropía sube de $0$ a $0{,}0554$ y a $0{,}1989$. A mayor irreversibilidad, **menos trabajo útil y más entropía generada**.
+> Cálculo de $S_{gen}^{(c)}$: $\;0{,}1989-43{,}05/300=0{,}1989-0{,}1435=0{,}0554\ \text{kJ/(kg·K)}$. Lectura: el **mismo** $\Delta s_{sis}$ en los tres casos, pero el trabajo aprovechado cae de $59{,}68$ a $43{,}05$ y a $0$, mientras la generación de entropía sube de $0$ a $0{,}0554$ y a $0{,}1989$. A mayor irreversibilidad, **menos trabajo útil y más entropía generada**.
 
 ![[reversibilidad.svg|520]]
 
@@ -169,8 +159,7 @@ Solo cuando el proceso es internamente reversible se cumple $P_{ext}=P$ en todo 
 > Esta es la **destrucción de exergía**; su deducción y aplicaciones se desarrollan en [[Balance de Exergia SC]]. La generación de entropía no es solo un número abstracto: es trabajo que el ingeniero **podría haber obtenido** y no obtuvo.
 
 > [!warning]
-> El proceso reversible es una **idealización límite inalcanzable**: requiere desequilibrios infinitesimales ($\varepsilon\to 0$) y, por tanto, tiempo infinito. Su utilidad es servir de **referencia** para medir el desempeño real (eficiencia isentrópica de turbinas y compresores, trabajo máximo extraíble, trabajo mínimo de compresión).
-> Cuidado con un error frecuente: un proceso **adiabático irreversible** tiene $q=0$ pero **no** es isentrópico. Su balance es $\Delta s=S_{gen}>0$. Solo el adiabático **reversible** es isentrópico ($\Delta s=0$). Véase [[Proceso Adiabatico]].
+> El proceso reversible es una **idealización límite inalcanzable**: requiere desequilibrios infinitesimales ($\varepsilon\to 0$) y, por tanto, tiempo infinito. Su utilidad es servir de **referencia** para medir el desempeño real (eficiencia isentrópica de turbinas y compresores, trabajo máximo extraíble, trabajo mínimo de compresión). Cuidado con un error frecuente: un proceso **adiabático irreversible** tiene $q=0$ pero **no** es isentrópico. Su balance es $\Delta s=S_{gen}>0$. Solo el adiabático **reversible** es isentrópico ($\Delta s=0$). Véase [[Proceso Adiabatico]].
 
 ---
 

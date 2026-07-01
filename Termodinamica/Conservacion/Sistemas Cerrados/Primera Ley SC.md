@@ -36,17 +36,13 @@ aliases:
 >
 > **Hipótesis:** consideramos un sistema cerrado que pasa del estado 1 al estado 2 por dos caminos distintos: A (calentamiento reversible) y B (agitación mecánica adiabática). Ambos caminos producen el mismo cambio de temperatura medible.
 >
-> **Paso 1 — Camino A: calentamiento a volumen constante.**
-> El sistema absorbe calor $Q_A$, realiza trabajo nulo ($W_A = 0$ si el volumen es constante). Resultado observable: temperatura sube de $T_1$ a $T_2$.
+> **Paso 1 — Camino A: calentamiento a volumen constante.** El sistema absorbe calor $Q_A$, realiza trabajo nulo ($W_A = 0$ si el volumen es constante). Resultado observable: temperatura sube de $T_1$ a $T_2$.
 >
-> **Paso 2 — Camino B: agitación mecánica adiabática.**
-> El sistema recibe trabajo de paletas agitadoras $W_B < 0$ (trabajo entra), no hay calor ($Q_B = 0$). Resultado observable: temperatura sube de $T_1$ a la misma $T_2$.
+> **Paso 2 — Camino B: agitación mecánica adiabática.** El sistema recibe trabajo de paletas agitadoras $W_B < 0$ (trabajo entra), no hay calor ($Q_B = 0$). Resultado observable: temperatura sube de $T_1$ a la misma $T_2$.
 >
-> **Paso 3 — Observación de Joule.**
-> Si los mismos estados 1 y 2 son alcanzables por dos caminos tan diferentes (A y B), el cambio de temperatura — y por tanto el cambio de "contenido energético" — es el mismo en ambos. Es decir, $Q_A - W_A = Q_B - W_B$, aunque $Q_A \ne Q_B$ y $W_A \ne W_B$ individualmente.
+> **Paso 3 — Observación de Joule.** Si los mismos estados 1 y 2 son alcanzables por dos caminos tan diferentes (A y B), el cambio de temperatura — y por tanto el cambio de "contenido energético" — es el mismo en ambos. Es decir, $Q_A - W_A = Q_B - W_B$, aunque $Q_A \ne Q_B$ y $W_A \ne W_B$ individualmente.
 >
-> **Paso 4 — Definir $U$ como la función de estado subyacente.**
-> El argumento anterior (generalizable a cualquier par de caminos entre 1 y 2) implica que la cantidad $Q - W$ solo depende de los estados extremos:
+> **Paso 4 — Definir $U$ como la función de estado subyacente.** El argumento anterior (generalizable a cualquier par de caminos entre 1 y 2) implica que la cantidad $Q - W$ solo depende de los estados extremos:
 > $$U_2 - U_1 = \Delta U \equiv Q - W.$$
 > $U$ es el nombre que se le da a esa función de estado. $\blacksquare$
 >

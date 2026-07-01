@@ -14,8 +14,7 @@ aliases:
 # P5 — Combustión de butano con aire húmedo
 
 > [!definicion] Enunciado
-> Butano gaseoso $\mathrm{C_4H_{10}(g)}$ a $25\,^\circ$C y $100$ kPa reacciona con **$200\%$ de aire teórico** a $25\,^\circ$C y $100$ kPa. El aire tiene una humedad relativa de $\phi=75\%$. La combustión es completa y los productos salen a $600$ K y $100$ kPa. La temperatura ambiente es $T_0=25\,^\circ$C. Se pide:
-> **(11)** entalpía de combustión alta (PCS) del butano a $25\,^\circ$C con aire seco; **(12)** trabajo reversible [kJ/kg] (productos y reactantes a $25\,^\circ$C); **(13)** ecuación de combustión para los datos del problema; **(14)** calor transferido; **(15)** cambio de entropía; **(16)** irreversibilidad [kJ/kg].
+> Butano gaseoso $\mathrm{C_4H_{10}(g)}$ a $25\,^\circ$C y $100$ kPa reacciona con **$200\%$ de aire teórico** a $25\,^\circ$C y $100$ kPa. El aire tiene una humedad relativa de $\phi=75\%$. La combustión es completa y los productos salen a $600$ K y $100$ kPa. La temperatura ambiente es $T_0=25\,^\circ$C. Se pide: **(11)** entalpía de combustión alta (PCS) del butano a $25\,^\circ$C con aire seco; **(12)** trabajo reversible [kJ/kg] (productos y reactantes a $25\,^\circ$C); **(13)** ecuación de combustión para los datos del problema; **(14)** calor transferido; **(15)** cambio de entropía; **(16)** irreversibilidad [kJ/kg].
 
 ## Estrategia
 
@@ -27,9 +26,7 @@ aliases:
 ## (13) Ecuación de combustión
 
 > [!solucion]
-> **Estequiométrica:** $\mathrm{C_4H_{10}}+a(\mathrm{O_2}+3{,}76\,\mathrm{N_2})\to4\,\mathrm{CO_2}+5\,\mathrm{H_2O}+3{,}76a\,\mathrm{N_2}$. Balance de O: $2a=8+5\Rightarrow a=6{,}5$.
-> **$200\%$ de aire teórico:** $\mathrm{O_2}=2(6{,}5)=13$, $\mathrm{N_2}=13(3{,}76)=48{,}88$; sobra $\mathrm{O_2}=6{,}5$.
-> **Humedad del aire** ($\phi=75\%$ a $25\,^\circ$C, $P_{sat}=3{,}169$ kPa): $P_v=0{,}75(3{,}169)=2{,}377$ kPa. Moles de agua por mol de aire seco:
+> **Estequiométrica:** $\mathrm{C_4H_{10}}+a(\mathrm{O_2}+3{,}76\,\mathrm{N_2})\to4\,\mathrm{CO_2}+5\,\mathrm{H_2O}+3{,}76a\,\mathrm{N_2}$. Balance de O: $2a=8+5\Rightarrow a=6{,}5$. **$200\%$ de aire teórico:** $\mathrm{O_2}=2(6{,}5)=13$, $\mathrm{N_2}=13(3{,}76)=48{,}88$; sobra $\mathrm{O_2}=6{,}5$. **Humedad del aire** ($\phi=75\%$ a $25\,^\circ$C, $P_{sat}=3{,}169$ kPa): $P_v=0{,}75(3{,}169)=2{,}377$ kPa. Moles de agua por mol de aire seco:
 > $$\frac{N_w}{N_{aire}}=\frac{P_v}{P-P_v}=\frac{2{,}377}{97{,}62}=0{,}02435.$$
 > Aire seco total $=13+48{,}88=61{,}88$ mol $\Rightarrow N_w=0{,}02435(61{,}88)=1{,}507$ mol. Ecuación:
 > $$\boxed{\mathrm{C_4H_{10}}+13\,\mathrm{O_2}+48{,}88\,\mathrm{N_2}+1{,}507\,\mathrm{H_2O}\to4\,\mathrm{CO_2}+6{,}507\,\mathrm{H_2O}+6{,}5\,\mathrm{O_2}+48{,}88\,\mathrm{N_2}}$$

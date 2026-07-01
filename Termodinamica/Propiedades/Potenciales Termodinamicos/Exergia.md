@@ -81,8 +81,7 @@ aliases:
 > Entonces:
 > $$W_{\rm útil} = -\Delta B - T_0\,S_{\rm gen}.$$
 >
-> **Paso 5 — Definir destrucción de exergía y enunciar el teorema.**
-> Exergía destruida: $\Phi \equiv T_0\,S_{\rm gen} \ge 0$. En proceso reversible ($S_{\rm gen} = 0$): $W_{\rm útil,\,máx} = -\Delta B$. En proceso real:
+> **Paso 5 — Definir destrucción de exergía y enunciar el teorema.** Exergía destruida: $\Phi \equiv T_0\,S_{\rm gen} \ge 0$. En proceso reversible ($S_{\rm gen} = 0$): $W_{\rm útil,\,máx} = -\Delta B$. En proceso real:
 > $$W_{\rm útil} = -\Delta B - \Phi = -\Delta B - T_0\,S_{\rm gen}.$$
 > $$\boxed{\Phi = T_0\,S_{\rm gen}.}$$
 > Esta es la ecuación de **Gouy-Stodola**: la exergía destruida es la temperatura del entorno multiplicada por la entropía generada. Para minimizar pérdidas, hay que minimizar $S_{\rm gen}$. $\blacksquare$

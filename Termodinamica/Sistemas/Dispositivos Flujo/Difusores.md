@@ -75,8 +75,7 @@ aliases:
 >
 > **Paso 4 — Temperatura real de salida.** La temperatura de parada real $T_2=T_{0s}=251.5\,\mathrm{K}$ (la energía se conserva; la temperatura de salida no depende de $\eta_d$ cuando $C_2=0$). La presión real sí depende de $\eta_d$.
 >
-> **Paso 5 — Presión real de salida.** $h_{2s}-h_1 = \eta_d\,c_p(T_2-T_1) = 0.88\times1.005\times28.5=25.2\,\mathrm{kJ/kg}$.
-> $T_{2s} = T_1 + (h_{2s}-h_1)/c_p = 223+25.1=248.1\,\mathrm{K}$.
+> **Paso 5 — Presión real de salida.** $h_{2s}-h_1 = \eta_d\,c_p(T_2-T_1) = 0.88\times1.005\times28.5=25.2\,\mathrm{kJ/kg}$. $T_{2s} = T_1 + (h_{2s}-h_1)/c_p = 223+25.1=248.1\,\mathrm{K}$.
 > $$P_2 = P_\infty\!\left(\frac{T_{2s}}{T_\infty}\right)^{3.5} = 26.5\times\!\left(\frac{248.1}{223}\right)^{3.5} = 26.5\times1.478 = 39.2\,\mathrm{kPa}.$$
 > Relación de recuperación de presión: $P_2/P_{0s}=39.2/40.4=0.970$. Se pierden 1.2 kPa respecto al difusor ideal.
 >

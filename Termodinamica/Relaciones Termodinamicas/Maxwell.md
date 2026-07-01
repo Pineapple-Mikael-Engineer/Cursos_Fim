@@ -118,11 +118,9 @@ aliases:
 > [!ejemplo]
 > **Gas ideal** ($Pv = RT$). Verificar la 3.ª y la 4.ª relación.
 >
-> **3.ª relación.** $(\partial s/\partial v)_T$: de $ds = c_v\,dT/T + R\,dv/v$ (ver [[TdS]]), a $T$ cte. → $(\partial s/\partial v)_T = R/v$.
-> Desde la EdE: $(\partial P/\partial T)_v = R/v$. Iguales. $\checkmark$
+> **3.ª relación.** $(\partial s/\partial v)_T$: de $ds = c_v\,dT/T + R\,dv/v$ (ver [[TdS]]), a $T$ cte. → $(\partial s/\partial v)_T = R/v$. Desde la EdE: $(\partial P/\partial T)_v = R/v$. Iguales. $\checkmark$
 >
-> **4.ª relación.** $(\partial s/\partial P)_T$: de $ds = c_p\,dT/T - R\,dP/P$, a $T$ cte. → $(\partial s/\partial P)_T = -R/P$.
-> Desde la EdE: $-(\partial v/\partial T)_P = -R/P$. Iguales. $\checkmark\;\blacksquare$
+> **4.ª relación.** $(\partial s/\partial P)_T$: de $ds = c_p\,dT/T - R\,dP/P$, a $T$ cte. → $(\partial s/\partial P)_T = -R/P$. Desde la EdE: $-(\partial v/\partial T)_P = -R/P$. Iguales. $\checkmark\;\blacksquare$
 
 > [!ejemplo]
 > **Gas de van der Waals** $(P + a/v^2)(v-b) = RT$.

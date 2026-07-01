@@ -55,20 +55,16 @@ aliases:
 > **Paso 1 — Primera ley del proceso isotérmico:**
 > $$\Delta U = Q - W \implies W = Q - \Delta U.$$
 >
-> **Paso 2 — Acotar el calor intercambiado con el reservorio.**
-> Por la segunda ley (desigualdad de Clausius): el calor que entra al sistema desde el reservorio a temperatura $T$ satisface:
+> **Paso 2 — Acotar el calor intercambiado con el reservorio.** Por la segunda ley (desigualdad de Clausius): el calor que entra al sistema desde el reservorio a temperatura $T$ satisface:
 > $$Q \le T\,\Delta S,$$
 > con igualdad para proceso reversible (todo el cambio de entropía del sistema viene del calor reversible).
 >
-> **Paso 3 — Acotar el trabajo.**
-> Sustituyendo la cota del paso 2 en la primera ley:
+> **Paso 3 — Acotar el trabajo.** Sustituyendo la cota del paso 2 en la primera ley:
 > $$W = Q - \Delta U \le T\,\Delta S - \Delta U = -\Delta(U - TS) = -\Delta F.$$
 >
-> **Paso 4 — El máximo se alcanza en el proceso reversible.**
-> La igualdad $W_{\rm máx} = -\Delta F$ se logra cuando $Q = T\,\Delta S$, es decir, cuando el proceso es internamente reversible e isotérmico. En ese caso, el sistema puede intercambiar calor con el reservorio de forma cuasiestática sin generar entropía.
+> **Paso 4 — El máximo se alcanza en el proceso reversible.** La igualdad $W_{\rm máx} = -\Delta F$ se logra cuando $Q = T\,\Delta S$, es decir, cuando el proceso es internamente reversible e isotérmico. En ese caso, el sistema puede intercambiar calor con el reservorio de forma cuasiestática sin generar entropía.
 >
-> **Paso 5 — Verificación para proceso en que $W = 0$.**
-> Si no se realiza trabajo ($W = 0$) y el proceso ocurre a $T, V$ constantes, la primera ley da $\Delta U = Q$ y la segunda $Q \le T\,\Delta S$, luego:
+> **Paso 5 — Verificación para proceso en que $W = 0$.** Si no se realiza trabajo ($W = 0$) y el proceso ocurre a $T, V$ constantes, la primera ley da $\Delta U = Q$ y la segunda $Q \le T\,\Delta S$, luego:
 > $$\Delta F = \Delta U - T\,\Delta S = Q - T\,\Delta S \le 0.$$
 > El equilibrio se alcanza cuando $\Delta F = 0$ (mínimo de $F$ a $T, V$ constantes). $\blacksquare$
 
@@ -124,8 +120,7 @@ aliases:
 > $$Q_{\rm rev} = T\,\Delta S = 298 \times (-10) = -2{,}980\,\text{J/mol}.$$
 > En el proceso reversible, la batería cede 2.98 kJ/mol al entorno (enfriamiento leve). En operación real con corriente alta, se generan pérdidas óhmicas que $\Delta F$ no incluye y se disipa más calor.
 >
-> **Paso 4 — Comparar con la energía interna:**
-> $-\Delta U = 200\,\text{kJ/mol}$, pero $W_{\rm máx} = 197\,\text{kJ/mol} < -\Delta U$: el sistema extrae **menos** trabajo que su disminución de energía interna. La razón es que la reacción reduce la entropía ($\Delta S < 0$), de modo que el sistema debe ceder $|T\,\Delta S| = 2.98\,\text{kJ/mol}$ como calor al reservorio ($Q_{\rm rev} = T\,\Delta S < 0$, Paso 3) en lugar de convertirlo en trabajo. En efecto $W_{\rm máx} = -\Delta U + T\,\Delta S = 200 - 2.98 \approx 197\,\text{kJ/mol}$, consistente con el calor cedido del Paso 3. $\blacksquare$
+> **Paso 4 — Comparar con la energía interna:** $-\Delta U = 200\,\text{kJ/mol}$, pero $W_{\rm máx} = 197\,\text{kJ/mol} < -\Delta U$: el sistema extrae **menos** trabajo que su disminución de energía interna. La razón es que la reacción reduce la entropía ($\Delta S < 0$), de modo que el sistema debe ceder $|T\,\Delta S| = 2.98\,\text{kJ/mol}$ como calor al reservorio ($Q_{\rm rev} = T\,\Delta S < 0$, Paso 3) en lugar de convertirlo en trabajo. En efecto $W_{\rm máx} = -\Delta U + T\,\Delta S = 200 - 2.98 \approx 197\,\text{kJ/mol}$, consistente con el calor cedido del Paso 3. $\blacksquare$
 
 ---
 

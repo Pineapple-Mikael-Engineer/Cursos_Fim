@@ -39,30 +39,25 @@ aliases:
 >
 > **Hipótesis:** existe un motor de Carnot (ciclo reversible) operando entre un foco caliente a temperatura $T_H$ y un foco frío a temperatura $T_C$, absorbiendo calor $Q_H$ y cediendo $Q_C$.
 >
-> **Paso 1 — Resultado de Carnot: la eficiencia solo depende de las temperaturas.**
-> Carnot demostró que la eficiencia $\eta = 1 - Q_C/Q_H$ de un motor reversible no depende de la sustancia de trabajo — solo de $T_H$ y $T_C$. Por tanto, el cociente $Q_C/Q_H$ es una función universal:
+> **Paso 1 — Resultado de Carnot: la eficiencia solo depende de las temperaturas.** Carnot demostró que la eficiencia $\eta = 1 - Q_C/Q_H$ de un motor reversible no depende de la sustancia de trabajo — solo de $T_H$ y $T_C$. Por tanto, el cociente $Q_C/Q_H$ es una función universal:
 > $$\frac{Q_C}{Q_H} = f(T_H, T_C).$$
 > La prueba usa la segunda ley por contradicción: si existieran dos motores reversibles entre los mismos focos con distinta eficiencia, el motor menos eficiente podría operar como bomba de calor y la combinación produciría una transferencia neta de calor del foco frío al caliente sin trabajo externo, violando el enunciado de Clausius.
 >
-> **Paso 2 — Restricción funcional por cadena de motores.**
-> Se conectan tres motores reversibles en cascada entre focos a $T_A > T_B > T_C$:
+> **Paso 2 — Restricción funcional por cadena de motores.** Se conectan tres motores reversibles en cascada entre focos a $T_A > T_B > T_C$:
 > $$\frac{Q_C}{Q_A} = \frac{Q_C}{Q_B} \cdot \frac{Q_B}{Q_A} \implies f(T_A, T_C) = f(T_A, T_B)\cdot f(T_B, T_C).$$
 > Esta ecuación funcional restringe la forma posible de $f$. La familia de soluciones es:
 > $$f(T_H, T_C) = \frac{\varphi(T_C)}{\varphi(T_H)}$$
 > para cualquier función positiva $\varphi$.
 >
-> **Paso 3 — Definición de la escala de Kelvin.**
-> Kelvin eligió $\varphi(T) = T$ (la opción más simple y consistente), lo que define la **escala termodinámica**:
+> **Paso 3 — Definición de la escala de Kelvin.** Kelvin eligió $\varphi(T) = T$ (la opción más simple y consistente), lo que define la **escala termodinámica**:
 > $$\boxed{\frac{Q_C}{Q_H} = \frac{T_C}{T_H}} \qquad \text{(motor de Carnot reversible).}$$
 > Esta elección no es arbitraria en el sentido de que cualquier otra función $\varphi$ produce una escala equivalente; la escala de Kelvin se distingue por la proporcionalidad lineal $Q \propto T$.
 >
-> **Paso 4 — Punto de referencia: el punto triple del agua.**
-> La escala requiere fijar la unidad. La Conferencia Internacional de Pesos y Medidas (1954) estableció:
+> **Paso 4 — Punto de referencia: el punto triple del agua.** La escala requiere fijar la unidad. La Conferencia Internacional de Pesos y Medidas (1954) estableció:
 > $$T_{\text{triple, agua}} = 273.16\,\text{K} \quad \text{(exacto por definición).}$$
 > Operativamente: $T = 273.16\,(Q/Q_{\text{triple}})$ donde $Q$ y $Q_{\text{triple}}$ son calores intercambiados por un motor de Carnot reversible con el foco de interés y con el foco a la temperatura del punto triple, respectivamente.
 >
-> **Paso 5 — Coincidencia con el termómetro de gas ideal.**
-> Se puede demostrar que la escala termodinámica de Kelvin coincide con la del termómetro de gas ideal:
+> **Paso 5 — Coincidencia con el termómetro de gas ideal.** Se puede demostrar que la escala termodinámica de Kelvin coincide con la del termómetro de gas ideal:
 > $$T = \lim_{P \to 0} \frac{P v}{R},$$
 > donde $R = 8.314\,\text{J/(mol·K)}$ es la constante universal de los gases. Ambas escalas son idénticas por construcción: el gas ideal fue el patrón de temperatura primario antes de 1954. $\blacksquare$
 

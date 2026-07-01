@@ -139,36 +139,21 @@ aliases:
 > $P=101.325\,\mathrm{kPa}$. Determinar: (a) estados en los puntos clave; (b) $\dot{Q}_{\rm enfr}$; (c) $\dot{m}_{\rm cond}$; (d) $\dot{Q}_{\rm calef}$.
 
 > [!solucion]
-> **Tablas de saturación:**
-> $P_{\rm sat}(35) = 5.629\,\mathrm{kPa}$; $P_{\rm sat}(22) = 2.645\,\mathrm{kPa}$; $P_{\rm sat}(11.1) = 1.321\,\mathrm{kPa}$.
+> **Tablas de saturación:** $P_{\rm sat}(35) = 5.629\,\mathrm{kPa}$; $P_{\rm sat}(22) = 2.645\,\mathrm{kPa}$; $P_{\rm sat}(11.1) = 1.321\,\mathrm{kPa}$.
 >
-> **Estado 4 (condición de entrega):** $T_4=22\,°\mathrm{C}$, $\phi_4=50\%$.
-> $P_{v,4} = 0.50\times2.645 = 1.3225\,\mathrm{kPa}$.
-> $\omega_4 = 0.622\times1.3225/(101.325-1.3225) = 0.008222\,\mathrm{kg/kg}$.
-> $h_4 = (1.005+1.86\times0.008222)\times22+2501\times0.008222 = 1.0203\times22+20.56 = 43.0\,\mathrm{kJ/kg}$.
+> **Estado 4 (condición de entrega):** $T_4=22\,°\mathrm{C}$, $\phi_4=50\%$. $P_{v,4} = 0.50\times2.645 = 1.3225\,\mathrm{kPa}$. $\omega_4 = 0.622\times1.3225/(101.325-1.3225) = 0.008222\,\mathrm{kg/kg}$. $h_4 = (1.005+1.86\times0.008222)\times22+2501\times0.008222 = 1.0203\times22+20.56 = 43.0\,\mathrm{kJ/kg}$.
 >
-> **Estado 2 (fin de etapa A = inicio de etapa B).** La etapa B es calentamiento sensible: $\omega_2 = \omega_4 = 0.008222\,\mathrm{kg/kg}$. El estado 2 está en $\phi_2=100\%$ con ese $\omega$:
-> $P_{v,2} = 0.008222\times101.325/(0.622+0.008222) = 1.321\,\mathrm{kPa}$.
-> $T_2 = T_{\rm sat}(1.321\,\mathrm{kPa}) \approx 11.1\,°\mathrm{C}$.
-> $h_2 = (1.005+1.86\times0.008222)\times11.1+2501\times0.008222 = 1.0203\times11.1+20.56 = 11.33+20.56 = 31.9\,\mathrm{kJ/kg}$.
-> $h_f(11.1\,°\mathrm{C}) \approx 46.6\,\mathrm{kJ/kg}$.
+> **Estado 2 (fin de etapa A = inicio de etapa B).** La etapa B es calentamiento sensible: $\omega_2 = \omega_4 = 0.008222\,\mathrm{kg/kg}$. El estado 2 está en $\phi_2=100\%$ con ese $\omega$: $P_{v,2} = 0.008222\times101.325/(0.622+0.008222) = 1.321\,\mathrm{kPa}$. $T_2 = T_{\rm sat}(1.321\,\mathrm{kPa}) \approx 11.1\,°\mathrm{C}$. $h_2 = (1.005+1.86\times0.008222)\times11.1+2501\times0.008222 = 1.0203\times11.1+20.56 = 11.33+20.56 = 31.9\,\mathrm{kJ/kg}$. $h_f(11.1\,°\mathrm{C}) \approx 46.6\,\mathrm{kJ/kg}$.
 >
-> **Estado 1 (entrada):** $T_1=35\,°\mathrm{C}$, $\phi_1=80\%$.
-> $P_{v,1} = 0.80\times5.629 = 4.503\,\mathrm{kPa}$.
-> $\omega_1 = 0.622\times4.503/(101.325-4.503) = 0.02893\,\mathrm{kg/kg}$.
-> $h_1 = (1.005+1.86\times0.02893)\times35+2501\times0.02893 = 1.0588\times35+72.36 = 37.06+72.36 = 109.4\,\mathrm{kJ/kg}$.
+> **Estado 1 (entrada):** $T_1=35\,°\mathrm{C}$, $\phi_1=80\%$. $P_{v,1} = 0.80\times5.629 = 4.503\,\mathrm{kPa}$. $\omega_1 = 0.622\times4.503/(101.325-4.503) = 0.02893\,\mathrm{kg/kg}$. $h_1 = (1.005+1.86\times0.02893)\times35+2501\times0.02893 = 1.0588\times35+72.36 = 37.06+72.36 = 109.4\,\mathrm{kJ/kg}$.
 >
-> **(b) Calor de enfriamiento (etapa A):**
-> $\dot{m}_{\rm cond} = \dot{m}_a(\omega_1-\omega_2) = 2\times(0.02893-0.008222) = 2\times0.02071 = 0.04142\,\mathrm{kg/s}$.
+> **(b) Calor de enfriamiento (etapa A):** $\dot{m}_{\rm cond} = \dot{m}_a(\omega_1-\omega_2) = 2\times(0.02893-0.008222) = 2\times0.02071 = 0.04142\,\mathrm{kg/s}$.
 >
-> $\dot{Q}_{\rm enfr} = \dot{m}_a[(h_2-h_1)-(\omega_1-\omega_2)\,h_f(T_2)]$.
-> $= 2\times[(31.9-109.4)-0.02071\times46.6] = 2\times[-77.5-0.965] = 2\times(-78.5) = -156.9\,\mathrm{kW}$.
+> $\dot{Q}_{\rm enfr} = \dot{m}_a[(h_2-h_1)-(\omega_1-\omega_2)\,h_f(T_2)]$. $= 2\times[(31.9-109.4)-0.02071\times46.6] = 2\times[-77.5-0.965] = 2\times(-78.5) = -156.9\,\mathrm{kW}$.
 >
-> **(c) Condensado:**
-> $\dot{m}_{\rm cond} = 0.04142\,\mathrm{kg/s} = 149.1\,\mathrm{kg/h}$.
+> **(c) Condensado:** $\dot{m}_{\rm cond} = 0.04142\,\mathrm{kg/s} = 149.1\,\mathrm{kg/h}$.
 >
-> **(d) Calor de calefacción (etapa B):**
-> $\dot{Q}_{\rm calef} = \dot{m}_a(h_4-h_2) = 2\times(43.0-31.9) = 2\times11.1 = 22.2\,\mathrm{kW}$.
+> **(d) Calor de calefacción (etapa B):** $\dot{Q}_{\rm calef} = \dot{m}_a(h_4-h_2) = 2\times(43.0-31.9) = 2\times11.1 = 22.2\,\mathrm{kW}$.
 >
 > $\boxed{\dot{Q}_{\rm enfr} = -156.5\,\mathrm{kW},\quad \dot{Q}_{\rm calef} = 22.2\,\mathrm{kW},\quad \dot{m}_{\rm cond} = 149\,\mathrm{kg/h}.}$ $\blacksquare$
 

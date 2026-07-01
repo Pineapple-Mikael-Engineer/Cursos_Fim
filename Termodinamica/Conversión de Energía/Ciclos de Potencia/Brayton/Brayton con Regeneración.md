@@ -126,16 +126,13 @@ aliases:
 > Determinar: (a) temperaturas en todos los estados; (b) $q_H$, $\eta_{\rm th}$; (c) comparar con Brayton simple a las mismas condiciones.
 
 > [!solucion]
-> **Paso 1 — Parámetro isentrópico:**
-> $t = r_P^{(\gamma-1)/\gamma} = 6^{0.2857} = 6^{4/14} = e^{(4/14)\ln6} = e^{0.2857 \times 1.7918} = e^{0.5119} = 1.668$.
+> **Paso 1 — Parámetro isentrópico:** $t = r_P^{(\gamma-1)/\gamma} = 6^{0.2857} = 6^{4/14} = e^{(4/14)\ln6} = e^{0.2857 \times 1.7918} = e^{0.5119} = 1.668$.
 >
-> **Estado 2** (compresor ideal):
-> $T_2 = T_1 \cdot t = 300 \times 1.668 = 500.4\,\mathrm{K}$.
+> **Estado 2** (compresor ideal): $T_2 = T_1 \cdot t = 300 \times 1.668 = 500.4\,\mathrm{K}$.
 >
 > $w_C = c_p(T_2-T_1) = 1.005 \times 200.4 = 201.4\,\mathrm{kJ/kg}$.
 >
-> **Estado 4** (turbina ideal):
-> $T_4 = T_3/t = 1200/1.668 = 719.4\,\mathrm{K}$.
+> **Estado 4** (turbina ideal): $T_4 = T_3/t = 1200/1.668 = 719.4\,\mathrm{K}$.
 >
 > $w_T = c_p(T_3-T_4) = 1.005 \times 480.6 = 483.0\,\mathrm{kJ/kg}$.
 >
@@ -143,11 +140,9 @@ aliases:
 >
 > **Verificación de condición de recuperación:** $T_4 = 719.4\,\mathrm{K} > T_2 = 500.4\,\mathrm{K}$ ✓.
 >
-> **Estado 5** (salida recuperador, lado frío, $\varepsilon = 0.75$):
-> $T_5 = T_2 + \varepsilon(T_4-T_2) = 500.4 + 0.75 \times (719.4-500.4) = 500.4 + 0.75 \times 219.0 = 500.4 + 164.3 = 664.7\,\mathrm{K}$.
+> **Estado 5** (salida recuperador, lado frío, $\varepsilon = 0.75$): $T_5 = T_2 + \varepsilon(T_4-T_2) = 500.4 + 0.75 \times (719.4-500.4) = 500.4 + 0.75 \times 219.0 = 500.4 + 164.3 = 664.7\,\mathrm{K}$.
 >
-> **Estado 6** (salida recuperador, lado caliente):
-> $T_6 = T_4 - (T_5-T_2) = 719.4 - 164.3 = 555.1\,\mathrm{K}$.
+> **Estado 6** (salida recuperador, lado caliente): $T_6 = T_4 - (T_5-T_2) = 719.4 - 164.3 = 555.1\,\mathrm{K}$.
 >
 > **(a) Temperaturas:** $T_1 = 300$, $T_2 = 500.4$, $T_5 = 664.7$, $T_3 = 1200$, $T_4 = 719.4$, $T_6 = 555.1$ (todas en K).
 >

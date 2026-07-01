@@ -107,31 +107,21 @@ aliases:
 > [!solucion]
 > **Propiedades del R-134a:**
 >
-> **Estado 1** — vapor saturado a $-5°\mathrm{C}$:
-> $h_1 = h_g(-5°\mathrm{C}) = 396.43\,\mathrm{kJ/kg}$, $s_1 = s_g(-5°\mathrm{C}) = 1.7281\,\mathrm{kJ/(kg\cdot K)}$.
+> **Estado 1** — vapor saturado a $-5°\mathrm{C}$: $h_1 = h_g(-5°\mathrm{C}) = 396.43\,\mathrm{kJ/kg}$, $s_1 = s_g(-5°\mathrm{C}) = 1.7281\,\mathrm{kJ/(kg\cdot K)}$.
 >
-> **Estado 3** — líquido saturado a $32°\mathrm{C}$:
-> $h_3 = h_f(32°\mathrm{C}) = 237.23\,\mathrm{kJ/kg}$.
-> $P_H = P_{\rm sat}(32°\mathrm{C}) = 770\,\mathrm{kPa}$ (aprox).
+> **Estado 3** — líquido saturado a $32°\mathrm{C}$: $h_3 = h_f(32°\mathrm{C}) = 237.23\,\mathrm{kJ/kg}$. $P_H = P_{\rm sat}(32°\mathrm{C}) = 770\,\mathrm{kPa}$ (aprox).
 >
 > **Estado 2** — compresor isentrópico ($s_2 = s_1 = 1.7281$, $P_2 = 770\,\mathrm{kPa}$):
 >
-> A $770\,\mathrm{kPa}$, interpolando en vapor sobrecalentado de R-134a:
-> A $40°\mathrm{C}$: $s \approx 1.7148$, $h \approx 420.25\,\mathrm{kJ/kg}$.
-> A $50°\mathrm{C}$: $s \approx 1.7461$, $h \approx 431.10\,\mathrm{kJ/kg}$.
+> A $770\,\mathrm{kPa}$, interpolando en vapor sobrecalentado de R-134a: A $40°\mathrm{C}$: $s \approx 1.7148$, $h \approx 420.25\,\mathrm{kJ/kg}$. A $50°\mathrm{C}$: $s \approx 1.7461$, $h \approx 431.10\,\mathrm{kJ/kg}$.
 >
-> Interpolando para $s_2 = 1.7281$:
-> $T_2 \approx 40 + (1.7281-1.7148)/(1.7461-1.7148)\times10 = 40 + 0.425\times10 = 44.25°\mathrm{C}$.
-> $h_2 \approx 420.25 + 0.425\times(431.10-420.25) = 420.25 + 4.61 = 424.86\,\mathrm{kJ/kg}$.
+> Interpolando para $s_2 = 1.7281$: $T_2 \approx 40 + (1.7281-1.7148)/(1.7461-1.7148)\times10 = 40 + 0.425\times10 = 44.25°\mathrm{C}$. $h_2 \approx 420.25 + 0.425\times(431.10-420.25) = 420.25 + 4.61 = 424.86\,\mathrm{kJ/kg}$.
 >
-> **Trabajo del compresor:**
-> $w_C = h_2 - h_1 = 424.86 - 396.43 = 28.43\,\mathrm{kJ/kg}$.
+> **Trabajo del compresor:** $w_C = h_2 - h_1 = 424.86 - 396.43 = 28.43\,\mathrm{kJ/kg}$.
 >
-> **Calor cedido en condensador:**
-> $q_H = h_2 - h_3 = 424.86 - 237.23 = 187.63\,\mathrm{kJ/kg}$.
+> **Calor cedido en condensador:** $q_H = h_2 - h_3 = 424.86 - 237.23 = 187.63\,\mathrm{kJ/kg}$.
 >
-> **Calor absorbido del exterior:**
-> $q_L = h_1 - h_4 = h_1 - h_3 = 396.43 - 237.23 = 159.20\,\mathrm{kJ/kg}$.
+> **Calor absorbido del exterior:** $q_L = h_1 - h_4 = h_1 - h_3 = 396.43 - 237.23 = 159.20\,\mathrm{kJ/kg}$.
 >
 > **(a) COP de la bomba de calor:**
 > $$\text{COP}_{HP} = \frac{q_H}{w_C} = \frac{187.63}{28.43} = 6.60.$$

@@ -19,15 +19,13 @@ aliases: [ciclo combinado Brayton Rankine, planta combinada 45 MW]
 ![[brayton_diagrama_Ts.svg|300]]
 
 > [!solucion] Estados del gas ($c_p=1{,}005$, $k=1{,}4$)
-> Compresor: $T_{2s}=300\,(12)^{0{,}2857}=610{,}2$ K; real $T_2=300+\dfrac{310{,}2}{0{,}84}=669{,}3$ K.
-> Turbina: $T_{4s}=1400\,(1/12)^{0{,}2857}=688{,}2$ K; real $T_4=1400-0{,}88(711{,}8)=773{,}6$ K.
+> Compresor: $T_{2s}=300\,(12)^{0{,}2857}=610{,}2$ K; real $T_2=300+\dfrac{310{,}2}{0{,}84}=669{,}3$ K. Turbina: $T_{4s}=1400\,(1/12)^{0{,}2857}=688{,}2$ K; real $T_4=1400-0{,}88(711{,}8)=773{,}6$ K.
 
 > [!solucion] Estados del vapor
 > $7$ ($8$ MPa, $400\,^\circ$C): $h_7=3139{,}4$, $s_7=6{,}366$. Turbina a $8$ kPa: $x_{8s}=0{,}756$, $h_{8s}=1991$, real $h_8=3139{,}4-0{,}9(1148{,}8)=2105{,}5$. Bomba: $h_6=173{,}9+\dfrac{v\Delta P}{\eta_B}=173{,}9+10{,}1=184{,}0$.
 
 > [!solucion] Acoplamiento y flujos
-> HRSG: $\dfrac{\dot m_v}{\dot m_g}=\dfrac{c_p(T_4-T_5)}{h_7-h_6}=\dfrac{1{,}005(373{,}6)}{2955{,}4}=0{,}127$.
-> Trabajos específicos: $w_g=c_p[(T_3-T_4)-(T_2-T_1)]=258{,}3$ kJ/kg-gas; $w_v=(h_7-h_8)-w_B=1023{,}8$ kJ/kg-vapor.
+> HRSG: $\dfrac{\dot m_v}{\dot m_g}=\dfrac{c_p(T_4-T_5)}{h_7-h_6}=\dfrac{1{,}005(373{,}6)}{2955{,}4}=0{,}127$. Trabajos específicos: $w_g=c_p[(T_3-T_4)-(T_2-T_1)]=258{,}3$ kJ/kg-gas; $w_v=(h_7-h_8)-w_B=1023{,}8$ kJ/kg-vapor.
 > $$\dot m_g=\frac{45\,000}{w_g+0{,}127\,w_v}=\frac{45\,000}{388{,}4}=\boxed{115{,}9\ \text{kg/s}},\quad \dot m_v=0{,}127(115{,}9)=\boxed{14{,}7\ \text{kg/s}}.$$
 
 > [!solucion] (a) Eficiencia y (c) trabajos

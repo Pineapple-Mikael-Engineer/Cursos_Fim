@@ -32,7 +32,7 @@ aliases:
 > [!teoria]
 > La elección del modelo depende de una sola pregunta: **¿cruza masa la frontera?**
 >
-> | | Sistema cerrado (SC) | [[Volumenes de Control | Volumen de control (VC)]] |
+> | | Sistema cerrado (SC) | [[Volumenes de Control \| Volumen de control (VC)]] |
 > |:---|:---|:---|
 > | Masa | Fija ($m=\text{cte}$) | Variable; entra/sale por corrientes |
 > | Frontera | Sigue a la misma masa | Fija en el espacio (superficie de control) |

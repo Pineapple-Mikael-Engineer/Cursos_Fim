@@ -105,8 +105,7 @@ aliases:
 > **Paso 2 — Proceso de estrangulamiento.** El proceso es isoentálpico:
 > $$h_4 = h_3 = 95.47\,\mathrm{kJ/kg}.$$
 >
-> **Paso 3 — Estado 4: mezcla bifásica a $140\,\mathrm{kPa}$.** De tablas a $140\,\mathrm{kPa}$:
-> $T_{\rm sat}=-18.8\,°\mathrm{C}$; $h_f=27.06\,\mathrm{kJ/kg}$; $h_{fg}=209.48\,\mathrm{kJ/kg}$.
+> **Paso 3 — Estado 4: mezcla bifásica a $140\,\mathrm{kPa}$.** De tablas a $140\,\mathrm{kPa}$: $T_{\rm sat}=-18.8\,°\mathrm{C}$; $h_f=27.06\,\mathrm{kJ/kg}$; $h_{fg}=209.48\,\mathrm{kJ/kg}$.
 > $$x_4 = \frac{h_4-h_f}{h_{fg}} = \frac{95.47-27.06}{209.48} = \frac{68.41}{209.48} = 0.327.$$
 >
 > **Paso 4 — Estado 1: vapor saturado a $140\,\mathrm{kPa}$.**

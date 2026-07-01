@@ -80,8 +80,7 @@ aliases:
 > **Paso 1 — Estado de entrada (tablas de vapor sobrecalentado).** A $P_1=1\,\mathrm{MPa}$, $T_1=300\,°\mathrm{C}$:
 > $$h_1 = 3051.2\,\mathrm{kJ/kg}, \quad s_1 = 7.1229\,\mathrm{kJ/(kg\cdot K)}.$$
 >
-> **Paso 2 — Estado isentrópico de salida.** A $P_2=200\,\mathrm{kPa}$, $s_{2s}=s_1=7.1229\,\mathrm{kJ/(kg\cdot K)}$.
-> De tablas de vapor sobrecalentado a $200\,\mathrm{kPa}$, $s=7.1229$ está entre $150\,°\mathrm{C}$ ($s=7.0792$) y $200\,°\mathrm{C}$ ($s=7.5074$). Interpolando:
+> **Paso 2 — Estado isentrópico de salida.** A $P_2=200\,\mathrm{kPa}$, $s_{2s}=s_1=7.1229\,\mathrm{kJ/(kg\cdot K)}$. De tablas de vapor sobrecalentado a $200\,\mathrm{kPa}$, $s=7.1229$ está entre $150\,°\mathrm{C}$ ($s=7.0792$) y $200\,°\mathrm{C}$ ($s=7.5074$). Interpolando:
 > $$T_{2s} = 150 + \frac{7.1229-7.0792}{7.5074-7.0792}\times50 = 150+5.1=155.1\,°\mathrm{C}.$$
 > $$h_{2s} = 2769.1 + \frac{7.1229-7.0792}{7.5074-7.0792}\times(2870.5-2769.1)=2769.1+10.3=2779.4\,\mathrm{kJ/kg}.$$
 >
@@ -92,10 +91,7 @@ aliases:
 > **Paso 4 — Velocidad real de salida.**
 > $$C_2 = C_{2s}\sqrt{\eta_{\rm tob}} = 737.6\times\sqrt{0.95} = 737.6\times0.9747 = 718.9\,\mathrm{m/s}.$$
 >
-> **Paso 5 — Entalpía y temperatura real de salida.**
-> EC real $= C_2^2/2 = 718.9^2/2\times10^{-3} = 258.4\,\mathrm{kJ/kg}$.
-> $h_2 = h_1 + C_1^2/2\times10^{-3} - C_2^2/2\times10^{-3} = 3051.2+0.2-258.4 = 2793.0\,\mathrm{kJ/kg}$.
-> A $P_2=200\,\mathrm{kPa}$, interpolando: $T_2 \approx 162\,°\mathrm{C}$.
+> **Paso 5 — Entalpía y temperatura real de salida.** EC real $= C_2^2/2 = 718.9^2/2\times10^{-3} = 258.4\,\mathrm{kJ/kg}$. $h_2 = h_1 + C_1^2/2\times10^{-3} - C_2^2/2\times10^{-3} = 3051.2+0.2-258.4 = 2793.0\,\mathrm{kJ/kg}$. A $P_2=200\,\mathrm{kPa}$, interpolando: $T_2 \approx 162\,°\mathrm{C}$.
 >
 > $\boxed{C_2 = 718.9\,\mathrm{m/s},\quad T_2 \approx 162\,°\mathrm{C}.}$ $\blacksquare$
 

@@ -93,8 +93,7 @@ aliases:
 >
 > **Paso 1 — Verificar que $T_1 < T_{\rm inv}^+$.** Para $\mathrm{N_2}$, $T_{\rm inv}^+ \approx 621\,\mathrm{K}$ (experimental). Como $200\,\mathrm{K} < 621\,\mathrm{K}$, el nitrógeno está dentro de la curva de inversión a estas condiciones: $\mu_{JT} > 0$ y el gas **se enfría** al expandirse.
 >
-> **Paso 2 — Estimar $\mu_{JT}$ a esas condiciones.** De tablas criogénicas para $\mathrm{N_2}$ a $200\,\mathrm{K}$ y $10\,\mathrm{MPa}$:
-> $v \approx 6.0\times10^{-3}\,\mathrm{m^3/kg}$, $\alpha \approx 5.5\times10^{-3}\,\mathrm{K^{-1}}$, $c_p \approx 1.12\,\mathrm{kJ/(kg\cdot K)}$.
+> **Paso 2 — Estimar $\mu_{JT}$ a esas condiciones.** De tablas criogénicas para $\mathrm{N_2}$ a $200\,\mathrm{K}$ y $10\,\mathrm{MPa}$: $v \approx 6.0\times10^{-3}\,\mathrm{m^3/kg}$, $\alpha \approx 5.5\times10^{-3}\,\mathrm{K^{-1}}$, $c_p \approx 1.12\,\mathrm{kJ/(kg\cdot K)}$.
 > $$\mu_{JT} = \frac{v(T\alpha-1)}{c_p} = \frac{6.0\times10^{-3}(200\times5.5\times10^{-3}-1)}{1120} = \frac{6.0\times10^{-3}\times0.10}{1120} = 5.4\times10^{-7}\,\mathrm{K/Pa}.$$
 >
 > **Paso 3 — Estimación lineal de $\Delta T$:**

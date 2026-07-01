@@ -30,26 +30,22 @@ aliases:
 > donde $h_{\beta\alpha}=h_\beta - h_\alpha$ es la entalpía de transición y $v_{\beta\alpha}=v_\beta-v_\alpha$ es el cambio de volumen específico.
 
 > [!demostracion]
-> **Paso 1 — Condición de equilibrio de fases.**
-> Dos fases coexisten en equilibrio mecánico ($P_\alpha=P_\beta\equiv P$) y térmico ($T_\alpha=T_\beta\equiv T$) si y solo si sus potenciales de Gibbs específicos son iguales:
+> **Paso 1 — Condición de equilibrio de fases.** Dos fases coexisten en equilibrio mecánico ($P_\alpha=P_\beta\equiv P$) y térmico ($T_\alpha=T_\beta\equiv T$) si y solo si sus potenciales de Gibbs específicos son iguales:
 > $$g_\alpha(T,P)=g_\beta(T,P).$$
 > Esta es la condición de equilibrio químico para una sustancia pura (corolario de la igualdad de potenciales químicos).
 >
-> **Paso 2 — Diferenciación a lo largo de la curva de coexistencia.**
-> Sobre la curva, $g_\alpha=g_\beta$ para todo $(T,P)$ que satisfaga la relación de coexistencia $P=P_{\rm sat}(T)$. Diferenciando ambos lados:
+> **Paso 2 — Diferenciación a lo largo de la curva de coexistencia.** Sobre la curva, $g_\alpha=g_\beta$ para todo $(T,P)$ que satisfaga la relación de coexistencia $P=P_{\rm sat}(T)$. Diferenciando ambos lados:
 > $$dg_\alpha = dg_\beta.$$
 > Usando la identidad de Gibbs-Duhem para cada fase (a composición constante de sustancia pura):
 > $$dg = -s\,dT + v\,dP,$$
 > se obtiene:
 > $$-s_\alpha\,dT + v_\alpha\,dP = -s_\beta\,dT + v_\beta\,dP.$$
 >
-> **Paso 3 — Despejar $dP/dT$.**
-> Reagrupando:
+> **Paso 3 — Despejar $dP/dT$.** Reagrupando:
 > $$(v_\beta - v_\alpha)\,dP = (s_\beta - s_\alpha)\,dT$$
 > $$\frac{dP}{dT} = \frac{s_{\beta\alpha}}{v_{\beta\alpha}}.$$
 >
-> **Paso 4 — Expresar en términos de entalpía.**
-> La transición de fase ocurre a temperatura $T$ constante. Para un proceso isotérmico reversible entre dos estados de equilibrio:
+> **Paso 4 — Expresar en términos de entalpía.** La transición de fase ocurre a temperatura $T$ constante. Para un proceso isotérmico reversible entre dos estados de equilibrio:
 > $$\Delta g = 0 \implies h_{\beta\alpha} = T\,s_{\beta\alpha} \implies s_{\beta\alpha} = \frac{h_{\beta\alpha}}{T}.$$
 > Sustituyendo:
 > $$\frac{dP}{dT} = \frac{h_{\beta\alpha}}{T\,v_{\beta\alpha}}. \qquad \blacksquare$$

@@ -52,17 +52,14 @@ aliases:
 > $$\dot{S}_{\rm gen} = \dot{m}(s_2 - s_1) - \sum_k \frac{\dot{Q}_k}{T_k} \ge 0$$
 > $$\implies \sum_k \frac{\dot{Q}_k}{T_k} = \dot{m}(s_2 - s_1) - \dot{S}_{\rm gen}.$$
 >
-> **Paso 3 — Multiplicar la ecuación de entropía por $T_0$ y sumar a la de energía.**
-> El objetivo es eliminar $\dot{Q}$ y encontrar el balance en términos de exergía. Multiplico el balance de entropía por $(-T_0)$:
+> **Paso 3 — Multiplicar la ecuación de entropía por $T_0$ y sumar a la de energía.** El objetivo es eliminar $\dot{Q}$ y encontrar el balance en términos de exergía. Multiplico el balance de entropía por $(-T_0)$:
 > $$-T_0\sum_k\frac{\dot{Q}_k}{T_k} = -\dot{m}\,T_0(s_2 - s_1) + T_0\dot{S}_{\rm gen}.$$
 > Sumo al balance de energía:
 > $$\dot{Q} - T_0\sum_k\frac{\dot{Q}_k}{T_k} - \dot{W} = \dot{m}[(h_2 - h_1) - T_0(s_2 - s_1)] + T_0\dot{S}_{\rm gen}.$$
 >
-> **Paso 4 — Identificar los factores de Carnot y la exergía de calor.**
-> El lado izquierdo: $\dot{Q} - T_0\sum_k \dot{Q}_k/T_k = \sum_k(1 - T_0/T_k)\dot{Q}_k$ (exergía del calor). El lado derecho contiene $\dot{m}[(h_1 - h_0) - T_0(s_1 - s_0)] - \dot{m}[(h_2 - h_0) - T_0(s_2 - s_0)] = \dot{m}(\psi_1 - \psi_2)$.
+> **Paso 4 — Identificar los factores de Carnot y la exergía de calor.** El lado izquierdo: $\dot{Q} - T_0\sum_k \dot{Q}_k/T_k = \sum_k(1 - T_0/T_k)\dot{Q}_k$ (exergía del calor). El lado derecho contiene $\dot{m}[(h_1 - h_0) - T_0(s_1 - s_0)] - \dot{m}[(h_2 - h_0) - T_0(s_2 - s_0)] = \dot{m}(\psi_1 - \psi_2)$.
 >
-> **Paso 5 — Reescribir como balance de exergía.**
-> Despejando $\dot{W}$:
+> **Paso 5 — Reescribir como balance de exergía.** Despejando $\dot{W}$:
 > $$\dot{W} = \dot{m}(\psi_1 - \psi_2) + \sum_k\!\left(1 - \frac{T_0}{T_k}\right)\dot{Q}_k - T_0\dot{S}_{\rm gen}.$$
 > Identificando $\dot{B}_{\rm dest} = T_0\dot{S}_{\rm gen} \ge 0$ (Gouy-Stodola):
 > $$\dot{W}_{\rm útil} = \dot{m}(\psi_1 - \psi_2) + \sum_k\!\left(1 - \frac{T_0}{T_k}\right)\dot{Q}_k - \dot{B}_{\rm dest}. \qquad \blacksquare$$

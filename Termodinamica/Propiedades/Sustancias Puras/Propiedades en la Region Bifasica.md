@@ -31,17 +31,14 @@ aliases:
 > Equivalentemente: $y = (1-x)\,y_f + x\,y_g$.
 
 > [!demostracion]
-> **Paso 1 — Balance de masa.**
-> El sistema total de masa $m$ consiste en una fase líquida de masa $m_f$ y una gaseosa $m_g$:
+> **Paso 1 — Balance de masa.** El sistema total de masa $m$ consiste en una fase líquida de masa $m_f$ y una gaseosa $m_g$:
 > $$m = m_f + m_g.$$
 > Por definición de calidad: $m_g = xm$, $m_f = (1-x)m$.
 >
-> **Paso 2 — Propiedad total.**
-> Sea $Y$ la propiedad extensiva total (volumen $V$, energía interna $U$, entalpía $H$, entropía $S$). Por aditividad de las propiedades extensivas sobre las fases:
+> **Paso 2 — Propiedad total.** Sea $Y$ la propiedad extensiva total (volumen $V$, energía interna $U$, entalpía $H$, entropía $S$). Por aditividad de las propiedades extensivas sobre las fases:
 > $$Y = m_f\,y_f + m_g\,y_g = (1-x)m\,y_f + xm\,y_g.$$
 >
-> **Paso 3 — Propiedad específica.**
-> Dividiendo por $m$:
+> **Paso 3 — Propiedad específica.** Dividiendo por $m$:
 > $$y = \frac{Y}{m} = (1-x)\,y_f + x\,y_g = y_f + x(y_g-y_f) = y_f + x\,y_{fg}. \qquad \blacksquare$$
 
 Las cuatro relaciones explícitas de uso inmediato:
@@ -98,18 +95,10 @@ La elección depende de qué dato es conocido: si se conoce $T$, usar Tabla A-4;
 ## Ejemplo complejo: sistema pistón-cilindro con mezcla bifásica
 
 > [!ejemplo]
-> Un cilindro con émbolo de peso fijo contiene $m=2\,\mathrm{kg}$ de agua a $T_1=120\,°\mathrm{C}$ con calidad $x_1=0.40$. Se calienta a presión constante hasta que el 80% de la masa se ha evaporado ($x_2=0.80$). Determinar:
-> (a) El estado inicial: $P_1$, $v_1$, $u_1$, $h_1$, $s_1$.
-> (b) El estado final: $T_2$, $v_2$, $u_2$, $h_2$, $s_2$.
-> (c) El calor transferido $Q$ y el trabajo de frontera $W$.
-> (d) La variación de entropía del sistema y verificar con la segunda ley.
+> Un cilindro con émbolo de peso fijo contiene $m=2\,\mathrm{kg}$ de agua a $T_1=120\,°\mathrm{C}$ con calidad $x_1=0.40$. Se calienta a presión constante hasta que el 80% de la masa se ha evaporado ($x_2=0.80$). Determinar: (a) El estado inicial: $P_1$, $v_1$, $u_1$, $h_1$, $s_1$. (b) El estado final: $T_2$, $v_2$, $u_2$, $h_2$, $s_2$. (c) El calor transferido $Q$ y el trabajo de frontera $W$. (d) La variación de entropía del sistema y verificar con la segunda ley.
 
 > [!solucion]
-> **Datos de tablas a $T_{\rm sat}=120\,°\mathrm{C}$ (Tabla A-4):**
-> $P_{\rm sat}=198.5\,\mathrm{kPa}$, $v_f=0.001060\,\mathrm{m^3/kg}$, $v_{fg}=0.8858\,\mathrm{m^3/kg}$, $v_g=0.8869\,\mathrm{m^3/kg}$.
-> $u_f=503.5\,\mathrm{kJ/kg}$, $u_{fg}=2025.8\,\mathrm{kJ/kg}$, $u_g=2529.3\,\mathrm{kJ/kg}$.
-> $h_f=503.7\,\mathrm{kJ/kg}$, $h_{fg}=2202.6\,\mathrm{kJ/kg}$, $h_g=2706.3\,\mathrm{kJ/kg}$.
-> $s_f=1.5278\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=5.6015\,\mathrm{kJ/(kg\cdot K)}$, $s_g=7.1296\,\mathrm{kJ/(kg\cdot K)}$.
+> **Datos de tablas a $T_{\rm sat}=120\,°\mathrm{C}$ (Tabla A-4):** $P_{\rm sat}=198.5\,\mathrm{kPa}$, $v_f=0.001060\,\mathrm{m^3/kg}$, $v_{fg}=0.8858\,\mathrm{m^3/kg}$, $v_g=0.8869\,\mathrm{m^3/kg}$. $u_f=503.5\,\mathrm{kJ/kg}$, $u_{fg}=2025.8\,\mathrm{kJ/kg}$, $u_g=2529.3\,\mathrm{kJ/kg}$. $h_f=503.7\,\mathrm{kJ/kg}$, $h_{fg}=2202.6\,\mathrm{kJ/kg}$, $h_g=2706.3\,\mathrm{kJ/kg}$. $s_f=1.5278\,\mathrm{kJ/(kg\cdot K)}$, $s_{fg}=5.6015\,\mathrm{kJ/(kg\cdot K)}$, $s_g=7.1296\,\mathrm{kJ/(kg\cdot K)}$.
 >
 > **Parte (a) — Estado inicial.**
 > $$v_1=v_f+x_1\,v_{fg}=0.001060+0.40\times0.8858=0.001060+0.3543=0.3554\,\mathrm{m^3/kg}.$$
@@ -123,8 +112,7 @@ La elección depende de qué dato es conocido: si se conoce $T$, usar Tabla A-4;
 > $$h_2=503.7+0.80\times2202.6=503.7+1762.1=2265.8\,\mathrm{kJ/kg}.$$
 > $$s_2=1.5278+0.80\times5.6015=1.5278+4.4812=6.009\,\mathrm{kJ/(kg\cdot K)}.$$
 >
-> **Parte (c) — Calor y trabajo (proceso isobárico en sistema cerrado).**
-> Para proceso isobárico: $w = P\,\Delta v$ y $q = \Delta h$ (primera ley para proceso a $P$ constante).
+> **Parte (c) — Calor y trabajo (proceso isobárico en sistema cerrado).** Para proceso isobárico: $w = P\,\Delta v$ y $q = \Delta h$ (primera ley para proceso a $P$ constante).
 > $$W = mP(v_2-v_1) = 2\times198.5\times(0.7097-0.3554) = 2\times198.5\times0.3543 = 140.7\,\mathrm{kJ}.$$
 > $$Q = m(h_2-h_1) = 2\times(2265.8-1384.7) = 2\times881.1 = \mathbf{1762.2\,\mathrm{kJ}}.$$
 >

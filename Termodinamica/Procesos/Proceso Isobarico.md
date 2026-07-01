@@ -19,8 +19,7 @@ aliases:
 ---
 
 > [!info]
-> **Ubicación.** Curso de Termodinámica (MN121) · sección [[Procesos/index | Procesos Termodinámicos]]. Es el caso $n=0$ del politrópico. Sus **hermanas** son [[Proceso Isocorico | el isocórico]] ($v=$cte), [[Proceso Isotermico | el isotérmico]] ($T=$cte) y [[Proceso Politropico | el politrópico]] ($Pv^n=$cte). Se apoya en la [[Primera Ley SC | primera ley para sistemas cerrados]], en la [[Entalpia | entalpía]] $h=u+Pv$ y en las propiedades del [[Gas Ideal | gas ideal]].
-> **Convención.** SI; $w,q$ específicos (por unidad de masa); $\delta q,\delta w$ inexactos, $du,dh,ds$ exactos; $q>0$ hacia el sistema, $w>0$ realizado por el sistema; gas ideal con $Pv=RT$, $c_p-c_v=R$, $\gamma=c_p/c_v$.
+> **Ubicación.** Curso de Termodinámica (MN121) · sección [[Procesos/index | Procesos Termodinámicos]]. Es el caso $n=0$ del politrópico. Sus **hermanas** son [[Proceso Isocorico | el isocórico]] ($v=$cte), [[Proceso Isotermico | el isotérmico]] ($T=$cte) y [[Proceso Politropico | el politrópico]] ($Pv^n=$cte). Se apoya en la [[Primera Ley SC | primera ley para sistemas cerrados]], en la [[Entalpia | entalpía]] $h=u+Pv$ y en las propiedades del [[Gas Ideal | gas ideal]]. **Convención.** SI; $w,q$ específicos (por unidad de masa); $\delta q,\delta w$ inexactos, $du,dh,ds$ exactos; $q>0$ hacia el sistema, $w>0$ realizado por el sistema; gas ideal con $Pv=RT$, $c_p-c_v=R$, $\gamma=c_p/c_v$.
 
 ---
 
