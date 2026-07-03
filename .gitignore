@@ -17,3 +17,5 @@
 .obsidian/appearance.json
 ~
 .obsidian/plugins/
+
+*.pdf
