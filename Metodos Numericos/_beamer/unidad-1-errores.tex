@@ -1,0 +1,880 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 1
+%  Teoría de Errores, Análisis y Estabilidad
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Teoría de Errores, Análisis y Estabilidad}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (del tema de la unidad) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.0cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{20}{20}\selectfont $\kappa(A)=\|A\|\,\|A^{-1}\|$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.2cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $u = 2^{-52}$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.6cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\mathrm{fl}(x)=x(1+\delta)$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Teoría de Errores,\\ Análisis y Estabilidad};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Redondeo\ \textperiodcentered\ Condicionamiento\ \textperiodcentered\ Estabilidad};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 1};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+La \textbf{aritmética de punto flotante} representa los reales con precisión finita: cada operación introduce un \textbf{error relativo} acotado por la \textbf{unidad de redondeo} $u$. La calidad de un resultado depende del \textbf{condicionamiento} del problema ($\kappa$) y de la \textbf{estabilidad} del algoritmo.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Problema vs.\ Algoritmo}{\faCogs}
+$\kappa$ mide la sensibilidad \emph{intrínseca}; la estabilidad mide qué tanto \emph{amplifica} el algoritmo esa sensibilidad.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Regla de oro}{\faCogs}
+$\text{error adelante}\lesssim \kappa\cdot\text{error atrás}$. Un método \emph{backward stable} logra error atrás $O(u)$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la unidad}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Representación en punto flotante IEEE 754\\[0.6mm]
+2.\; Épsilon de máquina y precisión relativa $u$\\[0.6mm]
+3.\; Pérdida de significancia y cancelación
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+4.\; Condicionamiento y número de condición $\kappa(A)$\\[0.6mm]
+5.\; Estabilidad de algoritmos (forward/backward)\\[0.6mm]
+6.\; Propagación de errores en matrices
+\end{cardlista}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Punto Flotante IEEE 754}{Cómo la máquina guarda un número real}{\faMicrochip}
+
+\begin{frame}{Valor de un número flotante}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ x = (-1)^s \cdot (1+f)\cdot 2^{\,e-\text{sesgo}} \]
+$s$: signo; $f$: fracción; $e$: exponente sesgado; significando $M=1.f$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Decodificar \texttt{0x40A00000} (binary32): $s=0$, $e=129\Rightarrow E=2$, $f=01\!\ldots\Rightarrow M=1.25$.
+\[ x=(-1)^0\cdot 1.25\cdot 2^{2}=1.25\cdot 4=\mathbf{5.0} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Fracción almacenada}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ f = b_1 2^{-1}+b_2 2^{-2}+\dots+b_{p-1}2^{-(p-1)} \]
+$b_i\in\{0,1\}$: bits de la mantisa; $p$: precisión ($24$ simple, $53$ doble).
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$-12.625 = 1.100101_2\times 2^{3}$; bits de fracción $100101$:
+\[ f=2^{-1}+2^{-4}+2^{-6}=0.578125,\quad 1{+}f=1.578125 \]
+$1.578125\times 8 = \mathbf{12.625}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Cota del error de representación}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{|x-\mathrm{fl}(x)|}{|x|}\le u \]
+$u$: unidad de redondeo; en doble $u=2^{-52}\approx 2.22\times10^{-16}$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$x=\tfrac13=0.010101\ldots_2$ (periódico) se redondea a $53$ bits:
+\[ \frac{|x-\mathrm{fl}(x)|}{|x|}\approx 1.1\times10^{-16} < u=2.22\times10^{-16} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{No-asociatividad}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ (a+b)+c \neq a+(b+c) \]
+El redondeo tras cada suma rompe la asociatividad exacta.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$a=10^{20}$, $b=-10^{20}$, $c=1$ (doble):
+\[ (a+b)+c = 0+1 = \mathbf{1},\qquad a+(b+c)=10^{20}-10^{20}=\mathbf{0} \]
+Pues $\mathrm{fl}(10^{20}+1)=10^{20}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Parámetros de los formatos}
+\tcap{Campos de los formatos estándar binary32 y binary64.}
+\vspace{1mm}
+{\footnotesize\renewcommand{\arraystretch}{1.5}\arrayrulecolor{Granate}
+\begin{tabular}{@{}>{\bfseries}p{3.4cm}p{4.6cm}p{4.6cm}@{}}
+\toprule
+Parámetro & binary32 (simple) & binary64 (doble) \\
+\midrule
+Bits totales & $32$ & $64$ \\
+Exponente $e$ / Sesgo & $8$ bits / $127$ & $11$ bits / $1023$ \\
+Mantisa $f$ / Precisión $p$ & $23$ bits / $24$ & $52$ bits / $53$ \\
+Unidad $u=2^{-(p-1)}$ & $2^{-23}\approx 1.19\times10^{-7}$ & $2^{-52}\approx 2.22\times10^{-16}$ \\
+\bottomrule
+\end{tabular}}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Épsilon de Máquina y $u$}{La resolución relativa de la aritmética}{\faMicrochip}
+
+\begin{frame}{Definición operativa}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \mathrm{fl}(1+\varepsilon_{\text{mach}})>1 \]
+$\varepsilon_{\text{mach}}=u$: menor positivo tal que $1+u$ difiere de $1$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Algoritmo: \texttt{u=1; while (1+u)>1: u=u/2; u=u*2}.
+\[ \text{En doble} \Rightarrow u = 2^{-52}\approx 2.220446049250313\times10^{-16} \]
+$1+u/2$ ya se redondea a $1$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Valor de $u$ por formato}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ u_{64}=2^{-52}\approx 2.22\times10^{-16},\qquad u_{32}=2^{-23}\approx 1.19\times10^{-7} \]
+Fija cuántos dígitos significativos ofrece cada formato.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Tras $1.0$, el siguiente flotante en simple es $1+2^{-23}$; en doble es $1+2^{-52}$.
+\[ 2^{-23}=1.1920928955078125\times10^{-7} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Espaciado entre flotantes}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \Delta x = 2^{\,E-(p-1)} \]
+$E$: exponente real del intervalo $[2^E,2^{E+1})$; $p$: precisión.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+En $[1,2)$ (doble, $E=0$, $p=53$):
+\[ \Delta x = 2^{-52}\approx 2.22\times10^{-16} \]
+En $[2^{52},2^{53})$ el espaciado sube a $\Delta x = 2^{0}=1$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Épsilon según la precisión}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ u = 2^{\,0-(p-1)} = 2^{-(p-1)} \]
+El épsilon es el espaciado justo por encima de $1$ ($E=0$).
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$p=53\Rightarrow u=2^{-52}\approx 2.22\times10^{-16}$;\quad $p=24\Rightarrow u=2^{-23}\approx 1.19\times10^{-7}$.
+A mayor $p$, menor $u$ y más dígitos correctos.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Modelo de redondeo de un número}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{|x-\mathrm{fl}(x)|}{|x|}\le u \iff \mathrm{fl}(x)=x(1+\delta),\ |\delta|\le u \]
+Todo real se guarda con error relativo acotado por $u$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\mathrm{fl}(0.1)=0.1\,(1+\delta)$ con
+\[ \delta\approx 5.55\times10^{-17}\le u=2.22\times10^{-16} \]
+$0.1$ no es exacto en binario.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Modelo estándar de una operación}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \mathrm{fl}(x\circ y)=(x\circ y)(1+\delta),\quad |\delta|\le u \]
+$\circ\in\{+,-,\times,\div\}$; redondeo \emph{round to nearest, ties to even}.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\mathrm{fl}(0.1+0.2)=0.30000000000000004$; exacto $0.3$:
+\[ \delta=\frac{0.30000000000000004-0.3}{0.3}\approx 1.85\times10^{-16}\le u \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Dígitos decimales de precisión}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \text{dígitos}\approx -\log_{10}(u) \]
+Traduce la resolución binaria $u$ a cifras decimales fiables.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+En doble: $-\log_{10}(2.22\times10^{-16})\approx 15.65$, es decir $\approx \mathbf{16}$ dígitos.
+En simple: $-\log_{10}(1.19\times10^{-7})\approx \mathbf{7}$ dígitos.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Crecimiento del error}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \text{error}\sim O(u\cdot\kappa) \]
+$\kappa$: número de condición del problema; $u$ es solo el punto de partida.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Problema con $\kappa=10^{8}$ en doble ($u=2.22\times10^{-16}$):
+\[ \text{error}\sim 10^{8}\cdot 2.22\times10^{-16}=\mathbf{2.2\times10^{-8}} \]
+Se pierden $\approx 8$ de los $16$ dígitos.
+\end{cardgear}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Pérdida de Significancia}{Cuando restar destruye los dígitos buenos}{\faMicrochip}
+
+\begin{frame}{Operandos y diferencia con error}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \tilde a=a(1+\delta_a),\ \tilde b=b(1+\delta_b);\quad \tilde a-\tilde b=(a-b)+(a\delta_a-b\delta_b) \]
+El error absoluto heredado no cambia, pero $a-b$ puede ser diminuto.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Con $5$ dígitos: $\tilde a=1.2345$, $\tilde b=1.2344$ (exactos $1.234567$, $1.234432$).
+Resta calc.\ $=1.0000\times10^{-4}$ vs exacta $1.35\times10^{-4}$: error relativo $\approx\mathbf{26\%}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Factor de amplificación}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{|(\tilde a-\tilde b)-(a-b)|}{|a-b|}=\frac{|a\delta_a-b\delta_b|}{|a-b|}\approx \frac{|a|}{|a-b|}\gg 1\ \text{si } a\approx b \]
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$a\approx b\approx 1.2345$ con $|a-b|=10^{-4}$:
+\[ \frac{|a|}{|a-b|}\approx \frac{1.2345}{10^{-4}}\approx \mathbf{1.2\times10^{4}} \]
+El error relativo se multiplica por $\sim 10^{4}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Cuadrática estándar (inestable)}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a} \]
+Si $b^2\gg 4ac$, la raíz pequeña sufre cancelación en $-b+\sqrt{\;}$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$a=1$, $b=10^{8}$, $c=1$ (doble). Raíz pequeña exacta $\approx-10^{-8}$:
+\[ x_{\text{directo}}=-1.4901161\times10^{-8}\ (\text{solo }\sim 8\text{ dígitos correctos}) \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Cancelación en $(1-\cos x)/x^2$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ f(x)=\frac{1-\cos x}{x^2}\ \xrightarrow{\text{estable}}\ 2\Big(\tfrac{\sin(x/2)}{x}\Big)^2 \]
+Identidad $1-\cos x=2\sin^2(x/2)$ evita la resta cancelativa.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$x=10^{-8}$ (exacto $\to 0.5$): $\cos x\approx 1-5\times10^{-17}$, la resta colapsa a $0$.
+\[ f_{\text{inestable}}=\mathbf{0.0},\qquad f_{\text{estable}}=\mathbf{0.5} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Serie alternante}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ S=\sum_{k=1}^{\infty}\frac{(-1)^{k+1}}{k}=\ln 2\approx 0.6931471805599453 \]
+Términos que casi se cancelan término a término.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Con $n=10^{7}$ términos: suma directa $=0.6931471305601064$.
+Agrupar positivos y negativos por separado retiene más cifras que la suma ingenua.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Racionalización de $\sqrt{x+1}-\sqrt{x}$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \sqrt{x+1}-\sqrt{x}=\frac{(x+1)-x}{\sqrt{x+1}+\sqrt{x}}=\frac{1}{\sqrt{x+1}+\sqrt{x}} \]
+La forma de la derecha no tiene resta cancelativa.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$x=10^{10}$: forma directa $\approx 0$ (catastrófica).
+\[ \frac{1}{\sqrt{10^{10}+1}+\sqrt{10^{10}}}\approx \frac{1}{2\times10^{5}}=\mathbf{5\times10^{-6}} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Varianza: una vs dos pasadas}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \underbrace{\tfrac1n\textstyle\sum x_i^2-\big(\tfrac1n\sum x_i\big)^2}_{\text{una pasada (inestable)}}\quad\text{vs}\quad \underbrace{\tfrac1n\textstyle\sum(x_i-\bar x)^2}_{\text{dos pasadas (estable)}} \]
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$x=[10^{8}{+}1,\,10^{8}{+}2,\,10^{8}{+}3]$, exacto $=0.6666666666666666$:
+\[ \sigma^2_{\text{1 pasada}}=0.6666666666278616,\quad \sigma^2_{\text{2 pasadas}}=0.6666666666666666 \]
+\end{cardgear}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 4
+% ############################################################
+\portadaseccion{4}{Condicionamiento y $\kappa(A)$}{Sensibilidad intrínseca del problema}{\faMicrochip}
+
+\begin{frame}{Número de condición}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \kappa(A)=\|A\|\,\|A^{-1}\|,\qquad \kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)} \]
+$\sigma$: valores singulares; $\kappa=\infty$ si $A$ es singular.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$A=\operatorname{diag}(10,\,0.1)$: $\sigma_{\max}=10$, $\sigma_{\min}=0.1$.
+\[ \kappa_2(A)=\frac{10}{0.1}=\mathbf{100},\qquad \kappa_2(I)=1 \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Sensibilidad ante perturbar $b$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{\|\Delta x\|}{\|x\|}\le \kappa(A)\cdot\frac{\|\Delta b\|}{\|b\|} \]
+$\kappa$ amplifica el error relativo de los datos $b$ en la solución.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Hilbert $5\times5$, $\kappa_2=4.77\times10^{5}$, con $\|\Delta b\|/\|b\|=2.34\times10^{-11}$:
+\[ \frac{\|\Delta x\|}{\|x\|}\approx 8.9\times10^{-6}\quad (\approx\kappa\cdot 2.34\times10^{-11}) \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Sensibilidad ante perturbar $A$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{\|\Delta x\|}{\|x\|}\le \frac{\kappa(A)}{1-\kappa(A)\frac{\|\Delta A\|}{\|A\|}}\cdot\frac{\|\Delta A\|}{\|A\|} \]
+Válida si $\|\Delta A\|<1/\|A^{-1}\|$; $\to\kappa\frac{\|\Delta A\|}{\|A\|}$ cuando $\Delta A\to0$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\kappa=10^{3}$, $\|\Delta A\|/\|A\|=10^{-4}$:
+\[ \frac{10^{3}}{1-10^{3}\cdot10^{-4}}\cdot10^{-4}=\frac{0.1}{0.9}\approx \mathbf{0.111} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Propiedades de $\kappa$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \kappa(A)\ge 1,\qquad \kappa(\alpha A)=\kappa(A)\ (\alpha\neq0),\qquad \kappa_2(A)=1\ \text{si } A^TA=I \]
+La condición es invariante a escalado global y mínima ($=1$) para matrices ortogonales.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$A=\operatorname{diag}(10,0.1)$, $\alpha=2$: $2A=\operatorname{diag}(20,0.2)$,
+\[ \kappa_2(2A)=\frac{20}{0.2}=100=\kappa_2(A) \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Interpretación geométrica}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \kappa_2(A)=\frac{\sigma_1}{\sigma_n},\qquad \sigma_1\ge\sigma_2\ge\dots\ge\sigma_n>0 \]
+$A$ manda la esfera unitaria a un hiperelipsoide de semiejes $\sigma_i$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$A=\operatorname{diag}(10,0.1)$: la esfera unidad $\to$ elipse de semiejes $10$ y $0.1$.
+\[ \kappa_2=\frac{10}{0.1}=\mathbf{100}\ \text{(elipse muy alargada)} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Dígitos correctos esperables}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{\|\tilde x-x\|}{\|x\|}\lesssim \kappa(A)\,u\,\rho;\qquad \text{dígitos}\approx -\log_{10}(u)-\log_{10}\kappa(A) \]
+$\rho$: factor de crecimiento de la eliminación.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$u\approx10^{-16}$, $\kappa(A)=10^{8}$:
+\[ \text{dígitos}\approx 16-8=\mathbf{8}\ \text{(independiente del algoritmo)} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Estimador de Skeel}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \kappa_S(A)=\big\|\,|A^{-1}|\cdot|A|\,\big\|_\infty \]
+Condición insensible al escalado por filas; siempre $\kappa_S\le \kappa_\infty$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$A=\operatorname{diag}(1,1000)$: $|A^{-1}||A|=I$, luego $\kappa_S=\|I\|_\infty=\mathbf{1}$,
+mientras $\kappa_\infty(A)=1000$. Skeel ve que el problema es benigno.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Gradiente conjugado y precondicionamiento}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{\|x_k-x^*\|_A}{\|x_0-x^*\|_A}\le 2\Big(\frac{\sqrt{\kappa_2}-1}{\sqrt{\kappa_2}+1}\Big)^{k};\quad \kappa_2(M^{-1}A)\ll\kappa_2(A) \]
+Precondicionar con $M\approx A$ acelera la convergencia.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\kappa_2=100\Rightarrow\sqrt{\kappa_2}=10$:
+\[ \text{factor}=\frac{10-1}{10+1}=\frac{9}{11}\approx \mathbf{0.818}\ \text{por iteración} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Condición según el problema}
+\tcap{Número de condición típico por tipo de problema.}
+\vspace{1mm}
+{\footnotesize\renewcommand{\arraystretch}{1.6}\arrayrulecolor{Granate}
+\begin{tabular}{@{}>{\bfseries}p{4.2cm}p{8.4cm}@{}}
+\toprule
+Problema & Número de condición \\
+\midrule
+Evaluar $f(x)$ & $\kappa_f(x)=\big|\,x f'(x)/f(x)\,\big|$ \\
+Raíz simple de $f(x)=0$ & $\kappa=1/|f'(r)|$ \\
+PVI de EDO & $\kappa\approx e^{Lt}$ ($L$: constante de Lipschitz) \\
+Mínimos cuadrados & $\kappa(A^TA)=[\kappa_2(A)]^2$ \\
+\bottomrule
+\end{tabular}}
+\end{frame}
+
+\begin{frame}{Condicionamiento de mínimos cuadrados}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \kappa_{\text{LS}}(A)=\kappa_2(A)+\frac{\kappa_2(A)^2\,\|r\|_2}{\|A\|_2\,\|x\|_2},\quad r=b-Ax \]
+Con residuo grande, la condición degrada como $\kappa_2^2$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Ecuaciones normales $A^TAx=A^Tb$ con $\kappa_2(A)=10^{3}$:
+\[ \kappa(A^TA)=[\kappa_2(A)]^2=\mathbf{10^{6}} \]
+Se pierden el doble de dígitos.
+\end{cardgear}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 5
+% ############################################################
+\portadaseccion{5}{Estabilidad de Algoritmos}{Forward, backward y la regla de oro}{\faMicrochip}
+
+\begin{frame}{Error hacia adelante y hacia atrás}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \text{forward}=\frac{\|\tilde y-y\|}{\|y\|};\qquad \tilde y=f(x+\Delta x),\ \ \text{backward}=\frac{\|\Delta x\|}{\|x\|} \]
+Forward: error del resultado. Backward: qué dato exacto resuelve $\tilde y$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$f(x)=\sqrt x$, $x=2$ ($y=1.41421356$). Si $\tilde y=1.4142136$:
+forward $\approx 2.7\times10^{-8}$; y $\tilde y^2=2.00000012\Rightarrow$ backward $\approx 6\times10^{-8}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Regla de oro}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{\|\tilde y-y\|}{\|y\|}\ \lesssim\ \kappa\cdot\frac{\|\Delta x\|}{\|x\|} \]
+El error forward está acotado por la condición por el error backward.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$f(x)=\sqrt x$ en $x=2$ tiene $\kappa=\tfrac12$. Con backward $6\times10^{-8}$:
+\[ \text{forward}\lesssim \tfrac12\cdot 6\times10^{-8}=3\times10^{-8}\ \checkmark \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Condición en forma diferencial}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \kappa=\frac{\|x\|\,\|f'(x)\|}{\|f(x)\|} \]
+Amplificación relativa de una perturbación infinitesimal del dato.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$f(x)=x^3$ en $x=2$: $f'(x)=3x^2$,
+\[ \kappa=\frac{2\cdot 3\cdot 2^2}{2^3}=\frac{24}{8}=\mathbf{3} \]
+(Para $f(x)=x^n$ resulta $\kappa=n$.)
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Estable atrás $\Rightarrow$ estable adelante}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \tfrac{\|\Delta x\|}{\|x\|}=O(u)\ \text{(backward)}\ \Rightarrow\ \tfrac{\|\tilde y-y\|}{\|y\|}=O(\kappa u)\ \text{(forward)} \]
+Un método backward stable hereda forward stable vía la regla de oro.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+Método backward stable con $u=2.2\times10^{-16}$ sobre problema $\kappa=10^{6}$:
+\[ \text{forward}=O(\kappa u)=O(10^{6}\cdot 2.2\times10^{-16})=O(2.2\times10^{-10}) \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Suma en coma flotante}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \tilde s=(a+b)(1+\delta)=a(1+\delta)+b(1+\delta)=\tilde a+\tilde b,\ \ |\delta|\le u \]
+La suma calculada es la suma \emph{exacta} de datos apenas perturbados.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$a=0.1$, $b=0.2$: $\mathrm{fl}(a+b)=0.30000000000000004$, con
+\[ \delta\approx 1.85\times10^{-16}\le u\ \Rightarrow\ \text{backward stable} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Producto interno}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \tilde s=\sum_{i=1}^n x_i y_i(1+\theta_i),\quad |\theta_i|\le \gamma_n=\frac{nu}{1-nu}\approx nu \]
+Backward stable: el error atrás crece linealmente con $n$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$n=100$, doble ($u=2.2\times10^{-16}$):
+\[ \gamma_{100}\approx 100\cdot 2.2\times10^{-16}=\mathbf{2.2\times10^{-14}} \]
+Sigue siendo $O(u)$ para $n$ moderado.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Cuadrática estable (Vieta)}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ x_1=\frac{-b-\operatorname{sgn}(b)\sqrt{b^2-4ac}}{2a},\qquad x_2=\frac{c}{a\,x_1} \]
+Se calcula la raíz grande sin cancelación y la pequeña por Vieta.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$a=1$, $b=10^{8}$, $c=1$: $x_1\approx-10^{8}$, luego
+\[ x_2=\frac{1}{1\cdot(-10^{8})}=\mathbf{-10^{-8}}\ \text{(exacta, sin pérdida)} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Eliminación gaussiana con pivoteo}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \|\Delta A\|\lesssim \rho\,n\,u\,\|A\|,\quad \rho=O(1)\ \text{(práctica)},\ \ \rho\le 2^{\,n-1}\ \text{(peor caso)} \]
+Backward stable en la práctica gracias al pivoteo parcial.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$n=3$, $\rho=1$, doble:
+\[ \frac{\|\Delta A\|}{\|A\|}\lesssim \rho\,n\,u = 3\cdot 2.2\times10^{-16}\approx \mathbf{6.6\times10^{-16}} \]
+\end{cardgear}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 6
+% ############################################################
+\portadaseccion{6}{Propagación en Matrices}{Cómo se acumula el redondeo en el álgebra lineal}{\faMicrochip}
+
+\begin{frame}{Modelo estándar y constante $\gamma_n$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \mathrm{fl}(a\circ b)=(a\circ b)(1+\delta),\ |\delta|\le u;\qquad \gamma_n=\frac{nu}{1-nu}\approx nu \]
+$\gamma_n$ acota el error acumulado de una cadena de $n$ operaciones.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\mathrm{fl}(0.1+0.2)$: $\delta\approx 1.85\times10^{-16}\le u$.
+Cadena de $n=10^{3}$ ops: $\gamma_n\approx 10^{3}\cdot 2.2\times10^{-16}=2.2\times10^{-13}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Escalar--vector y suma de vectores}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \|\mathrm{fl}(\alpha x)-\alpha x\|_\infty\le u\,|\alpha|\,\|x\|_\infty;\quad \|\mathrm{fl}(x{+}y)-(x{+}y)\|_\infty\le u\,\|x{+}y\|_\infty \]
+Error absoluto acotado por $u$ por la magnitud del resultado.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\alpha=3$, $x=(0.1,0.2)$, $\|x\|_\infty=0.2$:
+\[ \|e\|_\infty\le u\cdot 3\cdot 0.2=0.6\,u\approx 1.3\times10^{-16} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Producto interno matricial}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ |\mathrm{fl}(x^Ty)-x^Ty|\le \gamma_n\,|x|^T|y| \]
+El error escala con la suma de magnitudes, no con el resultado.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$x=(1,10^{8},1,-10^{8})$, $y=(1,1,1,1)$, exacto $x^Ty=2$.
+En doble se recupera $\mathbf{2}$ pues $u\cdot 10^{8}\approx10^{-8}\ll1$; con magnitudes $\sim10^{16}$ el $\pm1$ se perdería.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Matriz--vector y matriz--matriz}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \mathrm{fl}(Ax)=(A+\Delta A)x,\ |\Delta A|\le\gamma_n|A|;\qquad \mathrm{fl}(AB)=AB+E,\ |E|\le\gamma_n|A||B| \]
+Cotas por componente (backward para $Ax$).
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$A,B$ de $n=100$ en doble: cada entrada de $E$ cumple
+\[ |E_{ij}|\le\gamma_{100}\,(|A||B|)_{ij}\approx 2.2\times10^{-14}\,(|A||B|)_{ij} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Recurrencia y producto de factores}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \tilde s_k=\big(\tilde s_{k-1}+x_k y_k(1+\delta_k)\big)(1+\varepsilon_k);\quad \prod_j(1+\eta_j)=1+\theta,\ |\theta|\le\gamma_n \]
+Cada paso añade un $(1+\varepsilon)$; el producto se acota por $\gamma_n$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$n=4$ factores en doble: $|\theta|\le\gamma_4\approx 4\cdot 2.2\times10^{-16}=8.9\times10^{-16}$,
+así $\prod(1+\eta_j)=1+\theta$ con $|\theta|<10^{-15}$.
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Asociatividad rota}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \mathrm{fl}(\mathrm{fl}(a+b)+c)\neq \mathrm{fl}(a+\mathrm{fl}(b+c)) \]
+El orden de acumulación cambia el resultado redondeado.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$a=10^{16}$, $b=-10^{16}$, $c=1$ (doble):
+\[ \mathrm{fl}(\mathrm{fl}(a+b)+c)=1,\qquad \mathrm{fl}(a+\mathrm{fl}(b+c))=0 \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Resolución de $Ax=b$}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \frac{\|\Delta A\|_\infty}{\|A\|_\infty}\lesssim \rho\,n\,\gamma_n\approx \rho\,n^2 u;\qquad \frac{\|\tilde x-x\|}{\|x\|}\lesssim \kappa(A)\,\rho\,n^2 u \]
+El error backward $O(n^2u)$ se hereda al forward vía $\kappa(A)$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$\kappa(A)=10^{6}$, $n=100$, $\rho=1$, $u=10^{-16}$:
+\[ \frac{\|\tilde x-x\|}{\|x\|}\lesssim 10^{6}\cdot 10^{4}\cdot10^{-16}=\mathbf{10^{-6}} \]
+\end{cardgear}
+\end{frame}
+
+\begin{frame}{Modelo estadístico del redondeo}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+\[ \text{error efectivo}\sim \sqrt{n}\,u \]
+Con errores de signo aleatorio, la acumulación crece como $\sqrt n$, no como $n$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+$n=10^{6}$, doble ($u=2.2\times10^{-16}$):
+\[ \sqrt{n}\,u=10^{3}\cdot 2.2\times10^{-16}=\mathbf{2.2\times10^{-13}} \]
+frente a la cota pesimista $n\,u=2.2\times10^{-10}$.
+\end{cardgear}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 1: Teoría de Errores};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
