@@ -1,0 +1,654 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 4
+%  Aproximación de Funciones
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Aproximación de Funciones}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (del tema de la unidad) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.2cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{18}{18}\selectfont $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf b$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.4cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $P(x)=\sum y_i L_i(x)$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.9cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $f[x_0,\dots,x_k]$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Aproximación\\ de Funciones};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Mínimos cuadrados\ \textperiodcentered\ Interpolación\ \textperiodcentered\ Splines};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 4};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Aproximar una función es sustituirla por otra \emph{manejable} que la represente. Dos filosofías: el \textbf{ajuste por mínimos cuadrados} sirve cuando hay ruido o exceso de datos ($m>n$): no pasa por los puntos, sino que minimiza $\|A\mathbf c-\mathbf y\|_2^2$ vía las \emph{ecuaciones normales} $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y$. La \textbf{interpolación} exige $p(x_i)=y_i$ en datos exactos: polinómica global (Lagrange, Newton) —única pero víctima del \emph{fenómeno de Runge}— o por tramos (\textbf{splines}), que logran suavidad $C^2$ y convergencia $O(h^4)$ sin oscilar.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Ajustar vs.\ interpolar}{\faCogs}
+Ajustar: $m>n$, datos ruidosos, $r=A\mathbf c-\mathbf y\neq\mathbf 0$. Interpolar: $p$ pasa \emph{exactamente} por los $n{+}1$ nodos.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Global vs.\ por tramos}{\faCogs}
+Polinomio único de grado alto $\Rightarrow$ oscila (Runge); splines cúbicos: bajo grado, local, estable, $\|f-S\|_\infty=O(h^4)$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la unidad}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Ajuste por mínimos cuadrados: ecuaciones normales, $R^2$, condicionamiento\\[0.6mm]
+2.\; Interpolación polinómica: Lagrange y Newton
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Error de interpolación, Runge y Chebyshev\\[0.6mm]
+4.\; Splines: lineales, cúbicos y sistema tridiagonal
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Tres bloques: \textbf{mínimos cuadrados}, \textbf{interpolación polinómica} y \textbf{splines}. Cada método se acompaña de su(s) fórmula(s) y un \emph{proceso resuelto}: tabla de sumas y matrices de las ecuaciones normales, tabla triangular de diferencias divididas, o el sistema tridiagonal de los momentos $M_i=S''(x_i)$.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Mínimos Cuadrados}{Ecuaciones normales $A^{\!\top}\!A\mathbf c=A^{\!\top}\mathbf y$, calidad del ajuste y condicionamiento}{\faChartLine}
+
+% ---- Formulación ----
+\begin{frame}{Formulación: residuos y ecuaciones normales}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Modelo lineal en los parámetros:\\[0.4mm]
+$\phi(x;\mathbf c)=\sum_{j=1}^n c_j\varphi_j(x)$, \; $A_{ij}=\varphi_j(x_i)$.\\[1.2mm]
+Problema y residuo ($m>n$):\\[0.2mm]
+$\displaystyle\min_{\mathbf c}\ \|A\mathbf c-\mathbf y\|_2^2$, \quad $\mathbf r=A\mathbf c-\mathbf y$.\\[1.2mm]
+Óptimo $\Leftrightarrow$ residuo ortogonal a $\operatorname{col}(A)$:\\[0.2mm]
+$A^{\!\top}(A\mathbf c-\mathbf y)=\mathbf 0\ \Longleftrightarrow\ \boxed{A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y}$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Gram $G=A^{\!\top}\!A$ es simétrica y definida positiva sii $\operatorname{rango}(A)=n$; se resuelve por Cholesky $G=LL^{\!\top}$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Geometría de la proyección}{\faCogs}
+{\footnotesize El ajuste $\hat{\mathbf y}$ es la \emph{proyección ortogonal} de $\mathbf y$ sobre $\operatorname{col}(A)$:\\[1.0mm]
+$P=A(A^{\!\top}\!A)^{-1}A^{\!\top}$, \quad $P^2=P=P^{\!\top}$.\\[1.0mm]
+$\hat{\mathbf y}=P\mathbf y$, \quad $\mathbf r=(I-P)\mathbf y$, \quad $A^{\!\top}\mathbf r=\mathbf 0$.\\[1.2mm]
+Descomposición de Gram por columnas:\\[0.2mm]
+$G_{jk}=\sum_i\varphi_j(x_i)\varphi_k(x_i)$, \quad $\mathbf c^{\!\top}G\mathbf c=\|A\mathbf c\|_2^2\ge0$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Resolver}, no invertir: forma $G$ y $A^{\!\top}\mathbf y$, luego Cholesky. Coste $\approx mn^2+\tfrac13 n^3$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Regresión lineal (PATRON tabla de sumas + matrices) ----
+\begin{frame}{Regresión lineal: tabla de sumas y matrices}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{cardidea}{Fórmula cerrada}{\faSuperscript}
+{\footnotesize Recta $y=c_0+c_1x$ por el centroide $(\bar x,\bar y)$:\\[0.6mm]
+$c_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$, \; $c_0=\bar y-c_1\bar x$.\\[1.4mm]
+Calidad del ajuste:\\[0.2mm]
+$R^2=1-\dfrac{\sum(y_i-\hat y_i)^2}{\sum(y_i-\bar y)^2}=1-\dfrac{\|\mathbf r\|_2^2}{\|\mathbf y-\bar y\|_2^2}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Datos $(1,1),(2,2),(3,2),(4,3)$; $\bar x=2.5$, $\bar y=2$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.58\textwidth}
+\begin{cardgear}{Sumas y ecuaciones normales}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$i$ & $x_i$ & $y_i$ & $x_i^2$ & $x_iy_i$\\\hline
+$1$&$1$&$1$&$1$&$1$\\
+$2$&$2$&$2$&$4$&$4$\\
+$3$&$3$&$2$&$9$&$6$\\
+$4$&$4$&$3$&$16$&$12$\\\hline
+$\Sigma$&$10$&$8$&$30$&$23$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize $G=A^{\!\top}\!A=\begin{psmallmatrix}4&10\\ 10&30\end{psmallmatrix}$,\;
+$A^{\!\top}\mathbf y=\begin{psmallmatrix}8\\ 23\end{psmallmatrix}$\\[1.2mm]
+$\begin{psmallmatrix}4&10\\ 10&30\end{psmallmatrix}\!\begin{psmallmatrix}c_0\\ c_1\end{psmallmatrix}=\begin{psmallmatrix}8\\ 23\end{psmallmatrix}\Rightarrow c_0{=}0.5,\ c_1{=}0.6$\\[1.0mm]
+$y=0.5+0.6x$; $\mathbf r=(0.1,-0.3,0.3,-0.1)^{\!\top}$, $R^2=0.9$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ajuste polinómico y linealizable ----
+\begin{frame}{Ajuste polinómico y modelos linealizables}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Ecuaciones normales de la parábola}{\faCalculator}
+{\footnotesize Modelo $y=c_0+c_1x+c_2x^2$, filas $[1,x_i,x_i^2]$:\\[1.0mm]
+$\begin{psmallmatrix}\Sigma1&\Sigma x&\Sigma x^2\\ \Sigma x&\Sigma x^2&\Sigma x^3\\ \Sigma x^2&\Sigma x^3&\Sigma x^4\end{psmallmatrix}\!\begin{psmallmatrix}c_0\\ c_1\\ c_2\end{psmallmatrix}=\begin{psmallmatrix}\Sigma y\\ \Sigma xy\\ \Sigma x^2y\end{psmallmatrix}$\\[1.6mm]
+Para $(-1,2),(0,0),(1,1),(2,5)$:\\[0.6mm]
+$\begin{psmallmatrix}4&2&6\\ 2&6&8\\ 6&8&18\end{psmallmatrix}\!\mathbf c=\begin{psmallmatrix}8\\ 9\\ 23\end{psmallmatrix}\Rightarrow \mathbf c=(0,-\tfrac12,\tfrac32)^{\!\top}$\\[0.8mm]
+$y=1.5x^2-0.5x$ (aquí ajuste exacto: 4 datos en una parábola).}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Modelos linealizables}{\faSuperscript}
+{\footnotesize $y=ae^{bx}\Rightarrow \ln y=\ln a+bx$;\; $y=ax^b\Rightarrow \ln y=\ln a+b\ln x$;\; $y=\tfrac{1}{a+bx}\Rightarrow 1/y=a+bx$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faTable]
+\centering
+{\footnotesize $y=ae^{bx}$ a $(0,2),(1,3),(2,4.5),(3,7)$:\\[0.8mm]
+\renewcommand{\arraystretch}{1.05}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$x_i$&$0$&$1$&$2$\ /\ $3$\\
+$\ln y_i$&$0.6931$&$1.0986$&$1.5041$/$1.9459$\\
+\end{tabular}\\[0.8mm]
+$\begin{psmallmatrix}4&6\\ 6&14\end{psmallmatrix}\!\begin{psmallmatrix}\ln a\\ b\end{psmallmatrix}=\begin{psmallmatrix}5.2417\\ 9.9445\end{psmallmatrix}\Rightarrow b{=}0.416$,\\[0.4mm]
+$\ln a{=}0.686\Rightarrow a{=}1.986$: $y\approx1.99\,e^{0.42x}$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Condicionamiento y QR ----
+\begin{frame}{Condicionamiento: ecuaciones normales vs.\ QR}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{El cuadrado del condicionamiento}{\faSuperscript}
+{\footnotesize Formar $G=A^{\!\top}\!A$ \emph{eleva al cuadrado} el número de condición:\\[0.6mm]
+$\kappa_2(A^{\!\top}\!A)=\kappa_2(A)^2$, \; $\kappa_2(A)=\dfrac{\sigma_1}{\sigma_n}$.\\[1.2mm]
+Dígitos correctos ($u$ = unidad de redondeo):\\[0.4mm]
+ec.\ normales $-\log_{10}u-2\log_{10}\kappa(A)$;\\[0.2mm]
+QR $\ -\log_{10}u-\log_{10}\kappa(A)$.\\[1.2mm]
+\textbf{QR estable:} $A=QR$, $R\mathbf c=Q^{\!\top}\mathbf y$, $\kappa_2(R)=\kappa_2(A)$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Costo por método}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+Método & Costo (flops) & Error rel.\\\hline
+Ec.\ normales & $mn^2+\tfrac13 n^3$ & $\kappa(A)^2\,u$\\
+QR (Householder) & $2mn^2-\tfrac23 n^3$ & $\kappa(A)\,u$\\
+SVD & $\sim mn^2$ & $\kappa(A)\,u$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Barato pero inestable vs.\ caro pero estable. Con base de \emph{monomios} el diseño es Vandermonde: $\kappa_2\sim O(2^n)$ $\Rightarrow$ $\approx0.3\,n$ dígitos perdidos.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Si $\kappa(A)\sim10^8$ y $u\sim10^{-16}$: las ecuaciones normales pierden \emph{todos} los dígitos; QR conserva la mitad.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Interpolación Polinómica}{Existencia, Lagrange, diferencias divididas de Newton y el error}{\faMicrochip}
+
+% ---- Existencia y Vandermonde ----
+\begin{frame}{Existencia, unicidad y Vandermonde}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize $n{+}1$ nodos distintos $\Rightarrow$ existe un \emph{único} $p\in\mathbb P_n$ con $p(x_i)=y_i$.\\[1.0mm]
+Base de monomios $p(x)=\sum_j c_jx^j$: sistema de Vandermonde\\[0.4mm]
+$V\mathbf c=\mathbf y$, \; $V=\begin{psmallmatrix}1&x_0&\cdots&x_0^n\\ 1&x_1&\cdots&x_1^n\\ \vdots&&&\vdots\\ 1&x_n&\cdots&x_n^n\end{psmallmatrix}$\\[1.4mm]
+$\det V=\displaystyle\prod_{i<j}(x_j-x_i)\neq0$ (nodos distintos).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize $\kappa_2(V)\sim O(2^n)$: resolver $V\mathbf c=\mathbf y$ es mal condicionado y cuesta $\tfrac23 n^3$; Lagrange/Newton lo evitan.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Ejemplo: tres nodos}{\faCalculator}
+{\footnotesize Datos $(0,1),(1,2),(2,5)$:\\[1.0mm]
+$V=\begin{psmallmatrix}1&0&0\\ 1&1&1\\ 1&2&4\end{psmallmatrix}$,\quad
+$\det V=(1{-}0)(2{-}0)(2{-}1)=2\neq0$.\\[1.4mm]
+Único $p_2$; se comprueba $p_2(x)=x^2+1$:\\[0.4mm]
+$p_2(0)=1$, \; $p_2(1)=2$, \; $p_2(2)=5$. \checkmark\\[1.2mm]
+Cualquier otro $q\in\mathbb P_2$ por esos $3$ puntos daría $p_2-q$ con $3$ raíces siendo de grado $\le2$: imposible salvo $q=p_2$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La misma $p_n$ sale de toda base (monomios, Lagrange, Newton): la elección es por \emph{eficiencia y estabilidad}, no por el resultado.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Lagrange ----
+\begin{frame}{Interpolación de Lagrange}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Polinomios cardinales:\\[0.2mm]
+$L_i(x)=\displaystyle\prod_{j\neq i}\frac{x-x_j}{x_i-x_j}\in\mathbb P_n$, \; $L_i(x_k)=\delta_{ik}$.\\[1.2mm]
+Interpolador: $p_n(x)=\displaystyle\sum_{i=0}^n y_i\,L_i(x)$.\\[1.2mm]
+Propiedades: $\sum_i L_i(x)\equiv1$ (partición de la unidad).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Un cardinal puede ser \emph{negativo} entre nodos ($L_2(0.5)=-0.125$): origen de la inestabilidad en grado alto (constante de Lebesgue $\Lambda_n$).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Cardinales para $x=0,1,2$}{\faTable}
+{\footnotesize $L_0=\tfrac{(x-1)(x-2)}{2}$, \; $L_1=-x^2+2x$, \; $L_2=\tfrac{x(x-1)}{2}$\\[1.0mm]
+\centering
+\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$x$ & $L_0$ & $L_1$ & $L_2$ & $\sum L_i$\\\hline
+$0$&$1$&$0$&$0$&$1$\\
+$1$&$0$&$1$&$0$&$1$\\
+$2$&$0$&$0$&$1$&$1$\\
+$0.5$&$0.375$&$0.75$&$-0.125$&$1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Con $\mathbf y=(1,2,5)$:\\[0.2mm]
+$p(x)=1\cdot L_0+2\cdot L_1+5\cdot L_2=x^2+1$,\\[0.2mm]
+idéntico al de Vandermonde y al de Newton.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Newton diferencias divididas (PATRON tabla triangular) ----
+\begin{frame}{Newton: tabla de diferencias divididas}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Recurrencia:\\[0.2mm]
+$f[x_i,\dots,x_{i+k}]=\dfrac{f[x_{i+1},\dots,x_{i+k}]-f[x_i,\dots,x_{i+k-1}]}{x_{i+k}-x_i}$\\[1.2mm]
+Forma de Newton (coef.\ $=$ diagonal):\\[0.2mm]
+$p_n(x)=\displaystyle\sum_{k=0}^n c_k\prod_{j<k}(x-x_j)$, \; $c_k=f[x_0,\dots,x_k]$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Interpolando $\ln x$ en $(1,0),(2,\ln2),(4,\ln4),(8,\ln8)$. Incremental: añadir un nodo cuesta solo una columna nueva ($O(n)$).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Tabla triangular (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|ccc}
+$x_i$ & $f[\,]$ & orden 1 & orden 2 & orden 3\\\hline
+$1$&$\mathbf 0$&&&\\
+$2$&$0.6931$&$\mathbf{0.6931}$&&\\
+$4$&$1.3863$&$0.3466$&$\mathbf{-0.1155}$&\\
+$8$&$2.0794$&$0.1733$&$-0.0289$&$\mathbf{0.0124}$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Coeficientes (diagonal, en negrita):\\[0.2mm]
+$p_3(x)=0+0.6931(x{-}1)-0.1155(x{-}1)(x{-}2)$\\[0.2mm]
+\hspace{9mm}$+\,0.0124(x{-}1)(x{-}2)(x{-}4)$.\\[0.6mm]
+Evaluación por Horner anidado: $O(n)$ por punto.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Error de interpolación + Runge ----
+\begin{frame}{Error de interpolación, Runge y Chebyshev}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Fórmula de Cauchy}{\faSuperscript}
+{\footnotesize $f\in C^{n+1}[a,b]$, $\xi_x\in(a,b)$:\\[0.4mm]
+$e_n(x)=f(x)-p_n(x)=\dfrac{f^{(n+1)}(\xi_x)}{(n+1)!}\displaystyle\prod_{i=0}^n(x-x_i)$\\[1.4mm]
+Cota, $M_{n+1}=\max|f^{(n+1)}|$:\\[0.2mm]
+$|e_n(x)|\le\dfrac{M_{n+1}}{(n+1)!}\max_x\Big|\prod_i(x-x_i)\Big|$\\[1.2mm]
+Nodos equiespaciados ($h=\tfrac{b-a}{n}$): $|e_n|\le\dfrac{M_{n+1}}{4(n+1)}h^{n+1}=O(h^{n+1})$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Runge y nodos de Chebyshev}{\faChartLine}
+{\footnotesize $f(x)=\dfrac{1}{1+25x^2}$ en $[-1,1]$: con nodos equiespaciados $p_n$ \emph{diverge} en los bordes.\\[1.0mm]
+\centering
+\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+Nodos & $\Lambda_n$ & $\max|\omega|$\\\hline
+Equiespaciados & $\sim\tfrac{2^n}{n\log n}$ & grande\\
+Chebyshev & $\sim\tfrac{2}{\pi}\log n$ & $\tfrac{1}{2^n}$ (mínimo)\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Ceros de Chebyshev: $x_i=\cos\!\big(\tfrac{2i+1}{2(n+1)}\pi\big)$; concentran nodos en los bordes y minimizan $\|\omega\|_\infty$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize El error es producto de $f^{(n+1)}$ (no controlable) y $\omega(x)$ (elegible por los nodos): Chebyshev optimiza el segundo factor.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Splines}{Lineales $C^0$, cúbicos $C^2$ y el sistema tridiagonal de los momentos}{\faBezierCurve}
+
+% ---- Splines lineales ----
+\begin{frame}{Splines lineales: continuidad $C^0$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize En cada $[x_i,x_{i+1}]$:\\[0.2mm]
+$S_i(x)=y_i+\dfrac{y_{i+1}-y_i}{x_{i+1}-x_i}(x-x_i)$.\\[1.2mm]
+$C^0$: continuo, con \emph{esquinas}; local, sin oscilación, construcción $O(n)$ sin sistema.\\[1.2mm]
+Error ($f\in C^2$, $h=\max h_i$):\\[0.2mm]
+$\max|f-S|\le\dfrac{h^2}{8}\max|f''|=O(h^2)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Datos $(0,0),(1,1),(2,0),(3,1)$, $h_i=1$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Tramos (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{8pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+Tramo & $S_i(x)$ & pendiente\\\hline
+$[0,1]$ & $x$ & $+1$\\
+$[1,2]$ & $2-x$ & $-1$\\
+$[2,3]$ & $x-2$ & $+1$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Continuo en $x=1,2$ pero con quiebre de pendiente:\\[0.2mm]
+$S'(1^-)=+1$, \; $S'(1^+)=-1$.\\[0.6mm]
+Las \emph{esquinas} son el precio de $C^0$: el spline cúbico las suaviza a costa de resolver un sistema.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Splines cúbicos: momentos + ejemplo ----
+\begin{frame}{Splines cúbicos: momentos y reconstrucción}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize $S\in C^2$, cúbica por tramo; $4n$ coef., $4n{-}2$ cond., faltan $2$ (frontera). Momentos $M_i=S''(x_i)$; ecuación interna ($h_i=x_{i+1}-x_i$):\\[0.4mm]
+$h_{i-1}M_{i-1}+2(h_{i-1}+h_i)M_i+h_iM_{i+1}=6\delta_i$,\\[0.2mm]
+$\delta_i=\dfrac{y_{i+1}-y_i}{h_i}-\dfrac{y_i-y_{i-1}}{h_{i-1}}$.\\[1.0mm]
+\textbf{Frontera:} natural $M_0{=}M_n{=}0$; sujeto $S'(x_0){=}f'(a)$, $S'(x_n){=}f'(b)$; not-a-knot.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Natural por $(0,0),(1,1),(2,0)$}{\faCalculator}
+{\footnotesize $h_0=h_1=1$, $M_0=M_2=0$; una ecuación interna ($i=1$):\\[0.6mm]
+$2(1{+}1)M_1=6\Big(\dfrac{0-1}{1}-\dfrac{1-0}{1}\Big)=-12$\\[0.4mm]
+$\Rightarrow\ M_1=-3.$\\[1.4mm]
+Reconstrucción de los tramos:\\[0.2mm]
+$S_0(x)=-\tfrac12x^3+\tfrac32x$ \quad en $[0,1]$,\\[0.2mm]
+$S_1(x)=-\tfrac12(2-x)^3+\tfrac32(2-x)$ \; en $[1,2]$.\\[0.8mm]
+Verifica $S(0){=}0$, $S(1){=}1$, $S(2){=}0$, con $S,S',S''$ continuas y $S''(0){=}S''(2){=}0$: una \emph{joroba} suave.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Sistema tridiagonal (MATRIZ) + Thomas ----
+\begin{frame}{Sistema tridiagonal de los momentos}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Forma matricial}{\faSuperscript}
+{\footnotesize\centering
+$\begin{psmallmatrix} d_1 & h_1 & & \\ h_1 & d_2 & h_2 & \\ & \ddots & \ddots & \ddots \\ & & h_{n-2} & d_{n-1} \end{psmallmatrix}\!\begin{psmallmatrix} M_1\\ M_2\\ \vdots\\ M_{n-1}\end{psmallmatrix}=6\begin{psmallmatrix}\delta_1\\ \delta_2\\ \vdots\\ \delta_{n-1}\end{psmallmatrix}$\par\vspace{1.2mm}\raggedright
+con $d_i=2(h_{i-1}+h_i)$.\\[1.0mm]
+\textbf{Diagonal dominante estricta}: $d_i>h_{i-1}{+}h_i$ $\Rightarrow$ solución única y estable.\\[1.0mm]
+\textbf{Thomas} ($O(n)$): eliminación adaptada a la banda tridiagonal.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Ejemplo $(0,0),(1,1),(2,0),(3,-1)$}{\faCalculator}
+{\footnotesize $h_i=1$, $M_0=M_3=0$, dos ecuaciones internas:\\[0.6mm]
+$\begin{psmallmatrix}4&1\\ 1&4\end{psmallmatrix}\!\begin{psmallmatrix}M_1\\ M_2\end{psmallmatrix}=\begin{psmallmatrix}-12\\ 0\end{psmallmatrix}$\\[1.0mm]
+$\delta_1=6(\tfrac{0-1}{1}-\tfrac{1-0}{1})=-12$, \; $\delta_2=6(\tfrac{-1-0}{1}-\tfrac{0-1}{1})=0$.\\[0.6mm]
+$\Rightarrow\ M_1=-\tfrac{16}{5}=-3.2$, \; $M_2=\tfrac{4}{5}=0.8$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Cúbico sujeto: $\|f-S\|_\infty\le\tfrac{5}{384}h^4\max|f^{(4)}|=O(h^4)$; Lebesgue del spline $\le3$ (independiente de $n$): sin Runge.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 4: Aproximación de Funciones};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
