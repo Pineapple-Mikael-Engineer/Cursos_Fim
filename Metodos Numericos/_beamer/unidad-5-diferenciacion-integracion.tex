@@ -1,0 +1,633 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 5
+%  Diferenciación e Integración Numérica
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Diferenciación e Integración Numérica}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (del tema de la unidad) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.4cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{17}{17}\selectfont $\displaystyle\int_a^b f\approx\sum_i w_i f(x_i)$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.7cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $f'(x)\approx\dfrac{f(x+h)-f(x-h)}{2h}$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.7cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\tfrac{h}{3}(f_0+4f_1+f_2)$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Diferenciación e\\ Integración Numérica};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Diferencias\ \textperiodcentered\ Newton-Cotes\ \textperiodcentered\ Gauss};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 5};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Cuando no hay fórmula cerrada, se \emph{aproxima} derivada o integral evaluando $f$ en unos pocos nodos. La \textbf{diferenciación numérica} combina valores vecinos según Taylor: fórmulas \emph{progresiva}/\emph{regresiva} ($O(h)$) y \emph{centrada} ($O(h^2)$), aceleradas por \textbf{Richardson}; pero el redondeo impone un $h^*$ óptimo (curva en ``V''). La \textbf{integración} sustituye $f$ por su interpolante: \textbf{Newton-Cotes} usa nodos equiespaciados (trapecio, Simpson $1/3$ y $3/8$) con error $\propto f^{(k)}$; la \textbf{cuadratura gaussiana} elige nodos y pesos \emph{óptimos} y alcanza grado de exactitud $2n-1$ con solo $n$ evaluaciones.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Derivar vs.\ integrar}{\faCogs}
+Derivar \emph{amplifica} el ruido ($1/h$): mal condicionado, hay $h^*$. Integrar \emph{promedia}: estable y convergente al refinar.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Newton-Cotes vs.\ Gauss}{\faCogs}
+Nodos \emph{fijos} equiespaciados: grado $\sim n$. Nodos \emph{libres} (ceros de Legendre): grado $2n-1$, el doble por evaluación.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la unidad}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Diferenciación: diferencias finitas, error y $h^*$, Richardson\\[0.6mm]
+2.\; Newton-Cotes: trapecio, Simpson $1/3$ y $3/8$, compuestos
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Grado de exactitud y error de las reglas cerradas\\[0.6mm]
+4.\; Cuadratura gaussiana: nodos/pesos, cambio de variable, $2n{-}1$
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Tres bloques: \textbf{diferenciación numérica}, \textbf{integración de Newton-Cotes} y \textbf{cuadratura gaussiana}. Cada método se acompaña de su(s) fórmula(s) y un \emph{proceso resuelto}: tabla de errores frente a $h$, extrapolación de Richardson, suma ponderada $\sum w_i f_i$ contra el valor exacto, o la tabla de nodos y pesos $t_i,w_i$ de Gauss-Legendre.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Diferenciación Numérica}{Diferencias finitas por Taylor, orden del error, paso óptimo y Richardson}{\faRulerCombined}
+
+% ---- Diferencias finitas: fórmulas y orden ----
+\begin{frame}{Diferencias finitas: fórmulas y orden}
+\begin{columns}[T]
+\begin{column}{0.53\textwidth}
+\begin{cardgear}{Fórmulas por paso $h$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.5}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Derivada & Fórmula & Error\\\hline
+$f'$ progresiva & $\frac{f(x+h)-f(x)}{h}$ & $O(h)$\\
+$f'$ regresiva & $\frac{f(x)-f(x-h)}{h}$ & $O(h)$\\
+$f'$ centrada & $\frac{f(x+h)-f(x-h)}{2h}$ & $O(h^2)$\\
+$f'$ centrada 5\,pt & $\frac{-f_{+2}+8f_{+1}-8f_{-1}+f_{-2}}{12h}$ & $O(h^4)$\\
+$f''$ centrada & $\frac{f(x+h)-2f(x)+f(x-h)}{h^2}$ & $O(h^2)$\\
+\end{tabular}}
+\end{cardgear}
+\end{column}
+\begin{column}{0.45\textwidth}
+\begin{cardidea}{Origen (Taylor)}{\faSuperscript}
+{\footnotesize $f(x{\pm}h)=f\pm hf'+\tfrac{h^2}{2}f''\pm\tfrac{h^3}{6}f'''+\cdots$\\[0.8mm]
+Restar $\Rightarrow$ se cancela $f''$:\\[0.2mm]
+$\frac{f(x+h)-f(x-h)}{2h}=f'(x)+\tfrac{h^2}{6}f'''(\xi)$.\\[0.8mm]
+Sumar $\Rightarrow$ se cancela $f'$:\\[0.2mm]
+$\frac{f_{+}-2f_0+f_{-}}{h^2}=f''(x)+\tfrac{h^2}{12}f^{(4)}(\xi)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La \emph{simetría} de la fórmula centrada cancela el término impar: gana un orden respecto a la progresiva con el mismo número de puntos.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Verificación del orden + inestabilidad y h* ----
+\begin{frame}{Orden del error, inestabilidad y paso óptimo}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$f=\sin x$ en $x=1$ ($f'=\cos 1$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.28}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc|cc}
+$h$ & $E_{\text{prog}}$ & fac. & $E_{\text{cent}}$ & fac.\\\hline
+$0.1$ & $4.2{\times}10^{-2}$ & — & $9.0{\times}10^{-4}$ & —\\
+$0.05$ & $2.1{\times}10^{-2}$ & $2.0$ & $2.3{\times}10^{-4}$ & $4.0$\\
+$0.025$ & $1.05{\times}10^{-2}$ & $2.0$ & $5.6{\times}10^{-5}$ & $4.0$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Progresiva se \emph{halva} ($\times2$, orden $1$); centrada se \emph{cuartea} ($\times4$, orden $2$).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Estimación empírica del orden: $p\approx\log_2\!\dfrac{E(h)}{E(h/2)}$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Truncamiento vs.\ redondeo}{\faSuperscript}
+{\footnotesize Progresiva: $E(h)\lesssim\tfrac{h}{2}M_2+\tfrac{2uM_0}{h}$.\\[0.6mm]
+Minimizar $\Rightarrow$ paso óptimo:\\[0.2mm]
+prog.\ $h^*=2\sqrt{uM_0/M_2}\sim\sqrt{u}$;\\[0.2mm]
+centrada $h^*\sim u^{1/3}$, $E(h^*)\sim u^{2/3}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize $f=e^x$ en $0$, centrada: el error en log-log forma una \textbf{``V''} — baja con pendiente $2$ hasta $h^*{\approx}10^{-5}$ ($E{\sim}2{\times}10^{-11}$) y sube por cancelación si $h{<}h^*$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Extrapolación de Richardson (TABLA de niveles) ----
+\begin{frame}{Extrapolación de Richardson}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Si $A(h)=A+c_p h^p+c_{p+q}h^{p+q}+\cdots$, combinar $A(h)$ y $A(h/2)$ mata el término $h^p$:\\[0.6mm]
+$A^{\text{ext}}(h)=\dfrac{2^p A(h/2)-A(h)}{2^p-1}=A+O(h^{p+q})$.\\[1.0mm]
+Derivada centrada ($p{=}2,\,q{=}2$):\\[0.2mm]
+$D^{\text{ext}}=\dfrac{4D(h/2)-D(h)}{3}$, orden $2\to4$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Aplicada al trapecio da la \textbf{tabla de Romberg}: $R_{k,j}=\dfrac{4^jR_{k,j-1}-R_{k-1,j-1}}{4^j-1}$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{$D(h)=\frac{f(h)-f(-h)}{2h}$ para $f=e^x$ en $0$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+$h$ & $D(h)$ & $D^{\text{ext}}=\frac{4D(h/2)-D(h)}{3}$\\\hline
+$0.2$ & $1.0066800$ & —\\
+$0.1$ & $1.0016675$ & $0.9999967$\\
+$0.05$ & $1.0004168$ & $0.9999998$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize $D(0.1)$ tiene error $\sim1.7{\times}10^{-3}$; la extrapolada baja a $\sim3{\times}10^{-6}$ y luego $\sim2{\times}10^{-7}$ con los \emph{mismos} datos: gana dos órdenes gratis.\\[0.6mm]
+El valor exacto es $f'(0)=1$; cada columna nueva cancela el siguiente término par de la expansión.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Integración de Newton-Cotes}{Pesos por Lagrange, trapecio y Simpson (simple y compuesto), error y grado}{\faChartArea}
+
+% ---- Formulación general + pesos ----
+\begin{frame}{Formulación general: pesos de Newton-Cotes}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Se integra el interpolante en nodos $x_i=a+ih$, $h=\tfrac{b-a}{n}$:\\[0.4mm]
+$\displaystyle\int_a^b f\,dx\approx\int_a^b p_n\,dx=\sum_{i=0}^n w_i f(x_i)$,\\[0.8mm]
+con pesos $w_i=\displaystyle\int_a^b L_i(x)\,dx$.\\[1.0mm]
+Propiedades: $\sum_i w_i=b-a$, $\ w_i=w_{n-i}$,\\[0.2mm]
+grado $=n$ ($n$ impar) o $n+1$ ($n$ par).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Simpson $1/3$ en $[0,2]$ ($n{=}2$, $h{=}1$), $L_1=-x(x-2)$:\\[0.4mm]
+$w_1=\int_0^2(-x^2{+}2x)\,dx=[-\tfrac{x^3}{3}{+}x^2]_0^2=\tfrac43=\tfrac h3\cdot4$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Reglas básicas y pesos ($h=(b-a)/n$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|l|c}
+$n$ & Fórmula & grado\\\hline
+$1$ & $\tfrac{h}{2}(f_0+f_1)$ & $1$\\
+$2$ & $\tfrac{h}{3}(f_0+4f_1+f_2)$ & $3$\\
+$3$ & $\tfrac{3h}{8}(f_0+3f_1+3f_2+f_3)$ & $3$\\
+$4$ & $\tfrac{2h}{45}(7f_0{+}32f_1{+}12f_2{+}32f_3{+}7f_4)$ & $5$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize El error es la integral del error de interpolación $\displaystyle\int_a^b\tfrac{f^{(n+1)}(\xi_x)}{(n+1)!}\prod_i(x-x_i)\,dx$; por eso $n$ par ``gana'' un grado por simetría.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Trapecio simple + compuesto (TABLA de subintervalos) ----
+\begin{frame}{Regla del trapecio: simple y compuesta}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Simple ($h=b-a$):\\[0.2mm]
+$\int_a^b f=\tfrac{h}{2}(f_0+f_1)-\tfrac{h^3}{12}f''(\xi)$.\\[1.0mm]
+Compuesta ($h=\tfrac{b-a}{n}$):\\[0.2mm]
+$T_n=\tfrac{h}{2}\big(f_0+2\!\sum_{i=1}^{n-1}\!f_i+f_n\big)$,\\[0.4mm]
+$\displaystyle\int_a^b f-T_n=-\tfrac{(b-a)h^2}{12}f''(\xi)=O(h^2)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Refinamiento incremental: $T_{2n}=\tfrac12T_n+h_{2n}\!\!\sum_{\text{nodos nuevos}}\!\!f(x_i)$ (reusa evaluaciones).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx=e-1\approx1.718282$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|cc}
+$n$ & $h$ & $T_n$ & error & fac.\\\hline
+$1$ & $1$ & $1.859141$ & $1.4{\times}10^{-1}$ & —\\
+$2$ & $0.5$ & $1.753931$ & $3.6{\times}10^{-2}$ & $3.9$\\
+$4$ & $0.25$ & $1.727222$ & $8.9{\times}10^{-3}$ & $4.0$\\
+$8$ & $0.125$ & $1.720519$ & $2.2{\times}10^{-3}$ & $4.0$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Halvar $h$ divide el error por $\approx4=2^2$: confirma $O(h^2)$. El error es \emph{positivo} (sobrestima) porque $f''>0$: el trapecio queda por encima de la curva convexa.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Simpson 1/3 y 3/8 + combinación ----
+\begin{frame}{Simpson $1/3$ y $3/8$: mayor orden}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmulas y error}{\faSuperscript}
+{\footnotesize \textbf{Simpson $1/3$} ($h=\tfrac{b-a}{2}$, $n$ par):\\[0.2mm]
+$\int_a^b f=\tfrac{h}{3}(f_0+4f_1+f_2)-\tfrac{h^5}{90}f^{(4)}(\xi)$, $g{=}3$.\\[0.8mm]
+\textbf{Simpson $3/8$} ($h=\tfrac{b-a}{3}$):\\[0.2mm]
+$\int_a^b f=\tfrac{3h}{8}(f_0+3f_1+3f_2+f_3)-\tfrac{3h^5}{80}f^{(4)}(\xi)$, $g{=}3$.\\[1.0mm]
+\textbf{$n=5$ impar} (combinar $1/3$ sobre $[x_0,x_2]$ y $3/8$ sobre $[x_2,x_5]$):\\[0.2mm]
+$\tfrac{h}{3}(f_0{+}4f_1{+}f_2)+\tfrac{3h}{8}(f_2{+}3f_3{+}3f_4{+}f_5)$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx$, Simpson $1/3$ ($h=0.5$)}{\faCalculator}
+{\footnotesize $\tfrac{0.5}{3}\big(e^0+4e^{0.5}+e^1\big)$\\[0.4mm]
+$=\tfrac{0.5}{3}(1+6.59489+2.71828)=1.718862$.\\[0.8mm]
+Error $=5.8{\times}10^{-4}$, frente a $1.4{\times}10^{-1}$ del trapecio: \textbf{$\sim$240 veces} menor con \emph{un} punto más.\\[0.6mm]
+Cota $\tfrac{h^5}{90}\max|f^{(4)}|=\tfrac{(0.5)^5 e}{90}\approx9.4{\times}10^{-4}$: consistente.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $1/3$ y $3/8$ tienen el \emph{mismo} grado $3$; $3/8$ solo se usa para poder cerrar tramos con número de paneles múltiplo de $3$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Simpson compuesto + grado/pesos negativos ----
+\begin{frame}{Simpson compuesto y grado de exactitud}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx$, Simpson compuesto}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|cc}
+$n$ & $h$ & $S_n$ & error & fac.\\\hline
+$2$ & $0.5$ & $1.7188612$ & $5.8{\times}10^{-4}$ & —\\
+$4$ & $0.25$ & $1.7183188$ & $3.7{\times}10^{-5}$ & $15.7$\\
+$8$ & $0.125$ & $1.7182841$ & $2.3{\times}10^{-6}$ & $16.0$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $S_n=\tfrac{h}{3}\big(f_0+4\!\!\sum_{\text{impar}}\!\!f_i+2\!\!\sum_{\text{par}}\!\!f_i+f_n\big)$;\\[0.2mm]
+error $-\tfrac{(b-a)h^4}{180}f^{(4)}(\xi)=O(h^4)$: halvar $h$ divide por $16=2^4$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Error y grado por regla}{\faListOl}
+{\footnotesize
+Trapecio: $-\tfrac{h^3}{12}f''$, $g{=}1$;\\[0.2mm]
+Simpson $1/3$: $-\tfrac{h^5}{90}f^{(4)}$, $g{=}3$;\\[0.2mm]
+Simpson $3/8$: $-\tfrac{3h^5}{80}f^{(4)}$, $g{=}3$;\\[0.2mm]
+Boole ($n{=}4$): $-\tfrac{8h^7}{945}f^{(6)}$, $g{=}5$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{No subir el grado sin límite:} desde $n\ge8$ aparecen pesos $w_i<0$; $\sum|w_i|\to\infty$ amplifica el redondeo $E\lesssim u\sum|w_i|\max|f|$. Se prefiere \emph{componer} reglas de bajo orden.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Cuadratura Gaussiana}{Nodos y pesos óptimos (Legendre), cambio de variable y grado $2n-1$}{\faMicrochip}
+
+% ---- Fundamentos + tabla de nodos/pesos ----
+\begin{frame}{Gauss-Legendre: nodos y pesos óptimos}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize En $[-1,1]$ con $n$ nodos:\\[0.2mm]
+$\displaystyle\int_{-1}^1 f\,dx\approx\sum_{i=1}^n w_i\,f(t_i)$,\\[0.6mm]
+$t_i=$ ceros de Legendre $P_n$;\\[0.2mm]
+$w_i=\dfrac{2}{(1-t_i^2)[P_n'(t_i)]^2}>0$, $\ \sum_i w_i=2$.\\[1.0mm]
+Recurrencia $(n{+}1)P_{n+1}=(2n{+}1)xP_n-nP_{n-1}$;\\[0.2mm]
+$P_2=\tfrac12(3x^2{-}1)$, $P_3=\tfrac12(5x^3{-}3x)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Peso $n{=}2$, $t_1{=}1/\sqrt3$: $w_1=\tfrac{2}{(2/3)(3/\sqrt3)^2}=\tfrac{2}{(2/3)\cdot3}=1$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Nodos $t_i$ y pesos $w_i$ en $[-1,1]$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$n$ & nodos $t_i$ & pesos $w_i$ & grado\\\hline
+$1$ & $0$ & $2$ & $1$\\
+$2$ & $\pm0.577350$ & $1,\ 1$ & $3$\\
+$3$ & $0,\ \pm0.774597$ & $0.888889,\ 0.555556$ & $5$\\
+$4$ & $\pm0.339981$ & $0.652145$ & $7$\\
+   & $\pm0.861136$ & $0.347855$ & \\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Positividad: aplicar la regla a $L_i^2$ da $0<\sum_j w_j L_i(t_j)^2=w_i$; nodos simétricos y pesos iguales por pares ($w_i=w_{n-i}$).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Cambio de variable + ejemplo numérico ----
+\begin{frame}{Cambio de variable $[a,b]\to[-1,1]$ y ejemplo}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Cambio afín:\\[0.2mm]
+$x=\dfrac{b-a}{2}\,t+\dfrac{a+b}{2}$, $\ dx=\dfrac{b-a}{2}\,dt$.\\[1.0mm]
+Cuadratura en $[a,b]$:\\[0.2mm]
+$\displaystyle\int_a^b f\,dx\approx\frac{b-a}{2}\sum_{i=1}^n w_i\,f\!\Big(\tfrac{b-a}{2}t_i+\tfrac{a+b}{2}\Big)$.\\[1.0mm]
+\textbf{Gauss compuesto:} partir $[a,b]$ en paneles $[c_k,c_{k+1}]$ y aplicar la regla en cada uno.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$\int_0^2 e^x\,dx=e^2-1\approx6.389056$, Gauss 2 nodos}{\faCalculator}
+{\footnotesize $[0,2]\to[-1,1]$: $x=t+1$, factor $\tfrac{b-a}{2}=1$.\\[0.6mm]
+Nodos $t_i=\pm1/\sqrt3\Rightarrow x_i=1\pm0.5774$:\\[0.4mm]
+\centering
+\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$t_i$ & $x_i$ & $w_i$ & $w_i f(x_i)$\\\hline
+$-0.5774$ & $0.4226$ & $1$ & $1.5259$\\
+$+0.5774$ & $1.5774$ & $1$ & $4.8424$\\\hline
+\multicolumn{3}{c|}{$\sum$} & $6.3683$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $\int\approx1\cdot6.3683=6.3683$; error $2.1{\times}10^{-2}$ con \emph{solo 2} evaluaciones (baja a $\sim10^{-4}$ con $3$ nodos).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Grado 2n-1 + comparación con Newton-Cotes ----
+\begin{frame}{Grado de exactitud $2n-1$ y eficiencia}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Gauss 2 nodos: exacta hasta grado $3$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.28}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$p(x)$ & $\int_{-1}^1 p$ & $f(-\tfrac1{\sqrt3}){+}f(\tfrac1{\sqrt3})$ & ¿ok?\\\hline
+$1$ & $2$ & $1+1=2$ & \checkmark\\
+$x$ & $0$ & $-\tfrac1{\sqrt3}+\tfrac1{\sqrt3}=0$ & \checkmark\\
+$x^2$ & $2/3$ & $\tfrac13+\tfrac13=\tfrac23$ & \checkmark\\
+$x^3$ & $0$ & $-\tfrac1{3\sqrt3}+\tfrac1{3\sqrt3}=0$ & \checkmark\\
+$x^4$ & $2/5$ & $\tfrac19+\tfrac19=\tfrac29$ & $\times$\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize Exacta hasta grado $3=2(2)-1$; falla en $4$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Teorema y error}{\faSuperscript}
+{\footnotesize $n$ nodos $\Rightarrow$ exacta para todo $p$ de grado $\le 2n-1$.\\[0.4mm]
+Prueba: $p=q\,P_n+r$, $\deg q,r\le n{-}1$, y $\int P_n q=0$.\\[0.6mm]
+Error ($f\in C^{2n}$): $\dfrac{2^{2n+1}(n!)^4}{(2n+1)[(2n)!]^3}f^{(2n)}(\xi)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{$\int_0^1 e^x\,dx$: error por evaluaciones}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+evals & Simpson comp. & Gauss\\\hline
+$2$ & — & $4.0{\times}10^{-5}$\\
+$3$ & $5.8{\times}10^{-4}$ & $2.9{\times}10^{-7}$\\
+$5$ & $3.7{\times}10^{-5}$ & $5{\times}10^{-12}$\\
+\end{tabular}}\\[0.8mm]
+{\footnotesize Gauss: grado $2n{-}1$ vs.\ $\sim n$ de Newton-Cotes.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 5: Diferenciación e Integración Numérica};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
