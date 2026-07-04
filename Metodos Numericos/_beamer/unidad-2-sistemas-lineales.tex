@@ -217,12 +217,12 @@ Resolver $A\mathbf{x}=\mathbf{b}$ y calcular autovalores es el núcleo del cálc
 \begin{columns}[T]
 \begin{column}{0.485\textwidth}
 \begin{cardgear}{Directos vs.\ iterativos}{\faCogs}
-Directos: costo $O(n^3)$ exacto salvo redondeo. Iterativos: costo $O(n^2)$/iteración, ideales para matrices grandes y dispersas.
+Directos: costo $O(n^3)$, exactos salvo redondeo. Iterativos: $O(n^2)$/iteración, ideales para matrices grandes y dispersas.
 \end{cardgear}
 \end{column}
 \begin{column}{0.485\textwidth}
 \begin{cardgear}{Papel de $\kappa(A)$}{\faCogs}
-El número de condición $\kappa(A)=\|A\|\,\|A^{-1}\|$ gobierna cuánto amplifica el problema los errores de datos y de redondeo.
+El número de condición $\kappa(A)=\|A\|\,\|A^{-1}\|$ gobierna cuánto amplifica el problema los errores de datos y redondeo.
 \end{cardgear}
 \end{column}
 \end{columns}
@@ -249,7 +249,7 @@ El número de condición $\kappa(A)=\|A\|\,\|A^{-1}\|$ gobierna cuánto amplific
 \end{columns}
 \vspace{3mm}
 \begin{cardnota}[\faInfoCircle]
-Tres grandes bloques: \textbf{Métodos directos}, \textbf{Métodos iterativos} y \textbf{Valores/vectores propios}. Cada fórmula va acompañada de un ejemplo numérico con los pasos del cálculo.
+Tres bloques: \textbf{Métodos directos}, \textbf{Métodos iterativos} y \textbf{Valores/vectores propios}. Cada método se presenta con su(s) fórmula(s) y un \emph{proceso resuelto} paso a paso (cadena de matrices o tabla de iteraciones).
 \end{cardnota}
 \end{frame}
 
@@ -258,167 +258,156 @@ Tres grandes bloques: \textbf{Métodos directos}, \textbf{Métodos iterativos} y
 % ############################################################
 \portadaseccion{1}{Métodos Directos}{Gauss, pivoteo, factorizaciones y análisis de error}{\faMicrochip}
 
-\begin{frame}{Eliminación gaussiana: multiplicadores}
+% ---- Gauss -> LU (cadena de matrices) ----
+\begin{frame}{Eliminación de Gauss $\rightarrow$ $LU$}
+\begin{columns}[T]
+\begin{column}{0.38\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ m_{ik}=\frac{a_{ik}}{a_{kk}},\qquad a_{ij}^{(k+1)}=a_{ij}^{(k)}-m_{ik}\,a_{kj}^{(k)} \]
-$a_{kk}$: pivote; $m_{ik}$: multiplicador que anula la columna $k$ bajo la diagonal.
+$$m_{ik}=\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}}$$
+$$a_{ij}^{(k+1)}=a_{ij}^{(k)}-m_{ik}\,a_{kj}^{(k)}$$
+{\footnotesize $A=LU$: $L$ guarda los $m_{ik}$ (unitaria); $U$ triangular final.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}1&2&1\\2&6&1\\1&1&4\end{psmallmatrix}$. Etapa 1: $m_{21}=2,\ m_{31}=1$.
-$F_2{-}2F_1=(0,2,-1)$, $F_3{-}F_1=(0,-1,3)$. Etapa 2: $m_{32}=\tfrac{-1}{2}$,
-\[ U=\begin{psmallmatrix}1&2&1\\0&2&-1\\0&0&2.5\end{psmallmatrix} \]
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Costo: $\tfrac{2}{3}n^3$ FLOPs (eliminación) $+\,n^2$ (sustitución regresiva).}\end{cardnota}
+\end{column}
+\begin{column}{0.60\textwidth}
+\begin{cardgear}{Proceso con matrices}{\faTable}
+{\scriptsize
+$\begin{psmallmatrix}2&-1&1\\4&1&-1\\-2&2&3\end{psmallmatrix}\xrightarrow[\;m_{31}=-1\;]{\;m_{21}=2\;}\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&1&4\end{psmallmatrix}\xrightarrow{\;m_{32}=\frac13\;}\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&0&5\end{psmallmatrix}=U$}\\[2.4mm]
+{\footnotesize $L=\begin{psmallmatrix}1&0&0\\2&1&0\\-1&\frac13&1\end{psmallmatrix}\Rightarrow LU=A\ \checkmark$\\[2mm]
+Sustitución: $Ly=b$ (adelante), luego $Ux=y$ (atrás). Reordenar filas (pivoteo) da $PA=LU$.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Pivoteo parcial}
+% ---- Pivoteo parcial y crecimiento ----
+\begin{frame}{Pivoteo parcial y factor de crecimiento}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ |a_{p,k}|=\max_{i\ge k}|a_{i,k}|,\qquad |m_{ik}|\le 1 \]
-Se lleva a la diagonal el mayor elemento de la columna: acota los multiplicadores.
+{\footnotesize $|a_{p,k}|=\displaystyle\max_{i\ge k}|a_{i,k}|\ \Rightarrow\ |m_{ik}|\le 1$\\[1.4mm]
+$\rho=\dfrac{\max_{i,j,k}|a_{ij}^{(k)}|}{\max_{i,j}|a_{ij}|},\quad \rho\le 2^{\,n-1}$}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$\begin{psmallmatrix}10^{-20}&1\\1&1\end{psmallmatrix}\mathbf{x}=\begin{psmallmatrix}1\\2\end{psmallmatrix}$ (exacta $\mathbf{x}\approx(1,1)$). Sin pivoteo $m_{21}=10^{20}$: $a_{22}'=1-10^{20}\approx-10^{20}$, se cancela el $1$ y sale $x_1=\mathbf{0}$.
-Pivoteando ($m_{21}=10^{-20}$): $a_{22}'\approx1\Rightarrow \mathbf{x}\approx(1,1)$ \checkmark
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Peor caso $n{=}3$: $\begin{psmallmatrix}1&0&1\\-1&1&1\\-1&-1&1\end{psmallmatrix}$, la última columna $1{\to}2{\to}4$, $\rho=\tfrac{4}{1}=2^{2}$.}\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Ejemplo (evita cancelación)}{\faCalculator}
+{\footnotesize $\begin{psmallmatrix}10^{-20}&1\\1&1\end{psmallmatrix}\mathbf x=\begin{psmallmatrix}1\\2\end{psmallmatrix}$,\; exacta $\mathbf x\approx(1,1)$.\\[1.4mm]
+\textbf{Sin pivoteo} $m_{21}=10^{20}$: $a_{22}'=1-10^{20}\approx-10^{20}$, se pierde el $1$ $\Rightarrow x_1=\mathbf 0$.\\[1.4mm]
+\textbf{Con pivoteo} (permutar filas) $m_{21}=10^{-20}$: $a_{22}'\approx1\Rightarrow\mathbf x\approx(1,1)$ \checkmark\\[1.2mm]
+El pivoteo mantiene $\rho=O(1)$ en la práctica.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Factor de crecimiento}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \rho=\frac{\max_{i,j,k}\,|a_{ij}^{(k)}|}{\max_{i,j}\,|a_{ij}|},\qquad \text{parcial: } \rho\le 2^{\,n-1} \]
-Mide cuánto crecen los elementos durante la eliminación; alimenta la cota de error.
+% ---- Doolittle y Crout ----
+\begin{frame}{Factorización $LU$: Doolittle y Crout}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Doolittle ($L$ unitaria)}{\faSuperscript}
+{\footnotesize $u_{kj}=a_{kj}-\!\sum_{p<k}\ell_{kp}u_{pj}$\\[0.8mm]
+$\ell_{ik}=\tfrac{1}{u_{kk}}\big(a_{ik}-\!\sum_{p<k}\ell_{ip}u_{pk}\big)$\\[1.6mm]
+$A=\begin{psmallmatrix}2&-1&1\\4&1&-1\\-2&2&3\end{psmallmatrix}$:\\[1.2mm]
+$L=\begin{psmallmatrix}1&0&0\\2&1&0\\-1&\frac13&1\end{psmallmatrix}$, $U=\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&0&5\end{psmallmatrix}$}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-Matriz de peor caso ($n=3$): $A=\begin{psmallmatrix}1&0&1\\-1&1&1\\-1&-1&1\end{psmallmatrix}$.
-Eliminando ($m_{i1}={-}1$, $m_{32}={-}1$) la última columna se duplica: $1\to2\to4$.
-\[ \rho=\frac{4}{1}=2^{2}=2^{\,n-1} \]
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Crout ($U$ unitaria)}{\faSuperscript}
+{\footnotesize $\ell_{ik}=a_{ik}-\!\sum_{p<k}\ell_{ip}u_{pk}$\\[0.8mm]
+$u_{kj}=\tfrac{1}{\ell_{kk}}\big(a_{kj}-\!\sum_{p<k}\ell_{kp}u_{pj}\big)$\\[1.6mm]
+Misma $A$:\\[1.2mm]
+$L=\begin{psmallmatrix}2&0&0\\4&3&0\\-2&1&5\end{psmallmatrix}$, $U=\begin{psmallmatrix}1&-\frac12&\frac12\\0&1&-1\\0&0&1\end{psmallmatrix}$}
 \end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Ambas dan $A=LU$: Doolittle fija $\ell_{ii}=1$, Crout fija $u_{ii}=1$. Existe sin pivoteo $\iff$ los menores líderes $\Delta_k\neq0$; entonces $u_{kk}=\Delta_k/\Delta_{k-1}$ y la factorización es única.}
+\end{cardnota}
 \end{frame}
 
-\begin{frame}{Complejidad de la eliminación}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \text{FLOPs}=\frac{2n^3}{3}+\frac{3n^2}{2}+O(n)\ \sim\ \frac{2n^3}{3} \]
-La fase de eliminación domina; la sustitución regresiva cuesta $\approx n^2$.
+% ---- Cholesky y LDL^T ----
+\begin{frame}{Cholesky y variante $LDL^{T}$ (simétricas)}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Cholesky $A=LL^{T}$ (SDP)}{\faSuperscript}
+{\footnotesize $\ell_{kk}=\sqrt{a_{kk}-\!\sum_{p<k}\ell_{kp}^2}$,\; $\ell_{ik}=\tfrac{1}{\ell_{kk}}\big(a_{ik}-\!\sum_{p<k}\ell_{ip}\ell_{kp}\big)$\\[1.6mm]
+$A=\begin{psmallmatrix}4&2&-2\\2&10&2\\-2&2&6\end{psmallmatrix}\Rightarrow L=\begin{psmallmatrix}2&0&0\\1&3&0\\-1&1&2\end{psmallmatrix}$\\[1.2mm]
+$LL^{T}=A$ \checkmark\; Costo $\tfrac13 n^3$, estable sin pivoteo.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$n=10^3$: $\tfrac{2}{3}(10^3)^3=6.67\times10^{8}$ FLOPs $\Rightarrow$ $<1$ s a $10^9$ FLOP/s.
-\[ n=10^4:\ \tfrac{2}{3}\cdot10^{12}=6.67\times10^{11}\approx \mathbf{11}\ \text{min} \]
-El costo se multiplica por $\sim1000$ al multiplicar $n$ por $10$.
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{$LDL^{T}$ (sin raíces)}{\faSuperscript}
+{\footnotesize $d_{kk}=a_{kk}-\!\sum_{p<k}\ell_{kp}^2 d_{pp}$\\[0.8mm]
+$\ell_{ik}=\tfrac{1}{d_{kk}}\big(a_{ik}-\!\sum_{p<k}\ell_{ip}\ell_{kp}d_{pp}\big)$\\[1.6mm]
+$A=\begin{psmallmatrix}1&2&0\\2&3&-1\\0&-1&1\end{psmallmatrix}$:\\[1.2mm]
+$L=\begin{psmallmatrix}1&0&0\\2&1&0\\0&1&1\end{psmallmatrix}$, $D=\operatorname{diag}(1,-1,2)$}
 \end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $LDL^{T}$ evita raíces y sirve para matrices simétricas \emph{indefinidas}; $\det A=\prod \ell_{ii}^2$ (Cholesky) $=\prod d_{ii}$ ($LDL^{T}$).}
+\end{cardnota}
 \end{frame}
 
-\begin{frame}{Error hacia atrás (Wilkinson)}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \tilde L\tilde U=A+\Delta A,\qquad \|\Delta A\|_\infty\le \rho\,n\,u\,\|A\|_\infty \]
-La factorización calculada es la exacta de una matriz apenas perturbada: estable si $\rho=O(1)$.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$n=3$, $\rho=1$, doble ($u=2.2\times10^{-16}$):
-\[ \frac{\|\Delta A\|_\infty}{\|A\|_\infty}\le \rho\,n\,u=3\cdot 2.2\times10^{-16}\approx\mathbf{6.6\times10^{-16}} \]
-El pivoteo parcial mantiene $\rho$ pequeño en la práctica.
+% ---- Complejidad y costo ----
+\begin{frame}{Complejidad y costo computacional}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Costo por método}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\arrayrulecolor{Granate}
+\begin{tabular}{l|c}
+Método & FLOPs (orden) \\\hline
+Gauss / $LU$ & $\tfrac{2}{3}n^3$\\
+Cholesky (SDP) & $\tfrac{1}{3}n^3$\\
+$QR$ Householder & $\tfrac{4}{3}n^3$\\
+Inversa vía $LU$ & $\tfrac{8}{3}n^3$\\
+Tridiagonal (Thomas) & $8n$ \\
+\end{tabular}}\\[1mm]
+{\footnotesize Sustitución (una): $2n^2$;\ $Ax$: $2n^2$.}
 \end{cardgear}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{$LU$ frente a Gauss repetido}{\faCalculator}
+{\footnotesize $\text{Gauss}\times m:\ m\cdot\tfrac{2}{3}n^3$\\[0.8mm]
+$LU+m$ sust.: $\tfrac{2}{3}n^3+m\cdot 2n^2$\\[1.6mm]
+$n{=}10^3,\ m{=}100$:\\[0.6mm]
+Gauss $=100\cdot\tfrac23 10^9\approx6.7\times10^{10}$\\[0.6mm]
+$LU=\tfrac23 10^9+100\cdot2\times10^6\approx7.7\times10^{8}$\\[1.2mm]
+Ahorro $\approx\mathbf{87\times}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Factorizar una vez y reusar $L,U$ gana con varios lados derechos.}\end{cardnota}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Factorización LU: existencia}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ A=LU\ \text{sin pivoteo}\iff \Delta_k=\det(A_{1:k,1:k})\neq0,\ k=1,\dots,n-1 \]
-$L$ triangular inferior unitaria, $U$ triangular superior; $u_{kk}=\Delta_k/\Delta_{k-1}$.
+% ---- Residuo, error y condición ----
+\begin{frame}{Residuo, error y número de condición $\kappa(A)$}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Definiciones y cotas}{\faSuperscript}
+{\footnotesize $r=b-A\tilde x,\quad e=x-\tilde x=A^{-1}r$\\[1.2mm]
+$\dfrac{1}{\kappa(A)}\dfrac{\|r\|}{\|b\|}\le\dfrac{\|e\|}{\|x\|}\le \kappa(A)\dfrac{\|r\|}{\|b\|}$\\[1.4mm]
+$\dfrac{\|\Delta x\|}{\|x\|}\le \kappa(A)\dfrac{\|\Delta b\|}{\|b\|},\ \ \kappa(A)=\|A\|\|A^{-1}\|$}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&-1&0\\-1&2&-1\\0&-1&2\end{psmallmatrix}$: $\Delta_1=2,\ \Delta_2=3,\ \Delta_3=4$ (todos $\neq0$) $\Rightarrow$ admite $LU$.
-En cambio $\begin{psmallmatrix}0&1\\1&1\end{psmallmatrix}$ tiene $\Delta_1=0$: no hay $LU$ sin permutar filas.
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Dígitos correctos $\approx -\log_{10}u-\log_{10}\kappa(A)$.}\end{cardnota}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Ejemplo (residuo engañoso)}{\faCalculator}
+{\footnotesize $A=\begin{psmallmatrix}1&1\\1&1.0001\end{psmallmatrix}$, $\tilde x=(2,0)$\\[1.2mm]
+$r=(0,-10^{-4})$, residuo rel.\ $\approx5\times10^{-5}$\\[1.2mm]
+pero $\dfrac{\|e\|_\infty}{\|x\|_\infty}=1$ con $\kappa_\infty(A)\approx4\times10^{4}$.\\[1.2mm]
+$\Rightarrow$ residuo pequeño $\ne$ solución exacta: el error real es $\sim\kappa$ veces el residuo.}
 \end{cardgear}
-\end{frame}
-
-\begin{frame}{Variante de Doolittle}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ u_{kj}=a_{kj}-\!\sum_{p<k}\ell_{kp}u_{pj},\qquad \ell_{ik}=\frac{1}{u_{kk}}\Big(a_{ik}-\!\sum_{p<k}\ell_{ip}u_{pk}\Big) \]
-$L$ unitaria ($\ell_{ii}=1$): fila de $U$, luego columna de $L$.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&-1&1\\4&1&-1\\-2&2&3\end{psmallmatrix}$: $\ell_{21}{=}2,\ \ell_{31}{=}{-}1$; $u_{22}{=}1{-}2({-}1){=}3$, $\ell_{32}{=}\tfrac13$; $u_{33}{=}5$.
-\[ L=\begin{psmallmatrix}1&0&0\\2&1&0\\-1&\frac13&1\end{psmallmatrix},\quad U=\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&0&5\end{psmallmatrix} \]
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Variante de Crout}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \ell_{ik}=a_{ik}-\!\sum_{p<k}\ell_{ip}u_{pk},\qquad u_{kj}=\frac{1}{\ell_{kk}}\Big(a_{kj}-\!\sum_{p<k}\ell_{kp}u_{pj}\Big) \]
-$U$ unitaria ($u_{ii}=1$): columna de $L$, luego fila de $U$.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-Misma $A$: $\ell_{11}{=}2,\ell_{21}{=}4,\ell_{31}{=}{-}2$; $u_{12}{=}{-}0.5$; $\ell_{22}{=}1{-}4({-}0.5){=}3$, $\ell_{32}{=}1$; $\ell_{33}{=}5$.
-\[ L=\begin{psmallmatrix}2&0&0\\4&3&0\\-2&1&5\end{psmallmatrix},\quad U=\begin{psmallmatrix}1&-0.5&0.5\\0&1&-1\\0&0&1\end{psmallmatrix} \]
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Factorización de Cholesky}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \ell_{kk}=\sqrt{a_{kk}-\!\sum_{p<k}\ell_{kp}^2},\qquad \ell_{ik}=\frac{1}{\ell_{kk}}\Big(a_{ik}-\!\sum_{p<k}\ell_{ip}\ell_{kp}\Big) \]
-$A=LL^T$ para $A$ simétrica definida positiva; costo $\tfrac13 n^3$, estable sin pivoteo.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}4&2&-2\\2&10&2\\-2&2&6\end{psmallmatrix}$: $\ell_{11}{=}\sqrt4{=}2$, $\ell_{21}{=}1$, $\ell_{31}{=}{-}1$; $\ell_{22}{=}\sqrt{10{-}1}{=}3$, $\ell_{32}{=}1$; $\ell_{33}{=}\sqrt{6{-}1{-}1}{=}2$.
-\[ L=\begin{psmallmatrix}2&0&0\\1&3&0\\-1&1&2\end{psmallmatrix},\qquad LL^T=A\ \checkmark \]
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Variante $LDL^T$}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ d_{kk}=a_{kk}-\!\sum_{p<k}\ell_{kp}^2 d_{pp},\qquad \ell_{ik}=\frac{1}{d_{kk}}\Big(a_{ik}-\!\sum_{p<k}\ell_{ip}\ell_{kp}d_{pp}\Big) \]
-$L$ unitaria, $D$ diagonal: evita raíces y sirve para matrices simétricas indefinidas.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}1&2&0\\2&3&-1\\0&-1&1\end{psmallmatrix}$: $d_{11}{=}1$, $\ell_{21}{=}2$, $\ell_{31}{=}0$; $d_{22}{=}3{-}4{=}{-}1$, $\ell_{32}{=}1$; $d_{33}{=}1{-}({-}1){=}2$.
-\[ L=\begin{psmallmatrix}1&0&0\\2&1&0\\0&1&1\end{psmallmatrix},\quad D=\operatorname{diag}(1,-1,2) \]
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Costo: LU frente a Gauss repetido}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \text{Gauss}\times m:\ m\cdot\tfrac{2}{3}n^3;\qquad LU+m\ \text{sustit.}:\ \tfrac{2}{3}n^3+m\cdot 2n^2 \]
-Factorizar una sola vez y reusar $L,U$ gana cuando hay varios lados derechos.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$n=10^3$, $m=100$: Gauss $=100\cdot\tfrac23 10^9\approx6.67\times10^{10}$.
-\[ LU:\ \tfrac23 10^9+100\cdot2\times10^6\approx 7.67\times10^{8} \]
-Factor de ahorro $\approx\mathbf{87\times}$.
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Residuo frente a error}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \frac{1}{\kappa(A)}\frac{\|r\|}{\|b\|}\ \le\ \frac{\|e\|}{\|x\|}\ \le\ \kappa(A)\,\frac{\|r\|}{\|b\|},\qquad r=b-A\tilde x \]
-Un residuo pequeño \emph{no} garantiza solución exacta si $\kappa(A)$ es grande.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}1&1\\1&1.0001\end{psmallmatrix}$, $\tilde x=(2,0)$: $r=(0,-10^{-4})$, residuo rel.\ $\approx5\times10^{-5}$.
-\[ \frac{\|e\|_\infty}{\|x\|_\infty}=1\ \text{con}\ \kappa_\infty(A)\approx4\times10^{4} \]
-El error real es $\sim\kappa$ veces el residuo.
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Sensibilidad y número de condición}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \frac{\|\Delta x\|}{\|x\|}\le \kappa(A)\,\frac{\|\Delta b\|}{\|b\|},\qquad \kappa(A)=\|A\|\,\|A^{-1}\| \]
-$\kappa$ amplifica el error relativo de los datos $b$ en la solución.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-Hilbert $H_5$, $\kappa_2\approx4.77\times10^{5}$, con $\|\Delta b\|/\|b\|\approx2.3\times10^{-11}$:
-\[ \frac{\|\Delta x\|}{\|x\|}\approx 8.9\times10^{-6}\approx \kappa\cdot 2.3\times10^{-11} \]
-Se pierden $\approx5$ de los $16$ dígitos.
-\end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
 % ############################################################
@@ -426,91 +415,135 @@ Se pierden $\approx5$ de los $16$ dígitos.
 % ############################################################
 \portadaseccion{2}{Métodos Iterativos}{Punto fijo, Jacobi, Gauss-Seidel y convergencia}{\faMicrochip}
 
+% ---- Punto fijo lineal ----
 \begin{frame}{Iteración de punto fijo lineal}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ M y^{(k+1)}=N y^{(k)}+b,\quad N=M-A;\qquad T=M^{-1}N,\ c=M^{-1}b \]
-Todo esquema $y^{(k+1)}=Ty^{(k)}+c$ nace de un \emph{splitting} $A=M-N$.
+$$My^{(k+1)}=Ny^{(k)}+b,\ \ N=M-A$$
+$$T=M^{-1}N,\quad c=M^{-1}b$$
+{\footnotesize Todo esquema $y^{(k+1)}=Ty^{(k)}+c$ nace de un \emph{splitting} $A=M-N$; converge $\iff\rho(T)<1$.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}4&1\\1&3\end{psmallmatrix}$, $b=(5,4)$, $M=\operatorname{diag}(4,3)$: $y_1^{(k+1)}=\tfrac{5-y_2}{4}$, $y_2^{(k+1)}=\tfrac{4-y_1}{3}$.
-Desde $0$: $y^{(1)}=(1.25,1.333)\to y^{(2)}=(0.917,0.917)\to(1,1)$, pues $\rho(T)=\tfrac{1}{\sqrt{12}}\approx0.29$.
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}4&1\\1&3\end{psmallmatrix}$, $b=(5,4)$, $M=D$:\\[0.8mm]
+$y_1=\tfrac{5-y_2}{4}$,\; $y_2=\tfrac{4-y_1}{3}$\\[1mm]
+\renewcommand{\arraystretch}{1.15}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $y_1$ & $y_2$\\\hline
+$0$&$0$&$0$\\ $1$&$1.250$&$1.333$\\ $2$&$0.917$&$0.917$\\ $3$&$1.021$&$1.028$\\ $4$&$0.993$&$0.993$\\ $\infty$&$\mathbf 1$&$\mathbf 1$\\
+\end{tabular}\\[1mm]
+$\rho(T)=\tfrac{1}{\sqrt{12}}\approx0.29<1$.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
+% ---- Jacobi (PATRON 1) ----
 \begin{frame}{Método de Jacobi}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ y_i^{(k+1)}=\frac{1}{a_{ii}}\Big(b_i-\!\sum_{j\neq i}a_{ij}\,y_j^{(k)}\Big),\qquad T_J=D^{-1}(L+U) \]
-Actualiza todas las componentes usando solo el iterado anterior.
+$$x_i^{(k+1)}=\tfrac{1}{a_{ii}}\Big(b_i-\!\!\sum_{j\neq i}\!a_{ij}x_j^{(k)}\Big)$$
+{\footnotesize $T_J=D^{-1}(L+U)$: actualiza todo con el iterado anterior.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}$, $b=(6,2,14)$, $x=(2,2,4)$. Desde $0$:
-$y^{(1)}=(1.5,\,0.5,\,3.5)$; $y^{(2)}=(\tfrac{6+0.5}{4},\tfrac{2+1.5+3.5}{4},\tfrac{14+0.5}{4})=(1.625,\,1.75,\,3.625)$.
-$\rho(T_J)=\tfrac{1}{\sqrt8}\approx0.354<1$.
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize\textbf{Sistema} $A\mathbf x=\mathbf b$:\\[0.6mm]
+$\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}\mathbf x=\begin{psmallmatrix}6\\2\\14\end{psmallmatrix}$\; sol.\ $(2,2,4)$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x_1$ & $x_2$ & $x_3$\\\hline
+$0$&$0$&$0$&$0$\\ $1$&$1.5$&$0.5$&$3.5$\\ $2$&$1.625$&$1.75$&$3.625$\\ $3$&$1.9375$&$1.8125$&$3.9375$\\ $4$&$1.9531$&$1.9688$&$3.9531$\\ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\ $\infty$&$\mathbf 2$&$\mathbf 2$&$\mathbf 4$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $\rho(T_J)=\tfrac{1}{\sqrt8}\approx0.354<1\Rightarrow$ converge.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
+% ---- Gauss-Seidel (PATRON 1) ----
 \begin{frame}{Método de Gauss-Seidel}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ y_i^{(k+1)}=\frac{1}{a_{ii}}\Big(b_i-\!\sum_{j<i}a_{ij}y_j^{(k+1)}-\!\sum_{j>i}a_{ij}y_j^{(k)}\Big),\ \ T_{GS}=(D{-}L)^{-1}U \]
-Reusa las componentes ya actualizadas en la misma barrida.
+{\scriptsize$$x_i^{(k+1)}=\tfrac{1}{a_{ii}}\Big(b_i-\!\!\sum_{j<i}\!a_{ij}x_j^{(k+1)}-\!\!\sum_{j>i}\!a_{ij}x_j^{(k)}\Big)$$}
+{\footnotesize $T_{GS}=(D{-}L)^{-1}U$: reusa las componentes ya actualizadas en la misma barrida.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-Mismo sistema. Desde $0$: $y_1{=}\tfrac{6}{4}{=}1.5$, $y_2{=}\tfrac{2+1.5}{4}{=}0.875$, $y_3{=}\tfrac{14+0.875}{4}{=}3.719$.
-$y^{(2)}=(1.719,\,1.859,\,3.965)\to(2,2,4)$; $\rho(T_{GS})=\tfrac18=0.125$: converge más rápido que Jacobi.
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Mismo sistema que Jacobi. GS aprovecha $x_1^{(k+1)}$ al calcular $x_2^{(k+1)}$, etc.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x_1$ & $x_2$ & $x_3$\\\hline
+$0$&$0$&$0$&$0$\\ $1$&$1.5$&$0.875$&$3.7188$\\ $2$&$1.7188$&$1.8594$&$3.9648$\\ $3$&$1.9648$&$1.9824$&$3.9956$\\ $4$&$1.9956$&$1.9978$&$3.9995$\\ $\infty$&$\mathbf 2$&$\mathbf 2$&$\mathbf 4$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $\rho(T_{GS})=\tfrac18=0.125$: $\approx$ el doble de dígitos/iter que Jacobi.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Criterio del radio espectral}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ y^{(k)}\to x\ \ \forall y^{(0)}\iff \lim_{k\to\infty}T^k=0\iff \rho(T)<1 \]
-$\rho(T)=\max|\lambda_i(T)|$; a menor $\rho$, más dígitos por iteración ($-\log_{10}\rho$).
+% ---- Convergencia: radio espectral, diag dominante, Stein-Rosenberg ----
+\begin{frame}{Convergencia: $\rho(T)$, diagonal dominante y Stein-Rosenberg}
+\begin{columns}[T]
+\begin{column}{0.51\textwidth}
+\begin{cardidea}{Criterios}{\faSuperscript}
+{\footnotesize $y^{(k)}\to x\ \forall y^{(0)}\iff \rho(T)<1$,\ \ $\rho(T)=\max_i|\lambda_i(T)|$\\[1.4mm]
+\textbf{Suficiente:} $|a_{ii}|>\sum_{j\neq i}|a_{ij}|\ \forall i$\\[0.4mm]
+$\Rightarrow\rho(T_J)\le \dfrac{\max_i\sum_{j\neq i}|a_{ij}|}{|a_{ii}|}<1$\\[1.4mm]
+\textbf{Stein-Rosenberg} ($A$ tipo M): $0\le\rho(T_{GS})\le\rho(T_J)<1$}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$T_1=\operatorname{diag}(0.5,0.3)$, $y^{(0)}=(1,1)$: $y^{(k)}=(0.5^k,0.3^k)\to0$ ($\rho=0.5$).
-$T_3=\begin{psmallmatrix}1&1\\0&1\end{psmallmatrix}$ ($\rho=1$): $y^{(k)}=(1{+}k,\,1)$ \emph{crece} $\Rightarrow$ no converge.
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardgear}{Ejemplo comparativo}{\faCalculator}
+{\footnotesize $A=\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}$: filas $4>1,\,4>2,\,4>1$ \checkmark\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+& $\rho(T)$ & díg/iter\\\hline
+Jacobi & $0.354$ & $0.45$\\
+Gauss-Seidel & $0.125$ & $0.90$\\
+\end{tabular}\\[1mm]
+díg/iter $=-\log_{10}\rho$. GS converge el doble de rápido.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Diagonal dominante estricta}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ |a_{ii}|>\sum_{j\neq i}|a_{ij}|\ \forall i\ \Rightarrow\ |\lambda(T_J)|\le\frac{\sum_{j\neq i}|a_{ij}|}{|a_{ii}|}<1 \]
-Condición \emph{suficiente}: garantiza $A$ no singular y convergencia de Jacobi y Gauss-Seidel.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}$: filas $4>1$, $4>2$, $4>1$ \checkmark
-\[ \rho(T_J)\le \frac{\max_i\sum_{j\neq i}|a_{ij}|}{4}=\frac{2}{4}=0.5<1 \]
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Teorema de Stein-Rosenberg}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ 0\le \rho(T_{GS})\le \rho(T_J)<1 \quad (A\ \text{de tipo M}) \]
-Tipo M: $a_{ii}>0$, $a_{ij}\le0$ ($i\neq j$), $A^{-1}\ge0$. Jacobi y GS convergen o divergen juntos.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}$ (tipo M):
-\[ \rho(T_J)=\tfrac{1}{\sqrt8}\approx0.354,\qquad \rho(T_{GS})=\tfrac18=0.125 \]
-Se cumple $\rho(T_{GS})<\rho(T_J)<1$: GS $\approx$ el doble de dígitos por iteración.
-\end{cardgear}
-\end{frame}
-
+% ---- Cotas de error ----
 \begin{frame}{Cotas de error a priori y a posteriori}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ \|\varepsilon^{(k)}\|\le \frac{\|T\|^k}{1-\|T\|}\|y^{(1)}{-}y^{(0)}\|;\quad \|\varepsilon^{(k)}\|\le \frac{\|T\|}{1-\|T\|}\|y^{(k)}{-}y^{(k-1)}\| \]
-La cota a posteriori es calculable sin conocer $x$, solo con el último salto.
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmulas ($\|T\|<1$)}{\faSuperscript}
+{\footnotesize \textbf{A priori:}\\[0.4mm]
+$\|\varepsilon^{(k)}\|\le \dfrac{\|T\|^k}{1-\|T\|}\,\|y^{(1)}{-}y^{(0)}\|$\\[1.6mm]
+\textbf{A posteriori:}\\[0.4mm]
+$\|\varepsilon^{(k)}\|\le \dfrac{\|T\|}{1-\|T\|}\,\|y^{(k)}{-}y^{(k-1)}\|$}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-Jacobi con $\|T_J\|_\infty=0.5\Rightarrow \tfrac{\|T\|}{1-\|T\|}=1$. Con $\|d^{(3)}\|_\infty=0.0156$:
-\[ \|\varepsilon^{(3)}\|\le 1\cdot0.0156=0.0156\quad(\text{real }0.0018) \]
-La cota es válida y conservadora.
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Iteraciones para tol: $k\ge\dfrac{\log\!\big(\text{tol}\,(1-\|T\|)/\|y^{(1)}{-}y^{(0)}\|\big)}{\log\|T\|}$.}\end{cardnota}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Ejemplo (Jacobi)}{\faCalculator}
+{\footnotesize $\|T_J\|_\infty=0.5\Rightarrow \dfrac{\|T\|}{1-\|T\|}=1$.\\[1.4mm]
+Con salto $\|d^{(3)}\|_\infty=0.0156$:\\[0.8mm]
+$\|\varepsilon^{(3)}\|\le 1\cdot0.0156=\mathbf{0.0156}$\\[1.4mm]
+Error real $\approx0.0018$: la cota a posteriori es válida y conservadora, y \emph{calculable} sin conocer $x$.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
 % ############################################################
@@ -518,131 +551,150 @@ La cota es válida y conservadora.
 % ############################################################
 \portadaseccion{3}{Valores y Vectores Propios}{Método de la potencia, variantes e iteración QR}{\faMicrochip}
 
-\begin{frame}{Valor propio dominante (potencia)}
+% ---- Método de la potencia (PATRON 1) ----
+\begin{frame}{Método de la potencia}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ A^k y^{(0)}=\lambda_1^k\Big(c_1 v_1+\sum_{i\ge2}c_i\big(\tfrac{\lambda_i}{\lambda_1}\big)^k v_i\Big) \]
-Si $|\lambda_1|>|\lambda_2|$, el modo dominante $v_1$ prevalece; tasa $|\lambda_2/\lambda_1|$.
+$$A^k y^{(0)}=\lambda_1^k\Big(c_1 v_1+\!\sum_{i\ge2}\!c_i\big(\tfrac{\lambda_i}{\lambda_1}\big)^k v_i\Big)$$
+{\footnotesize Si $|\lambda_1|>|\lambda_2|$, domina $v_1$; tasa $r=|\lambda_2/\lambda_1|$. Estima $\lambda_1$ con el factor de escala $\mu^{(k)}$ (o $R_A(y)=\tfrac{y^TAy}{y^Ty}$).}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}4&1\\2&3\end{psmallmatrix}$: $\lambda_1=5$, $\lambda_2=2$, $r=0.4$, $v_1=(1,1)$.
-El peso relativo de $v_2$ decae $0.4^k$: $40\%\ (k{=}1)\to6.4\%\ (k{=}3)\to1\%\ (k{=}5)$.
-Tras pocos pasos la dirección es esencialmente $v_1$.
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}4&1\\2&3\end{psmallmatrix}$, $y^{(0)}=(1,0)$, $\lambda_1=5$, $v_1=(1,1)$\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $y^{(k)}=(1,\,\cdot)$ & $\mu^{(k)}$\\\hline
+$0$&$(1,\,0)$&$-$\\ $1$&$(1,\,0.500)$&$4.000$\\ $2$&$(1,\,0.778)$&$4.500$\\ $3$&$(1,\,0.907)$&$4.778$\\ $4$&$(1,\,0.962)$&$4.907$\\ $5$&$(1,\,0.985)$&$4.962$\\ $\infty$&$(1,\,1)$&$\mathbf 5$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $r=\lambda_2/\lambda_1=2/5=0.4$.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Velocidad de convergencia $\lambda_2/\lambda_1$}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ r=\Big|\frac{\lambda_2}{\lambda_1}\Big|,\qquad \text{dígitos/iter}=-\log_{10} r,\qquad k\ge \frac{d}{\log_{10}(1/r)} \]
-La convergencia es lineal; se degrada cuando $r\to1$.
+% ---- Velocidad y Rayleigh ----
+\begin{frame}{Velocidad $\lambda_2/\lambda_1$ y cociente de Rayleigh}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+{\footnotesize $r=\big|\tfrac{\lambda_2}{\lambda_1}\big|$,\ \ díg/iter $=-\log_{10}r$,\ \ $k\ge\tfrac{d}{\log_{10}(1/r)}$\\[1.4mm]
+$R_A(y)=\dfrac{y^TAy}{y^Ty}$,\ \ $\lambda_{\min}\le R_A(y)\le\lambda_{\max}$\\[1.2mm]
+\emph{Simétrica:} $y^{(k)}=v_1+O(\theta^k)\Rightarrow|\lambda^{(k)}-\lambda_1|=O(\theta^{2k})$}
 \end{cardidea}
-\vspace{1.5mm}
+\end{column}
+\begin{column}{0.47\textwidth}
 \begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\operatorname{diag}(1,r)$, $y^{(0)}=(1,1)$: $y^{(k)}=(1,r^k)$.
-$r=0.5$: $\log_{10}2\approx0.30$ díg/iter $\Rightarrow 6$ díg en $\approx20$ iter.
-$r=0.9$: $0.9^{50}\approx0.005\Rightarrow$ hacen falta $\approx131$ iter.
+{\footnotesize $A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\lambda_1=3$, $\theta=\tfrac13$. Rayleigh desde $(1,0)$:\\[0.8mm]
+$2.0\to2.5\to2.9\to2.98\to\mathbf{3.0}$\\[1.2mm]
+Errores: vector $\sim\theta^k$: $0.33,0.11,0.04$;\\
+valor $\sim\theta^{2k}$: $0.5,0.1,0.02$ (cuadrático).\\[1mm]
+$r=0.5\Rightarrow 6$ díg en $\approx20$ iter; $r=0.9\Rightarrow\approx131$ iter.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Cociente de Rayleigh}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ R_A(y)=\frac{y^T A y}{y^T y},\qquad \lambda_{\min}\le R_A(y)\le\lambda_{\max}\ (A=A^T) \]
-Estima el autovalor asociado a $y$ y minimiza $\|Ay-\alpha y\|_2$ en $\alpha$.
+% ---- Potencia inversa y desplazada ----
+\begin{frame}{Potencia inversa y desplazada (RQI)}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+{\footnotesize \textbf{Inversa:} $Az^{(k)}=y^{(k)}$, $\lambda^{(k)}=1/R_{A^{-1}}(y^{(k)})$ $\to\lambda_{\min}$\\[1.4mm]
+\textbf{Desplazada:} $(A-\mu I)z^{(k)}=y^{(k)}$\\[0.4mm]
+$\lambda^{(k)}=\mu+1/R_{(A-\mu I)^{-1}}(y^{(k)})$\\[1.4mm]
+\textbf{RQI:} $\mu_k=R_A(y^{(k)})$ variable $\Rightarrow$ conv.\ cúbica (simétrica).}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\lambda_1=3$. Potencia desde $(1,0)$ con $R_A$ en cada paso:
-\[ 2.0\to2.5\to2.9\to2.98\to\mathbf{3.0} \]
-El cociente converge a $\lambda_1$ más rápido que el autovector.
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Ejemplo (inversa)}{\faCalculator}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\lambda_{\min}=1$, $A^{-1}=\tfrac13\begin{psmallmatrix}2&-1\\-1&2\end{psmallmatrix}$\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $y^{(k)}=(1,\,\cdot)$ & $\lambda^{(k)}$\\\hline
+$1$&$(1,-0.500)$&$1.500$\\ $2$&$(1,-0.800)$&$1.200$\\ $3$&$(1,-0.929)$&$1.071$\\ $4$&$(1,-0.976)$&$1.024$\\ $\infty$&$(1,-1)$&$\mathbf 1$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Desplazada con $\mu=1.9$ apunta a $\lambda_2=2$ en $\sim3$ iter.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Caso simétrico: convergencia acelerada}
+% ---- Householder y QR ----
+\begin{frame}{Householder $\rightarrow$ factorización $QR$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ y^{(k)}=v_1+O(\theta^k)\ \Rightarrow\ |\lambda^{(k)}-\lambda_1|=O(\theta^{2k}),\quad \theta=|\lambda_2/\lambda_1| \]
-En matrices simétricas el autovalor por Rayleigh converge \emph{cuadráticamente}.
+$$H=I-\frac{2\,vv^T}{v^Tv}$$
+$$v=x+\operatorname{sgn}(x_1)\|x\|_2\,e_1$$
+{\footnotesize $Hx=-\operatorname{sgn}(x_1)\|x\|_2\,e_1$; reflexión ortogonal $H^TH=I$. $A=QR$ con $Q=H_1\cdots H_n$; costo $\tfrac43 n^3$, estable.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\theta=\tfrac13$. Errores por iteración:
-\[ \text{vector }\sim\theta^k:\ 0.33,\,0.11,\,0.037;\qquad \text{valor }\sim\theta^{2k}:\ 0.5,\,0.1,\,0.02 \]
-El valor gana el doble de dígitos que el vector.
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Proceso con matrices}{\faTable}
+{\footnotesize $x=(3,4)$, $\|x\|_2=5$, $\operatorname{sgn}(x_1)=+$:\\[1mm]
+$v=x+5e_1=(8,4)$, $v^Tv=80$\\[1.4mm]
+$H=I-\tfrac{2}{80}\begin{psmallmatrix}64&32\\32&16\end{psmallmatrix}=\begin{psmallmatrix}-0.6&-0.8\\-0.8&0.6\end{psmallmatrix}$\\[1.8mm]
+$Hx=\begin{psmallmatrix}-0.6&-0.8\\-0.8&0.6\end{psmallmatrix}\begin{psmallmatrix}3\\4\end{psmallmatrix}=\begin{psmallmatrix}-5\\0\end{psmallmatrix}=-\|x\|_2 e_1$ \checkmark\\[1.4mm]
+Anula la columna bajo la diagonal $\Rightarrow$ triangulariza $A$.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Potencia inversa}
+% ---- Iteración QR ----
+\begin{frame}{Iteración $QR$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ A z^{(k)}=y^{(k)},\quad y^{(k+1)}=\frac{z^{(k)}}{\|z^{(k)}\|},\quad \lambda^{(k)}=\frac{1}{R_{A^{-1}}(y^{(k)})} \]
-Potencia sobre $A^{-1}$: captura el autovalor de \emph{menor} módulo; tasa $|\lambda_n/\lambda_{n-1}|$.
+$$A_k=Q_kR_k,\quad A_{k+1}=R_kQ_k$$
+$$A_{k+1}=Q_k^{T}A_kQ_k$$
+{\footnotesize Semejanza ortogonal: conserva el espectro y $(A_k)_{i+1,i}\to0$ como $|\lambda_{i+1}/\lambda_i|^k$; $\operatorname{diag}\to\lambda_i$.}
 \end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\lambda_{\min}=1$. $A^{-1}=\tfrac13\begin{psmallmatrix}2&-1\\-1&2\end{psmallmatrix}$. Desde $(1,0)$:
-\[ \lambda^{(k)}=1/\mu^{(k)}:\ 1.5\to1.2\to1.067\to\mathbf{1.0} \]
-Se resuelve $Az=y$ en vez de invertir $A$.
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Reducir a Hessenberg antes ($\tfrac{10}{3}n^3$) abarata cada paso a $O(n^2)$.}\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $A_0=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, autovalores $3,1$ ($r=\tfrac13$)\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $|(A_k)_{21}|$ & $\operatorname{diag}(A_k)$\\\hline
+$0$&$1.000$&$(2,\,2)$\\ $1$&$0.600$&$(2.80,\,1.20)$\\ $2$&$0.220$&$(2.98,\,1.02)$\\ $3$&$0.074$&$(3.00,\,1.00)$\\ $4$&$0.025$&$(3.00,\,1.00)$\\ $\infty$&$\mathbf 0$&$(\mathbf 3,\,\mathbf 1)$\\
+\end{tabular}}\\[1mm]
+{\footnotesize La subdiagonal decae geométricamente $\sim(1/3)^k$.}
 \end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Potencia desplazada y RQI}
+% ---- QR con desplazamientos ----
+\begin{frame}{Convergencia y desplazamientos $QR$}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
 \begin{cardidea}{Fórmula}{\faSuperscript}
-\[ (A-\mu I)z^{(k)}=y^{(k)},\qquad \lambda^{(k)}=\mu+\frac{1}{R_{(A-\mu I)^{-1}}(y^{(k)})} \]
-El desplazamiento $\mu$ apunta al autovalor más cercano; con $\mu=R_A(y)$ variable se obtiene RQI (convergencia cúbica en el caso simétrico).
+$$A_k-\mu_k I=Q_kR_k$$
+$$A_{k+1}=R_kQ_k+\mu_k I$$
+{\footnotesize Con $\mu_k=(A_k)_{nn}$ (Rayleigh): $r_k=\big|\tfrac{\lambda_n-\mu_k}{\lambda_{n-1}-\mu_k}\big|\to0$ $\Rightarrow$ convergencia cuadrática. Deflación al anular la subdiagonal.}
 \end{cardidea}
-\vspace{1.5mm}
+\end{column}
+\begin{column}{0.48\textwidth}
 \begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&1&0\\1&3&1\\0&1&2\end{psmallmatrix}$, buscar $\lambda_2=2$ con $\mu=1.9$: el modo dominante de $(A-\mu I)^{-1}$ es $\tfrac{1}{2-1.9}=10$.
-\[ \lambda^{(k)}:\ 1.990\to1.999\to\mathbf{2.000}\quad(3\ \text{iteraciones}) \]
+\centering
+{\footnotesize $A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, subdiagonal con desplazamiento de Rayleigh:\\[1mm]
+\renewcommand{\arraystretch}{1.25}\arrayrulecolor{Granate}
+\begin{tabular}{c|c}
+$k$ & $|(A_k)_{21}|$\\\hline
+$0$&$1.0$\\ $1$&$1.43\times10^{-1}$\\ $2$&$3.1\times10^{-3}$\\ $3$&$1.5\times10^{-8}$\\ $4$&$\approx10^{-16}$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Precisión de máquina en $3$–$4$ pasos, frente al lento $(1/3)^k$ sin desplazamiento.}
 \end{cardgear}
-\end{frame}
-
-\begin{frame}{Iteración simultánea (subespacio)}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ Z^{(k)}=A Y^{(k-1)}=Y^{(k)}R^{(k)}\ (\text{QR}),\qquad B^{(k)}=Y^{(k)T}A\,Y^{(k)} \]
-Itera $p$ vectores ortonormales a la vez; los valores de Ritz de $B^{(k)}$ aproximan $\lambda_1,\dots,\lambda_p$.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&1&0\\1&3&1\\0&1&2\end{psmallmatrix}$, $p=2$, $Y^{(0)}=[e_1\,e_2]$: $Z^{(1)}=AY^{(0)}=\begin{psmallmatrix}2&1\\1&3\\0&1\end{psmallmatrix}$, se ortonormaliza y se itera.
-Las columnas convergen a $v_1,v_2$; Ritz $\to \lambda_1\approx3.73,\ \lambda_2\approx2.0$.
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Transformaciones de Householder}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ H=I-\frac{2\,vv^T}{v^Tv},\qquad v=x+\operatorname{sgn}(x_1)\|x\|_2\,e_1,\quad Hx=-\operatorname{sgn}(x_1)\|x\|_2\,e_1 \]
-Reflexión ortogonal ($H^T H=I$) que anula una columna: base del $QR$ estable.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$x=(3,4)$, $\|x\|=5$: $v=(8,4)$, $v^Tv=80$, $H=\begin{psmallmatrix}-0.6&-0.8\\-0.8&0.6\end{psmallmatrix}$.
-\[ Hx=(-5,\,0)^T=-\|x\|_2\,e_1\ \checkmark \]
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Iteración QR}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ A_k=Q_k R_k,\qquad A_{k+1}=R_k Q_k=Q_k^T A_k Q_k \]
-Semejanza ortogonal: conserva el espectro y $(A_k)_{i+1,i}\to0$ como $|\lambda_{i+1}/\lambda_i|^k$.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A_0=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$ (autovalores $3,1$, $r=\tfrac13$). Subdiagonal $(A_k)_{21}$:
-\[ 1.0\to0.6\to0.213\to0.071\to\dots,\qquad \operatorname{diag}\to(3,1) \]
-Decae geométricamente como $(1/3)^k$.
-\end{cardgear}
-\end{frame}
-
-\begin{frame}{Convergencia y desplazamientos QR}
-\begin{cardidea}{Fórmula}{\faSuperscript}
-\[ A_k-\mu_k I=Q_k R_k,\quad A_{k+1}=R_k Q_k+\mu_k I,\quad r_k=\Big|\frac{\lambda_n-\mu_k}{\lambda_{n-1}-\mu_k}\Big| \]
-El desplazamiento de Rayleigh $\mu_k=(A_k)_{nn}$ hace $r_k\to0$: convergencia cuadrática.
-\end{cardidea}
-\vspace{1.5mm}
-\begin{cardgear}{Ejemplo}{\faCalculator}
-$A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$. Subdiagonal con desplazamiento de Rayleigh:
-\[ 1.0\to0.143\to3.1\times10^{-3}\to1.5\times10^{-8}\to\approx10^{-16} \]
-Precisión de máquina en $3$–$4$ pasos, frente al lento $(1/3)^k$.
-\end{cardgear}
+\end{column}
+\end{columns}
 \end{frame}
 
 % ============================================================
