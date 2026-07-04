@@ -1,0 +1,662 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 6
+%  Ecuaciones Diferenciales Ordinarias
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Ecuaciones Diferenciales Ordinarias}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (del tema de la unidad) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.2cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{17}{17}\selectfont $y_{n+1}=y_n+h\,f(t_n,y_n)$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.9cm,yshift=1.1cm]current page.south west)
+      {\fontsize{18}{18}\selectfont $y_{n+1}=y_n+\tfrac{h}{6}(k_1+2k_2+2k_3+k_4)$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.8cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\dfrac{y_{i-1}-2y_i+y_{i+1}}{h^2}$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Ecuaciones\\ Diferenciales Ordinarias};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape PVI\ \textperiodcentered\ Runge-Kutta\ \textperiodcentered\ PVF};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 6};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Un PVI $y'=f(t,y)$, $y(t_0)=y_0$ con $f$ \emph{Lipschitz} tiene solución única (Picard). Como rara vez hay fórmula cerrada, se \textbf{marcha} con paso $h$: \textbf{Euler} sigue la tangente ($O(h)$); \textbf{Taylor} y \textbf{Runge-Kutta} promedian pendientes para ganar orden (RK4 da $O(h^4)$ con $4$ evaluaciones, resumidas en su \emph{tabla de Butcher}). El error local $O(h^{p+1})$ se acumula en global $O(h^p)$, y la \textbf{estabilidad absoluta} ($|R(h\lambda)|\le1$) limita $h$ salvo en métodos \emph{implícitos} A-estables. Toda EDO de orden $n$ o sistema se escribe $\mathbf y'=\mathbf f(t,\mathbf y)$ y se integra vectorialmente. Un \textbf{PVF} con datos en dos extremos se resuelve por \emph{diferencias finitas} (sistema tridiagonal) o por \emph{disparo} (ajustando la pendiente inicial hasta cumplir la frontera).
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{PVI vs.\ PVF}{\faCogs}
+PVI: datos en \emph{un} extremo, se marcha en $t$. PVF: datos en \emph{dos} extremos, se resuelve un sistema o se ajusta un parámetro.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Orden vs.\ estabilidad}{\faCogs}
+Subir el orden (RK) reduce el error por paso; la estabilidad decide cuán grande puede ser $h$ sin que la solución \emph{explote}.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la unidad}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; PVI: existencia (Picard), Euler explícito/implícito, Taylor, error local/global\\[0.6mm]
+2.\; Runge-Kutta: RK2 (Heun/punto medio), RK4 y Butcher, estabilidad absoluta
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Sistemas y EDO de orden superior: reducción a $\mathbf y'=\mathbf f$, RK vectorial, rigidez\\[0.6mm]
+4.\; PVF: diferencias finitas (tridiagonal) y disparo (shooting)
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Cuatro bloques: dos para el \textbf{PVI} (métodos de paso y su análisis: orden, estabilidad, sistemas) y uno para el \textbf{PVF}. Cada método va con su(s) fórmula(s) y un \emph{proceso resuelto}: tabla de iteración $n,t_n,y_n$ frente a la exacta, cálculo de $k_1,\dots,k_4$ con su tabla de Butcher, un paso vectorial, el sistema tridiagonal de un PVF pequeño y la tabla de disparos sobre la pendiente $s$.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Problema de Valor Inicial}{Existencia de Picard, Euler explícito e implícito, Taylor y el error local frente al global}{\faWaveSquare}
+
+% ---- Existencia + error local/global ----
+\begin{frame}{Existencia de Picard y error local $\to$ global}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Existencia y unicidad (Picard-Lindelöf)}{\faSuperscript}
+{\footnotesize Si $f$ es continua y \emph{Lipschitz} en $y$,
+$\|f(t,y_1)-f(t,y_2)\|\le L\|y_1-y_2\|$ (basta $L=\max\|\partial f/\partial y\|$), el PVI tiene solución \textbf{única}.\\[0.8mm]
+Forma integral $\;y(t)=y_0+\displaystyle\int_{t_0}^t f(s,y)\,ds$\\[0.4mm]
+$\Rightarrow$ punto fijo del operador $T$; la iteración de Picard
+$y^{(k+1)}=y_0+\int_{t_0}^t f(s,y^{(k)})\,ds$ \emph{converge} porque $T$ es contracción para $|t-t_0|$ chico.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Del error local al global}{\faListOl}
+{\footnotesize Error local (truncamiento) de un paso:\\[0.2mm]
+$\tau_n=y(t_{n+1})-[\,y(t_n)+h\Phi(t_n,y(t_n),h)\,]$.\\[0.8mm]
+Recurrencia del global $e_n=y(t_n)-y_n$:\\[0.2mm]
+$|e_{n+1}|\le(1+hL_\Phi)|e_n|+Ch^{p+1}$.\\[0.8mm]
+Sumando los $N=\tfrac{t_f-t_0}{h}$ pasos:\\[0.2mm]
+$|e_n|\le\dfrac{Ch^p}{L_\Phi}\big(e^{L_\Phi(t_n-t_0)}-1\big)=O(h^p)$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Regla de oro:} local $O(h^{p+1})\Rightarrow$ global $O(h^p)$ (se pierde un orden al acumular $N\sim1/h$ pasos). Orden empírico: $p\approx\log_2\!\frac{E(h)}{E(h/2)}$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Euler explícito e implícito ----
+\begin{frame}{Euler explícito e implícito: un paso y estabilidad}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmulas ($z=h\lambda$)}{\faSuperscript}
+{\footnotesize \textbf{Explícito} (pendiente en $t_n$):\\[0.2mm]
+$y_{n+1}=y_n+h\,f(t_n,y_n)$, $\;R(z)=1+z$.\\[0.2mm]
+Estable si $|1+h\lambda|\le1$ (condicional).\\[0.9mm]
+\textbf{Implícito} (pendiente en $t_{n+1}$):\\[0.2mm]
+$y_{n+1}=y_n+h\,f(t_{n+1},y_{n+1})$.\\[0.2mm]
+Lineal $y'=\lambda y\Rightarrow y_{n+1}=\dfrac{y_n}{1-h\lambda}$,\\[0.4mm]
+$R(z)=\dfrac{1}{1-z}$: \textbf{A-estable} ($|R|<1\;\forall\,\mathrm{Re}\,z<0$).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Explícito en $y'=-2y$ ($\lambda=-2$) exige $h\le1$; si $h>1$ el factor $|1-2h|>1$ y la solución \emph{oscila creciendo}. El implícito no tiene ese límite.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$y'=-2y,\ y(0)=1$ (exacta $e^{-2t}$), $h=0.2$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.28}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$n$ & $t_n$ & $y_n^{\text{exp}}$ & $y_n^{\text{imp}}$ & exacta\\\hline
+$0$ & $0.0$ & $1.0000$ & $1.0000$ & $1.0000$\\
+$1$ & $0.2$ & $0.6000$ & $0.7143$ & $0.6703$\\
+$2$ & $0.4$ & $0.3600$ & $0.5102$ & $0.4493$\\
+$3$ & $0.6$ & $0.2160$ & $0.3644$ & $0.3012$\\
+$4$ & $0.8$ & $0.1296$ & $0.2603$ & $0.2019$\\
+$5$ & $1.0$ & $0.0778$ & $0.1859$ & $0.1353$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Explícito $\times0.6$ por paso (subestima); implícito $\times\tfrac{1}{1.4}$ (sobrestima). La exacta queda \emph{entre} ambos: promediarlos $\to$ regla trapezoidal (Crank-Nicolson, $O(h^2)$).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Taylor de orden superior ----
+\begin{frame}{Métodos de serie de Taylor (orden superior)}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Orden $p$ (usa derivadas totales de $f$):\\[0.2mm]
+$y_{n+1}=y_n+hy'_n+\tfrac{h^2}{2!}y''_n+\cdots+\tfrac{h^p}{p!}y_n^{(p)}$.\\[0.9mm]
+Regla de la cadena:\\[0.2mm]
+$y'=f,\quad y''=f_t+f_y\,f$.\\[0.9mm]
+\textbf{Taylor 2:}\\[0.2mm]
+$y_{n+1}=y_n+hf+\tfrac{h^2}{2}\big(f_t+f_y f\big)$.\\[0.4mm]
+Local $O(h^3)$, global $O(h^2)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Ganan orden \emph{sin} evaluar $f$ en puntos extra, pero exigen \textbf{derivadas simbólicas} de $f$: costoso y frágil. Runge-Kutta logra el mismo orden usando solo \emph{evaluaciones} de $f$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$y'=t+y,\ y(0)=1$ (exacta $2e^{t}-t-1$), $h=0.2$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$n$ & $t_n$ & Euler & Taylor 2 & exacta\\\hline
+$0$ & $0.0$ & $1.0000$ & $1.0000$ & $1.0000$\\
+$1$ & $0.2$ & $1.2000$ & $1.2400$ & $1.2428$\\
+$2$ & $0.4$ & $1.4800$ & $1.5768$ & $1.5836$\\
+$3$ & $0.6$ & $1.8560$ & $2.0317$ & $2.0442$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Primer paso Taylor 2: $f=t+y=1$, $f_t+f_yf=1+1=2$,\\[0.2mm]
+$y_1=1+0.2(1)+\tfrac{0.04}{2}(2)=1.2400$.\\[0.6mm]
+Error en $t{=}0.6$: Euler $1.9{\times}10^{-1}$ vs.\ Taylor 2 $1.3{\times}10^{-2}$: $\sim15\times$ menor con la misma $h$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Métodos de Runge-Kutta}{Familia RK2 y RK4 por sus tablas de Butcher, un paso con $k_1,\dots,k_4$ y la estabilidad absoluta}{\faProjectDiagram}
+
+% ---- RK general + familia RK2 ----
+\begin{frame}{Runge-Kutta general y familia RK2}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Definición ($s$ etapas)}{\faSuperscript}
+{\footnotesize $k_i=f\big(t_n+c_ih,\ y_n+h\!\sum_j a_{ij}k_j\big)$,\\[0.3mm]
+$y_{n+1}=y_n+h\sum_i b_i k_i$, con $c_i=\sum_j a_{ij}$.\\[0.8mm]
+Condiciones de orden: $\sum b_i=1$ (o.1);\\[0.2mm]
+$\sum b_i c_i=\tfrac12$ (o.2). La familia RK2 cumple\\[0.2mm]
+$b_1+b_2=1,\ b_2c_2=\tfrac12$ (un parámetro).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Heun: un paso de $y'=-2ty^2,\ y(0)=1$}{\faCalculator}
+{\footnotesize $h=0.2$, exacta $\tfrac{1}{1+t^2}$:\\[0.3mm]
+$k_1=-2(0)(1)^2=0$, $\ y^*=1+0.2(0)=1$,\\[0.2mm]
+$k_2=-2(0.2)(1)^2=-0.4$,\\[0.2mm]
+$y_1=1+\tfrac{0.2}{2}(0-0.4)=0.9600$.\\[0.4mm]
+Exacta $1/1.04=0.96154$ (error $1.5{\times}10^{-3}$).}
+\end{cardgear}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Tablas de Butcher de RK2}{\faTable}
+\centering
+{\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{ccc}
+Heun & Punto medio & Ralston\\[1mm]
+$\begin{array}{c|cc} 0 & & \\ 1 & 1 & \\ \hline & \tfrac12 & \tfrac12 \end{array}$ &
+$\begin{array}{c|cc} 0 & & \\ \tfrac12 & \tfrac12 & \\ \hline & 0 & 1 \end{array}$ &
+$\begin{array}{c|cc} 0 & & \\ \tfrac34 & \tfrac34 & \\ \hline & \tfrac13 & \tfrac23 \end{array}$
+\end{tabular}}\\[2mm]
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Método & $y_{n+1}$ & $c_2,b_2$\\\hline
+Heun & $y_n+\tfrac{h}{2}(k_1+k_2)$ & $1,\ \tfrac12$\\
+Punto medio & $y_n+h\,k_2$ & $\tfrac12,\ 1$\\
+Ralston & $y_n+h(\tfrac14k_1+\tfrac34k_2)$ & $\tfrac34,\ \tfrac23$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Los tres son \textbf{orden 2} (local $O(h^3)$, $2$ evaluaciones). Difieren solo en la constante de error: Ralston la minimiza.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- RK4: Butcher + paso + tabla ----
+\begin{frame}{RK4 clásico: Butcher, un paso e iteración}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Método y tabla de Butcher}{\faSuperscript}
+{\footnotesize $y_{n+1}=y_n+\tfrac{h}{6}(k_1+2k_2+2k_3+k_4)$, con $k_1=f(t_n,y_n)$ y las etapas $k_2,k_3,k_4$ leídas de la tabla ($c_i\,|\,a_{ij}\,|\,b_i$):\\[0.6mm]
+\centering$\renewcommand{\arraystretch}{0.8}\begin{array}{c|cccc}
+0 & & & & \\ \tfrac12 & \tfrac12 & & & \\
+\tfrac12 & 0 & \tfrac12 & & \\ 1 & 0 & 0 & 1 & \\ \hline
+& \tfrac16 & \tfrac13 & \tfrac13 & \tfrac16 \end{array}$}
+\end{cardidea}
+\vspace{-0.4mm}
+\begin{cardgear}{Primer paso de $y'=y,\ y(0)=1,\ h=0.2$}{\faCalculator}
+{\footnotesize $k_1{=}1$, $\,k_2{=}1.1$, $\,k_3{=}1.11$, $\,k_4{=}1.222$.\\[0.2mm]
+$y_1=1+\tfrac{0.2}{6}(1{+}2.2{+}2.22{+}1.222)=1.221400$ (exacta $1.221403$).}
+\end{cardgear}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteración RK4 de $y'=y$ hasta $t=1$ ($h=0.2$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.05}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$n$ & $t_n$ & $y_n$ (RK4) & exacta $e^{t_n}$ & error\\\hline
+$0$ & $0.0$ & $1.000000$ & $1.000000$ & —\\
+$1$ & $0.2$ & $1.221400$ & $1.221403$ & $3{\times}10^{-6}$\\
+$2$ & $0.4$ & $1.491818$ & $1.491825$ & $7{\times}10^{-6}$\\
+$3$ & $0.6$ & $1.822107$ & $1.822119$ & $1.2{\times}10^{-5}$\\
+$4$ & $0.8$ & $2.225521$ & $2.225541$ & $2.0{\times}10^{-5}$\\
+$5$ & $1.0$ & $2.718251$ & $2.718282$ & $3.1{\times}10^{-5}$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Con $5$ pasos ($20$ evaluaciones) el error final es $\sim3{\times}10^{-5}$. RK4 es \textbf{óptimo} $p=s=4$: por la barrera de Butcher, $5$ etapas no dan orden $5$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Estabilidad absoluta ----
+\begin{frame}{Estabilidad absoluta y A-estabilidad}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Factor de amplificación $R(z)$, $z=h\lambda$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Método & $R(z)$ & región $|R|\le1$\\\hline
+Euler exp. & $1+z$ & disco $|1{+}z|\le1$\\
+Euler imp. & $\dfrac{1}{1-z}$ & todo $\mathrm{Re}\,z<0$\\
+Trapez. & $\dfrac{1+z/2}{1-z/2}$ & todo $\mathrm{Re}\,z\le0$\\
+RK4 & $1{+}z{+}\tfrac{z^2}{2}{+}\tfrac{z^3}{6}{+}\tfrac{z^4}{24}$ & $z\gtrsim-2.78$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize \textbf{A-estable} $=$ región $\supseteq\{\mathrm{Re}\,z\le0\}$: Euler implícito y trapezoidal lo son; los \emph{explícitos} no.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Ecuación de prueba}{\faSuperscript}
+{\footnotesize $y'=\lambda y\Rightarrow y_{n+1}=R(h\lambda)\,y_n$.\\[0.3mm]
+Estable (no explota) $\Leftrightarrow|R(h\lambda)|\le1$.\\[0.6mm]
+Sistemas: estable si \emph{todos} los $h\lambda_i$ (autovalores de $J=\partial\mathbf f/\partial\mathbf y$) están en la región.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Límite de paso RK4} (real $\lambda<0$): $|h\lambda|\le2.78\Rightarrow h\le2.78/|\lambda|$. Para $\lambda=-2$: $h\le1.39$.}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Barrera de Dahlquist:} ningún método explícito es A-estable; ningún multipaso lineal A-estable supera el orden $2$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Sistemas y Orden Superior}{Reducción de una EDO de orden $n$ a $\mathbf y'=\mathbf f(t,\mathbf y)$, RK vectorial y rigidez}{\faCogs}
+
+% ---- Reducción de orden ----
+\begin{frame}{Reducción a un sistema de primer orden}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Orden $n\ \to$ sistema}{\faSuperscript}
+{\footnotesize Con estado $u_i=y^{(i-1)}$, la EDO $y^{(n)}=g(t,y,\dots,y^{(n-1)})$ es
+$$\mathbf u'=\begin{pmatrix} u_2\\ u_3\\ \vdots\\ u_n\\ g(t,u_1,\dots,u_n)\end{pmatrix},\ \ \mathbf u(t_0)=\begin{pmatrix} y_0\\ y_0'\\ \vdots\\ y_0^{(n-1)}\end{pmatrix}.$$
+Todo método de paso se aplica \emph{igual}, pero con $\mathbf y$, $\mathbf f$ y $\mathbf k_i$ \textbf{vectoriales}.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Oscilador amortiguado forzado}{\faWaveSquare}
+{\footnotesize $m\ddot x+c\dot x+kx=F(t)$, estado $(x,v)$:
+$$\begin{pmatrix}\dot u_1\\ \dot u_2\end{pmatrix}=\begin{pmatrix}u_2\\ \tfrac1m\big(F(t)-c\,u_2-k\,u_1\big)\end{pmatrix}.$$
+Lineal $\Rightarrow\mathbf u'=A\mathbf u+\mathbf b$ con
+$A=\begin{psmallmatrix}0&1\\ -k/m&-c/m\end{psmallmatrix}$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{$N$ cuerpos en 3D:} estado $(\mathbf r_1,\dots,\mathbf v_N)$ de $6N$ componentes, $\mathbf y'=(\mathbf v_1,\dots,\mathbf F_N/m_N)$. La estabilidad la fijan los autovalores $\lambda_i$ de $J=\partial\mathbf f/\partial\mathbf y$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- RK4 vectorial: un paso ----
+\begin{frame}{RK4 vectorial: un paso del oscilador armónico}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{$\mathbf y'=(v,-x)$, $\mathbf y_0=(1,0)$, $h=0.1$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+etapa & punto $(x,v)$ & $\mathbf k=(v,-x)$\\\hline
+$\mathbf k_1$ & $(1,\ 0)$ & $(0,\ -1)$\\
+$\mathbf k_2$ & $(1,\ -0.05)$ & $(-0.05,\ -1)$\\
+$\mathbf k_3$ & $(0.9975,\ -0.05)$ & $(-0.05,\ -0.9975)$\\
+$\mathbf k_4$ & $(0.995,\ -0.09975)$ & $(-0.09975,\ -0.995)$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $\mathbf y_1=\mathbf y_0+\tfrac{h}{6}(\mathbf k_1{+}2\mathbf k_2{+}2\mathbf k_3{+}\mathbf k_4)$\\[0.3mm]
+$=(0.9950042,\ -0.0998333)$.\\[0.4mm]
+Exacta $(\cos0.1,-\sin0.1)=(0.9950042,-0.0998334)$: error $\sim10^{-7}$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{RK4 vectorial}{\faSuperscript}
+{\footnotesize Idéntica fórmula, todo vectorial:\\[0.2mm]
+$\mathbf k_1=\mathbf f(t_n,\mathbf y_n)$, $\ \mathbf k_2=\mathbf f(t_n{+}\tfrac h2,\mathbf y_n{+}\tfrac h2\mathbf k_1)$,\\[0.2mm]
+$\mathbf k_3,\mathbf k_4$ análogas,\\[0.2mm]
+$\mathbf y_{n+1}=\mathbf y_n+\tfrac h6(\mathbf k_1{+}2\mathbf k_2{+}2\mathbf k_3{+}\mathbf k_4)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Energía} $E=\tfrac12(x^2+v^2)$: RK4 da $E_1=0.5000000$ (conservada a $O(h^4)$); Euler daría $E_1=0.505$, \emph{creciendo} en espiral. Para tiempos largos: integradores simplécticos (Verlet).}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Rigidez:} si $\tfrac{\max|\mathrm{Re}\,\lambda_i|}{\min|\mathrm{Re}\,\lambda_i|}\gg1$, el paso explícito lo fija el modo \emph{rápido} ($h\lesssim2.78/|\lambda_{\max}|$): usar implícitos (BDF, Radau).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 4
+% ############################################################
+\portadaseccion{4}{Problema de Valor Frontera}{Diferencias finitas y su sistema tridiagonal, y el método de disparo sobre la pendiente inicial}{\faTable}
+
+% ---- Diferencias finitas: tridiagonal ----
+\begin{frame}{Diferencias finitas: sistema tridiagonal}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Discretización centrada}{\faSuperscript}
+{\footnotesize Malla $x_i=a+ih$; para $y''=p\,y'+q\,y+r$:\\[0.2mm]
+$y''_i\approx\tfrac{y_{i-1}-2y_i+y_{i+1}}{h^2}$, $\ y'_i\approx\tfrac{y_{i+1}-y_{i-1}}{2h}$.\\[0.8mm]
+Ecuación nodal $\Rightarrow a_iy_{i-1}+b_iy_i+c_iy_{i+1}=d_i$:\\[0.2mm]
+$a_i=1{+}\tfrac h2 p_i$, $\ b_i=-(2{+}h^2q_i)$,\\[0.2mm]
+$c_i=1{-}\tfrac h2 p_i$, $\ d_i=h^2r_i$.\\[0.6mm]
+Dirichlet $y_0{=}\alpha,\ y_N{=}\beta$ pasan al lado derecho.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Si $q\ge0$ y $\tfrac h2|p_i|<1$: matriz \textbf{diagonal dominante} $\Rightarrow$ solución única, resuelta por \textbf{Thomas} en $O(N)$ (vs.\ $\tfrac23N^3$ denso). Convergencia $O(h^2)$ por Lax.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{$y''=-y+x,\ y(0)=y(1)=0$, $N=4$, $h=0.25$}{\faCalculator}
+{\footnotesize $p{=}0,\ q{=}-1,\ r{=}x\Rightarrow a_i{=}c_i{=}1$, $b_i{=}-(2{-}h^2){=}-1.9375$, $d_i{=}h^2x_i$:
+$$\begin{psmallmatrix} -1.9375 & 1 & 0 \\ 1 & -1.9375 & 1 \\ 0 & 1 & -1.9375 \end{psmallmatrix}\!\begin{psmallmatrix} y_1 \\ y_2 \\ y_3 \end{psmallmatrix}=\begin{psmallmatrix} 0.0156 \\ 0.0313 \\ 0.0469 \end{psmallmatrix}$$}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$i$ & $x_i$ & $y_i$ (Thomas) & exacta\\\hline
+$1$ & $0.25$ & $-0.0443$ & $-0.0440$\\
+$2$ & $0.50$ & $-0.0702$ & $-0.0697$\\
+$3$ & $0.75$ & $-0.0604$ & $-0.0601$\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize Exacta $y=x-\tfrac{\sin x}{\sin1}$; error $\sim3{\times}10^{-4}=O(h^2)$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Disparo (shooting) ----
+\begin{frame}{Método de disparo (shooting): PVF $\to$ PVI}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Idea y residuo}{\faSuperscript}
+{\footnotesize Se adivina la pendiente inicial $s=y'(a)$ y se integra el PVI\\[0.2mm]
+$y''=f(x,y,y')$, $y(a)=\alpha$, $y'(a)=s\Rightarrow y(x;s)$.\\[0.8mm]
+Residuo de frontera $\ \phi(s)=y(b;s)-\beta$; se busca $\phi(s)=0$.\\[0.8mm]
+\textbf{Lineal:} $\phi$ es \emph{afín} $\Rightarrow$ \textbf{dos} disparos y una interpolación dan la raíz exacta:\\[0.2mm]
+$s^*=s_0-\phi(s_0)\dfrac{s_1-s_0}{\phi(s_1)-\phi(s_0)}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{No lineal:} $\phi$ no lineal $\Rightarrow$ iterar con \emph{Newton} ($\phi'(s)=v(b)$, sensibilidad $v=\partial y/\partial s$) o \emph{secante}. Cada disparo integra un PVI completo (RK4).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{$y''=y,\ y(0)=0,\ y(1)=1$ (lineal)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+iter & $s_k$ & $y(1;s_k)$ & $\phi=y(1;s_k)-1$\\\hline
+$0$ & $0.5000$ & $0.5876$ & $-0.4124$\\
+$1$ & $1.0000$ & $1.1752$ & $+0.1752$\\
+$2$ & $0.8509$ & $1.0000$ & $\approx0$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $y(x;s)=s\sinh x\Rightarrow y(1;s)=s\sinh1$.\\[0.3mm]
+Interpolación: $s^*=0.5+0.4124\cdot\tfrac{0.5}{0.5876}=0.8509$.\\[0.3mm]
+Exacta $s^*=1/\sinh1=0.8509$: \textbf{una} interpolación basta (afín).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Disparo vs.\ diferencias finitas:} disparo hereda la precisión del integrador ($O(h^4)$) pero es frágil si el PVI es sensible; FD es robusto, tridiagonal $O(N)$, $O(h^2)$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 6: Ecuaciones Diferenciales Ordinarias};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
