@@ -1,0 +1,619 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Conversión de Energía (Ciclos)
+%  Termodinámica MN121 · compilar con xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{mathtools}
+\graphicspath{{img/}}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | MN121}
+\newcommand{\pietitulo}{Conversión de Energía · Ciclos}
+
+% ---------- Ajustes globales ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=AzulPanel!80!white] at ([xshift=-4.0cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{22}{22}\selectfont $\eta_t=1-\dfrac{q_{sal}}{q_{ent}}$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.2cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $w_{neto}=q_{ent}-q_{sal}$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.6cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\mathrm{COP}=\dfrac{q_L}{w}$};
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faIndustry};
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ MN121};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Conversión de Energía:\\ Ciclos Termodinámicos};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Vapor\ \textperiodcentered\ Gas\ \textperiodcentered\ Combustión\ \textperiodcentered\ Refrigeración};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Termodinámica --- Ciclos de Potencia y Refrigeración};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: MN121\ \textbar\ Termodinámica --- FIM};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Rankine \textperiodcentered\ Brayton \textperiodcentered\ Otto \textperiodcentered\ Diesel \textperiodcentered\ VCR \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Un \textbf{ciclo termodinámico} convierte calor en trabajo (potencia) o mueve calor consumiendo trabajo (refrigeración). Todo ciclo de potencia obedece $\eta_t = 1-\frac{q_{sal}}{q_{ent}}$ y $w_{neto}=q_{ent}-q_{sal}$; los de refrigeración se miden con el $\mathrm{COP}$. Recorremos cuatro familias: \textbf{vapor} (Rankine), \textbf{gas} (Brayton), \textbf{combustión interna} (Otto/Diesel) y \textbf{refrigeración} (compresión de vapor).
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Ciclos de potencia}{\faFire}
+Producen $w_{neto}>0$. Se mejoran subiendo la temperatura media de adición de calor: \textbf{recalentamiento}, \textbf{regeneración}, mayor $r_P$ o $r$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Ciclos inversos}{\faSnowflake}
+Consumen $w_C$ para bombear calor de frío a caliente. Métrica: $\mathrm{COP}_R=q_L/w_C$ (refrigerador) y $\mathrm{COP}_{HP}=\mathrm{COP}_R+1$ (bomba de calor).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CLASIFICACIÓN
+% ============================================================
+\begin{frame}{Clasificación de los ciclos}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.6cm,keepaspectratio]{ciclos_clasificacion}\\[0.5mm]
+\fsub{Mapa de familias de ciclos termodinámicos.}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Ejes de clasificación}{\faInfoCircle}
+\textbf{Objetivo:} potencia vs.\ refrigeración.\\[0.6mm]
+\textbf{Fluido:} condensable (vapor) vs.\ gas.\\[0.6mm]
+\textbf{Combustión:} externa (Rankine/Brayton cerrado) vs.\ interna (Otto/Diesel).
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardlista}
+1. Ciclos de Vapor --- Rankine\\[0.6mm]
+2. Ciclos de Gas --- Brayton\\[0.6mm]
+3. Combustión Interna --- Otto / Diesel\\[0.6mm]
+4. Refrigeración --- Compresión de Vapor
+\end{cardlista}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 1 — VAPOR
+% ============================================================
+\portadaseccion{1}{Ciclos de Vapor --- Rankine}{caldera · turbina · condensador · bomba}{\faFire}
+
+% ---- Rankine Simple: esquema ----
+\begin{frame}{Rankine Simple --- planta de vapor}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{rankine_esquema_planta}\\[0.5mm]
+\fsub{Esquema de la planta: caldera, turbina, condensador y bomba.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas del ciclo}{\faSuperscript}
+$h_2=h_1+v_1(P_H-P_L)$\\[0.6mm]
+$x_4=\dfrac{s_3-s_f}{s_{fg}},\quad h_4=h_f+x_4h_{fg}$\\[0.8mm]
+$\eta_{th}=\dfrac{(h_3-h_4)-(h_2-h_1)}{h_3-h_2}=1-\dfrac{q_L}{q_H}$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: 50 MW}{\faCalculator}
+$5$ MPa, $400^\circ$C, $P_L=10$ kPa, $\eta_T=0.88$.\\[0.6mm]
+$h_3=3196.7$, $h_4=2234.8$, $w_{neto}=955.6$, $q_H=2998.6$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=31.9\%,\ \dot m=52.3$ kg/s.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Rankine Simple: diagramas ----
+\begin{frame}{Rankine Simple --- diagramas de estado}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.9cm,keepaspectratio]{rankine_diagrama_Ts}\\[0.5mm]
+\fsub{Diagrama $T$-$s$: área encerrada $=w_{neto}$.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.9cm,keepaspectratio]{rankine_diagrama_Ph}\\[0.5mm]
+\fsub{Diagrama $P$-$h$: bomba, caldera, turbina y condensador.}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+\textbf{Calidad a la salida de turbina:} en el ejemplo $x_4=0.854<0.88$ (mínimo ASME). El vapor húmedo erosiona los álabes $\Rightarrow$ motiva el \textbf{recalentamiento}.
+\end{cardnota}
+\end{frame}
+
+% ---- Rankine con Recalentamiento ----
+\begin{frame}{Rankine con Recalentamiento}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{rankine_recalentamiento_esquema}\\[0.5mm]
+\fsub{Expansión en dos etapas (TAP y TBP) con recalentador.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+$w_T=(h_3-h_4)+(h_5-h_6)$\\[0.6mm]
+$q_H=(h_3-h_2)+(h_5-h_4)$\\[0.6mm]
+$\eta_{th}=\dfrac{w_T-w_P}{q_H},\quad P_r\approx P_H/4$ a $P_H/5$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: 15 MPa / 500\,$^\circ$C}{\faCalculator}
+$P_r=3$ MPa, $T_5=500^\circ$C, $P_L=10$ kPa.\\[0.6mm]
+$w_T=1642.0$, $q_H=3727.8$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=43.6\%,\ x_6=0.878$ (vs.\ $0.760$ sin recalentar).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Rankine Regenerativo ----
+\begin{frame}{Rankine Regenerativo}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{rankine_regenerativo_esquema}\\[0.5mm]
+\fsub{Extracción de fracción $y$ hacia el calentador abierto (CAA).}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+$y=\dfrac{h_3-h_2}{h_e-h_2}$ (balance del CAA)\\[0.8mm]
+$w_T=(h_5-h_e)+(1-y)(h_e-h_6)$\\[0.6mm]
+$q_H=h_5-h_4,\quad \eta_{th}=\dfrac{w_T-w_{P1}-w_{P2}}{q_H}$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: 10 MPa / 500\,$^\circ$C}{\faCalculator}
+Extracción a $P_e=1$ MPa, $P_L=10$ kPa.\\[0.6mm]
+$y=0.218$, $w_{neto}=1116.1$, $q_H=2600.8$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=42.9\%$ (vs.\ $40.2\%$ del ciclo simple).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 2 — GAS
+% ============================================================
+\portadaseccion{2}{Ciclos de Gas --- Brayton}{compresor · cámara · turbina · aire-estándar}{\faIndustry}
+
+% ---- Brayton Simple: esquema ----
+\begin{frame}{Brayton Simple --- turbina de gas}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{brayton_esquema_dispositivos}\\[0.5mm]
+\fsub{Compresor, cámara de combustión y turbina en ciclo abierto.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas (aire-estándar)}{\faSuperscript}
+$t=r_P^{(\gamma-1)/\gamma},\ T_2=tT_1,\ T_4=T_3/t$\\[0.6mm]
+$w_{neto}=c_p[(T_3-T_4)-(T_2-T_1)]$\\[0.6mm]
+$\eta_{th}=1-\dfrac{1}{r_P^{(\gamma-1)/\gamma}},\ \ \mathrm{bwr}=\dfrac{w_C}{w_T}$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: $r_P=10$}{\faCalculator}
+$T_1=300$ K, $T_3=1400$ K, $c_p=1.005$, $\gamma=1.4$.\\[0.6mm]
+$T_2=579.2$ K, $T_4=725.1$ K, $w_{neto}=397.7$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=48.2\%,\ \mathrm{bwr}=41.4\%$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Brayton Simple: diagrama T-s ----
+\begin{frame}{Brayton Simple --- diagrama y ciclo real}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{brayton_diagrama_Ts}\\[0.5mm]
+\fsub{Diagrama $T$-$s$: dos isentrópicas y dos isobáricas.}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Ciclo real (eficiencias)}{\faInfoCircle}
+$T_{2r}=T_1+\dfrac{T_{2s}-T_1}{\eta_C}$,\ \ $T_{4r}=T_3-\eta_T(T_3-T_{4s})$.\\[0.6mm]
+El \textbf{bwr} alto ($\sim40\%$) amplifica las irreversibilidades.
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ideal vs.\ real ($\eta_C=0.82,\ \eta_T=0.86$)}{\faCalculator}
+$w_{neto}$: $397.7\to241.2$ kJ/kg.\\[0.6mm]
+$\mathrm{bwr}$: $41.4\%\to58.6\%$.\\[0.6mm]
+$\Rightarrow\ \eta_{th}$: $48.2\%\to31.6\%$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Brayton con Regeneración ----
+\begin{frame}{Brayton con Regeneración}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{brayton_regeneracion_esquema}\\[0.5mm]
+\fsub{Recuperador que precalienta el aire con los gases de escape.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+$\varepsilon=\dfrac{T_5-T_2}{T_4-T_2},\quad q_H=c_p(T_3-T_5)$\\[0.8mm]
+$\eta_{th,\varepsilon=1}=1-\dfrac{T_1}{T_3}r_P^{(\gamma-1)/\gamma}$ (baja con $r_P$)\\[0.6mm]
+Útil si $T_4>T_2$ (a bajos $r_P$).
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: $r_P=6$, $\varepsilon=0.75$}{\faCalculator}
+$T_1=300$, $T_3=1200$ K. $T_2=500.4$, $T_4=719.4$, $T_5=664.7$ K.\\[0.6mm]
+$q_H=538.0$, $w_{neto}=281.6$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=52.3\%$ (vs.\ $40.1\%$ del simple).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Comparación ciclos de potencia ----
+\begin{frame}{Comparación de ciclos de potencia en $T$-$s$}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.7cm,keepaspectratio]{Ts_comparacion_ciclos_potencia}\\[0.5mm]
+\fsub{Rankine, Brayton, Otto y Diesel sobre el plano $T$-$s$.}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Idea unificadora}{\faChartLine}
+Toda mejora busca \textbf{subir} la temperatura media de adición de calor y \textbf{bajar} la de rechazo, acercándose al rectángulo de Carnot. El área encerrada es $w_{neto}$ y su relación con el calor de entrada define $\eta_t$.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardnota}[\faInfoCircle]
+\textbf{Recalentamiento} y \textbf{regeneración} recortan las irreversibilidades sin cambiar los focos térmicos.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 3 — COMBUSTIÓN INTERNA
+% ============================================================
+\portadaseccion{3}{Combustión Interna --- Otto y Diesel}{pistón-cilindro · chispa vs.\ compresión}{\faFire}
+
+% ---- Otto ----
+\begin{frame}{Ciclo Otto --- encendido por chispa}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{otto_diagrama_Pv}\\[0.5mm]
+\fsub{Diagrama $P$-$v$: combustión isocórica (2$\to$3).}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Fórmulas ($r=V_1/V_2$)}{\faSuperscript}
+$q_H=c_v(T_3-T_2),\ q_L=c_v(T_4-T_1)$\\[0.6mm]
+$T_2/T_1=r^{\gamma-1},\ P_2=P_1r^{\gamma}$\\[0.6mm]
+$\eta_{th}=1-\dfrac{1}{r^{\gamma-1}}$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: $r=8$}{\faCalculator}
+$T_1=300$ K, $q_H=800$ kJ/kg, $\gamma=1.4$.\\[0.6mm]
+$T_2=689.2$, $T_3=1803.4$, $T_4=784.9$ K; $P_3=4808$ kPa.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=56.5\%,\ w_{neto}=451.8$ kJ/kg.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Diesel ----
+\begin{frame}{Ciclo Diesel --- encendido por compresión}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{diesel_diagrama_Pv}\\[0.5mm]
+\fsub{Diagrama $P$-$v$: combustión isobárica (2$\to$3), corte $r_c$.}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Fórmulas ($r_c=V_3/V_2$)}{\faSuperscript}
+$q_H=c_p(T_3-T_2),\ q_L=c_v(T_4-T_1)$\\[0.6mm]
+$T_3=T_2r_c,\ T_4=T_1r_c^{\gamma}$\\[0.6mm]
+$\eta_{th}=1-\dfrac{1}{r^{\gamma-1}}\dfrac{r_c^{\gamma}-1}{\gamma(r_c-1)}$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: $r=18$, $r_c=2$}{\faCalculator}
+$T_1=300$ K, $\gamma=1.4$.\\[0.6mm]
+$T_2=953.1$, $T_3=1906.2$, $T_4=791.7$ K; $q_H=957.9$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \eta_{th}=63.1\%,\ w_{neto}=604.8$ kJ/kg.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Comparación Otto vs Diesel ----
+\begin{frame}{Otto vs.\ Diesel en el plano $P$-$v$}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.6cm,keepaspectratio]{CCI_PV_otto_diesel}\\[0.5mm]
+\fsub{Combustión isocórica (Otto) vs.\ isobárica (Diesel).}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Clave comparativa}{\faChartLine}
+A \textbf{igual $r$}, $\eta_{Otto}>\eta_{Diesel}$ porque $f(r_c)=\frac{r_c^{\gamma}-1}{\gamma(r_c-1)}>1$. Pero el diésel opera a $r$ mucho mayor ($14$--$22$) sin detonar, lo que compensa con creces.
+\end{cardidea}
+\vspace{1.5mm}
+\begin{cardnota}[\faInfoCircle]
+Límite $r_c\to1$: el Diesel \textbf{converge al Otto}, $\eta\to1-r^{-(\gamma-1)}$.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 4 — REFRIGERACIÓN
+% ============================================================
+\portadaseccion{4}{Refrigeración --- Compresión de Vapor}{Rankine invertido · COP · R-134a}{\faSnowflake}
+
+% ---- VCR: esquema ----
+\begin{frame}{Compresión de Vapor (VCR) --- dispositivos}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{VCR_esquema_dispositivos}\\[0.5mm]
+\fsub{Compresor, condensador, válvula y evaporador.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+$w_C=h_2-h_1,\ q_L=h_1-h_3,\ q_H=h_2-h_3$\\[0.6mm]
+$h_4=h_3$ (válvula isoentálpica)\\[0.6mm]
+$\mathrm{COP}_R=\dfrac{h_1-h_3}{h_2-h_1}$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: R-134a, $\dot Q_L=10$ kW}{\faCalculator}
+$T_L=-20^\circ$C, $T_H=40^\circ$C. $h_1=386.55$, $h_2=428.35$, $h_3=256.44$ kJ/kg.\\[0.6mm]
+$w_C=41.80$, $q_L=130.11$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \mathrm{COP}_R=3.11,\ \dot W_C=3.21$ kW.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- VCR: diagrama P-h + flujos ----
+\begin{frame}{VCR --- diagrama $P$-$h$ y flujos de energía}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.9cm,keepaspectratio]{VCR_diagrama_Ph}\\[0.5mm]
+\fsub{Diagrama $P$-$h$: válvula vertical, evaporador horizontal.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.9cm,keepaspectratio]{refrigeracion_diagrama_flujos}\\[0.5mm]
+\fsub{Balance: $q_H=q_L+w_C$ en el ciclo inverso.}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+\textbf{Efecto flash:} el líquido a $P_H$ cruza la válvula a $h$ constante y se vaporiza parcialmente hasta $x_4=\frac{h_3-h_f(P_L)}{h_{fg}(P_L)}=0.389$, enfriándose hasta $T_L$. Límite de Carnot: $\mathrm{COP}_{R,C}=\frac{T_L}{T_H-T_L}=4.22$.
+\end{cardnota}
+\end{frame}
+
+% ---- Bomba de Calor ----
+\begin{frame}{Bomba de Calor --- $\mathrm{COP}_{HP}=\mathrm{COP}_R+1$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{refrigeracion_diagrama_flujos}\\[0.5mm]
+\fsub{Mismo ciclo VCR; el efecto útil es $q_H$ cedido al interior.}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+$\mathrm{COP}_{HP}=\dfrac{q_H}{w_C}=\dfrac{h_2-h_3}{h_2-h_1}=\mathrm{COP}_R+1$\\[0.8mm]
+$\mathrm{COP}_{HP,C}=\dfrac{T_H}{T_H-T_L}$; resistencia: $\mathrm{COP}=1$.
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Ejemplo: R-134a, $\dot W_C=2.5$ kW}{\faCalculator}
+$T_L'=-5^\circ$C, $T_H'=32^\circ$C. $h_1=396.43$, $h_2=424.86$, $h_3=237.23$ kJ/kg.\\[0.6mm]
+$w_C=28.43$, $q_H=187.63$ kJ/kg.\\[0.6mm]
+$\Rightarrow\ \mathrm{COP}_{HP}=6.60,\ \dot Q_H=16.5$ kW ($6.6\times$ una resistencia).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faIndustry};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Conversión de Energía --- Ciclos \textperiodcentered\ MN121 Termodinámica};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
