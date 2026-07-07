@@ -126,6 +126,19 @@
   drop fuzzy shadow={black!30},
   fontupper=\small, coltext=Granate}
 
+% ---------- Tabla de etapas ----------
+\newcommand{\etapastitulo}{\par{\centering{\color{Granate}\faTable}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}Etapas del ciclo}\par}\vspace{0.6mm}}
+\newenvironment{etapas}{%
+  \begingroup\footnotesize\renewcommand{\arraystretch}{1.24}\arrayrulecolor{Granate}
+  \begin{center}
+  \begin{tabular}{@{}>{\centering\arraybackslash\bfseries}p{1.2cm} >{\RaggedRight}p{4.5cm} >{\RaggedRight\arraybackslash}p{6.6cm}@{}}
+  \toprule
+  {\color{FondoOscuro}Etapa} & {\color{FondoOscuro}\bfseries Proceso} & {\color{FondoOscuro}\bfseries Ecuación clave}\\
+  \midrule}%
+ {\bottomrule
+  \end{tabular}
+  \end{center}\endgroup}
+
 % ---------- Leyendas ----------
 \newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
 \newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
@@ -206,7 +219,7 @@
 % ============================================================
 \begin{frame}{Resumen}
 \begin{cardidea}{Síntesis}{\faLightbulb}
-Un \textbf{ciclo termodinámico} convierte calor en trabajo (potencia) o mueve calor consumiendo trabajo (refrigeración). Todo ciclo de potencia obedece $\eta_t = 1-\frac{q_{sal}}{q_{ent}}$ y $w_{neto}=q_{ent}-q_{sal}$; los de refrigeración se miden con el $\mathrm{COP}$. Recorremos cuatro familias: \textbf{vapor} (Rankine), \textbf{gas} (Brayton), \textbf{combustión interna} (Otto/Diesel) y \textbf{refrigeración} (compresión de vapor).
+Un \textbf{ciclo termodinámico} convierte calor en trabajo (potencia) o mueve calor consumiendo trabajo (refrigeración). Todo ciclo de potencia obedece $\eta_t = 1-\frac{q_{sal}}{q_{ent}}$ y $w_{neto}=q_{ent}-q_{sal}$; los de refrigeración se miden con el $\mathrm{COP}$. De \textbf{cada ciclo} damos su \textbf{definición}, sus \textbf{etapas} con la ecuación clave de cada transición y sus \textbf{ecuaciones generales}, más un diagrama y un ejemplo numérico.
 \end{cardidea}
 \vspace{2mm}
 \begin{columns}[T]
@@ -255,8 +268,23 @@ Consumen $w_C$ para bombear calor de frío a caliente. Métrica: $\mathrm{COP}_R
 % ============================================================
 \portadaseccion{1}{Ciclos de Vapor --- Rankine}{caldera · turbina · condensador · bomba}{\faFire}
 
-% ---- Rankine Simple: esquema ----
-\begin{frame}{Rankine Simple --- planta de vapor}
+% ---- Rankine Simple: definición y etapas ----
+\begin{frame}{Rankine Simple --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Versión \textbf{ideal de cuatro estados} del ciclo de vapor: turbina y bomba isentrópicas, caldera y condensador isobáricos. Es el ciclo base de las \textbf{centrales termoeléctricas}; el fluido (agua) cambia de fase. Las irreversibilidades reales se modelan con $\eta_T,\eta_P$.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Bombeo isentrópico ($P_L\to P_H$)      & $w_P=h_2-h_1=v_1(P_H-P_L)$\\
+$2\to3$ & Adición de calor isobárica (caldera)    & $q_H=h_3-h_2$\\
+$3\to4$ & Expansión isentrópica (turbina)         & $w_T=h_3-h_4$\\
+$4\to1$ & Rechazo de calor isobárico (condensador)& $q_L=h_4-h_1$\\
+\end{etapas}
+\end{frame}
+
+% ---- Rankine Simple: ecuaciones y ejemplo ----
+\begin{frame}{Rankine Simple --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
 \centering
@@ -264,10 +292,10 @@ Consumen $w_C$ para bombear calor de frío a caliente. Métrica: $\mathrm{COP}_R
 \fsub{Esquema de la planta: caldera, turbina, condensador y bomba.}
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{cardidea}{Fórmulas del ciclo}{\faSuperscript}
-$h_2=h_1+v_1(P_H-P_L)$\\[0.6mm]
-$x_4=\dfrac{s_3-s_f}{s_{fg}},\quad h_4=h_f+x_4h_{fg}$\\[0.8mm]
-$\eta_{th}=\dfrac{(h_3-h_4)-(h_2-h_1)}{h_3-h_2}=1-\dfrac{q_L}{q_H}$
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
+$\eta_{th}=\dfrac{(h_3-h_4)-(h_2-h_1)}{h_3-h_2}=1-\dfrac{q_L}{q_H}$\\[0.8mm]
+$w_{neto}=w_T-w_P,\quad x_4=\dfrac{s_3-s_f}{s_{fg}}$\\[0.6mm]
+$h_4=h_f+x_4h_{fg},\quad \dot m=\dot W_{neto}/w_{neto}$
 \end{cardidea}
 \vspace{1.2mm}
 \begin{cardgear}{Ejemplo: 50 MW}{\faCalculator}
@@ -299,8 +327,25 @@ $\Rightarrow\ \eta_{th}=31.9\%,\ \dot m=52.3$ kg/s.
 \end{cardnota}
 \end{frame}
 
-% ---- Rankine con Recalentamiento ----
-\begin{frame}{Rankine con Recalentamiento}
+% ---- Rankine con Recalentamiento: definición y etapas ----
+\begin{frame}{Rankine con Recalentamiento --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Ciclo de vapor con la expansión \textbf{dividida en dos turbinas} (TAP y TBP) y un \textbf{recalentamiento} intermedio a $P_r$. Permite subir la presión de caldera $P_H$ sin que el vapor salga húmedo, elevando $\eta$ y protegiendo los álabes de la turbina.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Bombeo isentrópico ($P_L\to P_H$)          & $w_P=h_2-h_1$\\
+$2\to3$ & Caldera, isobárica ($P_H$)                  & $q_{cald}=h_3-h_2$\\
+$3\to4$ & Expansión en TAP, isentrópica ($\to P_r$)   & $w_{TAP}=h_3-h_4$\\
+$4\to5$ & Recalentamiento isobárico ($P_r$)           & $q_{rec}=h_5-h_4$\\
+$5\to6$ & Expansión en TBP, isentrópica ($\to P_L$)   & $w_{TBP}=h_5-h_6$\\
+$6\to1$ & Condensador, isobárico ($P_L$)              & $q_L=h_6-h_1$\\
+\end{etapas}
+\end{frame}
+
+% ---- Rankine con Recalentamiento: ecuaciones y ejemplo ----
+\begin{frame}{Rankine con Recalentamiento --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
 \centering
@@ -308,7 +353,7 @@ $\Rightarrow\ \eta_{th}=31.9\%,\ \dot m=52.3$ kg/s.
 \fsub{Expansión en dos etapas (TAP y TBP) con recalentador.}
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{cardidea}{Fórmulas}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $w_T=(h_3-h_4)+(h_5-h_6)$\\[0.6mm]
 $q_H=(h_3-h_2)+(h_5-h_4)$\\[0.6mm]
 $\eta_{th}=\dfrac{w_T-w_P}{q_H},\quad P_r\approx P_H/4$ a $P_H/5$
@@ -323,8 +368,25 @@ $\Rightarrow\ \eta_{th}=43.6\%,\ x_6=0.878$ (vs.\ $0.760$ sin recalentar).
 \end{columns}
 \end{frame}
 
-% ---- Rankine Regenerativo ----
-\begin{frame}{Rankine Regenerativo}
+% ---- Rankine Regenerativo: definición y etapas ----
+\begin{frame}{Rankine Regenerativo --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Ciclo de vapor que \textbf{extrae una fracción $y$} del vapor de la turbina para precalentar el condensado en un \textbf{calentador abierto} (CAA). Sube la temperatura media de adición de calor y acerca el ciclo al límite de Carnot, reduciendo el calor de entrada.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$        & Bomba 1 isentrópica ($P_L\to P_e$)        & $w_{P1}=(1-y)(h_2-h_1)$\\
+CAA            & Mezcla adiabática (determina $y$)         & $y=\dfrac{h_3-h_2}{h_e-h_2}$\\
+$3\to4$        & Bomba 2 isentrópica ($P_e\to P_H$)        & $w_{P2}=h_4-h_3$\\
+$4\to5$        & Caldera, isobárica                        & $q_H=h_5-h_4$\\
+$5\to e\to6$   & Turbina con extracción ($y$)              & $w_T=(h_5-h_e)+(1-y)(h_e-h_6)$\\
+$6\to1$        & Condensador (fracción $1-y$)              & $q_L=(1-y)(h_6-h_1)$\\
+\end{etapas}
+\end{frame}
+
+% ---- Rankine Regenerativo: ecuaciones y ejemplo ----
+\begin{frame}{Rankine Regenerativo --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
 \centering
@@ -332,7 +394,7 @@ $\Rightarrow\ \eta_{th}=43.6\%,\ x_6=0.878$ (vs.\ $0.760$ sin recalentar).
 \fsub{Extracción de fracción $y$ hacia el calentador abierto (CAA).}
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{cardidea}{Fórmulas}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $y=\dfrac{h_3-h_2}{h_e-h_2}$ (balance del CAA)\\[0.8mm]
 $w_T=(h_5-h_e)+(1-y)(h_e-h_6)$\\[0.6mm]
 $q_H=h_5-h_4,\quad \eta_{th}=\dfrac{w_T-w_{P1}-w_{P2}}{q_H}$
@@ -352,8 +414,23 @@ $\Rightarrow\ \eta_{th}=42.9\%$ (vs.\ $40.2\%$ del ciclo simple).
 % ============================================================
 \portadaseccion{2}{Ciclos de Gas --- Brayton}{compresor · cámara · turbina · aire-estándar}{\faIndustry}
 
-% ---- Brayton Simple: esquema ----
-\begin{frame}{Brayton Simple --- turbina de gas}
+% ---- Brayton Simple: definición y etapas ----
+\begin{frame}{Brayton Simple --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Ciclo de la \textbf{turbina de gas} (aire-estándar, $c_p$ cte): compresor, cámara de combustión y turbina. Combustión externa (análisis cerrado) o abierta; el parámetro clave es la \textbf{relación de presiones} $r_P=P_H/P_L$. Usado en aviación y generación eléctrica.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Compresión isentrópica (compresor)        & $w_C=c_p(T_2-T_1),\ T_2=T_1\,r_P^{(\gamma-1)/\gamma}$\\
+$2\to3$ & Adición de calor isobárica (cámara)        & $q_H=c_p(T_3-T_2)$\\
+$3\to4$ & Expansión isentrópica (turbina)            & $w_T=c_p(T_3-T_4),\ T_4=T_3/r_P^{(\gamma-1)/\gamma}$\\
+$4\to1$ & Rechazo de calor isobárico                 & $q_L=c_p(T_4-T_1)$\\
+\end{etapas}
+\end{frame}
+
+% ---- Brayton Simple: ecuaciones y ejemplo ----
+\begin{frame}{Brayton Simple --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
 \centering
@@ -361,7 +438,7 @@ $\Rightarrow\ \eta_{th}=42.9\%$ (vs.\ $40.2\%$ del ciclo simple).
 \fsub{Compresor, cámara de combustión y turbina en ciclo abierto.}
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{cardidea}{Fórmulas (aire-estándar)}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $t=r_P^{(\gamma-1)/\gamma},\ T_2=tT_1,\ T_4=T_3/t$\\[0.6mm]
 $w_{neto}=c_p[(T_3-T_4)-(T_2-T_1)]$\\[0.6mm]
 $\eta_{th}=1-\dfrac{1}{r_P^{(\gamma-1)/\gamma}},\ \ \mathrm{bwr}=\dfrac{w_C}{w_T}$
@@ -399,8 +476,25 @@ $\Rightarrow\ \eta_{th}$: $48.2\%\to31.6\%$.
 \end{columns}
 \end{frame}
 
-% ---- Brayton con Regeneración ----
-\begin{frame}{Brayton con Regeneración}
+% ---- Brayton con Regeneración: definición y etapas ----
+\begin{frame}{Brayton con Regeneración --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Brayton al que se añade un \textbf{recuperador} que precalienta el aire comprimido con los gases de escape (requiere $T_4>T_2$). Reduce el combustible necesario para alcanzar $T_3$; ventajoso a \textbf{bajos $r_P$} y alta $T_3/T_1$ (microturbinas, industriales).
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Compresión isentrópica (compresor)         & $w_C=c_p(T_2-T_1)$\\
+$2\to5$ & Recuperador, lado frío (isobárico)          & $T_5=T_2+\varepsilon(T_4-T_2)$\\
+$5\to3$ & Cámara de combustión (isobárica)            & $q_H=c_p(T_3-T_5)$\\
+$3\to4$ & Expansión isentrópica (turbina)             & $w_T=c_p(T_3-T_4)$\\
+$4\to6$ & Recuperador, lado caliente (isobárico)      & $T_6=T_4-\varepsilon(T_4-T_2)$\\
+$6\to1$ & Rechazo de calor isobárico                  & $q_L=c_p(T_6-T_1)$\\
+\end{etapas}
+\end{frame}
+
+% ---- Brayton con Regeneración: ecuaciones y ejemplo ----
+\begin{frame}{Brayton con Regeneración --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
 \centering
@@ -408,7 +502,7 @@ $\Rightarrow\ \eta_{th}$: $48.2\%\to31.6\%$.
 \fsub{Recuperador que precalienta el aire con los gases de escape.}
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{cardidea}{Fórmulas}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $\varepsilon=\dfrac{T_5-T_2}{T_4-T_2},\quad q_H=c_p(T_3-T_5)$\\[0.8mm]
 $\eta_{th,\varepsilon=1}=1-\dfrac{T_1}{T_3}r_P^{(\gamma-1)/\gamma}$ (baja con $r_P$)\\[0.6mm]
 Útil si $T_4>T_2$ (a bajos $r_P$).
@@ -448,8 +542,23 @@ Toda mejora busca \textbf{subir} la temperatura media de adición de calor y \te
 % ============================================================
 \portadaseccion{3}{Combustión Interna --- Otto y Diesel}{pistón-cilindro · chispa vs.\ compresión}{\faFire}
 
-% ---- Otto ----
-\begin{frame}{Ciclo Otto --- encendido por chispa}
+% ---- Otto: definición y etapas ----
+\begin{frame}{Ciclo Otto --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Ciclo aire-estándar del \textbf{motor de gasolina} (encendido por chispa). La combustión ocurre a \textbf{volumen constante} en el punto muerto superior. Parámetro clave: la relación de compresión $r=V_1/V_2$ ($8$–$11$; más allá aparece detonación).
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Compresión isentrópica              & $T_2=T_1\,r^{\gamma-1},\ P_2=P_1\,r^{\gamma}$\\
+$2\to3$ & Adición de calor ($v$ cte, chispa)  & $q_H=c_v(T_3-T_2),\ P_3=P_2\,T_3/T_2$\\
+$3\to4$ & Expansión isentrópica (trabajo)     & $T_4=T_3/r^{\gamma-1}$\\
+$4\to1$ & Rechazo de calor ($v$ cte, purga)   & $q_L=c_v(T_4-T_1)$\\
+\end{etapas}
+\end{frame}
+
+% ---- Otto: ecuaciones y ejemplo ----
+\begin{frame}{Ciclo Otto --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.44\textwidth}
 \centering
@@ -457,9 +566,9 @@ Toda mejora busca \textbf{subir} la temperatura media de adición de calor y \te
 \fsub{Diagrama $P$-$v$: combustión isocórica (2$\to$3).}
 \end{column}
 \begin{column}{0.52\textwidth}
-\begin{cardidea}{Fórmulas ($r=V_1/V_2$)}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales ($r=V_1/V_2$)}{\faSuperscript}
 $q_H=c_v(T_3-T_2),\ q_L=c_v(T_4-T_1)$\\[0.6mm]
-$T_2/T_1=r^{\gamma-1},\ P_2=P_1r^{\gamma}$\\[0.6mm]
+$w_{neto}=q_H-q_L,\ T_2/T_1=r^{\gamma-1}$\\[0.6mm]
 $\eta_{th}=1-\dfrac{1}{r^{\gamma-1}}$
 \end{cardidea}
 \vspace{1.2mm}
@@ -472,8 +581,23 @@ $\Rightarrow\ \eta_{th}=56.5\%,\ w_{neto}=451.8$ kJ/kg.
 \end{columns}
 \end{frame}
 
-% ---- Diesel ----
-\begin{frame}{Ciclo Diesel --- encendido por compresión}
+% ---- Diesel: definición y etapas ----
+\begin{frame}{Ciclo Diesel --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Ciclo aire-estándar del \textbf{motor de encendido por compresión}. Sin bujía: el aire se comprime hasta la autoignición y el combustible arde a \textbf{presión constante}. Opera a $r$ alto ($14$–$22$) sin detonar; parámetro extra: la relación de corte $r_c=V_3/V_2$.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Compresión isentrópica                 & $T_2=T_1\,r^{\gamma-1}$\\
+$2\to3$ & Adición de calor ($P$ cte, inyección)  & $q_H=c_p(T_3-T_2),\ T_3=T_2\,r_c$\\
+$3\to4$ & Expansión isentrópica (trabajo)        & $T_4=T_1\,r_c^{\gamma}$\\
+$4\to1$ & Rechazo de calor ($v$ cte)             & $q_L=c_v(T_4-T_1)$\\
+\end{etapas}
+\end{frame}
+
+% ---- Diesel: ecuaciones y ejemplo ----
+\begin{frame}{Ciclo Diesel --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.44\textwidth}
 \centering
@@ -481,9 +605,9 @@ $\Rightarrow\ \eta_{th}=56.5\%,\ w_{neto}=451.8$ kJ/kg.
 \fsub{Diagrama $P$-$v$: combustión isobárica (2$\to$3), corte $r_c$.}
 \end{column}
 \begin{column}{0.52\textwidth}
-\begin{cardidea}{Fórmulas ($r_c=V_3/V_2$)}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales ($r_c=V_3/V_2$)}{\faSuperscript}
 $q_H=c_p(T_3-T_2),\ q_L=c_v(T_4-T_1)$\\[0.6mm]
-$T_3=T_2r_c,\ T_4=T_1r_c^{\gamma}$\\[0.6mm]
+$T_3=T_2r_c,\ T_4=T_1r_c^{\gamma},\ w_{neto}=q_H-q_L$\\[0.6mm]
 $\eta_{th}=1-\dfrac{1}{r^{\gamma-1}}\dfrac{r_c^{\gamma}-1}{\gamma(r_c-1)}$
 \end{cardidea}
 \vspace{1.2mm}
@@ -521,8 +645,23 @@ Límite $r_c\to1$: el Diesel \textbf{converge al Otto}, $\eta\to1-r^{-(\gamma-1)
 % ============================================================
 \portadaseccion{4}{Refrigeración --- Compresión de Vapor}{Rankine invertido · COP · R-134a}{\faSnowflake}
 
-% ---- VCR: esquema ----
-\begin{frame}{Compresión de Vapor (VCR) --- dispositivos}
+% ---- VCR: definición y etapas ----
+\begin{frame}{Compresión de Vapor (VCR) --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+\textbf{Ciclo Rankine invertido}: consume trabajo para bombear calor de frío a caliente. Fluido: un \textbf{refrigerante} (R-134a). Es la base de refrigeradores, aire acondicionado y chillers. Métrica de desempeño: $\mathrm{COP}_R=q_L/w_C$.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Compresión isentrópica (compresor)        & $w_C=h_2-h_1$\\
+$2\to3$ & Condensador, isobárico (cede $q_H$)        & $q_H=h_2-h_3$\\
+$3\to4$ & Válvula de expansión (isoentálpica)        & $h_4=h_3$\\
+$4\to1$ & Evaporador, isobárico (absorbe $q_L$)      & $q_L=h_1-h_4=h_1-h_3$\\
+\end{etapas}
+\end{frame}
+
+% ---- VCR: ecuaciones y ejemplo ----
+\begin{frame}{Compresión de Vapor (VCR) --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.46\textwidth}
 \centering
@@ -530,10 +669,10 @@ Límite $r_c\to1$: el Diesel \textbf{converge al Otto}, $\eta\to1-r^{-(\gamma-1)
 \fsub{Compresor, condensador, válvula y evaporador.}
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{cardidea}{Fórmulas}{\faSuperscript}
-$w_C=h_2-h_1,\ q_L=h_1-h_3,\ q_H=h_2-h_3$\\[0.6mm]
-$h_4=h_3$ (válvula isoentálpica)\\[0.6mm]
-$\mathrm{COP}_R=\dfrac{h_1-h_3}{h_2-h_1}$
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
+$\mathrm{COP}_R=\dfrac{q_L}{w_C}=\dfrac{h_1-h_3}{h_2-h_1}$\\[0.8mm]
+$x_4=\dfrac{h_3-h_f(P_L)}{h_{fg}(P_L)},\quad q_H=q_L+w_C$\\[0.6mm]
+$\mathrm{COP}_{R,C}=\dfrac{T_L}{T_H-T_L}$
 \end{cardidea}
 \vspace{1.2mm}
 \begin{cardgear}{Ejemplo: R-134a, $\dot Q_L=10$ kW}{\faCalculator}
@@ -565,8 +704,23 @@ $\Rightarrow\ \mathrm{COP}_R=3.11,\ \dot W_C=3.21$ kW.
 \end{cardnota}
 \end{frame}
 
-% ---- Bomba de Calor ----
-\begin{frame}{Bomba de Calor --- $\mathrm{COP}_{HP}=\mathrm{COP}_R+1$}
+% ---- Bomba de Calor: definición y etapas ----
+\begin{frame}{Bomba de Calor --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+\textbf{Mismo ciclo VCR}, pero el efecto útil es el calor $q_H$ \textbf{cedido al espacio caliente} (calefacción); toma calor del exterior, suelo o agua. Un equipo reversible alterna entre refrigerar y calentar. Métrica: $\mathrm{COP}_{HP}=\mathrm{COP}_R+1$ (siempre $>1$).
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+$1\to2$ & Compresión isentrópica (compresor)              & $w_C=h_2-h_1$\\
+$2\to3$ & Condensador (cede $q_H$ al interior) \emph{útil} & $q_H=h_2-h_3$\\
+$3\to4$ & Válvula de expansión (isoentálpica)             & $h_4=h_3$\\
+$4\to1$ & Evaporador (absorbe del exterior)               & $q_L=h_1-h_3$\\
+\end{etapas}
+\end{frame}
+
+% ---- Bomba de Calor: ecuaciones y ejemplo ----
+\begin{frame}{Bomba de Calor --- ecuaciones y ejemplo}
 \begin{columns}[T]
 \begin{column}{0.44\textwidth}
 \centering
@@ -574,7 +728,7 @@ $\Rightarrow\ \mathrm{COP}_R=3.11,\ \dot W_C=3.21$ kW.
 \fsub{Mismo ciclo VCR; el efecto útil es $q_H$ cedido al interior.}
 \end{column}
 \begin{column}{0.52\textwidth}
-\begin{cardidea}{Fórmulas}{\faSuperscript}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $\mathrm{COP}_{HP}=\dfrac{q_H}{w_C}=\dfrac{h_2-h_3}{h_2-h_1}=\mathrm{COP}_R+1$\\[0.8mm]
 $\mathrm{COP}_{HP,C}=\dfrac{T_H}{T_H-T_L}$; resistencia: $\mathrm{COP}=1$.
 \end{cardidea}
