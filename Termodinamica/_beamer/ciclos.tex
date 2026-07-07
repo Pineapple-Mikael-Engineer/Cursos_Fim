@@ -276,7 +276,7 @@ Versión \textbf{ideal de cuatro estados} del ciclo de vapor: turbina y bomba is
 \vspace{1.4mm}
 \etapastitulo
 \begin{etapas}
-$1\to2$ & Bombeo isentrópico ($P_L\to P_H$)      & $w_P=h_2-h_1=v_1(P_H-P_L)$\\
+$1\to2$ & Bombeo isentrópico ($P_L\to P_H$)      & $w_B=h_2-h_1=v_1(P_H-P_L)$\\
 $2\to3$ & Adición de calor isobárica (caldera)    & $q_H=h_3-h_2$\\
 $3\to4$ & Expansión isentrópica (turbina)         & $w_T=h_3-h_4$\\
 $4\to1$ & Rechazo de calor isobárico (condensador)& $q_L=h_4-h_1$\\
@@ -294,7 +294,7 @@ $4\to1$ & Rechazo de calor isobárico (condensador)& $q_L=h_4-h_1$\\
 \begin{column}{0.5\textwidth}
 \begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $\eta_{th}=\dfrac{(h_3-h_4)-(h_2-h_1)}{h_3-h_2}=1-\dfrac{q_L}{q_H}$\\[0.8mm]
-$w_{neto}=w_T-w_P,\quad x_4=\dfrac{s_3-s_f}{s_{fg}}$\\[0.6mm]
+$w_{neto}=w_T-w_B,\quad x_4=\dfrac{s_3-s_f}{s_{fg}}$\\[0.6mm]
 $h_4=h_f+x_4h_{fg},\quad \dot m=\dot W_{neto}/w_{neto}$
 \end{cardidea}
 \vspace{1.2mm}
@@ -335,8 +335,8 @@ Ciclo de vapor con la expansión \textbf{dividida en dos turbinas} (TAP y TBP) y
 \vspace{1.4mm}
 \etapastitulo
 \begin{etapas}
-$1\to2$ & Bombeo isentrópico ($P_L\to P_H$)          & $w_P=h_2-h_1$\\
-$2\to3$ & Caldera, isobárica ($P_H$)                  & $q_{cald}=h_3-h_2$\\
+$1\to2$ & Bombeo isentrópico ($P_L\to P_H$)          & $w_B=h_2-h_1$\\
+$2\to3$ & Caldera, isobárica ($P_H$)                  & $q_H=h_3-h_2$\\
 $3\to4$ & Expansión en TAP, isentrópica ($\to P_r$)   & $w_{TAP}=h_3-h_4$\\
 $4\to5$ & Recalentamiento isobárico ($P_r$)           & $q_{rec}=h_5-h_4$\\
 $5\to6$ & Expansión en TBP, isentrópica ($\to P_L$)   & $w_{TBP}=h_5-h_6$\\
@@ -356,7 +356,7 @@ $6\to1$ & Condensador, isobárico ($P_L$)              & $q_L=h_6-h_1$\\
 \begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $w_T=(h_3-h_4)+(h_5-h_6)$\\[0.6mm]
 $q_H=(h_3-h_2)+(h_5-h_4)$\\[0.6mm]
-$\eta_{th}=\dfrac{w_T-w_P}{q_H},\quad P_r\approx P_H/4$ a $P_H/5$
+$\eta_{th}=\dfrac{w_T-w_B}{q_H},\quad P_r\approx P_H/4$ a $P_H/5$
 \end{cardidea}
 \vspace{1.2mm}
 \begin{cardgear}{Ejemplo: 15 MPa / 500\,$^\circ$C}{\faCalculator}
@@ -376,9 +376,9 @@ Ciclo de vapor que \textbf{extrae una fracción $y$} del vapor de la turbina par
 \vspace{1.4mm}
 \etapastitulo
 \begin{etapas}
-$1\to2$        & Bomba 1 isentrópica ($P_L\to P_e$)        & $w_{P1}=(1-y)(h_2-h_1)$\\
+$1\to2$        & Bomba 1 isentrópica ($P_L\to P_e$)        & $w_{B1}=(1-y)(h_2-h_1)$\\
 CAA            & Mezcla adiabática (determina $y$)         & $y=\dfrac{h_3-h_2}{h_e-h_2}$\\
-$3\to4$        & Bomba 2 isentrópica ($P_e\to P_H$)        & $w_{P2}=h_4-h_3$\\
+$3\to4$        & Bomba 2 isentrópica ($P_e\to P_H$)        & $w_{B2}=h_4-h_3$\\
 $4\to5$        & Caldera, isobárica                        & $q_H=h_5-h_4$\\
 $5\to e\to6$   & Turbina con extracción ($y$)              & $w_T=(h_5-h_e)+(1-y)(h_e-h_6)$\\
 $6\to1$        & Condensador (fracción $1-y$)              & $q_L=(1-y)(h_6-h_1)$\\
@@ -397,7 +397,7 @@ $6\to1$        & Condensador (fracción $1-y$)              & $q_L=(1-y)(h_6-h_1
 \begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $y=\dfrac{h_3-h_2}{h_e-h_2}$ (balance del CAA)\\[0.8mm]
 $w_T=(h_5-h_e)+(1-y)(h_e-h_6)$\\[0.6mm]
-$q_H=h_5-h_4,\quad \eta_{th}=\dfrac{w_T-w_{P1}-w_{P2}}{q_H}$
+$q_H=h_5-h_4,\quad \eta_{th}=\dfrac{w_T-w_{B1}-w_{B2}}{q_H}$
 \end{cardidea}
 \vspace{1.2mm}
 \begin{cardgear}{Ejemplo: 10 MPa / 500\,$^\circ$C}{\faCalculator}

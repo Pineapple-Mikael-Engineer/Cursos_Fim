@@ -146,14 +146,14 @@ ax.plot(bs, bt, color=of.BROWN, lw=2.4)                                    # 2-3
 ax.plot([s3, s4], [T3, T4], color=of.CURVE, lw=2.4)                        # 3-4 turbina
 ax.plot([s4, s1], [T4, T1], color='#6a8858', lw=2.4)                       # 4-1 condensador
 mark(ax, [(s1, T1), (s2, T2), (s3, T3), (s4, T4)],
-     [(-14, -9), (-15, 3), (8, 2), (9, -2)])
-ax.annotate('caldera', (1.42, 1.04), color=of.BROWN, fontsize=8.5, rotation=22)
-ax.annotate('turbina', (1.75, 1.02), color=of.CURVE, fontsize=8.5, ha='right')
-ax.annotate('condensador', (0.95, 0.50), color='#6a8858', fontsize=8.5, ha='center')
-eflow(ax, (1.15, 1.22), (1.15, 0.95), '$q_{in}$', of.BROWN, (1.15, 1.28))            # entra caldera
-eflow(ax, (1.35, 0.56), (1.35, 0.47), '$q_{out}$', '#6a8858', (1.35, 0.435))         # sale condensador
+     [(9, -12), (-15, 9), (8, 2), (9, -2)])
+ax.annotate('caldera', (1.34, 1.07), color=of.BROWN, fontsize=8.5, rotation=22)
+ax.annotate('turbina', (1.83, 0.90), color=of.CURVE, fontsize=8.5, ha='right')
+ax.annotate('condensador', (0.98, 0.50), color='#6a8858', fontsize=8.5, ha='center')
+eflow(ax, (1.15, 1.22), (1.15, 0.95), '$q_{H}$', of.BROWN, (1.15, 1.28))            # entra caldera
+eflow(ax, (1.35, 0.56), (1.35, 0.47), '$q_{L}$', '#6a8858', (1.35, 0.435))         # sale condensador
 eflow(ax, (1.90, 0.82), (2.18, 0.82), '$w_{T}$', of.CURVE, (2.24, 0.82))             # sale turbina
-eflow(ax, (sf1 - 0.14, 0.585), (sf1, 0.585), '$w_{P}$', of.ACCENT, (sf1 - 0.19, 0.61))  # entra bomba
+eflow(ax, (sf1 - 0.17, 0.475), (sf1 - 0.02, 0.545), '$w_{B}$', of.ACCENT, (sf1 - 0.22, 0.45))  # entra bomba
 of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
 of.title(ax, r'Ciclo Rankine en $T$–$s$')
 ax.set_xlim(0.3, 2.4); ax.set_ylim(0.41, 1.32); of.save(fig, 'rankine_diagrama_Ts')
@@ -172,10 +172,10 @@ ax.plot([h3, h4], [PH, PL], color=of.CURVE, lw=2.4)               # turbina
 ax.plot([h4, h1], [PL, PL], color='#6a8858', lw=2.4)             # condensador
 mark(ax, [(h1, PL), (h2, PH), (h3, PH), (h4, PL)],
      [(-12, -10), (-10, 6), (8, 6), (8, -10)])
-eflow(ax, ((h2 + h3) / 2, PH + 0.22), ((h2 + h3) / 2, PH), '$q_{in}$', of.BROWN, ((h2 + h3) / 2, PH + 0.34))
-eflow(ax, ((h1 + h4) / 2, PL), ((h1 + h4) / 2, PL - 0.075), '$q_{out}$', '#6a8858', ((h1 + h4) / 2, PL - 0.093))
+eflow(ax, ((h2 + h3) / 2, PH + 0.22), ((h2 + h3) / 2, PH), '$q_{H}$', of.BROWN, ((h2 + h3) / 2, PH + 0.34))
+eflow(ax, ((h1 + h4) / 2, PL), ((h1 + h4) / 2, PL - 0.075), '$q_{L}$', '#6a8858', ((h1 + h4) / 2, PL - 0.093))
 eflow(ax, ((h3 + h4) / 2, (PH + PL) / 2), ((h3 + h4) / 2 + 0.24, (PH + PL) / 2), '$w_{T}$', of.CURVE, ((h3 + h4) / 2 + 0.30, (PH + PL) / 2))
-eflow(ax, (h1 - 0.13, 0.55), (h1 + 0.14, 0.55), '$w_{P}$', of.ACCENT, (h1 - 0.19, 0.62))
+eflow(ax, (h1 - 0.13, 0.55), (h1 + 0.14, 0.55), '$w_{B}$', of.ACCENT, (h1 - 0.19, 0.62))
 ax.set_yscale('log')
 of.labels(ax, x=r'entalpía  $h$', y=r'presión  $P$ (log)')
 of.title(ax, r'Ciclo Rankine en $P$–$h$')

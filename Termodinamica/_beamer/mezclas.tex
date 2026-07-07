@@ -599,25 +599,77 @@ El estado de mezcla divide $\overline{1\text{-}2}$ en razón \textbf{inversa} a 
 % ============================================================
 \portadaseccion{5}{Torres de enfriamiento}{contacto aire--agua · evaporación · balances}{\faWater}
 
-\begin{frame}{Torres de enfriamiento}
+% ---- Concepto ----
+\begin{frame}{Torres: contacto directo aire--agua}
 \begin{columns}[T]
 \begin{column}{0.42\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=4.7cm,keepaspectratio]{torre_enfriamiento_esquema}\\[0.4mm]
-\fsub{El agua caliente se enfría evaporándose en el aire.}
+\includegraphics[width=\linewidth,height=5.0cm,keepaspectratio]{torre_enfriamiento_esquema}\\[0.3mm]
+\fsub{Agua caliente ($\dot m_3,T_3$) cae; aire ($\dot m_a,T_1,\omega_1$) sube y sale saturado (2).}
 \end{column}
 \begin{column}{0.54\textwidth}
-\begin{cardidea}{Balances}{\faSuperscript}
-Aire seco: $\dot m_a=$ cte.\ Agua: $\dot m_4=\dot m_3-\dot m_a(\omega_2-\omega_1)$.\\[0.7mm]
-Maquillaje: $\dot m_{\rm maq}=\dot m_a(\omega_2-\omega_1)$.\\[0.7mm]
-$\dfrac{\dot m_3}{\dot m_a}=\dfrac{(h_{a2}-h_{a1})-(\omega_2-\omega_1)h_f(T_4)}{h_f(T_3)-h_f(T_4)}$.
+\begin{cardidea}{Qué es}{\faInfoCircle}
+Dispositivo de \textbf{contacto directo}: el agua caliente se enfría cediendo vapor al aire. No es un intercambiador cerrado; ocurre transferencia de \textbf{calor y de masa} a la vez.
 \end{cardidea}
-\vspace{1.1mm}
-\begin{cardgear}{Rendimiento y ejemplo}{\faCalculator}
-Rango $=T_3-T_4$; Aproximación $=T_4-T_{bh,1}$.\\[0.5mm]
-Central con $\dot Q_{\rm cond}=120$ MW ($40\to24\,^\circ$C):\\[0.4mm]
-$\dot m_3=1793$ kg/s, $\dot m_a=1413$ kg/s, $\dot m_{\rm maq}=146$ t/h.
+\vspace{1.0mm}
+\begin{cardgear}{Por qué enfría tanto}{\faTint}
+El grueso del enfriamiento es \textbf{evaporativo}: cada kg de agua evaporada se lleva $\approx2400$ kJ de calor latente. Límite físico: el agua no baja de $T_{bh,1}$ (bulbo húmedo del aire que entra).
 \end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Balances torres ----
+\begin{frame}{Torres: balances de masa y energía}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Variables}{\faListUl}
+\footnotesize
+$\dot m_a$: aire seco (se conserva). $\dot m_3,\dot m_4$: agua caliente/fría. $\omega_1,\omega_2$: humedad del aire a la entrada/salida. $h_{a1},h_{a2}$: entalpías del aire. $h_f(T)$: entalpía del agua líquida.
+\end{cardidea}
+\vspace{0.9mm}
+\begin{cardgear}{Balances (VC estacionario, $\dot Q=0$)}{\faSuperscript}
+\footnotesize
+Aire seco: $\dot m_a=$ cte.\\[0.4mm]
+Agua: $\dot m_4=\dot m_3-\dot m_a(\omega_2-\omega_1)$.\\[0.5mm]
+Energía: $\dfrac{\dot m_3}{\dot m_a}=\dfrac{(h_{a2}-h_{a1})-(\omega_2-\omega_1)h_f(T_4)}{h_f(T_3)-h_f(T_4)}$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Agua de reposición}{\faPlusCircle}
+El agua evaporada $=$ ganancia de humedad del aire, y se repone (maquillaje):
+$$\dot m_{\rm ev}=\dot m_{\rm maq}=\dot m_a(\omega_2-\omega_1).$$
+\end{cardidea}
+\vspace{0.9mm}
+\begin{cardnota}[\faRulerHorizontal]
+\textbf{Rango} $=T_3-T_4$: cuánto baja el agua.\\[0.4mm]
+\textbf{Aproximación} $=T_4-T_{bh,1}$: cercanía al límite ($\lesssim5\,^\circ$C es excelente).
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo torres ----
+\begin{frame}{Torres: ejemplo (central térmica)}
+\begin{cardidea}{Datos}{\faCalculator}
+$\dot Q_{\rm cond}=120$ MW; agua $40\to24\,^\circ$C; aire entra a $20\,^\circ$C, $\phi_1=40\%$ y sale saturado a $34\,^\circ$C. $P=101.325$ kPa.
+\end{cardidea}
+\vspace{1.2mm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Estados del aire}{\faSuperscript}
+$\omega_1=0.00580$, $h_{a1}=34.8$ kJ/kg.\\[0.4mm]
+$\omega_2=0.03449$, $h_{a2}=122.6$ kJ/kg.\\[0.4mm]
+$h_f(40)=167.5$; $h_f(24)=100.6$ kJ/kg.
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faCheckCircle]
+$\dot m_3=\dfrac{120000}{167.5-100.6}=1793$ kg/s.\\[0.5mm]
+$\dot m_3/\dot m_a=1.269\Rightarrow\dot m_a=1413$ kg/s.\\[0.5mm]
+$\dot m_{\rm maq}=1413(0.02869)=40.5$ kg/s $=146$ t/h.\\[0.5mm]
+Aproximación $=24-13.4=10.6\,^\circ$C.
+\end{cardnota}
 \end{column}
 \end{columns}
 \end{frame}
@@ -627,49 +679,146 @@ $\dot m_3=1793$ kg/s, $\dot m_a=1413$ kg/s, $\dot m_{\rm maq}=146$ t/h.
 % ============================================================
 \portadaseccion{6}{Combustión}{estequiometría · exceso de aire · llama}{\faFire}
 
-% ---- Estequiometría y AF ----
-\begin{frame}{Estequiometría y relación aire-combustible}
+% ---- Reacción y balanceo ----
+\begin{frame}{Combustión: reacción y balanceo por átomos}
 \begin{columns}[T]
-\begin{column}{0.46\textwidth}
+\begin{column}{0.44\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=3.8cm,keepaspectratio]{combustion_esquema_reactivos_productos}\\[0.4mm]
-\fsub{Reactivos (comb. $+$ aire) $\to$ productos.}
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{combustion_esquema_reactivos_productos}\\[0.3mm]
+\fsub{Reactivos (combustible $+$ aire) $\to$ productos.}
+\vspace{0.6mm}
+\begin{cardnota}[\faInfoCircle]
+\footnotesize
+Aire $\approx\mathrm{O_2}+3.76\,\mathrm{N_2}$: por cada $\mathrm{O_2}$ hay $79/21=3.76$ de $\mathrm{N_2}$.
+\end{cardnota}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.52\textwidth}
 \begin{cardidea}{Reacción estequiométrica}{\faSuperscript}
-Aire $\approx\mathrm{O_2}+3.76\,\mathrm{N_2}$:
-$$\mathrm{C_xH_y}+a_{\rm est}(\mathrm{O_2}+3.76\mathrm{N_2})\to x\mathrm{CO_2}+\tfrac{y}{2}\mathrm{H_2O}+3.76a_{\rm est}\mathrm{N_2}$$
-con $a_{\rm est}=x+\tfrac{y}{4}$.
+\footnotesize
+$\mathrm{C_xH_y}+a_{\rm est}(\mathrm{O_2}+3.76\,\mathrm{N_2})\longrightarrow$\\[0.4mm]
+$\qquad x\,\mathrm{CO_2}+\tfrac{y}{2}\mathrm{H_2O}+3.76\,a_{\rm est}\,\mathrm{N_2}$
 \end{cardidea}
-\vspace{1.0mm}
-\begin{cardgear}{Aire-combustible y exceso}{\faInfoCircle}
-$\mathrm{AF}=\dfrac{m_{\rm aire}}{m_{\rm comb}}$;\ \ $\Phi=\dfrac{\mathrm{AF}_{\rm est}}{\mathrm{AF}}$.\\[0.5mm]
-$\Phi<1$ pobre (exceso $\mathrm{O_2}$), $\Phi>1$ rica (aparece CO).\\[0.4mm]
-Exceso $e=(1/\Phi-1)\times100\%$.
+\vspace{0.8mm}
+\begin{cardgear}{Balanceo (se conservan los átomos)}{\faListOl}
+\footnotesize
+\textbf{C}: $x\to x$, da $x$ de $\mathrm{CO_2}$.\\[0.3mm]
+\textbf{H}: $y\to y$, da $y/2$ de $\mathrm{H_2O}$.\\[0.3mm]
+\textbf{O}: $2a_{\rm est}=2x+\tfrac{y}{2}\Rightarrow a_{\rm est}=x+\tfrac{y}{4}$.\\[0.3mm]
+\textbf{N}: entra $=$ sale ($\mathrm{N_2}$ inerte).\\[0.5mm]
+Ej.: $\mathrm{CH_4}\Rightarrow a_{\rm est}=2$; $\mathrm{C_3H_8}\Rightarrow a_{\rm est}=5$.
 \end{cardgear}
 \end{column}
 \end{columns}
 \end{frame}
 
-% ---- Ejemplo propano ----
-\begin{frame}{Análisis de productos --- ejemplo (propano)}
+% ---- AF y equivalencia ----
+\begin{frame}{Relación aire--combustible y equivalencia}
 \begin{columns}[T]
-\begin{column}{0.44\textwidth}
-\centering
-\includegraphics[width=\linewidth,height=3.7cm,keepaspectratio]{combustion_incompleta_esquema}\\[0.4mm]
-\fsub{Con aire en defecto aparece CO (mezcla rica).}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Relación aire-combustible $AF$}{\faBalanceScale}
+Aire suministrado por unidad de combustible:
+$$AF=\frac{m_{\rm aire}}{m_{\rm comb}}\quad\left[\tfrac{\text{kg aire}}{\text{kg comb}}\right].$$
+Base molar $\overline{AF}=n_{\rm aire}/n_{\rm comb}$; másica $=\overline{AF}\,M_{\rm aire}/M_{\rm comb}$. El estequiométrico $AF_{\rm est}$ usa $a_{\rm est}$.
+\end{cardidea}
 \end{column}
-\begin{column}{0.52\textwidth}
-\begin{cardidea}{$\mathrm{C_3H_8}$ con $150\%$ de aire}{\faCalculator}
-$a_{\rm est}=5$, $a=7.5$:\\[0.4mm]
-$\mathrm{C_3H_8}+7.5\mathrm{O_2}+28.2\mathrm{N_2}\to 3\mathrm{CO_2}+4\mathrm{H_2O}+2.5\mathrm{O_2}+28.2\mathrm{N_2}$.\\[0.6mm]
-$\mathrm{AF}=1029.6/44.09=23.35$ kg/kg.
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Exceso de aire y $\Phi$}{\faSlidersH}
+\textbf{Relación de equivalencia} $\Phi=\dfrac{AF_{\rm est}}{AF}$:\\[0.5mm]
+$\Phi<1$ \textbf{pobre}: exceso de $\mathrm{O_2}$.\\[0.3mm]
+$\Phi=1$ estequiométrica.\\[0.3mm]
+$\Phi>1$ \textbf{rica}: aparece CO.\\[0.5mm]
+Exceso de aire $e=\left(\dfrac{1}{\Phi}-1\right)\times100\%$.
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardnota}[\faExclamationTriangle]
+$AF$ es una relación de masas; $\Phi$ es adimensional. Más aire $\Rightarrow$ mayor $AF\Rightarrow$ menor $\Phi$ (más pobre).
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo propano + Orsat ----
+\begin{frame}{Análisis de productos: propano, 150\% de aire}
+\begin{cardidea}{Reacción balanceada ($a_{\rm est}=5$, $a=7.5$)}{\faCalculator}
+\footnotesize
+$\mathrm{C_3H_8}+7.5\,\mathrm{O_2}+28.2\,\mathrm{N_2}\longrightarrow 3\,\mathrm{CO_2}+4\,\mathrm{H_2O}+2.5\,\mathrm{O_2}+28.2\,\mathrm{N_2}$\\[0.4mm]
+Comprobación O: $15=6+4+5$ \checkmark
 \end{cardidea}
 \vspace{1.0mm}
-\begin{cardgear}{Orsat (base seca) y poder calorífico}{\faTable}
-CO$_2$ $8.9\%$, O$_2$ $7.4\%$, N$_2$ $83.7\%$.\\[0.5mm]
-$\mathrm{PCI}=46.3$ MJ/kg, $\mathrm{PCS}=50.4$ MJ/kg (agua líquida).
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Relación aire-combustible}{\faSuperscript}
+\footnotesize
+$m_{\rm aire}=7.5\times137.28=1029.6$ kg/kmol.\\[0.4mm]
+$AF=1029.6/44.09=23.35$ kg/kg.\\[0.4mm]
+$AF_{\rm est}=15.57\Rightarrow\Phi=1/1.5=0.667$ (pobre).
 \end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faTable]
+\footnotesize
+\textbf{Orsat} (base seca), total $33.7$ mol:\\[0.4mm]
+$\mathrm{CO_2}\,8.9\%$, $\mathrm{O_2}\,7.4\%$, $\mathrm{N_2}\,83.7\%$.\\[0.3mm]
+El $\mathrm{H_2O}$ condensa antes de medir.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Combustión incompleta ----
+\begin{frame}{Combustión incompleta: aparición de CO}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{combustion_incompleta_esquema}\\[0.3mm]
+\fsub{Con aire en defecto ($\Phi>1$) parte del C sale como CO.}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardidea}{Balance con CO ($a<a_{\rm est}$)}{\faSuperscript}
+\footnotesize
+$\mathrm{C_xH_y}+a(\mathrm{O_2}+3.76\,\mathrm{N_2})\longrightarrow$\\[0.4mm]
+$\ b\,\mathrm{CO_2}+(x-b)\,\mathrm{CO}+\tfrac{y}{2}\mathrm{H_2O}+3.76a\,\mathrm{N_2}$\\[0.4mm]
+con $b=2a-x-\tfrac{y}{2}$ (el H se oxida primero).
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardgear}{Orsat inverso (octano, motor)}{\faCalculator}
+\footnotesize
+Medido: $\mathrm{CO_2}\,12\%$, $\mathrm{O_2}\,0.5\%$, $\mathrm{CO}\,2.5\%$, $\mathrm{N_2}\,85\%$.\\[0.4mm]
+$\Rightarrow AF=15.0$, $\Phi=1.003$ (rica);\\[0.3mm]
+pérdida de calor por CO $\approx7.7\%$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Balance de energía ----
+\begin{frame}{Balance de energía: formación y poder calorífico}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Entalpía de formación $\bar h_f^\circ$}{\faSuperscript}
+\footnotesize
+Entalpía para formar 1 kmol desde sus elementos a $25\,^\circ$C, 1 atm. Elementos estables: $\bar h_f^\circ=0$.\\[0.5mm]
+Calor de reacción:\\
+$\bar h_R^\circ=\sum_{\rm prod}n_i\bar h_{f,i}^\circ-\sum_{\rm react}n_j\bar h_{f,j}^\circ<0$.
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardnota}[\faInfoCircle]
+\footnotesize
+Cada especie: $\bar h_i=\bar h_{f,i}^\circ+\Delta\bar h_i(T)$ (química $+$ sensible).
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Poder calorífico (por kg comb.)}{\faFire}
+\footnotesize
+$\mathrm{PCI}=-\bar h_R^\circ$ con $\mathrm{H_2O}$ \textbf{vapor}.\\[0.4mm]
+$\mathrm{PCS}=-\bar h_R^\circ$ con $\mathrm{H_2O}$ \textbf{líquida}.\\[0.4mm]
+$\mathrm{PCS}-\mathrm{PCI}=\dfrac{n_{\rm H_2O}M_{\rm H_2O}}{M_{\rm comb}}\,h_{fg}$.
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardnota}[\faCalculator]
+\footnotesize
+Propano: $\mathrm{PCI}=46.4$, $\mathrm{PCS}=50.4$ MJ/kg. Escapes calientes $\Rightarrow$ usar PCI.
+\end{cardnota}
 \end{column}
 \end{columns}
 \end{frame}
@@ -679,18 +828,18 @@ $\mathrm{PCI}=46.3$ MJ/kg, $\mathrm{PCS}=50.4$ MJ/kg (agua líquida).
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=4.6cm,keepaspectratio]{taf_vs_exceso_aire}\\[0.4mm]
-\fsub{$T_{\rm AFT}$ del metano vs.\ \% de aire teórico.}
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{taf_vs_exceso_aire}\\[0.3mm]
+\fsub{$T_{\rm AFT}$ del metano vs.\ \% de aire teórico (pico en $100\%$).}
 \end{column}
 \begin{column}{0.46\textwidth}
-\begin{cardidea}{Balance adiabático}{\faSuperscript}
-Con $\dot Q=0$, todo el calor de reacción calienta los productos:
+\begin{cardidea}{Balance $H_{\rm react}=H_{\rm prod}$}{\faSuperscript}
+Sin pérdidas ($\dot Q=0$), todo el calor de reacción calienta los productos:
 $$-\bar h_R^\circ=\sum_i n_i\,\Delta\bar h_i(T_{\rm AFT}).$$
 Máxima en $\Phi=1$; el \textbf{exceso de aire} diluye y \textbf{baja} $T_{\rm AFT}$.
 \end{cardidea}
-\vspace{1.1mm}
+\vspace{0.8mm}
 \begin{cardnota}[\faCalculator]
-$\mathrm{CH_4}$ estequiométrico: $T_{\rm AFT}\approx2230$ K. Con $150\%$ de aire baja a $\approx1924$ K ($1651\,^\circ$C).
+$\mathrm{CH_4}$ estequiométrico: $\approx2230$ K. Con $150\%$ de aire: $\approx1924$ K ($1651\,^\circ$C).
 \end{cardnota}
 \end{column}
 \end{columns}
