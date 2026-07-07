@@ -1,0 +1,701 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Problemas Resueltos Final 2024-II
+%  Termodinámica MN121 · compilar con xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{mathtools}
+\graphicspath{{img/}}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | MN121}
+\newcommand{\pietitulo}{Final 2024-II · Problemas Resueltos}
+
+% ---------- Ajustes globales ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Tabla de etapas ----------
+\newcommand{\etapastitulo}{\par{\centering{\color{Granate}\faTable}\hspace{1.6mm}{\bfseries\color{FondoOscuro}Etapas del ciclo}\par}\vspace{0.2mm}}
+\newenvironment{etapas}{%
+  \begingroup\scriptsize\renewcommand{\arraystretch}{1.12}\arrayrulecolor{Granate}
+  \begin{center}
+  \begin{tabular}{@{}>{\centering\arraybackslash\bfseries}p{1.2cm} >{\RaggedRight}p{4.5cm} >{\RaggedRight\arraybackslash}p{6.6cm}@{}}
+  \toprule
+  {\color{FondoOscuro}Etapa} & {\color{FondoOscuro}\bfseries Proceso} & {\color{FondoOscuro}\bfseries Ecuación clave}\\
+  \midrule}%
+ {\bottomrule
+  \end{tabular}
+  \end{center}\endgroup}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=AzulPanel!80!white] at ([xshift=-4.0cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{22}{22}\selectfont $\eta_{th}=1-\dfrac{q_L}{q_H}$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.4cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $r_{a/c}=\dfrac{PC}{c_p\,\Delta T}$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.6cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\omega=0{,}622\dfrac{P_v}{P-P_v}$};
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faCalculator};
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ MN121};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Final 2024-II\\ Problemas Resueltos};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Ciclos\ \textperiodcentered\ Combustión\ \textperiodcentered\ Psicrometría};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Termodinámica --- Examen Final resuelto paso a paso};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: MN121\ \textbar\ Termodinámica --- FIM};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Rankine \textperiodcentered\ Brayton \textperiodcentered\ Otto \textperiodcentered\ Diesel \textperiodcentered\ Combustión \textperiodcentered\ Psicrometría \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  PROBLEMA 1 — RANKINE CON RECALENTAMIENTO
+% ============================================================
+\portadaseccion{1}{Problema 1 --- Rankine con recalentamiento}{Planta térmica a vapor de 20 MW}{\faCalculator}
+
+% ---- P1: Enunciado y datos ----
+\begin{frame}{P1 --- Enunciado y datos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{Enunciado}{\faInfoCircle}
+Planta de vapor en ciclo \textbf{Rankine con recalentamiento} que genera $\dot W_{neta}=20$ MW. Turbina de \textbf{2 etapas} (AP y BP), cada una con $\eta_T=90\%$. El vapor entra a la TAP a $40$ bar / $400\,^\circ$C y sale a $8$ bar; se recalienta hasta $8$ bar / $400\,^\circ$C y expande en la TBP hasta $0{,}1$ bar.
+\end{cardidea}
+\vspace{1mm}
+\begin{cardlista}
+\textbf{Datos:} $\dot W_{neta}=20$ MW · $\eta_{cald}=70\%$\\[0.5mm]
+$\eta_T=0{,}90$ (c/etapa) · $\eta_B=100\%$ · $\eta_m=100\%$\\[0.5mm]
+$PC=40\,000$ kJ/kg\\[0.5mm]
+\textbf{Pide:} (1)~$w_B$ · (2)~$\dot m$ · (3)~$\dot Q_{rec}$ · (4)~$\dot m_{comb}$ · (5)~$\eta_t$
+\end{cardlista}
+\end{column}
+\begin{column}{0.43\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{rankine_recalentamiento_esquema}\\[1mm]
+\includegraphics[width=\linewidth,height=3.0cm,keepaspectratio]{rankine_diagrama_Ts}\\[0.4mm]
+\fsub{Expansión en dos etapas (TAP/TBP) con recalentador y diagrama $T$-$s$.}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P1: Solución (estados y bomba) ----
+\begin{frame}{P1 --- Solución paso a paso (estados)}
+\begin{cardgear}{Paso 1 --- Estados de las turbinas con $\eta_T$}{\faSuperscript}
+{\footnotesize
+\textbf{TAP} ($1\to2$, a $8$ bar, $s_{2s}=s_1=6{,}769$): $h_1=3214$, $h_{2s}=2817$ kJ/kg.
+$$h_{2r}=h_1-\eta_T(h_1-h_{2s})=3214-0{,}90(3214-2817)=2856{,}7\ \text{kJ/kg}.$$
+\textbf{TBP} ($3\to4$, a $0{,}1$ bar, $s_{4s}=s_3=7{,}572$; $s_f=0{,}6493$, $s_{fg}=7{,}5009$): $h_3=3267$.
+$$x_{4s}=\frac{7{,}572-0{,}6493}{7{,}5009}=0{,}923,\quad h_{4s}=191{,}8+0{,}923(2392{,}8)=2400,$$
+$$h_{4r}=3267-0{,}90(3267-2400)=2486{,}7\ \text{kJ/kg}.$$}
+\end{cardgear}
+\vspace{1.2mm}
+\begin{cardidea}{Paso 2 --- (1) Trabajo de la bomba}{\faListOl}
+Bomba isentrópica de líquido ($v_5=0{,}001010$ m$^3$/kg), de $0{,}1$ a $40$ bar:
+$$w_B=v_5(P_6-P_5)=0{,}001010(4000-10)=4{,}03\approx 4\ \text{kJ/kg},\quad h_6=191{,}8+4=195{,}8.$$
+\end{cardidea}
+\end{frame}
+
+% ---- P1: Solución (flujo y recalentador) ----
+\begin{frame}{P1 --- Solución paso a paso (flujo y recalentador)}
+\begin{cardidea}{Paso 3 --- (2) Flujo de vapor}{\faListOl}
+La potencia neta es la de ambas turbinas menos la bomba, por el mismo $\dot m$:
+$$\dot W_{neta}=\dot m\big[(h_1-h_{2r})+(h_3-h_{4r})-w_B\big].$$
+$$20\,000=\dot m\big[357{,}3+780{,}3-4\big]=\dot m\,(1133{,}6)\ \Rightarrow\ \dot m=17{,}644\ \text{kg/s}.$$
+\end{cardidea}
+\vspace{1.4mm}
+\begin{cardgear}{Paso 4 --- (3) Calor en el recalentador}{\faListOl}
+El recalentador lleva el vapor de $2r$ a $3$ a presión constante:
+$$\dot Q_{rec}=\dot m\,(h_3-h_{2r})=17{,}644\,(3267-2856{,}7)=7239{,}3\ \text{kW}.$$
+\end{cardgear}
+\end{frame}
+
+% ---- P1: Solución (combustible y eficiencia) ----
+\begin{frame}{P1 --- Solución paso a paso (combustible y $\eta_t$)}
+\begin{cardidea}{Paso 5 --- (4) Consumo de combustible}{\faFire}
+{\footnotesize
+Calor del fluido en caldera ($6\to1$) cubierto por el combustible vía $\eta_{cald}=0{,}70$:
+$$\dot Q_{cald}=\frac{\dot m(h_1-h_6)}{\eta_{cald}}=\frac{17{,}644(3214-195{,}8)}{0{,}70}=76\,075{,}9\ \text{kW}.$$
+$$\dot Q_{total}=76\,075{,}9+7239{,}3=83\,315\ \text{kW},\quad \dot m_{comb}=\frac{83\,315}{40\,000}=2{,}082\ \text{kg/s}.$$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Paso 6 --- (5) Eficiencia térmica de la planta}{\faListOl}
+Calor absorbido por el fluido (caldera $+$ recalentador):
+$$\dot Q_A=17{,}644(3214-195{,}8)+7239{,}3=60\,492{,}5\ \text{kW},\quad \eta_t=\frac{20\,000}{60\,492{,}5}=33{,}06\%.$$
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+\textbf{Resultado:} $w_B\approx4$ kJ/kg · $\dot m=17{,}64$ kg/s · $\dot Q_{rec}=7239$ kW · $\dot m_{comb}=2{,}082$ kg/s · $\eta_t=33{,}06\%$.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  PROBLEMA 2 — BRAYTON REGENERACIÓN + RECALENTAMIENTO
+% ============================================================
+\portadaseccion{2}{Problema 2 --- Brayton regenerativo}{Turbina a gas de 12 MW con recalentamiento}{\faCalculator}
+
+% ---- P2: Enunciado y datos ----
+\begin{frame}{P2 --- Enunciado y datos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{Enunciado}{\faInfoCircle}
+\textbf{Turbina a gas} de $\dot W_{eje}=12\,000$ kW con \textbf{2 etapas de expansión} en el mismo eje, \textbf{recalentamiento} intermedio a la presión óptima hasta $T_{max}$, y un \textbf{regenerador} ($\varepsilon=75\%$) a la salida del compresor. Aire estándar.
+\end{cardidea}
+\vspace{1mm}
+\begin{cardlista}
+\textbf{Datos:} $P_1=100$ kPa · $T_1=290$ K\\[0.5mm]
+$P_{max}=9$ bar ($900$ kPa) · $T_{max}=1200$ K\\[0.5mm]
+$\eta_C=\eta_T=90\%$ · $\varepsilon=0{,}75$ · $PC=44\,000$ kJ/kg\\[0.5mm]
+$c_p=1{,}0035$ kJ/kg·K · $k=1{,}4$\\[0.5mm]
+\textbf{Pide:} (6)~$T_X$ · (7)~$r_{a/c}$ · (8)~$w_{neto}$ · (9)~$\dot m_a$ · (10)~$\eta$
+\end{cardlista}
+\end{column}
+\begin{column}{0.43\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.6cm,keepaspectratio]{brayton_regeneracion_esquema}\\[0.4mm]
+\fsub{Regenerador que precalienta el aire con los gases de escape.}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P2: Solución (estados) ----
+\begin{frame}{P2 --- Solución paso a paso (estados)}
+\begin{cardgear}{Paso 1 --- Presión intermedia óptima}{\faSuperscript}
+Para dos etapas con recalentamiento, el reparto óptimo iguala las relaciones de presión:
+$$P_i=\sqrt{P_{max}\,P_{min}}=\sqrt{900\cdot100}=300\ \text{kPa}\ \Rightarrow\ r_p=3\ \text{por etapa},\quad \tfrac{k-1}{k}=0{,}2857.$$
+\end{cardgear}
+\vspace{1.2mm}
+\begin{cardidea}{Paso 2 --- Estados reales con $\eta_C,\eta_T$}{\faSuperscript}
+{\footnotesize
+\textbf{Compresor} ($1\to2$): $T_{2s}=290(9)^{0{,}2857}=543{,}3$ K;\ \ $T_{2r}=290+\dfrac{543{,}3-290}{0{,}9}=571{,}4$ K.\\[0.8mm]
+\textbf{Turbina AP} ($3\to4$): $T_{4s}=1200(1/3)^{0{,}2857}=876{,}7$ K;\ \ $T_{4r}=1200-0{,}9(1200-876{,}7)=909{,}0$ K.\\[0.8mm]
+\textbf{Turbina BP} ($5\to6$): por simetría ($r_p=3$, $T_5=1200$): $T_{6r}=909{,}0$ K.}
+\end{cardidea}
+\end{frame}
+
+% ---- P2: Solución (regenerador y r_a/c) ----
+\begin{frame}{P2 --- Solución paso a paso (regenerador, $r_{a/c}$)}
+\begin{cardidea}{Paso 3 --- (6) Temperatura de entrada a la 1ª cámara}{\faListOl}
+El regenerador precalienta el aire ($T_{2r}=571{,}4$) usando el escape ($T_{6r}=909{,}0$), con $\varepsilon=0{,}75$:
+$$T_X=T_{2r}+\varepsilon(T_{6r}-T_{2r})=571{,}4+0{,}75(909{,}0-571{,}4)=824{,}6\ \text{K}.$$
+\end{cardidea}
+\vspace{1.4mm}
+\begin{cardgear}{Paso 4 --- (7) Relación aire-combustible}{\faFire}
+Balance de energía en la 1ª cámara ($X\to3$): el combustible calienta el aire de $T_X$ a $T_3$:
+$$r_{a/c}=\frac{PC}{c_p(T_3-T_X)}=\frac{44\,000}{1{,}0035(1200-824{,}6)}=116{,}8\ \tfrac{\text{kg aire}}{\text{kg comb.}}.$$
+\end{cardgear}
+\end{frame}
+
+% ---- P2: Solución (trabajo, flujo, eficiencia) ----
+\begin{frame}{P2 --- Solución paso a paso (trabajo, flujo, $\eta$)}
+\begin{cardidea}{Paso 5 --- (8) Trabajo neto}{\faListOl}
+{\footnotesize
+$$w_T=c_p\big[(T_3-T_{4r})+(T_5-T_{6r})\big]=1{,}0035(291+291)=584{,}0\ \text{kJ/kg},$$
+$$w_C=c_p(T_{2r}-T_1)=1{,}0035(571{,}4-290)=282{,}4,\quad w_{neto}=584{,}0-282{,}4=301{,}6\ \text{kJ/kg}.$$}
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardgear}{Paso 6-7 --- (9) Flujo de aire y (10) eficiencia}{\faListOl}
+{\footnotesize
+$$\dot m_a=\frac{\dot W_{eje}}{w_{neto}}=\frac{12\,000}{301{,}6}=39{,}79\ \text{kg/s}=2387\ \text{kg/min}.$$
+$$q_A=c_p(T_3-T_X)+c_p(T_5-T_{4r})=376{,}7+292{,}0=668{,}7,\quad \eta=\frac{301{,}6}{668{,}7}=45{,}1\%.$$}
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardnota}[\faListOl]
+\textbf{Resultado:} $T_X=824{,}6$ K · $r_{a/c}=116{,}8$ · $w_{neto}=301{,}6$ kJ/kg · $\dot m_a=2387$ kg/min · $\eta=45{,}1\%$.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  PROBLEMA 3 — CICLO OTTO
+% ============================================================
+\portadaseccion{3}{Problema 3 --- Ciclo Otto}{Motor de explosión de 4 tiempos}{\faCalculator}
+
+% ---- P3: Enunciado y datos ----
+\begin{frame}{P3 --- Enunciado y datos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{Enunciado}{\faInfoCircle}
+Motor teórico de explosión (\textbf{ciclo Otto}) de 4 tiempos con relación de compresión $r_k=7{,}5$ y temperatura máxima $T_{max}=2524$ K. Gira a $4200$ rpm con $1800$ cm$^3$ de cilindrada. Combustión isocórica con $\eta_{comb}=90\%$.
+\end{cardidea}
+\vspace{1mm}
+\begin{cardlista}
+\textbf{Datos:} $r_k=7{,}5$ · $T_{max}=T_3=2524$ K\\[0.5mm]
+$P_1=1$ bar · $T_1=300$ K · $\eta_{comb}=0{,}90$\\[0.5mm]
+$PC=44\,250$ kJ/kg · $k=1{,}4$\\[0.5mm]
+$c_v=0{,}718$ · $R=0{,}287$ kJ/kg·K\\[0.5mm]
+\textbf{Pide:} (11)~$r_{a/c}$ · (12)~$\dot W$ · (13)~$\eta$ · (14)~$w_{neto}$
+\end{cardlista}
+\end{column}
+\begin{column}{0.43\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{otto_diagrama_Pv}\\[0.4mm]
+\fsub{Diagrama $P$-$v$: combustión isocórica ($2\to3$).}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P3: Solución (r_a/c, eficiencia) ----
+\begin{frame}{P3 --- Solución paso a paso ($r_{a/c}$, $\eta$)}
+\begin{cardgear}{Paso 1 --- Temperatura tras la compresión}{\faSuperscript}
+Compresión isentrópica $1\to2$:
+$$T_2=T_1\,r_k^{\,k-1}=300\,(7{,}5)^{0{,}4}=671{,}65\ \text{K}.$$
+\end{cardgear}
+\vspace{1.2mm}
+\begin{cardidea}{Paso 2 --- (11) Relación aire-combustible}{\faFire}
+Combustión isocórica ($2\to3$) con $\eta_{comb}=0{,}90$; $\ \eta_{comb}\,\dot m_c\,PC=\dot m_a\,c_v(T_3-T_2)$:
+$$r_{a/c}=\frac{\eta_{comb}\,PC}{c_v(T_3-T_2)}=\frac{0{,}90\cdot44\,250}{0{,}718(2524-671{,}65)}=30.$$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Paso 3 --- (13) Eficiencia del ciclo}{\faListOl}
+Depende solo de $r_k$:\quad $\eta=1-\dfrac{1}{r_k^{\,k-1}}=1-(7{,}5)^{-0{,}4}=55{,}33\%.$
+\end{cardgear}
+\end{frame}
+
+% ---- P3: Solución (potencia, trabajo) ----
+\begin{frame}{P3 --- Solución paso a paso (potencia, $w_{neto}$)}
+\begin{cardidea}{Paso 4 --- Masa de aire por ciclo}{\faSuperscript}
+{\footnotesize
+De la cilindrada $V_1-V_2=1800$ cm$^3$ con $V_2=V_1/r_k$:
+$$V_1\Big(1-\tfrac{1}{7{,}5}\Big)=1800\ \Rightarrow\ V_1=2076{,}9\ \text{cm}^3,\quad m_a=\frac{P_1V_1}{R\,T_1}=\frac{100\cdot2076{,}9\times10^{-6}}{0{,}287\cdot300}=2{,}412\times10^{-3}\ \text{kg}.$$}
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardgear}{Paso 5 --- Calor y trabajo por ciclo}{\faSuperscript}
+{\footnotesize
+$$m_c=\frac{m_a}{r_{a/c}}=8{,}04\times10^{-5}\ \text{kg},\quad Q_A=m_c\,PC=3{,}558\ \text{kJ},\quad W=\eta\,Q_A=0{,}5533\cdot3{,}558=1{,}9688\ \text{kJ}.$$}
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardidea}{Paso 6-7 --- (12) Potencia y (14) trabajo específico}{\faListOl}
+{\footnotesize
+En 4 tiempos hay $\tfrac{\text{rpm}}{120}$ ciclos de potencia por segundo:
+$$\dot W=W\cdot\frac{\text{rpm}}{120}=1{,}9688\cdot\frac{4200}{120}=69\ \text{kW},\quad w_{neto}=\frac{W}{m_a}=\frac{1{,}9688}{2{,}412\times10^{-3}}=816{,}25\ \text{kJ/kg}.$$}
+\end{cardidea}
+\vspace{0.6mm}
+\begin{cardnota}[\faListOl]
+\textbf{Resultado:} $r_{a/c}=30$ · $\dot W=69$ kW · $\eta=55{,}33\%$ · $w_{neto}=816{,}25$ kJ/kg.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  PROBLEMA 4 — CICLO DIESEL
+% ============================================================
+\portadaseccion{4}{Problema 4 --- Ciclo Diesel}{Motor de 8 cilindros a 1000 rpm}{\faCalculator}
+
+% ---- P4: Enunciado y datos ----
+\begin{frame}{P4 --- Enunciado y datos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{Enunciado}{\faInfoCircle}
+Motor \textbf{Diesel} de 8 cilindros a $1000$ rpm, con relación de compresión $r_k=20$ y combustión isobárica. Se dan la relación aire-combustible, la masa de aire por cilindro y ciclo, el factor de diagrama y la eficiencia mecánica.
+\end{cardidea}
+\vspace{1mm}
+\begin{cardlista}
+\textbf{Datos:} $N=8$ cil · $1000$ rpm · $r_k=20$ · $r_{a/c}=25$\\[0.5mm]
+$PC=40\,000$ kJ/kg · $m=0{,}04$ kg/cil (aire)\\[0.5mm]
+$f_d=0{,}78$ · $\eta_m=0{,}85$ · $P_1=1$ bar · $T_1=300$ K\\[0.5mm]
+$k=1{,}4$ · $c_p=1{,}0035$ kJ/kg·K\\[0.5mm]
+\textbf{Pide:} (15)~$T_2$ · (16)~$\eta$ · (17)~$W_{ind}$ · (18)~$\dot W_{eje}$
+\end{cardlista}
+\end{column}
+\begin{column}{0.43\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{diesel_diagrama_Pv}\\[0.4mm]
+\fsub{Diagrama $P$-$v$: combustión isobárica ($2\to3$), corte $r_c$.}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P4: Solución (T2, rc, eficiencia) ----
+\begin{frame}{P4 --- Solución paso a paso ($T_2$, $r_c$, $\eta$)}
+\begin{cardgear}{Paso 1 --- (15) Temperatura al final de la compresión}{\faSuperscript}
+Compresión isentrópica $1\to2$:\quad $T_2=T_1\,r_k^{\,k-1}=300\,(20)^{0{,}4}=994{,}3\ \text{K}.$
+\end{cardgear}
+\vspace{1.2mm}
+\begin{cardidea}{Paso 2 --- Combustión isobárica y relación de corte}{\faFire}
+Con $\dot m_c\,PC=\dot m_a\,c_p(T_3-T_2)$ y $PC=r_{a/c}\,c_p(T_3-T_2)$:
+$$40\,000=25\cdot1{,}0035(T_3-994{,}3)\ \Rightarrow\ T_3=2588{,}8\ \text{K},\quad r_c=\frac{T_3}{T_2}=2{,}6.$$
+\end{cardidea}
+\vspace{1.2mm}
+\begin{cardgear}{Paso 3 --- (16) Eficiencia del ciclo}{\faListOl}
+$$\eta_D=1-\frac{1}{r_k^{\,k-1}}\frac{r_c^{\,k}-1}{k(r_c-1)}=1-(20)^{-0{,}4}\frac{2{,}6^{1{,}4}-1}{1{,}4(2{,}6-1)}=1-0{,}3017\cdot1{,}254=62{,}1\%.$$
+\end{cardgear}
+\end{frame}
+
+% ---- P4: Solución (trabajo, potencia) ----
+\begin{frame}{P4 --- Solución paso a paso (trabajo, potencia)}
+\begin{cardidea}{Paso 4 --- Calor y trabajo ideal por cilindro y ciclo}{\faSuperscript}
+{\footnotesize
+$$m_c=\frac{m_a}{r_{a/c}}=\frac{0{,}04}{25}=1{,}6\times10^{-3}\ \text{kg},\quad Q_A=m_c\,PC=64\ \text{kJ},\quad W=\eta_D\,Q_A=0{,}6216\cdot64=39{,}8\ \text{kJ}.$$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Paso 5 --- (17) Trabajo indicado (factor de diagrama)}{\faListOl}
+$$W_{ind}=f_d\,W=0{,}78\cdot39{,}8=31{,}0\ \text{kJ}\quad(\text{por cilindro y ciclo}).$$
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Paso 6 --- (18) Potencia al eje}{\faListOl}
+Con $\tfrac{\text{rpm}}{120}$ ciclos/s por cilindro (4 tiempos), $N=8$ cilindros y $\eta_m=0{,}85$:
+$$\dot W_{eje}=W_{ind}\cdot\frac{\text{rpm}}{120}\cdot N\cdot\eta_m=31{,}0\cdot\frac{1000}{120}\cdot8\cdot0{,}85=1757\ \text{kW}.$$
+\end{cardidea}
+\vspace{0.6mm}
+\begin{cardnota}[\faListOl]
+\textbf{Resultado:} $T_2=994{,}3$ K · $\eta_D=62{,}1\%$ · $W_{ind}=31{,}0$ kJ · $\dot W_{eje}=1757$ kW.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  PROBLEMA 5 — COMBUSTIÓN DE BUTANO
+% ============================================================
+\portadaseccion{5}{Problema 5 --- Combustión de butano}{Aire húmedo, 200\% de aire teórico}{\faCalculator}
+
+% ---- P5: Enunciado y datos ----
+\begin{frame}{P5 --- Enunciado y datos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{Enunciado}{\faInfoCircle}
+Butano $\mathrm{C_4H_{10}(g)}$ a $25\,^\circ$C reacciona con \textbf{$200\%$ de aire teórico} (también a $25\,^\circ$C, $\phi=75\%$). La combustión es completa y los productos salen a $600$ K y $100$ kPa. Ambiente $T_0=25\,^\circ$C.
+\end{cardidea}
+\vspace{1mm}
+\begin{cardlista}
+\textbf{Datos:} $\mathrm{C_4H_{10}(g)}$ · $M=58{,}12$ kg/kmol\\[0.5mm]
+$200\%$ aire teórico · $\phi=75\%$ · combustión completa\\[0.5mm]
+Reactantes $25\,^\circ$C · Productos $600$ K, $100$ kPa\\[0.5mm]
+$T_0=298{,}15$ K · $P_{sat}(25\,^\circ\text{C})=3{,}169$ kPa\\[0.5mm]
+\textbf{Pide:} PCS · $W_{rev}$ · ecuación · $Q$ · $\Delta S$ · $I$
+\end{cardlista}
+\end{column}
+\begin{column}{0.43\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.6cm,keepaspectratio]{combustion_esquema_reactivos_productos}\\[0.4mm]
+\fsub{Cámara de combustión: reactivos (combustible $+$ aire) $\to$ productos.}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P5: Solución (ecuación de combustión) ----
+\begin{frame}{P5 --- Solución paso a paso (ecuación de combustión)}
+\begin{cardgear}{Paso 1 --- Estequiométrica y exceso de aire}{\faSuperscript}
+{\footnotesize
+$\mathrm{C_4H_{10}}+a(\mathrm{O_2}+3{,}76\,\mathrm{N_2})\to4\,\mathrm{CO_2}+5\,\mathrm{H_2O}+3{,}76a\,\mathrm{N_2}$; balance de O: $2a=8+5\Rightarrow a=6{,}5$.\\[0.6mm]
+$200\%$ aire teórico: $\mathrm{O_2}=13$, $\mathrm{N_2}=48{,}88$; sobra $\mathrm{O_2}=6{,}5$. Aire seco $=61{,}88$ mol.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Paso 2 --- Humedad del aire ($\phi=75\%$)}{\faTint}
+$$P_v=0{,}75(3{,}169)=2{,}377\ \text{kPa},\quad \frac{N_w}{N_{aire}}=\frac{P_v}{P-P_v}=\frac{2{,}377}{97{,}62}=0{,}02435,$$
+$$N_w=0{,}02435(61{,}88)=1{,}507\ \text{mol}.$$
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Paso 3 --- Ecuación de combustión}{\faListOl}
+{\footnotesize
+$$\mathrm{C_4H_{10}}+13\,\mathrm{O_2}+48{,}88\,\mathrm{N_2}+1{,}507\,\mathrm{H_2O}\to4\,\mathrm{CO_2}+6{,}507\,\mathrm{H_2O}+6{,}5\,\mathrm{O_2}+48{,}88\,\mathrm{N_2}.$$}
+\end{cardgear}
+\end{frame}
+
+% ---- P5: Solución (PCS y trabajo reversible) ----
+\begin{frame}{P5 --- Solución paso a paso (PCS y $W_{rev}$)}
+\begin{cardidea}{Paso 4 --- Poder calorífico superior (PCS)}{\faFire}
+{\footnotesize
+Reacción estequiométrica, agua \textbf{líquida}, todo a $25\,^\circ$C. Con $\bar h_f^\circ$ [kJ/kmol]: $\mathrm{C_4H_{10}}=-126\,150$, $\mathrm{CO_2}=-393\,520$, $\mathrm{H_2O(l)}=-285\,830$:
+$$\bar h_{RP}=[4(-393\,520)+5(-285\,830)]-(-126\,150)=-2\,877\,080\ \text{kJ/kmol},$$
+$$\mathrm{PCS}=\frac{2\,877\,080}{58{,}12}=49\,500\ \text{kJ/kg}.$$}
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardgear}{Paso 5 --- Trabajo reversible ($=-\Delta G$ a $298$ K)}{\faSuperscript}
+{\footnotesize
+Con $\mathrm{H_2O(g)}$ ($\bar h_f^\circ=-241\,820$): $H_R=-126\,150+1{,}507(-241\,820)=-490\,573$; $H_P=4(-393\,520)+6{,}507(-241\,820)=-3\,147\,400$. Entropías: $S_R-S_P\approx-298$.
+$$W_{rev}=(H_R-H_P)-T_0(S_R-S_P)=2\,656\,830-298{,}15(-298)=2\,745\,600\ \tfrac{\text{kJ}}{\text{kmol}}=47\,240\ \tfrac{\text{kJ}}{\text{kg}}.$$}
+\end{cardgear}
+\end{frame}
+
+% ---- P5: Solución (calor transferido) ----
+\begin{frame}{P5 --- Solución paso a paso (calor transferido)}
+\begin{cardidea}{Paso 6 --- Balance de energía (productos a $600$ K)}{\faListOl}
+{\footnotesize
+$Q=H_P(600)-H_R(298)$. Con $\Delta\bar h_{600}-\Delta\bar h_{298}$ [kJ/kmol]: $\mathrm{CO_2}=12\,906$, $\mathrm{H_2O}=10\,498$, $\mathrm{O_2}=9\,247$, $\mathrm{N_2}=8\,894$:
+$$H_P(600)=4(-380\,614)+6{,}507(-231\,322)+6{,}5(9\,247)+48{,}88(8\,894)=-2\,532\,800\ \text{kJ/kmol}.$$
+$$Q=-2\,532\,800-(-490\,573)=-2\,042\,250\ \text{kJ/kmol}=\frac{-2\,042\,250}{58{,}12}=-35\,140\ \text{kJ/kg}.$$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+El signo negativo indica calor \textbf{cedido}; es menor que el PCS porque los productos salen calientes ($600$ K) y con el agua en fase vapor.
+\end{cardnota}
+\end{frame}
+
+% ---- P5: Solución (entropía e irreversibilidad) ----
+\begin{frame}{P5 --- Solución paso a paso ($\Delta S$ e irreversibilidad)}
+\begin{cardidea}{Paso 7 --- Cambio de entropía}{\faSuperscript}
+Entropía de productos ($600$ K) menos reactantes ($298$ K), con corrección de presión parcial:
+$$\Delta S=S_P(600)-S_R(298)\approx14\,661-12\,950=1712\ \tfrac{\text{kJ}}{\text{kmol·K}}=29{,}5\ \tfrac{\text{kJ}}{\text{kg·K}}.$$
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Paso 8 --- Irreversibilidad ($I=T_0\,S_{gen}$)}{\faListOl}
+{\footnotesize
+Con calor cedido al ambiente a $T_0$: $\ S_{gen}=\Delta S-\dfrac{Q}{T_0}$:
+$$S_{gen}=1712-\frac{-2\,042\,250}{298{,}15}=1712+6851=8563\ \tfrac{\text{kJ}}{\text{kmol·K}},$$
+$$I=T_0\,S_{gen}=298{,}15(8563)=2\,553\,000\ \tfrac{\text{kJ}}{\text{kmol}}=43\,920\ \text{kJ/kg}.$$}
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardnota}[\faListOl]
+\textbf{Resultado:} $\mathrm{PCS}=49\,500$ · $W_{rev}=47\,240$ · $Q=-35\,140$ · $I=43\,920$ [kJ/kg]; $\Delta S=1712$ kJ/kmol·K.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  PROBLEMA 6 — PSICROMETRÍA
+% ============================================================
+\portadaseccion{6}{Problema 6 --- Psicrometría}{Enfriamiento y deshumidificación}{\faCalculator}
+
+% ---- P6: Enunciado y datos ----
+\begin{frame}{P6 --- Enunciado y datos}
+\begin{columns}[T]
+\begin{column}{0.54\textwidth}
+\begin{cardidea}{Enunciado}{\faInfoCircle}
+Aire atmosférico entra a $30\,^\circ$C TBS y $26\,^\circ$C TBH, a $300$ m$^3$/min. Pasa por un \textbf{serpentín de enfriamiento} (condensa agua) y luego por un \textbf{serpentín de calentamiento} hasta $21\,^\circ$C y $\phi=50\%$.
+\end{cardidea}
+\vspace{1mm}
+\begin{cardlista}
+\textbf{Datos:} Estado 1: TBS$=30$, TBH$=26$ · $\dot V=300$ m$^3$/min\\[0.5mm]
+Estado 3: $21\,^\circ$C · $\phi=50\%$ · $P=101{,}325$ kPa\\[0.5mm]
+$\omega=0{,}622\,P_v/(P-P_v)$\\[0.5mm]
+$h=1{,}006\,T+\omega(2501+1{,}805\,T)$\\[0.5mm]
+\textbf{Pide:} (17)~$\dot m_w$ condensada · (18)~$\dot Q_{cal}$
+\end{cardlista}
+\end{column}
+\begin{column}{0.44\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{proceso_enfriamiento_deshumidificacion}\\[0.4mm]
+\fsub{Enfriamiento con deshumidificación (1$\to$2) y calentamiento (2$\to$3).}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P6: Solución (estados) ----
+\begin{frame}{P6 --- Solución paso a paso (estados)}
+\begin{cardidea}{Paso 1 --- Estados 1 y 3}{\faSuperscript}
+{\footnotesize
+\textbf{Estado 1} (TBS$=30$, TBH$=26$): $\omega_1=0{,}0196$; $P_{v1}=3{,}10$ kPa; $\phi_1=73\%$; $h_1=1{,}006(30)+0{,}0196(2555)=80{,}3$ kJ/kg.\\[0.6mm]
+\textbf{Estado 3} (TBS$=21$, $\phi=50\%$): $P_{v3}=0{,}5(2{,}487)=1{,}244$ kPa;
+$\ \omega_3=\dfrac{0{,}622(1{,}244)}{101{,}325-1{,}244}=0{,}00773$; $h_3=1{,}006(21)+0{,}00773(2539)=40{,}8$ kJ/kg.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Paso 2 --- Estado 2 (salida del enfriador, saturado)}{\faSnowflake}
+El calentamiento $2\to3$ es a $\omega$ constante $\Rightarrow \omega_2=\omega_3=0{,}00773$. El aire sale \textbf{saturado} ($\phi_2=100\%$):
+$$T_2=T_{roc\text{í}o}(\omega_2)=10{,}1\,^\circ\text{C},\quad h_2=1{,}006(10{,}1)+0{,}00773(2519)=29{,}6\ \text{kJ/kg}.$$
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faTable]
+{\footnotesize \textbf{Tabla:} $\ $1: $30\,^\circ$C, $\omega{=}0{,}0196$, $h{=}80{,}3$\ $\vert$\ 2: $10{,}1\,^\circ$C, $\omega{=}0{,}00773$, $h{=}29{,}6$\ $\vert$\ 3: $21\,^\circ$C, $\omega{=}0{,}00773$, $h{=}40{,}8$ (kJ/kg).}
+\end{cardnota}
+\end{frame}
+
+% ---- P6: Solución (condensado y calor) ----
+\begin{frame}{P6 --- Solución paso a paso (condensado y calor)}
+\begin{cardidea}{Paso 3 --- (17) Masa de agua condensada}{\faTint}
+{\footnotesize
+Volumen específico del aire seco en el estado 1 y flujo másico:
+$$v_1=\frac{R_a T_1}{P-P_{v1}}=\frac{0{,}287(303{,}15)}{101{,}325-3{,}10}=0{,}886\ \tfrac{\text{m}^3}{\text{kg a.s.}},\quad \dot m_a=\frac{300}{0{,}886}=338{,}7\ \tfrac{\text{kg}}{\text{min}}.$$
+El agua condensada es la caída de humedad específica ($1\to2$):
+$$\dot m_w=\dot m_a(\omega_1-\omega_2)=338{,}7(0{,}0196-0{,}00773)=4{,}0\ \text{kg/min}.$$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Paso 4 --- (18) Calor en el calentamiento}{\faListOl}
+El calentamiento $2\to3$ es sensible (a $\omega$ constante):
+$$\dot Q_{cal}=\dot m_a(h_3-h_2)=338{,}7(40{,}8-29{,}6)=3793\ \text{kJ/min}=63{,}2\ \text{kW}.$$
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+\textbf{Resultado:} agua condensada $\dot m_w=4{,}0$ kg/min · calor de calentamiento $\dot Q_{cal}=63{,}2$ kW.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faCalculator};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Final 2024-II --- Problemas Resueltos \textperiodcentered\ MN121 Termodinámica};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

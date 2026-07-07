@@ -1,0 +1,728 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 2
+%  Sistemas de Ecuaciones Lineales
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Sistemas de Ecuaciones Lineales}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (del tema de la unidad) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.0cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{20}{20}\selectfont $A=LU$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.2cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $\rho(T)<1$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.6cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $A\mathbf{v}=\lambda\mathbf{v}$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Sistemas de\\ Ecuaciones Lineales};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Directos\ \textperiodcentered\ Iterativos\ \textperiodcentered\ Autovalores};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 2};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Resolver $A\mathbf{x}=\mathbf{b}$ y calcular autovalores es el núcleo del cálculo científico. Los \textbf{métodos directos} factorizan $A$ (Gauss, $A=LU$, Cholesky) en un número finito de pasos; los \textbf{métodos iterativos} construyen una sucesión $\mathbf{x}^{(k)}\!\to\!\mathbf{x}$ que converge si $\rho(T)<1$; y los \textbf{métodos espectrales} extraen $\lambda,\mathbf{v}$ de $A\mathbf{v}=\lambda\mathbf{v}$.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Directos vs.\ iterativos}{\faCogs}
+Directos: costo $O(n^3)$, exactos salvo redondeo. Iterativos: $O(n^2)$/iteración, ideales para matrices grandes y dispersas.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Papel de $\kappa(A)$}{\faCogs}
+El número de condición $\kappa(A)=\|A\|\,\|A^{-1}\|$ gobierna cuánto amplifica el problema los errores de datos y redondeo.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la unidad}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Métodos directos: Gauss, pivoteo, $LU$, Cholesky\\[0.6mm]
+2.\; Análisis de error: residuo, $\kappa(A)$, sensibilidad
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Métodos iterativos: Jacobi, Gauss-Seidel, $\rho(T)$\\[0.6mm]
+4.\; Valores y vectores propios: potencia, $QR$
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Tres bloques: \textbf{Métodos directos}, \textbf{Métodos iterativos} y \textbf{Valores/vectores propios}. Cada método se presenta con su(s) fórmula(s) y un \emph{proceso resuelto} paso a paso (cadena de matrices o tabla de iteraciones).
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Métodos Directos}{Gauss, pivoteo, factorizaciones y análisis de error}{\faMicrochip}
+
+% ---- Gauss -> LU (cadena de matrices) ----
+\begin{frame}{Eliminación de Gauss $\rightarrow$ $LU$}
+\begin{columns}[T]
+\begin{column}{0.38\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$m_{ik}=\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}}$$
+$$a_{ij}^{(k+1)}=a_{ij}^{(k)}-m_{ik}\,a_{kj}^{(k)}$$
+{\footnotesize $A=LU$: $L$ guarda los $m_{ik}$ (unitaria); $U$ triangular final.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Costo: $\tfrac{2}{3}n^3$ FLOPs (eliminación) $+\,n^2$ (sustitución regresiva).}\end{cardnota}
+\end{column}
+\begin{column}{0.60\textwidth}
+\begin{cardgear}{Proceso con matrices}{\faTable}
+{\scriptsize
+$\begin{psmallmatrix}2&-1&1\\4&1&-1\\-2&2&3\end{psmallmatrix}\xrightarrow[\;m_{31}=-1\;]{\;m_{21}=2\;}\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&1&4\end{psmallmatrix}\xrightarrow{\;m_{32}=\frac13\;}\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&0&5\end{psmallmatrix}=U$}\\[2.4mm]
+{\footnotesize $L=\begin{psmallmatrix}1&0&0\\2&1&0\\-1&\frac13&1\end{psmallmatrix}\Rightarrow LU=A\ \checkmark$\\[2mm]
+Sustitución: $Ly=b$ (adelante), luego $Ux=y$ (atrás). Reordenar filas (pivoteo) da $PA=LU$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Pivoteo parcial y crecimiento ----
+\begin{frame}{Pivoteo parcial y factor de crecimiento}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize $|a_{p,k}|=\displaystyle\max_{i\ge k}|a_{i,k}|\ \Rightarrow\ |m_{ik}|\le 1$\\[1.4mm]
+$\rho=\dfrac{\max_{i,j,k}|a_{ij}^{(k)}|}{\max_{i,j}|a_{ij}|},\quad \rho\le 2^{\,n-1}$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Peor caso $n{=}3$: $\begin{psmallmatrix}1&0&1\\-1&1&1\\-1&-1&1\end{psmallmatrix}$, la última columna $1{\to}2{\to}4$, $\rho=\tfrac{4}{1}=2^{2}$.}\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Ejemplo (evita cancelación)}{\faCalculator}
+{\footnotesize $\begin{psmallmatrix}10^{-20}&1\\1&1\end{psmallmatrix}\mathbf x=\begin{psmallmatrix}1\\2\end{psmallmatrix}$,\; exacta $\mathbf x\approx(1,1)$.\\[1.4mm]
+\textbf{Sin pivoteo} $m_{21}=10^{20}$: $a_{22}'=1-10^{20}\approx-10^{20}$, se pierde el $1$ $\Rightarrow x_1=\mathbf 0$.\\[1.4mm]
+\textbf{Con pivoteo} (permutar filas) $m_{21}=10^{-20}$: $a_{22}'\approx1\Rightarrow\mathbf x\approx(1,1)$ \checkmark\\[1.2mm]
+El pivoteo mantiene $\rho=O(1)$ en la práctica.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Doolittle y Crout ----
+\begin{frame}{Factorización $LU$: Doolittle y Crout}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Doolittle ($L$ unitaria)}{\faSuperscript}
+{\footnotesize $u_{kj}=a_{kj}-\!\sum_{p<k}\ell_{kp}u_{pj}$\\[0.8mm]
+$\ell_{ik}=\tfrac{1}{u_{kk}}\big(a_{ik}-\!\sum_{p<k}\ell_{ip}u_{pk}\big)$\\[1.6mm]
+$A=\begin{psmallmatrix}2&-1&1\\4&1&-1\\-2&2&3\end{psmallmatrix}$:\\[1.2mm]
+$L=\begin{psmallmatrix}1&0&0\\2&1&0\\-1&\frac13&1\end{psmallmatrix}$, $U=\begin{psmallmatrix}2&-1&1\\0&3&-3\\0&0&5\end{psmallmatrix}$}
+\end{cardidea}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Crout ($U$ unitaria)}{\faSuperscript}
+{\footnotesize $\ell_{ik}=a_{ik}-\!\sum_{p<k}\ell_{ip}u_{pk}$\\[0.8mm]
+$u_{kj}=\tfrac{1}{\ell_{kk}}\big(a_{kj}-\!\sum_{p<k}\ell_{kp}u_{pj}\big)$\\[1.6mm]
+Misma $A$:\\[1.2mm]
+$L=\begin{psmallmatrix}2&0&0\\4&3&0\\-2&1&5\end{psmallmatrix}$, $U=\begin{psmallmatrix}1&-\frac12&\frac12\\0&1&-1\\0&0&1\end{psmallmatrix}$}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Ambas dan $A=LU$: Doolittle fija $\ell_{ii}=1$, Crout fija $u_{ii}=1$. Existe sin pivoteo $\iff$ los menores líderes $\Delta_k\neq0$; entonces $u_{kk}=\Delta_k/\Delta_{k-1}$ y la factorización es única.}
+\end{cardnota}
+\end{frame}
+
+% ---- Cholesky y LDL^T ----
+\begin{frame}{Cholesky y variante $LDL^{T}$ (simétricas)}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Cholesky $A=LL^{T}$ (SDP)}{\faSuperscript}
+{\footnotesize $\ell_{kk}=\sqrt{a_{kk}-\!\sum_{p<k}\ell_{kp}^2}$,\; $\ell_{ik}=\tfrac{1}{\ell_{kk}}\big(a_{ik}-\!\sum_{p<k}\ell_{ip}\ell_{kp}\big)$\\[1.6mm]
+$A=\begin{psmallmatrix}4&2&-2\\2&10&2\\-2&2&6\end{psmallmatrix}\Rightarrow L=\begin{psmallmatrix}2&0&0\\1&3&0\\-1&1&2\end{psmallmatrix}$\\[1.2mm]
+$LL^{T}=A$ \checkmark\; Costo $\tfrac13 n^3$, estable sin pivoteo.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{$LDL^{T}$ (sin raíces)}{\faSuperscript}
+{\footnotesize $d_{kk}=a_{kk}-\!\sum_{p<k}\ell_{kp}^2 d_{pp}$\\[0.8mm]
+$\ell_{ik}=\tfrac{1}{d_{kk}}\big(a_{ik}-\!\sum_{p<k}\ell_{ip}\ell_{kp}d_{pp}\big)$\\[1.6mm]
+$A=\begin{psmallmatrix}1&2&0\\2&3&-1\\0&-1&1\end{psmallmatrix}$:\\[1.2mm]
+$L=\begin{psmallmatrix}1&0&0\\2&1&0\\0&1&1\end{psmallmatrix}$, $D=\operatorname{diag}(1,-1,2)$}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $LDL^{T}$ evita raíces y sirve para matrices simétricas \emph{indefinidas}; $\det A=\prod \ell_{ii}^2$ (Cholesky) $=\prod d_{ii}$ ($LDL^{T}$).}
+\end{cardnota}
+\end{frame}
+
+% ---- Complejidad y costo ----
+\begin{frame}{Complejidad y costo computacional}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Costo por método}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\arrayrulecolor{Granate}
+\begin{tabular}{l|c}
+Método & FLOPs (orden) \\\hline
+Gauss / $LU$ & $\tfrac{2}{3}n^3$\\
+Cholesky (SDP) & $\tfrac{1}{3}n^3$\\
+$QR$ Householder & $\tfrac{4}{3}n^3$\\
+Inversa vía $LU$ & $\tfrac{8}{3}n^3$\\
+Tridiagonal (Thomas) & $8n$ \\
+\end{tabular}}\\[1mm]
+{\footnotesize Sustitución (una): $2n^2$;\ $Ax$: $2n^2$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{$LU$ frente a Gauss repetido}{\faCalculator}
+{\footnotesize $\text{Gauss}\times m:\ m\cdot\tfrac{2}{3}n^3$\\[0.8mm]
+$LU+m$ sust.: $\tfrac{2}{3}n^3+m\cdot 2n^2$\\[1.6mm]
+$n{=}10^3,\ m{=}100$:\\[0.6mm]
+Gauss $=100\cdot\tfrac23 10^9\approx6.7\times10^{10}$\\[0.6mm]
+$LU=\tfrac23 10^9+100\cdot2\times10^6\approx7.7\times10^{8}$\\[1.2mm]
+Ahorro $\approx\mathbf{87\times}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Factorizar una vez y reusar $L,U$ gana con varios lados derechos.}\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Residuo, error y condición ----
+\begin{frame}{Residuo, error y número de condición $\kappa(A)$}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Definiciones y cotas}{\faSuperscript}
+{\footnotesize $r=b-A\tilde x,\quad e=x-\tilde x=A^{-1}r$\\[1.2mm]
+$\dfrac{1}{\kappa(A)}\dfrac{\|r\|}{\|b\|}\le\dfrac{\|e\|}{\|x\|}\le \kappa(A)\dfrac{\|r\|}{\|b\|}$\\[1.4mm]
+$\dfrac{\|\Delta x\|}{\|x\|}\le \kappa(A)\dfrac{\|\Delta b\|}{\|b\|},\ \ \kappa(A)=\|A\|\|A^{-1}\|$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Dígitos correctos $\approx -\log_{10}u-\log_{10}\kappa(A)$.}\end{cardnota}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Ejemplo (residuo engañoso)}{\faCalculator}
+{\footnotesize $A=\begin{psmallmatrix}1&1\\1&1.0001\end{psmallmatrix}$, $\tilde x=(2,0)$\\[1.2mm]
+$r=(0,-10^{-4})$, residuo rel.\ $\approx5\times10^{-5}$\\[1.2mm]
+pero $\dfrac{\|e\|_\infty}{\|x\|_\infty}=1$ con $\kappa_\infty(A)\approx4\times10^{4}$.\\[1.2mm]
+$\Rightarrow$ residuo pequeño $\ne$ solución exacta: el error real es $\sim\kappa$ veces el residuo.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Métodos Iterativos}{Punto fijo, Jacobi, Gauss-Seidel y convergencia}{\faMicrochip}
+
+% ---- Punto fijo lineal ----
+\begin{frame}{Iteración de punto fijo lineal}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$My^{(k+1)}=Ny^{(k)}+b,\ \ N=M-A$$
+$$T=M^{-1}N,\quad c=M^{-1}b$$
+{\footnotesize Todo esquema $y^{(k+1)}=Ty^{(k)}+c$ nace de un \emph{splitting} $A=M-N$; converge $\iff\rho(T)<1$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}4&1\\1&3\end{psmallmatrix}$, $b=(5,4)$, $M=D$:\\[0.8mm]
+$y_1=\tfrac{5-y_2}{4}$,\; $y_2=\tfrac{4-y_1}{3}$\\[1mm]
+\renewcommand{\arraystretch}{1.15}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $y_1$ & $y_2$\\\hline
+$0$&$0$&$0$\\ $1$&$1.250$&$1.333$\\ $2$&$0.917$&$0.917$\\ $3$&$1.021$&$1.028$\\ $4$&$0.993$&$0.993$\\ $\infty$&$\mathbf 1$&$\mathbf 1$\\
+\end{tabular}\\[1mm]
+$\rho(T)=\tfrac{1}{\sqrt{12}}\approx0.29<1$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Jacobi (PATRON 1) ----
+\begin{frame}{Método de Jacobi}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$x_i^{(k+1)}=\tfrac{1}{a_{ii}}\Big(b_i-\!\!\sum_{j\neq i}\!a_{ij}x_j^{(k)}\Big)$$
+{\footnotesize $T_J=D^{-1}(L+U)$: actualiza todo con el iterado anterior.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize\textbf{Sistema} $A\mathbf x=\mathbf b$:\\[0.6mm]
+$\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}\mathbf x=\begin{psmallmatrix}6\\2\\14\end{psmallmatrix}$\; sol.\ $(2,2,4)$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x_1$ & $x_2$ & $x_3$\\\hline
+$0$&$0$&$0$&$0$\\ $1$&$1.5$&$0.5$&$3.5$\\ $2$&$1.625$&$1.75$&$3.625$\\ $3$&$1.9375$&$1.8125$&$3.9375$\\ $4$&$1.9531$&$1.9688$&$3.9531$\\ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\ $\infty$&$\mathbf 2$&$\mathbf 2$&$\mathbf 4$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $\rho(T_J)=\tfrac{1}{\sqrt8}\approx0.354<1\Rightarrow$ converge.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Gauss-Seidel (PATRON 1) ----
+\begin{frame}{Método de Gauss-Seidel}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\scriptsize$$x_i^{(k+1)}=\tfrac{1}{a_{ii}}\Big(b_i-\!\!\sum_{j<i}\!a_{ij}x_j^{(k+1)}-\!\!\sum_{j>i}\!a_{ij}x_j^{(k)}\Big)$$}
+{\footnotesize $T_{GS}=(D{-}L)^{-1}U$: reusa las componentes ya actualizadas en la misma barrida.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Mismo sistema que Jacobi. GS aprovecha $x_1^{(k+1)}$ al calcular $x_2^{(k+1)}$, etc.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x_1$ & $x_2$ & $x_3$\\\hline
+$0$&$0$&$0$&$0$\\ $1$&$1.5$&$0.875$&$3.7188$\\ $2$&$1.7188$&$1.8594$&$3.9648$\\ $3$&$1.9648$&$1.9824$&$3.9956$\\ $4$&$1.9956$&$1.9978$&$3.9995$\\ $\infty$&$\mathbf 2$&$\mathbf 2$&$\mathbf 4$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $\rho(T_{GS})=\tfrac18=0.125$: $\approx$ el doble de dígitos/iter que Jacobi.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Convergencia: radio espectral, diag dominante, Stein-Rosenberg ----
+\begin{frame}{Convergencia: $\rho(T)$, diagonal dominante y Stein-Rosenberg}
+\begin{columns}[T]
+\begin{column}{0.51\textwidth}
+\begin{cardidea}{Criterios}{\faSuperscript}
+{\footnotesize $y^{(k)}\to x\ \forall y^{(0)}\iff \rho(T)<1$,\ \ $\rho(T)=\max_i|\lambda_i(T)|$\\[1.4mm]
+\textbf{Suficiente:} $|a_{ii}|>\sum_{j\neq i}|a_{ij}|\ \forall i$\\[0.4mm]
+$\Rightarrow\rho(T_J)\le \dfrac{\max_i\sum_{j\neq i}|a_{ij}|}{|a_{ii}|}<1$\\[1.4mm]
+\textbf{Stein-Rosenberg} ($A$ tipo M): $0\le\rho(T_{GS})\le\rho(T_J)<1$}
+\end{cardidea}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardgear}{Ejemplo comparativo}{\faCalculator}
+{\footnotesize $A=\begin{psmallmatrix}4&-1&0\\-1&4&-1\\0&-1&4\end{psmallmatrix}$: filas $4>1,\,4>2,\,4>1$ \checkmark\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+& $\rho(T)$ & díg/iter\\\hline
+Jacobi & $0.354$ & $0.45$\\
+Gauss-Seidel & $0.125$ & $0.90$\\
+\end{tabular}\\[1mm]
+díg/iter $=-\log_{10}\rho$. GS converge el doble de rápido.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Cotas de error ----
+\begin{frame}{Cotas de error a priori y a posteriori}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmulas ($\|T\|<1$)}{\faSuperscript}
+{\footnotesize \textbf{A priori:}\\[0.4mm]
+$\|\varepsilon^{(k)}\|\le \dfrac{\|T\|^k}{1-\|T\|}\,\|y^{(1)}{-}y^{(0)}\|$\\[1.6mm]
+\textbf{A posteriori:}\\[0.4mm]
+$\|\varepsilon^{(k)}\|\le \dfrac{\|T\|}{1-\|T\|}\,\|y^{(k)}{-}y^{(k-1)}\|$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Iteraciones para tol: $k\ge\dfrac{\log\!\big(\text{tol}\,(1-\|T\|)/\|y^{(1)}{-}y^{(0)}\|\big)}{\log\|T\|}$.}\end{cardnota}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Ejemplo (Jacobi)}{\faCalculator}
+{\footnotesize $\|T_J\|_\infty=0.5\Rightarrow \dfrac{\|T\|}{1-\|T\|}=1$.\\[1.4mm]
+Con salto $\|d^{(3)}\|_\infty=0.0156$:\\[0.8mm]
+$\|\varepsilon^{(3)}\|\le 1\cdot0.0156=\mathbf{0.0156}$\\[1.4mm]
+Error real $\approx0.0018$: la cota a posteriori es válida y conservadora, y \emph{calculable} sin conocer $x$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Valores y Vectores Propios}{Método de la potencia, variantes e iteración QR}{\faMicrochip}
+
+% ---- Método de la potencia (PATRON 1) ----
+\begin{frame}{Método de la potencia}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$A^k y^{(0)}=\lambda_1^k\Big(c_1 v_1+\!\sum_{i\ge2}\!c_i\big(\tfrac{\lambda_i}{\lambda_1}\big)^k v_i\Big)$$
+{\footnotesize Si $|\lambda_1|>|\lambda_2|$, domina $v_1$; tasa $r=|\lambda_2/\lambda_1|$. Estima $\lambda_1$ con el factor de escala $\mu^{(k)}$ (o $R_A(y)=\tfrac{y^TAy}{y^Ty}$).}
+\end{cardidea}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}4&1\\2&3\end{psmallmatrix}$, $y^{(0)}=(1,0)$, $\lambda_1=5$, $v_1=(1,1)$\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $y^{(k)}=(1,\,\cdot)$ & $\mu^{(k)}$\\\hline
+$0$&$(1,\,0)$&$-$\\ $1$&$(1,\,0.500)$&$4.000$\\ $2$&$(1,\,0.778)$&$4.500$\\ $3$&$(1,\,0.907)$&$4.778$\\ $4$&$(1,\,0.962)$&$4.907$\\ $5$&$(1,\,0.985)$&$4.962$\\ $\infty$&$(1,\,1)$&$\mathbf 5$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $r=\lambda_2/\lambda_1=2/5=0.4$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Velocidad y Rayleigh ----
+\begin{frame}{Velocidad $\lambda_2/\lambda_1$ y cociente de Rayleigh}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+{\footnotesize $r=\big|\tfrac{\lambda_2}{\lambda_1}\big|$,\ \ díg/iter $=-\log_{10}r$,\ \ $k\ge\tfrac{d}{\log_{10}(1/r)}$\\[1.4mm]
+$R_A(y)=\dfrac{y^TAy}{y^Ty}$,\ \ $\lambda_{\min}\le R_A(y)\le\lambda_{\max}$\\[1.2mm]
+\emph{Simétrica:} $y^{(k)}=v_1+O(\theta^k)\Rightarrow|\lambda^{(k)}-\lambda_1|=O(\theta^{2k})$}
+\end{cardidea}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+{\footnotesize $A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\lambda_1=3$, $\theta=\tfrac13$. Rayleigh desde $(1,0)$:\\[0.8mm]
+$2.0\to2.5\to2.9\to2.98\to\mathbf{3.0}$\\[1.2mm]
+Errores: vector $\sim\theta^k$: $0.33,0.11,0.04$;\\
+valor $\sim\theta^{2k}$: $0.5,0.1,0.02$ (cuadrático).\\[1mm]
+$r=0.5\Rightarrow 6$ díg en $\approx20$ iter; $r=0.9\Rightarrow\approx131$ iter.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Potencia inversa y desplazada ----
+\begin{frame}{Potencia inversa y desplazada (RQI)}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Fórmulas}{\faSuperscript}
+{\footnotesize \textbf{Inversa:} $Az^{(k)}=y^{(k)}$, $\lambda^{(k)}=1/R_{A^{-1}}(y^{(k)})$ $\to\lambda_{\min}$\\[1.4mm]
+\textbf{Desplazada:} $(A-\mu I)z^{(k)}=y^{(k)}$\\[0.4mm]
+$\lambda^{(k)}=\mu+1/R_{(A-\mu I)^{-1}}(y^{(k)})$\\[1.4mm]
+\textbf{RQI:} $\mu_k=R_A(y^{(k)})$ variable $\Rightarrow$ conv.\ cúbica (simétrica).}
+\end{cardidea}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Ejemplo (inversa)}{\faCalculator}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, $\lambda_{\min}=1$, $A^{-1}=\tfrac13\begin{psmallmatrix}2&-1\\-1&2\end{psmallmatrix}$\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $y^{(k)}=(1,\,\cdot)$ & $\lambda^{(k)}$\\\hline
+$1$&$(1,-0.500)$&$1.500$\\ $2$&$(1,-0.800)$&$1.200$\\ $3$&$(1,-0.929)$&$1.071$\\ $4$&$(1,-0.976)$&$1.024$\\ $\infty$&$(1,-1)$&$\mathbf 1$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Desplazada con $\mu=1.9$ apunta a $\lambda_2=2$ en $\sim3$ iter.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Householder y QR ----
+\begin{frame}{Householder $\rightarrow$ factorización $QR$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$H=I-\frac{2\,vv^T}{v^Tv}$$
+$$v=x+\operatorname{sgn}(x_1)\|x\|_2\,e_1$$
+{\footnotesize $Hx=-\operatorname{sgn}(x_1)\|x\|_2\,e_1$; reflexión ortogonal $H^TH=I$. $A=QR$ con $Q=H_1\cdots H_n$; costo $\tfrac43 n^3$, estable.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Proceso con matrices}{\faTable}
+{\footnotesize $x=(3,4)$, $\|x\|_2=5$, $\operatorname{sgn}(x_1)=+$:\\[1mm]
+$v=x+5e_1=(8,4)$, $v^Tv=80$\\[1.4mm]
+$H=I-\tfrac{2}{80}\begin{psmallmatrix}64&32\\32&16\end{psmallmatrix}=\begin{psmallmatrix}-0.6&-0.8\\-0.8&0.6\end{psmallmatrix}$\\[1.8mm]
+$Hx=\begin{psmallmatrix}-0.6&-0.8\\-0.8&0.6\end{psmallmatrix}\begin{psmallmatrix}3\\4\end{psmallmatrix}=\begin{psmallmatrix}-5\\0\end{psmallmatrix}=-\|x\|_2 e_1$ \checkmark\\[1.4mm]
+Anula la columna bajo la diagonal $\Rightarrow$ triangulariza $A$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Iteración QR ----
+\begin{frame}{Iteración $QR$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$A_k=Q_kR_k,\quad A_{k+1}=R_kQ_k$$
+$$A_{k+1}=Q_k^{T}A_kQ_k$$
+{\footnotesize Semejanza ortogonal: conserva el espectro y $(A_k)_{i+1,i}\to0$ como $|\lambda_{i+1}/\lambda_i|^k$; $\operatorname{diag}\to\lambda_i$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Reducir a Hessenberg antes ($\tfrac{10}{3}n^3$) abarata cada paso a $O(n^2)$.}\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $A_0=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, autovalores $3,1$ ($r=\tfrac13$)\\[1mm]
+\renewcommand{\arraystretch}{1.2}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $|(A_k)_{21}|$ & $\operatorname{diag}(A_k)$\\\hline
+$0$&$1.000$&$(2,\,2)$\\ $1$&$0.600$&$(2.80,\,1.20)$\\ $2$&$0.220$&$(2.98,\,1.02)$\\ $3$&$0.074$&$(3.00,\,1.00)$\\ $4$&$0.025$&$(3.00,\,1.00)$\\ $\infty$&$\mathbf 0$&$(\mathbf 3,\,\mathbf 1)$\\
+\end{tabular}}\\[1mm]
+{\footnotesize La subdiagonal decae geométricamente $\sim(1/3)^k$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- QR con desplazamientos ----
+\begin{frame}{Convergencia y desplazamientos $QR$}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$A_k-\mu_k I=Q_kR_k$$
+$$A_{k+1}=R_kQ_k+\mu_k I$$
+{\footnotesize Con $\mu_k=(A_k)_{nn}$ (Rayleigh): $r_k=\big|\tfrac{\lambda_n-\mu_k}{\lambda_{n-1}-\mu_k}\big|\to0$ $\Rightarrow$ convergencia cuadrática. Deflación al anular la subdiagonal.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Ejemplo}{\faCalculator}
+\centering
+{\footnotesize $A=\begin{psmallmatrix}2&1\\1&2\end{psmallmatrix}$, subdiagonal con desplazamiento de Rayleigh:\\[1mm]
+\renewcommand{\arraystretch}{1.25}\arrayrulecolor{Granate}
+\begin{tabular}{c|c}
+$k$ & $|(A_k)_{21}|$\\\hline
+$0$&$1.0$\\ $1$&$1.43\times10^{-1}$\\ $2$&$3.1\times10^{-3}$\\ $3$&$1.5\times10^{-8}$\\ $4$&$\approx10^{-16}$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Precisión de máquina en $3$–$4$ pasos, frente al lento $(1/3)^k$ sin desplazamiento.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 2: Sistemas de Ecuaciones Lineales};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

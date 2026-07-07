@@ -1,0 +1,682 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 3
+%  Ecuaciones No Lineales
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Ecuaciones No Lineales}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (del tema de la unidad) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.2cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{18}{18}\selectfont $x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.2cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $f(a)f(b)<0$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.6cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $J\,\Delta\mathbf{x}=-F$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Ecuaciones\\ No Lineales};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Cerrados\ \textperiodcentered\ Abiertos\ \textperiodcentered\ Sistemas};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 3};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Resolver $f(x)=0$ (o el sistema $F(\mathbf x)=\mathbf 0$) es hallar \textbf{raíces}. Los \textbf{métodos cerrados} (bisección, regula falsi) atrapan la raíz en un intervalo $[a,b]$ con $f(a)f(b)<0$ y \emph{garantizan} convergencia lineal; los \textbf{métodos abiertos} (Newton, secante, punto fijo) parten de una semilla y convergen \emph{más rápido} (orden $\ge 1.6$) cuando arrancan cerca; los \textbf{sistemas no lineales} linealizan con la jacobiana $J$ y resuelven $J\,\Delta\mathbf x=-F$ por paso.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Cerrados vs.\ abiertos}{\faCogs}
+Cerrados: robustos, orden $1$ (lentos). Abiertos: rápidos (orden $\varphi$, $2$) pero pueden divergir sin buena semilla.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Orden de convergencia}{\faCogs}
+$|e^{(k+1)}|\approx C\,|e^{(k)}|^{p}$: mide cuántos \emph{dígitos} se ganan por iteración. Bisección $p{=}1$, secante $\varphi$, Newton $2$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la unidad}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Métodos cerrados: Bolzano, bisección, regula falsi\\[0.6mm]
+2.\; Métodos abiertos: punto fijo, Newton, secante
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Orden de convergencia y eficiencia\\[0.6mm]
+4.\; Sistemas no lineales: jacobiana, Newton, Broyden
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Tres bloques: \textbf{métodos cerrados}, \textbf{métodos abiertos} y \textbf{sistemas no lineales}. Cada método se presenta con su(s) fórmula(s) y un \emph{proceso resuelto} (tabla de iteraciones $x_k,f(x_k),e_k$, o una cadena de matrices/vectores para sistemas).
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Métodos Cerrados}{Bolzano, bisección y regula falsi: raíz atrapada en $[a,b]$}{\faMicrochip}
+
+% ---- Bolzano y localización ----
+\begin{frame}{Bolzano y localización de raíces}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$f(a)\,f(b)<0\ \Rightarrow\ \exists\,c\in(a,b):f(c)=0$$
+{\footnotesize Cambio de signo en malla $x_0,\dots,x_m$: raíz en $(x_i,x_{i+1})$ si $f(x_i)f(x_{i+1})<0$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Multiplicidad} $m$: $f(r){=}\cdots{=}f^{(m-1)}(r){=}0$, $f^{(m)}(r)\neq0$. Impar $\Rightarrow$ cruza el eje; par $\Rightarrow$ lo toca.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Barrido de signos}{\faTable}
+\centering
+{\footnotesize $f(x)=e^{-x}-\cos x$ en $[0,4]$:\\[1mm]
+\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$x$ & $f(x)$ & signo\\\hline
+$0.0$&$0.0000$&raíz\\ $0.5$&$-0.2711$&$-$\\ $1.0$&$-0.1724$&$-$\\ $1.5$&$+0.1524$&$+$\\ $2.0$&$+0.5514$&$+$\\ $3.0$&$+1.0398$&$+$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Cambio de signo en $(1.0,1.5)$ $\Rightarrow$ raíz ahí; además raíz exacta en $x{=}0$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Bisección (PATRON tabla) ----
+\begin{frame}{Método de bisección}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$c=\frac{a+b}{2},\qquad |c_k-r|\le\frac{b-a}{2^{k}}$$
+$$k\ge\log_2\!\Big(\frac{b-a}{\varepsilon}\Big)$$
+{\footnotesize Orden lineal, factor $\tfrac12$: $\lim\frac{|c_{k+1}-r|}{|c_k-r|}=\tfrac12$ (gana $\approx0.30$ díg/iter).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize $f(x)=x^2-2$, $[a,b]=[1,2]$, raíz $r=\sqrt2\approx1.41421$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.13}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$k$ & $a_k$ & $b_k$ & $c_k$ & $f(c_k)$\\\hline
+$0$&$1.0000$&$2.0000$&$1.5000$&$+0.2500$\\
+$1$&$1.0000$&$1.5000$&$1.2500$&$-0.4375$\\
+$2$&$1.2500$&$1.5000$&$1.3750$&$-0.1094$\\
+$3$&$1.3750$&$1.5000$&$1.4375$&$+0.0664$\\
+$4$&$1.3750$&$1.4375$&$1.4063$&$-0.0225$\\
+$5$&$1.4063$&$1.4375$&$1.4219$&$+0.0217$\\
+$6$&$1.4063$&$1.4219$&$1.4141$&$-0.0004$\\
+$\vdots$&$\vdots$&$\vdots$&$\vdots$&$\vdots$\\
+$10$&$1.4141$&$1.4150$&$1.4145$&$+0.0010$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Error $<(2{-}1)/2^{10}\approx10^{-3}$; el intervalo se parte a la mitad cada paso.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Regula Falsi ----
+\begin{frame}{Método de regula falsi (falsa posición)}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize$$c=b-f(b)\frac{b-a}{f(b)-f(a)}=\frac{a\,f(b)-b\,f(a)}{f(b)-f(a)}$$}
+{\footnotesize Interpola la secante por $(a,f(a))$, $(b,f(b))$ y toma su corte con el eje. Orden lineal, factor \emph{variable}.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Estancamiento:} un extremo puede quedar fijo ($a{=}1$ aquí) $\Rightarrow$ $c_k{\to}1$ por un solo lado. Illinois/Pegasus lo corrigen ($p\approx1.6$).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $f(x)=x^2-2$, $[1,2]$, $r=\sqrt2\approx1.41421$\\[1mm]
+\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{3pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$k$ & $a_k$ & $b_k$ & $c_k$ & $f(c_k)$\\\hline
+$0$&$1.0000$&$2.0000$&$1.3333$&$-0.2222$\\
+$1$&$1.3333$&$2.0000$&$1.4000$&$-0.0400$\\
+$2$&$1.4000$&$2.0000$&$1.4118$&$-0.0069$\\
+$3$&$1.4118$&$2.0000$&$1.4138$&$-0.0012$\\
+$4$&$1.4138$&$2.0000$&$1.4142$&$-0.0002$\\
+$5$&$1.4142$&$2.0000$&$1.4142$&$\approx0$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Solo $5$ pasos (bisección: $10^{+}$): usa el \emph{valor} de $f$, no solo su signo.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Métodos Abiertos}{Punto fijo, Newton-Raphson, secante y orden de convergencia}{\faMicrochip}
+
+% ---- Punto fijo: Banach + tabla ----
+\begin{frame}{Punto fijo: teorema de Banach}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$x^{(k+1)}=g(x^{(k)}),\qquad r=g(r)$$
+{\footnotesize Converge si $g$ es \textbf{contracción}: $g(I)\subset I$ y $\max_I|g'|\le L<1$. Cotas:}\\[0.6mm]
+{\footnotesize a priori $|x^{(k)}{-}r|\le\dfrac{L^k}{1-L}|x^{(1)}{-}x^{(0)}|$;\\[0.6mm]
+a posteriori $|x^{(k)}{-}r|\le\dfrac{L}{1-L}|x^{(k)}{-}x^{(k-1)}|$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize $g(x)=\sqrt{x+1}$ para $x^2{-}x{-}1{=}0$; $g'(r)=\tfrac{1}{2\sqrt{r+1}}\approx0.309<1$.}\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize $x^{(k+1)}=\sqrt{x^{(k)}+1}$, $r=\varphi\approx1.61803$\\[1mm]
+\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$k$ & $x^{(k)}$ & $|x^{(k)}-r|$\\\hline
+$0$&$1.0000$&$6.2\text{e-}1$\\
+$1$&$1.4142$&$2.0\text{e-}1$\\
+$2$&$1.5538$&$6.4\text{e-}2$\\
+$3$&$1.5980$&$2.0\text{e-}2$\\
+$4$&$1.6118$&$6.2\text{e-}3$\\
+$5$&$1.6161$&$1.9\text{e-}3$\\
+$\infty$&$\mathbf{1.6180}$&$\mathbf 0$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Lineal: el error se multiplica por $|g'(r)|\approx0.31$ cada paso ($\approx0.5$ díg/iter).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Punto fijo: elección de g ----
+\begin{frame}{Punto fijo: elección de $g$ y aceleración}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{$g$ decide la convergencia}{\faTable}
+\centering
+{\footnotesize Para $f(x)=x^2-x-1=0$, raíz $r\approx1.618$:\\[1mm]
+\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$g(x)$ & $g'(r)$ & $|g'(r)|$ & converge\\\hline
+$x^2-1$ & $2r\approx3.24$ & $>1$ & no\\
+$\sqrt{x+1}$ & $\approx0.309$ & $<1$ & sí (rápida)\\
+$1+1/x$ & $-1/r^2\approx-0.38$ & $<1$ & sí (lenta)\\
+$\tfrac{x^2+1}{2x-1}$ & $0$ & $0$ & sí (cuadrát.)\\
+\end{tabular}}\\[1mm]
+{\footnotesize Menor $|g'(r)|\Rightarrow$ más rápido; $g'(r)=0\Rightarrow$ orden $\ge2$ (es Newton).}
+\end{cardgear}
+\end{column}
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Aceleración de orden 2}{\faSuperscript}
+{\footnotesize \textbf{Aitken} $\Delta^2$:\\[0.4mm]
+$\hat x^{(k)}=x^{(k)}-\dfrac{(\Delta x^{(k)})^2}{x^{(k+2)}-2x^{(k+1)}+x^{(k)}}$\\[1.6mm]
+\textbf{Steffensen} (orden $2$ sin derivada):\\[0.4mm]
+$x^{(k+1)}=x^{(k)}-\dfrac{(g(x^{(k)})-x^{(k)})^2}{g(g(x^{(k)}))-2g(x^{(k)})+x^{(k)}}$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize $g(x)=x+c\,f(x)$: elige $c$ con $|1+c\,f'(r)|<1$.}\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Newton-Raphson (PATRON tabla) ----
+\begin{frame}{Método de Newton-Raphson}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+$$x^{(k+1)}=x^{(k)}-\frac{f(x^{(k)})}{f'(x^{(k)})}$$
+{\footnotesize Raíz de la tangente en $(x^{(k)},f(x^{(k)}))$. Como punto fijo $g=x-f/f'$ con $g'(r)=0$ $\Rightarrow$ orden $2$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize $f(x)=x^2-2$, $x^{(0)}=2$, $r=\sqrt2$.\\[0.4mm]
+$C=\dfrac{|f''(r)|}{2|f'(r)|}=\dfrac{2}{2\cdot2\sqrt2}\approx0.354$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x^{(k)}$ & $f(x^{(k)})$ & $e^{(k)}$\\\hline
+$0$&$2.00000000$&$2.0000$&$5.86\text{e-}1$\\
+$1$&$1.50000000$&$0.2500$&$8.58\text{e-}2$\\
+$2$&$1.41666667$&$6.94\text{e-}3$&$2.45\text{e-}3$\\
+$3$&$1.41421569$&$6.01\text{e-}6$&$2.12\text{e-}6$\\
+$4$&$1.41421356$&$\approx0$&$1.59\text{e-}12$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Dígitos correctos $0{\to}1{\to}3{\to}6{\to}12$: se \textbf{duplican} cada paso. $e^{(k+1)}/(e^{(k)})^2\to C\approx0.354$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Newton: cuadrática + raíces múltiples ----
+\begin{frame}{Newton: orden cuadrático y raíces múltiples}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Constante asintótica}{\faSuperscript}
+{\footnotesize $\displaystyle\lim_{k\to\infty}\frac{|x^{(k+1)}-r|}{|x^{(k)}-r|^2}=C=\frac{|f''(r)|}{2|f'(r)|}$\\[1.6mm]
+\centering
+\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$f$ & $f'(r)$ & $f''(r)$ & $C$\\\hline
+$x^2{-}2$ & $2.828$ & $2$ & $0.354$\\
+$x^3{-}2$ & $4.762$ & $7.560$ & $0.794$\\
+$e^x{-}2$ & $2$ & $2$ & $0.500$\\
+$\cos x{-}x$ & $-1.673$ & $-0.739$ & $0.221$\\
+\end{tabular}}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Raíz múltiple $\Rightarrow$ lineal}{\faCalculator}
+{\footnotesize $f=(x-r)^m h(x)$, $h(r)\neq0$:\\[0.6mm]
+$g'(r)=1-\dfrac{1}{m}\neq0\Rightarrow$ orden $1$ ($c=1-\tfrac1m$).\\[1.4mm]
+\textbf{Newton modificado} (recupera orden $2$):\\[0.4mm]
+$x^{(k+1)}=x^{(k)}-m\dfrac{f(x^{(k)})}{f'(x^{(k)})}$\\[1.4mm]
+\textbf{Schröder} (sin conocer $m$):\\[0.4mm]
+$x^{(k+1)}=x^{(k)}-\dfrac{f\,f'}{(f')^2-f\,f''}$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Falla si $f'(x^{(k)})=0$ (división por cero) o si se entra en un ciclo $g(g(x_0))=x_0$.}\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Secante (PATRON tabla) ----
+\begin{frame}{Método de la secante}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize$$x^{(k+1)}=x^{(k)}-f_k\,\frac{x^{(k)}-x^{(k-1)}}{f_k-f_{k-1}}$$}
+{\footnotesize con $f_k\equiv f(x^{(k)})$. Newton con $f'$ aproximada por diferencia finita: no requiere derivada. Orden áureo $p=\varphi=\tfrac{1+\sqrt5}{2}\approx1.618$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize $f(x)=x^2-2$, $x^{(0)}=2$, $x^{(1)}=1.5$.\\[0.4mm]
+$e^{(k+1)}\approx C\,e^{(k)}e^{(k-1)}$, $p^2{-}p{-}1{=}0$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Iteraciones (proceso)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{2pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x^{(k)}$ & $f(x^{(k)})$ & $e^{(k)}$\\\hline
+$0$&$2.00000000$&$2.0000$&$5.86\text{e-}1$\\
+$1$&$1.50000000$&$0.2500$&$8.58\text{e-}2$\\
+$2$&$1.41176471$&$-7.61\text{e-}3$&$2.45\text{e-}3$\\
+$3$&$1.41421144$&$-6.01\text{e-}6$&$2.12\text{e-}6$\\
+$4$&$1.41421356$&$1.46\text{e-}11$&$5.16\text{e-}12$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Dígitos $\times1.618$ por iteración ($0{\to}1{\to}3{\to}6{\to}12$): entre bisección y Newton, con \emph{una} sola evaluación de $f$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Orden de convergencia comparativa ----
+\begin{frame}{Orden de convergencia y eficiencia}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Definiciones}{\faSuperscript}
+{\footnotesize $\displaystyle\lim_{k\to\infty}\frac{|e^{(k+1)}|}{|e^{(k)}|^p}=C$;\; díg.\ $d_{k+1}\approx p\,d_k-\log_{10}\tfrac1C$.\\[1.4mm]
+\centering
+\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|ccc}
+Método & $p$ & $m$ & $E=p^{1/m}$\\\hline
+Bisección & $1$ & $1$ & $1.000$\\
+Punto fijo & $1$ & $1$ & $1.000$\\
+Secante & $1.618$ & $1$ & $\mathbf{1.618}$\\
+Newton & $2$ & $2$ & $1.414$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $m$: evaluaciones/iter. La secante gana en \emph{eficiencia} por evaluación.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Dígitos correctos (desde $d_0{=}1$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+iter & Bisec.\ & Secante & Newton\\\hline
+$0$&$1.0$&$1.0$&$1$\\
+$1$&$1.3$&$1.6$&$2$\\
+$2$&$1.6$&$2.6$&$4$\\
+$3$&$1.9$&$4.2$&$8$\\
+$4$&$2.2$&$6.9$&$16$\\
+$5$&$2.5$&$11.1$&$32$\\
+\end{tabular}}\\[1mm]
+{\footnotesize Bisección \emph{suma} ($+0.30$); secante $\times\varphi$; Newton $\times2$. Para $15$ díg: Newton $\sim4$ iter, bisección $\sim47$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Sistemas No Lineales}{Jacobiana, Newton multivariable y cuasi-Newton (Broyden)}{\faMicrochip}
+
+% ---- Jacobiana y sistema lineal (MATRICES) ----
+\begin{frame}{Jacobiana y sistema lineal por paso}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize $J(\mathbf x)=\dfrac{\partial F}{\partial\mathbf x}$, $J_{ij}=\dfrac{\partial f_i}{\partial x_j}$\\[1.4mm]
+Taylor: $F(\mathbf x)\approx F(\mathbf x^{(k)})+J\,(\mathbf x-\mathbf x^{(k)})$\\[1.4mm]
+\textbf{Paso de Newton} (resolver, no invertir):\\[0.4mm]
+$J(\mathbf x^{(k)})\,\Delta\mathbf x^{(k)}=-F(\mathbf x^{(k)})$\\[0.6mm]
+$\mathbf x^{(k+1)}=\mathbf x^{(k)}+\Delta\mathbf x^{(k)}$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize LU: $\tfrac23 n^3$ (resolver) vs $2n^3$ (invertir). $J$ por dif.\ finitas: $J e_j\approx\tfrac{F(\mathbf x+h e_j)-F(\mathbf x)}{h}$.}\end{cardnota}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Montaje con números}{\faCalculator}
+{\footnotesize $F=\begin{psmallmatrix}x^2+y^2-4\\ e^{x}+y-1\end{psmallmatrix}$,\; $J=\begin{psmallmatrix}2x&2y\\ e^{x}&1\end{psmallmatrix}$\\[1.6mm]
+En $\mathbf x^{(0)}=(1,-1)^{\!\top}$:\\[0.8mm]
+$F(\mathbf x^{(0)})=\begin{psmallmatrix}-2\\ e-2\end{psmallmatrix}\approx\begin{psmallmatrix}-2\\ 0.718\end{psmallmatrix}$,\;
+$J\approx\begin{psmallmatrix}2&-2\\ 2.718&1\end{psmallmatrix}$\\[1.8mm]
+Sistema lineal $J\,\Delta\mathbf x=-F$:\\[0.6mm]
+$\begin{psmallmatrix}2&-2\\ 2.718&1\end{psmallmatrix}\begin{psmallmatrix}\Delta x\\ \Delta y\end{psmallmatrix}=\begin{psmallmatrix}2\\ -0.718\end{psmallmatrix}$\\[1.4mm]
+$\Rightarrow\Delta\mathbf x\approx(0.076,-0.924)^{\!\top}$,\\[0.4mm]
+$\mathbf x^{(1)}\approx(1.076,-1.924)^{\!\top}$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Newton multivariable: iteraciones ----
+\begin{frame}{Newton multivariable: convergencia cuadrática}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Cota cuadrática}{\faSuperscript}
+{\footnotesize $\|\mathbf x^{(k+1)}-\mathbf r\|\le \beta\gamma\,\|\mathbf x^{(k)}-\mathbf r\|^2$\\[1.2mm]
+con $J$ Lipschitz ($\gamma$) y $\|J(\mathbf r)^{-1}\|\le\beta$; requiere $J(\mathbf r)$ no singular. Mismo patrón que el caso escalar.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize $F=\begin{psmallmatrix}x^2+y^2-4\\ xy-1\end{psmallmatrix}$, $J=\begin{psmallmatrix}2x&2y\\ y&x\end{psmallmatrix}$,\\[0.6mm]
+desde $(2,\,0.5)$: $J^{(0)}=\begin{psmallmatrix}4&1\\ 0.5&2\end{psmallmatrix}$, $F^{(0)}=\begin{psmallmatrix}0.25\\ 0\end{psmallmatrix}$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Iteraciones (vectores)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$k$ & $x^{(k)}$ & $y^{(k)}$ & $\|F\|_2$\\\hline
+$0$&$2.0000$&$0.5000$&$0.250$\\
+$1$&$1.9333$&$0.5167$&$4.7\text{e-}3$\\
+$2$&$1.9319$&$0.5176$&$1.8\text{e-}6$\\
+$3$&$1.9319$&$0.5176$&$<10^{-12}$\\
+$\infty$&$\mathbf{1.9319}$&$\mathbf{0.5176}$&$\mathbf 0$\\
+\end{tabular}}\\[1mm]
+{\footnotesize $\mathbf r=(\sqrt{2+\sqrt3},\,1/\!\sqrt{2+\sqrt3})$. El residuo se \emph{eleva al cuadrado} por paso: díg.\ $1{\to}3{\to}6{\to}13$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Cuasi-Newton / punto fijo multivariable ----
+\begin{frame}{Cuasi-Newton (Broyden) y contracción}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Broyden ("bueno")}{\faSuperscript}
+{\footnotesize $\mathbf s_k=\mathbf x^{(k+1)}-\mathbf x^{(k)}$, $\mathbf y_k=F^{(k+1)}-F^{(k)}$\\[1.2mm]
+$B_{k+1}=B_k+\dfrac{(\mathbf y_k-B_k\mathbf s_k)\,\mathbf s_k^{\top}}{\mathbf s_k^{\top}\mathbf s_k}$\\[1.4mm]
+Ecuación de la secante: $B_{k+1}\mathbf s_k=\mathbf y_k$. Evita reformar $J$: coste $O(n^2)$/iter, orden \textbf{superlineal}.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]{\footnotesize Newton: evaluar $F$ ($n$), formar $J$ ($n^2$), factorizar LU ($\tfrac23 n^3$) $\Rightarrow O(n^3)$/iter. Broyden ahorra $J$ y LU.}\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Punto fijo multivariable}{\faCogs}
+{\footnotesize $\mathbf x^{(k+1)}=G(\mathbf x^{(k)})$, $\mathbf x^{*}=G(\mathbf x^{*})$\\[1.0mm]
+Contracción: $\|G(\mathbf x)-G(\mathbf y)\|\le L\|\mathbf x-\mathbf y\|$, $L<1$.\\[1.0mm]
+Criterio exacto local: $\rho(J_G(\mathbf x^{*}))<1$.\\[1.0mm]
+Cotas de Banach:\\[0.2mm]
+$\|\mathbf x^{(k)}-\mathbf x^{*}\|\le\dfrac{L^k}{1-L}\|\mathbf x^{(1)}-\mathbf x^{(0)}\|$\\[1.4mm]
+Normas: $\|A\|_\infty=\max_i\sum_j|a_{ij}|$.\\[0.8mm]
+\textbf{Newton} $=$ punto fijo óptimo: $J_{G_N}(\mathbf x^{*})=0$ ($L=0$).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 3: Ecuaciones No Lineales};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

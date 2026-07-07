@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{extarticle}
+\usepackage[margin=1.3cm,columnsep=0.8cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{mathtools}
+
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{Teal}{HTML}{01565B}
+\definecolor{Gris}{HTML}{555555}
+
+\setlength{\parindent}{0pt}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{1pt}
+\setlength{\belowdisplayshortskip}{1pt}
+\linespread{0.97}
+\pagestyle{empty}
+
+% Cabecera de ciclo (barra granate)
+\newcommand{\ciclo}[1]{\vspace{1.2mm}%
+  {\color{Granate}\rule{\linewidth}{0.4mm}}\\[-0.3mm]
+  {\small\bfseries\color{Granate}#1}\\[0.3mm]}
+% Sub-variante
+\newcommand{\sub}[1]{\vspace{0.4mm}{\footnotesize\bfseries\color{Teal}#1}\ }
+
+\begin{document}
+\begin{center}
+  {\large\bfseries\color{Granate}Formulario --- Ciclos Termodinámicos}\quad
+  {\footnotesize\color{Gris} MN121 · Termodinámica}
+\end{center}
+\vspace{-1mm}
+{\footnotesize\color{Gris} $\eta$: eficiencia térmica · $w$: trabajo esp.\ [kJ/kg] · $q$: calor esp. · $r=V_1/V_2$: rel.\ compresión · $r_P=P_2/P_1$: rel.\ presiones · $\gamma=c_p/c_v$ · $\text{bwr}=w_C/w_T$ · $x$: calidad · Regla general $\eta=w_{neto}/q_H=1-q_L/q_H$.}
+\vspace{1mm}
+
+\footnotesize
+\begin{multicols}{2}
+
+\ciclo{1. Rankine (vapor)}
+\sub{Simple.}
+\[ w_B=h_2-h_1=v_1(P_H-P_L),\quad q_H=h_3-h_2 \]
+\[ w_T=h_3-h_4,\quad q_L=h_4-h_1 \]
+\[ \eta=\frac{w_T-w_B}{q_H}=1-\frac{q_L}{q_H},\quad x_4=\frac{s_3-s_f}{s_{fg}} \]
+\sub{Con recalentamiento} (a $P_r\approx P_H/4$ a $P_H/5$):
+\[ w_T=(h_3-h_4)+(h_5-h_6) \]
+\[ q_H=(h_3-h_2)+(h_5-h_4) \]
+\sub{Regenerativo} (calentador abierto, extracción $y$ a $h_e$):
+\[ \underbrace{y\,h_e+(1-y)h_2=h_3}_{\text{balance en el CAA}}\ \Rightarrow\ y=\frac{h_3-h_2}{h_e-h_2} \]
+\[ w_T=(h_5-h_e)+(1-y)(h_e-h_6) \]
+\[ q_H=h_5-h_3,\quad q_L=(1-y)(h_6-h_1) \]
+
+\ciclo{2. Brayton (gas, aire-estándar)}
+\sub{Ideal.}
+\[ \frac{T_2}{T_1}=r_P^{(\gamma-1)/\gamma}=\frac{T_3}{T_4},\quad \eta=1-\frac{1}{r_P^{(\gamma-1)/\gamma}} \]
+\[ q_H=c_p(T_3-T_2),\ q_L=c_p(T_4-T_1) \]
+\[ w_{neto}=c_p[(T_3-T_4)-(T_2-T_1)],\ \text{bwr}=\frac{w_C}{w_T} \]
+\sub{Real} (efic.\ internas $\eta_C,\eta_T$):
+\[ T_{2r}=T_1+\frac{T_{2s}-T_1}{\eta_C},\quad T_{4r}=T_3-\eta_T(T_3-T_{4s}) \]
+\sub{Con regeneración} (efectividad $\varepsilon$):
+\[ \varepsilon=\frac{T_5-T_2}{T_4-T_2}\ \Rightarrow\ T_5=T_2+\varepsilon(T_4-T_2) \]
+\[ q_H=c_p(T_3-T_5)\quad(\text{útil si } T_4>T_2) \]
+
+\ciclo{3. Combustión interna}
+\sub{Otto} (adición a $v$ cte):
+\[ \eta=1-\frac{1}{r^{\gamma-1}},\quad T_2=T_1r^{\gamma-1} \]
+\[ q_H=c_v(T_3-T_2),\quad q_L=c_v(T_4-T_1) \]
+\sub{Diesel} (adición a $P$ cte, corte $r_c=V_3/V_2$):
+\[ \eta=1-\frac{1}{r^{\gamma-1}}\,\frac{r_c^{\gamma}-1}{\gamma(r_c-1)} \]
+\[ T_3=T_2r_c,\quad q_H=c_p(T_3-T_2),\ q_L=c_v(T_4-T_1) \]
+\sub{Presión media indicada:}\ $\text{PMI}=\dfrac{w_{neto}}{v_1-v_2}$
+
+\ciclo{4. Refrigeración y bomba de calor}
+\sub{Compresión de vapor (VCR).}
+\[ w_C=h_2-h_1,\quad q_L=h_1-h_4,\quad h_4=h_3\ (\text{válvula}) \]
+\[ \mathrm{COP}_R=\frac{q_L}{w_C}=\frac{h_1-h_4}{h_2-h_1} \]
+\sub{Bomba de calor.}
+\[ \mathrm{COP}_{HP}=\frac{h_2-h_3}{h_2-h_1}=\mathrm{COP}_R+1 \]
+\sub{Límite de Carnot.}
+\[ \mathrm{COP}_{R,C}=\frac{T_L}{T_H-T_L},\ \ \mathrm{COP}_{HP,C}=\frac{T_H}{T_H-T_L} \]
+\sub{Cascada} (acoplamiento en el interc.):
+\[ \dot m_A(h_{2A}-h_{3A})=\dot m_B(h_{1B}-h_{4B}) \]
+\sub{Cámara flash} (economizador a $P_{int}$):
+\[ x_6=\frac{h_6-h_f}{h_{fg}},\quad \dot m_{tot}=\frac{\dot m_{ev}}{1-x_6} \]
+
+\ciclo{5. Ciclos complejos}
+\sub{Combinado gas--vapor} (HRSG):
+\[ \eta_{comb}=1-(1-\eta_{gas})(1-\eta_{vap})=\eta_{gas}+\eta_{vap}(1-\eta_{gas}) \]
+\[ \frac{\dot m_v}{\dot m_g}=\frac{c_{pg}(T_4-T_5)}{h_7-h_6}\quad(\text{balance HRSG}) \]
+
+\ciclo{6. Relaciones útiles}
+\[ \dot W=\dot m\,w,\qquad \dot Q=\dot m\,q \]
+\[ \text{Gas ideal: } Pv=RT,\ \ \Delta s=c_p\ln\tfrac{T_2}{T_1}-R\ln\tfrac{P_2}{P_1} \]
+\[ \text{Isentrópico: } \frac{T_2}{T_1}=\Big(\frac{P_2}{P_1}\Big)^{\!\frac{\gamma-1}{\gamma}}\!\!=\Big(\frac{v_1}{v_2}\Big)^{\!\gamma-1} \]
+
+\end{multicols}
+\vfill
+{\scriptsize\color{Gris} Convenio: $q_H$ calor que entra (caldera/combustión/evaporador), $q_L$ calor que sale (condensador/rechazo), $w_T$ turbina, $w_B$ bomba, $w_C$ compresor. Todo por unidad de masa salvo indicación.}
+\end{document}

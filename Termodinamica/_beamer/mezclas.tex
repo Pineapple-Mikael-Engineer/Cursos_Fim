@@ -1,0 +1,877 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Mezclas, Psicrometría y Combustión
+%  Termodinámica MN121 · compilar con xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{mathtools}
+\graphicspath{{img/}}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | MN121}
+\newcommand{\pietitulo}{Mezclas · Psicrometría · Combustión}
+
+% ---------- Ajustes globales ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Tabla de etapas ----------
+\newcommand{\etapastitulo}{\par{\centering{\color{Granate}\faTable}\hspace{1.6mm}{\bfseries\color{FondoOscuro}Etapas del ciclo}\par}\vspace{0.2mm}}
+\newenvironment{etapas}{%
+  \begingroup\scriptsize\renewcommand{\arraystretch}{1.12}\arrayrulecolor{Granate}
+  \begin{center}
+  \begin{tabular}{@{}>{\centering\arraybackslash\bfseries}p{1.2cm} >{\RaggedRight}p{4.5cm} >{\RaggedRight\arraybackslash}p{6.6cm}@{}}
+  \toprule
+  {\color{FondoOscuro}Etapa} & {\color{FondoOscuro}\bfseries Proceso} & {\color{FondoOscuro}\bfseries Ecuación clave}\\
+  \midrule}%
+ {\bottomrule
+  \end{tabular}
+  \end{center}\endgroup}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=AzulPanel!80!white] at ([xshift=-3.7cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{21}{21}\selectfont $\omega=0.622\dfrac{P_v}{P-P_v}$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.4cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $\phi=\dfrac{P_v}{P_g}$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.9cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $h=c_pT+\omega h_g$};
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faTint};
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ MN121};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Mezclas y\\ Psicrometría};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Aire húmedo\ \textperiodcentered\ Carta\ \textperiodcentered\ Combustión};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Termodinámica --- Mezclas, Psicrometría y Combustión};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: MN121\ \textbar\ Termodinámica --- FIM};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Dalton \textperiodcentered\ Amagat \textperiodcentered\ Humedad \textperiodcentered\ Carta \textperiodcentered\ Torres \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Una \textbf{mezcla} de gases combina componentes por sus \textbf{fracciones}; sus propiedades aparentes ($M$, $R$, $c_p$) salen de promediar por $y_i$. El \textbf{aire húmedo} es la mezcla aire seco + vapor: se describe con seis magnitudes ($\omega,\phi,T_d,T_{bh},h,v$) ligadas por fórmulas sencillas y leídas de un vistazo en la \textbf{carta psicrométrica}. La \textbf{combustión} transforma reactivos en productos: se balancea, se mide el exceso de aire y se calcula el calor liberado y la temperatura de llama.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Psicrometría}{\faTint}
+Todo estado del aire se fija con \textbf{dos} propiedades; las cinco restantes se leen en la carta a $P=101.325$ kPa. Base de los balances: por kg de \textbf{aire seco}.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Combustión}{\faFire}
+$\mathrm{C_xH_y}+\text{aire}\to$ productos. El \textbf{exceso de aire} baja la temperatura de llama; el poder calorífico mide el calor liberado por kg.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura del tema}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.4cm,keepaspectratio]{mezclas_clasificacion}\\[0.8mm]
+\fsub{Tres grandes bloques del tema de mezclas.}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Hilo conductor}{\faInfoCircle}
+De la \textbf{mezcla inerte} (composición fija) al \textbf{aire húmedo} (mezcla con una fase condensable) y a la \textbf{combustión} (mezcla reactiva).
+\end{cardidea}
+\vspace{1.4mm}
+\begin{cardlista}
+1. Mezclas de gases ideales\\[0.6mm]
+2. Fórmulas de aire húmedo\\[0.6mm]
+3. Lectura de la carta psicrométrica\\[0.6mm]
+4. Procesos psicrométricos y torres\\[0.6mm]
+5. Combustión
+\end{cardlista}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 1 — MEZCLAS DE GASES
+% ============================================================
+\portadaseccion{1}{Mezclas de gases ideales}{Dalton · Amagat · fracciones · propiedades}{\faLayerGroup}
+
+% ---- Dalton y Amagat ----
+\begin{frame}{Dalton, Amagat y fracciones}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.9cm,keepaspectratio]{mezcla_gases_dalton_esquema}\\[0.5mm]
+\fsub{Cada gas ocupa todo $V$ a la misma $T$ y aporta su presión parcial.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Composición}{\faSuperscript}
+Fracción molar $y_i=\dfrac{n_i}{n}$;\ \ másica $fm_i=\dfrac{m_i}{m}$.\\[0.8mm]
+$\displaystyle\sum_i y_i=\sum_i fm_i=1,\qquad fm_i=\dfrac{y_i M_i}{M}$.
+\end{cardidea}
+\vspace{1.1mm}
+\begin{cardgear}{Dalton y Amagat}{\faInfoCircle}
+\textbf{Dalton} (presiones): $P_i=y_i P,\ \ P=\sum_i P_i$.\\[0.6mm]
+\textbf{Amagat} (volúmenes): $V_i=y_i V,\ \ \tfrac{V_i}{V}=y_i$.\\[0.6mm]
+El análisis volumétrico da directo las $y_i$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Propiedades de la mezcla ----
+\begin{frame}{Propiedades aparentes de la mezcla}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Masa molar y $R$}{\faSuperscript}
+$M=\dfrac{m}{n}=\displaystyle\sum_i y_i M_i=\dfrac{1}{\sum_k fm_k/M_k}$\\[0.9mm]
+$R=\dfrac{R_u}{M}$\ \ (constante de la mezcla).
+\end{cardidea}
+\vspace{1.1mm}
+\begin{cardgear}{Energía, entalpía, $c_p$}{\faInfoCircle}
+Sólo función de $T$ (gas ideal):\\[0.5mm]
+$\bar{u}=\sum_i y_i\bar{u}_i,\quad \bar{h}=\sum_i y_i\bar{h}_i$\\[0.6mm]
+$\bar{c}_p=\sum_i y_i\bar{c}_{p,i},\quad \gamma=\bar{c}_p/\bar{c}_v$.\\[0.6mm]
+Entropía: a presiones parciales $P_i$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faCalculator]
+\textbf{Ejemplo (gas de síntesis).} $30\%$CO, $25\%$H$_2$, $15\%$CO$_2$, $30\%$N$_2$.\\[0.6mm]
+$M=0.30(28.01)+0.25(2.016)+0.15(44.01)+0.30(28.01)$\\[0.4mm]
+$\Rightarrow\ M=23.91\ \mathrm{kg/kmol}$.\\[0.6mm]
+$\bar{c}_p=31.18\ \mathrm{kJ/(kmol\,K)}$; comprimir a $500$ K, $800$ kPa da $\Delta h=260.8\ \mathrm{kJ/kg}$.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 2 — FÓRMULAS DE HUMEDAD
+% ============================================================
+\portadaseccion{2}{Fórmulas de aire húmedo}{$\omega$ · $\phi$ · $T_d$ · $T_{bh}$ · $h$}{\faTint}
+
+% ---- Introducción aire húmedo ----
+\begin{frame}{El aire húmedo: seis magnitudes}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{diagrama_psicrometrico}\\[0.5mm]
+\fsub{El estado del aire húmedo vive en el plano $(T,\omega)$.}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Idea base}{\faInfoCircle}
+El aire húmedo es aire seco $+$ vapor de agua. Se describe con $T$, $\omega$, $\phi$, $T_d$, $T_{bh}$, $h$ (y $v$). Todo balance se plantea \textbf{por kg de aire seco}, porque $\dot m_a$ es lo que se conserva.
+\end{cardidea}
+\vspace{1.3mm}
+\begin{cardnota}[\faInfoCircle]
+El vapor se trata como gas ideal: su presión parcial $P_v$ es la variable que conecta casi todas las fórmulas. La presión total de referencia es $P=101.325$ kPa.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- omega ----
+\begin{frame}{Humedad específica (razón de humedad) $\omega$}
+\begin{cardidea}{Definición y fórmula}{\faSuperscript}
+Masa de vapor por masa de aire seco. Con $M_a=28.97$, $M_v=18.015$ ($\Rightarrow 0.622=M_v/M_a$):
+$$\omega \equiv \frac{m_v}{m_a} = \frac{n_v M_v}{n_a M_a} = 0.622\,\frac{P_v}{P - P_v}\quad\left[\tfrac{\text{kg vapor}}{\text{kg a.s.}}\right],\qquad P_v=\frac{\omega\,P}{0.622+\omega}.$$
+\end{cardidea}
+\vspace{1.6mm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Qué relaciona}{\faInfoCircle}
+Mide \textbf{cuánto vapor} lleva el aire. Es la ordenada de la carta. Sube al humidificar, baja al condensar. Sólo depende de $P_v$ y $P$, no de $T$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faCalculator]
+$T=20\,^\circ$C, $\phi=50\%$: $P_v=1.169$ kPa\\[0.5mm]
+$\omega=0.622\times\dfrac{1.169}{101.325-1.169}=0.00726$.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- phi ----
+\begin{frame}{Humedad relativa $\phi$ y su relación con $\omega$}
+\begin{cardidea}{Definición y fórmula}{\faSuperscript}
+Cociente entre el vapor presente y el máximo posible a esa $T$ (saturación):
+$$\phi \equiv \frac{P_v}{P_{\rm sat}(T)}\in[0,1],\qquad\Longrightarrow\qquad \omega = 0.622\,\frac{\phi\,P_{\rm sat}(T)}{P - \phi\,P_{\rm sat}(T)}.$$
+\end{cardidea}
+\vspace{1.6mm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Lectura física}{\faInfoCircle}
+$\phi=100\%$ es aire saturado; $\phi=0$ aire seco. A $\omega$ fija, \textbf{calentar baja $\phi$} (crece $P_{\rm sat}$ pero $P_v$ no): por eso las curvas $\phi=$cte divergen a la derecha.
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faExclamationTriangle]
+$\phi$ y $\omega$ \textbf{no} son lo mismo: dos aires con igual $\omega$ tienen $\phi$ distinta si difiere $T$. $\phi$ mide confort; $\omega$ mide masa de agua.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- T rocío ----
+\begin{frame}{Temperatura de rocío $T_d$}
+\begin{cardidea}{Definición y fórmula}{\faSuperscript}
+Temperatura a la que el aire, enfriado a $\omega$ y $P$ constantes, alcanza la saturación y \textbf{empieza a condensar}:
+$$P_{\rm sat}(T_d) = P_v = \frac{\omega\,P}{0.622+\omega}\qquad\Longrightarrow\qquad T_d = T_{\rm sat}\big(P_v\big).$$
+\end{cardidea}
+\vspace{1.6mm}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Dónde condensa}{\faInfoCircle}
+Es la temperatura de las superficies frías donde aparece rocío o empañamiento. En la carta se lee trazando una \textbf{horizontal} ($\omega$ cte) desde el estado hasta $\phi=100\%$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardnota}[\faCalculator]
+$\omega=0.00726$: $P_v=1.169$ kPa\\[0.5mm]
+$\Rightarrow T_d=T_{\rm sat}(1.169)\approx 9.3\,^\circ$C.\\[0.5mm]
+Cuanto más cerca esté $T_d$ de $T$, mayor $\phi$.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- T bulbo húmedo ----
+\begin{frame}{Temperatura de bulbo húmedo $T_{bh}$ y saturación adiabática}
+\begin{cardidea}{Definición y fórmula}{\faSuperscript}
+$T_{bh}$ es la temperatura del \textbf{saturador adiabático}: el aire se humidifica hasta saturar tomando calor del propio flujo. Con $c_{pa}=1.006$ y $\omega_{bh}$ el $\omega$ de saturación a $T_{bh}$:
+$$\omega = \omega_{bh} - \frac{c_{pa}\,(T - T_{bh})}{h_{fg}(T_{bh})},\qquad \omega_{bh}=0.622\,\frac{P_{\rm sat}(T_{bh})}{P-P_{\rm sat}(T_{bh})}.$$
+\end{cardidea}
+\vspace{1.5mm}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Cómo se mide}{\faInfoCircle}
+Se lee con un termómetro de \textbf{bulbo mojado} ventilado (psicrómetro). Siempre $T_d\le T_{bh}\le T$; la diferencia $T-T_{bh}$ crece cuando el aire está más seco.
+\end{cardgear}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardnota}[\faCalculator]
+$T=35$, $T_{bh}=25\,^\circ$C: $\omega_{bh}=0.02011$;\\[0.5mm]
+$\omega=0.02011-\dfrac{1.006(35-25)}{2442}=0.0160$.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- entalpia ----
+\begin{frame}{Entalpía del aire húmedo $h$ y grado de saturación}
+\begin{cardidea}{Definición y fórmula}{\faSuperscript}
+Energía por kg de aire seco: sensible del aire $+$ del vapor. Con $T$ en $^\circ$C, $c_{pa}=1.006$, $c_{pv}=1.805$, $h_{fg,0}=2501$:
+$$h = c_{pa}\,T + \omega\,(h_{fg,0}+c_{pv}T) = (1.006 + 1.805\,\omega)\,T + 2501\,\omega\quad[\tfrac{\text{kJ}}{\text{kg a.s.}}].$$
+\end{cardidea}
+\vspace{1.5mm}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Uso y grado de saturación}{\faInfoCircle}
+$h$ es la magnitud de los balances de energía HVAC. El \textbf{grado de saturación} $\mu=\omega/\omega_{\rm sat}(T)$ es afín a $\phi$ pero medido en base a $\omega$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardnota}[\faCalculator]
+$T=20\,^\circ$C, $\omega=0.00726$:\\[0.5mm]
+$h=(1.006+1.805\times0.00726)20+2501\times0.00726$\\[0.4mm]
+$=20.38+18.16=38.5$ kJ/kg a.s.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 3 — LECTURA DE LA CARTA
+% ============================================================
+\portadaseccion{3}{Lectura de la carta}{ejes · familias de curvas · localizar un estado}{\faChartArea}
+
+% ---- Anatomía ----
+\begin{frame}{Anatomía de la carta psicrométrica}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=5.0cm,keepaspectratio]{carta_psicrometrica_estructura}\\[0.4mm]
+\fsub{Ejes y las cuatro familias de curvas a $P=101.325$ kPa.}
+\end{column}
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Los ejes}{\faInfoCircle}
+Eje $x$: \textbf{bulbo seco} $T$ ($^\circ$C).\\[0.4mm]
+Eje $y$: \textbf{razón de humedad} $\omega$ (kg/kg).\\[0.4mm]
+Cada punto es un estado completo.
+\end{cardidea}
+\vspace{1.1mm}
+\begin{cardnota}[\faInfoCircle]
+La \textbf{curva de saturación} $\phi=100\%$ es el borde superior-izquierdo: por encima el vapor condensa (niebla). Sobre ella se imprimen las escalas de $T_{bh}$ y $h$.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Curvas phi ----
+\begin{frame}{Familia $\phi=$ constante}
+\begin{columns}[T]
+\begin{column}{0.56\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=5.0cm,keepaspectratio]{carta_curvas_phi}\\[0.4mm]
+\fsub{Curvas $\phi=10\%,20\%,\dots,100\%$.}
+\end{column}
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Cómo van}{\faChartArea}
+$\omega=0.622\dfrac{\phi P_{\rm sat}(T)}{P-\phi P_{\rm sat}(T)}$. Son curvas \textbf{crecientes} que suben más rápido a mayor $T$ (porque $P_{\rm sat}$ crece exponencial).
+\end{cardidea}
+\vspace{1.1mm}
+\begin{cardnota}[\faInfoCircle]
+Se \textbf{separan} hacia la derecha. La de abajo ($\phi=0$) es el eje $x$; la de arriba ($\phi=100\%$) es la saturación. Sobre una de ellas se lee $\phi$ del estado.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Curvas h y Tbh ----
+\begin{frame}{Familias $h=$ cte y $T_{bh}=$ cte}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.7cm,keepaspectratio]{carta_curvas_h}\\[0.3mm]
+\fsub{$h=$ cte: rectas de pendiente negativa.}
+\end{column}
+\begin{column}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.7cm,keepaspectratio]{carta_curvas_Tbh}\\[0.3mm]
+\fsub{$T_{bh}=$ cte: casi paralelas a las de $h$.}
+\end{column}
+\end{columns}
+\vspace{1.2mm}
+\begin{cardnota}[\faInfoCircle]
+Ambas familias descienden hacia la derecha con pendiente $\left.\tfrac{d\omega}{dT}\right|_{T_{bh}}\!\approx-\tfrac{c_{pa}}{h_{fg}}\approx-4.1\times10^{-4}$. Son \textbf{casi coincidentes} (error $<2\%$): parten de la saturación y su escala se lee en ese borde. La de $h$ es levemente más inclinada.
+\end{cardnota}
+\end{frame}
+
+% ---- Localizar un estado ----
+\begin{frame}{Localizar un estado y leer todo}
+\begin{columns}[T]
+\begin{column}{0.54\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.9cm,keepaspectratio]{carta_lectura_T_phi}\\[0.4mm]
+\fsub{Estado $(30\,^\circ$C, $50\%)$: punto y sus lecturas.}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Procedimiento (dado $T,\phi$)}{\faListOl}
+\textbf{1.} Localizar $T$ en el eje $x$.\\[0.4mm]
+\textbf{2.} Subir hasta la curva $\phi$ $\to$ \textbf{punto}.\\[0.4mm]
+\textbf{3.} $\omega$: horizontal hacia el eje $y$.\\[0.4mm]
+\textbf{4.} $T_d$: horizontal hasta $\phi=100\%$.\\[0.4mm]
+\textbf{5.} $T_{bh}$ y $h$: por sus líneas oblicuas.
+\end{cardidea}
+\vspace{1.0mm}
+\begin{cardnota}[\faCalculator]
+$30\,^\circ$C, $50\%$: $\omega\approx0.0133$, $T_d\approx18.4\,^\circ$C, $h\approx64$ kJ/kg a.s.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 4 — PROCESOS PSICROMÉTRICOS
+% ============================================================
+\portadaseccion{4}{Procesos psicrométricos}{sensible · deshumidificación · mezcla}{\faCogs}
+
+% ---- sensible + deshum ----
+\begin{frame}{Sensible y enfriamiento con deshumidificación}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.3cm,keepaspectratio]{proceso_enfriamiento_deshumidificacion}\\[0.4mm]
+\fsub{Enfriar hasta $T_d$, luego bajar sobre $\phi=100\%$.}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Calentamiento/enfriamiento sensible}{\faSuperscript}
+$\omega$ constante (horizontal); $\phi$ baja al calentar, sube al enfriar:
+$$\dot Q=\dot m_a\,(1.006+1.805\,\omega)(T_2-T_1).$$
+\end{cardidea}
+\vspace{1.0mm}
+\begin{cardgear}{Con deshumidificación ($T_2<T_d$)}{\faInfoCircle}
+Salida saturada $\omega_2=0.622\dfrac{P_{\rm sat}(T_2)}{P-P_{\rm sat}(T_2)}$.\\[0.5mm]
+$\dot m_{\rm cond}=\dot m_a(\omega_1-\omega_2)$,\\[0.4mm]
+$\dot Q=\dot m_a[(h_2-h_1)-(\omega_1-\omega_2)h_f(T_2)]$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- mezcla de corrientes ----
+\begin{frame}{Mezcla adiabática de dos corrientes}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{mezcla_corrientes_psicrometrico}\\[0.4mm]
+\fsub{El estado 3 cae sobre el segmento $\overline{1\text{-}2}$.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Balances (regla de la palanca)}{\faSuperscript}
+$\dot m_{a3}=\dot m_{a1}+\dot m_{a2}$\\[0.6mm]
+$\omega_3=\dfrac{\dot m_{a1}\omega_1+\dot m_{a2}\omega_2}{\dot m_{a1}+\dot m_{a2}}$\\[0.9mm]
+$h_3=\dfrac{\dot m_{a1}h_1+\dot m_{a2}h_2}{\dot m_{a1}+\dot m_{a2}}$
+\end{cardidea}
+\vspace{1.1mm}
+\begin{cardnota}[\faInfoCircle]
+El estado de mezcla divide $\overline{1\text{-}2}$ en razón \textbf{inversa} a los caudales: $\dfrac{d(1\text{-}3)}{d(2\text{-}3)}=\dfrac{\dot m_{a2}}{\dot m_{a1}}$. Si el segmento cruza la saturación, aparece niebla.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 5 — TORRES
+% ============================================================
+\portadaseccion{5}{Torres de enfriamiento}{contacto aire--agua · evaporación · balances}{\faWater}
+
+% ---- Concepto ----
+\begin{frame}{Torres: contacto directo aire--agua}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=5.0cm,keepaspectratio]{torre_enfriamiento_esquema}\\[0.3mm]
+\fsub{Agua caliente ($\dot m_3,T_3$) cae; aire ($\dot m_a,T_1,\omega_1$) sube y sale saturado (2).}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardidea}{Qué es}{\faInfoCircle}
+Dispositivo de \textbf{contacto directo}: el agua caliente se enfría cediendo vapor al aire. No es un intercambiador cerrado; ocurre transferencia de \textbf{calor y de masa} a la vez.
+\end{cardidea}
+\vspace{1.0mm}
+\begin{cardgear}{Por qué enfría tanto}{\faTint}
+El grueso del enfriamiento es \textbf{evaporativo}: cada kg de agua evaporada se lleva $\approx2400$ kJ de calor latente. Límite físico: el agua no baja de $T_{bh,1}$ (bulbo húmedo del aire que entra).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Balances torres ----
+\begin{frame}{Torres: balances de masa y energía}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Variables}{\faListUl}
+\footnotesize
+$\dot m_a$: aire seco (se conserva). $\dot m_3,\dot m_4$: agua caliente/fría. $\omega_1,\omega_2$: humedad del aire a la entrada/salida. $h_{a1},h_{a2}$: entalpías del aire. $h_f(T)$: entalpía del agua líquida.
+\end{cardidea}
+\vspace{0.9mm}
+\begin{cardgear}{Balances (VC estacionario, $\dot Q=0$)}{\faSuperscript}
+\footnotesize
+Aire seco: $\dot m_a=$ cte.\\[0.4mm]
+Agua: $\dot m_4=\dot m_3-\dot m_a(\omega_2-\omega_1)$.\\[0.5mm]
+Energía: $\dfrac{\dot m_3}{\dot m_a}=\dfrac{(h_{a2}-h_{a1})-(\omega_2-\omega_1)h_f(T_4)}{h_f(T_3)-h_f(T_4)}$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Agua de reposición}{\faPlusCircle}
+El agua evaporada $=$ ganancia de humedad del aire, y se repone (maquillaje):
+$$\dot m_{\rm ev}=\dot m_{\rm maq}=\dot m_a(\omega_2-\omega_1).$$
+\end{cardidea}
+\vspace{0.9mm}
+\begin{cardnota}[\faRulerHorizontal]
+\textbf{Rango} $=T_3-T_4$: cuánto baja el agua.\\[0.4mm]
+\textbf{Aproximación} $=T_4-T_{bh,1}$: cercanía al límite ($\lesssim5\,^\circ$C es excelente).
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo torres ----
+\begin{frame}{Torres: ejemplo (central térmica)}
+\begin{cardidea}{Datos}{\faCalculator}
+$\dot Q_{\rm cond}=120$ MW; agua $40\to24\,^\circ$C; aire entra a $20\,^\circ$C, $\phi_1=40\%$ y sale saturado a $34\,^\circ$C. $P=101.325$ kPa.
+\end{cardidea}
+\vspace{1.2mm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Estados del aire}{\faSuperscript}
+$\omega_1=0.00580$, $h_{a1}=34.8$ kJ/kg.\\[0.4mm]
+$\omega_2=0.03449$, $h_{a2}=122.6$ kJ/kg.\\[0.4mm]
+$h_f(40)=167.5$; $h_f(24)=100.6$ kJ/kg.
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faCheckCircle]
+$\dot m_3=\dfrac{120000}{167.5-100.6}=1793$ kg/s.\\[0.5mm]
+$\dot m_3/\dot m_a=1.269\Rightarrow\dot m_a=1413$ kg/s.\\[0.5mm]
+$\dot m_{\rm maq}=1413(0.02869)=40.5$ kg/s $=146$ t/h.\\[0.5mm]
+Aproximación $=24-13.4=10.6\,^\circ$C.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 6 — COMBUSTIÓN
+% ============================================================
+\portadaseccion{6}{Combustión}{estequiometría · exceso de aire · llama}{\faFire}
+
+% ---- Reacción y balanceo ----
+\begin{frame}{Combustión: reacción y balanceo por átomos}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{combustion_esquema_reactivos_productos}\\[0.3mm]
+\fsub{Reactivos (combustible $+$ aire) $\to$ productos.}
+\vspace{0.6mm}
+\begin{cardnota}[\faInfoCircle]
+\footnotesize
+Aire $\approx\mathrm{O_2}+3.76\,\mathrm{N_2}$: por cada $\mathrm{O_2}$ hay $79/21=3.76$ de $\mathrm{N_2}$.
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Reacción estequiométrica}{\faSuperscript}
+\footnotesize
+$\mathrm{C_xH_y}+a_{\rm est}(\mathrm{O_2}+3.76\,\mathrm{N_2})\longrightarrow$\\[0.4mm]
+$\qquad x\,\mathrm{CO_2}+\tfrac{y}{2}\mathrm{H_2O}+3.76\,a_{\rm est}\,\mathrm{N_2}$
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardgear}{Balanceo (se conservan los átomos)}{\faListOl}
+\footnotesize
+\textbf{C}: $x\to x$, da $x$ de $\mathrm{CO_2}$.\\[0.3mm]
+\textbf{H}: $y\to y$, da $y/2$ de $\mathrm{H_2O}$.\\[0.3mm]
+\textbf{O}: $2a_{\rm est}=2x+\tfrac{y}{2}\Rightarrow a_{\rm est}=x+\tfrac{y}{4}$.\\[0.3mm]
+\textbf{N}: entra $=$ sale ($\mathrm{N_2}$ inerte).\\[0.5mm]
+Ej.: $\mathrm{CH_4}\Rightarrow a_{\rm est}=2$; $\mathrm{C_3H_8}\Rightarrow a_{\rm est}=5$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- AF y equivalencia ----
+\begin{frame}{Relación aire--combustible y equivalencia}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Relación aire-combustible $AF$}{\faBalanceScale}
+Aire suministrado por unidad de combustible. Dos bases:
+$$\underbrace{AF=\frac{m_{\rm aire}}{m_{\rm comb}}}_{\text{másica }[\text{kg/kg}]},\qquad \underbrace{\overline{AF}=\frac{n_{\rm aire}}{n_{\rm comb}}}_{\text{molar}}.$$
+Conversión: $AF=\overline{AF}\,\dfrac{M_{\rm aire}}{M_{\rm comb}}$ (con $M_{\rm aire}\!\approx\!28.97$).\\[0.7mm]
+\textbf{Estequiométrico $AF_{\rm est}$}: el $AF$ con el \emph{aire teórico exacto} (combustión completa, sin exceso ni defecto). Para $C_xH_y$: $a_{\rm est}=x+\tfrac{y}{4}$ mol $\mathrm{O_2}$, aire $=a_{\rm est}(1{+}3.76)$ mol.
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Exceso de aire y $\Phi$}{\faSlidersH}
+\textbf{Relación de equivalencia} $\Phi=\dfrac{AF_{\rm est}}{AF}$:\\[0.5mm]
+$\Phi<1$ \textbf{pobre}: exceso de $\mathrm{O_2}$.\\[0.3mm]
+$\Phi=1$ estequiométrica.\\[0.3mm]
+$\Phi>1$ \textbf{rica}: aparece CO.\\[0.5mm]
+Exceso de aire $e=\left(\dfrac{1}{\Phi}-1\right)\times100\%$.
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardnota}[\faExclamationTriangle]
+$AF$ es una relación de masas; $\Phi$ es adimensional. Más aire $\Rightarrow$ mayor $AF\Rightarrow$ menor $\Phi$ (más pobre).
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo propano + Orsat ----
+\begin{frame}{Análisis de productos: propano, 150\% de aire}
+\begin{cardidea}{Reacción balanceada ($a_{\rm est}=5$, $a=7.5$)}{\faCalculator}
+\footnotesize
+$\mathrm{C_3H_8}+7.5\,\mathrm{O_2}+28.2\,\mathrm{N_2}\longrightarrow 3\,\mathrm{CO_2}+4\,\mathrm{H_2O}+2.5\,\mathrm{O_2}+28.2\,\mathrm{N_2}$\\[0.4mm]
+Comprobación O: $15=6+4+5$ \checkmark
+\end{cardidea}
+\vspace{1.0mm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Relación aire-combustible}{\faSuperscript}
+\footnotesize
+$m_{\rm aire}=7.5\times137.28=1029.6$ kg/kmol.\\[0.4mm]
+$AF=1029.6/44.09=23.35$ kg/kg.\\[0.4mm]
+$AF_{\rm est}=15.57\Rightarrow\Phi=1/1.5=0.667$ (pobre).
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faTable]
+\footnotesize
+\textbf{Orsat} (base seca), total $33.7$ mol:\\[0.4mm]
+$\mathrm{CO_2}\,8.9\%$, $\mathrm{O_2}\,7.4\%$, $\mathrm{N_2}\,83.7\%$.\\[0.3mm]
+El $\mathrm{H_2O}$ condensa antes de medir.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Combustión incompleta ----
+\begin{frame}{Combustión incompleta: aparición de CO}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{combustion_incompleta_esquema}\\[0.3mm]
+\fsub{Con aire en defecto ($\Phi>1$) parte del C sale como CO.}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardidea}{Balance con CO ($a<a_{\rm est}$)}{\faSuperscript}
+\footnotesize
+$\mathrm{C_xH_y}+a(\mathrm{O_2}+3.76\,\mathrm{N_2})\longrightarrow$\\[0.4mm]
+$\ b\,\mathrm{CO_2}+(x-b)\,\mathrm{CO}+\tfrac{y}{2}\mathrm{H_2O}+3.76a\,\mathrm{N_2}$\\[0.4mm]
+con $b=2a-x-\tfrac{y}{2}$ (el H se oxida primero).
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardgear}{Orsat inverso (octano, motor)}{\faCalculator}
+\footnotesize
+Medido: $\mathrm{CO_2}\,12\%$, $\mathrm{O_2}\,0.5\%$, $\mathrm{CO}\,2.5\%$, $\mathrm{N_2}\,85\%$.\\[0.4mm]
+$\Rightarrow AF=15.0$, $\Phi=1.003$ (rica);\\[0.3mm]
+pérdida de calor por CO $\approx7.7\%$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Balance de energía ----
+\begin{frame}{Balance de energía: formación y poder calorífico}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Entalpía de formación $\bar h_f^\circ$}{\faSuperscript}
+\footnotesize
+Entalpía para formar 1 kmol desde sus elementos a $25\,^\circ$C, 1 atm. Elementos estables: $\bar h_f^\circ=0$.\\[0.5mm]
+Calor de reacción:\\
+$\bar h_R^\circ=\sum_{\rm prod}n_i\bar h_{f,i}^\circ-\sum_{\rm react}n_j\bar h_{f,j}^\circ<0$.
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardnota}[\faInfoCircle]
+\footnotesize
+Cada especie: $\bar h_i=\bar h_{f,i}^\circ+\Delta\bar h_i(T)$ (química $+$ sensible).
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Poder calorífico (por kg comb.)}{\faFire}
+\footnotesize
+$\mathrm{PCI}=-\bar h_R^\circ$ con $\mathrm{H_2O}$ \textbf{vapor}.\\[0.4mm]
+$\mathrm{PCS}=-\bar h_R^\circ$ con $\mathrm{H_2O}$ \textbf{líquida}.\\[0.4mm]
+$\mathrm{PCS}-\mathrm{PCI}=\dfrac{n_{\rm H_2O}M_{\rm H_2O}}{M_{\rm comb}}\,h_{fg}$.
+\end{cardgear}
+\vspace{0.8mm}
+\begin{cardnota}[\faCalculator]
+\footnotesize
+Propano: $\mathrm{PCI}=46.4$, $\mathrm{PCS}=50.4$ MJ/kg. Escapes calientes $\Rightarrow$ usar PCI.
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- TAF ----
+\begin{frame}{Temperatura adiabática de llama}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{taf_vs_exceso_aire}\\[0.3mm]
+\fsub{$T_{\rm AFT}$ del metano vs.\ \% de aire teórico (pico en $100\%$).}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Balance $H_{\rm react}=H_{\rm prod}$}{\faSuperscript}
+Sin pérdidas ($\dot Q=0$), todo el calor de reacción calienta los productos:
+$$-\bar h_R^\circ=\sum_i n_i\,\Delta\bar h_i(T_{\rm AFT}).$$
+Máxima en $\Phi=1$; el \textbf{exceso de aire} diluye y \textbf{baja} $T_{\rm AFT}$.
+\end{cardidea}
+\vspace{0.8mm}
+\begin{cardnota}[\faCalculator]
+$\mathrm{CH_4}$ estequiométrico: $\approx2230$ K. Con $150\%$ de aire: $\approx1924$ K ($1651\,^\circ$C).
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faTint};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Mezclas, Psicrometría y Combustión \textperiodcentered\ MN121 Termodinámica};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
