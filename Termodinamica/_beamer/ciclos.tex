@@ -347,18 +347,27 @@ $6\to1$ & Condensador, isobárico ($P_L$)              & $q_L=h_6-h_1$\\
 % ---- Rankine con Recalentamiento: ecuaciones y ejemplo ----
 \begin{frame}{Rankine con Recalentamiento --- ecuaciones y ejemplo}
 \begin{columns}[T]
-\begin{column}{0.46\textwidth}
+\begin{column}{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{rankine_recalentamiento_esquema}\\[0.5mm]
-\fsub{Expansión en dos etapas (TAP y TBP) con recalentador.}
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{rankine_recalentamiento_esquema}\\[0.3mm]
+\fsub{Esquema: TAP, TBP y recalentador.}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{rankine_recalentamiento_Ts}\\[0.3mm]
+\fsub{Diagrama $T$-$s$: doble expansión, $q_{rec}$ a $P_r$.}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
 \begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $w_T=(h_3-h_4)+(h_5-h_6)$\\[0.6mm]
 $q_H=(h_3-h_2)+(h_5-h_4)$\\[0.6mm]
 $\eta_{th}=\dfrac{w_T-w_B}{q_H},\quad P_r\approx P_H/4$ a $P_H/5$
 \end{cardidea}
-\vspace{1.2mm}
+\end{column}
+\begin{column}{0.49\textwidth}
 \begin{cardgear}{Ejemplo: 15 MPa / 500\,$^\circ$C}{\faCalculator}
 $P_r=3$ MPa, $T_5=500^\circ$C, $P_L=10$ kPa.\\[0.6mm]
 $w_T=1642.0$, $q_H=3727.8$ kJ/kg.\\[0.6mm]
@@ -388,18 +397,27 @@ $6\to1$        & Condensador (fracción $1-y$)              & $q_L=(1-y)(h_6-h_1
 % ---- Rankine Regenerativo: ecuaciones y ejemplo ----
 \begin{frame}{Rankine Regenerativo --- ecuaciones y ejemplo}
 \begin{columns}[T]
-\begin{column}{0.46\textwidth}
+\begin{column}{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{rankine_regenerativo_esquema}\\[0.5mm]
-\fsub{Extracción de fracción $y$ hacia el calentador abierto (CAA).}
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{rankine_regenerativo_esquema}\\[0.3mm]
+\fsub{Extracción $y$ hacia el calentador abierto (CAA).}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{rankine_regenerativo_Ts}\\[0.3mm]
+\fsub{Diagrama $T$-$s$: punto de extracción $e$ al CAA.}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
 \begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $y=\dfrac{h_3-h_2}{h_e-h_2}$ (balance del CAA)\\[0.8mm]
 $w_T=(h_5-h_e)+(1-y)(h_e-h_6)$\\[0.6mm]
 $q_H=h_5-h_4,\quad \eta_{th}=\dfrac{w_T-w_{B1}-w_{B2}}{q_H}$
 \end{cardidea}
-\vspace{1.2mm}
+\end{column}
+\begin{column}{0.49\textwidth}
 \begin{cardgear}{Ejemplo: 10 MPa / 500\,$^\circ$C}{\faCalculator}
 Extracción a $P_e=1$ MPa, $P_L=10$ kPa.\\[0.6mm]
 $y=0.218$, $w_{neto}=1116.1$, $q_H=2600.8$ kJ/kg.\\[0.6mm]
@@ -496,18 +514,27 @@ $6\to1$ & Rechazo de calor isobárico                  & $q_L=c_p(T_6-T_1)$\\
 % ---- Brayton con Regeneración: ecuaciones y ejemplo ----
 \begin{frame}{Brayton con Regeneración --- ecuaciones y ejemplo}
 \begin{columns}[T]
-\begin{column}{0.46\textwidth}
+\begin{column}{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{brayton_regeneracion_esquema}\\[0.5mm]
-\fsub{Recuperador que precalienta el aire con los gases de escape.}
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{brayton_regeneracion_esquema}\\[0.3mm]
+\fsub{Recuperador: precalienta el aire con los gases de escape.}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{brayton_regeneracion_Ts}\\[0.3mm]
+\fsub{Diagrama $T$-$s$: tramos del regenerador ($2\to5$, $4\to6$).}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
 \begin{cardidea}{Ecuaciones generales}{\faSuperscript}
 $\varepsilon=\dfrac{T_5-T_2}{T_4-T_2},\quad q_H=c_p(T_3-T_5)$\\[0.8mm]
 $\eta_{th,\varepsilon=1}=1-\dfrac{T_1}{T_3}r_P^{(\gamma-1)/\gamma}$ (baja con $r_P$)\\[0.6mm]
 Útil si $T_4>T_2$ (a bajos $r_P$).
 \end{cardidea}
-\vspace{1.2mm}
+\end{column}
+\begin{column}{0.49\textwidth}
 \begin{cardgear}{Ejemplo: $r_P=6$, $\varepsilon=0.75$}{\faCalculator}
 $T_1=300$, $T_3=1200$ K. $T_2=500.4$, $T_4=719.4$, $T_5=664.7$ K.\\[0.6mm]
 $q_H=538.0$, $w_{neto}=281.6$ kJ/kg.\\[0.6mm]

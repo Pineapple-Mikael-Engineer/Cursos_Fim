@@ -33,6 +33,15 @@ def mark(ax, pts, dxy=None):
                     color=of.TEXT, fontsize=10, weight='bold')
 
 
+def mark_lbl(ax, items, dxy=None):
+    """Como mark() pero con etiqueta arbitraria: items = [(x, y, 'texto'), ...]."""
+    dxy = dxy or [(6, 6)] * len(items)
+    for (x, y, lab), d in zip(items, dxy):
+        ax.plot(x, y, 'o', color=of.TEXT, ms=6, zorder=8)
+        ax.annotate(lab, (x, y), d, textcoords='offset points',
+                    color=of.TEXT, fontsize=10, weight='bold')
+
+
 def eflow(ax, p_from, p_to, label, color, lpos, fs=8.5):
     """Flecha corta de energía (cabeza en p_to) + rótulo en lpos.
     Energía que ENTRA: p_from fuera de la curva, p_to sobre el tramo.
@@ -232,5 +241,120 @@ eflow(ax, (xq, TL * np.exp(0.72 * 0.55)), (xq, TL * np.exp(0.72 * 0.55) - 0.20),
 of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
 of.title(ax, r'Comparación: Carnot vs Brayton en $T$–$s$')
 ax.set_xlim(0.0, 1.25); ax.set_ylim(0.8, 2.5); of.save(fig, 'Ts_comparacion_ciclos_potencia')
+
+# ============ RANKINE con RECALENTAMIENTO (T-s) ============
+SF, SG, TT = ts_dome()
+fig, ax = of.new_fig(figsize=(6.4, 4.6)); of.style_axes(ax)
+ax.plot(SF, TT, color=of.CURVE, lw=2.2); ax.plot(SG, TT, color=of.CURVE, lw=2.2)
+ax.fill_betweenx(TT, SF, SG, color=of.CURVE, alpha=0.08)
+Tcond = 0.56
+ic = int(np.argmin(np.abs(TT - Tcond))); sf1 = SF[ic]
+s1, T1 = sf1, Tcond                       # 1 líq sat condensador
+s2, T2 = sf1, Tcond + 0.05                # 2 salida bomba (P_H)
+T3, s3 = 1.15, 1.66                       # 3 sobrecalentado P_H (entra TAP)
+T4, s4 = 0.86, s3                         # 4 salida TAP a P_r (isentrópica)
+T5, s5 = 1.10, 1.98                       # 5 recalentado a P_r (entra TBP)
+T6, s6 = Tcond, s5                        # 6 salida TBP a P_L (isentrópica)
+ax.plot([s1, s2], [T1, T2], color=of.ACCENT, lw=2.4)                        # 1-2 bomba
+Tph = 0.95                                                                  # T_sat a P_H
+ih = int(np.argmin(np.abs(TT - Tph))); i2 = int(np.argmin(np.abs(TT - T2)))
+bs = np.r_[[s2], SF[ih:i2][::-1], [SG[ih], s3]]
+bt = np.r_[[T2], TT[ih:i2][::-1], [TT[ih], T3]]
+ax.plot(bs, bt, color=of.BROWN, lw=2.4)                                     # 2-3 caldera
+ax.plot([s3, s4], [T3, T4], color=of.CURVE, lw=2.4)                         # 3-4 turbina AP
+kr = np.log(T5 / T4) / (s5 - s4); srec = np.linspace(s4, s5, 40)
+ax.plot(srec, T4 * np.exp((srec - s4) * kr), color=of.ACCENT, lw=2.4)       # 4-5 recalentador
+ax.plot([s5, s6], [T5, T6], color=of.CURVE, lw=2.4)                         # 5-6 turbina BP
+ax.plot([s6, s1], [T6, T1], color='#6a8858', lw=2.4)                        # 6-1 condensador
+mark(ax, [(s1, T1), (s2, T2), (s3, T3), (s4, T4), (s5, T5), (s6, T6)],
+     [(9, -12), (-15, 6), (-8, 7), (-16, -4), (8, 5), (9, -4)])
+ax.annotate('$P_H$', (1.42, 1.08), color=of.BROWN, fontsize=8.5, rotation=20)
+ax.annotate('$P_r$', (1.86, 1.02), color=of.ACCENT, fontsize=8.5)
+eflow(ax, (1.15, 1.18), (1.15, 0.97), '$q_{H}$', of.BROWN, (1.15, 1.25))          # entra caldera
+eflow(ax, (2.02, 0.72), (1.86, 0.90), '$q_{rec}$', of.ACCENT, (2.16, 0.66))       # entra recalentador
+eflow(ax, (1.26, 0.56), (1.26, 0.47), '$q_{L}$', '#6a8858', (1.26, 0.435))        # sale condensador
+eflow(ax, (2.02, 0.82), (2.28, 0.82), '$w_{T}$', of.CURVE, (2.34, 0.82))          # sale turbina
+eflow(ax, (sf1 - 0.17, 0.475), (sf1 - 0.02, 0.545), '$w_{B}$', of.ACCENT, (sf1 - 0.22, 0.45))  # entra bomba
+of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
+of.title(ax, r'Rankine con recalentamiento en $T$–$s$')
+ax.set_xlim(0.3, 2.6); ax.set_ylim(0.41, 1.33); of.save(fig, 'rankine_recalentamiento_Ts')
+
+# ============ RANKINE REGENERATIVO (T-s) con CAA ============
+SF, SG, TT = ts_dome()
+fig, ax = of.new_fig(figsize=(6.4, 4.6)); of.style_axes(ax)
+ax.plot(SF, TT, color=of.CURVE, lw=2.2); ax.plot(SG, TT, color=of.CURVE, lw=2.2)
+ax.fill_betweenx(TT, SF, SG, color=of.CURVE, alpha=0.08)
+TL, Te = 0.56, 0.80
+icL = int(np.argmin(np.abs(TT - TL))); sfL = SF[icL]
+icE = int(np.argmin(np.abs(TT - Te))); sfE = SF[icE]
+s1, T1 = sfL, TL                          # 1 líq sat condensador
+s2, T2 = sfL, TL + 0.04                   # 2 salida bomba 1 (P_e)
+s3, T3 = sfE, Te                          # 3 líq sat, salida CAA (P_e)
+s4, T4 = sfE, Te + 0.04                   # 4 salida bomba 2 (P_H)
+T5, s5 = 1.15, 1.74                       # 5 vapor a turbina (P_H)
+s6, T6 = s5, TL                           # 6 salida turbina (P_L)
+se, Tee = s5, Te                          # e punto de extracción (P_e)
+ax.plot([s1, s2], [T1, T2], color=of.ACCENT, lw=2.4)                        # 1-2 bomba 1
+i2b = int(np.argmin(np.abs(TT - T2)))
+ax.plot(SF[icE:i2b], TT[icE:i2b], color='#9a7030', lw=2.4)                  # 2-3 calent. en CAA
+ax.plot([s3, s4], [T3, T4], color=of.ACCENT, lw=2.4)                        # 3-4 bomba 2
+Tph = 0.98                                                                  # T_sat a P_H
+ih = int(np.argmin(np.abs(TT - Tph))); i4 = int(np.argmin(np.abs(TT - T4)))
+bs = np.r_[[s4], SF[ih:i4][::-1], [SG[ih], s5]]
+bt = np.r_[[T4], TT[ih:i4][::-1], [TT[ih], T5]]
+ax.plot(bs, bt, color=of.BROWN, lw=2.4)                                     # 4-5 caldera
+ax.plot([s5, s6], [T5, T6], color=of.CURVE, lw=2.4)                         # 5-e-6 turbina
+ax.plot([s6, s1], [T6, T1], color='#6a8858', lw=2.4)                        # 6-1 condensador
+ax.annotate('', xy=(s3, Tee), xytext=(se, Tee),
+            arrowprops=dict(arrowstyle='-|>', color='#9a7030', lw=1.5,
+                            ls=(0, (4, 2)), shrinkA=2, shrinkB=2, mutation_scale=12), zorder=7)
+ax.text((s3 + se) / 2, Tee + 0.035, 'extracción  $y$', color='#9a7030',
+        fontsize=8, ha='center', va='bottom')
+mark(ax, [(s1, T1), (s2, T2), (s3, T3), (s4, T4), (s5, T5), (s6, T6)],
+     [(9, -12), (-14, 3), (-15, -9), (-4, 10), (8, 4), (9, -4)])
+mark_lbl(ax, [(se, Tee, 'e')], [(9, -3)])
+eflow(ax, (1.05, 1.20), (1.05, 0.99), '$q_{H}$', of.BROWN, (1.05, 1.27))          # entra caldera
+eflow(ax, (1.10, 0.56), (1.10, 0.47), '$q_{L}$', '#6a8858', (1.10, 0.435))        # sale condensador
+eflow(ax, (1.78, 0.86), (2.02, 0.86), '$w_{T}$', of.CURVE, (2.08, 0.86))          # sale turbina
+eflow(ax, (sfL - 0.17, 0.475), (sfL - 0.02, 0.545), '$w_{B}$', of.ACCENT, (sfL - 0.22, 0.45))  # entra bomba
+of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
+of.title(ax, r'Rankine regenerativo (CAA) en $T$–$s$')
+ax.set_xlim(0.3, 2.2); ax.set_ylim(0.41, 1.32); of.save(fig, 'rankine_regenerativo_Ts')
+
+# ============ BRAYTON con REGENERACIÓN (T-s) ============
+fig, ax = of.new_fig(figsize=(6.2, 4.6)); of.style_axes(ax)
+T1, T2, T3 = 1.0, 1.5, 4.0
+T4 = T3 * (T1 / T2)                        # 2.667 (isentrópica, mismo r_P)
+sa = 0.0; sb = sa + np.log(T3 / T2)        # entropías de las dos isentrópicas
+iso_up = lambda s: T2 * np.exp(s - sa)     # isóbara P_H (pasa por 2 y 3)
+iso_lo = lambda s: T1 * np.exp(s - sa)     # isóbara P_L (pasa por 1 y 4)
+Tx = 2.4; sx = sa + np.log(Tx / T2)        # 5 salida regenerador (lado frío)
+Ty = 1.7; sy = sa + np.log(Ty / T1)        # 6 salida regenerador (lado caliente)
+REGEN = '#6a8858'
+ax.plot([sa, sa], [T1, T2], color=of.CURVE, lw=2.4)                         # 1-2 compresor
+s2x = np.linspace(sa, sx, 40); ax.plot(s2x, iso_up(s2x), color=REGEN, lw=2.4)      # 2-5 regen frío
+sx3 = np.linspace(sx, sb, 40); ax.plot(sx3, iso_up(sx3), color=of.ACCENT, lw=2.4)  # 5-3 cámara
+ax.plot([sb, sb], [T3, T4], color=of.CURVE, lw=2.4)                         # 3-4 turbina
+s4y = np.linspace(sb, sy, 40); ax.plot(s4y, iso_lo(s4y), color=REGEN, lw=2.4)      # 4-6 regen caliente
+sy1 = np.linspace(sy, sa, 40); ax.plot(sy1, iso_lo(sy1), color=of.BROWN, lw=2.4)   # 6-1 rechazo
+ax.plot([sx, sy], [Tx, Ty], color=REGEN, lw=1.1, ls=(0, (3, 3)), alpha=0.9)        # lazo regenerador
+mark_lbl(ax, [(sa, T1, '1'), (sa, T2, '2'), (sx, Tx, '5'),
+             (sb, T3, '3'), (sb, T4, '4'), (sy, Ty, '6')],
+         [(-13, -3), (-13, 3), (-13, 4), (8, 4), (9, -3), (9, -3)])
+ax.text((sx + sy) / 2 + 0.02, (Tx + Ty) / 2, 'regenerador', color=REGEN,
+        fontsize=8.5, ha='left', va='center', rotation=-58)
+ax.annotate('$P_H$', (0.80, iso_up(0.80) + 0.05), color=of.ACCENT, fontsize=8.5)
+ax.annotate('$P_L$', (0.72, iso_lo(0.72) - 0.28), color=of.BROWN, fontsize=8.5)
+eflow(ax, (0.72, iso_up(0.72) + 0.36), (0.72, iso_up(0.72)), '$q_{H}$', of.ACCENT,
+      (0.72, iso_up(0.72) + 0.56))                                          # entra cámara
+eflow(ax, (0.25, iso_lo(0.25)), (0.25, iso_lo(0.25) - 0.30), '$q_{L}$', of.BROWN,
+      (0.25, iso_lo(0.25) - 0.46))                                          # sale rechazo
+eflow(ax, (sb, (T3 + T4) / 2), (sb + 0.13, (T3 + T4) / 2), '$w_{T}$', of.CURVE,
+      (sb + 0.18, (T3 + T4) / 2))                                          # sale turbina
+eflow(ax, (-0.11, (T1 + T2) / 2), (0.0, (T1 + T2) / 2), '$w_{C}$', of.CURVE,
+      (-0.075, (T1 + T2) / 2 + 0.20))                                       # entra compresor
+of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
+of.title(ax, r'Brayton con regeneración en $T$–$s$')
+ax.set_xlim(-0.16, 1.26); ax.set_ylim(0.7, 4.5); of.save(fig, 'brayton_regeneracion_Ts')
 
 print('OK ciclos')
