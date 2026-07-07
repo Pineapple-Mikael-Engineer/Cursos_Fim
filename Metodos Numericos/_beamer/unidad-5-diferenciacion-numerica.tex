@@ -1,0 +1,598 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 5
+%  Diferenciación Numérica (diferencias finitas, Richardson, h*)
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Dif.\ e Int.\ \textperiodcentered\ Diferenciación}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.4cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{18}{18}\selectfont $\displaystyle f'\approx\frac{f(x+h)-f(x-h)}{2h}$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.7cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $D^{\text{ext}}=\dfrac{4D(h/2)-D(h)}{3}$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.7cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $E\lesssim\tfrac{h}{2}M_2+\tfrac{2uM_0}{h}$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faRulerCombined};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{20.5}{25}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Diferenciación Numérica};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-3.05cm]current page.north west)
+      {\normalsize\itshape Diferencias finitas\ \textperiodcentered\ Taylor\ \textperiodcentered\ Richardson\ \textperiodcentered\ paso óptimo};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 5 \textbar\ Diferenciación e Integración};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+La \textbf{diferenciación numérica} aproxima $f'(x),f''(x),\dots$ por combinaciones lineales de valores de $f$ en nodos vecinos de paso $h$ (\emph{diferencias finitas}), deducidas de la \textbf{serie de Taylor}, que además entrega el término de error. Según los puntos usados el error es $O(h)$ (progresiva, regresiva) u $O(h^2)$ (centrada, por cancelación de simetría). La \textbf{extrapolación de Richardson} combina dos pasos para subir el orden sin más datos. A diferencia de la integración, está \textbf{mal condicionada}: el redondeo se amplifica por $1/h$, hay un \emph{paso óptimo} $h^*$ y reducir $h$ por debajo lo empeora (curva en ``V'').
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Motor único: Taylor}{\faCogs}
+Imponer qué derivada aislar y qué términos cancelar fija los coeficientes y el orden. Genera esquemas de cualquier derivada y orden.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Rasgo distintivo}{\faCogs}
+Derivar \emph{amplifica} el ruido ($1/h$): mal condicionado. Hay $h^*\!\sim u^{1/3}$; ni con doble precisión se alcanza $\epsilon$ de máquina.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura del tema}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Diferencias finitas por serie de Taylor: deducción de las fórmulas\\[0.6mm]
+2.\; Orden del error: progresiva/regresiva $O(h)$ vs.\ centrada $O(h^2)$; $f''$
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Extrapolación de Richardson: cancelar el término dominante\\[0.6mm]
+4.\; Inestabilidad por redondeo: truncamiento vs.\ redondeo, paso óptimo $h^*$
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Cierra un \textbf{ejemplo numérico detallado} (más de dos páginas) con $f(x)=e^x$ en $x=1$: cálculo de $f'$ por las tres fórmulas, comparación de errores, aceleración de Richardson y la tabla del error total frente a $h$ que evidencia el paso óptimo.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN ÚNICA
+% ############################################################
+\portadaseccion{}{Diferenciación Numérica}{Diferencias finitas por Taylor, orden del error, Richardson y paso óptimo}{\faRulerCombined}
+
+% ---- Diferencias finitas por Taylor: deducción ----
+\begin{frame}{Diferencias finitas desde la serie de Taylor}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Deducción (desarrollo de Taylor)}{\faSuperscript}
+{\footnotesize
+$f(x{\pm}h)=f\pm hf'+\tfrac{h^2}{2}f''\pm\tfrac{h^3}{6}f'''+\cdots$\\[1.0mm]
+\textbf{Restar} $\Rightarrow$ se cancela $f''$ (término par):\\[0.4mm]
+$\dfrac{f(x{+}h)-f(x{-}h)}{2h}=f'(x)+\tfrac{h^2}{6}f'''(\xi)$.\\[1.2mm]
+\textbf{Sumar} $\Rightarrow$ se cancela $f'$ (término impar):\\[0.4mm]
+$\dfrac{f(x{+}h)-2f(x)+f(x{-}h)}{h^2}=f''(x)+\tfrac{h^2}{12}f^{(4)}(\xi)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Coeficientes indeterminados:} para $f^{(d)}\approx\tfrac1{h^d}\sum_k a_k f(x{+}kh)$, se impone coeficiente $1$ a $f^{(d)}$ y $0$ a las demás; se resuelve el sistema. Generaliza a cualquier derivada y orden.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardgear}{Fórmulas comunes (paso $h$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.55}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Derivada & Fórmula & Error\\\hline
+$f'$ progresiva & $\frac{f(x+h)-f(x)}{h}$ & $O(h)$\\
+$f'$ regresiva & $\frac{f(x)-f(x-h)}{h}$ & $O(h)$\\
+$f'$ centrada & $\frac{f(x+h)-f(x-h)}{2h}$ & $O(h^2)$\\
+$f'$ cent.\ 5\,pt & $\frac{-f_{+2}+8f_{+1}-8f_{-1}+f_{-2}}{12h}$ & $O(h^4)$\\
+$f''$ centrada & $\frac{f(x+h)-2f(x)+f(x-h)}{h^2}$ & $O(h^2)$\\
+\end{tabular}}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Orden del error ----
+\begin{frame}{Orden del error: por qué la centrada gana un orden}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Término de error explícito}{\faSuperscript}
+{\footnotesize
+Progresiva: $f'=\dfrac{f(x{+}h)-f(x)}{h}-\tfrac{h}{2}f''(\xi)$, \ $O(h)$.\\[0.6mm]
+Regresiva: $f'=\dfrac{f(x)-f(x{-}h)}{h}+\tfrac{h}{2}f''(\xi)$, \ $O(h)$.\\[0.6mm]
+Centrada: $f'=\dfrac{f(x{+}h)-f(x{-}h)}{2h}-\tfrac{h^2}{6}f'''(\xi)$, \ $O(h^2)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Principio de simetría:} en la fórmula centrada $f''$ aparece con el mismo signo (se cancela al restar) y desaparecen \emph{todos} los términos de orden par; gana un orden ``gratis'' con el mismo número de puntos.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Verificación del orden ($f=\sin x$, $x=1$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc|cc}
+$h$ & $E_{\text{prog}}$ & fac. & $E_{\text{cent}}$ & fac.\\\hline
+$0.1$ & $4.2{\times}10^{-2}$ & — & $9.0{\times}10^{-4}$ & —\\
+$0.05$ & $2.1{\times}10^{-2}$ & $2.0$ & $2.3{\times}10^{-4}$ & $4.0$\\
+$0.025$ & $1.05{\times}10^{-2}$ & $2.0$ & $5.6{\times}10^{-5}$ & $4.0$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Progresiva se \emph{halva} ($\times2$, orden $1$); centrada se \emph{cuartea} ($\times4$, orden $2$).\\[0.6mm]
+Orden empírico: $p\approx\log_2\!\dfrac{E(h)}{E(h/2)}$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Richardson ----
+\begin{frame}{Extrapolación de Richardson}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Cancelar el término dominante}{\faSuperscript}
+{\footnotesize Si $A(h)=A+c_p h^p+c_{p+q}h^{p+q}+\cdots$, combinar $A(h)$ y $A(h/2)$ mata el término $h^p$:\\[0.8mm]
+$A^{\text{ext}}(h)=\dfrac{2^p A(h/2)-A(h)}{2^p-1}=A+O(h^{p+q})$.\\[1.2mm]
+Derivada centrada ($p{=}2$, expansión solo par $q{=}2$):\\[0.4mm]
+$D^{\text{ext}}=\dfrac{4D(h/2)-D(h)}{3}$, \ orden $2\to4$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize No requiere más evaluaciones que las de los dos pasos: explota la \emph{estructura} del error, no más datos. Iterada sobre el trapecio genera la \textbf{tabla de Romberg}, $R_{k,j}=\tfrac{4^jR_{k,j-1}-R_{k-1,j-1}}{4^j-1}$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{$D(h)=\frac{f(h)-f(-h)}{2h}$, $f=e^x$ en $0$ ($f'=1$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+$h$ & $D(h)$ & $D^{\text{ext}}=\frac{4D(h/2)-D(h)}{3}$\\\hline
+$0.2$ & $1.0066800$ & —\\
+$0.1$ & $1.0016675$ & $0.9999967$\\
+$0.05$ & $1.0004168$ & $0.9999998$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize $D(0.1)$ tiene error $\sim1.7{\times}10^{-3}$; la extrapolada baja a $\sim3{\times}10^{-6}$ y luego $\sim2{\times}10^{-7}$ con los \emph{mismos} datos: salta de orden $2$ a $4$. Cada columna nueva cancela el siguiente término par de la expansión.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Inestabilidad y paso óptimo ----
+\begin{frame}{Inestabilidad por redondeo y paso óptimo $h^*$}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Truncamiento vs.\ redondeo}{\faSuperscript}
+{\footnotesize Para la progresiva, con redondeo $u$ y $|f|\sim M_0$, $M_2=\max|f''|$:\\[0.6mm]
+$E(h)\lesssim\underbrace{\tfrac{h}{2}M_2}_{\text{trunc.}\,\downarrow}+\underbrace{\tfrac{2uM_0}{h}}_{\text{redondeo}\,\uparrow}$.\\[1.0mm]
+Minimizar $\Rightarrow h^*=2\sqrt{uM_0/M_2}\sim\sqrt{u}$, $E(h^*)\sim\sqrt{u}$.\\[0.6mm]
+Centrada: $h^*\sim u^{1/3}$, $E(h^*)\sim u^{2/3}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Mal condicionamiento:} al dividir una diferencia de valores casi iguales por $h$ minúsculo, el ruido de $f$ se amplifica por $1/h$ (\emph{cancelación catastrófica}). En doble precisión la derivada \emph{nunca} llega a $\epsilon$ de máquina.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Paso óptimo por esquema ($u\approx10^{-16}$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Esquema & $h^*$ & $E(h^*)$\\\hline
+Progresiva $O(h)$ & $\sim u^{1/2}{\approx}10^{-8}$ & $\sim10^{-8}$\\
+Centrada $O(h^2)$ & $\sim u^{1/3}{\approx}10^{-5}$ & $\sim10^{-11}$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize En escala log-log el error total forma una \textbf{``V''}: baja con pendiente $p$ (truncamiento), toca el mínimo en $h^*$ y sube con pendiente $-1$ (redondeo).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Mitigan la barrera: Richardson (mayor orden $\Rightarrow$ $h$ mayor), el \emph{paso complejo} $\operatorname{Im}[f(x{+}ih)]/h$ (sin cancelación) y la diferenciación automática.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Fórmulas clave (recuadro) ----
+\begin{frame}{Fórmulas clave}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Diferencias finitas}{\faSuperscript}
+{\footnotesize
+\vspace{0.4mm}
+$f'_{\text{prog}}=\dfrac{f(x+h)-f(x)}{h}=f'+O(h)$\\[1.4mm]
+$f'_{\text{cent}}=\dfrac{f(x+h)-f(x-h)}{2h}=f'+O(h^2)$\\[1.4mm]
+$f''_{\text{cent}}=\dfrac{f(x+h)-2f(x)+f(x-h)}{h^2}=f''+O(h^2)$}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Aceleración y estabilidad}{\faSuperscript}
+{\footnotesize
+\vspace{0.4mm}
+Richardson: $A^{\text{ext}}=\dfrac{2^p A(h/2)-A(h)}{2^p-1}$\\[1.4mm]
+Centrada: $D^{\text{ext}}=\dfrac{4D(h/2)-D(h)}{3}$, $\ 2\to4$\\[1.4mm]
+Error total: $E(h)\lesssim\dfrac{h}{2}M_2+\dfrac{2uM_0}{h}$\\[1.2mm]
+Paso óptimo: $h^*_{\text{cent}}\sim u^{1/3}$, $E(h^*)\sim u^{2/3}$}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Verificación empírica del orden: $p\approx\log_2\!\big(E(h)/E(h/2)\big)$ — factor $2\Rightarrow p{=}1$, factor $4\Rightarrow p{=}2$, factor $16\Rightarrow p{=}4$.}
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  EJEMPLO NUMÉRICO DETALLADO (> 2 páginas)
+% ############################################################
+\portadaseccion{}{Ejemplo resuelto}{$f(x)=e^x$ en $x=1$: tres fórmulas, errores, Richardson y paso óptimo}{\faCalculator}
+
+% ---- Ejemplo 1/4 ----
+\begin{frame}{Ejemplo (1/4): $f'$ por las tres fórmulas}
+\begin{cardidea}{Planteamiento}{\faLightbulb}
+{\footnotesize Se aproxima $f'(1)$ para $f(x)=e^x$, cuyo valor \textbf{exacto} es $f'(1)=e=2.7182818$. Tomamos $h=0.1$ y evaluamos $f$ en los tres nodos:\\[0.6mm]
+\centering
+$f(1.1)=3.0041660,\quad f(1.0)=2.7182818,\quad f(0.9)=2.4596031.$}
+\end{cardidea}
+\vspace{1.5mm}
+\begin{columns}[T]
+\begin{column}{0.62\textwidth}
+\begin{cardgear}{Paso a paso ($h=0.1$)}{\faCalculator}
+{\footnotesize
+\textbf{1)} Progresiva:\\[0.2mm]
+$\dfrac{f(1.1)-f(1.0)}{0.1}=\dfrac{0.2858842}{0.1}=2.8588420$.\\[1.2mm]
+\textbf{2)} Regresiva:\\[0.2mm]
+$\dfrac{f(1.0)-f(0.9)}{0.1}=\dfrac{0.2586787}{0.1}=2.5867872$.\\[1.2mm]
+\textbf{3)} Centrada:\\[0.2mm]
+$\dfrac{f(1.1)-f(0.9)}{0.2}=\dfrac{0.5445629}{0.2}=2.7228146$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.36\textwidth}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La centrada promedia las pendientes hacia adelante y hacia atrás; por eso su resultado $2.7228$ queda mucho más cerca de $e=2.7183$ que la progresiva ($2.8588$) o la regresiva ($2.5868$).}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardnota}[\faSuperscript]
+{\footnotesize También $f''(1)\approx\frac{f(1.1)-2f(1)+f(0.9)}{0.01}=2.7205$ (exacto $e$).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo 2/4 ----
+\begin{frame}{Ejemplo (2/4): errores y verificación del orden}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardgear}{Error en $h=0.1$ (paso 2)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Fórmula & valor & error\\\hline
+Progresiva & $2.8588420$ & $1.4{\times}10^{-1}$\\
+Regresiva & $2.5867872$ & $1.3{\times}10^{-1}$\\
+Centrada & $2.7228146$ & $4.5{\times}10^{-3}$\\\hline
+Exacto $e$ & $2.7182818$ & —\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize La centrada es $\sim30$ veces más precisa con los \emph{mismos} nodos: $O(h^2)$ frente a $O(h)$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Halvar $h$: orden empírico (paso 2)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc|cc}
+$h$ & $E_{\text{prog}}$ & fac. & $E_{\text{cent}}$ & fac.\\\hline
+$0.1$   & $1.41{\times}10^{-1}$ & —   & $4.53{\times}10^{-3}$ & —\\
+$0.05$  & $6.91{\times}10^{-2}$ & $2.0$ & $1.13{\times}10^{-3}$ & $4.0$\\
+$0.025$ & $3.43{\times}10^{-2}$ & $2.0$ & $2.83{\times}10^{-4}$ & $4.0$\\
+$0.0125$& $1.71{\times}10^{-2}$ & $2.0$ & $7.08{\times}10^{-5}$ & $4.0$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Al halvar $h$ el error progresivo se divide por $2=2^1$ y el centrado por $4=2^2$: confirma $p=\log_2\!\frac{E(h)}{E(h/2)}$ igual a $1$ y $2$ respectivamente.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1.5mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize El orden es \emph{asintótico} ($h\to0$) y supone aritmética exacta: para $h$ muy pequeño el redondeo rompe esta tendencia (paso 4).}
+\end{cardnota}
+\end{frame}
+
+% ---- Ejemplo 3/4 ----
+\begin{frame}{Ejemplo (3/4): aceleración de Richardson}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Cálculo (paso 3)}{\faCalculator}
+{\footnotesize Partimos de la centrada $D(h)$ con $h=0.2,0.1,0.05,0.025$ y aplicamos $D^{\text{ext}}=\dfrac{4D(h/2)-D(h)}{3}$:\\[1.0mm]
+$D^{\text{ext}}(0.1)=\dfrac{4(2.7228146)-2.7364400}{3}$\\[0.6mm]
+$\hphantom{D^{\text{ext}}(0.1)}=2.7182728.$\\[1.0mm]
+Una segunda columna ($\div\,15$, orden $4\to6$) da $2.7182818293$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La centrada sola necesitaría $h\sim10^{-3}$ para el error que Richardson logra con $h=0.05$: gana órdenes sin evaluar más.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Tabla triangular de Richardson}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$h$ & $D(h)$ $O(h^2)$ & ext.\ $O(h^4)$ & ext.\ $O(h^6)$\\\hline
+$0.2$   & $2.7364400$ & —          & —\\
+$0.1$   & $2.7228146$ & $2.7182728$ & —\\
+$0.05$  & $2.7194146$ & $2.7182813$ & $2.71828183$\\
+$0.025$ & $2.7185650$ & $2.7182818$ & $2.71828183$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c}
+columna & error final\\\hline
+$D(h)$ ($O(h^2)$) & $2.8{\times}10^{-4}$\\
+ext.\ $O(h^4)$ & $3.5{\times}10^{-8}$\\
+ext.\ $O(h^6)$ & $8{\times}10^{-12}$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Cada columna nueva cancela el siguiente término par y baja el error $\sim10^{4}$ veces (exacto $e=2.7182818285$).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo 4/4 ----
+\begin{frame}{Ejemplo (4/4): error total vs.\ $h$ y paso óptimo}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Centrada $D(h)$, $f=e^x$ en $1$ (paso 4)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|l}
+$h$ & error total & régimen\\\hline
+$10^{-1}$ & $4.5{\times}10^{-3}$ & truncamiento\\
+$10^{-3}$ & $4.5{\times}10^{-7}$ & truncamiento\\
+$10^{-5}$ & $5.9{\times}10^{-11}$ & \textbf{óptimo} $h^*$\\
+$10^{-6}$ & $1.6{\times}10^{-10}$ & redondeo\\
+$10^{-8}$ & $6.6{\times}10^{-9}$ & redondeo\\
+$10^{-10}$ & $6.7{\times}10^{-7}$ & redondeo\\
+$10^{-12}$ & $2.1{\times}10^{-4}$ & catastrófico\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize De $10^{-1}$ a $10^{-5}$ el error baja $\propto h^2$ (cada $\times\tfrac1{10}$ en $h$ lo divide por $100$); pasado $h^*$ sube $\propto 1/h$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Lectura de la curva en ``V''}{\faSuperscript}
+{\footnotesize El error total mínimo se alcanza en $h^*\approx10^{-5}\sim u^{1/3}$, con $E(h^*)\sim10^{-11}\sim u^{2/3}$: coincide con la teoría de la centrada.\\[0.8mm]
+Reducir $h$ por debajo de $h^*$ es \emph{contraproducente}: la resta $f(x{+}h)-f(x{-}h)$ pierde cifras significativas y el ruido $\sim u/h$ domina.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Conclusión:} centrada + Richardson en $h$ moderado ($\sim10^{-2}$) es la mejor estrategia; perseguir $h\to0$ arruina el resultado. Es la firma del mal condicionamiento de la diferenciación.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faRulerCombined};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 5 \textperiodcentered\ Diferenciación Numérica};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

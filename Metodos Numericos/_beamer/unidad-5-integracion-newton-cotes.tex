@@ -1,0 +1,721 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 5
+%  Integración Numérica de Newton-Cotes
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Dif. e Int. · Newton--Cotes}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.4cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{17}{17}\selectfont $\displaystyle\int_a^b f\approx\sum_i w_i f(x_i)$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.7cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $\tfrac{h}{2}(f_0+f_1)-\tfrac{h^3}{12}f''(\xi)$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.7cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\tfrac{h}{3}(f_0+4f_1+f_2)$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faChartArea};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Integración\\ Newton--Cotes};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Trapecio\ \textperiodcentered\ Simpson\ \textperiodcentered\ Compuestas};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 5};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Idea de Newton-Cotes}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Para aproximar $\int_a^b f\,dx$ sin primitiva, se \emph{sustituye} $f$ por su \textbf{polinomio interpolante} en nodos \textbf{equiespaciados} $x_i=a+ih$, $h=\tfrac{b-a}{n}$, y se integra ese polinomio. Como la integración es lineal, resulta una \emph{suma ponderada} $\sum_i w_i f(x_i)$ con \textbf{pesos} $w_i=\int_a^b L_i(x)\,dx$ fijos (independientes de $f$). Cada grado da una regla: $n{=}1$ \textbf{trapecio}, $n{=}2$ \textbf{Simpson $1/3$}, $n{=}3$ \textbf{Simpson $3/8$}. El error se liga a una derivada de $f$; para grado alto los pesos se vuelven \emph{negativos} e inestables, así que la práctica usa las versiones \textbf{compuestas} de grado bajo.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Integrar el interpolante}{\faCogs}
+$\displaystyle\int_a^b f\approx\int_a^b p_n=\sum_i w_i f(x_i)$. Los pesos se calculan \emph{una vez}: dependen solo de los nodos.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Simple vs.\ compuesto}{\faCogs}
+No subir el grado (inestable): mejor \emph{subdividir} $[a,b]$ y repetir una regla de grado bajo con pesos siempre positivos.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura de la exposición}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Formulación general: pesos $w_i=\int L_i$, propiedades\\[0.6mm]
+2.\; Reglas cerradas: trapecio, Simpson $1/3$ y $3/8$, error
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Métodos compuestos: trapecio $O(h^2)$, Simpson $O(h^4)$\\[0.6mm]
+4.\; Ejemplo resuelto paso a paso: $\int_1^2\frac{dx}{x}=\ln 2$
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Hilo conductor: de la \textbf{fórmula general} $\sum_i w_i f(x_i)$ a las \textbf{reglas concretas} con su error $\propto f^{(k)}$, y de ahí a las \textbf{compuestas} de uso real. El bloque final resuelve una integral con valor exacto conocido y \emph{compara} trapecio y Simpson (simples y compuestos) frente a $\ln 2$, evidenciando los órdenes $O(h^2)$ y $O(h^4)$.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Formulación General}{Pesos $w_i=\int L_i$ por integración del interpolante de Lagrange y sus propiedades}{\faSuperscript}
+
+% ---- Formulación general + pesos ----
+\begin{frame}{Formulación general: pesos de Newton-Cotes}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Deducción}{\faSuperscript}
+{\footnotesize Se interpola $f$ por $p_n$ en $x_i=a+ih$ y se integra $p_n$:\\[0.5mm]
+$\displaystyle\int_a^b f\,dx\approx\int_a^b\!\!\sum_i f(x_i)L_i(x)\,dx=\sum_{i=0}^n w_i f(x_i)$,\\[0.9mm]
+con pesos $w_i=\displaystyle\int_a^b L_i(x)\,dx$.\\[1.0mm]
+El error es la integral del error de interpolación:\\[0.3mm]
+$\displaystyle\int_a^b\frac{f^{(n+1)}(\xi_x)}{(n+1)!}\prod_i(x-x_i)\,dx$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Simpson $1/3$ en $[0,2]$ ($n{=}2$, $h{=}1$), $L_1=-x(x-2)$:\\[0.4mm]
+$w_1=\int_0^2(-x^2{+}2x)\,dx=[-\tfrac{x^3}{3}{+}x^2]_0^2=\tfrac43=\tfrac h3\cdot4$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Reglas básicas y pesos ($h=(b-a)/n$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|l|c}
+$n$ & Fórmula & grado\\\hline
+$1$ & $\tfrac{h}{2}(f_0+f_1)$ & $1$\\
+$2$ & $\tfrac{h}{3}(f_0+4f_1+f_2)$ & $3$\\
+$3$ & $\tfrac{3h}{8}(f_0+3f_1+3f_2+f_3)$ & $3$\\
+$4$ & $\tfrac{2h}{45}(7f_0{+}32f_1{+}12f_2{+}32f_3{+}7f_4)$ & $5$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize \textbf{Propiedades:} $\sum_i w_i=b-a$ (consistencia), $w_i=w_{n-i}$ (simetría); grado $=n$ si $n$ impar, $n+1$ si $n$ par ($n$ par ``gana'' un grado por simetría).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Reglas Cerradas}{Trapecio, Simpson $1/3$ y $3/8$: fórmulas, error $\propto f^{(k)}$ y grado de exactitud}{\faChartArea}
+
+% ---- Trapecio simple + error ----
+\begin{frame}{Regla del trapecio y su error}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmula y error}{\faSuperscript}
+{\footnotesize Integra el interpolante \emph{lineal}; con $h=b-a$:\\[0.5mm]
+$\displaystyle\int_a^b f=\frac{h}{2}(f_0+f_1)-\frac{h^3}{12}f''(\xi)$.\\[1.0mm]
+Error $O(h^3)$ por panel, $\propto f''$: nulo para lineales.\\[0.6mm]
+Origen: integrar el error de interpolación $\tfrac{f''(\xi_x)}{2}(x-a)(x-b)$, con $(x-a)(x-b)\le0$ constante en signo $\Rightarrow$ TVM da $-\tfrac{h^3}{12}f''(\xi)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Signo:} $f''>0$ (convexa) $\Rightarrow$ la cuerda va por \emph{encima} de la curva: el trapecio \emph{sobrestima}.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx=e-1\approx1.71828$}{\faCalculator}
+{\footnotesize Trapecio simple ($h=1$):\\[0.5mm]
+$\tfrac12(e^0+e^1)=\tfrac12(1+2.71828)=1.85914$.\\[0.8mm]
+Error $=0.14086\ (1.4{\times}10^{-1})$.\\[0.6mm]
+Cota $\tfrac{1}{12}\max|f''|=\tfrac{e}{12}\approx0.226$: consistente.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Grado de exactitud $1$: poco precisa para integrandos curvados. Requiere \emph{subdivisión} (compuesta) para precisión razonable.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Simpson 1/3 + error ----
+\begin{frame}{Simpson $1/3$: el ``bonus de paridad''}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmula y error}{\faSuperscript}
+{\footnotesize Integra la \emph{parábola} por $3$ nodos; con $h=\tfrac{b-a}{2}$:\\[0.5mm]
+$\displaystyle\int_a^b f=\frac{h}{3}(f_0+4f_1+f_2)-\frac{h^5}{90}f^{(4)}(\xi)$.\\[1.0mm]
+Error $O(h^5)$ por panel, $\propto f^{(4)}$.\\[0.6mm]
+\textbf{Grado de exactitud $3$}, no $2$: por simetría de los nodos, el término de error de orden $h^4$ se \emph{cancela}, así que integra \emph{cúbicas} exactamente pese a usar una parábola.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Exige número \emph{par} de subintervalos (nodos impares); si es impar, se cierra con un panel de Simpson $3/8$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx$, Simpson $1/3$ ($h=0.5$)}{\faCalculator}
+{\footnotesize $\tfrac{0.5}{3}\big(e^0+4e^{0.5}+e^1\big)$\\[0.4mm]
+$=\tfrac{0.5}{3}(1+6.59489+2.71828)=1.71886$.\\[0.8mm]
+Error $=5.8{\times}10^{-4}$, frente a $1.4{\times}10^{-1}$ del trapecio: $\sim$\textbf{240 veces} menor con \emph{un} punto más.\\[0.6mm]
+Cota $\tfrac{h^5}{90}\max|f^{(4)}|=\tfrac{(0.5)^5 e}{90}\approx9.4{\times}10^{-4}$: consistente.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Orden $h^5$ por el precio de $3$ evaluaciones: la razón de que Simpson sea la regla más usada.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Simpson 3/8 + inestabilidad grado alto ----
+\begin{frame}{Simpson $3/8$ y el muro del grado alto}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Simpson $3/8$}{\faSuperscript}
+{\footnotesize Integra la \emph{cúbica} por $4$ nodos; con $h=\tfrac{b-a}{3}$:\\[0.5mm]
+$\displaystyle\int_a^b f=\frac{3h}{8}(f_0+3f_1+3f_2+f_3)-\frac{3h^5}{80}f^{(4)}(\xi)$.\\[1.0mm]
+Mismo grado $3$ que $1/3$, constante algo mayor.\\[0.6mm]
+\textbf{Uso real:} \emph{completar} integraciones compuestas con número de paneles impar (los $3$ últimos), preservando $O(h^4)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $n{=}5$ (impar): $\tfrac{h}{3}(f_0{+}4f_1{+}f_2)+\tfrac{3h}{8}(f_2{+}3f_3{+}3f_4{+}f_5)$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Pesos normalizados por grado}{\faTable}
+\centering
+{\scriptsize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{3.5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|l|c}
+$n$ & Pesos (factor común) & $w_i<0$?\\\hline
+$2$ & $(1,4,1)$ & no\\
+$4$ & $(7,32,12,32,7)$ & no\\
+$7$ & $(751,3577,\dots,3577,751)$ & no\\
+$8$ & $(989,5888,\mathbf{-928},10496,\dots)$ & \textbf{sí}\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Desde $n{\ge}8$ aparecen pesos \emph{negativos}: $\sum_i|w_i|\to\infty$ (mientras $\sum_i w_i=b-a$ fijo), amplificando el redondeo $E\lesssim u\sum|w_i|\max|f|$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Es el \emph{fenómeno de Runge} en cuadratura. Solución: \textbf{no} subir el grado, sino \emph{componer} reglas de grado bajo.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Recuadro resumen de fórmulas ----
+\begin{frame}{Formulario: reglas cerradas y su error}
+\vspace{1mm}
+\begin{cardgear}{Reglas simples ($h$ según la regla) y error de truncamiento}{\faTable}
+\centering
+{\small\renewcommand{\arraystretch}{1.55}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c|c|c}
+Regla & $h$ & Fórmula & Error & Grado\\\hline
+Trapecio & $b-a$ & $\dfrac{h}{2}(f_0+f_1)$ & $-\dfrac{h^3}{12}f''(\xi)$ & $1$\\
+Simpson $1/3$ & $\dfrac{b-a}{2}$ & $\dfrac{h}{3}(f_0+4f_1+f_2)$ & $-\dfrac{h^5}{90}f^{(4)}(\xi)$ & $3$\\
+Simpson $3/8$ & $\dfrac{b-a}{3}$ & $\dfrac{3h}{8}(f_0+3f_1+3f_2+f_3)$ & $-\dfrac{3h^5}{80}f^{(4)}(\xi)$ & $3$\\
+Boole & $\dfrac{b-a}{4}$ & $\dfrac{2h}{45}(7f_0{+}32f_1{+}12f_2{+}32f_3{+}7f_4)$ & $-\dfrac{8h^7}{945}f^{(6)}(\xi)$ & $5$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize A más grado, más orden de error y más derivadas exigidas a $f$; pero desde $n{\ge}8$ los pesos negativos rompen la estabilidad. En la práctica se emplean estas reglas de grado bajo en versión \textbf{compuesta}.}
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Métodos Compuestos}{Subdividir y repetir: trapecio compuesto $O(h^2)$ y Simpson compuesto $O(h^4)$}{\faChartArea}
+
+% ---- Trapecio compuesto ----
+\begin{frame}{Trapecio compuesto: convergencia $O(h^2)$}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Fórmula y error global}{\faSuperscript}
+{\footnotesize Divide $[a,b]$ en $n$ paneles, $h=\tfrac{b-a}{n}$:\\[0.5mm]
+$\displaystyle T_n=\frac{h}{2}\Big(f_0+2\!\sum_{i=1}^{n-1}\!f_i+f_n\Big)$.\\[1.0mm]
+Error global (sumando los $n$ paneles):\\[0.3mm]
+$\displaystyle\int_a^b f-T_n=-\frac{(b-a)h^2}{12}f''(\xi)=O(h^2)$.\\[0.8mm]
+Se pierde una potencia de $h$ al sumar $n=\tfrac{b-a}{h}$ paneles: de $O(h^3)$ por panel a $O(h^2)$ global.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Nodos internos con peso doble ($2$), extremos peso simple ($1$). Refinamiento incremental: $T_{2n}=\tfrac12 T_n+h_{2n}\!\!\sum_{\text{nuevos}}\!\!f$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx=e-1\approx1.718282$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|cc}
+$n$ & $h$ & $T_n$ & error & fac.\\\hline
+$1$ & $1$ & $1.859141$ & $1.4{\times}10^{-1}$ & —\\
+$2$ & $0.5$ & $1.753931$ & $3.6{\times}10^{-2}$ & $3.9$\\
+$4$ & $0.25$ & $1.727222$ & $8.9{\times}10^{-3}$ & $4.0$\\
+$8$ & $0.125$ & $1.720519$ & $2.2{\times}10^{-3}$ & $4.0$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Halvar $h$ divide el error por $\approx4=2^2$: confirma $O(h^2)$. La expansión de Euler-Maclaurin (potencias pares) lo hace base de Romberg.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Simpson compuesto ----
+\begin{frame}{Simpson compuesto: convergencia $O(h^4)$}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Fórmula y error global}{\faSuperscript}
+{\footnotesize $n$ \emph{par}, $h=\tfrac{b-a}{n}$; patrón de pesos $1,4,2,4,\dots,4,1$:\\[0.5mm]
+$\displaystyle S_n=\frac{h}{3}\Big(f_0+4\!\!\sum_{i\ \text{impar}}\!\!f_i+2\!\!\sum_{i\ \text{par}}\!\!f_i+f_n\Big)$.\\[1.0mm]
+Error global:\\[0.2mm]
+$\displaystyle\int_a^b f-S_n=-\frac{(b-a)h^4}{180}f^{(4)}(\xi)=O(h^4)$.\\[0.8mm]
+Dos órdenes mejor que el trapecio con el \emph{mismo} número de evaluaciones $n+1$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Impares (centros) pesan $4$; pares internos (fronteras) pesan $2$; extremos $1$. Es la segunda columna de Romberg.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx=e-1\approx1.7182818$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|cc}
+$n$ & $h$ & $S_n$ & error & fac.\\\hline
+$2$ & $0.5$ & $1.7188612$ & $5.8{\times}10^{-4}$ & —\\
+$4$ & $0.25$ & $1.7183188$ & $3.7{\times}10^{-5}$ & $15.7$\\
+$8$ & $0.125$ & $1.7182841$ & $2.3{\times}10^{-6}$ & $16.0$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Halvar $h$ divide el error por $\approx16=2^4$: confirma $O(h^4)$. Con $n{=}8$ ya hay $\sim6$ dígitos correctos, frente a $\sim3$ del trapecio.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Requiere $n$ par; si es impar se cierra con Simpson $3/8$ en los $3$ últimos paneles.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 4 — EJEMPLO
+% ############################################################
+\portadaseccion{4}{Ejemplo Resuelto}{$\int_1^2\frac{dx}{x}=\ln 2$: trapecio y Simpson, simples y compuestos, frente al exacto}{\faCalculator}
+
+% ---- Ejemplo: planteamiento + Paso 1 ----
+\begin{frame}{Ejemplo — planteamiento y Paso 1 (trapecio simple)}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Problema}{\faLightbulb}
+{\footnotesize Calcular $\displaystyle\int_1^2\frac{dx}{x}=\ln 2$ por Newton-Cotes.\\[0.8mm]
+\textbf{Valor exacto:} $\ln 2=0.6931472$.\\[0.8mm]
+$f(x)=\dfrac1x$, con\\[0.2mm]
+$f''(x)=\dfrac{2}{x^3}$, $\ f^{(4)}(x)=\dfrac{24}{x^5}$;\\[0.4mm]
+en $[1,2]$ el máximo está en $x{=}1$: $|f''|\le2$, $|f^{(4)}|\le24$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Plan: (1) trapecio simple, (2) Simpson $1/3$ simple, (3) trapecio compuesto $n{=}4$, (4) Simpson compuesto $n{=}4$, (5) comparación y órdenes.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{Paso 1 — Trapecio simple ($n{=}1$, $h{=}1$)}{\faCalculator}
+{\footnotesize Nodos $x_0{=}1$, $x_1{=}2$: $f_0{=}1$, $f_1{=}0.5$.\\[0.6mm]
+$\displaystyle T_1=\frac{h}{2}(f_0+f_1)=\frac{1}{2}(1+0.5)=\mathbf{0.750000}$.\\[0.9mm]
+Error $=|0.750000-0.693147|=0.056853$\\[0.2mm]
+\hspace*{9mm}$=5.69{\times}10^{-2}$.\\[0.8mm]
+Cota: $\left|\dfrac{h^3}{12}f''(\xi)\right|\le\dfrac{1}{12}\cdot2=0.1667$: consistente.\\[0.6mm]
+$T_1>\ln2$: como $f''>0$ (convexa), el trapecio \emph{sobrestima}.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: Paso 2 ----
+\begin{frame}{Ejemplo — Paso 2 (Simpson $1/3$ simple)}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Simpson $1/3$ ($n{=}2$, $h{=}0.5$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$i$ & $x_i$ & $f_i=1/x_i$ & $c_i$ & $c_i f_i$\\\hline
+$0$ & $1.0$ & $1.000000$ & $1$ & $1.000000$\\
+$1$ & $1.5$ & $0.666667$ & $4$ & $2.666667$\\
+$2$ & $2.0$ & $0.500000$ & $1$ & $0.500000$\\\hline
+\multicolumn{4}{c|}{$\sum c_i f_i$} & $4.166667$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Pesos $c_i=(1,4,1)$; el factor delante es $\tfrac{h}{3}=\tfrac{0.5}{3}=0.166667$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Resultado}{\faCalculator}
+{\footnotesize $\displaystyle S_2=\frac{h}{3}\sum c_i f_i=\frac{0.5}{3}\,(4.166667)$\\[0.5mm]
+\hspace*{6mm}$=0.166667\times4.166667=\mathbf{0.694444}$.\\[0.9mm]
+Error $=|0.694444-0.693147|=0.001297$\\[0.2mm]
+\hspace*{9mm}$=1.30{\times}10^{-3}$.\\[0.9mm]
+Cota: $\dfrac{h^5}{90}\max|f^{(4)}|=\dfrac{(0.5)^5}{90}\cdot24\approx8.3{\times}10^{-3}$: consistente.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Con \emph{un} nodo más que el trapecio, el error cae de $5.69{\times}10^{-2}$ a $1.30{\times}10^{-3}$: $\sim$\textbf{44 veces} menor.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: Paso 3 ----
+\begin{frame}{Ejemplo — Paso 3 (trapecio compuesto, $n{=}4$)}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Nodos y pesos ($h{=}0.25$, pesos $1,2,2,2,1$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$i$ & $x_i$ & $f_i=1/x_i$ & $c_i$ & $c_i f_i$\\\hline
+$0$ & $1.00$ & $1.000000$ & $1$ & $1.000000$\\
+$1$ & $1.25$ & $0.800000$ & $2$ & $1.600000$\\
+$2$ & $1.50$ & $0.666667$ & $2$ & $1.333333$\\
+$3$ & $1.75$ & $0.571429$ & $2$ & $1.142857$\\
+$4$ & $2.00$ & $0.500000$ & $1$ & $0.500000$\\\hline
+\multicolumn{4}{c|}{$\sum c_i f_i$} & $5.576190$\\
+\end{tabular}}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Resultado}{\faCalculator}
+{\footnotesize $\displaystyle T_4=\frac{h}{2}\sum c_i f_i=\frac{0.25}{2}\,(5.576190)$\\[0.5mm]
+\hspace*{6mm}$=0.125\times5.576190=\mathbf{0.697024}$.\\[0.9mm]
+Error $=|0.697024-0.693147|$\\[0.2mm]
+\hspace*{9mm}$=0.003877=3.88{\times}10^{-3}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $\tfrac{h}{2}=\tfrac{0.25}{2}=0.125$. Los nodos internos $x_1,x_2,x_3$ pesan $2$ (compartidos por dos paneles); los extremos, $1$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: Paso 4 ----
+\begin{frame}{Ejemplo — Paso 4 (Simpson compuesto, $n{=}4$)}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Nodos y pesos ($h{=}0.25$, patrón $1{-}4{-}2{-}4{-}1$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$i$ & $x_i$ & $f_i=1/x_i$ & $c_i$ & $c_i f_i$\\\hline
+$0$ & $1.00$ & $1.000000$ & $1$ & $1.000000$\\
+$1$ & $1.25$ & $0.800000$ & $4$ & $3.200000$\\
+$2$ & $1.50$ & $0.666667$ & $2$ & $1.333333$\\
+$3$ & $1.75$ & $0.571429$ & $4$ & $2.285714$\\
+$4$ & $2.00$ & $0.500000$ & $1$ & $0.500000$\\\hline
+\multicolumn{4}{c|}{$\sum c_i f_i$} & $8.319048$\\
+\end{tabular}}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Resultado}{\faCalculator}
+{\footnotesize $\displaystyle S_4=\frac{h}{3}\sum c_i f_i=\frac{0.25}{3}\,(8.319048)$\\[0.5mm]
+\hspace*{6mm}$=0.083333\times8.319048=\mathbf{0.693254}$.\\[0.9mm]
+Error $=|0.693254-0.693147|$\\[0.2mm]
+\hspace*{9mm}$=0.000107=1.07{\times}10^{-4}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $\tfrac{h}{3}=\tfrac{0.25}{3}=0.083333$. Nodos impares $x_1,x_3$ (centros) pesan $4$; el par interno $x_2$ pesa $2$; extremos $1$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: Paso 5 comparación ----
+\begin{frame}{Ejemplo — Paso 5: comparación de los cuatro métodos}
+\vspace{1mm}
+\begin{cardgear}{Aproximaciones frente al exacto $\ln 2=0.693147$}{\faTable}
+\centering
+{\small\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{9pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c|c}
+Método & evals & Aproximación & Error\\\hline
+Trapecio simple ($n{=}1$) & $2$ & $0.750000$ & $5.69{\times}10^{-2}$\\
+Simpson $1/3$ ($n{=}2$) & $3$ & $0.694444$ & $1.30{\times}10^{-3}$\\
+Trapecio compuesto ($n{=}4$) & $5$ & $0.697024$ & $3.88{\times}10^{-3}$\\
+Simpson compuesto ($n{=}4$) & $5$ & $0.693254$ & $\mathbf{1.07{\times}10^{-4}}$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize A igualdad de evaluaciones ($5$), \textbf{Simpson compuesto} bate al trapecio compuesto por $\sim$\textbf{36 veces} ($1.07{\times}10^{-4}$ vs.\ $3.88{\times}10^{-3}$): el mayor grado de exactitud rinde.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Ojo: Simpson $1/3$ \emph{simple} ($3$ evals) ya supera al trapecio \emph{compuesto} con $5$ evals. Subir el grado o subdividir mejora; combinarlos (Simpson compuesto) es lo óptimo.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: Paso 5 órdenes ----
+\begin{frame}{Ejemplo — Paso 5: evidencia del orden al refinar}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Trapecio compuesto: $O(h^2)$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|cc}
+$n$ & $h$ & $T_n$ & error & fac.\\\hline
+$1$ & $1$ & $0.750000$ & $5.69{\times}10^{-2}$ & —\\
+$2$ & $0.5$ & $0.708333$ & $1.52{\times}10^{-2}$ & $3.7$\\
+$4$ & $0.25$ & $0.697024$ & $3.88{\times}10^{-3}$ & $3.9$\\
+$8$ & $0.125$ & $0.694122$ & $9.75{\times}10^{-4}$ & $4.0$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Factor $\to4=2^2$: confirma $O(h^2)$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Simpson compuesto: $O(h^4)$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|cc}
+$n$ & $h$ & $S_n$ & error & fac.\\\hline
+$2$ & $0.5$ & $0.694444$ & $1.30{\times}10^{-3}$ & —\\
+$4$ & $0.25$ & $0.693254$ & $1.07{\times}10^{-4}$ & $12.2$\\
+$8$ & $0.125$ & $0.693155$ & $7.35{\times}10^{-6}$ & $14.5$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Factor $\to16=2^4$: confirma $O(h^4)$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\begin{cardidea}{Conclusión}{\faLightbulb}
+{\footnotesize Al \emph{halvar} $h$, el error del trapecio se divide por $\approx4$ y el de Simpson por $\approx16$: dos y cuatro potencias de $h$. Con el mismo número de nodos, Simpson gana \emph{dos órdenes} de precisión. Por eso las reglas compuestas de grado bajo —estables, con pesos positivos— son la herramienta estándar de la integración numérica.}
+\end{cardidea}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faChartArea};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Integración de Newton-Cotes};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

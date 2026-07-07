@@ -1,0 +1,647 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 5
+%  Cuadratura Gaussiana (Gauss-Legendre)
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Dif.\ e Int.\ \textperiodcentered\ Cuadratura Gaussiana}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.4cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{17}{17}\selectfont $\displaystyle\int_{-1}^1 f\,dt\approx\sum_i w_i f(t_i)$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.7cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $t_i=\pm\tfrac{1}{\sqrt3},\ w_i=1$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.7cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont grado $=2n-1$};
+  % --- traza decorativa ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{20.5}{25}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Cuadratura Gaussiana};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-3.15cm]current page.north west)
+      {\normalsize\itshape Legendre\ \textperiodcentered\ Nodos óptimos\ \textperiodcentered\ Grado $2n-1$};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 5};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN / IDEA
+% ============================================================
+\begin{frame}{La idea de Gauss}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+En Newton-Cotes los nodos están \emph{fijos} (equiespaciados) y solo se ajustan los $n$ pesos: grado de exactitud $\sim n$. La \textbf{cuadratura gaussiana} libera también los nodos, disponiendo de $2n$ parámetros ($n$ nodos $+$ $n$ pesos) para exigir exactitud en $2n$ monomios: alcanza grado \textbf{$2n-1$}, el doble por evaluación. Los nodos óptimos resultan ser los \emph{ceros de los polinomios ortogonales de Legendre} en $[-1,1]$, y los pesos salen siempre \emph{positivos}, garantizando estabilidad. En $[a,b]$ se usa un cambio de variable afín a $[-1,1]$.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Nodos libres $\Rightarrow$ el doble de grado}{\faCogs}
+$n$ nodos $+$ $n$ pesos $=2n$ grados de libertad. Con nodos $=$ ceros de $P_n$ y pesos $w_i=\int L_i$, la regla es exacta hasta grado $2n-1$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Pesos positivos, estable}{\faCogs}
+$w_i=\dfrac{2}{(1-t_i^2)[P_n'(t_i)]^2}>0$, con $\sum_i w_i=2$. Sin los pesos negativos que desestabilizan Newton-Cotes de grado alto.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Hoja de ruta}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Fundamentos: polinomios de Legendre y ortogonalidad\\[0.6mm]
+2.\; Nodos, pesos y grado de exactitud $2n-1$
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Cambio de variable a $[a,b]$ y eficiencia vs Newton-Cotes\\[0.6mm]
+4.\; Ejemplo resuelto paso a paso: $\int_1^3\ln x\,dx$
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+La teoría se apoya en una única idea —\emph{dividir por $P_n$ y anular medio polinomio por ortogonalidad}— y culmina en un ejemplo numérico completo: cambio de variable, Gauss de 2 y 3 nodos, comparación con trapecio/Simpson a igual número de evaluaciones y verificación directa del grado $2n-1$.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Fundamentos de Gauss-Legendre}{Polinomios ortogonales de Legendre, sus ceros y por qué son los nodos óptimos}{\faSuperscript}
+
+% ---- Legendre: tabla + ortogonalidad ----
+\begin{frame}{Polinomios de Legendre y ortogonalidad}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Familia ortogonal en $[-1,1]$}{\faSuperscript}
+{\footnotesize Los $\{P_n\}$ son ortogonales con peso $w(x)=1$:\\[0.4mm]
+$\displaystyle\int_{-1}^1 P_m P_n\,dx=\frac{2}{2n+1}\,\delta_{mn}.$\\[1.0mm]
+Recurrencia de tres términos:\\[0.2mm]
+$(n{+}1)P_{n+1}=(2n{+}1)\,x\,P_n-n\,P_{n-1}.$\\[0.8mm]
+Los \textbf{nodos} de Gauss-Legendre de orden $n$ son los $n$ \textbf{ceros de $P_n$}.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize $\displaystyle\int_{-1}^1 P_1P_2\,dx=\tfrac12\!\int_{-1}^1(3x^3{-}x)\,dx=0$ (integrando impar): $P_1\perp P_2$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{Primeros $P_n$ (con $P_n(1)=1$) y sus ceros}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.38}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+$n$ & $P_n(x)$ & ceros (nodos)\\\hline
+$0$ & $1$ & —\\
+$1$ & $x$ & $0$\\
+$2$ & $\tfrac12(3x^2-1)$ & $\pm1/\sqrt3\approx\pm0.5774$\\
+$3$ & $\tfrac12(5x^3-3x)$ & $0,\ \pm\sqrt{3/5}\approx\pm0.7746$\\
+$4$ & $\tfrac18(35x^4{-}30x^2{+}3)$ & $\pm0.3400,\ \pm0.8611$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $P_n$ tiene $n$ ceros \emph{reales, simples e interiores} a $(-1,1)$; son simétricos respecto a $0$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Por qué los ceros son óptimos ----
+\begin{frame}{Por qué los ceros ortogonales son óptimos}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Dividir por $P_n$}{\faKey}
+{\footnotesize Sea $p$ de grado $\le 2n-1$. Dividiendo por $P_n$ (grado $n$):\\[0.4mm]
+$p=q\,P_n+r$, con $\deg q,\ \deg r\le n-1$.\\[0.8mm]
+\textbf{Integral:} $\displaystyle\int_{-1}^1 p=\underbrace{\int_{-1}^1 qP_n}_{=0}+\int_{-1}^1 r=\int_{-1}^1 r$,\\[0.4mm]
+por ortogonalidad ($\deg q<n$).\\[0.8mm]
+\textbf{Cuadratura:} en los nodos $P_n(t_i)=0\Rightarrow p(t_i)=r(t_i)$, y la regla es exacta para $r$ (grado $\le n{-}1$). Ambas dan $\int r$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardgear}{Propiedades que lo sostienen}{\faListOl}
+{\footnotesize
+1.\ Ortogonalidad a grados menores:\\[0.2mm]
+$\displaystyle\int_{-1}^1 P_n(x)\,q(x)\,dx=0$ si $\deg q<n$.\\[0.6mm]
+2.\ Ceros reales, simples, en $(-1,1)$.\\[0.6mm]
+3.\ Entrelazado: los ceros de $P_n$ y $P_{n+1}$ se alternan.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Ceros en $(-1,1)$:} si $P_n$ cambiara de signo en $k<n$ puntos $r_j$, entonces $q=\prod(x-r_j)$ tiene $\deg q<n$ y $P_nq$ no cambia de signo, luego $\int P_nq\neq0$ — contradice la propiedad 1.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Nodos, pesos y grado $2n-1$}{Cálculo de los pesos, positividad, la tabla estándar y el teorema de exactitud}{\faBalanceScale}
+
+% ---- Nodos y pesos + tabla ----
+\begin{frame}{Determinación de nodos y pesos}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Fórmula del peso}{\faSuperscript}
+{\footnotesize Fijados los nodos $t_i$ (ceros de $P_n$), los pesos se toman de $w_i=\int_{-1}^1 L_i$, exacto para grado $\le n-1$. En forma cerrada:\\[0.6mm]
+$w_i=\dfrac{2}{(1-t_i^2)\,[P_n'(t_i)]^2}>0,\quad \sum_{i=1}^n w_i=2.$\\[0.9mm]
+\textbf{Positividad:} aplicar la regla —exacta hasta $2n-1$— a $L_i^2$ (grado $2n-2$):\\[0.2mm]
+$0<\int_{-1}^1 L_i^2=\sum_j w_j\,\delta_{ij}=w_i.$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize Peso $n{=}2$, $t_1{=}1/\sqrt3$, con $P_2'=3x$:\\[0.2mm]
+$w_1=\dfrac{2}{(1-\tfrac13)\,(3/\sqrt3)^2}=\dfrac{2}{(2/3)\cdot3}=1.$}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Nodos $t_i$ y pesos $w_i$ en $[-1,1]$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.32}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$n$ & nodos $t_i$ & pesos $w_i$ & grado\\\hline
+$1$ & $0$ & $2$ & $1$\\
+$2$ & $\pm0.577350$ & $1,\ 1$ & $3$\\
+$3$ & $0,\ \pm0.774597$ & $0.888889,\ 0.555556$ & $5$\\
+$4$ & $\pm0.339981$ & $0.652145$ & $7$\\
+   & $\pm0.861136$ & $0.347855$ & \\
+$5$ & $0,\ \pm0.538469$ & $0.568889,\ 0.478629$ & $9$\\
+   & $\pm0.906180$ & $0.236927$ & \\
+\end{tabular}}\\[1.0mm]
+{\footnotesize Nodos y pesos simétricos respecto a $0$. Se tabulan o se calculan por \textbf{Golub-Welsch}: autovalores de una matriz tridiagonal (Jacobi).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Grado 2n-1: teorema y optimalidad ----
+\begin{frame}{Grado de exactitud $2n-1$: teorema y cota}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Teorema y demostración}{\faSuperscript}
+{\footnotesize Con $n$ nodos (ceros de $P_n$) y $w_i=\int L_i$:\\[0.2mm]
+$\displaystyle\int_{-1}^1 p=\sum_{i=1}^n w_i\,p(t_i)\quad\forall\,\deg p\le 2n-1.$\\[0.9mm]
+Prueba: $p=qP_n+r$; $\int qP_n=0$ (ortogonalidad) y $p(t_i)=r(t_i)$ (pues $P_n(t_i)=0$); la regla es exacta para $r$. $\blacksquare$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Optimalidad:} $p(x)=\prod_i(x-t_i)^2$ tiene grado $2n$, es $\ge0$ con $p(t_i)=0$; la regla da $0$ pero $\int p>0$. Ninguna regla de $n$ nodos supera $2n-1$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Error de Gauss-Legendre ($f\in C^{2n}$)}{\faSuperscript}
+{\footnotesize $\displaystyle\int_{-1}^1 f-\sum_i w_i f(t_i)=\frac{2^{2n+1}(n!)^4}{(2n+1)[(2n)!]^3}\,f^{(2n)}(\xi).$\\[0.6mm]
+Depende de una derivada de orden \emph{altísimo} $f^{(2n)}$: de ahí la convergencia rapidísima (espectral para $f$ analítica).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Newton-Cotes vs Gauss}{\faBalanceScale}
+{\footnotesize
+Nodos fijos (equiespaciados): grado $\sim n$, pesos que pueden ser $<0$.\\[0.3mm]
+Nodos libres (ceros de $P_n$): grado $2n-1$, pesos $>0$ — el \textbf{doble} de grado por evaluación.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3
+% ############################################################
+\portadaseccion{3}{Intervalo general y eficiencia}{Cambio de variable afín a $[-1,1]$, Gauss compuesto y comparación con Newton-Cotes}{\faChartArea}
+
+% ---- Cambio de variable ----
+\begin{frame}{Cambio de variable $[a,b]\to[-1,1]$}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Transformación afín}{\faSuperscript}
+{\footnotesize Las tablas están en $[-1,1]$. Para $[a,b]$:\\[0.3mm]
+$x=\dfrac{b-a}{2}\,t+\dfrac{a+b}{2},\quad dx=\dfrac{b-a}{2}\,dt.$\\[1.0mm]
+Cuadratura en $[a,b]$:\\[0.2mm]
+$\displaystyle\int_a^b f\,dx\approx\frac{b-a}{2}\sum_{i=1}^n w_i\,f\!\Big(\tfrac{b-a}{2}t_i+\tfrac{a+b}{2}\Big).$\\[0.9mm]
+El jacobiano $\tfrac{b-a}{2}$ multiplica pesos y diferencial; el grado de exactitud se conserva.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Gauss compuesto}{\faCogs}
+{\footnotesize Para intervalos grandes o $f$ poco suave, subdividir en paneles $[c_k,c_{k+1}]$ y aplicar Gauss en cada uno:\\[0.3mm]
+$\displaystyle\int_a^b f\approx\sum_k\frac{c_{k+1}-c_k}{2}\sum_i w_i f(\cdots).$\\[0.3mm]
+Permite adaptividad (más paneles donde $f$ varía rápido).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Dominios infinitos:} en vez de truncar se usan otras familias — Gauss-\textbf{Laguerre} (peso $e^{-x}$, $[0,\infty)$) y Gauss-\textbf{Hermite} (peso $e^{-x^2}$, $\mathbb{R}$).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Eficiencia vs Newton-Cotes ----
+\begin{frame}{Eficiencia frente a Newton-Cotes}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Grado exacto por nº de evaluaciones}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.34}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+evals & Newton-Cotes & Gauss\\\hline
+$2$ & $1$ (trapecio) & $3$\\
+$3$ & $3$ (Simpson) & $5$\\
+$4$ & $3$ (Simpson $3/8$) & $7$\\
+$5$ & $5$ (Boole) & $9$\\
+$n$ & $\sim n$ & $2n-1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize A igualdad de evaluaciones, Gauss integra exactamente polinomios del \textbf{doble} de grado, con pesos siempre positivos.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{$\int_0^1 e^x\,dx$: error por evaluaciones}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{8pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+evals & Simpson comp. & Gauss-Legendre\\\hline
+$2$ & — & $4.0{\times}10^{-5}$\\
+$3$ & $5.8{\times}10^{-4}$ & $2.9{\times}10^{-7}$\\
+$5$ & $3.7{\times}10^{-5}$ & $5{\times}10^{-12}$\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize Con 5 evaluaciones, Gauss da $\sim11$ dígitos frente a $\sim4$ de Simpson.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Precio:} no es anidada (cambiar $n$ recalcula todos los nodos) ni sirve para datos tabulados equiespaciados. \textbf{Gauss-Kronrod} añade nodos para estimar el error sin recalcular (motor de \texttt{scipy.integrate.quad}).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 4 — EJEMPLO RESUELTO
+% ############################################################
+\portadaseccion{4}{Ejemplo resuelto: $\int_1^3\ln x\,dx$}{Cambio de variable, Gauss de 2 y 3 nodos, comparación y verificación del grado}{\faCalculator}
+
+% ---- Ejemplo 1/4: planteamiento y cambio de variable ----
+\begin{frame}{Ejemplo (1/4): planteamiento y cambio de variable}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Integral y valor exacto}{\faBullseye}
+{\footnotesize Calculamos, por partes,\\[0.3mm]
+$\displaystyle\int_1^3\ln x\,dx=\big[x\ln x-x\big]_1^3$\\[0.4mm]
+$=(3\ln3-3)-(0-1)=3\ln3-2.$\\[0.8mm]
+Con $\ln3=1.0986123$:\\[0.2mm]
+$\boxed{\ \int_1^3\ln x\,dx=1.2958369\ }$ (referencia).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $f(x)=\ln x$ es suave en $[1,3]$: terreno ideal para Gauss, que evalúa en el \emph{interior} (nunca en los extremos).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Paso a $[-1,1]$}{\faRandom}
+{\footnotesize Con $a=1,\ b=3$:\\[0.3mm]
+$\dfrac{a+b}{2}=2,\qquad \dfrac{b-a}{2}=1.$\\[0.7mm]
+Cambio afín:\\[0.2mm]
+$x=2+t,\qquad dx=dt,\qquad t\in[-1,1].$\\[0.9mm]
+La cuadratura queda (jacobiano $=1$):\\[0.2mm]
+$\displaystyle\int_1^3\ln x\,dx=\int_{-1}^1\ln(2+t)\,dt$\\[0.4mm]
+$\displaystyle\qquad\approx\sum_{i=1}^n w_i\,\ln(2+t_i).$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faLightbulb]
+{\footnotesize Aquí el factor $\tfrac{b-a}{2}=1$ simplifica: basta evaluar $\ln$ en los nodos trasladados $x_i=2+t_i$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo 2/4: Gauss 2 nodos ----
+\begin{frame}{Ejemplo (2/4): Gauss-Legendre con 2 nodos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardgear}{Nodos $t_i=\pm1/\sqrt3$, pesos $w_i=1$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{4.5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c|c}
+$i$ & $t_i$ & $x_i{=}2{+}t_i$ & $f(x_i){=}\ln x_i$ & $w_i$ & $w_i f(x_i)$\\\hline
+$1$ & $-0.577350$ & $1.422650$ & $0.352521$ & $1$ & $0.352521$\\
+$2$ & $+0.577350$ & $2.577350$ & $0.946762$ & $1$ & $0.946762$\\\hline
+\multicolumn{5}{c|}{$\displaystyle\sum_i w_i f(x_i)$} & $1.299283$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Resultado}{\faCheckCircle}
+{\footnotesize $\displaystyle\int_1^3\ln x\,dx\approx 1\cdot 1.299283=1.299283.$\\[0.4mm]
+Error $=|1.299283-1.295837|=3.4{\times}10^{-3}$ con \textbf{solo 2 evaluaciones}.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.43\textwidth}
+\begin{cardidea}{Detalle de las evaluaciones}{\faCalculator}
+{\footnotesize $1/\sqrt3=0.577350$.\\[0.5mm]
+$x_1=2-0.577350=1.422650$,\\[0.2mm]
+$\ln(1.422650)=0.352521$.\\[0.6mm]
+$x_2=2+0.577350=2.577350$,\\[0.2mm]
+$\ln(2.577350)=0.946762$.\\[0.6mm]
+Como $w_1=w_2=1$, la suma es directa:\\[0.2mm]
+$0.352521+0.946762=1.299283$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Sin factor jacobiano ($\tfrac{b-a}{2}=1$), la aproximación coincide con la suma ponderada. La regla es exacta hasta grado $3$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo 3/4: Gauss 3 nodos ----
+\begin{frame}{Ejemplo (3/4): Gauss-Legendre con 3 nodos}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardgear}{Nodos $0,\pm\sqrt{3/5}$; pesos $8/9,\ 5/9$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c|c}
+$i$ & $t_i$ & $x_i{=}2{+}t_i$ & $\ln x_i$ & $w_i$ & $w_i f(x_i)$\\\hline
+$1$ & $-0.774597$ & $1.225403$ & $0.203270$ & $5/9$ & $0.112928$\\
+$2$ & $0$ & $2.000000$ & $0.693147$ & $8/9$ & $0.616131$\\
+$3$ & $+0.774597$ & $2.774597$ & $1.020505$ & $5/9$ & $0.566947$\\\hline
+\multicolumn{5}{c|}{$\displaystyle\sum_i w_i f(x_i)$} & $1.296006$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Resultado}{\faCheckCircle}
+{\footnotesize $\displaystyle\int_1^3\ln x\,dx\approx 1\cdot 1.296006=1.296006.$\\[0.4mm]
+Error $=|1.296006-1.295837|=1.7{\times}10^{-4}$ con \textbf{3 evaluaciones}.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.43\textwidth}
+\begin{cardidea}{Detalle de las evaluaciones}{\faCalculator}
+{\footnotesize $\sqrt{3/5}=0.774597$.\\[0.5mm]
+$x_1=1.225403\Rightarrow\ln=0.203270$,\\[0.2mm]
+$w_1 f_1=\tfrac59(0.203270)=0.112928$.\\[0.5mm]
+$x_2=2\Rightarrow\ln2=0.693147$,\\[0.2mm]
+$w_2 f_2=\tfrac89(0.693147)=0.616131$.\\[0.5mm]
+$x_3=2.774597\Rightarrow\ln=1.020505$,\\[0.2mm]
+$w_3 f_3=\tfrac59(1.020505)=0.566947$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faArrowDown]
+{\footnotesize De 2 a 3 nodos el error cae de $3.4{\times}10^{-3}$ a $1.7{\times}10^{-4}$: un factor $\sim20$ con \emph{una} evaluación más.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo 4/4: comparación y verificación del grado ----
+\begin{frame}{Ejemplo (4/4): comparación y verificación de $2n-1$}
+\begin{columns}[T]
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{A igual nº de evaluaciones}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.34}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+evals & Newton-Cotes & Gauss\\\hline
+$2$ & trapecio $1.098612$ & $1.299283$\\
+    & error $2.0{\times}10^{-1}$ & error $3.4{\times}10^{-3}$\\
+$3$ & Simpson $1.290400$ & $1.296006$\\
+    & error $5.4{\times}10^{-3}$ & error $1.7{\times}10^{-4}$\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize Referencia $1.295837$. Con \emph{las mismas} evaluaciones, Gauss reduce el error $\sim60\times$ (2 pts) y $\sim32\times$ (3 pts).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Trapecio: $\tfrac{2}{2}(\ln1+\ln3)=1.098612$. Simpson: $\tfrac13(\ln1+4\ln2+\ln3)=1.290400$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Grado $2n-1$: Gauss-2 con polinomios}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.34}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c}
+$p(x)$ & $\int_1^3 p$ & Gauss-2 & ¿ok?\\\hline
+$x^3$ & $20$ & $20.0000$ & \checkmark\\
+$x^4$ & $48.4$ & $48.2223$ & $\times$\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize Gauss-2 ($x_1^k+x_2^k$, $x_{1,2}=2\mp0.577350$): exacta en $x^3$ (grado $3=2\cdot2-1$) y falla en $x^4$. Confirma el grado de exactitud $2n-1$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Conclusión}{\faTrophy}
+{\footnotesize Con $n$ evaluaciones Gauss iguala o supera a Newton-Cotes de grado mucho mayor: la elección óptima de nodos y pesos rinde el máximo por evaluación.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 5: Cuadratura Gaussiana (Gauss-Legendre)};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
