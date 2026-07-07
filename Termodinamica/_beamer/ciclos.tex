@@ -203,7 +203,7 @@
         font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
       {Conversión de Energía:\\ Ciclos Termodinámicos};
   \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
-      {\normalsize\itshape Vapor\ \textperiodcentered\ Gas\ \textperiodcentered\ Combustión\ \textperiodcentered\ Refrigeración};
+      {\normalsize\itshape Vapor\ \textperiodcentered\ Gas\ \textperiodcentered\ Combustión\ \textperiodcentered\ Refrigeración\ \textperiodcentered\ Complejos};
   \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
   \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
       {\normalsize\bfseries Termodinámica --- Ciclos de Potencia y Refrigeración};
@@ -765,6 +765,134 @@ $\mathrm{COP}_{HP,C}=\dfrac{T_H}{T_H-T_L}$; resistencia: $\mathrm{COP}=1$.
 $T_L'=-5^\circ$C, $T_H'=32^\circ$C. $h_1=396.43$, $h_2=424.86$, $h_3=237.23$ kJ/kg.\\[0.4mm]
 $w_C=28.43$, $q_H=187.63$ kJ/kg.\\[0.4mm]
 $\Rightarrow\ \mathrm{COP}_{HP}=6.60,\ \dot Q_H=16.5$ kW ($6.6\times$ una resistencia).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  SECCIÓN 5 — CICLOS COMPLEJOS
+% ============================================================
+\portadaseccion{5}{Ciclos Complejos}{combinado gas-vapor · cascada · cámara flash}{\faLayerGroup}
+
+% ---- Ciclo Combinado: definición y etapas ----
+\begin{frame}{Ciclo Combinado --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Acopla un \textbf{Brayton (gas) superior} con un \textbf{Rankine (vapor) inferior}: el calor de los gases de escape de la turbina de gas ($4\to5$) genera el vapor en una \textbf{caldera de recuperación (HRSG)}. Como el Rankine aprovecha energía que de otro modo se perdería por la chimenea, la eficiencia total \textbf{supera a la de cada ciclo por separado} ($\sim55$--$60\%$ en plantas modernas).
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+Gas $1\!\to\!4$   & Brayton (compresor, cámara, turbina)      & $w_{gas}=c_{pg}[(T_3-T_4)-(T_2-T_1)]$\\
+$4\to5$           & El gas cede calor en la HRSG              & $\dot q_g=c_{pg}(T_4-T_5)$\\
+HRSG              & Acoplamiento (caldera de recuperación)    & $\dot m_g\,c_{pg}(T_4-T_5)=\dot m_v(h_7-h_6)$\\
+Vapor $6\!\to\!8$ & Rankine (bomba, HRSG, turbina)            & $w_{vap}=(h_7-h_8)-w_B$\\
+\end{etapas}
+\end{frame}
+
+% ---- Ciclo Combinado: diagramas, ecuaciones y ejemplo ----
+\begin{frame}{Ciclo Combinado --- diagramas, ecuaciones y ejemplo}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{ciclo_combinado_esquema}\\[0.3mm]
+\fsub{Turbina de gas $\to$ HRSG $\to$ ciclo de vapor.}
+\end{column}
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{ciclo_combinado_Ts}\\[0.3mm]
+\fsub{$T$-$s$: lazo de gas (alta $T$) sobre el de vapor.}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
+$\eta_{comb}=1-(1-\eta_{gas})(1-\eta_{vap})$\\[0.6mm]
+$\phantom{\eta_{comb}}=\eta_{gas}+\eta_{vap}(1-\eta_{gas})$\\[0.6mm]
+$\dfrac{\dot m_v}{\dot m_g}=\dfrac{c_{pg}(T_4-T_5)}{h_7-h_6}$
+\end{cardidea}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Ejemplo: planta de 45 MW}{\faCalculator}
+{\footnotesize
+TG $r_P=12$, $T_3=1400$ K; TV $8$ MPa/$400\,^\circ$C.\\[0.4mm]
+$\dot m_v/\dot m_g=0.127$; $w_g=258.3$, $w_v=1023.8$ kJ/kg.\\[0.4mm]
+$\dot m_g=115.9$, $\dot m_v=14.7$ kg/s; $\dot Q_{in}=85.1$ MW.\\[0.4mm]
+$\Rightarrow\ \eta=45/85.1=52.9\%$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Refrigeración en Cascada: definición y etapas ----
+\begin{frame}{Refrigeración en Cascada --- definición y etapas}
+\begin{cardidea}{Definición}{\faInfoCircle}
+Dos ciclos de compresión de vapor (con \textbf{refrigerantes distintos}) acoplados por un \textbf{intercambiador de cascada}: el condensador del ciclo inferior (B) es el evaporador del superior (A). Se usa cuando el \textbf{salto de temperatura es grande}; dividirlo en dos etapas hace que cada compresor opere con una \textbf{relación de presiones menor}, elevando el COP.
+\end{cardidea}
+\vspace{1.4mm}
+\etapastitulo
+\begin{etapas}
+Ciclo B (inf.) & Compresor, cascada (condensa), válvula, evaporador & $q_L=h_{1B}-h_{4B}$\\
+Cascada        & El condensador de B alimenta el evaporador de A   & $\dot m_B(h_{2B}-h_{3B})=\dot m_A(h_{1A}-h_{4A})$\\
+Ciclo A (sup.) & Compresor, condensador, válvula, cascada (evapora) & $q_H=h_{2A}-h_{3A}$\\
+\end{etapas}
+\end{frame}
+
+% ---- Refrigeración en Cascada: diagramas, ecuaciones y ejemplo ----
+\begin{frame}{Refrigeración en Cascada --- diagramas, ecuaciones y ejemplo}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{cascada_esquema}\\[0.3mm]
+\fsub{Dos lazos VCR; cond.\ de B $=$ evap.\ de A.}
+\end{column}
+\begin{column}{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=3.5cm,keepaspectratio]{cascada_ph}\\[0.3mm]
+\fsub{$P$-$h$: lazos B (baja) y A (alta) traslapados.}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Ecuaciones generales}{\faSuperscript}
+$\dot m_A(h_{1A}-h_{4A})=\dot m_B(h_{2B}-h_{3B})$\\[0.6mm]
+$\dot W=\dot m_B(h_{2B}-h_{1B})+\dot m_A(h_{2A}-h_{1A})$\\[0.6mm]
+$\mathrm{COP}=\dot Q_L/\dot W$
+\end{cardidea}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Ejemplo: Freón-12}{\faCalculator}
+{\footnotesize
+Evap $-30\,^\circ$C ($25$ TON $=87.9$ kW); cascada $\approx-15/-10\,^\circ$C; cond $40\,^\circ$C.\\[0.4mm]
+$\dot m_B=\dot Q_L/(h_{1B}-h_{4B})$; $\dot m_A$ del acoplamiento.\\[0.4mm]
+Cada etapa a menor $r_P\Rightarrow$ COP $>$ una sola etapa entre $-30$ y $40\,^\circ$C.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Refrigeración multietapa con cámara flash ----
+\begin{frame}{Refrigeración Multietapa con Cámara Flash}
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.4cm,keepaspectratio]{flash_refrig_esquema}\\[0.5mm]
+\fsub{Dos compresores; la cámara flash separa vapor (3) de líquido (7).}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardidea}{Idea y ecuaciones}{\faInfoCircle}
+El líquido del condensador se estrangula a $P_{int}$; la \textbf{cámara flash} (economizador) separa el vapor formado ---que va al compresor de alta--- del líquido ---que alimenta el evaporador---. Menos trabajo de compresión.\\[0.6mm]
+$x_6=\dfrac{h_6-h_f}{h_{fg}},\quad \dot m_{tot}=\dfrac{\dot m_{ev}}{1-x_6}$\\[0.4mm]
+$\mathrm{COP}=\dfrac{\dot Q_L}{\dot W_b+\dot W_a}$
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Ejemplo: R-134a, $P_{int}=0.45$ MPa}{\faCalculator}
+{\footnotesize
+Evap $-10\,^\circ$C, $P_{cond}=1.6$ MPa, $\dot m_{ev}=0.11$ kg/s.\\[0.4mm]
+$x_6=0.356$, $\dot m_{tot}=0.171$ kg/s, $\dot Q_L=19.3$ kW.\\[0.4mm]
+$\dot W_b=2.05$, $\dot W_a=4.92$ kW $\Rightarrow\ \mathrm{COP}=2.77$.}
 \end{cardgear}
 \end{column}
 \end{columns}

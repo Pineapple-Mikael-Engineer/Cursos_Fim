@@ -357,4 +357,103 @@ of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
 of.title(ax, r'Brayton con regeneración en $T$–$s$')
 ax.set_xlim(-0.16, 1.26); ax.set_ylim(0.7, 4.5); of.save(fig, 'brayton_regeneracion_Ts')
 
+# ============ CICLO COMBINADO GAS-VAPOR (T-s) ============
+SF, SG, TT = ts_dome()
+fig, ax = of.new_fig(figsize=(6.8, 5.0)); of.style_axes(ax)
+# --- lazo de VAPOR (Rankine) en baja T, con cúpula ---
+ax.plot(SF, TT, color=of.CURVE, lw=2.0); ax.plot(SG, TT, color=of.CURVE, lw=2.0)
+ax.fill_betweenx(TT, SF, SG, color=of.CURVE, alpha=0.07)
+Tcond = 0.56
+ic = int(np.argmin(np.abs(TT - Tcond))); sf1 = SF[ic]
+sv1, Tv1 = sf1, Tcond                        # 6' líq sat condensador (bomba entra)
+sv2, Tv2 = sf1, Tcond + 0.05                 # 6 salida bomba (P_H vapor)
+Tv3, sv3 = 1.02, 1.78                        # 7 vapor a TV
+Tv4, sv4 = Tcond, sv3                        # 8 salida TV
+Tphv = 0.90; ihv = int(np.argmin(np.abs(TT - Tphv))); i2v = int(np.argmin(np.abs(TT - Tv2)))
+ax.plot([sv1, sv2], [Tv1, Tv2], color=of.ACCENT, lw=2.2)                     # bomba
+bs = np.r_[[sv2], SF[ihv:i2v][::-1], [SG[ihv], sv3]]
+bt = np.r_[[Tv2], TT[ihv:i2v][::-1], [TT[ihv], Tv3]]
+ax.plot(bs, bt, color='#3a5a2a', lw=2.4)                                     # HRSG lado vapor (6-7)
+ax.plot([sv3, sv4], [Tv3, Tv4], color=of.CURVE, lw=2.2)                      # 7-8 turbina vapor
+ax.plot([sv4, sv1], [Tv4, Tv1], color='#6a8858', lw=2.2)                     # 8-6' condensador
+mark_lbl(ax, [(sv2, Tv2, '6'), (sv3, Tv3, '7'), (sv4, Tv4, '8')],
+         [(-14, 2), (7, 3), (9, -3)])
+ax.text(1.35, 0.66, 'Vapor: Rankine', color='#3a5a2a', fontsize=9.5, ha='center')
+# --- lazo de GAS (Brayton) en alta T ---
+A = 1.35; sb = 0.55
+low = lambda s: A * np.exp(s); up = lambda s: 2 * A * np.exp(s)
+sg = np.linspace(0, sb, 60)
+ax.plot([0, 0], [low(0), up(0)], color=of.CURVE, lw=2.4)                     # 1-2 compresor
+ax.plot(sg, up(sg), color=of.ACCENT, lw=2.4)                                # 2-3 cámara (q_H gas)
+ax.plot([sb, sb], [up(sb), low(sb)], color=of.CURVE, lw=2.4)                # 3-4 turbina gas
+ax.plot(sg, low(sg), color=of.BROWN, lw=2.4)                                # 4-1 gas cede al HRSG
+mark_lbl(ax, [(0, low(0), '1'), (0, up(0), '2'), (sb, up(sb), '3'), (sb, low(sb), '4')],
+         [(-13, -4), (-13, 3), (8, 3), (9, -1)])
+ax.text(0.16, up(0.28), 'Gas: Brayton', color=of.BROWN, fontsize=9.5, ha='left')
+eflow(ax, (0.30, up(0.30) + 0.34), (0.30, up(0.30)), '$q_{H}$', of.ACCENT,
+      (0.30, up(0.30) + 0.52))                                              # entra cámara gas
+eflow(ax, (sb + 0.05, (up(sb) + low(sb)) / 2), (sb + 0.30, (up(sb) + low(sb)) / 2),
+      '$w_{gas}$', of.CURVE, (sb + 0.55, (up(sb) + low(sb)) / 2))            # trabajo gas
+eflow(ax, (sv3 + 0.05, (Tv3 + Tv4) / 2), (sv3 + 0.28, (Tv3 + Tv4) / 2),
+      '$w_{vap}$', of.CURVE, (sv3 + 0.50, (Tv3 + Tv4) / 2))                  # trabajo vapor
+eflow(ax, (0.30, low(0.30)), (0.30, low(0.30) - 0.34), '$q_{L}$', of.BROWN,
+      (0.30, low(0.30) - 0.52))                                             # gas rechaza (=entra HRSG)
+# --- banda HRSG: el escape del gas hierve el vapor ---
+ax.fill_between([-0.15, 2.4], 1.05, 1.34, color=of.ACCENT, alpha=0.10, zorder=0)
+ax.annotate('', xy=(1.5, 1.07), xytext=(1.5, 1.32),
+            arrowprops=dict(arrowstyle='-|>', color=of.ACCENT, lw=1.8, mutation_scale=13))
+ax.text(1.75, 1.195, r'HRSG:  $\dot m_g c_{pg}\Delta T_g=\dot m_v\,\Delta h_v$',
+        color=of.ACCENT, fontsize=8.5, ha='left', va='center')
+of.labels(ax, x=r'entropía  $s$', y=r'temperatura  $T$')
+of.title(ax, r'Ciclo combinado gas--vapor en $T$–$s$')
+ax.set_xlim(-0.15, 2.55); ax.set_ylim(0.42, 4.95); of.save(fig, 'ciclo_combinado_Ts')
+
+# ============ REFRIGERACIÓN EN CASCADA (P-h) ============
+HF, HG, PP = ph_dome()
+fig, ax = of.new_fig(figsize=(6.8, 5.0)); of.style_axes(ax)
+ax.plot(HF, PP, color=of.CURVE, lw=2.0); ax.plot(HG, PP, color=of.CURVE, lw=2.0)
+ax.fill_betweenx(PP, HF, HG, color=of.CURVE, alpha=0.07)
+
+
+def vcr_loop(ax, PL, PH, color, h2, tag, dtag):
+    il = int(np.argmin(np.abs(PP - PL))); ih = int(np.argmin(np.abs(PP - PH)))
+    h1 = HG[il]; h3 = HF[ih]; h4 = h3
+    ax.plot([h1, h2], [PL, PH], color=color, lw=2.4)          # 1-2 compresor
+    ax.plot([h2, h3], [PH, PH], color=color, lw=2.4)          # 2-3 condensa
+    ax.plot([h4, h4], [PH, PL], color=color, lw=2.4)          # 3-4 válvula
+    ax.plot([h4, h1], [PL, PL], color=color, lw=2.4)          # 4-1 evapora
+    for (x, y, lab), d in zip([(h1, PL, '1'+tag), (h2, PH, '2'+tag),
+                               (h3, PH, '3'+tag), (h4, PL, '4'+tag)], dtag):
+        ax.plot(x, y, 'o', color=color, ms=5, zorder=8)
+        ax.annotate(lab, (x, y), d, textcoords='offset points',
+                    color=color, fontsize=8.5, weight='bold')
+    return h1, h3
+
+
+# ciclo INFERIOR B (baja presión): evapora a PL_B, condensa a P_int
+PLB, PintB = 0.30, 0.55
+vcr_loop(ax, PLB, PintB, of.BROWN, 1.72,
+         '$_B$', [(-6, -12), (7, 5), (-16, 6), (-17, -11)])
+# ciclo SUPERIOR A (alta presión): evapora a P_int, condensa a PH_A
+PintA, PHA = 0.50, 0.95
+vcr_loop(ax, PintA, PHA, of.ACCENT, 1.98,
+         '$_A$', [(6, -12), (8, 5), (-16, 6), (-17, -11)])
+# banda del intercambiador de cascada (traslape de presiones)
+ax.fill_between([0.0, 2.2], PintA, PintB, color='#6a8858', alpha=0.16, zorder=0)
+ax.annotate('', xy=(0.55, PintA + 0.005), xytext=(0.55, PintB - 0.005),
+            arrowprops=dict(arrowstyle='-|>', color='#6a8858', lw=1.8, mutation_scale=12))
+ax.text(0.98, (PintA + PintB) / 2, 'Intercambiador de cascada',
+        color='#3a5a2a', fontsize=8.5, ha='left', va='center',
+        bbox=dict(boxstyle='round,pad=0.15', fc=of.PANEL, ec='#6a8858', alpha=0.85))
+ax.text(1.55, 0.315, 'Ciclo B (inferior)', color=of.BROWN, fontsize=9, ha='center')
+ax.text(1.70, 0.885, 'Ciclo A (superior)', color=of.ACCENT, fontsize=9, ha='center')
+eflow(ax, (0.55, PLB), (0.55, PLB - 0.055), '$q_{L}$', of.BROWN, (0.55, PLB - 0.075))
+eflow(ax, ((HF[int(np.argmin(np.abs(PP - PHA)))]) - 0.30, PHA),
+      ((HF[int(np.argmin(np.abs(PP - PHA)))]) - 0.30, PHA + 0.16),
+      '$q_{H}$', of.ACCENT, ((HF[int(np.argmin(np.abs(PP - PHA)))]) - 0.30, PHA + 0.235))
+ax.set_yscale('log')
+of.labels(ax, x=r'entalpía  $h$', y=r'presión  $P$ (log)')
+of.title(ax, r'Refrigeración en cascada en $P$–$h$')
+ax.set_xlim(0.0, 2.35); ax.set_ylim(0.22, 1.35); of.save(fig, 'cascada_ph')
+
 print('OK ciclos')
