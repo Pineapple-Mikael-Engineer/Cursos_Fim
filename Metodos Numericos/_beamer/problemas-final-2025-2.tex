@@ -1,0 +1,1052 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos (MB536)
+%  Examen Final 2025-2 — Resuelto paso a paso
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Final 2025-2 · Resuelto}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.4cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{17}{17}\selectfont $\displaystyle J\,\Delta x=-F$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.7cm,yshift=1.1cm]current page.south west)
+      {\fontsize{19}{19}\selectfont $\det J=L_1L_2\sin\theta_2$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.7cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\tfrac{h}{3}(f_0+4f_1+f_2)$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faClipboardCheck};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos (MB536)};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Examen Final 2025-2\\ \textemdash\ Resuelto};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Punto fijo\ \textperiodcentered\ Newton-Raphson\ \textperiodcentered\ Ajuste\ \textperiodcentered\ Cuadratura\ \textperiodcentered\ Disparo};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Problemas resueltos paso a paso};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Fecha del examen: 15/12/25 \textbar\ Duración: 110 min \textbar\ 20 puntos};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Coordinadora: Rosa Mercedes Garrido Juárez \textperiodcentered\ Lima, 2025};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  MAPA
+% ============================================================
+\begin{frame}{Contenido del examen}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardlista}
+\textbf{Parte I} (preguntas cortas, 1.0 P c/u)\\[0.6mm]
+P1.\; Punto fijo: contracción y convergencia\\[0.4mm]
+P2.\; Spline cúbico en MATLAB (brazo robot)\\[0.4mm]
+P3.\; Orden de precisión de 3 cuadraturas\\[0.4mm]
+P4.\; Completar script Euler + \texttt{ode45}
+\end{cardlista}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardlista}
+\textbf{Parte II} (problemas largos)\\[0.6mm]
+1.\; Brazo 2 eslabones: Newton-Raphson\\[0.4mm]
+2.\; Fröhlich-Kennelly: mínimos cuadrados\\[0.4mm]
+3.\; Compuerta: Simpson vs.\ Gauss\\[0.4mm]
+4.\; Método del disparo (secante + RK2)
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\begin{cardnota}[\faInfoCircle]
+Se reproducen las \textbf{soluciones oficiales} del examen, \emph{expandidas}: se añade la aritmética intermedia, la justificación de cada paso y la verificación numérica. Los valores oficiales se conservan; cualquier discrepancia menor se anota.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  PARTE I
+% ############################################################
+\portadaseccion{I}{Preguntas cortas}{Punto fijo, spline, orden de cuadraturas y completar script de Euler}{\faListUl}
+
+% ---- P1: enunciado + solución ----
+\begin{frame}{P1 — Punto fijo: ¿converge el esquema?}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Esquema $x^{(k+1)}=G(x^{(k)})$ para un sistema no lineal:
+\[
+x'=g_1=\frac{x+\cos y}{4},\qquad
+y'=g_2=\frac{y+e^{-x}}{5}.
+\]
+Analizar la convergencia en $x^{(0)}=0,\ y^{(0)}=0$ con el \textbf{Teorema del punto fijo}.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La norma $\infty$ de una matriz es el \emph{máximo} de las sumas de valores absolutos por fila:
+$\lVert A\rVert_\infty=\max_i\sum_j|a_{ij}|$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{Jacobiano y factor de contracción}{\faCogs}
+{\footnotesize
+\textbf{1.} Derivar $G=(g_1,g_2)$ respecto de $(x,y)$:
+\[
+J_G(x,y)=\begin{pmatrix} 0.25 & -0.25\sin y\\[1mm] -0.2\,e^{-x} & 0.2 \end{pmatrix}.
+\]
+\textbf{2.} Evaluar en $(0,0)$ ($\sin 0=0,\ e^{0}=1$):
+\[
+J_G(0,0)=\begin{pmatrix} 0.25 & 0\\[0.5mm] -0.2 & 0.2 \end{pmatrix}.
+\]
+\textbf{3.} Norma $\infty$ (máx.\ suma de filas):
+\[
+L=\max\big(\underbrace{0.25}_{|0.25|+0},\ \underbrace{0.4}_{|{-}0.2|+|0.2|}\big)=0.4.
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{4.} $L=0.4<1\Rightarrow G$ es \textbf{contracción}: \emph{sí} converge (linealmente) el método.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P2: spline ----
+\begin{frame}{P2 — Trayectoria del brazo robot con \texttt{spline}}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Trayectoria \emph{suave} que parte de $(0,0)$, pasa por los puntos de control $(2,4)$ y $(6,4)$, recoge en $(7,6)$, pasa por $(12,7)$ y deja la pieza en $(15,1)$. Escribir un script que la grafique con \texttt{spline} de MATLAB.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{Puntos en orden de visita}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccccc}
+$X$ & 0 & 2 & 6 & 7 & 12 & 15\\\hline
+$Y$ & 0 & 4 & 4 & 6 & 7 & 1\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \texttt{spline} usa \textbf{cúbicos por tramos} $C^2$ (derivadas continuas): trayectoria suave, sin quiebres que dañen las articulaciones.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Script (spline cúbico por tramos)}{\faCode}
+{\scriptsize\ttfamily
+clear; clc; close all;\\[0.4mm]
+\% Puntos de la trayectoria (orden de visita)\\
+X = [0 2 6 7 12 15];\\
+Y = [0 4 4 6 7 1];\\[0.6mm]
+\% Muestreo fino para una curva suave\\
+xx = linspace(0,15,100);\\
+yy = spline(X, Y, xx);\\[0.6mm]
+\% Gráfica\\
+figure;\\
+plot(xx, yy, 'LineWidth', 2); hold on;\\
+plot(X, Y, 'ro', 'MarkerFaceColor', 'r');\\
+grid on; xlabel('X'); ylabel('Y');
+}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P3: orden de precisión ----
+\begin{frame}{P3 — Ordenar 3 cuadraturas por precisión}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Con \textbf{3 puntos} se aproxima una integral suave por tres métodos:
+Simpson \emph{cerrado}, Simpson \emph{abierto} y \emph{Gauss--Legendre}.
+Ordenarlos de \emph{menor} a \emph{mayor} precisión esperada y justificar.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faKey]
+{\footnotesize Criterio: el \textbf{grado de exactitud} $g$ (mayor grado polinómico integrado exacto). A igual nº de puntos, mayor $g\Rightarrow$ mayor precisión.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Orden de menor a mayor precisión}{\faSortAmountUp}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|l|c}
+ & Método (3 pts) & grado\\\hline
+$\downarrow$ & Simpson abierto & $\sim1$\\
+ & Simpson cerrado ($1/3$) & $3$\\
+$\uparrow$ & Gauss--Legendre 3 pt & $5$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize \textbf{Más preciso:} Gauss--Legendre ($g=2n-1=5$).\\[0.4mm]
+\textbf{Intermedio:} Simpson cerrado ($g=3$).\\[0.4mm]
+\textbf{Menos preciso:} Simpson abierto (usa nodos interiores, sin extremos: menor grado efectivo).}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1.5mm}
+\begin{cardnota}[\faLightbulb]
+{\footnotesize \textbf{Razón:} Gauss elige nodos y pesos \emph{óptimos} (ceros de Legendre) y duplica el grado por evaluación; las reglas de Newton-Cotes usan nodos fijos equiespaciados, de grado $\sim n$.}
+\end{cardnota}
+\end{frame}
+
+% ---- P4: completar script ----
+\begin{frame}{P4 — Completar el script: Euler + \texttt{ode45}}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize EDO $y'=3t-2y$ con $y(0)=0.5$ en $t\in[0,2]$. Rellenar los \textbf{4 espacios en blanco} del script funcional (resaltados).}
+\end{cardidea}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Script con los 4 blancos}{\faCode}
+{\scriptsize\ttfamily
+f = {\color{Granate}@(t,y) 3*t - 2*y};\ \ \% 1\\[0.5mm]
+syms y(t)\ \ \ \% 2. solución exacta\\
+y\_simb = dsolve({\color{Granate}diff(y,t)==3*t-2*y,}\\
+\hphantom{yyyyyyyyyyyyyyy}{\color{Granate}y(0)==0.5});\\[0.5mm]
+for i = 1:length(t\_euler)-1\ \ \% 3\\
+\hphantom{yy}y\_euler(i+1) = \\
+\hphantom{yyyy}{\color{Granate}y\_euler(i)+h*f(t\_euler(i),y\_euler(i))};\\
+end\\[0.5mm]
+[t\_ode,y\_ode] = ode45({\color{Granate}f,[0 2],0.5});\ \% 4
+}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faListOl]
+{\footnotesize
+\textbf{1.} \texttt{@(t,y) 3*t-2*y} — función anónima que evalúa $f(t,y)$.\\[0.8mm]
+\textbf{2.} \texttt{dsolve(diff(y,t)==3*t-2*y, y(0)==0.5)} — usa \texttt{==} para la EDO \emph{y} la condición inicial.\\[0.8mm]
+\textbf{3.} $y_{i+1}=y_i+h\,f(t_i,y_i)$ — paso de Euler explícito: valor actual $+$ paso $\times$ pendiente.\\[0.8mm]
+\textbf{4.} \texttt{ode45(f,[0 2],0.5)} — solver adaptativo: función, intervalo y condición inicial.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  PARTE II — PROBLEMA 1
+% ############################################################
+\portadaseccion{II}{Problema 1 — Brazo robótico}{Cinemática directa, Newton-Raphson y análisis de singularidad}{\faRobot}
+
+% ---- P1 enunciado ----
+\begin{frame}{Problema 1 — Planteamiento}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Brazo plano de 2 eslabones ($L_1=30$ cm, $L_2=20$ cm). El efector final es
+\[
+x=L_1\cos\theta_1+L_2\cos(\theta_1+\theta_2),\quad
+y=L_1\sin\theta_1+L_2\sin(\theta_1+\theta_2).
+\]
+Configurar el robot para alcanzar el objetivo $(40,20)$ cm, con incógnitas $\mathbf{x}=[\theta_1,\theta_2]^{\!\top}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faTasks]
+{\footnotesize \textbf{Se pide:} (a) plantear $F(\mathbf x)=0$ y su Jacobiano $J_F$; (b) 2 iteraciones de Newton-Raphson; (c) demostrar $\det J=L_1L_2\sin\theta_2$ y analizar la singularidad.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.43\textwidth}
+\begin{cardgear}{Sistema no lineal $F(\mathbf x)=0$}{\faSuperscript}
+{\footnotesize Se pasa el objetivo al lado izquierdo:
+\[
+f_1=30\cos\theta_1+20\cos(\theta_1+\theta_2)-40=0,
+\]
+\[
+f_2=30\sin\theta_1+20\sin(\theta_1+\theta_2)-20=0.
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Dos ecuaciones, dos incógnitas: sistema no lineal resoluble por linealización iterada (Newton-Raphson).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P1(a) Jacobiano ----
+\begin{frame}{Problema 1(a) — Matriz Jacobiana}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Derivadas parciales}{\faCogs}
+{\footnotesize
+Derivando $f_1,f_2$ respecto de $\theta_1,\theta_2$ (regla de la cadena, $\tfrac{\partial}{\partial\theta_1}(\theta_1{+}\theta_2)=1$):
+\[
+\frac{\partial f_1}{\partial\theta_1}=-30\sin\theta_1-20\sin(\theta_1+\theta_2),
+\]
+\[
+\frac{\partial f_1}{\partial\theta_2}=-20\sin(\theta_1+\theta_2),
+\]
+\[
+\frac{\partial f_2}{\partial\theta_1}=30\cos\theta_1+20\cos(\theta_1+\theta_2),
+\]
+\[
+\frac{\partial f_2}{\partial\theta_2}=20\cos(\theta_1+\theta_2).
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Jacobiano $J_F(\theta_1,\theta_2)$}{\faSuperscript}
+{\scriptsize
+\[
+J=\begin{pmatrix}
+-30\sin\theta_1-20\sin(\theta_1{+}\theta_2) & -20\sin(\theta_1{+}\theta_2)\\[2mm]
+30\cos\theta_1+20\cos(\theta_1{+}\theta_2) & 20\cos(\theta_1{+}\theta_2)
+\end{pmatrix}
+\]}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Cada iteración de Newton-Raphson resuelve el sistema lineal
+\[
+J(\mathbf x^{(k)})\,\Delta\mathbf x=-F(\mathbf x^{(k)}),\qquad
+\mathbf x^{(k+1)}=\mathbf x^{(k)}+\Delta\mathbf x.
+\]}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P1(b) Iteración 1 ----
+\begin{frame}{Problema 1(b) — Newton-Raphson: iteración 1}
+\begin{cardnota}[\faPlay]
+{\footnotesize Punto inicial $\mathbf x^{(0)}=(0.25,\,0.75)^{\!\top}$ rad. Se evalúa $F$, se arma $J$, se resuelve $J\,\Delta\mathbf x=-F$ y se actualiza.}
+\end{cardnota}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Evaluación en $\mathbf x^{(0)}$}{\faCalculator}
+{\footnotesize
+\textbf{1.} Funciones ($\theta_1{+}\theta_2=1.0$):
+\[
+F(\mathbf x^{(0)})\approx\begin{pmatrix}-0.1266\\ 4.2515\end{pmatrix}.
+\]
+\textbf{2.} Jacobiano:
+\[
+J(\mathbf x^{(0)})\approx\begin{pmatrix}-24.2515 & -16.8294\\ 39.8734 & 10.8060\end{pmatrix}.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Resolver y actualizar}{\faArrowRight}
+{\footnotesize
+\textbf{3.} Sistema lineal $J\,\Delta\mathbf x=-F$:
+\[
+\Delta\mathbf x^{(0)}\approx\begin{pmatrix}-0.1716\\ 0.2398\end{pmatrix}.
+\]
+\textbf{4.} Actualización:
+\[
+\mathbf x^{(1)}=\begin{pmatrix}0.25\\0.75\end{pmatrix}+\begin{pmatrix}-0.1716\\0.2398\end{pmatrix}=\begin{pmatrix}0.0784\\0.9898\end{pmatrix}.
+\]
+\textbf{5.} Error $E_1=\lVert\Delta\mathbf x^{(0)}\rVert_\infty=0.2398$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P1(b) Iteración 2 ----
+\begin{frame}{Problema 1(b) — Newton-Raphson: iteración 2}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Evaluación en $\mathbf x^{(1)}$}{\faCalculator}
+{\footnotesize
+\textbf{1.} Funciones en $\mathbf x^{(1)}=(0.0784,0.9898)$:
+\[
+F(\mathbf x^{(1)})\approx\begin{pmatrix}-0.4574\\ -0.1242\end{pmatrix}.
+\]
+\textbf{2.} Jacobiano:
+\[
+J(\mathbf x^{(1)})\approx\begin{pmatrix}-19.8758 & -17.5263\\ 39.5426 & 9.6348\end{pmatrix}.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Resolver y actualizar}{\faArrowRight}
+{\footnotesize
+\textbf{3.} Sistema $J\,\Delta\mathbf x=-F$:
+\[
+\Delta\mathbf x^{(1)}\approx\begin{pmatrix}0.0131\\ -0.0410\end{pmatrix}.
+\]
+\textbf{4.} Actualización:
+\[
+\mathbf x^{(2)}=\begin{pmatrix}0.0784\\0.9898\end{pmatrix}+\begin{pmatrix}0.0131\\-0.0410\end{pmatrix}=\begin{pmatrix}0.0915\\0.9488\end{pmatrix}.
+\]
+\textbf{5.} Error $E_2=\lVert\Delta\mathbf x^{(1)}\rVert_\infty=0.0410$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1.5mm}
+\begin{cardnota}[\faChartLine]
+{\footnotesize \textbf{Resultado:} $\mathbf x^{(2)}\approx(0.0915,\,0.9488)^{\!\top}$ rad. El error cae $0.2398\to0.0410$ (factor $\sim6$): comportamiento típico de la \textbf{convergencia cuadrática} de Newton-Raphson.}
+\end{cardnota}
+\end{frame}
+
+% ---- P1(c) determinante ----
+\begin{frame}{Problema 1(c) — Determinante y singularidad}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Demostración $\det J=L_1L_2\sin\theta_2$}{\faSuperscript}
+{\footnotesize Con $s_1=\sin\theta_1$, $c_1=\cos\theta_1$, $s_{12}=\sin(\theta_1{+}\theta_2)$, $c_{12}=\cos(\theta_1{+}\theta_2)$:
+\[
+\det J=(-30s_1-20s_{12})(20c_{12})-(-20s_{12})(30c_1+20c_{12}).
+\]
+Se expanden y cancelan los términos con $20^2 s_{12}c_{12}$:
+\[
+=-600\,s_1c_{12}+600\,c_1s_{12}=600\,(c_1s_{12}-s_1c_{12}).
+\]
+Por la resta de ángulos $s_{12}c_1-c_{12}s_1=\sin(\theta_1{+}\theta_2-\theta_1)=\sin\theta_2$:
+\[
+\boxed{\ \det J=600\sin\theta_2=L_1L_2\sin\theta_2\ }
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Brazo estirado} $\Rightarrow\theta_2=0\Rightarrow\det J=0$: la matriz es \textbf{singular} (no tiene inversa).}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardidea}{Consecuencias}{\faLightbulb}
+{\footnotesize
+\textbf{Numérica:} Newton-Raphson resuelve $J\Delta\mathbf x=-F$; con $\det J=0$ hay \emph{división por cero}, el sistema no se puede resolver (o queda mal condicionado si $\theta_2\approx0$).\\[0.8mm]
+\textbf{Física:} es una \textbf{singularidad del brazo} — pérdida de un grado de libertad en el borde del espacio de trabajo (alcance máximo $L_1{+}L_2$).}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  PARTE II — PROBLEMA 2
+% ############################################################
+\portadaseccion{II}{Problema 2 — Fröhlich-Kennelly}{Linealización, mínimos cuadrados, $R^2$ y saturación magnética}{\faMagnet}
+
+% ---- P2 enunciado ----
+\begin{frame}{Problema 2 — Planteamiento}
+\begin{columns}[T]
+\begin{column}{0.53\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Núcleo ferromagnético modelado por Fröhlich-Kennelly:
+\[
+B(H)=\frac{a\sqrt H}{1+b\sqrt H}\quad[\text{T}],\ H\ \text{en kA/m}.
+\]
+Mediciones de laboratorio:}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+$H$ (kA/m) & 1 & 4 & 9\\\hline
+$B$ (T) & 0.5 & 0.8 & 0.9\\
+\end{tabular}}
+\end{cardidea}
+\end{column}
+\begin{column}{0.45\textwidth}
+\begin{cardnota}[\faTasks]
+{\footnotesize \textbf{Se pide:}
+(a) ajuste por mínimos cuadrados $\to a,b$;
+(b) coeficiente $R^2$;
+(c) estimar $B(6.25)$;
+(d) interpretar físicamente $a/b$ cuando $H\to\infty$.}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardidea}{Idea del ajuste lineal}{\faLightbulb}
+{\footnotesize El modelo no es lineal en $a,b$. Se \emph{linealiza} tomando el recíproco de $B$ para poder aplicar mínimos cuadrados ordinarios.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P2(a) linealización + tabla ----
+\begin{frame}{Problema 2(a) — Linealización y datos transformados}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Linealización}{\faSuperscript}
+{\footnotesize
+\textbf{1.} Invertir el modelo:
+\[
+\frac1B=\frac{1+b\sqrt H}{a\sqrt H}=\frac{b}{a}+\frac1a\cdot\frac1{\sqrt H}.
+\]
+\textbf{2.} Definir variables:
+\[
+Y=\frac1B,\qquad X=\frac1{\sqrt H}.
+\]
+\textbf{3.} Modelo lineal $Y=A+BX$ con
+\[
+A=\frac ba\ (\text{intercepto}),\quad B=\frac1a\ (\text{pendiente}).
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Datos transformados y sumas}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.28}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{cc|cc}
+$H$ & $B$ & $X=1/\sqrt H$ & $Y=1/B$\\\hline
+1.0 & 0.50 & 1.000 & 2.000\\
+4.0 & 0.80 & 0.500 & 1.250\\
+9.0 & 0.90 & 0.333 & 1.111\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize
+$\textstyle\sum X=1.833,\quad \sum Y=4.361,$\\[0.6mm]
+$\textstyle\sum X^2=1.361,\quad \sum XY=2.995.$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $n=3$ pares $(X,Y)$; con estas cuatro sumas se resuelven las ecuaciones normales.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P2(a) regresión ----
+\begin{frame}{Problema 2(a) — Ecuaciones normales y parámetros}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Regresión lineal}{\faCalculator}
+{\footnotesize
+\textbf{4.} Ecuaciones normales ($n=3$):
+\[
+B=\frac{n\sum XY-\sum X\sum Y}{n\sum X^2-(\sum X)^2},\quad
+A=\frac{\sum Y-B\sum X}{n}.
+\]
+\textbf{5.} Pendiente:
+\[
+B=\frac{3(2.995)-(1.833)(4.361)}{3(1.361)-(1.833)^2}=\frac{0.989}{0.723}=1.371.
+\]
+\textbf{6.} Intercepto:
+\[
+A=\frac{4.361-1.371(1.833)}{3}=0.616.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Parámetros originales}{\faSuperscript}
+{\footnotesize Deshaciendo $A=b/a$, $B=1/a$:
+\[
+a=\frac1B=\frac1{1.371}=0.729,
+\]
+\[
+b=A\cdot a=0.616\times0.729=0.449.
+\]}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{Resultado:}\ $a=0.729$,\ $b=0.449$.\\[0.4mm]
+Modelo ajustado:
+\[
+B(H)=\frac{0.729\sqrt H}{1+0.449\sqrt H}.
+\]}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P2 (b)(c)(d) ----
+\begin{frame}{Problema 2 — Bondad, predicción y saturación}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{(b) Coeficiente $R^2$}{\faChartLine}
+{\footnotesize Sobre los datos transformados $(X,Y)$:
+\[
+R^2=0.9906\ \ (99.06\%).
+\]
+El ajuste lineal explica el $99\%$ de la variabilidad: excelente.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardgear}{(c) Predicción $B(6.25)$}{\faCalculator}
+{\footnotesize $\sqrt{6.25}=2.5$:
+\[
+B=\frac{0.729(2.5)}{1+0.449(2.5)}=\frac{1.8225}{2.1225}=0.859\ \text{T}.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{(d) Significado de $a/b$}{\faMagnet}
+{\footnotesize Cuando $H\to\infty$, $\sqrt H\to\infty$:
+\[
+\lim_{H\to\infty}B(H)=\lim\frac{a\sqrt H}{1+b\sqrt H}=\frac ab.
+\]
+\[
+\frac ab=\frac{0.729}{0.449}=1.624\ \text{T}=B_{\text{sat}}.
+\]}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faLightbulb]
+{\footnotesize $a/b$ es la \textbf{saturación magnética} $B_{\text{sat}}$: el flujo máximo que el núcleo puede conducir. Superado ese punto, aumentar $H$ ya \emph{no} genera flujo útil; operar por encima es ineficiente. Es un límite físico clave en el \textbf{diseño de máquinas eléctricas}.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  PARTE II — PROBLEMA 3
+% ############################################################
+\portadaseccion{II}{Problema 3 — Compuerta}{Fuerza hidrostática por Simpson 1/3 y cuadratura de Gauss}{\faWater}
+
+% ---- P3 enunciado ----
+\begin{frame}{Problema 3 — Planteamiento}
+\begin{columns}[T]
+\begin{column}{0.53\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Compuerta en forma de cuarto de círculo (radio $R$). Presión $p(y)=\rho g y$; ancho $b(y)=\sqrt{R^2-y^2}$. Fuerza total:
+\[
+F=\int_0^R p(y)\,b(y)\,dy=\int_0^R \rho g\,y\sqrt{R^2-y^2}\,dy.
+\]
+Datos: $\rho=1000\ \text{kg/m}^3$, $g=9.81\ \text{m/s}^2$, $R=2$ m.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.45\textwidth}
+\begin{cardnota}[\faTasks]
+{\footnotesize \textbf{Se pide:}
+(a) $F$ por Simpson $1/3$ con $n=4$;
+(b) $F$ por Gauss 3 puntos;
+(c) error relativo de cada uno frente a $F_{\text{exacta}}=\rho gR^3/3$ y decidir el más eficiente.}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardgear}{Integrando}{\faSuperscript}
+{\footnotesize
+\[
+f(y)=\rho g\,y\sqrt{R^2-y^2}.
+\]
+Se evaluará en los nodos de cada regla.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P3(a) Simpson ----
+\begin{frame}{Problema 3(a) — Simpson $1/3$ con $n=4$}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Tabla de valores ($h=0.5$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+$i$ & $y_i$ & $f(y_i)$\\\hline
+0 & 0.0 & 0\\
+1 & 0.5 & 9498.49166\\
+2 & 1.0 & 16991.4184\\
+3 & 1.5 & 19466.1153\\
+4 & 2.0 & 0\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Intervalo $[0,2]$, $h=\tfrac{2-0}{4}=0.5$.\\[0.4mm]
+Ej.: $f(0.5)=9810\cdot0.5\cdot\sqrt{4-0.25}=9498.49$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Aplicación de la fórmula}{\faCalculator}
+{\footnotesize Simpson $1/3$ compuesto:
+\[
+F_S=\frac h3\big[f_0+f_4+4(f_1+f_3)+2f_2\big].
+\]
+Sustituyendo:
+\[
+F_S=\frac{0.5}{3}\big[0+0+4(9498.49+19466.12)+2(16991.42)\big]
+\]
+\[
+=\frac{0.5}{3}\big[115858.44+33982.84\big]=\frac{0.5}{3}(149841.28).
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{Resultado:}\quad $F_{\text{Simpson}}\approx 24973.54\ \text{N}$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P3(b) Gauss ----
+\begin{frame}{Problema 3(b) — Cuadratura de Gauss 3 puntos}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Cambio de variable a $[a,b]$}{\faSuperscript}
+{\footnotesize Fórmula en $[a,b]=[0,2]$:
+\[
+\int_a^b f\,dy=\frac{b-a}{2}\sum_{i=1}^3 w_i\,f\!\Big(\tfrac{b-a}{2}z_i+\tfrac{a+b}{2}\Big).
+\]
+Con $a=0,b=2$: factor $\tfrac{b-a}{2}=1$, nodo $=z_i+1$.\\[0.8mm]
+Pesos y nodos (grado 5):
+\[
+w_1=w_3=\tfrac59,\ w_2=\tfrac89,\quad z=\mp\sqrt{\tfrac35},\,0.
+\]
+Nodos transformados:
+\[
+z_i+1:\ 0.225403,\ 1,\ 1.774597.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Evaluación}{\faCalculator}
+{\footnotesize
+\[
+F_G=\tfrac59 f(0.225403)+\tfrac89 f(1)+\tfrac59 f(1.774597).
+\]
+Con $f(0.2254)\approx4394.4$, $f(1)=16991.4$, $f(1.7746)\approx16058.7$:
+\[
+F_G\approx2441.4+15103.5+8921.5.
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{Resultado:}\quad $F_{\text{Gauss}}\approx 26465.69\ \text{N}$ con solo \textbf{3 evaluaciones}.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P3(c) errores ----
+\begin{frame}{Problema 3(c) — Errores y eficiencia}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Valor exacto}{\faSuperscript}
+{\footnotesize Integración analítica:
+\[
+F_{\text{exacta}}=\frac{\rho g R^3}{3}=\frac{1000\cdot9.81\cdot8}{3}=26160\ \text{N}.
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardgear}{Errores relativos}{\faPercent}
+{\footnotesize
+\textbf{Simpson:}
+\[
+\frac{|26160-24973.54|}{26160}=\frac{1186.46}{26160}=4.54\%.
+\]
+\textbf{Gauss:}
+\[
+\frac{|26160-26465.69|}{26160}=\frac{305.69}{26160}=1.17\%.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{cardgear}{Comparación}{\faBalanceScale}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c|c}
+Método & evals & error rel.\\\hline
+Simpson $1/3$ & 5 & $4.54\%$\\
+Gauss 3 pt & 3 & $1.17\%$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faTrophy]
+{\footnotesize \textbf{Gauss es más eficiente:} obtiene casi $4\times$ menos error usando \emph{menos} evaluaciones (3 vs.\ 5). Su grado de exactitud $2n-1=5$ integra casi exactamente el integrando suave, mientras que Simpson ($g=3$) arrastra más error de truncamiento.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  PARTE II — PROBLEMA 4
+% ############################################################
+\portadaseccion{II}{Problema 4 — Método del disparo}{EDO de frontera: RK2 (Heun) y secante para hallar la pendiente}{\faCrosshairs}
+
+% ---- P4 enunciado + (a) ----
+\begin{frame}{Problema 4 — Planteamiento y sistema de 1.\textsuperscript{er} orden}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Enunciado}{\faQuestionCircle}
+{\footnotesize Eje rotacional amortiguado:
+\[
+\theta''+0.4\,\theta'+\sin\theta=0,\quad 0\le t\le2,
+\]
+con frontera $\theta(0)=0.2$, $\theta(2)=0.8$. La velocidad inicial $\theta'(0)=s$ es \emph{desconocida}.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardgear}{(a) Sistema de estado}{\faSuperscript}
+{\footnotesize $x_1=\theta$, $x_2=\theta'$:
+\[
+\mathbf x'=f(t,\mathbf x)=\begin{pmatrix}x_2\\ -0.4x_2-\sin x_1\end{pmatrix},\ \ \mathbf x(0)=\begin{pmatrix}0.2\\ s\end{pmatrix}.
+\]}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{Existencia y unicidad:} el Jacobiano
+$\frac{\partial f}{\partial\mathbf x}=\left(\begin{smallmatrix}0 & 1\\ -\cos x_1 & -0.4\end{smallmatrix}\right)$
+tiene entradas acotadas ($|\cos x_1|\le1$) $\Rightarrow f$ es \emph{localmente Lipschitz} en $\mathbf x$. Por el teorema de existencia-unicidad, cada $s$ define una \textbf{única} solución en $[0,2]$.}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardidea}{Objetivo del disparo}{\faCrosshairs}
+{\footnotesize Se busca $s^*$ que anule el \textbf{residuo}
+\[
+R(s)=\theta(2;s)-0.8=0,
+\]
+es decir, que la solución alcance el blanco $\theta(2)=0.8$.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P4(b) tabla RK2 ----
+\begin{frame}{Problema 4(b) — RK2 (Heun) con $s_0=1.0$, 4 pasos}
+\begin{cardnota}[\faPlay]
+{\footnotesize IVP: $\mathbf x(0)=(0.2,\ s_0{=}1)^{\!\top}$, $h=0.5$. Heun: $k_1=f(t_n,\mathbf x_n)$, $k_2=f(t_n{+}h,\mathbf x_n{+}h\,k_1)$, $\mathbf x_{n+1}=\mathbf x_n+\tfrac h2(k_1+k_2)$.}
+\end{cardnota}
+\vspace{1mm}
+\begin{center}
+{\scriptsize\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+\toprule
+$t_n$ & $(x_{1n};x_{2n})$ & $k_1=f(t_n,\mathbf x_n)$ & $k_2=f(t_n{+}h,\mathbf x_n{+}h k_1)$ & $\mathbf x_{n+1}=\mathbf x_n+\tfrac h2(k_1{+}k_2)$\\
+\midrule
+0.0 & $(0.200000,\ 1.000000)$ & $(1.000000,\ -0.598669)$ & $(0.700665,\ -0.924484)$ & $(0.625166,\ 0.619212)$\\
+0.5 & $(0.625166,\ 0.619212)$ & $(0.619212,\ -0.832917)$ & $(0.202753,\ -0.885565)$ & $(0.830658,\ 0.189591)$\\
+1.0 & $(0.830658,\ 0.189591)$ & $(0.189591,\ -0.814211)$ & $(-0.217515,\ -0.711888)$ & $(0.823677,\ -0.191934)$\\
+1.5 & $(0.823677,\ -0.191934)$ & $(-0.191934,\ -0.656876)$ & $(-0.520371,\ -0.457013)$ & $(0.645601,\ -0.470406)$\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize En $t=2$: $x_1=\theta(2;s_0)\approx 0.645601\approx 0.65$. Los valores en \textbf{negrita del examen} ($0.619212$, $-0.832917$, $-0.217515$, $-0.711888$, $0.645601$, $-0.470406$) son los espacios completados de la tabla.}
+\end{cardnota}
+\end{frame}
+
+% ---- P4(c) secante ----
+\begin{frame}{Problema 4(c) — Residuos y método de la secante}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{(c.1) Residuos}{\faCalculator}
+{\footnotesize Dos disparos:
+\[
+\theta(2;s_0{=}1.0)\approx0.65,\quad \theta(2;s_1{=}1.3)\approx0.91.
+\]
+Residuos $R(s)=\theta(2;s)-0.8$:
+\[
+R(s_0)=0.65-0.8=-0.15,
+\]
+\[
+R(s_1)=0.91-0.8=+0.11.
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $R(s_0)<0$ y $R(s_1)>0$: la raíz $s^*$ está \emph{entre} $1.0$ y $1.3$ (cambio de signo).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{(c.2) Secante}{\faSuperscript}
+{\footnotesize
+\[
+s_2=s_1-R(s_1)\frac{s_1-s_0}{R(s_1)-R(s_0)}.
+\]
+\[
+s_2=1.3-0.11\cdot\frac{1.3-1.0}{0.11-(-0.15)}=1.3-0.11\cdot\frac{0.3}{0.26}.
+\]
+\[
+\boxed{\ s_2\approx1.173\ \text{rad/s}\ }
+\]}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardgear}{(c.3) Error vs.\ referencia}{\faRulerHorizontal}
+{\footnotesize Referencia fina (\texttt{ode45}): $s^*\approx1.151088$.
+\[
+e=|s_2-s^*|=|1.173-1.151088|\approx0.022\ \text{rad/s}.
+\]}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{Conclusión:} $e\approx0.022$ es pequeño frente a $[1.0,\ 1.3]$: con \emph{una} iteración de la secante ya se logra una pendiente cercana a $s^*$; aproximación adecuada y refinable.}
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faClipboardCheck};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Examen resuelto!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos (MB536) \textperiodcentered\ Examen Final 2025-2 \textperiodcentered\ Resuelto paso a paso};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
