@@ -1,0 +1,715 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 4
+%  Aproximación de Funciones · Interpolación Polinómica
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Aproximación · Interpolación Polinómica}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.0cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{18}{18}\selectfont $p_n(x)=\sum_i y_i L_i(x)$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.7cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $f[x_0,\dots,x_k]$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.9cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\dfrac{f^{(n+1)}(\xi)}{(n+1)!}$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faMicrochip};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Interpolación\\ Polinómica};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Existencia\ \textperiodcentered\ Lagrange\ \textperiodcentered\ Newton\ \textperiodcentered\ Error};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 4};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Dados $n{+}1$ nodos distintos, existe un \textbf{único} polinomio $p_n\in\mathbb P_n$ con $p_n(x_i)=y_i$. La misma $p_n$ se representa en tres bases: \textbf{monomios} (sistema de \emph{Vandermonde} $Vc=\mathbf y$, mal condicionado, no se usa), \textbf{Lagrange} (cardinales $L_i$, explícita) y \textbf{Newton} (diferencias divididas, \emph{incremental} y con acceso directo al error). El error de Cauchy $f-p_n=\tfrac{f^{(n+1)}(\xi)}{(n+1)!}\prod(x-x_i)$ separa una parte analítica de una geométrica (el polinomio nodal): controlar la segunda con nodos de \textbf{Chebyshev} evita el \emph{fenómeno de Runge}.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Lagrange vs.\ Newton}{\faCogs}
+Mismo $p_n$: Lagrange es explícita ($\sum y_iL_i$); Newton es incremental (añadir un nodo cuesta $O(n)$) y se evalúa por Horner en $O(n)$.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{El límite del grado alto}{\faCogs}
+Subir el grado con nodos equiespaciados \emph{no} converge (Runge): $\max|\omega|\sim2^n$ en los bordes. Chebyshev lo minimiza a $2^{-n}$.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Estructura del capítulo}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Existencia y unicidad; Vandermonde y su mal condicionamiento\\[0.6mm]
+2.\; Error de Cauchy, fenómeno de Runge y nodos de Chebyshev
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Fórmulas: Lagrange (cardinales) y Newton (diferencias divididas, Horner)\\[0.6mm]
+4.\; Dos ejemplos resueltos con los \emph{mismos} datos
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Los dos ejemplos usan el conjunto $\{(0,1),(1,2),(2,0),(3,1)\}$ y deben producir \emph{el mismo} $p_3(x)=x^3-\tfrac92x^2+\tfrac92x+1$: primero por \textbf{Lagrange} (construir y sumar cardinales) y luego por \textbf{Newton} (tabla de diferencias divididas + Horner), verificando la coincidencia.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1 — TEORÍA
+% ############################################################
+\portadaseccion{1}{Fundamentos y Teoría}{Existencia y unicidad, Vandermonde, error de Cauchy y el fenómeno de Runge}{\faInfoCircle}
+
+% ---- Existencia y unicidad ----
+\begin{frame}{Existencia y unicidad del interpolador}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Teorema}{\faSuperscript}
+{\footnotesize $n{+}1$ nodos \emph{distintos} $x_0,\dots,x_n$ y valores $y_i$ $\Rightarrow$ existe un \textbf{único} $p\in\mathbb P_n$ con $p(x_i)=y_i$.\\[1.2mm]
+\textbf{Existencia} (constructiva): $p(x)=\sum_i y_iL_i(x)$ con los cardinales de Lagrange $L_i(x_k)=\delta_{ik}$.\\[1.0mm]
+\textbf{Unicidad}: si $p,q$ interpolan, $r=p-q\in\mathbb P_n$ se anula en $n{+}1$ nodos; un polinomio de grado $\le n$ con $n{+}1$ raíces es $\equiv0$, luego $p=q$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La misma $p_n$ sale de toda base (monomios, Lagrange, Newton): la elección es por \emph{eficiencia y estabilidad}, no por el resultado.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Lectura algebraica: Vandermonde}{\faCalculator}
+{\footnotesize En la base de monomios $p(x)=\sum_j c_jx^j$ las condiciones son $V\mathbf c=\mathbf y$:\\[1.0mm]
+$V=\begin{psmallmatrix}1&x_0&\cdots&x_0^n\\ 1&x_1&\cdots&x_1^n\\ \vdots&&&\vdots\\ 1&x_n&\cdots&x_n^n\end{psmallmatrix}$,\;
+$\det V=\!\!\displaystyle\prod_{i<j}(x_j-x_i)$.\\[1.4mm]
+Nodos distintos $\Rightarrow\det V\neq0\Rightarrow V$ no singular: otra prueba de existencia y unicidad.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Nodos distintos son imprescindibles}: si $x_i=x_j$ con $y_i\neq y_j$ no hay polinomio; con derivadas prescritas se pasa a interpolación de Hermite ($f[x_0,x_0]=f'(x_0)$).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Vandermonde mal condicionado ----
+\begin{frame}{Vandermonde: por qué \emph{no} se resuelve $Vc=y$}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{El defecto está en la base}{\faExclamationTriangle}
+{\footnotesize Los monomios $1,x,x^2,\dots,x^n$ se parecen cada vez más en $[0,1]$ (casi colineales): las columnas de $V$ son casi dependientes y\\[0.8mm]
+$\kappa_2(V)\sim O(2^n)$ \; (equiespaciados).\\[1.0mm]
+Se pierden $\sim n\log_{10}2\approx0.3\,n$ dígitos por el \emph{solo} hecho de plantearlo en monomios; y cuesta $\tfrac23n^3$ (el más caro).}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize El polinomio interpolador \emph{existe y es único}; lo inservible es su \emph{representación} en monomios. Lagrange y Newton lo evitan.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Crecimiento de $\kappa_2(V)$ (equiespaciados en $[0,1]$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$n$ & $\kappa_2(V)$ aprox. & dígitos perdidos\\\hline
+$5$ &$\sim10^{3}$ & $3$\\
+$10$&$\sim10^{6}$ & $6$\\
+$15$&$\sim10^{10}$& $10$\\
+$20$&$\sim10^{13}$& $13$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Para $n\gtrsim16$, en doble precisión los $c_j$ son ya \emph{basura}.\\[0.8mm]
+\begin{tabular}{@{}l@{\;}l@{}}
+Vandermonde:&$\tfrac23n^3$, inestable\\
+Lagrange:&$O(n^2)$/eval., estable\\
+Newton:&$O(n^2)$ coef., $O(n)$ eval.\\
+\end{tabular}}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Runge y Chebyshev ----
+\begin{frame}{Fenómeno de Runge y nodos de Chebyshev}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{El grado alto no converge}{\faChartLine}
+{\footnotesize $f(x)=\dfrac{1}{1+25x^2}$ en $[-1,1]$, nodos equiespaciados: el error \emph{diverge}.\\[1.0mm]
+\centering
+\renewcommand{\arraystretch}{1.16}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cc}
+$n$ & equiespaciados & Chebyshev\\\hline
+$5$ & $0.43$ & $0.56$\\
+$10$& $1.92$ & $0.11$\\
+$15$& $7.19$ & $0.022$\\
+$20$& $58.6$ & $0.0040$\\
+\end{tabular}}\\[1.0mm]
+{\footnotesize\raggedright Ocurre en aritmética \emph{exacta} con $f$ analítica: es la distribución de nodos, no el redondeo.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{El polinomio nodal $\omega(x)$}{\faSuperscript}
+{\footnotesize Del error de Cauchy, $\omega(x)=\prod(x-x_i)$. Equiespaciados: picos $\sim2^n$ en los bordes; Chebyshev los aplana.\\[1.0mm]
+Ceros de Chebyshev en $[-1,1]$:\\[0.4mm]
+$x_i=\cos\!\Big(\dfrac{2i+1}{2(n+1)}\pi\Big)$.\\[1.0mm]
+Minimizan la norma del máximo del nodal mónico:\\[0.4mm]
+$\displaystyle\max_{[-1,1]}\Big|\prod_i(x-x_i)\Big|=\frac{1}{2^n}$ (mínimo).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Constante de Lebesgue: equiespaciados $\Lambda_n\sim2^n/(n\log n)$; Chebyshev $\Lambda_n\sim\tfrac2\pi\log n$. Regla: \textbf{nunca} grado alto sobre equiespaciados.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Error de Cauchy ----
+\begin{frame}{Error de interpolación: fórmula de Cauchy}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize $f\in C^{n+1}[a,b]$, nodos en $[a,b]$; para cada $x$ existe $\xi_x\in(a,b)$:\\[0.6mm]
+$e_n(x)=f(x)-p_n(x)=\dfrac{f^{(n+1)}(\xi_x)}{(n+1)!}\displaystyle\prod_{i=0}^n(x-x_i)$.\\[1.6mm]
+Dos factores: \textbf{analítico} $\dfrac{f^{(n+1)}}{(n+1)!}$ (la función) y \textbf{geométrico} $\omega(x)=\prod(x-x_i)$ (los nodos).\\[1.2mm]
+Forma con diferencias divididas (calculable):\\[0.2mm]
+$f(x)-p_n(x)=f[x_0,\dots,x_n,x]\,\omega(x)$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Cota y orden}{\faCalculator}
+{\footnotesize $M_{n+1}=\max|f^{(n+1)}|$:\\[0.4mm]
+$|e_n(x)|\le\dfrac{M_{n+1}}{(n+1)!}\displaystyle\max_x\Big|\prod_i(x-x_i)\Big|$.\\[1.4mm]
+Equiespaciados, $h=\tfrac{b-a}{n}$: $\max|\omega|\le\tfrac{n!}{4}h^{n+1}$, luego\\[0.4mm]
+$|e_n(x)|\le\dfrac{M_{n+1}}{4(n+1)}\,h^{n+1}=O(h^{n+1})$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize El único factor controlable es $\omega(x)$: minimizarlo lleva a Chebyshev. Sube el orden con el grado \emph{solo si} $M_{n+1}$ no crece más rápido que $(n+1)!$ (falla en Runge).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2 — FÓRMULAS
+% ############################################################
+\portadaseccion{2}{Lagrange y Newton}{Polinomios cardinales, diferencias divididas y evaluación por Horner}{\faSuperscript}
+
+% ---- Lagrange ----
+\begin{frame}{Lagrange: polinomios cardinales}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Polinomios cardinales:\\[0.4mm]
+$L_i(x)=\displaystyle\prod_{j\neq i}\frac{x-x_j}{x_i-x_j}\in\mathbb P_n$, \quad $L_i(x_k)=\delta_{ik}$.\\[1.4mm]
+Interpolador (coeficientes $=$ los datos):\\[0.2mm]
+$\boxed{\,p_n(x)=\displaystyle\sum_{i=0}^n y_i\,L_i(x)\,}$\\[1.2mm]
+Partición de la unidad: $\displaystyle\sum_i L_i(x)\equiv1$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Un cardinal puede ser \emph{negativo} entre nodos ($L_2(0.5)=-0.125$): raíz de la inestabilidad en grado alto (constante de Lebesgue $\Lambda_n$).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Costo y forma baricéntrica}{\faTable}
+{\footnotesize Directa: $L_i(x)$ es producto de $n$ factores $\Rightarrow O(n^2)$ por punto, y \textbf{no} incremental.\\[1.0mm]
+Pesos $w_i=\dfrac{1}{\prod_{j\neq i}(x_i-x_j)}$ (precálculo $O(n^2)$) dan la 2.\textsuperscript{a} forma baricéntrica:\\[0.4mm]
+$p_n(x)=\dfrac{\sum_i \frac{w_i}{x-x_i}\,y_i}{\sum_i \frac{w_i}{x-x_i}}$, \; $O(n)$/punto.\\[1.0mm]
+\centering
+\renewcommand{\arraystretch}{1.14}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+Forma & por punto & incremental\\\hline
+Directa & $O(n^2)$ & no\\
+Baricéntrica & $O(n)$ & sí\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Ideal para teoría y cuadratura: $w_i=\int_a^b L_i$ son los pesos de Newton-Cotes.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Newton ----
+\begin{frame}{Newton: diferencias divididas y Horner}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize Recurrencia de las diferencias divididas:\\[0.6mm]
+\centerline{\resizebox{\linewidth}{!}{$f[x_i,\dots,x_{i+k}]=\dfrac{f[x_{i+1},\dots,x_{i+k}]-f[x_i,\dots,x_{i+k-1}]}{x_{i+k}-x_i}$}}\\[1.2mm]
+Forma de Newton (coef.\ $=$ diagonal superior):\\[0.8mm]
+\centerline{$\boxed{\,\displaystyle p_n(x)=\sum_{k=0}^n c_k\!\prod_{j=0}^{k-1}(x-x_j)\,}$}\\[0.8mm]
+\centerline{con \; $c_k=f[x_0,\dots,x_k]$.}}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Incremental}: añadir un nodo agrega un solo término ($O(n)$), los coeficientes previos no cambian. Además $f[x_0,\dots,x_k]=f^{(k)}(\xi)/k!$ (derivada discreta).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Forma anidada de Horner}{\faCalculator}
+{\footnotesize De adentro hacia afuera:\\[0.2mm]
+$p_n(x)=c_0+(x{-}x_0)\big[c_1+(x{-}x_1)[\cdots+(x{-}x_{n-1})c_n]\big]$.\\[1.0mm]
+\ttfamily\scriptsize
+p = c[n]\\
+para k = n-1 .. 0:\\
+\hspace{4mm}p = c[k] + (x - x[k])*p\\[0.6mm]
+\rmfamily\footnotesize Cada paso: $1$ mult.\ $+\,2$ sumas $\Rightarrow O(n)$/punto, \emph{óptimo} en multiplicaciones (Ostrowski).}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Newton+Horner y Lagrange baricéntrico son las dos formas $O(n)$; Newton añade coeficientes explícitos e incrementales.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3 — EJEMPLOS
+% ############################################################
+\portadaseccion{3}{Ejemplos Resueltos}{Los mismos datos por Lagrange (A) y por Newton (B): mismo $p_3$, verificado}{\faCalculator}
+
+% ============================================================
+%  EJEMPLO A — LAGRANGE  (3 páginas)
+% ============================================================
+\begin{frame}{Ejemplo A · Lagrange (1/3): datos y cardinales}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{cardidea}{Datos y objetivo}{\faListOl}
+{\footnotesize Interpolar los $4$ nodos ($n=3$, cúbica):\\[1.0mm]
+\centering
+\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{8pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$i$ & $0$ & $1$ & $2$ & $3$\\\hline
+$x_i$ & $0$ & $1$ & $2$ & $3$\\
+$y_i$ & $1$ & $2$ & $0$ & $1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $p_3(x)=\displaystyle\sum_{i=0}^3 y_i L_i(x)$, con\\[0.4mm]
+$L_i(x)=\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Como $y_2=0$, el término $y_2L_2$ \emph{no aporta}: solo se suman $L_0,L_1,L_3$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.58\textwidth}
+\begin{cardgear}{Denominadores y cada $L_i(x)$}{\faSuperscript}
+{\footnotesize
+$L_0=\dfrac{(x{-}1)(x{-}2)(x{-}3)}{(0{-}1)(0{-}2)(0{-}3)}=\dfrac{(x{-}1)(x{-}2)(x{-}3)}{-6}$\\[1.6mm]
+$L_1=\dfrac{x(x{-}2)(x{-}3)}{(1{-}0)(1{-}2)(1{-}3)}=\dfrac{x(x{-}2)(x{-}3)}{2}$\\[1.6mm]
+$L_2=\dfrac{x(x{-}1)(x{-}3)}{(2{-}0)(2{-}1)(2{-}3)}=\dfrac{x(x{-}1)(x{-}3)}{-2}$\\[1.6mm]
+$L_3=\dfrac{x(x{-}1)(x{-}2)}{(3{-}0)(3{-}1)(3{-}2)}=\dfrac{x(x{-}1)(x{-}2)}{6}$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize El denominador de $L_i$ es $\prod_{j\neq i}(x_i-x_j)$: aquí $-6,\,2,\,-2,\,6$. Nótese la simetría de signos.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo A · Lagrange (2/3): expansión de cada término}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Numeradores desarrollados}{\faCalculator}
+{\footnotesize
+$(x{-}1)(x{-}2)(x{-}3)=x^3-6x^2+11x-6$\\[1.0mm]
+$x(x{-}2)(x{-}3)=x^3-5x^2+6x$\\[1.0mm]
+$x(x{-}1)(x{-}2)=x^3-3x^2+2x$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Solo se necesitan estos tres numeradores: el de $L_2$ se omite porque $y_2=0$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Términos $y_iL_i(x)$}{\faSuperscript}
+{\footnotesize
+$y_0L_0=1\cdot\dfrac{x^3-6x^2+11x-6}{-6}$\\[0.4mm]
+\hspace{6mm}$=-\tfrac16x^3+x^2-\tfrac{11}{6}x+1$\\[1.4mm]
+$y_1L_1=2\cdot\dfrac{x^3-5x^2+6x}{2}$\\[0.4mm]
+\hspace{6mm}$=x^3-5x^2+6x$\\[1.4mm]
+$y_3L_3=1\cdot\dfrac{x^3-3x^2+2x}{6}$\\[0.4mm]
+\hspace{6mm}$=\tfrac16x^3-\tfrac12x^2+\tfrac13x$}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo A · Lagrange (3/3): suma y evaluación}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Suma coeficiente a coeficiente}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|cccc}
+ & $x^3$ & $x^2$ & $x^1$ & $x^0$\\\hline
+$y_0L_0$ & $-\tfrac16$ & $1$ & $-\tfrac{11}{6}$ & $1$\\
+$y_1L_1$ & $1$ & $-5$ & $6$ & $0$\\
+$y_3L_3$ & $\tfrac16$ & $-\tfrac12$ & $\tfrac13$ & $0$\\\hline
+$\Sigma$ & $1$ & $-\tfrac92$ & $\tfrac92$ & $1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $x^1$: $-\tfrac{11}{6}+6+\tfrac13=\tfrac{-11+36+2}{6}=\tfrac{27}{6}=\tfrac92$.\\[0.6mm]
+$\boxed{\,p_3(x)=x^3-\tfrac92x^2+\tfrac92x+1\,}$}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Evaluar en $x=1.5$}{\faCalculator}
+{\footnotesize Cardinales en $x=1.5$:\\[0.4mm]
+$L_0=-0.0625$, \; $L_1=0.5625$,\\[0.2mm]
+$L_2=0.5625$, \; $L_3=-0.0625$.\\[0.6mm]
+Partición de la unidad: $\sum L_i=1$. \checkmark\\[1.0mm]
+$p_3(1.5)=1(-0.0625)+2(0.5625)$\\[0.2mm]
+\hspace{14mm}$+0(0.5625)+1(-0.0625)$\\[0.2mm]
+\hspace{9mm}$=-0.0625+1.125-0.0625=\mathbf{1}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Verificación en los nodos: $p_3(0){=}1$, $p_3(1){=}2$, $p_3(2){=}0$, $p_3(3){=}1$. \checkmark\ Newton (ejemplo B) debe dar este mismo $p_3$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  EJEMPLO B — NEWTON  (3 páginas)
+% ============================================================
+\begin{frame}{Ejemplo B · Newton (1/3): tabla, columna de orden 1}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Mismos datos, base incremental}{\faListOl}
+{\footnotesize
+\centering
+\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{8pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$x_i$ & $0$ & $1$ & $2$ & $3$\\
+$y_i$ & $1$ & $2$ & $0$ & $1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Columna $0$ $=$ los valores $f[x_i]=y_i$. La columna de orden $1$ son las pendientes\\[0.4mm]
+$f[x_i,x_{i+1}]=\dfrac{y_{i+1}-y_i}{x_{i+1}-x_i}$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Aquí $x_{i+1}-x_i=1$ siempre, así que dividir por el paso es trivial.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Diferencias divididas de orden 1}{\faCalculator}
+{\footnotesize
+$f[x_0,x_1]=\dfrac{2-1}{1-0}=1$\\[1.0mm]
+$f[x_1,x_2]=\dfrac{0-2}{2-1}=-2$\\[1.0mm]
+$f[x_2,x_3]=\dfrac{1-0}{3-2}=1$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faTable]
+\centering
+{\footnotesize Tabla parcial (orden 0 y 1):\\[0.6mm]
+\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+$x_i$ & $f[\,\cdot\,]$ & orden 1\\\hline
+$0$ & $\mathbf 1$ & \\
+$1$ & $2$ & $\mathbf 1$\\
+$2$ & $0$ & $-2$\\
+$3$ & $1$ & $1$\\
+\end{tabular}}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo B · Newton (2/3): órdenes 2--3 y coeficientes}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardgear}{Órdenes superiores}{\faCalculator}
+{\footnotesize Orden 2 (denominador $x_{i+2}-x_i=2$):\\[0.4mm]
+$f[x_0,x_1,x_2]=\dfrac{-2-1}{2-0}=-\tfrac32$\\[0.8mm]
+$f[x_1,x_2,x_3]=\dfrac{1-(-2)}{3-1}=\tfrac32$\\[1.2mm]
+Orden 3 (denominador $x_3-x_0=3$):\\[0.4mm]
+$f[x_0,x_1,x_2,x_3]=\dfrac{\tfrac32-(-\tfrac32)}{3-0}=\dfrac{3}{3}=1$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Cada celda combina las dos de su izquierda dividiendo por la amplitud de nodos que abarca.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Tabla completa (diagonal en negrita)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c|c|c}
+$x_i$ & $f[\,\cdot\,]$ & orden 1 & orden 2 & orden 3\\\hline
+$0$ & $\mathbf 1$ & & & \\
+$1$ & $2$ & $\mathbf 1$ & & \\
+$2$ & $0$ & $-2$ & $\mathbf{-\tfrac32}$ & \\
+$3$ & $1$ & $1$ & $\tfrac32$ & $\mathbf 1$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Coeficientes (diagonal superior):\\[0.4mm]
+$c_0=1,\; c_1=1,\; c_2=-\tfrac32,\; c_3=1$.\\[0.8mm]
+$p_3(x)=1+1\,(x{-}0)-\tfrac32(x{-}0)(x{-}1)$\\[0.2mm]
+\hspace{10mm}$+\,1\,(x{-}0)(x{-}1)(x{-}2)$.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo B · Newton (3/3): expansión, Horner y verificación}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{De la forma de Newton a la estándar}{\faSuperscript}
+{\footnotesize
+$(x)(x{-}1)=x^2-x$\\[0.4mm]
+$(x)(x{-}1)(x{-}2)=x^3-3x^2+2x$\\[1.0mm]
+$p_3=1+x-\tfrac32(x^2-x)+(x^3-3x^2+2x)$\\[0.4mm]
+$=x^3+\big(-\tfrac32-3\big)x^2+\big(1+\tfrac32+2\big)x+1$\\[0.4mm]
+$=\boxed{\,x^3-\tfrac92x^2+\tfrac92x+1\,}$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Coincide} con el $p_3$ de Lagrange (ejemplo A): el interpolador es único, solo cambia la base.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Horner en $x=1.5$}{\faCalculator}
+{\footnotesize $c=(1,\,1,\,-\tfrac32,\,1)$, nodos $(0,1,2)$:\\[0.6mm]
+\centering
+\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|l}
+paso $k$ & $p\leftarrow c_k+(x-x_k)\,p$\\\hline
+inicio & $p=c_3=1$\\
+$2$ & $-\tfrac32+(1.5{-}2)(1)=-2$\\
+$1$ & $1+(1.5{-}1)(-2)=0$\\
+$0$ & $1+(1.5{-}0)(0)=\mathbf 1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize $p_3(1.5)=1$: idéntico al valor por Lagrange. \checkmark\\[0.4mm]
+$3$ multiplicaciones (Horner) frente a $\sim9$ de la forma desarrollada.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faMicrochip};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 4 \textperiodcentered\ Interpolación Polinómica};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

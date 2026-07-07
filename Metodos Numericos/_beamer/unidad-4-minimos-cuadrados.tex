@@ -1,0 +1,627 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 4
+%  Ajuste por Mínimos Cuadrados
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Aproximación · Mínimos Cuadrados}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.2cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{18}{18}\selectfont $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.6cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $\min_{\mathbf c}\ \|A\mathbf c-\mathbf y\|_2^2$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.9cm,yshift=2.6cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $R^2=1-\tfrac{\|\mathbf r\|_2^2}{\|\mathbf y-\bar y\|_2^2}$};
+  % --- circuito decorativo ---
+  \draw[Dorado, line width=0.8pt] ([xshift=-2.7cm,yshift=-3.4cm]current page.north east)
+      -- ++(-1.5,-1.5) -- ++(-1.8,0);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \draw[Teal, line width=0.8pt] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east)
+      -- ++(-1.2,-1.2) -- ++(-2.2,0);
+  \fill[Cian] ([xshift=-5.0cm,yshift=-6.8cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-1.6cm,yshift=-5.6cm]current page.north east) circle (0.05cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faChartLine};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Ajuste por\\ Mínimos Cuadrados};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Residuos\ \textperiodcentered\ Ecuaciones normales\ \textperiodcentered\ Gram\ \textperiodcentered\ QR};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 4 \textbar\ Aproximación de Funciones};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+El \textbf{ajuste por mínimos cuadrados} busca, dentro de una familia $\phi(x;\mathbf c)=\sum_j c_j\varphi_j(x)$ \emph{lineal en los parámetros}, el modelo que minimiza la suma de cuadrados de los residuos $r_i=y_i-\phi(x_i)$. A diferencia de la interpolación, \emph{no} pasa por los datos: capta su \textbf{tendencia}. Es la herramienta para datos con \textbf{ruido} o \textbf{sobredeterminados} ($m>n$). La condición de óptimo —residuo ortogonal a las columnas de $A$— son las \textbf{ecuaciones normales} $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y$, con $A^{\!\top}\!A$ la \emph{matriz de Gram}.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Ajustar vs.\ interpolar}{\faCogs}
+Ajustar: $m>n$, datos ruidosos, $\mathbf r=A\mathbf c-\mathbf y\neq\mathbf 0$, proyección de $\mathbf y$. Interpolar: $p$ pasa \emph{exacto} por los nodos.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Resolver el sistema}{\faCogs}
+Formar $G=A^{\!\top}\!A$ y $A^{\!\top}\mathbf y$; Cholesky si $A$ está bien condicionada, QR si hay duda ($\kappa(G)=\kappa(A)^2$).
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Ruta de la sesión}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Ajuste vs.\ interpolación: por qué mínimos cuadrados\\[0.6mm]
+2.\; Residuos $r_i$, norma euclídea y minimización
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Ecuaciones normales, matriz de Gram y regresión\\[0.6mm]
+4.\; Condicionamiento y la alternativa QR
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+Dos bloques: primero la \textbf{teoría} (planteamiento, fórmulas de las ecuaciones normales y el caso recta con sus sumatorias); luego un \textbf{ejemplo numérico completo} resuelto paso a paso —tabla de sumas, matriz de Gram con números, resolución del sistema, modelo final, residuos y $R^2$— repartido en varias diapositivas.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1 — TEORÍA
+% ############################################################
+\portadaseccion{1}{Fundamentos}{Ajuste vs.\ interpolación, residuos, ecuaciones normales, Gram y condicionamiento}{\faChartLine}
+
+% ---- Ajuste vs interpolación ----
+\begin{frame}{¿Qué es el ajuste y por qué usarlo?}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{La idea}{\faLightbulb}
+{\footnotesize Dados $\{(x_i,y_i)\}_{i=1}^m$ y un modelo con $n$ parámetros ($m>n$), se busca $\mathbf c$ que haga $\phi(x;\mathbf c)$ \emph{lo más cercano posible} a los datos, sin exigir que pase por ellos.\\[1.0mm]
+Se emplea cuando los datos tienen \textbf{ruido} de medida o están \textbf{sobredeterminados}: forzar el paso exacto amplificaría el error y produciría oscilaciones.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \emph{Lineal en los parámetros}: $\phi=\sum_j c_j\varphi_j(x)$ depende linealmente de $\mathbf c$ aunque $\varphi_j$ sea $x^2$, $e^x$, etc. Eso hace el problema lineal.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Ajuste vs.\ interpolación}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+ & Interpolar & Ajustar\\\hline
+Parámetros & $=m$ & $<m$\\
+Pasa por datos & sí & no\\
+Datos & exactos & con ruido\\
+Sistema & cuadrado & sobredet.\\
+Geometría & $A\mathbf c=\mathbf y$ & proyección\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize Subir el grado hasta $n=m$ recupera la interpolación y dispara el \emph{sobreajuste}: se busca la tendencia, no reproducir el ruido.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Residuos y norma euclídea ----
+\begin{frame}{Residuos, norma euclídea y minimización}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Planteamiento}{\faSuperscript}
+{\footnotesize Matriz de diseño $A\in\mathbb R^{m\times n}$, $A_{ij}=\varphi_j(x_i)$.\\[0.8mm]
+Residuo por dato y vector de residuos:\\[0.3mm]
+$r_i=y_i-\phi(x_i)$, \quad $\mathbf r=A\mathbf c-\mathbf y$.\\[1.2mm]
+Se minimiza la \textbf{norma euclídea} al cuadrado:\\[0.3mm]
+$\displaystyle\min_{\mathbf c}\ \|\mathbf r\|_2^2=\min_{\mathbf c}\sum_{i=1}^m r_i^2=\min_{\mathbf c}\|A\mathbf c-\mathbf y\|_2^2$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize ¿Por qué $\|\cdot\|_2$? Es la única norma que da un problema \emph{diferenciable}, \emph{convexo} y con solución cerrada; $\|\cdot\|_1$ y $\|\cdot\|_\infty$ requieren métodos iterativos.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Condición de óptimo}{\faCogs}
+{\footnotesize Con $J(\mathbf c)=\mathbf c^{\!\top}\!A^{\!\top}\!A\,\mathbf c-2\mathbf c^{\!\top}\!A^{\!\top}\mathbf y+\mathbf y^{\!\top}\mathbf y$:\\[0.6mm]
+$\nabla J(\mathbf c)=2A^{\!\top}\!A\,\mathbf c-2A^{\!\top}\mathbf y=\mathbf 0$.\\[1.0mm]
+Como $J$ es convexa (Hessiana $2A^{\!\top}\!A\succeq0$), el punto crítico es \emph{mínimo global}:\\[0.4mm]
+$\boxed{A^{\!\top}(A\mathbf c-\mathbf y)=\mathbf 0}$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Geometría}: $\hat{\mathbf y}=A\mathbf c$ es la \emph{proyección ortogonal} de $\mathbf y$ sobre $\operatorname{col}(A)$; el residuo $\mathbf r$ es perpendicular a él, $A^{\!\top}\mathbf r=\mathbf 0$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ecuaciones normales y Gram ----
+\begin{frame}{Ecuaciones normales y matriz de Gram}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardidea}{Fórmula clave}{\faSuperscript}
+{\footnotesize Anular el gradiente equivale al sistema cuadrado $n\times n$:\\[0.6mm]
+$\boxed{A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y}$\\[1.2mm]
+La \textbf{matriz de Gram} $G=A^{\!\top}\!A$ recoge los productos internos de las columnas:\\[0.3mm]
+$G_{jk}=\displaystyle\sum_{i=1}^m\varphi_j(x_i)\,\varphi_k(x_i)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize $G$ es \textbf{simétrica} ($G^{\!\top}=G$) y \textbf{definida positiva} sii $\operatorname{rango}(A)=n$, pues $\mathbf c^{\!\top}G\mathbf c=\|A\mathbf c\|_2^2\ge0$. Entonces se resuelve por Cholesky $G=LL^{\!\top}$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Caso recta $y=a_0+a_1x$}{\faCalculator}
+{\footnotesize Base $\varphi_0=1,\ \varphi_1=x$; filas $[1,\ x_i]$. Las ecuaciones normales con \emph{sumatorias explícitas}:\\[1.0mm]
+$\begin{psmallmatrix} m & \sum x_i\\[1pt] \sum x_i & \sum x_i^2\end{psmallmatrix}\!\begin{psmallmatrix}a_0\\[1pt] a_1\end{psmallmatrix}=\begin{psmallmatrix}\sum y_i\\[1pt] \sum x_iy_i\end{psmallmatrix}$\\[1.6mm]
+Fórmula cerrada (pasa por el centroide $(\bar x,\bar y)$):\\[0.4mm]
+$a_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$, \; $a_0=\bar y-a_1\bar x$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize \textbf{Resolver}, no invertir: forma $G$ y $A^{\!\top}\mathbf y$ y factoriza. Coste $\approx mn^2+\tfrac13 n^3$.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Extensión polinomial / múltiple ----
+\begin{frame}{Extensión: polinomial y múltiple}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardgear}{Ecuaciones normales de la parábola}{\faSuperscript}
+{\footnotesize Modelo $y=c_0+c_1x+c_2x^2$, filas $[1,\,x_i,\,x_i^2]$:\\[1.0mm]
+$\begin{psmallmatrix} m & \sum x & \sum x^2\\[1pt] \sum x & \sum x^2 & \sum x^3\\[1pt] \sum x^2 & \sum x^3 & \sum x^4\end{psmallmatrix}\!\begin{psmallmatrix}c_0\\[1pt] c_1\\[1pt] c_2\end{psmallmatrix}=\begin{psmallmatrix}\sum y\\[1pt] \sum xy\\[1pt] \sum x^2y\end{psmallmatrix}$\\[1.6mm]
+Grado $p$: bloque de Gram con potencias hasta $\sum x^{2p}$; lado derecho con $\sum x^{k}y$.}
+\end{cardgear}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardidea}{Múltiple y linealizables}{\faListUl}
+{\footnotesize \textbf{Múltiple} $y=c_0+c_1x_1+\dots+c_kx_k$: fila $[1,x_{i1},\dots,x_{ik}]$, misma maquinaria $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y$.\\[1.0mm]
+\textbf{Linealizables} por cambio de variable:\\[0.3mm]
+$y=ae^{bx}\Rightarrow\ln y=\ln a+bx$;\\[0.2mm]
+$y=ax^b\Rightarrow\ln y=\ln a+b\ln x$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \emph{Lineal} alude a los \textbf{parámetros} $c_j$, no a $x$: la parábola es un problema lineal.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Condicionamiento y QR ----
+\begin{frame}{Condicionamiento: ecuaciones normales vs.\ QR}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{El cuadrado del condicionamiento}{\faExclamationTriangle}
+{\footnotesize Formar $G=A^{\!\top}\!A$ \emph{eleva al cuadrado} el número de condición:\\[0.6mm]
+$\kappa_2(A^{\!\top}\!A)=\kappa_2(A)^2$, \quad $\kappa_2(A)=\dfrac{\sigma_1}{\sigma_n}$.\\[1.2mm]
+Se pierde el \textbf{doble} de dígitos que un método basado directo en $A$.\\[0.6mm]
+\textbf{QR estable}: $A=QR$ $\Rightarrow$ $R\mathbf c=Q^{\!\top}\mathbf y$, con $\kappa_2(R)=\kappa_2(A)$, \emph{sin} formar $A^{\!\top}\!A$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Dígitos correctos ($u\sim10^{-16}$)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.16}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|cc}
+$\kappa_2(A)$ & $\kappa_2(A^{\!\top}\!A)$ & Ec.\ norm. & QR\\\hline
+$10^2$ & $10^4$ & $12$ & $14$\\
+$10^4$ & $10^8$ & $8$ & $12$\\
+$10^6$ & $10^{12}$ & $4$ & $10$\\
+$10^8$ & $10^{16}$ & $0$ & $8$\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Regla}: si $\kappa_2(A)\lesssim10^4$ y prima la velocidad, las ecuaciones normales son aceptables y más rápidas. \emph{Ante la duda, QR}; para rango incierto, SVD.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2 — EJEMPLO RESUELTO
+% ############################################################
+\portadaseccion{2}{Ejemplo Resuelto}{Recta por mínimos cuadrados a $5$ puntos: sumas, Gram, sistema, modelo, residuos y $R^2$}{\faCalculator}
+
+% ---- Paso 1: datos y tabla de sumas ----
+\begin{frame}{Ejemplo · Paso 1: datos y tabla de sumas}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Problema}{\faListOl}
+{\footnotesize Ajustar la recta $y=a_0+a_1x$ a los $m=5$ puntos\\[0.6mm]
+$(0,2),\,(1,3),\,(2,5),\,(3,4),\,(4,6)$.\\[1.2mm]
+Modelo de $n=2$ parámetros: sistema \textbf{sobredeterminado} ($5>2$), sin recta que pase por todos.\\[1.0mm]
+Estrategia: montar las sumas $\sum x_i,\ \sum x_i^2,\ \sum y_i,\ \sum x_iy_i$ que alimentan las ecuaciones normales.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Tabla de sumatorias}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$i$ & $x_i$ & $y_i$ & $x_i^2$ & $x_iy_i$\\\hline
+$1$&$0$&$2$&$0$&$0$\\
+$2$&$1$&$3$&$1$&$3$\\
+$3$&$2$&$5$&$4$&$10$\\
+$4$&$3$&$4$&$9$&$12$\\
+$5$&$4$&$6$&$16$&$24$\\\hline
+$\Sigma$&$\mathbf{10}$&$\mathbf{20}$&$\mathbf{30}$&$\mathbf{49}$\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize Además $\bar x=\tfrac{10}{5}=2$, \; $\bar y=\tfrac{20}{5}=4$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Paso 2: diseño, Gram y A^T y ----
+\begin{frame}{Ejemplo · Paso 2: diseño, Gram y $A^{\!\top}\mathbf y$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Matriz de diseño}{\faSuperscript}
+{\footnotesize Cada fila es $[1,\ x_i]$:\\[0.8mm]
+$A=\begin{psmallmatrix}1&0\\ 1&1\\ 1&2\\ 1&3\\ 1&4\end{psmallmatrix}$, \quad
+$\mathbf y=\begin{psmallmatrix}2\\ 3\\ 5\\ 4\\ 6\end{psmallmatrix}$.\\[1.4mm]
+Las entradas de $G$ y de $A^{\!\top}\mathbf y$ son exactamente las sumas del Paso 1.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Matriz de Gram y lado derecho}{\faCalculator}
+{\footnotesize Matriz de Gram $G=A^{\!\top}\!A$:\\[0.6mm]
+$G=\begin{psmallmatrix} m & \sum x_i\\[1pt] \sum x_i & \sum x_i^2\end{psmallmatrix}=\begin{psmallmatrix} 5 & 10\\ 10 & 30\end{psmallmatrix}$\\[1.6mm]
+Lado derecho $A^{\!\top}\mathbf y$:\\[0.4mm]
+$A^{\!\top}\mathbf y=\begin{psmallmatrix} \sum y_i\\[1pt] \sum x_iy_i\end{psmallmatrix}=\begin{psmallmatrix} 20\\ 49\end{psmallmatrix}$\\[1.6mm]
+Ecuaciones normales $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y$:\\[0.4mm]
+$\begin{psmallmatrix} 5 & 10\\ 10 & 30\end{psmallmatrix}\!\begin{psmallmatrix}a_0\\ a_1\end{psmallmatrix}=\begin{psmallmatrix} 20\\ 49\end{psmallmatrix}$}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize $G$ es simétrica y, como las columnas $\mathbf 1$ y $\mathbf x$ son independientes, definida positiva: el sistema tiene solución \emph{única}.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Paso 3: resolver el 2x2 ----
+\begin{frame}{Ejemplo · Paso 3: resolver el sistema $2\times2$}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Por eliminación}{\faCalculator}
+{\footnotesize Sistema explícito:\\[0.4mm]
+$\text{(I)}\ \ 5a_0+10a_1=20$\\[0.2mm]
+$\text{(II)}\ 10a_0+30a_1=49$\\[1.2mm]
+$\text{(II)}-2\,\text{(I)}$ elimina $a_0$:\\[0.3mm]
+$(30-20)a_1=49-40\ \Rightarrow\ 10a_1=9$\\[0.3mm]
+$\Rightarrow\ \boxed{a_1=0.9}$\\[1.0mm]
+Sustituyendo en (I):\\[0.3mm]
+$5a_0=20-10(0.9)=11\ \Rightarrow\ \boxed{a_0=2.2}$}
+\end{cardgear}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Verificación por Cramer}{\faCheckDouble}
+{\footnotesize Determinante de Gram:\\[0.3mm]
+$\det G=5\cdot30-10\cdot10=150-100=50$.\\[1.2mm]
+$a_0=\dfrac{\det\begin{psmallmatrix}20&10\\ 49&30\end{psmallmatrix}}{50}=\dfrac{600-490}{50}=\dfrac{110}{50}=2.2$\\[1.4mm]
+$a_1=\dfrac{\det\begin{psmallmatrix}5&20\\ 10&49\end{psmallmatrix}}{50}=\dfrac{245-200}{50}=\dfrac{45}{50}=0.9$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize Ambos métodos coinciden: $\mathbf c=(a_0,a_1)^{\!\top}=(2.2,\,0.9)^{\!\top}$. $\det G=50\neq0$ confirma unicidad.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Paso 4: modelo, residuos, ortogonalidad ----
+\begin{frame}{Ejemplo · Paso 4: modelo y residuos}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{cardidea}{Modelo ajustado}{\faSuperscript}
+{\footnotesize Recta de mínimos cuadrados:\\[0.4mm]
+$\boxed{\;\hat y=2.2+0.9\,x\;}$\\[1.2mm]
+Pasa por el centroide $(\bar x,\bar y)=(2,4)$:\\[0.3mm]
+$2.2+0.9\cdot2=4=\bar y$. \checkmark\\[1.0mm]
+No pasa por ningún dato, pero minimiza $\sum r_i^2$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCheckCircle]
+{\footnotesize \textbf{Ortogonalidad} $A^{\!\top}\mathbf r=\mathbf 0$:\\[0.3mm]
+$\sum r_i=0$ y $\sum x_ir_i=0$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.58\textwidth}
+\begin{cardgear}{Predicciones y residuos $r_i=y_i-\hat y_i$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccccc}
+$x_i$ & $0$ & $1$ & $2$ & $3$ & $4$\\
+$y_i$ & $2$ & $3$ & $5$ & $4$ & $6$\\
+$\hat y_i$ & $2.2$ & $3.1$ & $4.0$ & $4.9$ & $5.8$\\\hline
+$r_i$ & $-0.2$ & $-0.1$ & $1.0$ & $-0.9$ & $0.2$\\
+$r_i^2$ & $0.04$ & $0.01$ & $1.00$ & $0.81$ & $0.04$\\
+\end{tabular}}\\[1.6mm]
+{\footnotesize Comprobación de las ecuaciones normales:\\[0.3mm]
+$\sum r_i=-0.2-0.1+1.0-0.9+0.2=0$\\[0.2mm]
+$\sum x_ir_i=0-0.1+2.0-2.7+0.8=0$}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Paso 5: norma del residuo y R^2 ----
+\begin{frame}{Ejemplo · Paso 5: norma del residuo y $R^2$}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{cardgear}{Norma del residuo}{\faCalculator}
+{\footnotesize Suma de cuadrados de residuos (SSE):\\[0.4mm]
+$\|\mathbf r\|_2^2=\sum r_i^2=0.04+0.01+1.00+0.81+0.04$\\[0.3mm]
+$\phantom{\|\mathbf r\|_2^2}=1.90$.\\[1.0mm]
+Norma euclídea del residuo:\\[0.3mm]
+$\|\mathbf r\|_2=\sqrt{1.90}\approx1.378$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardidea}{Varianza total (SST)}{\faSuperscript}
+{\footnotesize Con $\bar y=4$:\\[0.3mm]
+$\sum(y_i-\bar y)^2=(-2)^2+(-1)^2+1^2+0^2+2^2$\\[0.2mm]
+$\phantom{\sum(y_i-\bar y)^2}=4+1+1+0+4=10$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Coeficiente de determinación}{\faChartLine}
+{\footnotesize $R^2=1-\dfrac{\sum(y_i-\hat y_i)^2}{\sum(y_i-\bar y)^2}=1-\dfrac{\|\mathbf r\|_2^2}{\|\mathbf y-\bar y\|_2^2}$\\[1.4mm]
+$R^2=1-\dfrac{1.90}{10}=1-0.19=\boxed{0.81}$.\\[1.2mm]
+El modelo explica el $81\%$ de la varianza de $y$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize $R^2=1$ sería ajuste perfecto; $R^2=0$, no mejorar a la media $\bar y$. Subir el grado del polinomio siempre acerca $R^2$ a $1$ (sobreajuste), no necesariamente mejor predicción.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Cierre del ejemplo / síntesis ----
+\begin{frame}{Síntesis del procedimiento}
+\vspace{1mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardlista}
+1.\; Elegir base y armar la \textbf{tabla de sumas} $\big(\sum x_i,\sum x_i^2,\sum y_i,\sum x_iy_i\big)$\\[0.6mm]
+2.\; Montar $G=A^{\!\top}\!A$ y $A^{\!\top}\mathbf y$ con esas sumas\\[0.6mm]
+3.\; Resolver $A^{\!\top}\!A\,\mathbf c=A^{\!\top}\mathbf y$ (Cholesky / QR)
+\end{cardlista}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardlista}
+4.\; Escribir el \textbf{modelo} $\hat y=a_0+a_1x$\\[0.6mm]
+5.\; Calcular residuos $r_i$ y verificar $A^{\!\top}\mathbf r=\mathbf 0$\\[0.6mm]
+6.\; Medir la calidad: $\|\mathbf r\|_2$ y $R^2$
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{2mm}
+\begin{cardnota}[\faInfoCircle]
+En el ejemplo: $\hat y=2.2+0.9x$, residuos ortogonales ($\sum r_i=\sum x_ir_i=0$), $\|\mathbf r\|_2=\sqrt{1.90}\approx1.378$ y $R^2=0.81$. La misma receta escala a parábola ($3\times3$) y a regresión múltiple sin más cambio que la matriz de diseño; solo el \emph{condicionamiento} decide entre ecuaciones normales y QR.
+\end{cardnota}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faChartLine};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 4 \textperiodcentered\ Ajuste por Mínimos Cuadrados};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}

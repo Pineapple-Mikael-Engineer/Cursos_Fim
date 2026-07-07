@@ -1,0 +1,702 @@
+% ============================================================
+%  Presentación Beamer "UNI Oscuro" — Métodos Numéricos, Unidad 4
+%  Interpolación por Tramos · Splines
+%  Compilar con: xelatex (dos pasadas)
+% ============================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{booktabs,colortbl,array,ragged2e,graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Paleta ----------
+\definecolor{FondoOscuro}{HTML}{040812}
+\definecolor{AzulPanel}{HTML}{0C111C}
+\definecolor{Granate}{HTML}{660F1A}
+\definecolor{GranateOscuro}{HTML}{3D0710}
+\definecolor{GranateVelo}{HTML}{381520}
+\definecolor{Teal}{HTML}{00A6A6}
+\definecolor{TealOscuro}{HTML}{01565B}
+\definecolor{Dorado}{HTML}{D4AF37}
+\definecolor{Naranja}{HTML}{B46A35}
+\definecolor{Cian}{HTML}{00F2FF}
+\definecolor{Crema}{HTML}{FAF9F7}
+\definecolor{CremaGris}{HTML}{F6F5F3}
+\definecolor{TintaTexto}{HTML}{2F3E46}
+\definecolor{TealSuave}{HTML}{F2FBFB}
+\definecolor{GrisLinea}{HTML}{E2E1E0}
+\definecolor{IconoTenue}{HTML}{0B2430}
+
+% ---------- Fuentes ----------
+\setsansfont[
+  BoldFont=FiraSans-SemiBold.otf,
+  ItalicFont=FiraSans-Italic.otf,
+  BoldItalicFont=FiraSans-SemiBoldItalic.otf
+]{FiraSans-Regular.otf}
+\setmonofont[Scale=0.9]{FiraCode-Regular.ttf}
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- METADATOS ----------
+\newcommand{\sellocorto}{UNI | FIM | Métodos Numéricos}
+\newcommand{\pietitulo}{Aproximación · Splines}
+
+% ---------- Ajustes globales beamer ----------
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm, text margin right=8mm}
+\setbeamercolor{normal text}{fg=TintaTexto, bg=Crema}
+\setbeamercolor{structure}{fg=Granate}
+\setbeamercolor{alerted text}{fg=Granate}
+\setbeamercolor{example text}{fg=TealOscuro}
+\setbeamertemplate{itemize item}{\color{Teal}\raisebox{0.4ex}{\scriptsize\faCaretRight}}
+\setbeamertemplate{itemize subitem}{\color{Granate}\raisebox{0.4ex}{\tiny\faCaretRight}}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+
+% ---------- Fondo de diapositivas de contenido ----------
+\setbeamertemplate{background canvas}{%
+\begin{tikzpicture}
+  \fill[Crema] (0,0) rectangle (16,9);
+  \draw[white,       line width=1.3pt] (0,2.1) .. controls (4.2,3.5) and (9.5,1.1) .. (16,3.1);
+  \draw[GrisLinea!60,line width=0.9pt] (0,1.0) .. controls (5.0,2.3) and (10.5,0.3) .. (16,1.7);
+  \draw[white,       line width=1.3pt] (0,5.3) .. controls (5.2,6.8) and (11.0,4.5) .. (16,6.3);
+  \draw[GrisLinea!60,line width=0.9pt] (0,7.3) .. controls (6.0,8.5) and (11.5,6.5) .. (16,7.9);
+\end{tikzpicture}}
+
+% ---------- Cabecera ----------
+\setbeamertemplate{frametitle}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.north west) rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Granate] (current page.north west)
+      -- ([xshift=7.6cm]current page.north west)
+      -- ([xshift=6.7cm,yshift=-0.85cm]current page.north west)
+      -- ([yshift=-0.85cm]current page.north west) -- cycle;
+  \fill[Dorado] ([yshift=-0.91cm]current page.north west)
+      rectangle ([xshift=6.7cm,yshift=-0.85cm]current page.north west);
+  \fill[Teal] ([xshift=6.7cm,yshift=-0.97cm]current page.north west)
+      rectangle ([yshift=-0.85cm]current page.north east);
+  \fill[Teal] ([xshift=-0.42cm]current page.north east)
+      rectangle ([xshift=-0.28cm,yshift=-0.30cm]current page.north east);
+  \node[anchor=west, text=white] at ([xshift=0.55cm,yshift=-0.43cm]current page.north west)
+      {\large\bfseries\insertframetitle};
+\end{tikzpicture}%
+\vspace*{0.42cm}}
+
+% ---------- Pie de página ----------
+\setbeamertemplate{footline}{%
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[CremaGris] ([yshift=0.5cm]current page.south west) rectangle (current page.south east);
+  \draw[Teal, line width=0.7pt] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east);
+  \fill[Granate] ([xshift=-0.34cm]current page.south east) rectangle ([yshift=0.5cm]current page.south east);
+  \node[anchor=west, text=FondoOscuro] at ([xshift=0.55cm,yshift=0.25cm]current page.south west)
+      {\scriptsize \faUniversity\hspace{1mm}\textbf{\sellocorto}\hspace{1.4mm}{\color{Teal}\faAngleRight}\hspace{1.4mm}\textit{\pietitulo}};
+  \node[anchor=east, text=FondoOscuro] at ([xshift=-0.55cm,yshift=0.25cm]current page.south east)
+      {\scriptsize\textbf{\insertframenumber}\hspace{0.8mm}{\tiny\inserttotalframenumber}};
+\end{tikzpicture}}
+
+% ---------- Tarjetas ----------
+\newtcolorbox{cardidea}[3][]{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Granate},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{Granate}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardgear}[3][]{enhanced, colback=TealSuave, frame hidden, boxrule=0pt,
+  arc=1.6mm, left=3mm, right=3mm, top=2.2mm, bottom=2.4mm,
+  borderline west={2.6pt}{0pt}{Teal},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{TealOscuro}#3}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}#2}\par\vspace{1.3mm}}}
+
+\newtcolorbox{cardnota}[1][\faExclamationTriangle]{enhanced, colback=white,
+  colframe=GrisLinea, boxrule=0.5pt, arc=1.4mm,
+  left=3mm, right=3mm, top=1.8mm, bottom=2mm,
+  drop fuzzy shadow={black!25},
+  fontupper=\small, coltext=TintaTexto,
+  before upper={{\color{FondoOscuro}#1}\hspace{1.6mm}}}
+
+\newtcolorbox{cardlista}{enhanced, colback=white, frame hidden, boxrule=0pt,
+  arc=1.2mm, left=3.5mm, right=2.5mm, top=2.4mm, bottom=2.4mm,
+  borderline west={3pt}{0pt}{FondoOscuro},
+  drop fuzzy shadow={black!30},
+  fontupper=\small, coltext=Granate}
+
+% ---------- Leyendas ----------
+\newcommand{\tcap}[1]{\begin{center}\vspace{-1mm}{\scriptsize{\color{Granate}\bfseries Tabla.} {\color{TintaTexto!75}#1}}\end{center}\vspace{-2.5mm}}
+\newcommand{\fcap}[1]{{\par\centering\scriptsize{\color{Granate}\bfseries Figura.} {\color{TintaTexto!75}#1}\par}}
+\newcommand{\fsub}[1]{{\par\centering\scriptsize\color{TintaTexto!75}#1\par}}
+
+% ---------- Portada de sección ----------
+\newcommand{\portadaseccion}[4]{%
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont #4};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries #1.~#2};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small #3};
+\end{tikzpicture}
+\end{frame}}
+
+\begin{document}
+
+% ============================================================
+%  PORTADA
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  % --- fórmulas decorativas tenues (tema splines) ---
+  \node[color=AzulPanel!80!white] at ([xshift=-4.3cm,yshift=-1.2cm]current page.north east)
+      {\fontsize{17}{17}\selectfont $h_{i-1}M_{i-1}+2(h_{i-1}{+}h_i)M_i+h_iM_{i+1}=6\delta_i$};
+  \node[color=AzulPanel!80!white] at ([xshift=3.6cm,yshift=1.1cm]current page.south west)
+      {\fontsize{20}{20}\selectfont $S_i(x)=a_i+b_it+c_it^2+d_it^3$};
+  \node[color=AzulPanel!80!white] at ([xshift=-2.9cm,yshift=2.7cm]current page.south east)
+      {\fontsize{18}{18}\selectfont $\min\!\int_a^b (g'')^2\,dx$};
+  % --- spline decorativo ---
+  \draw[Dorado, line width=0.9pt]
+      ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) .. controls
+      ([xshift=-5.0cm,yshift=-3.9cm]current page.north east) and
+      ([xshift=-4.0cm,yshift=-5.6cm]current page.north east) ..
+      ([xshift=-2.7cm,yshift=-4.6cm]current page.north east);
+  \fill[Cian] ([xshift=-6.0cm,yshift=-4.9cm]current page.north east) circle (0.055cm);
+  \fill[Cian] ([xshift=-4.35cm,yshift=-4.98cm]current page.north east) circle (0.05cm);
+  \fill[Cian] ([xshift=-2.7cm,yshift=-4.6cm]current page.north east) circle (0.055cm);
+  % --- hexágono con ícono ---
+  \node[regular polygon, regular polygon sides=6, minimum size=2.5cm,
+        draw=Teal, line width=1.3pt, shape border rotate=30]
+        at ([xshift=-3.1cm,yshift=-0.2cm]current page.east) {};
+  \node[color=Teal] at ([xshift=-3.1cm,yshift=-0.2cm]current page.east)
+      {\fontsize{26}{26}\selectfont \faBezierCurve};
+  % --- textos ---
+  \node[anchor=north west, text=white] at ([xshift=1.0cm,yshift=-0.85cm]current page.north west)
+      {\footnotesize\bfseries UNIVERSIDAD NACIONAL DE INGENIERIA\ \textbar\ FIM\ \textbar\ Métodos Numéricos};
+  \node[anchor=north west, text=white, align=left,
+        font=\fontsize{19.5}{24}\selectfont\bfseries] at ([xshift=0.95cm,yshift=-1.55cm]current page.north west)
+      {Interpolación por Tramos\\ Splines};
+  \node[anchor=north west, text=Teal] at ([xshift=1.0cm,yshift=-4.05cm]current page.north west)
+      {\normalsize\itshape Lineales $C^0$\ \textperiodcentered\ Cúbicos $C^2$\ \textperiodcentered\ Sistema tridiagonal};
+  \draw[Dorado, line width=0.6pt] ([xshift=1.0cm,yshift=2.45cm]current page.south west) -- ++(6.2cm,0);
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.75cm]current page.south west)
+      {\normalsize\bfseries Autor: \textemdash};
+  \node[anchor=south west, text=white] at ([xshift=1.0cm,yshift=1.25cm]current page.south west)
+      {\small Curso: Métodos Numéricos \textbar\ Unidad 4};
+  \node[anchor=south west, text=white!70!FondoOscuro] at ([xshift=1.0cm,yshift=0.78cm]current page.south west)
+      {\footnotesize Docente: \textemdash\ \textperiodcentered\ Lima, 2026};
+\end{tikzpicture}
+\end{frame}
+
+% ============================================================
+%  RESUMEN
+% ============================================================
+\begin{frame}{Resumen}
+\begin{cardidea}{Síntesis}{\faLightbulb}
+Un \textbf{spline} de grado $m$ sustituye un único polinomio global por muchos polinomios de \emph{grado bajo}, uno por subintervalo $[x_i,x_{i+1}]$, empalmados con continuidad $C^{m-1}$ en los nodos. Así se evita por construcción el \textbf{fenómeno de Runge}: se refina aumentando el \emph{número de tramos} —no el grado—, con convergencia estable. El \textbf{lineal} ($C^0$) une puntos con rectas ($O(h^2)$); el \textbf{cúbico} ($C^2$) es suave, de mínima curvatura y $O(h^4)$, y se construye resolviendo un \emph{sistema tridiagonal} para los momentos $M_i=S''(x_i)$.
+\end{cardidea}
+\vspace{2mm}
+\begin{columns}[T]
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Grado bajo, muchos tramos}{\faCogs}
+El polinomio global sube el grado con los nodos y oscila; el spline mantiene el grado ($1$ ó $3$) y suma tramos: estable y local.
+\end{cardgear}
+\end{column}
+\begin{column}{0.485\textwidth}
+\begin{cardgear}{Lineal vs.\ cúbico}{\faCogs}
+$C^0$: continuo con esquinas, sin sistema, $O(h^2)$. $C^2$: suave sin esquinas, tridiagonal $O(n)$, $O(h^4)$, mínima curvatura.
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  ESTRUCTURA
+% ============================================================
+\begin{frame}{Hoja de ruta}
+\vspace{4mm}
+\begin{columns}[T]
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+1.\; Por qué interpolar por tramos: Runge, grado vs.\ tramos\\[0.6mm]
+2.\; Splines lineales: continuidad $C^0$ y error $O(h^2)$
+\end{cardlista}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardlista}
+3.\; Splines cúbicos $C^2$: momentos y sistema tridiagonal\\[0.6mm]
+4.\; Mínima curvatura, convergencia y \emph{ejemplo resuelto}
+\end{cardlista}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\begin{cardnota}[\faInfoCircle]
+La pieza central es el spline cúbico natural: se plantean las condiciones de continuidad $C^0,C^1,C^2$, se cuenta el déficit de $2$ ecuaciones que cierran las condiciones de frontera, y se reduce todo a un \textbf{sistema tridiagonal} en los momentos $M_i=S''(x_i)$. El cierre es un \emph{ejemplo numérico completo} —$4$ puntos, $3$ tramos— resuelto paso a paso.
+\end{cardnota}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 1
+% ############################################################
+\portadaseccion{1}{Interpolar por Tramos}{Por qué el grado bajo local vence a la oscilación del polinomio global}{\faChartLine}
+
+% ---- Por qué por tramos ----
+\begin{frame}{¿Por qué interpolar por tramos?}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{La idea}{\faLightbulb}
+{\footnotesize El error del interpolador global de $n{+}1$ nodos lleva el factor
+\[
+\frac{f^{(n+1)}(\xi)}{(n+1)!}\,\omega(x),\qquad \omega(x)=\prod_i(x-x_i).
+\]
+Con nodos \emph{equiespaciados}, $f^{(n+1)}$ puede crecer más rápido que $(n+1)!$: el error \textbf{diverge} en los bordes (Runge).\\[1.0mm]
+\textbf{Remedio por tramos:} fijar el grado $m$ (bajo) y refinar la malla $h\to0$. El factor $f^{(m+1)}/(m+1)!$ queda \emph{acotado} y $h^{m+1}\to0$ controla el error.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Refinar: grado vs.\ tramos}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|cc}
+Estrategia & Convergencia\\\hline
+Spline lineal ($h\to0$) & $O(h^2)$ garant.\\
+Spline cúbico ($h\to0$) & $O(h^4)$ garant.\\
+Global equiesp.\ ($n\to\infty$) & puede \textbf{diverger}\\
+Global Chebyshev ($n\to\infty$) & converge\\
+\end{tabular}}\\[1.4mm]
+{\footnotesize $f(x)=\dfrac{1}{1+25x^2}$ en $[-1,1]$, error máx.:\\[0.6mm]
+\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{7pt}
+\begin{tabular}{c|cc}
+Nodos & Global & Spline cúb.\\\hline
+$11$&$1.92$&$0.022$\\
+$21$&$58.6$&$1.4\times10^{-3}$\\
+$41$&$>10^3$&$9\times10^{-5}$\\
+\end{tabular}}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Splines lineales C0 ----
+\begin{frame}{Splines lineales: continuidad $C^0$}
+\begin{columns}[T]
+\begin{column}{0.44\textwidth}
+\begin{cardidea}{Fórmula}{\faSuperscript}
+{\footnotesize En cada $[x_i,x_{i+1}]$ una recta:\\[0.4mm]
+$S_i(x)=y_i+\dfrac{y_{i+1}-y_i}{x_{i+1}-x_i}(x-x_i)$.\\[1.2mm]
+Pendiente $=$ diferencia dividida de orden $1$. Continuo ($S(x_i)=y_i$) pero $S'$ \emph{salta} en los nodos: esquinas.\\[1.2mm]
+Error ($f\in C^2$, $h=\max h_i$):\\[0.2mm]
+$\max|f-S|\le\dfrac{h^2}{8}\max|f''|=O(h^2)$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faListOl]
+{\footnotesize Datos $(0,0),(1,1),(2,0),(3,1)$, $h_i=1$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.54\textwidth}
+\begin{cardgear}{Propiedades y tramos (proceso)}{\faTable}
+{\footnotesize \textbf{Local}: cada segmento usa $2$ datos; mover un $y_i$ afecta solo $2$ tramos. \textbf{Sin oscilación}: $\min y_i\le S\le\max y_i$ (inmune a Runge). \textbf{Coste} $O(n)$, sin sistema.\\[1.2mm]
+\centering
+\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{9pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|c|c}
+Tramo & $S_i(x)$ & pend.\\\hline
+$[0,1]$ & $x$ & $+1$\\
+$[1,2]$ & $2-x$ & $-1$\\
+$[2,3]$ & $x-2$ & $+1$\\
+\end{tabular}}\\[1.2mm]
+{\footnotesize Quiebre en $x=1$: $S'(1^-)=+1$, $S'(1^+)=-1$. La derivada a tramos es \emph{escalonada}: mala aproximación de $f'$. El cúbico corrige esto imponiendo $C^2$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 2
+% ############################################################
+\portadaseccion{2}{Splines Cúbicos $C^2$}{Continuidad, grados de libertad, sistema tridiagonal de momentos y mínima curvatura}{\faBezierCurve}
+
+% ---- Definición y grados de libertad ----
+\begin{frame}{Definición, grados de libertad y frontera}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Conteo de incógnitas}{\faSuperscript}
+{\footnotesize $S\in C^2[a,b]$; en cada $[x_i,x_{i+1}]$ una cúbica $S_i$. Con $n$ tramos: $4n$ coeficientes.\\[1.0mm]
+\emph{Condiciones disponibles:}
+\begin{itemize}\setlength{\itemsep}{0.3mm}
+\item Interpolación $S_i(x_i)=y_i,\ S_i(x_{i+1})=y_{i+1}$: $2n$.
+\item $C^1$ y $C^2$ en los $n{-}1$ nodos internos: $2(n{-}1)$.
+\end{itemize}
+Total $4n-2$ para $4n$ incógnitas: \textbf{faltan $2$}, que aportan las condiciones de frontera.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Condiciones de frontera}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{4pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c}
+Tipo & Condición\\\hline
+\textbf{Natural} & $S''(x_0)=S''(x_n)=0$\\
+\textbf{Sujeto} & $S'(x_0)=f'(a),\ S'(x_n)=f'(b)$\\
+\textbf{Not-a-knot} & $S'''$ continua en $x_1,x_{n-1}$\\
+\end{tabular}}\\[1.4mm]
+\raggedright
+{\footnotesize \textbf{Natural}: sin dato de pendiente en los bordes ($M_0{=}M_n{=}0$); pierde orden cerca de los extremos.\\[0.6mm]
+\textbf{Sujeto} (\emph{clamped}): mantiene $O(h^4)$ global si se conocen $f'(a),f'(b)$.\\[0.6mm]
+\textbf{Not-a-knot}: compromiso por defecto (MATLAB) sin datos de derivada.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Condiciones de continuidad C0 C1 C2 y ecuación de momentos ----
+\begin{frame}{Continuidad $C^0,C^1,C^2$ y ecuación de momentos}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Las tres continuidades}{\faSuperscript}
+{\footnotesize En cada nodo interno $x_i$ se exige:
+\begin{itemize}\setlength{\itemsep}{0.3mm}
+\item $C^0$: $S_{i-1}(x_i)=S_i(x_i)=y_i$.
+\item $C^1$: $S_{i-1}'(x_i)=S_i'(x_i)$.
+\item $C^2$: $S_{i-1}''(x_i)=S_i''(x_i)=:M_i$.
+\end{itemize}
+Como $S''$ es \emph{lineal} en cada tramo,\\[0.4mm]
+$S_i''(x)=M_i\dfrac{x_{i+1}-x}{h_i}+M_{i+1}\dfrac{x-x_i}{h_i}$,\\[0.4mm]
+$C^2$ se satisface \emph{gratis} compartiendo $M_i$ entre tramos vecinos.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Derivación: $C^1$ da la ecuación}{\faCogs}
+{\footnotesize Integrando $S_i''$ dos veces e imponiendo $C^0$:\\[0.4mm]
+$S_i'(x)=-M_i\dfrac{(x_{i+1}-x)^2}{2h_i}+M_{i+1}\dfrac{(x-x_i)^2}{2h_i}$\\[0.2mm]
+\hspace{10mm}$+\,\dfrac{y_{i+1}-y_i}{h_i}-\dfrac{(M_{i+1}-M_i)h_i}{6}$.\\[1.0mm]
+Igualar $S_{i-1}'(x_i)=S_i'(x_i)$ ($C^1$) y simplificar da la \textbf{ecuación interna de tres términos}, para $i=1,\dots,n-1$:\\[0.6mm]
+$\boxed{h_{i-1}M_{i-1}+2(h_{i-1}{+}h_i)M_i+h_iM_{i+1}=6\delta_i}$\\[0.6mm]
+$\delta_i=\dfrac{y_{i+1}-y_i}{h_i}-\dfrac{y_i-y_{i-1}}{h_{i-1}}$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Sistema tridiagonal + Thomas ----
+\begin{frame}{Sistema tridiagonal de los momentos}
+\begin{columns}[T]
+\begin{column}{0.51\textwidth}
+\begin{cardidea}{Forma matricial (natural)}{\faSuperscript}
+{\footnotesize\centering
+$\begin{psmallmatrix}
+2(h_0{+}h_1) & h_1 & & \\
+h_1 & 2(h_1{+}h_2) & h_2 & \\
+& \ddots & \ddots & \ddots \\
+& & h_{n-2} & 2(h_{n-2}{+}h_{n-1})
+\end{psmallmatrix}\!\begin{psmallmatrix}M_1\\ M_2\\ \vdots\\ M_{n-1}\end{psmallmatrix}=6\begin{psmallmatrix}\delta_1\\ \delta_2\\ \vdots\\ \delta_{n-1}\end{psmallmatrix}$\par\vspace{1.2mm}\raggedright
+$M_0=M_n=0$ (natural) se eliminan del sistema.\\[1.0mm]
+\textbf{Diagonal dominante estricta}: $2(h_{i-1}{+}h_i)>h_{i-1}{+}h_i$ $\Rightarrow$ solución \emph{única} y estable sin pivoteo.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.47\textwidth}
+\begin{cardgear}{Algoritmo de Thomas ($O(n)$)}{\faCalculator}
+{\footnotesize Para $a_iM_{i-1}+b_iM_i+c_iM_{i+1}=d_i$:\\[0.8mm]
+\emph{Barrido adelante} ($i=2,\dots,n{-}1$):\\[0.2mm]
+$w=a_i/b_{i-1}$,\ \ $b_i\!\mathrel{-}\!=w\,c_{i-1}$,\ \ $d_i\!\mathrel{-}\!=w\,d_{i-1}$.\\[0.8mm]
+\emph{Sustitución atrás}:\\[0.2mm]
+$M_{n-1}=d_{n-1}/b_{n-1}$,\\[0.2mm]
+$M_i=(d_i-c_iM_{i+1})/b_i$.\\[1.0mm]
+Coste $O(n)$ en tiempo y memoria, frente a $\tfrac23 n^3$ de un sistema denso.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Es eliminación gaussiana especializada a la banda tridiagonal; aquí no requiere pivoteo por la dominancia diagonal.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Reconstrucción de los tramos ----
+\begin{frame}{De los momentos a los tramos: $a_i,b_i,c_i,d_i$}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Coeficientes desde $M_i$}{\faSuperscript}
+{\footnotesize Con $S_i(x)=a_i+b_it+c_it^2+d_it^3$, $t=x-x_i$:\\[0.8mm]
+$a_i=y_i,\qquad c_i=\dfrac{M_i}{2},$\\[1.0mm]
+$d_i=\dfrac{M_{i+1}-M_i}{6h_i},$\\[1.0mm]
+$b_i=\dfrac{y_{i+1}-y_i}{h_i}-\dfrac{h_i\,(2M_i+M_{i+1})}{6}.$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Salen de $S_i''(x_i)=M_i$ ($\Rightarrow c_i$), $S_i''(x_{i+1})=M_{i+1}$ ($\Rightarrow d_i$), $S_i(x_i)=y_i$ ($\Rightarrow a_i$) y $S_i(x_{i+1})=y_{i+1}$ ($\Rightarrow b_i$).}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Forma compacta equivalente}{\faCogs}
+{\footnotesize Reagrupando, cada tramo se escribe directamente en $M_i$:\\[0.8mm]
+$S_i(x)=\dfrac{M_i(x_{i+1}-x)^3+M_{i+1}(x-x_i)^3}{6h_i}$\\[1.0mm]
+$\hspace{6mm}+\Big(\dfrac{y_i}{h_i}-\dfrac{M_ih_i}{6}\Big)(x_{i+1}-x)$\\[1.0mm]
+$\hspace{6mm}+\Big(\dfrac{y_{i+1}}{h_i}-\dfrac{M_{i+1}h_i}{6}\Big)(x-x_i)$.\\[1.2mm]
+Ambas formas coinciden; usaremos la de $\{a_i,b_i,c_i,d_i\}$ en el ejemplo por ser directa para evaluar y derivar.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Mínima curvatura ----
+\begin{frame}{Propiedad de mínima curvatura}
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+\begin{cardidea}{Teorema variacional}{\faSuperscript}
+{\footnotesize Entre \emph{todas} las $g\in C^2[a,b]$ con $g(x_i)=y_i$, el spline cúbico \textbf{natural} $S$ minimiza la energía de flexión\\[0.4mm]
+$E[g]=\displaystyle\int_a^b\big(g''(x)\big)^2\,dx$:\\[0.8mm]
+$\displaystyle\int_a^b (S'')^2\le\int_a^b (g'')^2$,\ igualdad sii $g\equiv S$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Física}: un junquillo elástico (\emph{spline}) forzado a pasar por los puntos adopta esa forma; la condición natural $S''=0$ es una viga \emph{libre} (sin momento) en los bordes.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.49\textwidth}
+\begin{cardgear}{Prueba: término cruzado nulo}{\faCogs}
+{\footnotesize Sea $e=g-S$ con $e(x_i)=0$. Entonces\\[0.4mm]
+$\displaystyle\int (g'')^2=\int (S'')^2+2\!\int S''e''+\int (e'')^2$.\\[0.8mm]
+Integrando por partes el cruzado:\\[0.2mm]
+$\displaystyle\int_a^b S''e''=\big[S''e'\big]_a^b-\int_a^b S'''e'$.\\[0.6mm]
+El borde $=0$ por $S''(a)=S''(b)=0$ (natural). En cada tramo $S'''$ es \emph{constante}, y $\int S'''e'=S'''(e(x_{i+1})-e(x_i))=0$. Luego\\[0.4mm]
+$\displaystyle\int (g'')^2=\int (S'')^2+\int (e'')^2\ge\int (S'')^2$.}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Convergencia y estabilidad ----
+\begin{frame}{Convergencia y estabilidad vs.\ polinomios}
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+\begin{cardidea}{Cotas de error}{\faSuperscript}
+{\footnotesize Spline cúbico \textbf{sujeto}, $f\in C^4$, $h=\max h_i$:\\[0.4mm]
+$\|f-S\|_\infty\le\dfrac{5}{384}h^4\max|f^{(4)}|=O(h^4)$,\\[0.6mm]
+$\|f'-S'\|_\infty=O(h^3),\quad \|f''-S''\|_\infty=O(h^2)$.\\[1.0mm]
+El \textbf{natural} baja a $O(h^2)$ cerca de los bordes porque $S''=0$ no iguala a $f''$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{cardgear}{Estabilidad: constante de Lebesgue}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{l|c}
+Método & Const.\ de Lebesgue\\\hline
+Global equiespaciado & $\sim 2^n$ (explota)\\
+Global Chebyshev & $\sim\log n$\\
+Spline cúbico & $\le 3$ (indep.\ de $n$)\\
+\end{tabular}}\\[1.4mm]
+\raggedright
+{\footnotesize La cota acotada del spline $\Rightarrow$ el ruido de los datos \emph{no} se amplifica al refinar: estabilidad uniforme.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faExclamationTriangle]
+{\footnotesize No es óptimo siempre: para $f$ analítica y nodos libres, Chebyshev converge \emph{espectralmente} ($O(\rho^{-n})$) y supera al $O(h^4)$ del spline.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ############################################################
+%  SECCIÓN 3 — EJEMPLO NUMÉRICO DETALLADO (>2 páginas)
+% ############################################################
+\portadaseccion{3}{Ejemplo Resuelto}{Spline cúbico natural por $4$ puntos y $3$ tramos, paso a paso}{\faCalculator}
+
+% ---- Ejemplo: pasos 1-2 ----
+\begin{frame}{Ejemplo · Pasos 1--2: datos, $h_i$ y sistema}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+\begin{cardidea}{Paso 1 · Datos y pasos $h_i$}{\faListOl}
+{\footnotesize Interpolar con spline cúbico \textbf{natural}:\\[0.8mm]
+\centering
+\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+$i$ & $0$ & $1$ & $2$ & $3$\\\hline
+$x_i$ & $0$ & $1$ & $2$ & $3$\\
+$y_i$ & $1$ & $4$ & $2$ & $0$\\
+\end{tabular}\\[1.0mm]
+\raggedright
+$n=3$ tramos.\ Pasos:\\[0.2mm]
+$h_0=h_1=h_2=x_{i+1}-x_i=1$.\\[0.6mm]
+Natural $\Rightarrow M_0=M_3=0$; incógnitas $M_1,M_2$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.56\textwidth}
+\begin{cardgear}{Paso 2 · Lados derechos $\delta_i$ y sistema}{\faCalculator}
+{\footnotesize $\delta_i=\dfrac{y_{i+1}-y_i}{h_i}-\dfrac{y_i-y_{i-1}}{h_{i-1}}$ (aquí $h=1$):\\[0.8mm]
+$\delta_1=(y_2-y_1)-(y_1-y_0)=(2-4)-(4-1)=-5$,\\[0.4mm]
+$\delta_2=(y_3-y_2)-(y_2-y_1)=(0-2)-(2-4)=0$.\\[1.0mm]
+Ecuaciones internas $i=1,2$ con $2(h_{i-1}{+}h_i)=4$:\\[0.6mm]
+$\begin{aligned}
+i{=}1:&\ \ 4M_1+M_2=6\delta_1=-30\\
+i{=}2:&\ \ M_1+4M_2=6\delta_2=0
+\end{aligned}$\\[1.0mm]
+En forma matricial:\\[0.4mm]
+$\begin{psmallmatrix}4&1\\ 1&4\end{psmallmatrix}\!\begin{psmallmatrix}M_1\\ M_2\end{psmallmatrix}=\begin{psmallmatrix}-30\\ 0\end{psmallmatrix}$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize La matriz $\begin{psmallmatrix}4&1\\ 1&4\end{psmallmatrix}$ es simétrica y diagonal dominante ($4>1$): solución única garantizada.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: paso 3 resolver ----
+\begin{frame}{Ejemplo · Paso 3: resolver el sistema tridiagonal}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Eliminación (Thomas $2\times2$)}{\faCalculator}
+{\footnotesize Sistema:\\[0.4mm]
+$\begin{cases}4M_1+M_2=-30 & (\text{E}_1)\\ M_1+4M_2=0 & (\text{E}_2)\end{cases}$\\[1.0mm]
+De $(\text{E}_2)$: $M_1=-4M_2$. Sustituyendo en $(\text{E}_1)$:\\[0.4mm]
+$4(-4M_2)+M_2=-15M_2=-30$\\[0.4mm]
+$\Rightarrow\ M_2=2$,\quad $M_1=-4(2)=-8$.\\[1.2mm]
+Momentos completos (con frontera natural):\\[0.4mm]
+$\boxed{M_0=0,\ M_1=-8,\ M_2=2,\ M_3=0.}$}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Comprobación}{\faCogs}
+{\footnotesize Sustituyendo de vuelta:\\[0.4mm]
+$4(-8)+2=-32+2=-30$ \checkmark\\[0.3mm]
+$(-8)+4(2)=-8+8=0$ \checkmark\\[1.2mm]
+Barrido de Thomas (mismo resultado):\\[0.2mm]
+$w=a_2/b_1=1/4$;\ $b_2\leftarrow4-\tfrac14(1)=\tfrac{15}{4}$;\\[0.2mm]
+$d_2\leftarrow0-\tfrac14(-30)=\tfrac{30}{4}$;\\[0.2mm]
+$M_2=\dfrac{30/4}{15/4}=2$,\ \ $M_1=\dfrac{-30-1\cdot2}{4}=-8$.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Los $M_i=S''(x_i)$ son las segundas derivadas en los nodos: el spline es \emph{cóncavo} donde $M_i<0$ ($x_1$) y \emph{convexo} donde $M_i>0$ ($x_2$).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: paso 4 coeficientes ----
+\begin{frame}{Ejemplo · Paso 4: coeficientes $a_i,b_i,c_i,d_i$}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Fórmulas y cálculo ($h_i=1$)}{\faSuperscript}
+{\footnotesize $a_i=y_i$,\ \ $c_i=\dfrac{M_i}{2}$,\ \ $d_i=\dfrac{M_{i+1}-M_i}{6}$,\\[0.6mm]
+$b_i=(y_{i+1}-y_i)-\dfrac{2M_i+M_{i+1}}{6}$.\\[1.2mm]
+\textbf{Tramo $0$} $[0,1]$: $a_0=1$, $c_0=0$,\\[0.2mm]
+$d_0=\tfrac{-8-0}{6}=-\tfrac43$,\ $b_0=3-\tfrac{0-8}{6}=3+\tfrac43=\tfrac{13}{3}$.\\[0.8mm]
+\textbf{Tramo $1$} $[1,2]$: $a_1=4$, $c_1=-4$,\\[0.2mm]
+$d_1=\tfrac{2-(-8)}{6}=\tfrac53$,\ $b_1=-2-\tfrac{-16+2}{6}=-2+\tfrac73=\tfrac13$.\\[0.8mm]
+\textbf{Tramo $2$} $[2,3]$: $a_2=2$, $c_2=1$,\\[0.2mm]
+$d_2=\tfrac{0-2}{6}=-\tfrac13$,\ $b_2=-2-\tfrac{4+0}{6}=-2-\tfrac23=-\tfrac83$.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardgear}{Tabla de coeficientes}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.4}\setlength{\tabcolsep}{6pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccc}
+Tramo & $a_i$ & $b_i$ & $c_i$ & $d_i$\\\hline
+$[0,1]$ & $1$ & $\tfrac{13}{3}$ & $0$ & $-\tfrac43$\\
+$[1,2]$ & $4$ & $\tfrac13$ & $-4$ & $\tfrac53$\\
+$[2,3]$ & $2$ & $-\tfrac83$ & $1$ & $-\tfrac13$\\
+\end{tabular}}\\[1.6mm]
+\raggedright
+{\footnotesize Recordatorio: $t=x-x_i$ en cada tramo. $a_i=y_i$ reproduce el extremo izquierdo; los $c_i=M_i/2$ heredan la curvatura de los momentos.}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Chequeo rápido $S_0(1)=1+\tfrac{13}{3}-\tfrac43=1+3=4=y_1$ \checkmark\ (el tramo alcanza el nodo derecho).}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- Ejemplo: paso 5 polinomios + evaluación ----
+\begin{frame}{Ejemplo · Paso 5: polinomios finales y evaluación}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\begin{cardidea}{Spline por tramos (con $t=x-x_i$)}{\faSuperscript}
+{\footnotesize $S(x)=\begin{cases}
+S_0(x)=1+\tfrac{13}{3}x-\tfrac43x^3, & x\in[0,1]\\[1.2mm]
+S_1(x)=4+\tfrac13(x{-}1)-4(x{-}1)^2 & \\
+\hspace{9mm}+\tfrac53(x{-}1)^3, & x\in[1,2]\\[1.2mm]
+S_2(x)=2-\tfrac83(x{-}2)+(x{-}2)^2 & \\
+\hspace{9mm}-\tfrac13(x{-}2)^3, & x\in[2,3]
+\end{cases}$}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faCalculator]
+{\footnotesize \textbf{Evaluar en $x=1.5$} (tramo $1$, $t=0.5$):\\[0.4mm]
+$S(1.5)=4+\tfrac13(0.5)-4(0.25)+\tfrac53(0.125)$\\[0.2mm]
+$=\tfrac{96+4-24+5}{24}=\tfrac{81}{24}=\tfrac{27}{8}=3.375.$}
+\end{cardnota}
+\end{column}
+\begin{column}{0.46\textwidth}
+\begin{cardgear}{Verificación $C^0,C^1,C^2$}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|ccc}
+Nodo & $S$ & $S'$ & $S''$\\\hline
+$x=1$ & $4$ & $\tfrac13$ & $-8$\\
+$x=2$ & $2$ & $-\tfrac83$ & $2$\\
+\end{tabular}}\\[1.2mm]
+\raggedright
+{\footnotesize En $x=1$: $S_0'(1)=\tfrac{13}{3}-4=\tfrac13=S_1'(1)$; $S_0''(1)=-8=S_1''(1)$. En $x=2$: $S_1'(2)=-\tfrac83=S_2'(2)$; $S_1''(2)=2=S_2''(2)$. \checkmark\\[0.8mm]
+\textbf{Frontera natural}: $S_0''(0)=0$ y $S_2''(3)=2-2=0$. \checkmark}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize Datos $1\!\to\!4\!\to\!2\!\to\!0$: la curva sube a un pico suave y baja monótona, sin esquinas ni oscilación.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+%  CIERRE
+% ============================================================
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[FondoOscuro] (current page.south west) rectangle (current page.north east);
+  \node[color=IconoTenue] at ([xshift=-3.4cm,yshift=0.3cm]current page.east)
+      {\fontsize{62}{62}\selectfont \faBezierCurve};
+  \fill[GranateVelo] (current page.north west)
+      -- ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \fill[GranateOscuro, opacity=0.75] (current page.north west)
+      -- ([xshift=6.4cm]current page.north west)
+      -- ([xshift=9.1cm]current page.south west)
+      -- (current page.south west) -- cycle;
+  \draw[Teal, line width=1.5pt] ([xshift=8.6cm]current page.north west)
+      -- ([xshift=11.3cm]current page.south west);
+  \draw[Naranja, line width=0.9pt] ([xshift=7.4cm]current page.north west)
+      -- ([xshift=10.1cm]current page.south west);
+  \node[anchor=west, text=white] at ([xshift=1.1cm,yshift=0.75cm]current page.west)
+      {\fontsize{24}{28}\selectfont\bfseries ¡Gracias!};
+  \draw[white, line width=0.9pt] ([xshift=1.15cm,yshift=0.12cm]current page.west) -- ++(4.8cm,0);
+  \node[anchor=west, text=white] at ([xshift=1.15cm,yshift=-0.55cm]current page.west)
+      {{\color{white}\faAngleDoubleRight}\hspace{1.5mm}\small Métodos Numéricos \textperiodcentered\ Unidad 4: Interpolación por Tramos (Splines)};
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
