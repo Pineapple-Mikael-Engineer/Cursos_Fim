@@ -127,9 +127,9 @@
   fontupper=\small, coltext=Granate}
 
 % ---------- Tabla de etapas ----------
-\newcommand{\etapastitulo}{\par{\centering{\color{Granate}\faTable}\hspace{1.6mm}{\normalsize\bfseries\color{FondoOscuro}Etapas del ciclo}\par}\vspace{0.6mm}}
+\newcommand{\etapastitulo}{\par{\centering{\color{Granate}\faTable}\hspace{1.6mm}{\bfseries\color{FondoOscuro}Etapas del ciclo}\par}\vspace{0.2mm}}
 \newenvironment{etapas}{%
-  \begingroup\footnotesize\renewcommand{\arraystretch}{1.24}\arrayrulecolor{Granate}
+  \begingroup\scriptsize\renewcommand{\arraystretch}{1.12}\arrayrulecolor{Granate}
   \begin{center}
   \begin{tabular}{@{}>{\centering\arraybackslash\bfseries}p{1.2cm} >{\RaggedRight}p{4.5cm} >{\RaggedRight\arraybackslash}p{6.6cm}@{}}
   \toprule
@@ -732,11 +732,12 @@ $4\to1$ & Evaporador (absorbe del exterior)               & $q_L=h_1-h_3$\\
 $\mathrm{COP}_{HP}=\dfrac{q_H}{w_C}=\dfrac{h_2-h_3}{h_2-h_1}=\mathrm{COP}_R+1$\\[0.8mm]
 $\mathrm{COP}_{HP,C}=\dfrac{T_H}{T_H-T_L}$; resistencia: $\mathrm{COP}=1$.
 \end{cardidea}
-\vspace{1.2mm}
+\vspace{0.6mm}
 \begin{cardgear}{Ejemplo: R-134a, $\dot W_C=2.5$ kW}{\faCalculator}
-$T_L'=-5^\circ$C, $T_H'=32^\circ$C. $h_1=396.43$, $h_2=424.86$, $h_3=237.23$ kJ/kg.\\[0.6mm]
-$w_C=28.43$, $q_H=187.63$ kJ/kg.\\[0.6mm]
-$\Rightarrow\ \mathrm{COP}_{HP}=6.60,\ \dot Q_H=16.5$ kW ($6.6\times$ una resistencia).
+{\footnotesize
+$T_L'=-5^\circ$C, $T_H'=32^\circ$C. $h_1=396.43$, $h_2=424.86$, $h_3=237.23$ kJ/kg.\\[0.4mm]
+$w_C=28.43$, $q_H=187.63$ kJ/kg.\\[0.4mm]
+$\Rightarrow\ \mathrm{COP}_{HP}=6.60,\ \dot Q_H=16.5$ kW ($6.6\times$ una resistencia).}
 \end{cardgear}
 \end{column}
 \end{columns}
