@@ -411,7 +411,7 @@ Cuanto más cerca esté $T_d$ de $T$, mayor $\phi$.
 % ---- T bulbo húmedo ----
 \begin{frame}{Temperatura de bulbo húmedo $T_{bh}$ y saturación adiabática}
 \begin{cardidea}{Definición y fórmula}{\faSuperscript}
-$T_{bh}$ es la temperatura del \textbf{saturador adiabático}: el aire se humidifica hasta saturar tomando calor del propio flujo. Con $c_{pa}=1.005$ y $\omega_{bh}$ el $\omega$ de saturación a $T_{bh}$:
+$T_{bh}$ es la temperatura del \textbf{saturador adiabático}: el aire se humidifica hasta saturar tomando calor del propio flujo. Con $c_{pa}=1.006$ y $\omega_{bh}$ el $\omega$ de saturación a $T_{bh}$:
 $$\omega = \omega_{bh} - \frac{c_{pa}\,(T - T_{bh})}{h_{fg}(T_{bh})},\qquad \omega_{bh}=0.622\,\frac{P_{\rm sat}(T_{bh})}{P-P_{\rm sat}(T_{bh})}.$$
 \end{cardidea}
 \vspace{1.5mm}
@@ -424,7 +424,7 @@ Se lee con un termómetro de \textbf{bulbo mojado} ventilado (psicrómetro). Sie
 \begin{column}{0.44\textwidth}
 \begin{cardnota}[\faCalculator]
 $T=35$, $T_{bh}=25\,^\circ$C: $\omega_{bh}=0.02011$;\\[0.5mm]
-$\omega=0.02011-\dfrac{1.005(35-25)}{2442}=0.0160$.
+$\omega=0.02011-\dfrac{1.006(35-25)}{2442}=0.0160$.
 \end{cardnota}
 \end{column}
 \end{columns}
@@ -433,8 +433,8 @@ $\omega=0.02011-\dfrac{1.005(35-25)}{2442}=0.0160$.
 % ---- entalpia ----
 \begin{frame}{Entalpía del aire húmedo $h$ y grado de saturación}
 \begin{cardidea}{Definición y fórmula}{\faSuperscript}
-Energía por kg de aire seco: sensible del aire $+$ del vapor. Con $T$ en $^\circ$C, $c_{pv}=1.86$, $h_{fg,0}=2501$:
-$$h = c_{pa}\,T + \omega\,(h_{fg,0}+c_{pv}T) = (1.005 + 1.86\,\omega)\,T + 2501\,\omega\quad[\tfrac{\text{kJ}}{\text{kg a.s.}}].$$
+Energía por kg de aire seco: sensible del aire $+$ del vapor. Con $T$ en $^\circ$C, $c_{pa}=1.006$, $c_{pv}=1.805$, $h_{fg,0}=2501$:
+$$h = c_{pa}\,T + \omega\,(h_{fg,0}+c_{pv}T) = (1.006 + 1.805\,\omega)\,T + 2501\,\omega\quad[\tfrac{\text{kJ}}{\text{kg a.s.}}].$$
 \end{cardidea}
 \vspace{1.5mm}
 \begin{columns}[T]
@@ -446,8 +446,8 @@ $h$ es la magnitud de los balances de energía HVAC. El \textbf{grado de saturac
 \begin{column}{0.44\textwidth}
 \begin{cardnota}[\faCalculator]
 $T=20\,^\circ$C, $\omega=0.00726$:\\[0.5mm]
-$h=(1.005+1.86\times0.00726)20+2501\times0.00726$\\[0.4mm]
-$=20.37+18.15=38.5$ kJ/kg a.s.
+$h=(1.006+1.805\times0.00726)20+2501\times0.00726$\\[0.4mm]
+$=20.38+18.16=38.5$ kJ/kg a.s.
 \end{cardnota}
 \end{column}
 \end{columns}
@@ -560,7 +560,7 @@ $30\,^\circ$C, $50\%$: $\omega\approx0.0133$, $T_d\approx18.4\,^\circ$C, $h\appr
 \begin{column}{0.5\textwidth}
 \begin{cardidea}{Calentamiento/enfriamiento sensible}{\faSuperscript}
 $\omega$ constante (horizontal); $\phi$ baja al calentar, sube al enfriar:
-$$\dot Q=\dot m_a\,(1.005+1.86\,\omega)(T_2-T_1).$$
+$$\dot Q=\dot m_a\,(1.006+1.805\,\omega)(T_2-T_1).$$
 \end{cardidea}
 \vspace{1.0mm}
 \begin{cardgear}{Con deshumidificación ($T_2<T_d$)}{\faInfoCircle}
