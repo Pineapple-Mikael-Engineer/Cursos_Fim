@@ -427,6 +427,49 @@ $\Rightarrow\ \eta_{th}=42.9\%$ (vs.\ $40.2\%$ del ciclo simple).
 \end{columns}
 \end{frame}
 
+% ---- Rankine Regenerativo: derivación de y (CAA) ----
+\begin{frame}{Rankine Regenerativo --- ¿de dónde sale la fracción $y$?}
+\begin{cardidea}{El calentador de agua de alimentación (CAA) y el balance que fija $y$}{\faRandom}
+{\footnotesize
+Se extrae una fracción $y$ del vapor de la turbina a presión intermedia $P_e$ (estado $e$) y se \textbf{mezcla} con el condensado en un calentador \textbf{abierto} (contacto directo). El CAA es adiabático y sin trabajo; su salida es líquido saturado (estado 3).\\[1.2mm]
+\textbf{Paso 1. Balance de masa.} Por cada $1$\,kg que entra a la turbina: entra $y$ (vapor, $h_e$) $+\,(1-y)$ (condensado, $h_2$) y sale $1$ (líquido sat., $h_3$): $\;y+(1-y)=1$.\\[1.2mm]
+\textbf{Paso 2. Balance de energía} (entra $=$ sale): $\;y\,h_e+(1-y)\,h_2=h_3$.\\[1.2mm]
+\textbf{Paso 3. Despejar $y$:} $\;y\,h_e-y\,h_2=h_3-h_2\Rightarrow y(h_e-h_2)=h_3-h_2$:
+$$\boxed{\;y=\dfrac{h_3-h_2}{h_e-h_2}\;}$$
+}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize\textbf{Qué es físicamente:} la fracción \emph{justa} de vapor cuyo calor cedido calienta todo el condensado hasta líquido saturado a $P_e$. Si $h_e=h_2$ no hay que extraer nada ($y=0$); cuanto más alto sea $h_3$ (más precalentamiento), mayor $y$.}
+\end{cardnota}
+\end{frame}
+
+% ---- Rankine Regenerativo: la fracción (1-y) y ejemplo ----
+\begin{frame}{Rankine Regenerativo --- por qué aparece $(1-y)$ y ejemplo}
+\begin{columns}[T]
+\begin{column}{0.53\textwidth}
+\begin{cardidea}{Consecuencia: aguas abajo solo circula $(1-y)$}{\faListOl}
+{\footnotesize
+Tras la extracción de $y$ en el estado $e$, por el \textbf{resto de la turbina} y por el \textbf{condensador} solo pasa la fracción $(1-y)$:\\[1.4mm]
+$w_T=\underbrace{(h_5-h_e)}_{\text{1 kg: }5\to e}+\underbrace{(1-y)(h_e-h_6)}_{\text{solo }(1-y):\ e\to6}$\\[1.6mm]
+$q_L=(1-y)(h_6-h_1)$\\[1.4mm]
+El tramo $5\to e$ lo recorre todo el vapor ($1$\,kg); del punto $e$ en adelante falta la parte desviada al CAA, y por eso aparece el factor $(1-y)$.
+}
+\end{cardidea}
+\end{column}
+\begin{column}{0.45\textwidth}
+\begin{cardgear}{Ejemplo: 10 MPa / 500\,$^\circ$C, $P_e=1$ MPa}{\faCalculator}
+{\footnotesize
+$h_2=192.8$, $h_3=762.8$, $h_e=2812.5$ kJ/kg:\\[1mm]
+$y=\dfrac{762.8-192.8}{2812.5-192.8}=\dfrac{570.0}{2619.7}=0.218$.\\[1.2mm]
+Con esto $w_{neto}=1116.1$, $q_H=2600.8$ kJ/kg.\\[1mm]
+El CAA baja $q_H$ (de $3171.8$ a $2600.8$) $\Rightarrow$ $\eta_{th}=42.9\%$ vs.\ $40.2\%$ del ciclo simple.
+}
+\end{cardgear}
+\end{column}
+\end{columns}
+\end{frame}
+
 % ============================================================
 %  SECCIÓN 2 — GAS
 % ============================================================
@@ -542,6 +585,37 @@ $\Rightarrow\ \eta_{th}=52.3\%$ (vs.\ $40.1\%$ del simple).
 \end{cardgear}
 \end{column}
 \end{columns}
+\end{frame}
+
+% ---- Brayton con Regeneración: efectividad ε (derivación) ----
+\begin{frame}{Brayton con Regeneración --- ¿de dónde sale la efectividad $\varepsilon$?}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\begin{cardidea}{El regenerador y su efectividad $\varepsilon$}{\faRandom}
+{\footnotesize
+Los gases de escape (estado 4, calientes) precalientan el aire comprimido ($2\to5$) en un intercambiador a \textbf{contraflujo}.\\[1.2mm]
+\textbf{Paso 1. Ideal.} Regenerador perfecto: el aire sale tan caliente como el escape, $T_5=T_4$.\\[1.2mm]
+\textbf{Paso 2. Real.} $T_5<T_4$. La \textbf{efectividad} es el cociente entre el calor real y el máximo posible (gas ideal, $c_p$ cte):
+$$\boxed{\;\varepsilon=\dfrac{h_5-h_2}{h_4-h_2}=\dfrac{T_5-T_2}{T_4-T_2}\;}$$
+\textbf{Paso 3. Despejar $T_5$:} $\;T_5=T_2+\varepsilon(T_4-T_2)$.
+}
+\end{cardidea}
+\end{column}
+\begin{column}{0.43\textwidth}
+\begin{cardgear}{Ejemplo: $r_P=6$, $\varepsilon=0.75$}{\faCalculator}
+{\footnotesize
+$T_1=300$, $T_3=1200$ K $\Rightarrow T_2=500.4$, $T_4=719.4$ K.\\[1mm]
+$T_5=500.4+0.75(719.4-500.4)=664.7$ K.\\[1.2mm]
+$q_H=c_p(T_3-T_5)=538.0$ (vs.\ $703.0$ sin regenerar): $-23\%$ de combustible.\\[1mm]
+$\Rightarrow\ \eta_{th}=52.3\%$ vs.\ $40.1\%$ del simple.
+}
+\end{cardgear}
+\end{column}
+\end{columns}
+\vspace{1mm}
+\begin{cardnota}[\faFire]
+{\footnotesize\textbf{Por qué sube $\eta$:} la cámara ya no calienta el aire desde $T_2$ sino desde $T_5$, así $q_H=c_p(T_3-T_5)<c_p(T_3-T_2)$: se quema menos combustible para el mismo $w_{neto}$. Solo sirve si $T_4>T_2$ (a bajos $r_P$); si no, el ``regenerador'' enfriaría el aire.}
+\end{cardnota}
 \end{frame}
 
 % ---- Comparación ciclos de potencia ----
