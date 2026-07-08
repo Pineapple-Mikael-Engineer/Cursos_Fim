@@ -246,18 +246,19 @@ Se reproducen las \textbf{soluciones oficiales} del examen, \emph{expandidas}: s
 \begin{frame}{P1 — Punto fijo: ¿converge el esquema?}
 \begin{columns}[T]
 \begin{column}{0.47\textwidth}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize Esquema $x^{(k+1)}=G(x^{(k)})$ para un sistema no lineal:
+\begin{cardidea}{Enunciado \textmd{\small(1.0 P)}}{\faQuestionCircle}
+{\footnotesize Para resolver un sistema no lineal se ha propuesto el siguiente esquema iterativo de \textbf{punto fijo} $x^{(k+1)}=G(x^{(k)})$:
 \[
-x'=g_1=\frac{x+\cos y}{4},\qquad
-y'=g_2=\frac{y+e^{-x}}{5}.
+x^{(k+1)}=g_1=\frac{x^{(k)}+\cos y^{(k)}}{4},
 \]
-Analizar la convergencia en $x^{(0)}=0,\ y^{(0)}=0$ con el \textbf{Teorema del punto fijo}.}
+\[
+y^{(k+1)}=g_2=\frac{y^{(k)}+e^{-x^{(k)}}}{5}.
+\]
+Se desea analizar la convergencia en $x^{(0)}=y^{(0)}=0$. \textbf{Complete el recuadro:} $J_G(x,y)$, $J_G(0,0)$, $L=\lVert J_G(0,0)\rVert_\infty$ y, con el \textbf{Teorema del Punto Fijo}, decida si converge.}
 \end{cardidea}
 \vspace{1mm}
 \begin{cardnota}[\faInfoCircle]
-{\footnotesize La norma $\infty$ de una matriz es el \emph{máximo} de las sumas de valores absolutos por fila:
-$\lVert A\rVert_\infty=\max_i\sum_j|a_{ij}|$.}
+{\footnotesize \textbf{Norma $\infty$:} $\lVert A\rVert_\infty=\max_i\sum_j|a_{ij}|$ (máx.\ suma de $|a_{ij}|$ por fila).}
 \end{cardnota}
 \end{column}
 \begin{column}{0.51\textwidth}
@@ -284,12 +285,39 @@ L=\max\big(\underbrace{0.25}_{|0.25|+0},\ \underbrace{0.4}_{|{-}0.2|+|0.2|}\big)
 \end{columns}
 \end{frame}
 
-% ---- P2: spline ----
+% ---- P2: enunciado dedicado ----
+\begin{frame}{P2 — Enunciado (trayectoria del brazo robot)}
+\begin{columns}[T]
+\begin{column}{0.58\textwidth}
+\begin{cardidea}{Enunciado \textmd{\small(1.0 P)}}{\faQuestionCircle}
+{\footnotesize Se desea diseñar la \textbf{trayectoria plana} que seguirá un brazo robot para transportar diferentes piezas de un lugar a otro. El mecanismo ha de moverse de forma \textbf{suave}, para que no caigan los elementos transportados y para que no se dañen las articulaciones.\\[0.8mm]
+Partiendo del punto inicial —el \textbf{origen} $(0,0)$—, el brazo debe dirigirse al punto $(7,6)$, donde \emph{recogerá} una pieza, aunque previamente tendrá que pasar por dos \textbf{puntos de control}, el $(2,4)$ y el $(6,4)$. Finalmente debe llevarla hasta el punto $(15,1)$, donde \emph{dejará} la pieza, pasando antes por el punto de control $(12,7)$.\\[0.8mm]
+\textbf{Escriba un script} para graficar la trayectoria de la curva usando el comando \texttt{spline} de MATLAB, con los puntos indicados.}
+\end{cardidea}
+\end{column}
+\begin{column}{0.4\textwidth}
+\begin{cardgear}{Puntos (orden de visita)}{\faTable}
+\centering
+{\footnotesize\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{5pt}\arrayrulecolor{Granate}
+\begin{tabular}{c|cccccc}
+$X$ & 0 & 2 & 6 & 7 & 12 & 15\\\hline
+$Y$ & 0 & 4 & 4 & 6 & 7 & 1\\
+\end{tabular}}
+\end{cardgear}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \texttt{spline} interpola con \textbf{cúbicos por tramos} $C^2$ (primera y segunda derivadas continuas): curva suave, sin quiebres que dañen las articulaciones.}
+\end{cardnota}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P2: script (solución) ----
 \begin{frame}{P2 — Trayectoria del brazo robot con \texttt{spline}}
 \begin{columns}[T]
 \begin{column}{0.44\textwidth}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize Trayectoria \emph{suave} que parte de $(0,0)$, pasa por los puntos de control $(2,4)$ y $(6,4)$, recoge en $(7,6)$, pasa por $(12,7)$ y deja la pieza en $(15,1)$. Escribir un script que la grafique con \texttt{spline} de MATLAB.}
+\begin{cardidea}{Recordatorio}{\faQuestionCircle}
+{\footnotesize Trayectoria \emph{suave} que visita en orden los 6 puntos (origen $\to$ controles $\to$ recogida $\to$ control $\to$ destino), graficada con \texttt{spline}.}
 \end{cardidea}
 \vspace{1mm}
 \begin{cardgear}{Puntos en orden de visita}{\faTable}
@@ -330,10 +358,8 @@ grid on; xlabel('X'); ylabel('Y');
 \begin{frame}{P3 — Ordenar 3 cuadraturas por precisión}
 \begin{columns}[T]
 \begin{column}{0.48\textwidth}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize Con \textbf{3 puntos} se aproxima una integral suave por tres métodos:
-Simpson \emph{cerrado}, Simpson \emph{abierto} y \emph{Gauss--Legendre}.
-Ordenarlos de \emph{menor} a \emph{mayor} precisión esperada y justificar.}
+\begin{cardidea}{Enunciado \textmd{\small(1.0 P)}}{\faQuestionCircle}
+{\footnotesize Se aplican \textbf{tres métodos con 3 puntos} para aproximar una integral \emph{suave}: Simpson \emph{cerrado}, Simpson \emph{abierto} y \emph{Gauss--Legendre}. Ordene los métodos de \textbf{menor a mayor} precisión esperada y explique brevemente la razón del orden elegido.}
 \end{cardidea}
 \vspace{1mm}
 \begin{cardnota}[\faKey]
@@ -364,8 +390,8 @@ $\uparrow$ & Gauss--Legendre 3 pt & $5$\\
 
 % ---- P4: completar script ----
 \begin{frame}{P4 — Completar el script: Euler + \texttt{ode45}}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize EDO $y'=3t-2y$ con $y(0)=0.5$ en $t\in[0,2]$. Rellenar los \textbf{4 espacios en blanco} del script funcional (resaltados).}
+\begin{cardidea}{Enunciado \textmd{\small(1.0 P)}}{\faQuestionCircle}
+{\footnotesize Se tiene la ecuación diferencial $y'=3t-2y$, con $y(0)=0.5$ en el intervalo $t\in[0,2]$. \textbf{Rellene los 4 espacios en blanco} ($\underline{\hspace{6mm}}$) para completar el \emph{script} funcional (resaltados en granate).}
 \end{cardidea}
 \vspace{1mm}
 \begin{columns}[T]
@@ -402,38 +428,41 @@ end\\[0.5mm]
 \portadaseccion{II}{Problema 1 — Brazo robótico}{Cinemática directa, Newton-Raphson y análisis de singularidad}{\faRobot}
 
 % ---- P1 enunciado ----
-\begin{frame}{Problema 1 — Planteamiento}
+\begin{frame}{Problema 1 — Enunciado (brazo robótico)}
 \begin{columns}[T]
-\begin{column}{0.55\textwidth}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize Brazo plano de 2 eslabones ($L_1=30$ cm, $L_2=20$ cm). El efector final es
+\begin{column}{0.6\textwidth}
+\begin{cardidea}{Contexto}{\faRobot}
+{\footnotesize Un \textbf{brazo robótico plano de dos eslabones} se utiliza en una línea de ensamblaje automatizada. La posición del efector final $(x,y)$, en función de los ángulos de las articulaciones $\theta_1$ y $\theta_2$ (en radianes), se modela mediante las ecuaciones de \textbf{cinemática directa} (suma de proyecciones horizontales y verticales):
 \[
-x=L_1\cos\theta_1+L_2\cos(\theta_1+\theta_2),\quad
+x=L_1\cos\theta_1+L_2\cos(\theta_1+\theta_2),
+\]
+\[
 y=L_1\sin\theta_1+L_2\sin(\theta_1+\theta_2).
 \]
-Configurar el robot para alcanzar el objetivo $(40,20)$ cm, con incógnitas $\mathbf{x}=[\theta_1,\theta_2]^{\!\top}$.}
+Las longitudes de los eslabones son $L_1=30$ cm y $L_2=20$ cm. Se requiere configurar el robot para que alcance la coordenada objetivo $(40,20)$ cm.}
 \end{cardidea}
-\vspace{1mm}
-\begin{cardnota}[\faTasks]
-{\footnotesize \textbf{Se pide:} (a) plantear $F(\mathbf x)=0$ y su Jacobiano $J_F$; (b) 2 iteraciones de Newton-Raphson; (c) demostrar $\det J=L_1L_2\sin\theta_2$ y analizar la singularidad.}
-\end{cardnota}
 \end{column}
-\begin{column}{0.43\textwidth}
-\begin{cardgear}{Sistema no lineal $F(\mathbf x)=0$}{\faSuperscript}
-{\footnotesize Se pasa el objetivo al lado izquierdo:
-\[
-f_1=30\cos\theta_1+20\cos(\theta_1+\theta_2)-40=0,
-\]
-\[
-f_2=30\sin\theta_1+20\sin(\theta_1+\theta_2)-20=0.
-\]}
-\end{cardgear}
-\vspace{1mm}
+\begin{column}{0.38\textwidth}
 \begin{cardnota}[\faInfoCircle]
-{\footnotesize Dos ecuaciones, dos incógnitas: sistema no lineal resoluble por linealización iterada (Newton-Raphson).}
+{\footnotesize \textbf{Geometría (figura).} Dos eslabones en serie: el primero, de longitud $L_1$, forma un ángulo $\theta_1$ con la horizontal; el segundo, de longitud $L_2$, forma un ángulo $\theta_2$ \emph{relativo} al primer eslabón. El extremo del segundo eslabón es el efector final $(x,y)$.}
+\end{cardnota}
+\vspace{1mm}
+\begin{cardnota}[\faBullseye]
+{\footnotesize \textbf{Incógnitas:} $\mathbf{x}=[\theta_1,\theta_2]^{\!\top}$.\\[0.4mm]
+\textbf{Objetivo:} efector en $(x,y)=(40,20)$ cm.}
 \end{cardnota}
 \end{column}
 \end{columns}
+\end{frame}
+
+% ---- P1 se pide ----
+\begin{frame}{Problema 1 — Se pide}
+\begin{cardidea}{Preguntas del problema}{\faTasks}
+{\footnotesize
+\textbf{a)\ (1.0 P)}\ \ Formule el problema como un sistema de ecuaciones no lineales de la forma $F(\mathbf{x})=\mathbf{0}$, donde el vector de incógnitas es $\mathbf{x}=[\theta_1,\theta_2]^{\!\top}$. Determine \emph{analíticamente} la expresión general de la matriz Jacobiana $J_F(\theta_1,\theta_2)$ del sistema.\\[1.4mm]
+\textbf{b)\ (1.5 P)}\ \ Para resolver la configuración necesaria, aplique el \textbf{Método de Newton-Raphson} para sistemas no lineales. Realice \textbf{dos iteraciones completas} partiendo de la aproximación inicial $\mathbf{x}^{(0)}=[0.25,\,0.75]^{\!\top}$ rad. Debe mostrar explícitamente: el vector de funciones evaluado $F(\mathbf{x}^{(k)})$, la Jacobiana evaluada $J(\mathbf{x}^{(k)})$, el planteamiento del sistema lineal para hallar el incremento $\Delta\mathbf{x}$, el nuevo vector aproximado $\mathbf{x}^{(k+1)}$ y una estimación del error usando la \textbf{norma infinita}. Comente sus resultados.\\[1.4mm]
+\textbf{c)\ (1.5 P)}\ \ Demuestre algebraicamente que el determinante del Jacobiano calculado en (a) se reduce a $\det(J)=L_1L_2\sin(\theta_2)$. Con base en esta expresión, analice qué sucede con el método numérico si el robot intenta alcanzar una posición donde el brazo está \textbf{completamente estirado}. Justifique su respuesta en términos de \textbf{estabilidad numérica} y \textbf{significado físico}.}
+\end{cardidea}
 \end{frame}
 
 % ---- P1(a) Jacobiano ----
@@ -592,34 +621,30 @@ Por la resta de ángulos $s_{12}c_1-c_{12}s_1=\sin(\theta_1{+}\theta_2-\theta_1)
 \portadaseccion{II}{Problema 2 — Fröhlich-Kennelly}{Linealización, mínimos cuadrados, $R^2$ y saturación magnética}{\faMagnet}
 
 % ---- P2 enunciado ----
-\begin{frame}{Problema 2 — Planteamiento}
+\begin{frame}{Problema 2 — Enunciado (Fröhlich-Kennelly)}
 \begin{columns}[T]
-\begin{column}{0.53\textwidth}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize Núcleo ferromagnético modelado por Fröhlich-Kennelly:
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Contexto}{\faMagnet}
+{\footnotesize En el laboratorio de \textbf{Máquinas Eléctricas} se caracteriza el \textbf{núcleo ferromagnético} de un nuevo transformador de potencia. La relación entre la densidad de flujo magnético $B$ (en Teslas) y la intensidad de campo magnético $H$ (en kA/m) \emph{no es lineal} en la zona de saturación. El equipo de ingeniería propone modelar este comportamiento con una variación de la ecuación de \textbf{Fröhlich-Kennelly}:
 \[
-B(H)=\frac{a\sqrt H}{1+b\sqrt H}\quad[\text{T}],\ H\ \text{en kA/m}.
+B(H)=\frac{a\sqrt{H}}{1+b\sqrt{H}}.
 \]
-Mediciones de laboratorio:}
+Mediciones experimentales realizadas en el laboratorio:}\\[0.6mm]
 \centering
-{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{7pt}\arrayrulecolor{Granate}
+{\footnotesize\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{8pt}\arrayrulecolor{Granate}
 \begin{tabular}{c|ccc}
 $H$ (kA/m) & 1 & 4 & 9\\\hline
 $B$ (T) & 0.5 & 0.8 & 0.9\\
 \end{tabular}}
 \end{cardidea}
 \end{column}
-\begin{column}{0.45\textwidth}
-\begin{cardnota}[\faTasks]
-{\footnotesize \textbf{Se pide:}
-(a) ajuste por mínimos cuadrados $\to a,b$;
-(b) coeficiente $R^2$;
-(c) estimar $B(6.25)$;
-(d) interpretar físicamente $a/b$ cuando $H\to\infty$.}
-\end{cardnota}
-\vspace{1mm}
-\begin{cardidea}{Idea del ajuste lineal}{\faLightbulb}
-{\footnotesize El modelo no es lineal en $a,b$. Se \emph{linealiza} tomando el recíproco de $B$ para poder aplicar mínimos cuadrados ordinarios.}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Se solicita}{\faTasks}
+{\footnotesize
+\textbf{a)\ (1.5 P)}\ Aplicando el método de ajuste por \textbf{mínimos cuadrados} mediante una \emph{linealización adecuada} de la ecuación propuesta, determine los valores numéricos de los parámetros $a$ y $b$.\\[1.0mm]
+\textbf{b)\ (1.0 P)}\ Calcule el coeficiente de determinación $R^2$ para evaluar la bondad del ajuste del modelo linealizado respecto a los datos experimentales transformados.\\[1.0mm]
+\textbf{c)\ (0.5 P)}\ Con el modelo de Fröhlich-Kennelly, estime la densidad de flujo magnético $B$ si se aplica una intensidad de campo $H=6.25$ kA/m.\\[1.0mm]
+\textbf{d)\ (1.0 P)}\ Explique físicamente qué representa el valor de la relación $a/b$ en el límite cuando $H\to\infty$. ¿Cómo se relaciona este valor límite con el concepto de \textbf{diseño de máquinas eléctricas}?}
 \end{cardidea}
 \end{column}
 \end{columns}
@@ -753,32 +778,27 @@ B=\frac{0.729(2.5)}{1+0.449(2.5)}=\frac{1.8225}{2.1225}=0.859\ \text{T}.
 \portadaseccion{II}{Problema 3 — Compuerta}{Fuerza hidrostática por Simpson 1/3 y cuadratura de Gauss}{\faWater}
 
 % ---- P3 enunciado ----
-\begin{frame}{Problema 3 — Planteamiento}
+\begin{frame}{Problema 3 — Enunciado (compuerta hidrostática)}
 \begin{columns}[T]
 \begin{column}{0.53\textwidth}
-\begin{cardidea}{Enunciado}{\faQuestionCircle}
-{\footnotesize Compuerta en forma de cuarto de círculo (radio $R$). Presión $p(y)=\rho g y$; ancho $b(y)=\sqrt{R^2-y^2}$. Fuerza total:
+\begin{cardidea}{Contexto}{\faWater}
+{\footnotesize En una \textbf{compuerta vertical}, la presión de un líquido aumenta con la profundidad según $p(y)=\rho g y$. Para una compuerta con forma de \textbf{cuarto de círculo} de radio $R$, la fuerza total ejercida por el fluido es
 \[
-F=\int_0^R p(y)\,b(y)\,dy=\int_0^R \rho g\,y\sqrt{R^2-y^2}\,dy.
+F=\int_0^R p(y)\,b(y)\,dy,
 \]
-Datos: $\rho=1000\ \text{kg/m}^3$, $g=9.81\ \text{m/s}^2$, $R=2$ m.}
+donde $b(y)=\sqrt{R^2-y^2}$ es el \textbf{ancho} de la compuerta a cada altura y $dA=b(y)\,dy$. Datos: $\rho=1000\ \mathrm{kg/m^3}$, $g=9.81\ \mathrm{m/s^2}$, $R=2$ m. Sustituyendo, el integrando es
+\[
+f(y)=\rho g\,y\sqrt{R^2-y^2}.
+\]}
 \end{cardidea}
 \end{column}
 \begin{column}{0.45\textwidth}
-\begin{cardnota}[\faTasks]
-{\footnotesize \textbf{Se pide:}
-(a) $F$ por Simpson $1/3$ con $n=4$;
-(b) $F$ por Gauss 3 puntos;
-(c) error relativo de cada uno frente a $F_{\text{exacta}}=\rho gR^3/3$ y decidir el más eficiente.}
-\end{cardnota}
-\vspace{1mm}
-\begin{cardgear}{Integrando}{\faSuperscript}
+\begin{cardidea}{Se pide}{\faTasks}
 {\footnotesize
-\[
-f(y)=\rho g\,y\sqrt{R^2-y^2}.
-\]
-Se evaluará en los nodos de cada regla.}
-\end{cardgear}
+\textbf{a)\ (1.5 P)}\ Aproxime la fuerza usando la regla de \textbf{Simpson 1/3 con $n=4$}.\\[1.4mm]
+\textbf{b)\ (1.5 P)}\ Aproxime la fuerza usando la \textbf{cuadratura de Gauss con 3 puntos}.\\[1.4mm]
+\textbf{c)\ (1.0 P)}\ Si el valor exacto de la fuerza es $F=\dfrac{\rho g R^3}{3}$, calcule el \textbf{error relativo porcentual} de los incisos a) y b) e indique qué método fue más eficiente.}
+\end{cardidea}
 \end{column}
 \end{columns}
 \end{frame}
@@ -909,7 +929,38 @@ Gauss 3 pt & 3 & $1.17\%$\\
 % ############################################################
 \portadaseccion{II}{Problema 4 — Método del disparo}{EDO de frontera: RK2 (Heun) y secante para hallar la pendiente}{\faCrosshairs}
 
-% ---- P4 enunciado + (a) ----
+% ---- P4 enunciado dedicado ----
+\begin{frame}{Problema 4 — Enunciado (método del disparo)}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{cardidea}{Contexto}{\faCrosshairs}
+{\footnotesize Considere la ecuación diferencial \emph{no lineal} que describe el \textbf{movimiento amortiguado de un eje rotacional}:
+\[
+\theta''(t)+0.4\,\theta'(t)+\sin\big(\theta(t)\big)=0,\quad 0\le t\le 2.
+\]
+Las condiciones de \textbf{frontera} son
+\[
+\theta(0)=0.2,\qquad \theta(2)=0.8.
+\]
+La velocidad inicial $\theta'(0)$ es \emph{desconocida} y se denota por $s$.}
+\end{cardidea}
+\vspace{1mm}
+\begin{cardnota}[\faInfoCircle]
+{\footnotesize \textbf{Figura.} Eje que gira un ángulo $\theta(t)$; un amortiguador aporta el término $-0.4\,\theta'$ y un resorte el par restaurador $-\sin\theta$ (modelo $I\theta''+0.4\theta'+k\sin\theta=0$). Los extremos están fijados: $\theta=0.2$ en $t=0$ y $\theta=0.8$ en $t=2$.}
+\end{cardnota}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{cardidea}{Se pide}{\faTasks}
+{\footnotesize
+\textbf{a)\ (1.5 P)}\ Con $x_1=\theta$, $x_2=\theta'$, escriba el sistema de \textbf{primer orden} $\mathbf{x}'=f(t,\mathbf{x})$. Explique por qué, al ser $f$ \emph{localmente Lipschitz} en $\mathbf{x}$, el PVI tiene \textbf{solución única} para cada valor de $s$. Indique el objetivo del método del disparo mediante el residuo $R(s)=\theta(2;s)-0.8$.\\[1.0mm]
+\textbf{b)\ (1.5 P)}\ Para el valor tentativo $s_0=1.0$, plantee el PVI asociado y \textbf{complete la tabla} con el método de \textbf{Runge-Kutta de 2.\textsuperscript{o} orden (Heun)}, con 4 pasos y 6 cifras decimales; obtenga el valor aproximado de $\theta(2;s_0)$.\\[1.0mm]
+\textbf{c)\ (1.0 P)}\ Con dos disparos ($s_0$ y $s_1=1.3$), calcule los residuos $R(s_0)$ y $R(s_1)$; use el \textbf{método de la secante} para obtener el valor mejorado $s_2$ y compare con la referencia de \texttt{ode45} ($s^*\approx1.151088$) mediante el error absoluto.}
+\end{cardidea}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---- P4 planteamiento + (a) ----
 \begin{frame}{Problema 4 — Planteamiento y sistema de 1.\textsuperscript{er} orden}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
