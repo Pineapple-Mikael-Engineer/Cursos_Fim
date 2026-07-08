@@ -258,29 +258,25 @@ Se desea analizar la convergencia en $x^{(0)}=y^{(0)}=0$. \textbf{Complete el re
 \end{cardidea}
 \vspace{1mm}
 \begin{cardnota}[\faInfoCircle]
-{\footnotesize \textbf{Norma $\infty$:} $\lVert A\rVert_\infty=\max_i\sum_j|a_{ij}|$ (máx.\ suma de $|a_{ij}|$ por fila).}
+{\footnotesize \textbf{Criterio:} $\lVert A\rVert_\infty=\max_i\sum_j|a_{ij}|$ (máx.\ suma por fila). Si $\lVert J_G\rVert_\infty<1$, $G$ es contracción.}
 \end{cardnota}
 \end{column}
 \begin{column}{0.51\textwidth}
 \begin{cardgear}{Jacobiano y factor de contracción}{\faCogs}
-{\footnotesize
+{\scriptsize
 \textbf{1.} Derivar $G=(g_1,g_2)$ respecto de $(x,y)$:
 \[
-J_G(x,y)=\begin{pmatrix} 0.25 & -0.25\sin y\\[1mm] -0.2\,e^{-x} & 0.2 \end{pmatrix}.
+J_G(x,y)=\begin{pmatrix} 0.25 & -0.25\sin y\\ -0.2\,e^{-x} & 0.2 \end{pmatrix}.
 \]
 \textbf{2.} Evaluar en $(0,0)$ ($\sin 0=0,\ e^{0}=1$):
 \[
-J_G(0,0)=\begin{pmatrix} 0.25 & 0\\[0.5mm] -0.2 & 0.2 \end{pmatrix}.
+J_G(0,0)=\begin{pmatrix} 0.25 & 0\\ -0.2 & 0.2 \end{pmatrix}.
 \]
-\textbf{3.} Norma $\infty$ = máx.\ suma de $|a_{ij}|$ por fila. Fila 1: $0.25+0=0.25$; fila 2: $|{-}0.2|+|0.2|=0.4$. Entonces
-\[
-L=\max(0.25,\ 0.4)=0.4.
-\]}
+\textbf{3.} Sumas por fila: $0.25+0=0.25$ y $|{-}0.2|+|0.2|=0.4$, así $L=\max(0.25,\,0.4)=0.4$.
+
+\smallskip
+\textbf{4.} Como $L=0.4<1$, $G$ es \textbf{contracción}: el método \emph{sí} converge (linealmente).}
 \end{cardgear}
-\vspace{1mm}
-\begin{cardnota}[\faCheckCircle]
-{\footnotesize \textbf{4.} $L=0.4<1\Rightarrow G$ es \textbf{contracción}: \emph{sí} converge (linealmente) el método.}
-\end{cardnota}
 \end{column}
 \end{columns}
 \end{frame}
