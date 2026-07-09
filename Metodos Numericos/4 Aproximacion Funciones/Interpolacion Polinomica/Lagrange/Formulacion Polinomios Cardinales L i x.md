@@ -66,8 +66,8 @@ aliases:
 > $$p_n(x) = \sum_{i=0}^n y_i\, L_i(x)$$
 > es el único interpolador de grado $\leq n$. La aplicación $f \mapsto p_n$ es lineal y los $L_i$ son su "núcleo": $p_n(x) = \sum_i f(x_i)L_i(x)$ es la versión interpolatoria de una fórmula de cuadratura.
 
-> [!info]
-> **Función de Lebesgue.** La sensibilidad de la interpolación a errores en los datos la mide la **constante de Lebesgue** $\Lambda_n = \max_x \sum_i |L_i(x)|$: un error $\varepsilon$ en los $y_i$ produce error $\leq \Lambda_n\varepsilon$ en $p_n$. Con nodos equiespaciados $\Lambda_n$ crece exponencialmente (ligado al [[Fenomeno Runge y Nodos Chebyshev|fenómeno de Runge]]); con nodos de Chebyshev crece solo como $\log n$.
+> [!info] **Función de Lebesgue.**
+>  La sensibilidad de la interpolación a errores en los datos la mide la **constante de Lebesgue** $\Lambda_n = \max_x \sum_i |L_i(x)|$: un error $\varepsilon$ en los $y_i$ produce error $\leq \Lambda_n\varepsilon$ en $p_n$. Con nodos equiespaciados $\Lambda_n$ crece exponencialmente (ligado al [[Fenomeno Runge y Nodos Chebyshev|fenómeno de Runge]]); con nodos de Chebyshev crece solo como $\log n$.
 
 ---
 

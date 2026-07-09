@@ -25,33 +25,156 @@ aliases:
 > Es la regla de [[Reglas Cerradas/index|Newton-Cotes]] de grado $2$, pero con **grado de exactitud 3**: integra cúbicas exactamente pese a usar una parábola. Su error depende de $f^{(4)}$, lo que la hace mucho más precisa que el [[Trapecio Error Truncamiento Segunda Derivada|trapecio]] al mismo costo de subdivisión.
 
 ---
+## Construcción de la regla
+
+> [!teoria]
+> La regla de Simpson se obtiene reemplazando $f$ por su [[Lagrange/index|polinomio interpolador de Lagrange]] de grado $2$ construido sobre los nodos
+> $$
+> x_0=a,\qquad
+> x_1=\frac{a+b}{2},\qquad
+> x_2=b,
+> $$
+> e integrando exactamente dicho polinomio.
+>
+> Si $h=\frac{b-a}{2}$, el resultado es
+> $$
+> \boxed{
+> \int_a^b f(x)\,dx
+> \approx
+> \frac{h}{3}
+> \left(
+> f_0+4f_1+f_2
+> \right).
+> }
+> $$
+>
+> Los pesos $1:4:1$ provienen de integrar los polinomios fundamentales de Lagrange sobre el intervalo.
+
+---
 
 ## Error de truncamiento
 
+
+
 > [!teorema]
-> Si $f \in C^4[a,b]$, existe $\xi \in (a,b)$ tal que
-> $$\int_a^b f(x)\,dx = \frac{h}{3}\big(f_0 + 4f_1 + f_2\big) - \frac{h^5}{90}f^{(4)}(\xi), \qquad h = \frac{b-a}{2}.$$
-> El error es $O(h^5)$ por panel y proporcional a $f^{(4)}$: nulo para polinomios de grado $\leq 3$.
+> Si $f\in C^4[a,b]$, existe un punto $\xi\in(a,b)$ tal que
+> $$
+> \boxed{
+> \int_a^b f(x)\,dx
+> =
+> \frac{h}{3}\left(f_0+4f_1+f_2\right)
+> -
+> \frac{h^5}{90}\,f^{(4)}(\xi),
+> }
+> \qquad
+> h=\frac{b-a}{2}.
+> $$
+>
+> En consecuencia, el error local es de orden $O(h^5)$ y la regla es exacta para todo polinomio de grado menor o igual que $3$.
 
 > [!demostracion]
-> La parábola tiene grado de exactitud $\geq 2$ por construcción. Que sea $3$ se ve porque el término de error de orden $h^4$ se anula por **simetría** de los nodos respecto al centro: el polinomio nodal $\prod(x-x_i)$ es impar respecto al punto medio, y su integral contra una constante (el siguiente término de Taylor) se cancela. El primer término no nulo involucra $f^{(4)}$, dando $-\frac{h^5}{90}f^{(4)}(\xi)$. (Se prueba con el método del núcleo de Peano o por integración del error de interpolación de Hermite.)
+> La regla de Simpson se obtiene integrando el [[Lagrange/index|polinomio interpolador de Lagrange]] de grado $2$, por lo que es exacta para todos los polinomios de grado menor o igual que $2$. Además, gracias a la simetría de los nodos respecto al punto medio, también integra exactamente cualquier polinomio de grado $3$.
+>
+> Por ello, el primer polinomio para el cual puede existir error es
+> $$
+> f(x)=x^4.
+> $$
+>
+> Consideremos el intervalo simétrico $[-1,1]$, donde $h=1$. La integral exacta vale
+> $$
+> \int_{-1}^{1}x^4\,dx
+> =
+> \frac{2}{5},
+> $$
+> mientras que la regla de Simpson produce
+> $$
+> \frac{1}{3}\big(f(-1)+4f(0)+f(1)\big)
+> =
+> \frac{1}{3}(1+0+1)
+> =
+> \frac{2}{3}.
+> $$
+>
+> El error es, por tanto,
+> $$
+> E
+> =
+> \frac{2}{5}
+> -
+> \frac{2}{3}
+> =
+> -\frac{4}{15}.
+> $$
+>
+> Como
+> $$
+> f^{(4)}(x)=24,
+> $$
+> si el error tiene la forma
+> $$
+> E=-C\,h^5\,f^{(4)}(\xi),
+> $$
+> resulta
+> $$
+> -\frac{4}{15}
+> =
+> -24C,
+> $$
+> de donde
+> $$
+> C=\frac{1}{90}.
+> $$
+>
+> Así se obtiene la expresión general
+> $$
+> E
+> =
+> -\frac{h^5}{90}\,f^{(4)}(\xi),
+> $$
+> válida para funciones de clase $C^4[a,b]$.
 
 ---
 
-## El "bonus de paridad"
+## Cancelación por simetría
 
 > [!teoria]
-> Simpson usa $3$ puntos (parábola, grado $2$) pero integra **cúbicas** exactamente. La razón: una cúbica se descompone en una parábola más un término cúbico **antisimétrico** respecto al punto medio; al integrar sobre el intervalo simétrico, la parte antisimétrica se cancela. Este ascenso de grado "gratis" es lo que hace a Simpson tan eficiente: orden $h^5$ por el precio de $3$ evaluaciones.
+> Aunque Simpson interpola mediante una parábola (grado $2$), integra exactamente cualquier polinomio de grado hasta $3$.
+>
+> La razón es la simetría del intervalo. Si se desarrolla una cúbica respecto al punto medio, el término de grado $3$ es impar. Tanto la integral exacta como la regla de Simpson anulan automáticamente todas las contribuciones impares sobre un intervalo simétrico.
+>
+> Por ello, Simpson posee **grado de exactitud $3$**, uno superior al grado del polinomio interpolante.
 
 ---
 
-## Ejemplo
+## Ejemplos
 
 > [!ejemplo]
 > **$\int_0^1 e^x\,dx = e-1 \approx 1.7182818$** con Simpson 1/3 ($h=0.5$):
 > $$\frac{0.5}{3}\big(e^0 + 4e^{0.5} + e^1\big) = \frac{0.5}{3}(1 + 6.59489 + 2.71828) = 1.718862.$$
 > Error $= 5.8\times10^{-4}$, frente al $1.4\times10^{-1}$ del [[Trapecio Error Truncamiento Segunda Derivada|trapecio]]: **240 veces** menor con solo un punto más. La cota $\frac{h^5}{90}\max|f^{(4)}| = \frac{(0.5)^5 e}{90} \approx 9.4\times10^{-4}$ es consistente.
 
+> [!ejemplo]
+> Sea
+> $$
+> f(x)=x^3.
+> $$
+>
+> En el intervalo $[-1,1]$,
+> $$
+> \int_{-1}^{1}x^3\,dx=0.
+> $$
+>
+> La regla de Simpson produce
+> $$
+> \frac{1}{3}
+> \left(
+> -1
+> +4\cdot0
+> +1
+> \right)
+> =0,
+> $$
+> reproduciendo exactamente la integral, a pesar de que el interpolante utilizado es únicamente cuadrático.
 ---
 
 ## Comparación con el trapecio

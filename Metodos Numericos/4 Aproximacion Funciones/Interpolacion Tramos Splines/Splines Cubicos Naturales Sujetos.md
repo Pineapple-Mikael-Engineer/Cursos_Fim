@@ -45,10 +45,72 @@ aliases:
 ## Construcción
 
 > [!teorema]
-> Sean $M_i = S''(x_i)$ las **segundas derivadas** (momentos) en los nodos y $h_i = x_{i+1}-x_i$. La continuidad $C^1$ impone, para $i = 1,\dots,n-1$, el [[Condiciones Continuidad C2 y Sistema Tridiagonal|sistema tridiagonal]]
-> $$h_{i-1}M_{i-1} + 2(h_{i-1}+h_i)M_i + h_i M_{i+1} = 6\left(\frac{y_{i+1}-y_i}{h_i} - \frac{y_i-y_{i-1}}{h_{i-1}}\right).$$
-> Resuelto el sistema (que es diagonal dominante, $O(n)$), cada tramo se reconstruye con
-> $$S_i(x) = \frac{M_i(x_{i+1}-x)^3 + M_{i+1}(x-x_i)^3}{6h_i} + \Big(\frac{y_i}{h_i} - \frac{M_i h_i}{6}\Big)(x_{i+1}-x) + \Big(\frac{y_{i+1}}{h_i} - \frac{M_{i+1}h_i}{6}\Big)(x-x_i).$$
+> Sea $S$ un spline cúbico interpolante y definamos
+> $$
+> M_i=S''(x_i),\qquad h_i=x_{i+1}-x_i.
+> $$
+>
+> Entonces las condiciones de continuidad de $S'$ y $S''$ en los nodos interiores implican que los momentos $M_i$ satisfacen el sistema lineal tridiagonal
+> $$
+> h_{i-1}M_{i-1}
+> +2(h_{i-1}+h_i)M_i
+> +h_iM_{i+1}
+> =
+> 6\left(
+> \frac{y_{i+1}-y_i}{h_i}
+> -
+> \frac{y_i-y_{i-1}}{h_{i-1}}
+> \right),
+> $$
+> para $i=1,\dots,n-1$.
+>
+> Una vez determinados los $M_i$, cada tramo cúbico queda completamente determinado.
+
+
+> [!demostracion]
+> Cada tramo $S_i(x)$ es un polinomio cúbico. En lugar de expresar sus cuatro coeficientes directamente, resulta más conveniente describirlo mediante los valores conocidos
+> $$
+> S_i(x_i)=y_i,\qquad
+> S_i(x_{i+1})=y_{i+1},
+> $$
+> y las segundas derivadas en los extremos,
+> $$
+> M_i=S''(x_i),
+> \qquad
+> M_{i+1}=S''(x_{i+1}).
+> $$
+>
+> Estas cuatro cantidades determinan de manera única el tramo cúbico (véase [[Condiciones Continuidad C2 y Sistema Tridiagonal]]).
+>
+> Al derivar la expresión obtenida para $S_i(x)$ y evaluar en los extremos del intervalo se obtienen fórmulas para $S_i'(x_i)$ y $S_i'(x_{i+1})$ en función de $M_i$, $M_{i+1}$, $y_i$, $y_{i+1}$ y $h_i$.
+>
+> En cada nodo interior $x_i$ concurren dos tramos consecutivos, $S_{i-1}$ y $S_i$. Como el spline pertenece a $C^1$, debe cumplirse
+> $$
+> S_{i-1}'(x_i)=S_i'(x_i).
+> $$
+>
+> Sustituyendo las expresiones de ambas derivadas y simplificando se obtiene
+> $$
+> h_{i-1}M_{i-1}
+> +2(h_{i-1}+h_i)M_i
+> +h_iM_{i+1}
+> =
+> 6\left(
+> \frac{y_{i+1}-y_i}{h_i}
+> -
+> \frac{y_i-y_{i-1}}{h_{i-1}}
+> \right),
+> $$
+> para cada nodo interior.
+>
+> Como existen $n-1$ nodos interiores, se obtienen $n-1$ ecuaciones lineales. Las dos ecuaciones restantes provienen de las [[Condiciones de Frontera Splines|condiciones de frontera]] (natural, sujeto o *not-a-knot*), completando así el sistema para determinar todos los momentos $M_i$.
+
+> [!tip]
+> La incógnita del problema **no son los coeficientes de cada cúbica**, sino los valores
+> $$
+> M_i=S''(x_i).
+> $$
+> Una vez conocidos estos "momentos", la expresión de cada polinomio cúbico se obtiene directamente. Gracias a ello, el problema pasa de resolver $4n$ coeficientes a resolver un sistema tridiagonal de solo $n+1$ incógnitas.
 
 > [!info]
 > Las condiciones de frontera fijan las ecuaciones primera y última: natural impone $M_0 = M_n = 0$; sujeto añade ecuaciones con $f'(a), f'(b)$. El detalle del montaje está en [[Condiciones Continuidad C2 y Sistema Tridiagonal]].
@@ -97,7 +159,7 @@ aliases:
 | Natural | $S''=0$ en extremos |
 | Sujeto | $S'=f'$ en extremos |
 | Sistema | tridiagonal en $M_i = S''(x_i)$, $O(n)$ |
-| Error | $\frac{5}{384}h^4\max|f^{(4)}|$ (sujeto) |
+| Error | $\frac{5}{384}h^4\max\|f^{(4)}\|$ (sujeto) |
 
 > [!corolario]
 > El spline cúbico es la interpolante $C^2$ por tramos de uso estándar: $n$ cúbicas con $4n-2$ condiciones de interpolación y continuidad, cerradas por dos condiciones de frontera (natural $S''=0$, sujeto $S'=f'$, o not-a-knot). Su construcción se reduce a un [[Condiciones Continuidad C2 y Sistema Tridiagonal|sistema tridiagonal]] diagonal dominante para las segundas derivadas, resoluble en $O(n)$, y alcanza convergencia $O(h^4)$ (sujeto). Suave, estable y de mínima curvatura, es la respuesta directa al [[Fenomeno Runge y Nodos Chebyshev|fenómeno de Runge]] de los polinomios de grado alto.
