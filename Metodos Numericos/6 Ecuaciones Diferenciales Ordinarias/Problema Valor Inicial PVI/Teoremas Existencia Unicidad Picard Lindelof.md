@@ -28,7 +28,9 @@ aliases:
 
 > [!definicion]
 > $f(t,y)$ es **Lipschitz en $y$** (con constante $L$) en una región $D$ si
-> $$\|f(t, y_1) - f(t, y_2)\| \leq L\,\|y_1 - y_2\| \qquad \forall (t,y_1), (t,y_2)\in D.$$
+> $$
+> \|f(t, y_1) - f(t, y_2)\| \leq L\,\|y_1 - y_2\| \qquad \forall (t,y_1), (t,y_2)\in D.
+> $$
 > Si $f$ tiene derivada parcial $\partial f/\partial y$ acotada, entonces $L = \max\|\partial f/\partial y\|$ sirve (por el teorema del valor medio).
 
 > [!info]
@@ -39,14 +41,42 @@ aliases:
 ## Teorema
 
 > [!teorema]
-> Sea $f$ continua en $D = [t_0-a, t_0+a]\times\{\|y-y_0\|\leq b\}$ y Lipschitz en $y$ con constante $L$. Entonces el PVI $y'=f(t,y)$, $y(t_0)=y_0$ tiene una **única** solución $y(t)$ en $[t_0-\alpha, t_0+\alpha]$, con $\alpha = \min(a, b/M)$ y $M = \max_D\|f\|$.
+> Sea $f$ continua en $D = [t_0-a, t_0+a]\times\{\|y-y_0\|\leq b\}$ y Lipschitz en $y$ con constante $L$. Entonces el PVI $y'=f(t,y)$, $y(t_0)=y_0$ tiene una **única** solución $y(t)$ en $I_\alpha = [t_0-\alpha, t_0+\alpha]$, con $\alpha = \min(a, b/M)$ y $M = \max_D\|f\|$.
 
-> [!demostracion]
-> **Iteración de Picard.** El PVI equivale a la ecuación integral $y(t) = y_0 + \int_{t_0}^t f(s, y(s))\,ds$. Se define la sucesión
-> $$y^{(0)}(t) = y_0, \qquad y^{(k+1)}(t) = y_0 + \int_{t_0}^t f(s, y^{(k)}(s))\,ds.$$
-> El operador $T[y](t) = y_0 + \int_{t_0}^t f(s,y(s))\,ds$ es una **contracción** en norma adecuada: usando Lipschitz,
-> $$\|T[y_1] - T[y_2]\|_\infty \leq L\,|t-t_0|\,\|y_1-y_2\|_\infty,$$
-> que es contractiva para $|t-t_0|$ pequeño. Por el [[Condicion Contraccion Norma Matricial|teorema de punto fijo de Banach]], $T$ tiene un único punto fijo: la solución única. (La extensión a todo el intervalo se hace por continuación.)
+> [!demostracion] **Esquema riguroso (iteración de Picard).**
+> El PVI equivale a la ecuación integral
+> $$
+> y(t) = y_0 + \int_{t_0}^t f(s, y(s))\,ds.
+> $$
+> Definimos el operador $T$ sobre el espacio de funciones continuas $C(I_\alpha)$:
+> $$
+> (T[y])(t) = y_0 + \int_{t_0}^t f(s, y(s))\,ds.
+> $$
+> Para aplicar el [[Condicion Contraccion Norma Matricial|teorema de punto fijo de Banach]], debemos probar dos cosas:
+> 
+> 1. **Invarianza de la bola**: Si $\|y - y_0\|_\infty \le b$, entonces
+>    $$
+>  \|T[y] - y_0\|_\infty \le \int_{t_0}^t \|f(s,y(s))\|\,ds \le M |t-t_0| \le M\alpha \le b,
+>  $$
+>    luego $T$ mapea la bola $\mathcal{B} = \{y \in C(I_\alpha): \|y-y_0\|_\infty \le b\}$ en sí misma.
+>    
+> 2. **Contracción (el punto clave)**:
+>    En la norma del máximo estándar $\|\cdot\|_\infty$, solo se obtiene
+>    $$
+>    \|T[y_1] - T[y_2]\|_\infty \le L\,\alpha\, \|y_1 - y_2\|_\infty,
+>  $$
+>    que **no es contractiva** a menos que $\alpha < 1/L$, condición que el teorema no asegura. Para salvar la demostración en todo el intervalo $I_\alpha$, se usa la **norma ponderada** (equivalente a la del máximo):
+>    $$
+>    \|y\|_L = \sup_{t \in I_\alpha} e^{-2L|t-t_0|}\|y(t)\|.
+>    $$
+>    Entonces, aplicando la condición de Lipschitz y acotando la integral,
+>    $$
+>    \|T[y_1] - T[y_2]\|_L \le \frac{1}{2}\,\|y_1 - y_2\|_L.
+>    $$
+>    (El factor $1/2$ surge al integrar $e^{2L|s-t_0|}$ y multiplicar por el peso exponencial; el cálculo es directo para $t\ge t_0$ y análogo para $t\le t_0$).
+>    Por tanto, $T$ es una contracción en la bola completa. El teorema de punto fijo de Banach garantiza un único punto fijo $y\in \mathcal{B}$, que es la única solución en $I_\alpha$.
+>    
+> *(La extensión a intervalos mayores se obtiene por continuación, reiniciando el proceso en el borde del intervalo).*
 
 > [!info]
 > La iteración de Picard es la versión continua de la [[Condicion Contraccion Norma Matricial|iteración de punto fijo contractiva]], y su análogo discreto justifica la convergencia de los métodos numéricos. La misma constante $L$ gobierna ambas.
@@ -56,8 +86,10 @@ aliases:
 ## Ejemplo: cuándo falla la unicidad
 
 > [!ejemplo]
-> **EDO sin unicidad: $y' = \sqrt{|y|}$, $y(0)=0$.** Aquí $f(y)=\sqrt{|y|}$ **no** es Lipschitz en $y=0$ (su pendiente $\to\infty$). El PVI tiene infinitas soluciones:
-> $$y(t) \equiv 0 \quad\text{y}\quad y(t) = \tfrac{1}{4}(t-c)^2 \text{ para } t\geq c,\ \forall c\geq 0.$$
+> **EDO sin unicidad: $y' = \sqrt{|y|}$, $y(0)=0$.** Aquí $f(y)=\sqrt{|y|}$ **no** es Lipschitz en $y=0$ (su derivada tiende a $\infty$). El PVI tiene infinitas soluciones:
+> $$
+> y(t) \equiv 0 \quad\text{y}\quad y(t) = \tfrac{1}{4}(t-c)^2 \text{ para } t\geq c,\ \forall c\geq 0.
+> $$
 > Un método numérico aplicado aquí daría resultados impredecibles. La condición de Lipschitz **excluye** estas patologías.
 
 > [!ejemplo]
@@ -69,11 +101,11 @@ aliases:
 
 > [!proposicion]
 > 1. **Buena definición:** con $f$ Lipschitz, la trayectoria es única y la simulación aproxima un objeto bien definido.
-> 2. **Dependencia continua de los datos:** soluciones con condiciones iniciales próximas se separan a lo sumo como $e^{L t}$ (problema bien condicionado si $L$ moderado; mal condicionado —caótico— si $L$ grande).
+> 2. **Dependencia continua de los datos:** soluciones con condiciones iniciales próximas se separan a lo sumo como $e^{L t}$ (problema bien condicionado si $L$ es moderado; potencialmente mal condicionado si $L$ es grande).
 > 3. **Cota de error:** la constante $L$ entra directamente en la acumulación del [[Error Local Truncamiento vs Error Global Acumulado|error global]].
 
 > [!warning]
-> **Condicionamiento del PVI.** Aunque la solución sea única, si $L$ es grande (o $\partial f/\partial y > 0$ grande) los errores crecen exponencialmente: el problema está **mal condicionado** y ninguna precisión del método lo salva. Es el análogo dinámico del [[Condicionamiento Numerico Numero Condicion|número de condición]]. Los sistemas caóticos (Lorenz) son el caso extremo.
+> **Condicionamiento del PVI.** Aunque la solución sea única, si $L$ es grande (o $\partial f/\partial y$ es muy positiva) los errores pueden crecer exponencialmente: el problema está **mal condicionado** y ninguna precisión del método lo salva. Es el análogo dinámico del [[Condicionamiento Numerico Numero Condicion|número de condición]]. En sistemas caóticos (Lorenz) la separación exponencial también está presente, pero su origen suele ser una inestabilidad dinámica más sutil (exponentes de Lyapunov positivos) que queda englobada en este tipo de cotas superiores.
 
 ---
 
@@ -94,9 +126,9 @@ aliases:
 | Hipótesis | $f$ continua y Lipschitz en $y$ |
 | Lipschitz | $\|f(t,y_1)-f(t,y_2)\| \leq L\|y_1-y_2\|$ |
 | Conclusión | solución **única** local |
-| Prueba | iteración de Picard (contracción de Banach) |
-| Sin Lipschitz | posible no unicidad ($y'=\sqrt{|y|}$) |
+| Prueba | iteración de Picard + **norma ponderada** para que sea contracción de Banach |
+| Sin Lipschitz | posible no unicidad ($y'=\sqrt{\|y\|}$) |
 | Papel de $L$ | controla propagación de errores y condicionamiento |
 
 > [!corolario]
-> El teorema de Picard-Lindelöf garantiza solución única del PVI cuando $f$ es Lipschitz en $y$, probándolo con la iteración de Picard como contracción de Banach —la versión continua de la [[Condicion Contraccion Norma Matricial|iteración de punto fijo]]—. La condición de Lipschitz no es un tecnicismo: su constante $L$ controla cuánto se separan soluciones vecinas, define el condicionamiento del problema (exponencial $e^{Lt}$, catastrófico en sistemas caóticos) y aparece en la cota del [[Error Local Truncamiento vs Error Global Acumulado|error global]] de todo método. Sin ella, EDOs como $y'=\sqrt{|y|}$ pierden la unicidad y la simulación carece de sentido.
+> El teorema de Picard-Lindelöf garantiza solución única del PVI cuando $f$ es Lipschitz en $y$. La demostración rigurosa requiere usar la iteración de Picard con una **norma ponderada** para que el operador sea contractivo en todo el intervalo de existencia, evitando la falsa impresión de que basta con $\alpha < 1/L$. La condición de Lipschitz no es un tecnicismo: su constante $L$ controla cuánto se separan soluciones vecinas, define el condicionamiento del problema (cota exponencial $e^{Lt}$) y aparece en la cota del [[Error Local Truncamiento vs Error Global Acumulado|error global]] de todo método. Sin ella, EDOs como $y'=\sqrt{|y|}$ pierden la unicidad y la simulación carece de sentido.

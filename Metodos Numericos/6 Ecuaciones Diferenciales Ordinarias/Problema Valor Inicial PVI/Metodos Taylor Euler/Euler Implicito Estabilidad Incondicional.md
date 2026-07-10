@@ -60,7 +60,7 @@ aliases:
 > | $h$ | Euler explícito | Euler implícito |
 > |:---:|:---|:---|
 > | 0.01 | estable | estable |
-> | 0.05 | **explota** ($|1+h\lambda|=4$) | estable |
+> | 0.05 | **explota** ($\|1+h\lambda\|=4$) | estable |
 > | 0.5 | explota catastróficamente | estable, sigue $\cos t$ |
 >
 > Euler explícito requiere $h < 2/100 = 0.02$ por **estabilidad**, aunque la solución sea suave. Euler implícito usa $h=0.5$ sin problema: la rigidez no lo afecta. Esta es la razón de ser de los métodos implícitos.

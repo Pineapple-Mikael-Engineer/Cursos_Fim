@@ -16,10 +16,24 @@ aliases:
 
 # Fundamentos de Gauss-Legendre y Polinomios Ortogonales
 
+
 > [!definicion]
 > Los **polinomios de Legendre** $\{P_n\}$ son la familia de polinomios ortogonales en $[-1,1]$ con peso $w(x)=1$:
 > $$\int_{-1}^1 P_m(x)P_n(x)\,dx = 0 \quad (m\neq n).$$
 > Los **nodos** de la [[Cuadratura Gaussiana/index|cuadratura de Gauss-Legendre]] de orden $n$ son los $n$ ceros de $P_n$.
+
+
+> [!teoria]
+> La ortogonalidad de los polinomios depende del **producto interno** que se utilice. En lugar del producto punto entre vectores, se define
+> $$
+> \langle p,q\rangle
+> =
+> \int_a^b p(x)\,q(x)\,w(x)\,dx,
+> $$
+> donde $w(x)>0$ se denomina **función de peso**.
+>
+> La función de peso determina qué regiones del intervalo tienen mayor influencia en el producto interno. Si $w(x)$ es grande cerca de cierto punto, los valores de los polinomios en esa zona "pesan más" al medir su ortogonalidad.
+
 
 > [!info]
 > La clave de la cuadratura gaussiana es elegir como nodos los ceros de un polinomio ortogonal. La ortogonalidad es precisamente lo que permite que $n$ nodos integren exactamente polinomios de grado $2n-1$ (ver [[Grado Exactitud Polinomica 2n 1]]).
@@ -53,7 +67,96 @@ aliases:
 > 4. **Entrelazado:** los ceros de $P_n$ y $P_{n+1}$ se entrelazan.
 
 > [!demostracion]
-> **Ceros en $(-1,1)$ (propiedad 2).** Supóngase que $P_n$ cambia de signo solo en $k < n$ puntos $r_1,\dots,r_k$ de $(-1,1)$. El polinomio $q(x) = \prod_{j=1}^k(x-r_j)$ tiene grado $k < n$, y $P_n(x)q(x)$ no cambia de signo. Entonces $\int_{-1}^1 P_n q\,dx \neq 0$, contradiciendo la propiedad 3 (ortogonalidad a grados menores). Luego $P_n$ tiene $n$ cambios de signo, es decir $n$ ceros reales en $(-1,1)$.
+> Las cuatro propiedades son consecuencia de la construcción de los polinomios de Legendre como una familia de polinomios ortogonales respecto al producto interno
+> $$
+> \langle p,q\rangle
+> =
+> \int_{-1}^{1}p(x)q(x)\,dx.
+> $$
+>
+> **1. Ortogonalidad.**  
+> Por definición, cada polinomio $P_n$ se construye ortogonal a todos los de menor grado. En consecuencia,
+> $$
+> \int_{-1}^{1}P_m(x)P_n(x)\,dx=0,
+> \qquad m\neq n.
+> $$
+> Además, la normalización habitual $P_n(1)=1$ fija la constante
+> $$
+> \int_{-1}^{1}P_n^2(x)\,dx
+> =
+> \frac{2}{2n+1},
+> $$
+> por lo que
+> $$
+> \int_{-1}^{1}P_mP_n\,dx
+> =
+> \frac{2}{2n+1}\delta_{mn}.
+> $$
+>
+> **2. Ortogonalidad frente a polinomios de menor grado.**  
+> Todo polinomio $q$ con
+> $$
+> \deg(q)<n
+> $$
+> puede escribirse como combinación lineal de los primeros polinomios de Legendre:
+> $$
+> q(x)
+> =
+> a_0P_0(x)+a_1P_1(x)+\cdots+a_{n-1}P_{n-1}(x).
+> $$
+> Entonces
+> $$
+> \int_{-1}^{1}P_n(x)q(x)\,dx
+> =
+> \sum_{k=0}^{n-1}
+> a_k
+> \int_{-1}^{1}P_nP_k\,dx
+> =
+> 0,
+> $$
+> porque cada integral es nula por la propiedad anterior.
+>
+> **3. Ceros reales y simples.**  
+> Supóngase que $P_n$ tuviera solamente $k<n$ cambios de signo en $(-1,1)$, localizados en
+> $$
+> r_1,\dots,r_k.
+> $$
+> Construimos el polinomio
+> $$
+> q(x)
+> =
+> \prod_{j=1}^{k}(x-r_j),
+> $$
+> cuyo grado es $k<n$.
+>
+> El producto
+> $$
+> P_n(x)q(x)
+> $$
+> no cambia de signo en $[-1,1]$, por lo que
+> $$
+> \int_{-1}^{1}P_n(x)q(x)\,dx\neq0.
+> $$
+> Esto contradice la propiedad anterior. Luego $P_n$ debe poseer al menos $n$ cambios de signo.
+>
+> Como $P_n$ tiene grado exactamente $n$, no puede tener más de $n$ raíces. Se concluye que posee exactamente $n$ raíces reales distintas, todas situadas en $(-1,1)$.
+>
+> **4. Entrelazado de los ceros.**  
+> Sean
+> $$
+> x_1<\cdots<x_n
+> $$
+> las raíces de $P_n$. Entre dos raíces consecutivas de $P_n$, este polinomio mantiene signo constante.
+>
+> Si $P_{n+1}$ no tuviera una raíz en alguno de esos intervalos, también conservaría el mismo signo allí. Entonces el producto
+> $$
+> P_n(x)P_{n+1}(x)
+> $$
+> mantendría signo constante en dicho intervalo y su integral no podría anularse, contradiciendo la ortogonalidad
+> $$
+> \int_{-1}^{1}P_nP_{n+1}\,dx=0.
+> $$
+> Por tanto, entre cada par de raíces consecutivas de $P_n$ debe existir exactamente una raíz de $P_{n+1}$. Como $P_{n+1}$ posee una raíz adicional, ésta se sitúa cerca de cada extremo del intervalo, obteniéndose el entrelazado de las raíces.
 
 ---
 

@@ -31,14 +31,389 @@ aliases:
 
 > [!teorema]
 > Imponiendo que el método reproduzca la serie de [[Metodos Serie Taylor Orden Superior|Taylor]] hasta orden $p$, los coeficientes deben satisfacer las **condiciones de orden**. Las primeras:
-> $$\text{orden 1:}\ \sum_i b_i = 1, \qquad \text{orden 2:}\ \sum_i b_i c_i = \tfrac12,$$
-> $$\text{orden 3:}\ \sum_i b_i c_i^2 = \tfrac13,\quad \sum_{i,j} b_i a_{ij} c_j = \tfrac16,$$
+> $$
+> \text{orden 1:}\ \sum_i b_i = 1, \qquad \text{orden 2:}\ \sum_i b_i c_i = \tfrac12,
+> $$
+> $$
+> \text{orden 3:}\ \sum_i b_i c_i^2 = \tfrac13,\quad \sum_{i,j} b_i a_{ij} c_j = \tfrac16,
+> $$
 > junto con la consistencia $c_i = \sum_j a_{ij}$ (los nodos son sumas de filas de $A$).
 
 > [!demostracion]
-> Se desarrolla $y_{n+1}$ del método en potencias de $h$ y se compara término a término con la serie de Taylor de $y(t_{n+1})$. Igualar los coeficientes de $h^1, h^2, \dots, h^p$ produce el sistema de condiciones de orden. El número de condiciones crece **rápidamente** (relacionado con árboles con raíz de Butcher): 1 para orden 1, 2 para orden 2, 4 para orden 3, 8 para orden 4, 17 para orden 5...
-
----
+> **Derivación desde cero: consistencia y condiciones de orden.**
+>
+> Consideremos un método de Runge–Kutta de **$s$ etapas**:
+>
+> $$
+> k_i
+> =
+> f\!\left(
+> t_n+c_i h,\;
+> y_n+
+> h\sum_{j=1}^{s}a_{ij}k_j
+> \right),
+> \qquad
+> i=1,\ldots,s,
+> $$
+>
+> $$
+> y_{n+1}
+> =
+> y_n
+> +
+> h\sum_{i=1}^{s}b_i k_i.
+> $$
+>
+> Antes de comenzar, aclaremos la notación:
+>
+> - El índice $i$ indica **la etapa que estamos calculando**.
+> - El índice $j$ únicamente recorre la suma; **no representa una iteración temporal**.
+> - En esta demostración utilizaremos la formulación **general**, válida tanto para métodos explícitos como implícitos.
+>
+> Más adelante veremos que, para métodos explícitos, muchos coeficientes $a_{ij}$ son cero y cada etapa depende únicamente de las anteriores.
+>
+> Todas las funciones se desarrollarán alrededor del punto $(t_n,y_n)$. Para simplificar la escritura definimos
+>
+> $$
+> f=f(t_n,y_n),
+> \qquad
+> f_t=\frac{\partial f}{\partial t},
+> \qquad
+> f_y=\frac{\partial f}{\partial y},
+> $$
+>
+> y análogamente para las derivadas de orden superior.
+>
+> ---
+>
+> **Paso 1. Expansión de una etapa $k_i$.**
+>
+> Como el punto
+>
+> $$
+> \left(
+> t_n+c_i h,\;
+> y_n+h\sum_{j=1}^{s}a_{ij}k_j
+> \right)
+> $$
+>
+> está próximo a $(t_n,y_n)$ cuando $h$ es pequeño, aplicamos Taylor de primer orden:
+>
+> $$
+> \begin{aligned}
+> k_i
+> &=
+> f
+> +
+> c_i h\,f_t
+> +
+> h
+> \left(
+> \sum_{j=1}^{s}a_{ij}k_j
+> \right)
+> f_y
+> +
+> O(h^2).
+> \end{aligned}
+> $$
+>
+> Cuando $h\to0$, todas las etapas verifican
+>
+> $$
+> k_j=f+O(h),
+> $$
+>
+> por lo que podemos sustituir
+>
+> $$
+> k_j=f+O(h)
+> $$
+>
+> dentro del término lineal:
+>
+> $$
+> k_i
+> =
+> f
+> +
+> c_i h\,f_t
+> +
+> h
+> \left(
+> \sum_{j=1}^{s}a_{ij}
+> \right)
+> f_yf
+> +
+> O(h^2).
+> $$
+>
+> ---
+>
+> **Paso 2. Obtención de la condición de consistencia.**
+>
+> La etapa $k_i$ pretende aproximar la pendiente de la solución exacta en el instante intermedio
+>
+> $$
+> t_n+c_i h.
+> $$
+>
+> Esa pendiente exacta es
+>
+> $$
+> f\!\left(
+> t_n+c_i h,\;
+> y(t_n+c_i h)
+> \right).
+> $$
+>
+> Expandimos nuevamente mediante Taylor:
+>
+> $$
+> f
+> +
+> c_i h
+> \left(
+> f_t+f_yf
+> \right)
+> +
+> O(h^2).
+> $$
+>
+> Comparando esta expresión con la obtenida para $k_i$,
+>
+> $$
+> k_i
+> =
+> f
+> +
+> c_i h\,f_t
+> +
+> h
+> \left(
+> \sum_{j=1}^{s}a_{ij}
+> \right)
+> f_yf
+> +
+> O(h^2),
+> $$
+>
+> observamos que ambos desarrollos coincidirán únicamente si los coeficientes de $f_yf$ son iguales.
+>
+> Por tanto,
+>
+> $$
+> \boxed{
+> c_i
+> =
+> \sum_{j=1}^{s}a_{ij}.
+> }
+> $$
+>
+> Esta es la **condición de consistencia** de los nodos.
+>
+> ---
+>
+> **Paso 3. Expansión hasta segundo orden.**
+>
+> Ahora desarrollamos $k_i$ hasta términos de orden $h^2$:
+>
+> $$
+> \begin{aligned}
+> k_i
+> =&
+> f
+> +
+> c_i h(f_t+f_yf)
+> \\
+> &
+> +
+> h^2
+> \left[
+> \frac{c_i^2}{2}
+> \left(
+> f_{tt}
+> +
+> 2f_{ty}f
+> +
+> f_{yy}f^2
+> \right)
+> +
+> \left(
+> \sum_{j=1}^{s}a_{ij}c_j
+> \right)
+> \left(
+> f_yf_t
+> +
+> f_y^2f
+> \right)
+> \right]
+> +
+> O(h^3).
+> \end{aligned}
+> $$
+>
+> ---
+>
+> **Paso 4. Serie de Taylor de la solución exacta.**
+>
+> La regla de la cadena proporciona
+>
+> $$
+> y'=f,
+> $$
+>
+> $$
+> y''=f_t+f_yf,
+> $$
+>
+> $$
+> y'''
+> =
+> f_{tt}
+> +
+> 2f_{ty}f
+> +
+> f_{yy}f^2
+> +
+> f_yf_t
+> +
+> f_y^2f.
+> $$
+>
+> Luego,
+>
+> $$
+> \begin{aligned}
+> y(t_n+h)
+> =
+> y_n
+> &+
+> hf
+> +
+> \frac{h^2}{2}(f_t+f_yf)
+> \\
+> &
+> +
+> \frac{h^3}{6}
+> \left(
+> f_{tt}
+> +
+> 2f_{ty}f
+> +
+> f_{yy}f^2
+> +
+> f_yf_t
+> +
+> f_y^2f
+> \right)
+> +
+> O(h^4).
+> \end{aligned}
+> $$
+>
+> ---
+>
+> **Paso 5. Comparación con el método.**
+>
+> Sustituimos la expansión de $k_i$ en
+>
+> $$
+> y_{n+1}
+> =
+> y_n
+> +
+> h\sum_{i=1}^{s}b_i k_i.
+> $$
+>
+> Se obtiene
+>
+> $$
+> \begin{aligned}
+> y_{n+1}
+> =
+> y_n
+> &+
+> h
+> \left(
+> \sum_{i=1}^{s}b_i
+> \right)
+> f
+> \\
+> &
+> +
+> h^2
+> \left(
+> \sum_{i=1}^{s}b_ic_i
+> \right)
+> (f_t+f_yf)
+> \\
+> &
+> +
+> h^3
+> \Bigg[
+> \frac12
+> \left(
+> \sum_{i=1}^{s}b_ic_i^2
+> \right)
+> \left(
+> f_{tt}
+> +
+> 2f_{ty}f
+> +
+> f_{yy}f^2
+> \right)
+> \\
+> &
+> \qquad+
+> \left(
+> \sum_{i=1}^{s}
+> \sum_{j=1}^{s}
+> b_i a_{ij}c_j
+> \right)
+> (f_yf_t+f_y^2f)
+> \Bigg]
+> +
+> O(h^4).
+> \end{aligned}
+> $$
+>
+> Igualando esta expresión con la serie de Taylor exacta obtenemos las condiciones de orden:
+>
+> **Orden 1**
+>
+> $$
+> \boxed{
+> \sum_{i=1}^{s}b_i=1.
+> }
+> $$
+>
+> **Orden 2**
+>
+> $$
+> \boxed{
+> \sum_{i=1}^{s}b_ic_i=\frac12.
+> }
+> $$
+>
+> **Orden 3**
+>
+> $$
+> \boxed{
+> \sum_{i=1}^{s}b_ic_i^2=\frac13,
+> }
+> $$
+>
+> $$
+> \boxed{
+> \sum_{i=1}^{s}
+> \sum_{j=1}^{s}
+> b_i a_{ij}c_j
+> =
+> \frac16.
+> }
+> $$
+>
+> Estas igualdades garantizan que el desarrollo del método coincide con la serie de Taylor de la solución exacta hasta orden tres.
 
 ## La barrera de Butcher: $s$ vs $p$
 
