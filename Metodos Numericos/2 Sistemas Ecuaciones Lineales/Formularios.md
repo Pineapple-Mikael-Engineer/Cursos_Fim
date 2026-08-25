@@ -5,7 +5,7 @@ tags:
   - metodos-numericos
   - formulario
   - sistemas-lineales
-draft: false
+draft: true
 aliases:
   - formulario sistemas lineales
   - formulas sistemas de ecuaciones lineales

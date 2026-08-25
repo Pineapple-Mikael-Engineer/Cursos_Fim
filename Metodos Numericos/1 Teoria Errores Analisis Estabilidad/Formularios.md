@@ -5,7 +5,7 @@ tags:
   - metodos-numericos
   - formulario
   - errores
-draft: false
+draft: true
 aliases:
   - formulario errores
   - formulas teoria de errores

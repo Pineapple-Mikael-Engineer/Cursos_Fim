@@ -5,7 +5,7 @@ tags:
   - metodos-numericos
   - formulario
   - ecuaciones-no-lineales
-draft: false
+draft: true
 aliases:
   - formulario ecuaciones no lineales
   - formulas raices
